@@ -82,7 +82,7 @@ ___
 
 ### 화면
 
-![1.로그아웃 상태화면 레이아웃 3](/Users/heejin/git/Archiview/Archiview_jpg/1.로그아웃 상태화면 레이아웃 3.jpg)
+![1.로그아웃 상태화면 레이아웃 3](./Archiview_jpg/1.로그아웃 상태화면 레이아웃 3.jpg)
 
 
 
