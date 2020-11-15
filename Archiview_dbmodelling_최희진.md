@@ -24,6 +24,6 @@
 
 추가
 1. 팔로우, 좋아요 기능의 확장성을 높이자
-   - 팔로우 : Followable 테이블 생성 -> 회원 테이블뿐만 아니라 태그 테이블이나 다른 테이블이 Followable 테이블의 자식으로 만듬 -> 회원과 Followable의 다대다 관계 해소
-   - 좋아요 : Likeable 테이블 생성 -> 게시물 테이블뿐만 아니라 댓글 테이블이나 다른 테이블이 Likeable 테이블의 자식으로 만듬 ->  회원과 Likable의 다대다 관계 해소
+   - 팔로우 : Followable 테이블 생성 -> 회원 테이블뿐만 아니라 태그 테이블이나 다른 테이블을 Followable의 자식으로 만듬 -> 회원과 Followable의 다대다 관계 해소
+   - 좋아요 : Likeable 테이블 생성 -> 게시물 테이블뿐만 아니라 댓글 테이블이나 다른 테이블을 Likeable의 자식으로 만듬 ->  회원과 Likable의 다대다 관계 해소
    - 참고 : https://stackoverrun.com/ko/q/3100055
