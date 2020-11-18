@@ -6,18 +6,19 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import com.acv.domain.Movie;
 import com.eomcs.pms.domain.Project;
 
-public class MemberDao {
+public class MovieDao {
 
   Connection con;
 
-  public ProjectDaoImpl(Connection con) {
+  public MovieDao(Connection con) {
     this.con = con;
   }
 
   @Override
-  public int insert(Project project) throws Exception {
+  public int insert(Movie movie) throws Exception {
 
     // 커넥션 객체에서 수행하는 작업을 수동 커밋하도록 설정한다.
     con.setAutoCommit(false);
