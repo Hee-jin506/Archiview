@@ -111,7 +111,7 @@ insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, p
 values(8, 1, '류승희', 2, 'acv8@test.com', '8888', '타래', null,
 '타래가 쵝오야', 1, '타래', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(9, 1, '이용민', 3, 'acv9@test.com', '9999', '스트릿패션', 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDExMTVfMjA0%2FMDAxNjA1NDAwNTQzMzQx.kvKdJJEasvYQ_Iyi-29WD-JuAM7adTCJVvK38F2ML3Mg.kAS3vJhRvk3WZtEQWZfFHjaTM2lWePnBxTVUcXvzWlsg.JPEG.sdbuyer%2F%25B3%25AA%25C0%25CC%25C5%25B0_%25C7%25C7%25BD%25BA%25B8%25B6%25C0%25CC%25B3%25CA%25BD%25BA%25BF%25F8_%25B9%25DF%25B8%25C5%252C_%25C1%25F6%25B5%25E5%25B7%25A1%25B0%25EF_%25C6%25D0%25BC%25C7_5.JPG&type=sc960_832',
+values(9, 1, '이용민', 3, 'acv9@test.com', '9999', '스트릿패션', null,
 '리셀가 80만원', 1, '캔디', 1);
 =======
 >>>>>>> a7260f620b2295459006e9e1ef1c04e41ab725a1
