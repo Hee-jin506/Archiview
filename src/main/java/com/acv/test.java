@@ -18,8 +18,8 @@ public class test {
       e.printStackTrace();
     }
     //select를 이용하여 원하는 태그를 선택한다. select는 원하는 값을 가져오기 위한 중요한 기능이다.
-    //    Elements element = doc.select("div.sect-movie-chart");    
-    //    Elements element = doc.select("div.mv_info_area");    
+    //    Elements element = doc.select("div.sect-movie-chart");
+    //    Elements element = doc.select("div.mv_info_area");
     Iterator<Element> iterator = doc.select("h3.h_movie").iterator();
     System.out.println(iterator.next().select("strong").text());
     //    영화 제목
@@ -38,18 +38,18 @@ public class test {
     //Iterator을 사용하여 하나씩 값 가져오기
     //    Iterator<Element> ie1 = element.select("strong.rank").iterator();
     //    Iterator<Element> ie2 = element.select("strong.title").iterator();
-//    System.out.println(element.select("a"));
-//    Iterator<Element> ie2 = element.select("strong.h_movie2").iterator();
+    //    System.out.println(element.select("a"));
+    //    Iterator<Element> ie2 = element.select("strong.h_movie2").iterator();
 
     //    while (ie1.hasNext()) {
     //      System.out.println(ie1.next().text()+"\t"+ie2.next().text());
     //    }
-//    while (ie1.hasNext()) {
-//      System.out.println(ie1.next().text());
-//    }
-//    while (ie2.hasNext()) {
-//      System.out.println(ie2.next().text());
-//    }
+    //    while (ie1.hasNext()) {
+    //      System.out.println(ie1.next().text());
+    //    }
+    //    while (ie2.hasNext()) {
+    //      System.out.println(ie2.next().text());
+    //    }
     //    System.out.println(ie1.next().text());
 
     System.out.println("============================================================");
