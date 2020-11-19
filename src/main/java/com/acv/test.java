@@ -17,19 +17,12 @@ public class test {
       e.printStackTrace();
     }
     //select를 이용하여 원하는 태그를 선택한다. select는 원하는 값을 가져오기 위한 중요한 기능이다.
-    //    Elements element = doc.select("div.sect-movie-chart");    
-    //    Elements element = doc.select("div.mv_info_area");    
-    
-    // 영화제목
-    System.out.println(doc.select("div.mv_info_area").select("div.mv_info").select("div.mv_info").select("h3.h_movie").text());
-   
-    
     //    영화 영문명
     System.out.println(doc.select("h3.h_movie").select("strong").text());
-    
+
     // 영화 감독
     System.out.println(doc.select("dl.info_spec").select("dd").get(1).select("p").text());
-    
+
     //    상영시간
     System.out.println(doc.select("dl.info_spec").select("dd").select("span").get(2).text());
     
@@ -54,19 +47,35 @@ public class test {
 
     System.out.println("============================================================");
 
-//    String url = "https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode=136900";
-//    Document doc = null;  
-    
-//    try {
-//      doc = Jsoup.connect(url).get();
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
-//    //    Elements element = doc.select("div.sect-movie-chart");    
-//    //    Elements element = doc.select("div.mv_info_area");    
-//    Iterator<Element> iterator = doc.select("h3.h_movie").iterator();
-//    System.out.println(iterator.next().select("strong").text());
-//    https://movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg
+    //Iterator을 사용하여 하나씩 값 가져오기
+    //    Iterator<Element> ie1 = element.select("strong.rank").iterator();
+    //    Iterator<Element> ie2 = element.select("strong.title").iterator();
+    //    System.out.println(element.select("a"));
+    //    Iterator<Element> ie2 = element.select("strong.h_movie2").iterator();
+
+    //    while (ie1.hasNext()) {
+    //      System.out.println(ie1.next().text()+"\t"+ie2.next().text());
+    //    }
+    //    while (ie1.hasNext()) {
+    //      System.out.println(ie1.next().text());
+    //    }
+    //    while (ie2.hasNext()) {
+    //      System.out.println(ie2.next().text());
+    //    }
+    //    System.out.println(ie1.next().text());
+    //    String url = "https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode=136900";
+    //    Document doc = null;
+
+    //    try {
+    //      doc = Jsoup.connect(url).get();
+    //    } catch (IOException e) {
+    //      e.printStackTrace();
+    //    }
+    //    //    Elements element = doc.select("div.sect-movie-chart");
+    //    //    Elements element = doc.select("div.mv_info_area");
+    //    Iterator<Element> iterator = doc.select("h3.h_movie").iterator();
+    //    System.out.println(iterator.next().select("strong").text());
+    //    https://movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg
 
     System.out.println("============================================================");
   }
