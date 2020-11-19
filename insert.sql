@@ -83,3 +83,5 @@ insert into acv_tag(tno, title, stat)  value(3, '인생작', 1);
 insert into acv_tag(tno, title, stat)  value(4, '힐링 영화', 1);
 insert into acv_tag(tno, title, stat)  value(5, '킬링타임', 1);
 insert into acv_tag(tno, title, stat)  value(6, 'B급 감성', 1);
+
+/* 회원 샘플 */
