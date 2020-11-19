@@ -76,7 +76,7 @@ CREATE TABLE acv_mbr (
   pw_hint_a VARCHAR(50) NULL     COMMENT '비밀번호 힌트 정답', -- 비밀번호 힌트 정답
   rdt       DATETIME    NOT NULL DEFAULT now() COMMENT '회원 가입일', -- 회원 가입일
   stno      INTEGER     NULL     COMMENT '회원 상태 번호', -- 회원 상태 번호
-  stat_mdt  DATETIME    NOT NULL DEFAULT now() COMMENT '상태 변경일' -- 상태 변경일
+  stat_mdt  DATETIME    NULL DEFAULT now() COMMENT '상태 변경일' -- 상태 변경일
 )
 COMMENT '회원';
 
