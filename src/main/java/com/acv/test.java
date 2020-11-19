@@ -3,6 +3,7 @@ package com.acv;
 import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 public class test {
 
   public static void main(String[] args) {
@@ -30,12 +31,25 @@ public class test {
     System.out.println(doc.select("dl.info_spec").select("dd").get(1).select("p").text());
     
     //    상영시간
-    System.out.println(doc.select("dl.info_spec").select("dt.step1").select("span"));
-    //    제작연도
+    System.out.println(doc.select("dl.info_spec").select("dd").select("span").get(2).text());
+    
     //    개봉일
-    //    출연
+    System.out.println(doc.select("dl.info_spec").select("dd").select("span").get(3).select("a").text());
+    
+    // 출연 (첫번째에 영화감독)
+    Elements element = doc.select("div.section_group.section_group_frst").select("div.obj_section").select("div.people").select("ul").select("li");
+        
+    for (int i = 0; i < element.size(); i++) {
+      System.out.println(element.get(i).select("a").attr("title"));
+    }
+    
     //    시놉시스
+    String str = doc.select("div.section_group.section_group_frst").select("div.story_area").select("p.con_tx").toString();
+    System.out.println(str.replace("<p class=\"con_tx\">", "").replace("<br>&nbsp;", "\n").replace("</p>",""));
+    
     //    국가명
+    System.out.println(doc.select("dl.info_spec").select("dd").select("span").get(1).select("a").text());
+    
 
 
     System.out.println("============================================================");
