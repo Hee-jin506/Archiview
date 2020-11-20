@@ -11,7 +11,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import com.acv.dao.MovieDao;
 import com.acv.domain.Movie;
-public class App {
+public class App2 {
 
 
   public static void main(String[] args) {
@@ -25,8 +25,9 @@ public class App {
       try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file)));) {
         String id = null;
         int num = 1;
-        while ((id = in.readLine()) != null) {
-
+//        while ((id = in.readLine()) != null) {
+        
+        id = in.readLine();
           System.out.println(num + " : ["+ id + "]");
 
           // Jsoup를 이용해서 http://www.cgv.co.kr/movies/ 크롤링
@@ -83,40 +84,57 @@ public class App {
           //    국가명
           System.out.println("국가명 입력");
           movie.setNation(doc.select("dl.info_spec").select("dd").select("span").get(1).select("a").text());
+          
+          
+          
+          // 스틸것
+          
+          url = "https://movie.naver.com/movie/bi/mi/photo.nhn?code=" + id + "&page=1#movieEndTabMenu"; //크롤링할 url지정
+          doc = null;        //Document에는 페이지의 전체 소스가 저장된다
 
-          System.out.println();
-          System.out.println("*****영화 입력 결과*****");
-          System.out.println();
-          System.out.print("제목 : ");
-          System.out.println(movie.getTitle());
-          System.out.print("영문제목 : ");
-          System.out.println(movie.getEnglishTitle());
-          System.out.print("감독 : ");
-          System.out.println(movie.getDirectors());
-          System.out.print("상영시간 : ");
-          System.out.println(movie.getRuntime());
-          System.out.print("개봉일 : ");
-          System.out.println(movie.getOpenDate());
-          System.out.print("출연진 : ");
-          System.out.println(movie.getActors());
-          System.out.println();
-          System.out.println("[시놉시스]");
-          System.out.println(movie.getSynopsis());
-          System.out.println();
-          System.out.print("국가 : ");
-          System.out.println(movie.getNation());
+          doc = Jsoup.connect(url).get();
+          
+          
+          
+          System.out.println("스틸컷");
+          Elements element = doc.select("div.gallery_group").select("li"));
+          for (Element e : element) {
+            
+          }
+
+//          System.out.println();
+//          System.out.println("*****영화 입력 결과*****");
+//          System.out.println();
+//          System.out.print("제목 : ");
+//          System.out.println(movie.getTitle());
+//          System.out.print("영문제목 : ");
+//          System.out.println(movie.getEnglishTitle());
+//          System.out.print("감독 : ");
+//          System.out.println(movie.getDirectors());
+//          System.out.print("상영시간 : ");
+//          System.out.println(movie.getRuntime());
+//          System.out.print("개봉일 : ");
+//          System.out.println(movie.getOpenDate());
+//          System.out.print("출연진 : ");
+//          System.out.println(movie.getActors());
+//          System.out.println();
+//          System.out.println("[시놉시스]");
+//          System.out.println(movie.getSynopsis());
+//          System.out.println();
+//          System.out.print("국가 : ");
+//          System.out.println(movie.getNation());
 
           System.out.println();
           System.out.println("===========================================");
 
-          movieDao.insert(movie);
+//          movieDao.insert(movie);
 
           num++;
-          if (num == 69) {
-            break;
-          }
+//          if (num == 69) {
+//            break;
+//          }
         }
-      } 
+//      } 
     } catch (Exception e) {
       e.printStackTrace();
     }

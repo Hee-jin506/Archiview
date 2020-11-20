@@ -25,15 +25,16 @@ public class MovieDao {
               + " values(?,?,?,?,?,?,?,?,?,?)",
               Statement.RETURN_GENERATED_KEYS)) {
 
-        stmt.setString(1, movie.getTitle());
-        stmt.setString(2, movie.getDirectors());
-        stmt.setString(3, movie.getEnglishTitle());
-        stmt.setInt(4, movie.getRuntime());
-        stmt.setDate(5, movie.getOpenDate());
-        stmt.setString(6, movie.getActors());
-        stmt.setString(7, movie.getSynopsis());
-        stmt.setString(8, movie.getNation());
-        stmt.setInt(9, movie.getStatus());
+        stmt.setInt(1, movie.getNo());
+        stmt.setString(2, movie.getTitle());
+        stmt.setString(3, movie.getDirectors());
+        stmt.setString(4, movie.getEnglishTitle());
+        stmt.setInt(5, movie.getRuntime());
+        stmt.setDate(6, movie.getOpenDate());
+        stmt.setString(7, movie.getActors());
+        stmt.setString(8, movie.getSynopsis());
+        stmt.setString(9, movie.getNation());
+        stmt.setInt(10, movie.getStatus());
         stmt.executeUpdate();
 
         // 금방 입력한 프로젝트의 no 값을 가져오기
@@ -42,26 +43,26 @@ public class MovieDao {
           movie.setNo(keyRs.getInt(1));
         }
       }
-
-      // 스틸컷
-      try (PreparedStatement stmt2 = con.prepareStatement(
-          "insert into acv_stc(mvno, stc_url) values(?,?)")) {
-        for (String stc : movie.getStillCuts()) {
-          stmt2.setInt(1, movie.getNo());
-          stmt2.setString(2, stc);
-          stmt2.executeUpdate();
-        }
-      }
-
-      // 포스터
-      try (PreparedStatement stmt3 = con.prepareStatement(
-          "insert into acv_pstr(mvno,ps_url,main_ps) values(?,?,?)")) {
-        for (String pstr : movie.getPosters()) {
-          stmt3.setInt(1, movie.getNo());
-          stmt3.setString(2, pstr);
-          stmt3.executeUpdate();
-        }
-      }
+      
+//      // 스틸컷
+//      try (PreparedStatement stmt2 = con.prepareStatement(
+//          "insert into acv_stc(mvno, stc_url) values(?,?)")) {
+//        for (String stc : movie.getStillCuts()) {
+//          stmt2.setInt(1, movie.getNo());
+//          stmt2.setString(2, stc);
+//          stmt2.executeUpdate();
+//        }
+//      }
+//
+//      // 포스터
+//      try (PreparedStatement stmt3 = con.prepareStatement(
+//          "insert into acv_pstr(mvno,ps_url,main_ps) values(?,?,?)")) {
+//        for (String pstr : movie.getPosters()) {
+//          stmt3.setInt(1, movie.getNo());
+//          stmt3.setString(2, pstr);
+//          stmt3.executeUpdate();
+//        }
+//      }
 
       // 프로젝트 멤버의 등록까지 예외없이 정상적으로 실행되었다면,
       // DBMS 서버에게 작업 내용을 실제 테이블에 반영하라고 요구한다.
