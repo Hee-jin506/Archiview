@@ -13,7 +13,8 @@ import org.json.simple.parser.JSONParser;
 
 public class MovieJSONMain {
 
-  static List<String> urlList = new ArrayList<String>(); 
+  List<String> urlList = new ArrayList<String>(); 
+  List<String> movieCds = new ArrayList<>();
 
   public MovieJSONMain() throws Exception{
     readUrl();
@@ -27,10 +28,12 @@ public class MovieJSONMain {
         JSONObject entity = (JSONObject)array.get(i);
         String movieCd = (String) entity.get("movieCd");
         System.out.println(movieCd);
+        movieCds.add(movieCd);
       }
     }
   }
-  private static void readUrl() throws Exception {
+
+  private void readUrl() throws Exception {
     BufferedInputStream reader = null;
     try {
       for (int j= 1 ; j < 9 ; j++) { // 1페이지~8페이지, 총 800개
@@ -56,12 +59,17 @@ public class MovieJSONMain {
         reader.close();
     }
   }
-
-  public static void main(String[] args) {
-    try {
-      new MovieJSONMain();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+  
+  public List<String> getUrlList() {
+    return urlList;
+  }
+  public void setUrlList(List<String> urlList) {
+    this.urlList = urlList;
+  }
+  public List<String> getMovieCds() {
+    return movieCds;
+  }
+  public void setMovieCds(List<String> movieCds) {
+    this.movieCds = movieCds;
   }
 }
