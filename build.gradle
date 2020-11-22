@@ -22,6 +22,9 @@ repositories {
 }
 
 dependencies {
+    // 셀레니움
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     // This dependency is used by the application.
