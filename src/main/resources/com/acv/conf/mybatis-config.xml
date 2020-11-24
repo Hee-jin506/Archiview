@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <!-- 설정 파일에서 사용할 .properties 파일 정보 -->
-  <properties resource="com/eomcs/pms/conf/jdbc.properties"></properties>
+  <properties resource="com/acv/conf/jdbc.properties"></properties>
 
   <settings>
     <setting name="cacheEnabled" value="true"/>
@@ -41,10 +41,7 @@
   
   <!-- SQL 문이 들어 있는 파일들 -->
   <mappers>
-    <mapper resource="com/eomcs/pms/mapper/BoardMapper.xml"/>
-    <mapper resource="com/eomcs/pms/mapper/MemberMapper.xml"/>
-    <mapper resource="com/eomcs/pms/mapper/ProjectMapper.xml"/>
-    <mapper resource="com/eomcs/pms/mapper/TaskMapper.xml"/>
+    <mapper resource="com/acv/mapper/MovieMapper.xml"/>
   </mappers>
 
 </configuration>

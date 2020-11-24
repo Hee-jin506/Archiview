@@ -1,13 +1,9 @@
 package com.acv.service;
 
 import java.util.List;
-import com.eomcs.pms.domain.Board;
+import com.acv.domain.Movie;
 
 public interface MovieService {
-  int delete(int no) throws Exception;
-  int add(Board board) throws Exception;
-  List<Board> list() throws Exception;
-  List<Board> list(String keyword) throws Exception;
-  Board get(int no) throws Exception;
-  int update(Board board) throws Exception;
+  int add(Movie movie) throws Exception;
+  List<Movie> list() throws Exception;
 }

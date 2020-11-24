@@ -3,7 +3,7 @@ package com.acv;
 import java.sql.DriverManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import com.acv.dao.mariadb.MovieDao;
+import com.acv.dao.mariadb.MovieDaoImpl;
 import com.acv.domain.Movie;
 public class App3 {
 
@@ -12,7 +12,7 @@ public class App3 {
 
     try (java.sql.Connection con = DriverManager.getConnection(
         "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111")) {
-      MovieDao movieDao = new MovieDao(con);
+      MovieDaoImpl movieDao = new MovieDaoImpl(con);
 
 //      MovieJSONMain movieJSONMain = new MovieJSONMain();
 //      List<String> movieCds = movieJSONMain.getMovieCds();
