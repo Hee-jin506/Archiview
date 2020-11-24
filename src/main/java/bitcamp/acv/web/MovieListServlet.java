@@ -39,11 +39,21 @@ public class MovieListServlet extends HttpServlet {
 
       out.println("<table border=\"1\">");
       out.println("<tr>");
-      out.println("<th>번호</th>");
-      out.println("<th>제목</th>");
-      out.println("<th>작성자</th>");
+      out.println("<th>영화 번호</th>");
+      out.println("<th>네이버 영화 번호</th>");
+      out.println("<th>영화 제목</th>");
+      out.println("<th>감독</th>");
+      out.println("<th>영화 영문명</th>");
+      out.println("<th>상영시간</th>");
+      out.println("<th>개봉일</th>");
+      out.println("<th>출연</th>");
+      out.println("<th>시놉시스</th>");
+      out.println("<th>국가</th>");
+      out.println("<th>상태</th>");
       out.println("<th>등록일</th>");
-      out.println("<th>조회수</th>");
+      out.println("<th>스틸컷</th>");
+      out.println("<th>포스터</th>");
+      out.println("<th>장르</th>");
       out.println("</tr>");
 
       for (Movie movie : list ) {
