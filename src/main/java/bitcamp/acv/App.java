@@ -9,7 +9,6 @@ import java.sql.DriverManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import bitcamp.acv.dao.mariadb.MovieDaoImpl;
 import bitcamp.acv.domain.Movie;
 public class App {
 
@@ -18,7 +17,7 @@ public class App {
 
     try (java.sql.Connection con = DriverManager.getConnection(
         "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111")) {
-      MovieDaoImpl movieDao = new MovieDaoImpl(con);
+      //      MovieDaoImpl movieDao = new MovieDaoImpl(con);
 
 
       File file = new File("./movie.txt");
