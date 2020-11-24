@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SeleniumTest {
+public class SeleniumTest2 {
   public static void main(String... args) {
     WebDriver driver = null;
     // 카운트 무시하세요 ㅠㅠ.
@@ -20,22 +20,25 @@ public class SeleniumTest {
       // Chrome 드라이버 인스턴스 설정
       driver = new ChromeDriver();
       // URL로 접속
-      driver.get("https://movie.naver.com/movie/bi/mi/photoView.nhn?code=136900");
+      driver.get("http://www.kobis.or.kr/kobis/business/mast/mvie/searchUserMovCdList.do");
       // 대기 설정(정보를 가져오기 전에 로딩이 완료 안되는 경우가 있음)
       driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
       // "photo_area"클래스
-      WebElement t_element = driver.findElement(By.id("photo_area"));
+      List<WebElement> elements = driver.findElement(By.className("tbl3")).findElement(By.tagName("tbody")).findElement(By.tagName("tr").get);
+      for (WebElement element : elements) {
+        System.out.println(element.findElements(By.tagName("a")).get(0).getText());
+      }
 
       // 스틸컷의 숫자를 가져오는 코드 입니다. 무시하세요
       //      String str = t_element.findElement(By.cssSelector("#photoTypeGroup li[imagetype=\'STILLCUT\']")).findElement(By.tagName("em")).getText();
       //      t_cnt = Integer.parseInt(str);
 
       // 다음 버튼을 2번 누르게 했습니다.
-      for (int i = 0 ; i < 2; i++) {
-        WebElement element = crawl(t_element);
-        element.findElement(By.className("btn_next")).click();
-      }
+//      for (int i = 0 ; i < 2; i++) {
+//       // WebElement element = crawl(t_element);
+//        element.findElement(By.className("table")).click();
+//      }
 
       //      if (element.findElement(By.className("btn_next")))
 

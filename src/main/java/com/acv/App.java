@@ -77,9 +77,9 @@ public class App {
 
           //    시놉시스
           System.out.println("시놉시스 입력");
-          String str = doc.select("div.section_group.section_group_frst").select("div.story_area").select("p.con_tx").toString();
-          movie.setSynopsis(str.replace("<p class=\"con_tx\">", "").replace("<br>&nbsp;", "\n").replace("</p>",""));
-
+          String str = doc.select("div.section_group.section_group_frst").select("div.story_area").get(0).select("h5.h_tx_story").get(0).wholeText();
+          movie.setSynopsis(str);
+          
           //    국가명
           System.out.println("국가명 입력");
           movie.setNation(doc.select("dl.info_spec").select("dd").select("span").get(1).select("a").text());
@@ -109,7 +109,7 @@ public class App {
           System.out.println();
           System.out.println("===========================================");
 
-          movieDao.insert(movie);
+          //movieDao.insert(movie);
 
           num++;
           if (num == 69) {

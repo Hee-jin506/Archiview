@@ -1,5 +1,6 @@
 package com.acv;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
@@ -17,43 +18,103 @@ public class SeleniumNaverTest {
 
     try {
       // drvier 설정 - 크롬드라이버 위치 => 본인걸로 바꾸셔야 합니다.
-      System.setProperty("webdriver.chrome.driver", "/Users/rsh/Downloads/chromedriver");
+      System.setProperty("webdriver.chrome.driver", "/Users/heejin/Downloads/chromedriver");
       // Chrome 드라이버 인스턴스 설정
       driver = new ChromeDriver();
       // URL로 접속
+      driver.get("https://movie.naver.com/movie/bi/mi/basic.nhn?code=189141");
+      // 대기 설정(정보를 가져오기 전에 로딩이 완료 안되는 경우가 있음)
+      driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+      // 영화 제목
+      System.out.println("영화 제목 입력");
+      System.out.println(driver.findElement(By.className("mv_info_area")).findElement(By.className("h_movie")).findElements(By.tagName("a")).get(0).getText());
+
+      // 영화 영문명
+      System.out.println("영화 영문제목 입력");
+      System.out.println(driver.findElement(By.className("mv_info_area")).findElement(By.className("h_movie2")).getText());
+
+      // 영화 감독
+      System.out.println("영화 감독 입력");
+      System.out.println(driver.findElement(By.className("mv_info_area")).findElement(By.className("mv_info")).findElement(By.className("info_spec")).findElements(By.tagName("dd")).get(1).getText());
+
+      // 상영시간
+      System.out.println("상영시간 입력");
+      System.out.println(driver.findElement(By.className("mv_info_area")).findElement(By.className("mv_info")).findElement(By.className("info_spec")).findElements(By.tagName("dd")).get(0).findElements(By.tagName("span")).get(2).getText());
+
+      // 개봉일
+      System.out.println("개봉일 입력");
+      List<WebElement> elements = driver.findElement(By.className("mv_info_area")).findElement(By.className("mv_info")).findElement(By.className("info_spec")).findElements(By.tagName("dd")).get(0).findElements(By.tagName("span")).get(3).findElements(By.tagName("a"));
+      if (elements.size() > 2) {
+        //        System.out.println(Date.valueOf(element.get(2).text().replace(" ", "").replace(".", "-")+element.get(3).text().replace(" ", "").replace(".", "-")));
+      } else if (elements.size()  == 2) {
+        StringBuilder openDate = new StringBuilder();
+        for (WebElement element : elements) {
+          openDate.append(element.getText());
+        }
+        System.out.println(Date.valueOf(openDate.toString().replace(".", "-").replace("\n", "")));
+      } 
+
+      //    시놉시스
+      System.out.println("시놉시스 입력");
+      StringBuilder synopsis = new StringBuilder();
+      synopsis.append(driver.findElement(By.className("obj_section")).findElement(By.className("h_tx_story")).getText());
+      synopsis.append(driver.findElement(By.className("obj_section")).findElement(By.className("con_tx")).getText());
+      System.out.println(synopsis.toString());
+
+      //    국가명
+      System.out.println("국가명 입력");
+      System.out.println(driver.findElement(By.className("mv_info_area")).findElement(By.className("mv_info")).findElement(By.className("info_spec")).findElements(By.tagName("dd")).get(0).findElements(By.tagName("span")).get(1).findElement(By.tagName("a")).getText());
+
+      driver.findElement(By.className("end_sub_tab")).findElement(By.className("tab02")).click();
+      
+      // 출연 
+      System.out.println("출연진 입력");
+      elements = driver.findElement(By.className("section_group_frst")).findElement(By.className("noline")).findElement(By.className("made_people")).findElement(By.tagName("ul")).findElements(By.tagName("li"));
+      System.out.println(elements);
+      StringBuilder actors = new StringBuilder();
+      for (int i = 0; i < elements.size(); i++) {
+        actors.append(elements.get(i).findElement(By.)).findElement(By.tagName("a")).getText());
+        if (i < elements.size() - 1) {
+          actors.append(",");
+        }
+      }
+      System.out.println(actors.toString());
+
       driver.get("https://movie.naver.com/movie/bi/mi/photoView.nhn?code=189141");
       // 대기 설정(정보를 가져오기 전에 로딩이 완료 안되는 경우가 있음)
       driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
-      // "photo_area"클래스
-      WebElement t_element = driver.findElement(By.id("photo_area"));
+
+      //      // "photo_area"클래스
+      //      WebElement t_element = driver.findElement(By.id("photo_area"));
 
       // 스틸컷의 숫자를 가져오는 코드 입니다. 무시하세요
       //      String stc = t_element.findElement(By.cssSelector("#photoTypeGroup li[imagetype=\'STILLCUT\']")).findElement(By.tagName("em")).getText();
 
-      By.className("title_area");
+      //By.className("title_area");
 
       // 전체 카운트(total count)의 숫자를 가져온다. (스틸컷 + 프로모션 + 포스터)
-      String tc = t_element.findElement(By.className("count")).getText();
+      //String tc = t_element.findElement(By.className("count")).getText();
 
       // 1 / xx건 이라는 문자열을 " "로 잘라준다. (total count cut)
-      String[] tcc = tc.split(" ");
+      //String[] tcc = tc.split(" ");
 
       // xx건 이라는 문자열에서 int 값만 추출한다.
-      String intStr = tcc[2].replaceAll("[^\\d]", "");
+      //String intStr = tcc[2].replaceAll("[^\\d]", "");
 
       // String을 int로 변환시킨다.
-      t_cnt = Integer.parseInt(intStr);
+      //t_cnt = Integer.parseInt(intStr);
 
       // next button을 누르는 횟수를 지정한다.
       // 소수점이 있으면 올림으로 처리한다.
-      double nb = Math.ceil(t_cnt / 8);
+      //double nb = Math.ceil(t_cnt / 8);
 
       // 다음 버튼을 nb번 누르게 했습니다.
-      for (int i = 0 ; i < nb ; i++) {
-        WebElement element = crawl(t_element);
-        element.findElement(By.className("btn_next")).click();
-      }
+      //      for (int i = 0 ; i < nb ; i++) {
+      //        WebElement element = crawl(t_element);
+      //        element.findElement(By.className("btn_next")).click();
+      //      }
 
 
 
