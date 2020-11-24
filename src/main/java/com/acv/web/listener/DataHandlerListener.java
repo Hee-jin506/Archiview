@@ -42,7 +42,7 @@ public void contextInitialized(ServletContextEvent sce) {
       TaskDao taskDao = new TaskDaoImpl(sqlSessionFactory);
 
       // Service 구현체 생성
-      BoardService boardService = new DefaultBoardService(boardDao);
+      BoardService boardService = new DefaultMovieService(boardDao);
       MemberService memberService = new DefaultMemberService(memberDao);
       ProjectService projectService = new DefaultProjectService(taskDao, projectDao, sqlSessionFactory);
       TaskService taskService = new DefaultTaskService(taskDao);
