@@ -90,7 +90,6 @@ insert into acv_tag(tno, title, stat)  value(5, '킬링타임', 1);
 insert into acv_tag(tno, title, stat)  value(6, 'B급 감성', 1);
 
 /* 회원 샘플 */
-<<<<<<< HEAD
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
 values(1, 1, '스티븐잡스', 1, 'acv1@test.com', '1111', '스티븐잡스', 'https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F198%2F201601251600441211.jpg', 
 'iphone 12 mini comming soon', 1, '팀쿡', 1);
@@ -118,5 +117,3 @@ values(8, 1, '류승희', 2, 'acv8@test.com', '8888', '타래', null,
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
 values(9, 1, '이용민', 3, 'acv9@test.com', '9999', '스트릿패션', null,
 '리셀가 80만원', 1, '캔디', 1);
-=======
->>>>>>> a7260f620b2295459006e9e1ef1c04e41ab725a1

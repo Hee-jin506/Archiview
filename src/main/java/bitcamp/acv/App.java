@@ -9,8 +9,8 @@ import java.sql.DriverManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import com.acv.dao.mariadb.MovieDaoImpl;
-import com.acv.domain.Movie;
+import bitcamp.acv.dao.mariadb.MovieDaoImpl;
+import bitcamp.acv.domain.Movie;
 public class App {
 
 
@@ -61,8 +61,8 @@ public class App {
             movie.setOpenDate(Date.valueOf(element.get(2).text().replace(" ", "").replace(".", "-")+element.get(3).text().replace(" ", "").replace(".", "-")));
           } else if (element.size()  == 2) {
             movie.setOpenDate(Date.valueOf(element.text().replace(" ", "").replace(".", "-")));
-          } 
-          // 출연 
+          }
+          // 출연
           System.out.println("출연진 입력");
           element = doc.select("div.section_group.section_group_frst").select("div.obj_section").select("div.people").select("ul").select("li");
 
@@ -84,7 +84,7 @@ public class App {
           }
           synopsis.append(doc.select("div.section_group.section_group_frst").select("div.story_area").get(0).select("p.con_tx").get(0).wholeText());
           movie.setSynopsis(synopsis.toString());
-          
+
           //    국가명
           System.out.println("국가명 입력");
           movie.setNation(doc.select("dl.info_spec").select("dd").select("span").get(1).select("a").text());
@@ -121,7 +121,7 @@ public class App {
             break;
           }
         }
-      } 
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
