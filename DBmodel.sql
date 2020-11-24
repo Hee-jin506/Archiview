@@ -383,6 +383,9 @@ CREATE UNIQUE INDEX UIX_acv_gnr_mov
     mvno ASC  -- 영화 번호
   );
 
+ALTER TABLE acv_gnr_mov
+  MODIFY COLUMN gmno INTEGER NOT NULL AUTO_INCREMENT;
+
 -- 좋아요 이력
 CREATE TABLE acv_like (
   lno    INTEGER  NOT NULL, -- 좋아요 이력 번호
