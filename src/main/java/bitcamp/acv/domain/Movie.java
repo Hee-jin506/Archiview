@@ -19,6 +19,15 @@ public class Movie {
   private List<String> stillCuts;
   private List<String> posters;
   private List<String> genres;
+  private int naverCd;
+
+  public int getNaverCd() {
+    return naverCd;
+  }
+
+  public void setNaverCd(int naverCd) {
+    this.naverCd = naverCd;
+  }
 
   public int getNo() {
     return no;

@@ -41,20 +41,64 @@ public class MovieListServlet extends HttpServlet {
       out.println("<tr>");
       out.println("<th>번호</th>");
       out.println("<th>제목</th>");
-      out.println("<th>작성자</th>"); 
+      out.println("<th>작성자</th>");
       out.println("<th>등록일</th>");
       out.println("<th>조회수</th>");
       out.println("</tr>");
-      //        for (Movie movie : list ) {
-      //          out.println("<tr>");
-      //          out.printf("<td>%d</td> <td>%sd</td>  <td>%s</td>  <td>%s</td>  <td>%d</td>",         
-      //              movie.getNo(),
-      //              movie.getTitle(),
-      //              movie.getWriter().getName(),
-      //              movie.getRegisteredDate(),
-      //              movie.getViewCount());
-      //          out.println("</tr>");
-      //        }
+
+      for (Movie movie : list ) {
+        StringBuilder stillCuts = new StringBuilder();
+        for (String stillCut : movie.getStillCuts()) {
+          stillCuts.append(stillCut);
+          stillCuts.append("\n");
+        }
+
+        StringBuilder posters = new StringBuilder();
+        for (String poster : movie.getPosters()) {
+          posters.append(poster);
+          posters.append("\n");
+        }
+
+        StringBuilder genres = new StringBuilder();
+        for (String genre : movie.getGenres()) {
+          genres.append(genre);
+          genres.append("\n");
+        }
+
+
+        out.println("<tr>");
+        out.printf("<td>%d</td> "
+            + "<td>%d</td>"
+            + "<td>%s</td>"
+            + "<td>%s</td>"
+            + "<td>%s</td>"
+            + "<td>%d</td>"
+            + "<td>%s</td>"
+            + "<td>%s</td>"
+            + "<td>%s</td>"
+            + "<td>%s</td>"
+            + "<td>%d</td>"
+            + "<td>%s</td>"
+            + "<td>%s</td>"
+            + "<td>%s</td>"
+            + "<td>%s</td>",
+            movie.getNo(),
+            movie.getNaverCd(),
+            movie.getTitle(),
+            movie.getDirectors(),
+            movie.getEnglishTitle(),
+            movie.getRuntime(),
+            movie.getOpenDate(),
+            movie.getActors(),
+            movie.getSynopsis(),
+            movie.getNation(),
+            movie.getStatus(),
+            movie.getRegisteredDate(),
+            stillCuts.toString(),
+            posters.toString(),
+            genres.toString());
+        out.println("</tr>");
+      }
       out.println("</table>");
 
     } catch (Exception e) {

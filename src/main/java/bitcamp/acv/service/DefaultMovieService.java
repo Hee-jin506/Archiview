@@ -13,15 +13,8 @@ public class DefaultMovieService implements MovieService {
   }
 
   @Override
-  public int add(Movie movie) throws Exception {
-    // TODO Auto-generated method stub
-    return 0;
-  }
-
-  @Override
   public List<Movie> list() throws Exception {
-    // TODO Auto-generated method stub
-    return null;
+    return movieDao.findAll();
   }
 
 }
