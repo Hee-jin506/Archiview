@@ -3,19 +3,6 @@ insert into acv_pstr(mvno, ps_url, main_ps) values(1, 'a', 1);
 insert into acv_stc(mvno, stc_url) values(1, 'b');
 insert into acv_gnr_mov(gmno, gno, mvno) values(1, 1, 1);
 
-mvno(PK)  영화 번호(PK) 일련번호  INTEGER NOT NULL
-title 영화 제목 이름  VARCHAR(50) NOT NULL
-dir 영화 감독 이름  VARCHAR(50) NOT NULL
-eng_title 영화 영문명  이름  VARCHAR(50) NOT NULL
-runtime 상영시간  숫자  INTEGER NOT NULL
-odt 개봉일 날짜  DATE  NOT NULL
-actors  출연  내용  MEDIUMTEXT  NOT NULL
-syn 시놉시스  내용  MEDIUMTEXT  NOT NULL
-nation  국가명 이름  VARCHAR(50) NOT NULL
-stat  상태  TF  INTEGER NOT NULL
-rdt 등록일 일시  DATETIME  NOT NULL
-nav_cd  네이버영화코드 일련번호  INTEGER NOT NULL
-
 /* 장르 샘플 */
 insert into acv_gnr(gno, title) values(1, '드라마');
 insert into acv_gnr(gno, title) values(2, '판타지');
