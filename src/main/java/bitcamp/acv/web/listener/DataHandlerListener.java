@@ -14,14 +14,14 @@ import bitcamp.util.SqlSessionFactoryProxy;
 
 @WebListener
 public class DataHandlerListener implements ServletContextListener {
-  
-@Override
-public void contextInitialized(ServletContextEvent sce) {
+
+  @Override
+  public void contextInitialized(ServletContextEvent sce) {
     try {
       // Mybatis 객체 준비
       SqlSessionFactoryProxy sqlSessionFactory = new SqlSessionFactoryProxy(
           new SqlSessionFactoryBuilder().build(
-              Resources.getResourceAsStream("com/eomcs/pms/conf/mybatis-config.xml")));
+              Resources.getResourceAsStream("bitcamp/acv/conf/mybatis-config.xml")));
 
       // DAO 구현체 생성
       MovieDao movieDao = new MovieDaoImpl(sqlSessionFactory);
@@ -32,8 +32,8 @@ public void contextInitialized(ServletContextEvent sce) {
 
 
       ServletContext ctx = sce.getServletContext();
-      
-      
+
+
       // 다른 객체가 사용할 수 있도록 context 맵 보관소에 저장해둔다.
       ctx.setAttribute("movieService", movieService);
 

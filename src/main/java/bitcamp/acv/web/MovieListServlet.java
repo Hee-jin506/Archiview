@@ -30,20 +30,30 @@ public class MovieListServlet extends HttpServlet {
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
-    out.println("<head><title>게시글 목록</title></head>");
+    out.println("<head><title>영화 목록</title></head>");
     out.println("<body>");
     try {
-      out.println("<h1>[게시물 목록]</h1>");
+      out.println("<h1>[영화 목록]</h1>");
 
       List<Movie> list = movieService.list();
 
       out.println("<table border=\"1\">");
       out.println("<tr>");
       out.println("<th>번호</th>");
+      out.println("<th>네이버 코드</th>");
       out.println("<th>제목</th>");
-      out.println("<th>작성자</th>");
+      out.println("<th>감독</th>");
+      out.println("<th>영문명</th>");
+      out.println("<th>상영시간</th>");
+      out.println("<th>개봉일</th>");
+      out.println("<th>출연</th>");
+      out.println("<th>시놉시스</th>");
+      out.println("<th>국가명</th>");
+      out.println("<th>상태</th>");
       out.println("<th>등록일</th>");
-      out.println("<th>조회수</th>");
+      out.println("<th>스틸컷 url</th>");
+      out.println("<th>포스터 url</th>");
+      out.println("<th>장르</th>");
       out.println("</tr>");
 
       for (Movie movie : list ) {
