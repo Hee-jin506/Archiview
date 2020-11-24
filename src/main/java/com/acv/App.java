@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import com.acv.dao.MovieDao;
+import com.acv.dao.mariadb.MovieDao;
 import com.acv.domain.Movie;
 public class App {
 
@@ -77,8 +77,13 @@ public class App {
 
           //    시놉시스
           System.out.println("시놉시스 입력");
-          String str = doc.select("div.section_group.section_group_frst").select("div.story_area").get(0).select("h5.h_tx_story").get(0).wholeText();
-          movie.setSynopsis(str);
+          StringBuilder synopsis = new StringBuilder();
+          element = doc.select("div.section_group.section_group_frst").select("div.story_area").get(0).select("h5.h_tx_story");
+          if (element.size() > 0) {
+            synopsis.append(element.get(0).wholeText());
+          }
+          synopsis.append(doc.select("div.section_group.section_group_frst").select("div.story_area").get(0).select("p.con_tx").get(0).wholeText());
+          movie.setSynopsis(synopsis.toString());
           
           //    국가명
           System.out.println("국가명 입력");

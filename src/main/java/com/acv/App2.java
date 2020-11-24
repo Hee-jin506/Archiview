@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import com.acv.dao.MovieDao;
+import com.acv.dao.mariadb.MovieDao;
 import com.acv.domain.Movie;
 public class App2 {
 

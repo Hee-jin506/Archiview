@@ -3,7 +3,7 @@ package com.acv;
 import java.sql.DriverManager;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import com.acv.dao.MovieDao;
+import com.acv.dao.mariadb.MovieDao;
 import com.acv.domain.Movie;
 public class App3 {
 
