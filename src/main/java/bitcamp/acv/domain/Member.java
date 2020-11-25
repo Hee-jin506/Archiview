@@ -9,12 +9,12 @@ public class Member {
   private String name; // 이름
   private int loginNo; // 로그인 유형 번호
   private String email; // 이메일
-  private int password; // 암호
+  private String password; // 암호
   private String nickName; // 별명
   private String photo; // 사진
   private String intro; // 소개글
   private int questionsNo; // 비밀번호 힌트 질문 번호
-  private int questionsAnswer; // 비밀번호 힌트 정답
+  private String questionsAnswer; // 비밀번호 힌트 정답
   private Date registeredDate; // 회원 가입일
   private int status; // 회원 상태 번호
   private Date statusModifiedDate; // 회원 상태 변경일
@@ -50,10 +50,11 @@ public class Member {
   public void setEmail(String email) {
     this.email = email;
   }
-  public int getPassword() {
+
+  public String getPassword() {
     return password;
   }
-  public void setPassword(int password) {
+  public void setPassword(String password) {
     this.password = password;
   }
   public String getNickName() {
@@ -80,10 +81,11 @@ public class Member {
   public void setQuestionsNo(int questionsNo) {
     this.questionsNo = questionsNo;
   }
-  public int getQuestionsAnswer() {
+
+  public String getQuestionsAnswer() {
     return questionsAnswer;
   }
-  public void setQuestionsAnswer(int questionsAnswer) {
+  public void setQuestionsAnswer(String questionsAnswer) {
     this.questionsAnswer = questionsAnswer;
   }
   public Date getRegisteredDate() {

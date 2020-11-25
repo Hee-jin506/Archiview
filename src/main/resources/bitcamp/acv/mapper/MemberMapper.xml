@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="MemberDao">
+  
+  <resultMap type="member" id="MemberMap">
+    <id column="mno"           property="no"/>
+    <result column="auth"    property="authority"/>
+    <result column="name"  property="name"/>
+    <result column="ltno"      property="loginNo"/>
+    <result column="email"      property="email"/>
+    <result column="pw"      property="password"/>
+    <result column="nick"      property="nickName"/>
+    <result column="photo"      property="photo"/>
+    <result column="intro"      property="intro"/>
+    <result column="qno"      property="questionsNo"/>
+    <result column="pw_hint_a"      property="questionsAnswer"/>
+    <result column="rdt"      property="registeredDate"/>
+    <result column="stno"      property="status"/>
+    <result column="stat_mdt"      property="statusModifiedDate"/>
+  </resultMap>
+  
+  <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 
+       다음과 같이 별도로 분리한다. -->
+  <sql id="sql1">
+    select 
+    mb.mno,
+    mb.auth,
+    mb.name,
+    mb.ltno,
+    mb.email,
+    mb.pw,
+    mb.nick,
+    mb.photo,
+    mb.intro,
+    mb.qno,
+    mb.pw_hint_a,
+    mb.rdt,
+    mb.stno,
+    mb.stat_mdt
+    from 
+      acv_mbr mb
+  </sql>
+       
+  <select id="findAll" resultMap="MemberMap" parameterType="string">
+    <include refid="sql1"/>
+    order by mb.mno desc
+  </select>
+
+</mapper>
+
+
+
+
+
+
