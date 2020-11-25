@@ -3,11 +3,25 @@
 <head>
     <title>HTML5 Basic</title>
     <style>
-      #header {
-        background-color: navy;
-        color: white;
-        padding: 0px 10px
+      body {
+        background-color: #000000;
       }
+      #header {
+        background-color: #141517;
+        color: white;
+        height: 70px;
+      }
+      #header img {
+        width: 205px;
+        height: 85px;
+        left: 98px;
+        top: 85px;
+        float: left;
+      }
+      #header input {
+        left: 100px
+      }
+      
       #sidebar {
         background-color: yellow;
         color: navy;
@@ -41,7 +55,11 @@
 </head>
 <body>
     <div id="header">
-        <h1>HTML5 Header</h1>
+        <img src="../../../images/Archiview_logo.png" alt="로고">
+        <form>
+          <input type="search" title="검색">
+
+        </form>
     </div>
     <div id="sidebar">
         <ul>
