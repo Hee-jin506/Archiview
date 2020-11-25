@@ -131,14 +131,17 @@ values(1, '무현, 두 도시 이야기', '전인환', 'Moo-hyun, Tale of Two Ci
 더 나은 세상을 향한 그들의 치열했던 도전을 미공개 영상으로 만난다!', 
 '한국', 1, 152183);
 
-insert into acv_stc(stcno, mvno, stc_url)
-values(1, 1, 'https://movie-phinf.pstatic.net/20170816_237/15028507560937wWpL_JPEG/movie_image.jpg?type=m427_320_2');
+insert into acv_stc(stcno, mvno)
+values(1, 1)
 
 insert into acv_stc(stcno, mvno, stc_url)
-values(2, 1, 'https://movie-phinf.pstatic.net/20170816_246/1502850756536szMwe_JPEG/movie_image.jpg?type=m427_320_2');
+values(2, 1, 'https://movie-phinf.pstatic.net/20170816_237/15028507560937wWpL_JPEG/movie_image.jpg?type=m427_320_2');
 
 insert into acv_stc(stcno, mvno, stc_url)
-values(3, 1, 'https://movie-phinf.pstatic.net/20170807_170/1502069264980Amq9T_JPEG/movie_image.jpg?type=m427_320_2');
+values(3, 1, 'https://movie-phinf.pstatic.net/20170816_246/1502850756536szMwe_JPEG/movie_image.jpg?type=m427_320_2');
+
+insert into acv_stc(stcno, mvno, stc_url)
+values(4, 1, 'https://movie-phinf.pstatic.net/20170807_170/1502069264980Amq9T_JPEG/movie_image.jpg?type=m427_320_2');
 
 insert into acv_pstr(psno, mvno, ps_url, main_ps)
 values(1, 1, 'https://movie-phinf.pstatic.net/20170814_17/1502675963099mSfot_JPEG/movie_image.jpg?type=m665_443_2', 1);
