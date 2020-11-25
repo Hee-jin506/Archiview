@@ -38,7 +38,7 @@ public class MemberListServlet extends HttpServlet {
 
       List<Member> list = memberService.list();
 
-      out.println("<table border=\"1\" width=\"1200\">");
+      out.println("<table border=\"1\">");
       out.println("<tr>");
       out.println("<th>회원 번호</th>");
       out.println("<th>권한</th>");
@@ -86,7 +86,7 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%s</td>" // email
             + "<td>%s</td>" // pw
             + "<td>%s</td>" // nick
-            + "<td>%s</td>" // photo
+            + "<td><img src=\"%s\" alt=\"사진추가\" width=\"120\" /></td>" // photo
             + "<td>%s</td>" // intro
             + "<td>%d</td>" // qno
             + "<td>%s</td>" // qan
