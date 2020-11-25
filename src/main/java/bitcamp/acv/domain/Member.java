@@ -1,6 +1,7 @@
 package bitcamp.acv.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Member {
 
@@ -18,8 +19,23 @@ public class Member {
   private Date registeredDate; // 회원 가입일
   private int status; // 회원 상태 번호
   private Date statusModifiedDate; // 회원 상태 변경일
+  private List<Review> saving;
+  private List<Like> liking;
+  private List<Report> reporting;
+  private List<Follow> following;
 
-
+  public List<Review> getSaving() {
+    return saving;
+  }
+  public void setSaving(List<Review> saving) {
+    this.saving = saving;
+  }
+  public List<Review> getSave() {
+    return saving;
+  }
+  public void setSave(List<Review> save) {
+    this.saving = save;
+  }
   public int getNo() {
     return no;
   }
