@@ -32,6 +32,7 @@ public class MovieListServlet extends HttpServlet {
     out.println("<html>");
     out.println("<head><title>영화 목록</title></head>");
     out.println("<body>");
+
     try {
       out.println("<h1>[영화 목록]</h1>");
 
