@@ -38,7 +38,7 @@ public class MemberListServlet extends HttpServlet {
 
       List<Member> list = memberService.list();
 
-      out.println("<table border=\"1\">");
+      out.println("<table border=\"1\" width=\"1200\">");
       out.println("<tr>");
       out.println("<th>회원 번호</th>");
       out.println("<th>권한</th>");
