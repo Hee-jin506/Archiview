@@ -131,6 +131,7 @@ values(1, '무현, 두 도시 이야기', '전인환', 'Moo-hyun, Tale of Two Ci
 더 나은 세상을 향한 그들의 치열했던 도전을 미공개 영상으로 만난다!', 
 '한국', 1, 152183);
 
+/*스틸컷 샘플*/
 insert into acv_stc(stcno, mvno)
 values(1, 1)
 
@@ -143,6 +144,7 @@ values(3, 1, 'https://movie-phinf.pstatic.net/20170816_246/1502850756536szMwe_JP
 insert into acv_stc(stcno, mvno, stc_url)
 values(4, 1, 'https://movie-phinf.pstatic.net/20170807_170/1502069264980Amq9T_JPEG/movie_image.jpg?type=m427_320_2');
 
+/*포스터 샘플*/
 insert into acv_pstr(psno, mvno, ps_url, main_ps)
 values(1, 1, 'https://movie-phinf.pstatic.net/20170814_17/1502675963099mSfot_JPEG/movie_image.jpg?type=m665_443_2', 1);
 
@@ -283,3 +285,12 @@ values(11, '더 플랜', '최진성', 'The Host, 2006', 102, '2017-04-20',
 추적 결과, 그들은 소름 끼치도록 놀랍고 충격적인 사실을 발견하는데…',
 '한국', 1, 162471);
 
+/* 리뷰 샘플*/
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
+values(1, 1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11, 1);
+
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
+values(2, 2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11, 1);
+
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
+values(3, 3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11, 1);
