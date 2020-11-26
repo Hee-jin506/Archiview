@@ -18,7 +18,7 @@ public class MemberAddServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     ServletContext ctx = request.getServletContext();
@@ -50,7 +50,7 @@ public class MemberAddServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.println("<meta http-equiv='Refresh' content='1;list'>");
+//    out.println("<meta http-equiv='Refresh' content='1;list'>");
     out.println("<title>멤버 등록</title></head>");
     out.println("<body>");
     try {

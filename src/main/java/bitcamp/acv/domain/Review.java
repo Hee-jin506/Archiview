@@ -17,6 +17,12 @@ public class Review {
   private boolean status;
   private List<Tag> tags;
   
+  public List<Tag> getTags() {
+    return tags;
+  }
+  public void setTags(List<Tag> tags) {
+    this.tags = tags;
+  }
   public int getNo() {
     return no;
   }

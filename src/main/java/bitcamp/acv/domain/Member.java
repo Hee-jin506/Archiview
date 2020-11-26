@@ -4,7 +4,10 @@ import java.sql.Date;
 import java.util.List;
 
 public class Member {
-
+  
+  public static final int GENERAL = 1;
+  public static final int MANAGER = 0;
+  
   public static final int ARCHIVIEW = 1;
   public static final int GOOGLE = 2;
   public static final int KAKAO = 3;
