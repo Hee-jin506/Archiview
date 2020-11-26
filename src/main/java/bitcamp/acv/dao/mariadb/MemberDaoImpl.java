@@ -22,5 +22,11 @@ public class MemberDaoImpl implements MemberDao {
     }
   }
 
+  @Override
+  public void add(Member member) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      sqlSession.insert("MemberDao.insert");
+    }
+  }
 }
 

@@ -5,4 +5,5 @@ import bitcamp.acv.domain.Member;
 
 public interface MemberService {
   List<Member> list() throws Exception;
+  void add(Member member) throws Exception;
 }

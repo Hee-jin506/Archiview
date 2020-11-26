@@ -18,4 +18,9 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findAll();
   }
 
+  @Override
+  public void add(Member member) throws Exception {
+    memberDao.add(member);
+  }
+
 }
