@@ -23,10 +23,10 @@ public class MemberDaoImpl implements MemberDao {
   }
 
   @Override
-  public void add(Member member) throws Exception {
+  public int add(Member member) throws Exception {
     System.out.println(member.getAuthority());
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      sqlSession.insert("MemberDao.insert", member);
+      return sqlSession.insert("MemberDao.insert", member);
     }
   }
 }

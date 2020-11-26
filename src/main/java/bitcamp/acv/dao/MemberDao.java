@@ -5,5 +5,5 @@ import bitcamp.acv.domain.Member;
 
 public interface MemberDao {
   List<Member> findAll() throws Exception;
-  void add(Member member) throws Exception;
+  int add(Member member) throws Exception;
 }
