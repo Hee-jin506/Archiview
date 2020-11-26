@@ -26,7 +26,7 @@ public class MemberDaoImpl implements MemberDao {
   public void add(Member member) throws Exception {
     System.out.println(member.getAuthority());
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      sqlSession.insert("MemberDao.insert");
+      sqlSession.insert("MemberDao.insert", member);
     }
   }
 }
