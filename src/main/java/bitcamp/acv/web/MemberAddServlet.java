@@ -29,6 +29,8 @@ public class MemberAddServlet extends HttpServlet {
     request.setCharacterEncoding("UTF-8");
 
     Member member = new Member();
+    member.setAuthority(1);
+    member.setStatus(1);
     member.setLoginNo(Integer.parseInt((request.getParameter("loginNo"))));
     member.setName(request.getParameter("name"));
     member.setEmail(request.getParameter("email"));
@@ -38,8 +40,8 @@ public class MemberAddServlet extends HttpServlet {
     member.setIntro(request.getParameter("intro"));
     member.setQuestionsNo(Integer.parseInt(request.getParameter("questionsNo")));
     member.setQuestionsAnswer(request.getParameter("questionsAnswer"));
-    member.setStatus(1);
-    member.setAuthority(1);
+    
+    System.out.println(member.getAuthority());
 
     //    // 로그인 할 회원의 정보가 들어있는 세션 객체를 얻는다.
     //    HttpSession session = request.getSession();
