@@ -23,4 +23,20 @@ public class DefaultMemberService implements MemberService {
     memberDao.add(member);
   }
 
+  @Override
+  public Member get(int no) throws Exception {
+    return memberDao.findByNo(no);
+  }
+
+  @Override
+  public Member get(String email, String password) throws Exception {
+    return memberDao.findByEmailPassword(email, password);
+  }
+
+  @Override
+  public int update(Member member) throws Exception {
+    return memberDao.update(member);
+  }
+
+
 }

@@ -1,5 +1,6 @@
 package bitcamp.acv.dao.mariadb;
 
+import java.util.HashMap;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import bitcamp.acv.dao.MemberDao;
@@ -24,9 +25,33 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public int add(Member member) throws Exception {
-    System.out.println(member.getAuthority());
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.insert("MemberDao.insert", member);
+    }
+  }
+
+  @Override
+  public Member findByNo(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("MemberDao.findByNo", no);
+    }
+  }
+
+  @Override
+  public Member findByEmailPassword(String email, String password) throws Exception {
+    HashMap<String,Object> map = new HashMap<>();
+    map.put("email", email);
+    map.put("password", password);
+
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("MemberDao.findByEmailPassword", map);
+    }
+  }
+
+  @Override
+  public int update(Member member) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("MemberDao.update", member);
     }
   }
 }

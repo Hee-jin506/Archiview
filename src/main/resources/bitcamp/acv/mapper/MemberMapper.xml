@@ -22,6 +22,25 @@
     <result column="stat_mdt"      property="statusModifiedDate"/>
   </resultMap>
   
+  <!--
+    private int no; // 회원 번호
+  private int authority; // 권한
+  private String name; // 이름
+  private int loginNo; // 로그인 유형 번호
+  private String email; // 이메일
+  private String password; // 암호
+  private String nickName; // 별명
+  private String photo; // 사진
+  private String intro; // 소개글
+  private int questionsNo; // 비밀번호 힌트 질문 번호
+  private String questionsAnswer; // 비밀번호 힌트 정답
+  private Date registeredDate; // 회원 가입일
+  private int status; // 회원 상태 번호
+  private Date statusModifiedDate; // 회원 상태 변경일
+  private List<Review> saving;
+  
+  -->
+  
   <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 
        다음과 같이 별도로 분리한다. -->
   <sql id="sql1">
@@ -49,30 +68,39 @@
     order by mb.mno desc
   </select>
   
-  <!--
-    private int no; // 회원 번호
-  private int authority; // 권한
-  private String name; // 이름
-  private int loginNo; // 로그인 유형 번호
-  private String email; // 이메일
-  private String password; // 암호
-  private String nickName; // 별명
-  private String photo; // 사진
-  private String intro; // 소개글
-  private int questionsNo; // 비밀번호 힌트 질문 번호
-  private String questionsAnswer; // 비밀번호 힌트 정답
-  private Date registeredDate; // 회원 가입일
-  private int status; // 회원 상태 번호
-  private Date statusModifiedDate; // 회원 상태 변경일
-  private List<Review> saving;
-  
-  -->
-  
-  
     <insert id="insert" parameterType="member">
     insert into acv_mbr(auth,name,ltno,email,pw,nick,photo,intro,qno,pw_hint_a,stno,stat_mdt)
     values(#{authority},#{name},#{loginNo},#{email},password(#{password}),#{nickName},#{photo},#{intro}
     ,#{questionsNo},#{questionsAnswer},#{status},#{statusModifiedDate})
   </insert>
+  
+    <select id="findByNo" parameterType="int" resultMap="MemberMap">
+      <include refid="sql1"/>
+    where 
+      mno = #{mno}
+  </select>
+  
+    <select id="findByEmailPassword" parameterType="map" resultMap="MemberMap">
+    select 
+      mno, 
+      name,
+      nick, 
+      email, 
+      photo, 
+      rdt
+    from 
+      acv_mbr
+    where 
+      email = #{email}
+      and pw = password(#{password})
+  </select>
+  
+  <update id="update" parameterType="member">
+    update acv_mbr
+      nick = #{nick},
+      intro = #{intro},
+      photo = #{photo}
+    where mno = #{no}
+  </update>
 
 </mapper>
