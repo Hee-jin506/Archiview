@@ -90,31 +90,31 @@ insert into acv_tag(tno, title, stat)  value(6, 'B급 감성', 1);
 
 /* 회원 샘플 */
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(1, 1, '스티븐잡스', 1, 'acv1@test.com', '1111', '스티븐잡스', 'https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F198%2F201601251600441211.jpg', 
+values(1, 1, '스티븐잡스', 1, 'acv1@test.com', password('1111'), '스티븐잡스', 'https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F198%2F201601251600441211.jpg', 
 'iphone 12 mini comming soon', 1, '팀쿡', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(2, 1, '팀쿡', 1, 'acv2@test.com', '2222', '팀쿡', 'https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F175%2F20140228114506481.jpg',
+values(2, 1, '팀쿡', 1, 'acv2@test.com', password('2222'), '팀쿡', 'https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F175%2F20140228114506481.jpg',
 'mac mini nice product', 2, '스티븐잡스', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(3, 1, '이건목', 2, 'acv3@test.com', '3333', '자바171기이건목', 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20110420_194%2Fmarvelplus_1303297723584KMGNN_JPEG%2Fysxv66M6TTyDp7brme.jpg&type=sc960_832',
+values(3, 1, '이건목', 2, 'acv3@test.com', password('3333'), '자바171기이건목', 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20110420_194%2Fmarvelplus_1303297723584KMGNN_JPEG%2Fysxv66M6TTyDp7brme.jpg&type=sc960_832',
 '코딩몽키', 2, '엄진영', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(4, 1, '김찬구', 3, 'acv4@test.com', '4444', '포켓몬박사', 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMjRfMjg2%2FMDAxNDg1MjQxOTI0ODc5.EABP7Ng7kZ_w4n7x1eyP1DlI6Uc7OVjvaETfaEfWzJQg.HUUdatK070encozzonfLL1KkXXb5qTsuoFbecMrS0G0g.PNG.hakte%2Fimage005.png&type=sc960_832',
+values(4, 1, '김찬구', 3, 'acv4@test.com', password('4444'), '포켓몬박사', 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMjRfMjg2%2FMDAxNDg1MjQxOTI0ODc5.EABP7Ng7kZ_w4n7x1eyP1DlI6Uc7OVjvaETfaEfWzJQg.HUUdatK070encozzonfLL1KkXXb5qTsuoFbecMrS0G0g.PNG.hakte%2Fimage005.png&type=sc960_832',
 '포켓몬 도감 만드실 개발자 구함', 5, '김태희', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(5, 1, '엄영진', 1, 'acv5@test.com', '5555', 'javaMaster', null,
+values(5, 1, '엄영진', 1, 'acv5@test.com', password('5555'), 'javaMaster', null,
 'Hul과 Null의 차이', 4, '강원도', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(6, 1, '김태희', 1, 'acv6@test.com', '6666', '영업왕이될꺼야', null,
+values(6, 1, '김태희', 1, 'acv6@test.com', password('6666'), '영업왕이될꺼야', null,
 '이것이 기술 영업이다', 1, '도비', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(7, 1, '최희진', 1, 'acv7@test.com', '7777', '청축키보드', null,
+values(7, 1, '최희진', 1, 'acv7@test.com', password('7777'), '청축키보드', null,
 '키보드는 기계식이지', 1, '쏭', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(8, 1, '류승희', 2, 'acv8@test.com', '8888', '타래', null,
+values(8, 1, '류승희', 2, 'acv8@test.com', password('8888'), '타래', null,
 '타래가 쵝오야', 1, '타래', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(9, 1, '이용민', 3, 'acv9@test.com', '9999', '스트릿패션', null,
+values(9, 1, '이용민', 3, 'acv9@test.com', password('9999'), '스트릿패션', null,
 '리셀가 80만원', 1, '캔디', 1);
 
 /*영화 샘플*/
