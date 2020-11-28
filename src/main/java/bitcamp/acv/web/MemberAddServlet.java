@@ -40,7 +40,7 @@ public class MemberAddServlet extends HttpServlet {
     member.setEmail(request.getParameter("email"));
     member.setPassword(request.getParameter("password"));
     member.setNickName(request.getParameter("nickName"));
-    member.setPhoto(request.getParameter("photo"));
+
     member.setIntro(request.getParameter("intro"));
     member.setQuestionsNo(Integer.parseInt(request.getParameter("questionsNo")));
     member.setQuestionsAnswer(request.getParameter("questionsAnswer"));
