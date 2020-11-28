@@ -3,15 +3,19 @@ package bitcamp.acv.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @WebServlet("/member/add")
 public class MemberAddServlet extends HttpServlet {
 
@@ -41,10 +45,20 @@ public class MemberAddServlet extends HttpServlet {
     member.setQuestionsNo(Integer.parseInt(request.getParameter("questionsNo")));
     member.setQuestionsAnswer(request.getParameter("questionsAnswer"));
 
-    System.out.println(member.getAuthority());
+    // 입력값 꺼내기
+    Part photoPart = request.getPart("photo");
 
-    //    // 로그인 할 회원의 정보가 들어있는 세션 객체를 얻는다.
-    //    HttpSession session = request.getSession();
+    // 회원 사진을 저장할 위치
+    // ->컨텍스트루트/upload/파일
+    // 파일을 저장할 대 사용할 파일명을 준비한다.
+    String filename = UUID.randomUUID().toString();
+    String saveFilePath = ctx.getRealPath("/upload/" + filename);
+
+    // 해당 위치에 업로드 된 사진 파일을 저장한다.
+    photoPart.write(saveFilePath);
+
+    // db에 사진 파일 이름을 저장하기 위해 객체에 보관한다.
+    member.setPhoto(filename);
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -52,24 +66,26 @@ public class MemberAddServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    //    out.println("<meta http-equiv='Refresh' content='1;list'>");
-    out.println("<title>멤버 등록</title></head>");
+    //    out.println("<meta http-equiv='Refresh' content='1;url=list'>");
+    out.println("<title>회원 등록</title></head>");
     out.println("<body>");
     try {
-      out.println("<h1>멤버 등록</h1>");
+      out.println("<h1>회원 등록</h1>");
 
       memberService.add(member);
 
-      out.println("멤버 등록하였습니다.");
+      out.println("<p>회원 등록이 완료되었습니다.</p>");
 
-    } catch (Exception e)  {
-      out.printf("<p>멤버 등록 중 오류 발생 -%s</p>\n", e.getMessage());
+    } catch (Exception e) {
+      out.println("<h2>작업 처리 중 오류 발생!</h2>");
+      out.printf("<pre>%s</pre>\n", e.getMessage());
 
       StringWriter errOut = new StringWriter();
       e.printStackTrace(new PrintWriter(errOut));
-
-      out.printf("<pre?%s</pre>\n", errOut.toString());
+      out.println("<h3>상세 오류 내용</h3>");
+      out.printf("<pre>%s</pre>\n", errOut.toString());
     }
+
     out.println("</body>");
     out.println("</html>");
   }
