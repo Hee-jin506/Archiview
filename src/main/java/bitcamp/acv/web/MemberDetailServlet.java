@@ -44,7 +44,7 @@ public class MemberDetailServlet  extends HttpServlet {
         out.println("해당 번호의 회원 없습니다.");
         return;
       }
-      
+
       out.println("<form action='update' method='post'>");
       out.printf("이름 - %s<br>\n", member.getName());
       out.printf("이메일: <input type='email' name='email' value='%s'><br>\n",
@@ -61,9 +61,10 @@ public class MemberDetailServlet  extends HttpServlet {
       out.printf("회원 상태 번호 - %s<br>\n", member.getStatus());
       out.printf("회원 상태 변경일 - %s<br>\n", member.getStatusModifiedDate());
       out.println("<button>변경</button>");
+      out.printf("<a href='delete?no=%d'>삭제</a>\n", member.getNo());
       out.println("</p>");
       out.println("</form>");
-      
+
 
     } catch (Exception e) {
       out.printf("<p>작업 처리 중 오류 발생! - %s</p>\n", e.getMessage());
