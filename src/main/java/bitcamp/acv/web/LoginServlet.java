@@ -60,6 +60,9 @@ public class LoginServlet extends HttpServlet {
           // 각 클라이언트의 전용 보관소인 session에 저장한다.
           session.setAttribute("loginUser", member);
           out.printf("<p>%s 님 반갑습니다.</p>\n", member.getName());
+
+          out.println("<button>변경</button>");
+
         }
       }
     } catch (Exception e) {
