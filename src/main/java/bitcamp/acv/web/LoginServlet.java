@@ -37,8 +37,6 @@ public class LoginServlet extends HttpServlet {
     try {
       out.println("<h1>로그인</h1>");
 
-      out.println("<a href='form.html'>새 회원</a><br>");
-
       if (session.getAttribute("loginUser") != null) {
         out.println("<p>로그인 된 상태입니다!</p>");
 
