@@ -40,7 +40,7 @@ public class MemberAddServlet extends HttpServlet {
     member.setIntro(request.getParameter("intro"));
     member.setQuestionsNo(Integer.parseInt(request.getParameter("questionsNo")));
     member.setQuestionsAnswer(request.getParameter("questionsAnswer"));
-    
+
     System.out.println(member.getAuthority());
 
     //    // 로그인 할 회원의 정보가 들어있는 세션 객체를 얻는다.
@@ -52,7 +52,7 @@ public class MemberAddServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-//    out.println("<meta http-equiv='Refresh' content='1;list'>");
+    //    out.println("<meta http-equiv='Refresh' content='1;list'>");
     out.println("<title>멤버 등록</title></head>");
     out.println("<body>");
     try {
@@ -60,10 +60,10 @@ public class MemberAddServlet extends HttpServlet {
 
       memberService.add(member);
 
-      out.println("게시글을 등록하였습니다.");
+      out.println("멤버 등록하였습니다.");
 
     } catch (Exception e)  {
-      out.printf("<p>게시글 목록 조회 중 오류 발생 -%s</p>\n", e.getMessage());
+      out.printf("<p>멤버 등록 중 오류 발생 -%s</p>\n", e.getMessage());
 
       StringWriter errOut = new StringWriter();
       e.printStackTrace(new PrintWriter(errOut));
