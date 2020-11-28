@@ -16,7 +16,7 @@ import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
-@WebServlet("/auth/add")
+@WebServlet("/member/add")
 public class MemberAddServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
