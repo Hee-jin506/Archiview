@@ -102,5 +102,10 @@
       photo = #{photo}
     where mno = #{no}
   </update>
+  
+    <delete id="delete" parameterType="int">
+    delete from acv_mbr
+    where mno=#{no}
+  </delete>
 
 </mapper>

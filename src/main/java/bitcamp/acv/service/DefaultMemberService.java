@@ -38,5 +38,10 @@ public class DefaultMemberService implements MemberService {
     return memberDao.update(member);
   }
 
+  @Override
+  public int delete(int no) throws Exception {
+    return memberDao.delete(no);
+  }
+
 
 }

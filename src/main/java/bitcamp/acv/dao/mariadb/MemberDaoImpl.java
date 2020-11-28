@@ -54,5 +54,11 @@ public class MemberDaoImpl implements MemberDao {
       return sqlSession.update("MemberDao.update", member);
     }
   }
-}
 
+  @Override
+  public int delete(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.delete("MemberDao.delete", no);
+    }
+  }
+}
