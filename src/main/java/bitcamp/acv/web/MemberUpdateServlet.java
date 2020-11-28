@@ -75,7 +75,6 @@ public class MemberUpdateServlet extends HttpServlet {
       out.printf("<pre>%s</pre>\n", errOut.toString());
     }
 
-    out.println("</body>");
-    out.println("</html>");
+    out.println("</body></html>");
   }
 }

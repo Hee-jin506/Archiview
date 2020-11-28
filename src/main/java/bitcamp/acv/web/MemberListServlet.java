@@ -62,7 +62,7 @@ public class MemberListServlet extends HttpServlet {
         out.printf(""
             + "<td>%d</td>" // no
             + "<td>%d</td>" // auto
-            + "<td>%s</td>" // name
+            + "<td><a href='detail?no=%1$d'>%s</a></td>" // name
             + "<td>%d</td>" // login
             + "<td>%s</td>" // email
             + "<td>%s</td>" // pw

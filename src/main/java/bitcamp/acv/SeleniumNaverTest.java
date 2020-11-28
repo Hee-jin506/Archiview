@@ -69,17 +69,17 @@ public class SeleniumNaverTest {
       driver.findElement(By.className("end_sub_tab")).findElement(By.className("tab02")).click();
       
       // 출연 
-      System.out.println("출연진 입력");
-      elements = driver.findElement(By.className("section_group_frst")).findElement(By.className("noline")).findElement(By.className("made_people")).findElement(By.tagName("ul")).findElements(By.tagName("li"));
-      System.out.println(elements);
-      StringBuilder actors = new StringBuilder();
-      for (int i = 0; i < elements.size(); i++) {
-        actors.append(elements.get(i).findElement(By.)).findElement(By.tagName("a")).getText());
-        if (i < elements.size() - 1) {
-          actors.append(",");
-        }
-      }
-      System.out.println(actors.toString());
+//      System.out.println("출연진 입력");
+//      elements = driver.findElement(By.className("section_group_frst")).findElement(By.className("noline")).findElement(By.className("made_people")).findElement(By.tagName("ul")).findElements(By.tagName("li"));
+//      System.out.println(elements);
+//      StringBuilder actors = new StringBuilder();
+//      for (int i = 0; i < elements.size(); i++) {
+//        actors.append(elements.get(i).findElement(By.)).findElement(By.tagName("a")).getText());
+//        if (i < elements.size() - 1) {
+//          actors.append(",");
+//        }
+//      }
+//      System.out.println(actors.toString());
 
       driver.get("https://movie.naver.com/movie/bi/mi/photoView.nhn?code=189141");
       // 대기 설정(정보를 가져오기 전에 로딩이 완료 안되는 경우가 있음)
