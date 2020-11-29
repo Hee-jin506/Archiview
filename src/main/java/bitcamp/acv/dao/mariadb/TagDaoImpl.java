@@ -21,4 +21,11 @@ public class TagDaoImpl implements TagDao {
       return sqlSession.selectList("TagDao.findAll");
     }
   }
+
+  @Override
+  public Tag findByNo(int no) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("TagDao.findByNo");
+    }
+  }
 }

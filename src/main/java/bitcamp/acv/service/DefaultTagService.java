@@ -18,5 +18,10 @@ public class DefaultTagService implements TagService {
     return tagDao.findAll();
   }
 
+  @Override
+  public Tag get(int no) {
+    return tagDao.findByNo(no);
+  }
+
 
 }

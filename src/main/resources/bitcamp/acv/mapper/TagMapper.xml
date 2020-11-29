@@ -26,4 +26,10 @@
     order by t.tno desc
   </select>
   
+  <select id="findByNo" parameterType="int" resultMap="TagMap">
+      <include refid="sql1"/>
+    where 
+      tno = #{tno}
+  </select>
+  
 </mapper>
