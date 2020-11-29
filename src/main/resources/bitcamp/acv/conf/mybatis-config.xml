@@ -35,6 +35,7 @@
   
   <!-- SQL 문이 들어 있는 파일들 -->
   <mappers>
+    <mapper resource="bitcamp/acv/mapper/TagMapper.xml"/>
     <mapper resource="bitcamp/acv/mapper/MovieMapper.xml"/>
     <mapper resource="bitcamp/acv/mapper/MemberMapper.xml"/>
   </mappers>

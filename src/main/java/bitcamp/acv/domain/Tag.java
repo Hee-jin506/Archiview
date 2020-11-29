@@ -7,6 +7,7 @@ public class Tag {
   private String title;
   private boolean status;
   private Date registeredDate;
+
   public int getNo() {
     return no;
   }

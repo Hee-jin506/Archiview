@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="TagDao">
+  
+  <resultMap type="tag" id="TagMap">
+        <id column="tno"       property="no"/>
+    <result column="title"     property="title"/>
+    <result column="stat"      property="status"/>
+    <result column="rdt"       property="registeredDate"/>
+  </resultMap>
+  
+  <sql id="sql1">
+    select 
+    t.tno,
+    t.title,
+    t.stat,
+    t.rdt
+    from acv_tag t
+  </sql>
+       
+  <select id="findAll" resultMap="TagMap">
+    <include refid="sql1"/>
+    order by t.tno desc
+  </select>
+  
+</mapper>
