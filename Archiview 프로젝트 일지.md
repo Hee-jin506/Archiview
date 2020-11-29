@@ -16,11 +16,12 @@
   - 로그아웃 : 버튼 하나로 일반 로그인, SNS 로그인 모두 로그아웃되게 해야함.
 - 참고한 사이트
   - 구글
+    - api 문서: https://developers.google.com/identity/sign-in/web/sign-in
     - 개발자 도구에서 토큰값 확인: https://shlee0882.tistory.com/58
     - 로그아웃 코드: https://ming9mon.tistory.com/146
     - 그냥 참고함: https://www.daleseo.com/google-oauth/
   - 카카오
-    - api 공식 문서: https://developers.kakao.com/docs/latest/ko/kakaologin/common
+    - api 문서: https://developers.kakao.com/docs/latest/ko/kakaologin/common
     - 로그인 코드 : https://kimsg.tistory.com/9
     - 그냥 참고함: https://webruden.tistory.com/272
 
