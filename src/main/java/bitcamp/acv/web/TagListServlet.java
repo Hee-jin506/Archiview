@@ -35,8 +35,11 @@ public class TagListServlet extends HttpServlet {
 
     try {
       out.println("<h1>[태그 목록]</h1>");
-
+      out.println("<form>" + 
+          "<input type='search' value='검색' name='keyword'>" + 
+          "</form>");
       List<Tag> list = tagService.list();
+      out.printf("<span>총 태그 수 : %d</span>", list.size());
 
       out.println("<table border=\"1\">");
       out.println("<tr>");
