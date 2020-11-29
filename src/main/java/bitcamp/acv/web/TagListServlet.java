@@ -30,14 +30,31 @@ public class TagListServlet extends HttpServlet {
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
-    out.println("<head><title>태그 관리 화면</title></head>");
+    out.println("<head><title>태그 관리 화면</title>"
+        + "<style>"
+        + "body {" 
+        + "background-color: #000000;"
+        + "color: #ffffff;" 
+        + "}"
+        + "</style>"
+        + "</head>");
     out.println("<body>");
 
     try {
+      // 홈 아이콘
+      out.println("<a href='../admin-main.html'>"
+          + "<img src='../home-border-icon.svg' alt='home-border-icon'>"
+          + "</a>");
+      // 태그 아이콘
+      out.println("<a href='list'>"
+          + "<img src='../tag-border-icon.svg' alt='home-border-icon'>"
+          + "</a>");
+
       out.println("<h1>[태그 목록]</h1>");
       out.println("<form>" + 
           "<input type='search' value='검색' name='keyword'>" + 
           "</form>");
+
       List<Tag> list = tagService.list();
       out.printf("<span>총 태그 수 : %d</span>", list.size());
 
