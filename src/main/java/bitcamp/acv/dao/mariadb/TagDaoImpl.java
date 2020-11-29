@@ -32,7 +32,7 @@ public class TagDaoImpl implements TagDao {
   @Override
   public int delete(int no) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.delete("TagDao.delete", no);
+      return sqlSession.update("TagDao.delete", no);
     }
   }
 }

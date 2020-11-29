@@ -32,9 +32,10 @@
       tno = #{tno}
   </select>
   
-  <delete id="delete" parameterType="int">
-    delete from acv_tag
-    where tno=#{tno}
-  </delete>
+  <update id="delete" parameterType="int">
+    update acv_tag
+      set stat = 0
+    where tno = #{tno}
+  </update>
   
 </mapper>
