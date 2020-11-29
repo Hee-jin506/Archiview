@@ -4,6 +4,26 @@
 
 - 테스트 방법: 
 
+### 🎯 SNS 회원 가입 기능
+
+- 테스트 방법: localhost:9999/Archiview/auth/login 접속 -> SNS 로그인 버튼 클릭 -> SNS 로그아웃 버튼 클릭
+- 진행 상황: 구글 카카오 둘다 OAuth2.0 클라이언트 아이디 발급받았고, /auth/login에 소스코드 복붙함. 
+- 해결할 문제
+  - 회원가입 : SNS 계정 정보로 로그인한 사용자를 DB에 회원으로 등록해야함.
+    => 구글, 카카오 로그인 api 둘다 OAuth2.0 기반임. OAuth2.0과 토큰에대해서 공부해야될것같음. DB에 토큰 컬럼을 추가?
+  - 회원탈퇴 : SNS 계정 정보로 로그인한 사용자를 DB에서 삭제해야함.
+  - 카카오 로그아웃 : 자바스크립트 몰라서 어떻게하는지 잘 모르겠음.
+  - 로그아웃 : 버튼 하나로 일반 로그인, SNS 로그인 모두 로그아웃되게 해야함.
+- 참고한 사이트
+  - 구글
+    - 개발자 도구에서 토큰값 확인: https://shlee0882.tistory.com/58
+    - 로그아웃 코드: https://ming9mon.tistory.com/146
+    - 그냥 참고함: https://www.daleseo.com/google-oauth/
+  - 카카오
+    - api 공식 문서: https://developers.kakao.com/docs/latest/ko/kakaologin/common
+    - 로그인 코드 : https://kimsg.tistory.com/9
+    - 그냥 참고함: https://webruden.tistory.com/272
+
 ### 🎯 회원 조회 기능
 
 - 테스트 방법:
