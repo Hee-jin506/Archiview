@@ -27,7 +27,7 @@ public class MemberAddServlet extends HttpServlet {
 
     ServletContext ctx = request.getServletContext();
     MemberService memberService =  (MemberService) ctx.getAttribute("memberService");
-    //    response.setContentType("text/html;charset=UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
 
     // 클라이언트가 post 요청할 때 보낸 데이터를 읽는다.
     request.setCharacterEncoding("UTF-8");
@@ -40,7 +40,7 @@ public class MemberAddServlet extends HttpServlet {
     member.setEmail(request.getParameter("email"));
     member.setPassword(request.getParameter("password"));
     member.setNickName(request.getParameter("nickName"));
-    //    member.setPhoto(request.getParameter("photo"));
+    member.setPhoto(request.getParameter("photo"));
     member.setIntro(request.getParameter("intro"));
     member.setQuestionsNo(Integer.parseInt(request.getParameter("questionsNo")));
     member.setQuestionsAnswer(request.getParameter("questionsAnswer"));
