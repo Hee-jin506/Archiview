@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" 
+  content="744106584862-nh6rv1la56329v9iu9t2oo8lo3j7c5b3.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 <title>로그인</title>
 </head>
 <body>
@@ -18,6 +24,37 @@
 
 <h4>계정이 없으신가요?</h4>
 <a href="../member/form.html">지금 가입하세요.</a>
+
+
+<!-- 구글계정으로 로그인 -->
+<div class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+    </script>
+    
+<!-- 구글계정 로그아웃 -->
+<a href="#" onclick="signOut();">Sign out</a>
+	<script>
+	  function signOut() {
+	    var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.signOut().then(function () {
+	      console.log('User signed out.');
+	    });
+	  }
+	</script>
 
 
 </body>
