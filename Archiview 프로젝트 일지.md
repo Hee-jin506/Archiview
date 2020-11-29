@@ -4,7 +4,7 @@
 
 - 테스트 방법: 
 
-### 🎯 SNS 회원 가입 기능
+### 🎯 SNS 로그인, 회원 가입 기능
 
 - 테스트 방법: localhost:9999/Archiview/auth/login 접속 -> SNS 로그인 버튼 클릭 -> SNS 로그아웃 버튼 클릭
 - 진행 상황: 구글 카카오 둘다 OAuth2.0 클라이언트 아이디 발급받았고, /auth/login에 소스코드 복붙함. 
