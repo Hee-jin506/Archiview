@@ -32,8 +32,6 @@ public class StillCutChooseServlet extends HttpServlet {
 
     PrintWriter out = response.getWriter();
 
-
-
     try {
       Movie movie = movieService.findByNo(Integer.parseInt(request.getParameter("movieNo")));
 
