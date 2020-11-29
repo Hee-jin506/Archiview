@@ -1,8 +1,3 @@
-insert into acv_mov(title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) values('ㄱ', 'ㄱ', 'ㄱ', 12, '2020-2-2', 'ㅁ', 'ㅁ', 'ㅁ', 1, 3);
-insert into acv_pstr(mvno, ps_url, main_ps) values(1, 'a', 1);
-insert into acv_stc(mvno, stc_url) values(1, 'b');
-insert into acv_gnr_mov(gmno, gno, mvno) values(1, 1, 1);
-
 /* 장르 샘플 */
 insert into acv_gnr(gno, title) values(1, '드라마');
 insert into acv_gnr(gno, title) values(2, '판타지');
