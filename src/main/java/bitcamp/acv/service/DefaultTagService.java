@@ -18,5 +18,15 @@ public class DefaultTagService implements TagService {
     return tagDao.findAll();
   }
 
+  @Override
+  public Tag get(int no) throws Exception {
+    return tagDao.findByNo(no);
+  }
+
+  @Override
+  public int delete(int no) throws Exception {
+    return tagDao.delete(no);
+  }
+
 
 }

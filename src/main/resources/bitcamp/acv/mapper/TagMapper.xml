@@ -26,4 +26,16 @@
     order by t.tno desc
   </select>
   
+  <select id="findByNo" parameterType="int" resultMap="TagMap">
+      <include refid="sql1"/>
+    where 
+      tno = #{tno}
+  </select>
+  
+  <update id="delete" parameterType="int">
+    update acv_tag
+      set stat = 0
+    where tno = #{tno}
+  </update>
+  
 </mapper>

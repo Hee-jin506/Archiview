@@ -46,13 +46,12 @@ public class TagListServlet extends HttpServlet {
       out.println("<th>등록일</th>");
       out.println("<th>상태</th>");
       out.println("</tr>");
-
       for (Tag tag : list ) {
 
         out.println("<tr>");
         out.printf(""
             + "<td>%d</td>" // no
-            + "<td>%s</td>" // title
+            + "<td><a href='detail?no=%1$d'>%s</a></td>" // title
             + "<td>1</td>" //
             + "<td>%s</td>" // rdt
             + "<td>%s</td>", // stat,
