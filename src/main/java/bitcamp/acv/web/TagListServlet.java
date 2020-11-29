@@ -46,7 +46,6 @@ public class TagListServlet extends HttpServlet {
       out.println("<th>등록일</th>");
       out.println("<th>상태</th>");
       out.println("</tr>");
-
       for (Tag tag : list ) {
 
         out.println("<tr>");

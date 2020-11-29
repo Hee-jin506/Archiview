@@ -32,4 +32,9 @@
       tno = #{tno}
   </select>
   
+  <delete id="delete" parameterType="int">
+    delete from acv_tag
+    where tno=#{tno}
+  </delete>
+  
 </mapper>
