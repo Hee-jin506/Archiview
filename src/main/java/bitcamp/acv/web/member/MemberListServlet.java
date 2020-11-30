@@ -27,7 +27,7 @@ public class MemberListServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
 
     PrintWriter out = response.getWriter();
- 
+
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head><title>멤버 목록</title></head>");
@@ -67,7 +67,7 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%s</td>" // email
             + "<td>%s</td>" // pw
             + "<td>%s</td>" // nick
-            + "<td><img src=\"%s\" alt=\"사진추가\" width=\"120\" /></td>" // photo
+            + "<td><img src=\"../upload/%s\" alt=\"사진추가\" width=\"120\" /></td>" // photo
             + "<td>%s</td>" // intro
             + "<td>%d</td>" // qno
             + "<td>%s</td>" // qan
