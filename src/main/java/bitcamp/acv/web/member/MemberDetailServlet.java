@@ -60,7 +60,7 @@ public class MemberDetailServlet  extends HttpServlet {
           member.getEmail());
       out.printf("암호 - %s<br>\n", member.getPassword());
       out.printf("사진 - %s<br>\n", member.getPhoto());
-      out.printf("닉네임: <input type='text' name='nick' value='%s'><br>\n",
+      out.printf("닉네임: <input type='text' name='nickName' value='%s'><br>\n",
           member.getNickName());
       out.printf("소개: <textarea name='intro'>%s</textarea><br>\n",
           member.getIntro());
