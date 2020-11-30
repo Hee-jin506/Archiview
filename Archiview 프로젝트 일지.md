@@ -32,7 +32,7 @@
 ### 🎯 회원 변경 기능
 
 - 테스트 방법: http://localhost:9999/Archiview/member/list 접속 -> 변경 필요한 회원의 이름 클릭 -> 이메일/닉네임/소개 수정 후 변경 가능
-  - null 오류로 편집 중
+  - 회원 번호를 찾지 못하는 null 에러 수정 - `MemberDetailServlet` 에서 `member.getNo() `를 받지않아서 생긴 오류
 
 ### 🎯 회원 삭제 기능
 

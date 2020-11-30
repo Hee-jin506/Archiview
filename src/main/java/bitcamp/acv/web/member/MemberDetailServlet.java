@@ -41,11 +41,6 @@ public class MemberDetailServlet  extends HttpServlet {
         return;
       }
 
-<<<<<<< HEAD
-      //      out.printf("이메일: <input type='email' name='email' value='%s'><br>\n",
-      //          member.getEmail());
-      
-=======
       out.println("<form action='updatePhoto' method='post' enctype='multipart/form-data'>");
       out.printf("<input type='hidden' name='no' value='%d'><br>\n",
           member.getNo());
@@ -56,18 +51,12 @@ public class MemberDetailServlet  extends HttpServlet {
       out.println("</form>");
       out.println("<br>");
 
->>>>>>> edaf65d0b082c7bc5c7b85cf561c11f52516d586
       out.println("<form action='update' method='post'>");
       out.printf("<input type='hidden' name='no' value='%d'><br>\n",
           member.getNo());
       out.printf("번호 - %s<br>\n", member.getNo());
       out.printf("이름 - %s<br>\n", member.getName());
-<<<<<<< HEAD
-      out.printf("이메일 - %s<br>\n", member.getEmail());
-=======
-      out.printf("이메일: %s<br>\n",
-          member.getEmail());
->>>>>>> edaf65d0b082c7bc5c7b85cf561c11f52516d586
+      out.printf("이메일: %s<br>\n",member.getEmail());
       out.printf("암호 - %s<br>\n", member.getPassword());
       out.printf("사진 - %s<br>\n", member.getPhoto());
       out.printf("닉네임: <input type='text' name='nick' value='%s'><br>\n",

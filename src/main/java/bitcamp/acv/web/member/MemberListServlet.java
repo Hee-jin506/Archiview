@@ -27,7 +27,7 @@ public class MemberListServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
 
     PrintWriter out = response.getWriter();
- 
+
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head><title>멤버 목록</title></head>");
@@ -56,9 +56,10 @@ public class MemberListServlet extends HttpServlet {
       out.println("<th>회원 상태 변경일</th>");
       out.println("</tr></thead>");
 
-      out.println("<tbody>");
       for (Member member : list ) {
-        out.printf("<tr>"
+
+        out.println("<tr>");
+        out.printf(""
             + "<td>%d</td>" // no
             + "<td>%d</td>" // auto
             + "<td><a href='detail?no=%1$d'>%s</a></td>" // name
@@ -72,8 +73,7 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%s</td>" // qan
             + "<td>%s</td>" // rdt
             + "<td>%d</td>" // stat
-            + "<td>%s</td>" // smdt
-            + "</tr>\n",
+            + "<td>%s</td>", // smdt
             member.getNo(),
             member.getAuthority(),
             member.getName(),
@@ -89,9 +89,7 @@ public class MemberListServlet extends HttpServlet {
             member.getStatus(),
             member.getStatusModifiedDate());
       }
-      out.println("</tbody>");
-      out.println("</table>");
-      
+      out.println("</tr>");
     } catch (Exception e) {
       out.printf("작업 처리 중 오류 발생! - %s\n", e.getMessage());
       StringWriter errOut = new StringWriter();
