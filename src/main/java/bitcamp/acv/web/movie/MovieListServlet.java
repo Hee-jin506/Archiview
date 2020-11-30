@@ -1,4 +1,4 @@
-package bitcamp.acv.web;
+package bitcamp.acv.web.movie;
 
 import java.io.IOException;
 import java.io.PrintWriter;

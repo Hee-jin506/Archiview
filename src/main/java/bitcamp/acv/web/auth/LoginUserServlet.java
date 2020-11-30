@@ -1,4 +1,4 @@
-package bitcamp.acv.web;
+package bitcamp.acv.web.auth;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
 
-@WebServlet("/auth/logout")
-public class LogoutServlet extends HttpServlet {
 
+@WebServlet("/auth/loginUser")
+public class LoginUserServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
@@ -28,21 +28,21 @@ public class LogoutServlet extends HttpServlet {
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
-    out.println("<head><title>로그아웃</title></head>");
+    out.println("<head><title>로그인사용자</title></head>");
     out.println("<body>");
 
-    out.println("<h1>로그아웃</h1>");
+    out.println("<h1>로그인 사용자</h1>");
 
-
-    Member loginUser = (Member) session.getAttribute("loginUser");
-    if (loginUser == null) {
-      out.println("<p>로그인 된 상태가 아닙니다!</p>");
+    Member member = (Member) session.getAttribute("loginUser");
+    if (member == null) {
+      out.println("<p>로그인 하지 않았습니다!</p>");
     } else {
 
-      out.printf("%s 님 안녕히 가세요!\n", loginUser.getName());
-      session.invalidate(); // 로그아웃을 요청한 클라이언트의 세션을 무효화 시킨다.
+      out.printf("사용자 번호: %d<br>\n", member.getNo());
+      out.printf("이름: %s<br>\n", member.getName());
+      out.printf("이메일: %s<br>\n", member.getEmail());
+      out.printf("사진: %s<br>\n", member.getPhoto());
+      out.printf("소개: %s<br>\n", member.getIntro());
     }
-    out.println("</body></html>");
   }
 }
-

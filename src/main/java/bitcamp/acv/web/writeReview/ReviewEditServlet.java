@@ -1,4 +1,4 @@
-package bitcamp.acv.web;
+package bitcamp.acv.web.writeReview;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,8 +22,8 @@ public class ReviewEditServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
 
     PrintWriter out = response.getWriter();
-    
-    
+
+
     try {
 
       out.println("<!DOCTYPE html>");
@@ -33,16 +33,17 @@ public class ReviewEditServlet extends HttpServlet {
       out.println("<body>");
       out.println("<h1>자기만의 감성으로 카드를 꾸며주세요!</h1>");
       out.printf("<img src='%s'>", request.getParameter("stc"));
-      
+
       out.println("<form>");
       out.println("<label>폰트");
-      out.println("<select multiple='multiple' name='font'>"); 
-      out.println("<option value=''></option>\n" + 
-          "        <option value=\"dduk\">떡볶이</option>\n" + 
-          "        <option selected>순대</option>\n" + 
-          "        <option>오뎅</option>\n" + 
+      out.println("<select multiple='multiple' name='font'>");
+
+      out.println("<option value=''></option>\n" +
+          "        <option value=\"dduk\">떡볶이</option>\n" +
+          "        <option selected>순대</option>\n" +
+          "        <option>오뎅</option>\n" +
           "    </select>"
           + "</label>")
-  }
+    }
 
-}
+  }

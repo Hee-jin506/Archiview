@@ -1,4 +1,4 @@
-package bitcamp.acv.web;
+package bitcamp.acv.web.tag;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,12 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.TagService;
 
-
-@WebServlet("/tag/delete")
-public class TagDeleteServlet extends HttpServlet {
-
+@WebServlet("/tag/detail")
+public class TagDetailServlet  extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
@@ -22,8 +21,9 @@ public class TagDeleteServlet extends HttpServlet {
       throws ServletException, IOException {
 
     ServletContext ctx = request.getServletContext();
-    TagService tagService =
-        (TagService) ctx.getAttribute("tagService");
+    TagService tagService =  (TagService) ctx.getAttribute("tagService");
+    response.setContentType("text/html;charset=UTF-8");
+
 
     // 웹주소에 동봉된 데이터(Query String: qs)를 읽는다.
     int no = Integer.parseInt(request.getParameter("no"));
@@ -33,40 +33,36 @@ public class TagDeleteServlet extends HttpServlet {
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
-    out.println("<head>");
-    //    out.println("<meta http-equiv='Refresh' content='1;list'>");
-    out.println("<title>태그삭제</title></head>");
+    out.println("<head><title>태그 상세 조회</title></head>");
     out.println("<body>");
     try {
-      out.println("<h1>태그 삭제</h1>");
+      out.println("<h1>[태그 상세 조회]</h1>");
 
+      Tag tag = tagService.get(no);
 
-      int count = tagService.delete(no);
-      try {
-        if (count == 0) {
-          out.printf("<p>해당 번호의 태그가 존재하지 않습니다.</p>\n");
-        } else {
-          out.printf("<p>태그를 삭제하였습니다.</p>\n");
-        }
-      } catch (Exception e) {
-        out.println("태그 삭제 중 오류 발생!");
-        e.printStackTrace();
+      if (tag == null) {
+        out.println("해당 번호의 태그가 없습니다.");
+        return;
       }
 
+      out.printf("태그 번호 - %d<br>\n", tag.getNo());
+      out.printf("태그명: %s<br>\n", tag.getTitle());
+      out.printf("등록일 - %s<br>\n", tag.getRegisteredDate());
+      //      out.printf("게시물 수 - %s<br>\n", member.getPhoto());
+      out.printf("상태: %s<br>\n", tag.isStatus() ? "게시중" : "삭제");
+      out.printf("<a href='delete?no=%d'>삭제</a>\n", tag.getNo());
+      out.println("</p>");
+
+
     } catch (Exception e) {
-      out.printf("<h2>작업 처리 중 오류 발생!</h2>");
-      out.printf("<pre>%s</pre>\n", e.getMessage());
+      out.printf("<p>작업 처리 중 오류 발생! - %s</p>\n", e.getMessage());
 
       StringWriter errOut = new StringWriter();
       e.printStackTrace(new PrintWriter(errOut));
 
-      out.printf("<h3>상세 오류 내용</h3>");
       out.printf("<pre>%s</pre>\n", errOut.toString());
     }
 
-    out.println("</body>");
-    out.println("</html>");
+    out.println("</body></html>");
   }
-
-
 }
