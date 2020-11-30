@@ -33,9 +33,23 @@ public class TagDetailServlet  extends HttpServlet {
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
-    out.println("<head><title>태그 상세 조회</title></head>");
+    out.println("<head><title>태그 상세 조회</title>"
+        + "<style>"
+        + "body {" 
+        + "background-color: #000000;"
+        + "color: #ffffff;" 
+        + "}"
+        + "</style>"
+        + "</head>");
+    out.println("<body>");
     out.println("<body>");
     try {
+      out.println("<a href='../admin-main.html'>"
+          + "<img src='../home-border-icon.svg' alt='home-border-icon'>"
+          + "</a>");
+      out.println("<a href='list'>"
+          + "<img src='../tag-border-icon.svg' alt='home-border-icon'>"
+          + "</a>");
       out.println("<h1>[태그 상세 조회]</h1>");
 
       Tag tag = tagService.get(no);

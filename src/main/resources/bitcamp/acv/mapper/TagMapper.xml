@@ -38,5 +38,5 @@
       set stat = 0
     where tno = #{tno}
   </update>
-  
+
 </mapper>
