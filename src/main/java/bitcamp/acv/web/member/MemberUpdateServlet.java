@@ -35,7 +35,7 @@ public class MemberUpdateServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.println("<meta http-equiv='Refresh' content='1;list'>");
+    //    out.println("<meta http-equiv='Refresh' content='1;list'>");
     out.println("<title>프로필편집</title></head>");
     out.println("<body>");
     try {
@@ -45,8 +45,8 @@ public class MemberUpdateServlet extends HttpServlet {
       //      member.setIntro(request.getParameter("intro"));
       //      member.setPhoto(request.getParameter("photo"));
 
-      Member member = (Member) session.getAttribute("loginUser");
-
+      //      Member member = (Member) session.getAttribute("loginUser");
+      Member member = new Member();
 
       out.println("<form action='update' method='post'>");
       out.printf("이름: <input type='text' name='nick' value='%s'><br>\n",

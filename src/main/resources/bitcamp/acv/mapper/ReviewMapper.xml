@@ -56,11 +56,6 @@
     order by rv.rvno desc
   </select>
   
-<!--     <insert id="insert" parameterType="member">
-    insert into acv_mbr(auth,name,ltno,email,pw,nick,photo,intro,qno,pw_hint_a,stno,stat_mdt)
-    values(#{authority},#{name},#{loginNo},#{email},password(#{password}),#{nickName},#{photo},#{intro}
-    ,#{questionsNo},#{questionsAnswer},#{status},#{statusModifiedDate})
-  </insert> -->
 
 </mapper>
 
