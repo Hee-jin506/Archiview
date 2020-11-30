@@ -45,10 +45,12 @@ public class MemberDetailServlet  extends HttpServlet {
         return;
       }
 
+      //      out.printf("이메일: <input type='email' name='email' value='%s'><br>\n",
+      //          member.getEmail());
+      
       out.println("<form action='update' method='post'>");
       out.printf("이름 - %s<br>\n", member.getName());
-      out.printf("이메일: <input type='email' name='email' value='%s'><br>\n",
-          member.getEmail());
+      out.printf("이메일 - %s<br>\n", member.getEmail());
       out.printf("암호 - %s<br>\n", member.getPassword());
       out.printf("사진 - %s<br>\n", member.getPhoto());
       out.printf("닉네임: <input type='text' name='nick' value='%s'><br>\n",

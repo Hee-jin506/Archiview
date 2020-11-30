@@ -39,7 +39,7 @@ public class MemberListServlet extends HttpServlet {
       List<Member> list = memberService.list();
 
       out.println("<table border=\"1\">");
-      out.println("<tr>");
+      out.println("<thead><tr>");
       out.println("<th>회원 번호</th>");
       out.println("<th>권한</th>");
       out.println("<th>이름</th>");
@@ -54,12 +54,11 @@ public class MemberListServlet extends HttpServlet {
       out.println("<th>회원 가입일</th>");
       out.println("<th>회원 상태 번호</th>");
       out.println("<th>회원 상태 변경일</th>");
-      out.println("</tr>");
+      out.println("</tr></thead>");
 
+      out.println("<tbody>");
       for (Member member : list ) {
-
-        out.println("<tr>");
-        out.printf(""
+        out.printf("<tr>"
             + "<td>%d</td>" // no
             + "<td>%d</td>" // auto
             + "<td><a href='detail?no=%1$d'>%s</a></td>" // name
@@ -73,7 +72,8 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%s</td>" // qan
             + "<td>%s</td>" // rdt
             + "<td>%d</td>" // stat
-            + "<td>%s</td>", // smdt
+            + "<td>%s</td>" // smdt
+            + "</tr>\n",
             member.getNo(),
             member.getAuthority(),
             member.getName(),
@@ -87,12 +87,11 @@ public class MemberListServlet extends HttpServlet {
             member.getQuestionsAnswer(),
             member.getRegisteredDate(),
             member.getStatus(),
-            member.getStatusModifiedDate()
-            );
-        out.println("</tr>");
+            member.getStatusModifiedDate());
       }
+      out.println("</tbody>");
       out.println("</table>");
-
+      
     } catch (Exception e) {
       out.printf("작업 처리 중 오류 발생! - %s\n", e.getMessage());
       StringWriter errOut = new StringWriter();

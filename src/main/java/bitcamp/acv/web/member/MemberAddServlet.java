@@ -40,7 +40,7 @@ public class MemberAddServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
 
     // 클라이언트가 post 요청할 때 보낸 데이터를 읽는다.
-    request.setCharacterEncoding("UTF-8");
+    // request.setCharacterEncoding("UTF-8");
 
     Member member = new Member();
     member.setAuthority(1);
