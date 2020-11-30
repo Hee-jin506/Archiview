@@ -14,12 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
+import net.coobird.thumbnailator.ThumbnailParameter;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
+import net.coobird.thumbnailator.name.Rename;
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @WebServlet("/member/add")
 public class MemberAddServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
+  private String uploadDir;
+
+  @Override
+  public void init() throws ServletException {
+    this.uploadDir = this.getServletContext().getRealPath("/upload");
+  }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -45,20 +55,24 @@ public class MemberAddServlet extends HttpServlet {
     member.setQuestionsNo(Integer.parseInt(request.getParameter("questionsNo")));
     member.setQuestionsAnswer(request.getParameter("questionsAnswer"));
 
-    // 입력값 꺼내기
     Part photoPart = request.getPart("photo");
 
-    // 회원 사진을 저장할 위치
-    // ->컨텍스트루트/upload/파일
-    // 파일을 저장할 대 사용할 파일명을 준비한다.
     String filename = UUID.randomUUID().toString();
     String saveFilePath = ctx.getRealPath("/upload/" + filename);
-
-    // 해당 위치에 업로드 된 사진 파일을 저장한다.
     photoPart.write(saveFilePath);
 
-    // db에 사진 파일 이름을 저장하기 위해 객체에 보관한다.
     member.setPhoto(filename);
+
+    Thumbnails.of(this.uploadDir + "/" + filename)//
+    .size(40, 40)//
+    .outputFormat("jpg")//
+    .crop(Positions.CENTER)
+    .toFiles(new Rename() {
+      @Override
+      public String apply(String name, ThumbnailParameter param) {
+        return name + "_40x40";
+      }
+    });
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
