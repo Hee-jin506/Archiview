@@ -40,6 +40,7 @@ public class LogoutServlet extends HttpServlet {
     } else {
 
       out.printf("%s 님 안녕히 가세요!\n", loginUser.getName());
+      out.printf("%s 님 안녕히 가세요!\n", loginUser.getNo());
       session.invalidate(); // 로그아웃을 요청한 클라이언트의 세션을 무효화 시킨다.
     }
     out.println("</body></html>");
