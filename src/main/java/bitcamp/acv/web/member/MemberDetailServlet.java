@@ -21,23 +21,19 @@ public class MemberDetailServlet  extends HttpServlet {
       throws ServletException, IOException {
 
     ServletContext ctx = request.getServletContext();
-    MemberService memberService =  (MemberService) ctx.getAttribute("memberService");
-    response.setContentType("text/html;charset=UTF-8");
-
-
-    // 웹주소에 동봉된 데이터(Query String: qs)를 읽는다.
-    int no = Integer.parseInt(request.getParameter("no"));
+    MemberService memberService =
+        (MemberService) ctx.getAttribute("memberService");
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
-    out.println("<head><title>회원조회</title></head>");
+    out.println("<head><title>회원상세조회</title></head>");
     out.println("<body>");
     try {
-      out.println("<h1>[멤버 상세 조회]</h1>");
-
+      out.println("<h1>[회원 상세 조회]</h1>");
+      int no = Integer.parseInt(request.getParameter("no"));
       Member member = memberService.get(no);
 
       if (member == null) {
@@ -45,12 +41,33 @@ public class MemberDetailServlet  extends HttpServlet {
         return;
       }
 
+<<<<<<< HEAD
       //      out.printf("이메일: <input type='email' name='email' value='%s'><br>\n",
       //          member.getEmail());
       
+=======
+      out.println("<form action='updatePhoto' method='post' enctype='multipart/form-data'>");
+      out.printf("<input type='hidden' name='no' value='%d'><br>\n",
+          member.getNo());
+      out.printf("<img src='../upload/%s_120x120.jpg'><br>\n",
+          member.getPhoto());
+      out.println("<input type='file' name='photo'>");
+      out.println("<button>변경</button>");
+      out.println("</form>");
+      out.println("<br>");
+
+>>>>>>> edaf65d0b082c7bc5c7b85cf561c11f52516d586
       out.println("<form action='update' method='post'>");
+      out.printf("<input type='hidden' name='no' value='%d'><br>\n",
+          member.getNo());
+      out.printf("번호 - %s<br>\n", member.getNo());
       out.printf("이름 - %s<br>\n", member.getName());
+<<<<<<< HEAD
       out.printf("이메일 - %s<br>\n", member.getEmail());
+=======
+      out.printf("이메일: %s<br>\n",
+          member.getEmail());
+>>>>>>> edaf65d0b082c7bc5c7b85cf561c11f52516d586
       out.printf("암호 - %s<br>\n", member.getPassword());
       out.printf("사진 - %s<br>\n", member.getPhoto());
       out.printf("닉네임: <input type='text' name='nick' value='%s'><br>\n",
@@ -66,7 +83,6 @@ public class MemberDetailServlet  extends HttpServlet {
       out.printf("<a href='delete?no=%d'>삭제</a>\n", member.getNo());
       out.println("</p>");
       out.println("</form>");
-
 
     } catch (Exception e) {
       out.printf("<p>작업 처리 중 오류 발생! - %s</p>\n", e.getMessage());

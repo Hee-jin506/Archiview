@@ -97,7 +97,8 @@
   
   <update id="update" parameterType="member">
     update acv_mbr
-      nick = #{nick},
+    set
+      nick = #{nickName},
       intro = #{intro},
       photo = #{photo}
     where mno = #{no}
