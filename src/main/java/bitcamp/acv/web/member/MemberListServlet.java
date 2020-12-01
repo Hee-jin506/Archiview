@@ -67,7 +67,7 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%s</td>" // email
             + "<td>%s</td>" // pw
             + "<td>%s</td>" // nick
-            + "<td><img src='../upload/%s_150x150.jpg' alt='사진추가'></td>" // photo
+            + "<td><img src='../upload/%s' alt='사진추가' height='120'</td>" // photo
             + "<td>%s</td>" // intro
             + "<td>%d</td>" // qno
             + "<td>%s</td>" // qan
