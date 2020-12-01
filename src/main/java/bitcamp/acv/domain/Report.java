@@ -3,11 +3,20 @@ package bitcamp.acv.domain;
 import java.sql.Date;
 
 public class Report {
-  
+
   public static final int MEMBER = 1;
   public static final int REVIEW = 2;
   public static final int COMMENT = 3;
-  
+
+  private int no;
+  private Member reportingMember;
+  private int reportedType;
+  private int reportedNo;
+  private Date reportedDate;
+  private String content;
+  private boolean status;
+  private Date ProcessedDate;
+
   public int getNo() {
     return no;
   }
@@ -65,12 +74,5 @@ public class Report {
   public static int getComment() {
     return COMMENT;
   }
-  private int no;
-  private Member reportingMember;
-  private int reportedType;
-  private int reportedNo;
-  private Date reportedDate;
-  private String content;
-  private boolean status;
-  private Date ProcessedDate;
+
 }
