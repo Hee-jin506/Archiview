@@ -20,17 +20,10 @@ public class MemberUpdateServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    //    request.setCharacterEncoding("UTF-8");
-
     ServletContext ctx = request.getServletContext();
     MemberService memberService =
         (MemberService) ctx.getAttribute("memberService");
 
-    Member member = new Member();
-
-    member.setNo(Integer.parseInt(request.getParameter("no")));
-    member.setNickName(request.getParameter("nickName"));
-    member.setIntro(request.getParameter("intro"));
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -38,16 +31,20 @@ public class MemberUpdateServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    //    out.println("<meta http-equiv='Refresh' content='1;list'>");
+    // out.println("<meta http-equiv='Refresh' content='1;list'>");
     out.println("<title>프로필편집</title></head>");
     out.println("<body>");
     try {
       out.println("<h1>프로필 편집</h1>");
+      
+      Member member = new Member();
+      member.setNo(Integer.parseInt(request.getParameter("no")));
+      member.setNickName(request.getParameter("nickName"));
+      member.setIntro(request.getParameter("intro"));
 
       memberService.update(member);
 
       out.println("<p>유저 프로필을 변경하였습니다.</p>");
-
 
     } catch (Exception e) {
       out.printf("<h2>작업 처리 중 오류 발생!</h2>");
