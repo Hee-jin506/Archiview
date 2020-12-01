@@ -52,8 +52,8 @@ public class MemberUpdatePhotoServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.printf("<meta http-equiv='Refresh' content='1;url=detail?no=%d'>",
-        member.getNo());
+    //    out.printf("<meta http-equiv='Refresh' content='1;url=detail?no=%d'>",
+    //    member.getNo());
     out.println("<title>회원사진수정</title></head>");
     out.println("<body>");
 
