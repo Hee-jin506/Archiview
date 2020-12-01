@@ -57,6 +57,7 @@ public class MemberListServlet extends HttpServlet {
       out.println("</tr></thead>");
 
       for (Member member : list ) {
+
         out.printf("<tr>"
             + "<td>%d</td>\n" // no
             + "<td>%d</td>\n" // auto
@@ -72,6 +73,7 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%s</td>\n" // rdt
             + "<td>%d</td>\n" // stat
             + "<td>%s</td>\n", // smdt
+
             member.getNo(),
             member.getAuthority(),
             member.getName(),

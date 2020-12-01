@@ -43,6 +43,8 @@ public class MemberDetailServlet  extends HttpServlet {
         return;
       }
 
+
+
       out.println("<form action='updatePhoto' method='post' enctype='multipart/form-data'>");
       out.printf("<input type='hidden' name='no' value='%d'><br>\n",
           member.getNo());
