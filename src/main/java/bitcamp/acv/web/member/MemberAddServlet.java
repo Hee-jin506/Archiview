@@ -39,9 +39,6 @@ public class MemberAddServlet extends HttpServlet {
     MemberService memberService =  (MemberService) ctx.getAttribute("memberService");
     response.setContentType("text/html;charset=UTF-8");
 
-    // 클라이언트가 post 요청할 때 보낸 데이터를 읽는다.
-    request.setCharacterEncoding("UTF-8");
-
     Member member = new Member();
     member.setAuthority(1);
     member.setStatus(1);
@@ -65,24 +62,24 @@ public class MemberAddServlet extends HttpServlet {
 
     if (photoPart.getContentType().equals("image/png")) {
       Thumbnails.of(this.uploadDir + "/" + filename)//
-      .size(40, 40)//
+      .size(150, 150)//
       .outputFormat("png")//
       .crop(Positions.CENTER)
       .toFiles(new Rename() {
         @Override
         public String apply(String name, ThumbnailParameter param) {
-          return name + "_40x40";
+          return name + "_150x150";
         }
       });
     } else {
       Thumbnails.of(this.uploadDir + "/" + filename)//
-      .size(40, 40)//
+      .size(150, 150)//
       .outputFormat("jpg")//
       .crop(Positions.CENTER)
       .toFiles(new Rename() {
         @Override
         public String apply(String name, ThumbnailParameter param) {
-          return name + "_40x40";
+          return name + "_150x150";
         }
       });
     }

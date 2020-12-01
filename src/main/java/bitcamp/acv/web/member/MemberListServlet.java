@@ -27,7 +27,7 @@ public class MemberListServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
 
     PrintWriter out = response.getWriter();
- 
+
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head><title>멤버 목록</title></head>");
@@ -39,7 +39,7 @@ public class MemberListServlet extends HttpServlet {
       List<Member> list = memberService.list();
 
       out.println("<table border=\"1\">");
-      out.println("<tr>");
+      out.println("<thead><tr>");
       out.println("<th>회원 번호</th>");
       out.println("<th>권한</th>");
       out.println("<th>이름</th>");
@@ -54,26 +54,26 @@ public class MemberListServlet extends HttpServlet {
       out.println("<th>회원 가입일</th>");
       out.println("<th>회원 상태 번호</th>");
       out.println("<th>회원 상태 변경일</th>");
-      out.println("</tr>");
+      out.println("</tr></thead>");
 
       for (Member member : list ) {
 
-        out.println("<tr>");
-        out.printf(""
-            + "<td>%d</td>" // no
-            + "<td>%d</td>" // auto
-            + "<td><a href='detail?no=%1$d'>%s</a></td>" // name
-            + "<td>%d</td>" // login
-            + "<td>%s</td>" // email
-            + "<td>%s</td>" // pw
-            + "<td>%s</td>" // nick
-            + "<td><img src=\"%s\" alt=\"사진추가\" width=\"120\" /></td>" // photo
-            + "<td>%s</td>" // intro
-            + "<td>%d</td>" // qno
-            + "<td>%s</td>" // qan
-            + "<td>%s</td>" // rdt
-            + "<td>%d</td>" // stat
-            + "<td>%s</td>", // smdt
+        out.printf("<tr>"
+            + "<td>%d</td>\n" // no
+            + "<td>%d</td>\n" // auto
+            + "<td><a href='detail?no=%1$d'>%s</a></td>\n" // name
+            + "<td>%d</td>\n" // login
+            + "<td>%s</td>\n" // email
+            + "<td>%s</td>\n" // pw
+            + "<td>%s</td>\n" // nick
+            + "<td><img src='../upload/%s' alt='사진추가' width='120'></td>" // photo
+            + "<td>%s</td>\n" // intro
+            + "<td>%d</td>\n" // qno
+            + "<td>%s</td>\n" // qan
+            + "<td>%s</td>\n" // rdt
+            + "<td>%d</td>\n" // stat
+            + "<td>%s</td>\n", // smdt
+
             member.getNo(),
             member.getAuthority(),
             member.getName(),
@@ -87,12 +87,9 @@ public class MemberListServlet extends HttpServlet {
             member.getQuestionsAnswer(),
             member.getRegisteredDate(),
             member.getStatus(),
-            member.getStatusModifiedDate()
-            );
-        out.println("</tr>");
+            member.getStatusModifiedDate());
       }
-      out.println("</table>");
-
+      out.println("</tr>");
     } catch (Exception e) {
       out.printf("작업 처리 중 오류 발생! - %s\n", e.getMessage());
       StringWriter errOut = new StringWriter();
