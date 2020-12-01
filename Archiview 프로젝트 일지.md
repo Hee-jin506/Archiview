@@ -33,7 +33,7 @@
 
 - 테스트 방법: http://localhost:9999/Archiview/member/list 접속 -> 확인이 필요한 회원의 이름 클릭
 
-  - 현재 photo는 .jpg 확장자로만 썸네일 저장이 가능하기 때문에 출력 안됨. 확인 필요
+  - 현재 photo는 png 파일을 jpg로 변환하여 저장하는 경우, 투명부분이 까맣게 변하는 문제가 있다.
 
   - ```
       out.printf("<a href='../upload/%s'>\n<img src='../upload/%1$s_150x150'></a><br>\n",
