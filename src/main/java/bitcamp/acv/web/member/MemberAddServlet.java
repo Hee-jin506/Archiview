@@ -65,7 +65,7 @@ public class MemberAddServlet extends HttpServlet {
 
     if (photoPart.getContentType().equals("image/png")) {
       Thumbnails.of(this.uploadDir + "/" + filename)//
-      .size(40, 40)//
+      .size(150, 150)//
       .outputFormat("png")//
       .crop(Positions.CENTER)
       .toFiles(new Rename() {
@@ -76,7 +76,7 @@ public class MemberAddServlet extends HttpServlet {
       });
     } else {
       Thumbnails.of(this.uploadDir + "/" + filename)//
-      .size(40, 40)//
+      .size(150, 150)//
       .outputFormat("jpg")//
       .crop(Positions.CENTER)
       .toFiles(new Rename() {
