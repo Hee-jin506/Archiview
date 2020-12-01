@@ -98,9 +98,9 @@
   <update id="update" parameterType="member">
     update acv_mbr
     set
-      nick = #{nickName},
-      intro = #{intro},
-      photo = #{photo}
+      <if test="nick != null">nick = #{nickName},</if>
+      <if test="intro != null">intro = #{intro},</if>
+      <if test="photo != null">photo = #{photo}</if>
     where mno = #{no}
   </update>
   
