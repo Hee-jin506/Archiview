@@ -3,10 +3,17 @@ package bitcamp.acv.domain;
 import java.sql.Date;
 
 public class Like {
-  
+
   public static final int REVIEW = 1;
   public static final int COMMENT = 2;
-  
+
+  private int no;
+  private Member likingMember;
+  private int likedType;
+  private int likedNo;
+  private Date likedDate;
+
+
   public int getNo() {
     return no;
   }
@@ -43,11 +50,6 @@ public class Like {
   public static int getComment() {
     return COMMENT;
   }
-  private int no;
-  private Member likingMember;
-  private int likedType;
-  private int likedNo;
-  private Date likedDate;
- 
+
 }
 
