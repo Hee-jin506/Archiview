@@ -68,7 +68,7 @@ public class MemberAddServlet extends HttpServlet {
       .toFiles(new Rename() {
         @Override
         public String apply(String name, ThumbnailParameter param) {
-          return name + "_40x40";
+          return name + "_150x150";
         }
       });
     } else {
@@ -79,7 +79,7 @@ public class MemberAddServlet extends HttpServlet {
       .toFiles(new Rename() {
         @Override
         public String apply(String name, ThumbnailParameter param) {
-          return name + "_40x40";
+          return name + "_150x150";
         }
       });
     }

@@ -57,7 +57,6 @@ public class MemberListServlet extends HttpServlet {
       out.println("</tr></thead>");
 
       for (Member member : list ) {
-
         out.printf("<tr>"
             + "<td>%d</td>\n" // no
             + "<td>%d</td>\n" // auto
