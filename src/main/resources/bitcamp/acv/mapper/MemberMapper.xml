@@ -97,11 +97,12 @@
   
   <update id="update" parameterType="member">
     update acv_mbr
-    set
-      <if test="nick != null">nick = #{nickName},</if>
-      <if test="intro != null">intro = #{intro},</if>
-      <if test="photo != null">photo = #{photo}</if>
-    where mno = #{no}
+      <set>
+	      <if test="nickName != null">nick = #{nickName},</if>
+	      <if test="intro != null">intro = #{intro},</if>
+	      <if test="photo != null">photo = #{photo}</if>
+      </set>
+    where mno=#{no}
   </update>
   
     <delete id="delete" parameterType="int">
