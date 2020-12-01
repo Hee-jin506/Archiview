@@ -9,8 +9,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 public class CharacterEncodingFilter implements Filter {
+  
   FilterConfig config;
-
+  
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
     config = filterConfig;
