@@ -20,7 +20,7 @@ import net.coobird.thumbnailator.geometry.Positions;
 import net.coobird.thumbnailator.name.Rename;
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
-@WebServlet("member/updatePhoto")
+@WebServlet("/member/updatePhoto")
 public class MemberUpdatePhotoServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;

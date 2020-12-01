@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @WebServlet("/member/detail")
 public class MemberDetailServlet  extends HttpServlet {
   private static final long serialVersionUID = 1L;
