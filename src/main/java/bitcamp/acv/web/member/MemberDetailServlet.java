@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @WebServlet("/member/detail")
 public class MemberDetailServlet  extends HttpServlet {
   private static final long serialVersionUID = 1L;
@@ -44,7 +46,7 @@ public class MemberDetailServlet  extends HttpServlet {
       out.println("<form action='updatePhoto' method='post' enctype='multipart/form-data'>");
       out.printf("<input type='hidden' name='no' value='%d'><br>\n",
           member.getNo());
-      out.printf("<a href='../upload/%s'><img src='../upload/%1$s_120x120.jpg'></a><br>\n",
+      out.printf("<img src='../upload/%s_40x40.jpg'><br>\n",
           member.getPhoto());
       out.println("<input type='file' name='photo'>");
       out.println("<button>변경</button>");
@@ -56,8 +58,10 @@ public class MemberDetailServlet  extends HttpServlet {
           member.getNo());
       out.printf("번호 - %s<br>\n", member.getNo());
       out.printf("이름 - %s<br>\n", member.getName());
-      out.printf("이메일: %s<br>\n",member.getEmail());
+      out.printf("이메일: %s<br>\n",
+          member.getEmail());
       out.printf("암호 - %s<br>\n", member.getPassword());
+      out.printf("사진 - %s<br>\n", member.getPhoto());
       out.printf("닉네임: <input type='text' name='nickName' value='%s'><br>\n",
           member.getNickName());
       out.printf("소개: <textarea name='intro'>%s</textarea><br>\n",
