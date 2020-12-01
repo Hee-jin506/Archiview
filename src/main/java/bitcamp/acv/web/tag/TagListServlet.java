@@ -59,6 +59,7 @@ public class TagListServlet extends HttpServlet {
 
       out.println("<table border=\"1\">");
       out.println("<tr>");
+      out.println("<th>선택</th>");
       out.println("<th>태그 번호</th>");
       out.println("<th>태그명</th>");
       out.println("<th>게시물 수</th>");
@@ -69,6 +70,7 @@ public class TagListServlet extends HttpServlet {
 
         out.println("<tr>");
         out.printf(""
+            + "<td><input type='checkbox' name='tags' </td>\n" // 선택
             + "<td>%d</td>" // no
             + "<td><a href='detail?no=%1$d'>%s</a></td>" // title
             + "<td>1</td>" //

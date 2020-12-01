@@ -13,6 +13,7 @@ public class Comment {
   private Date registeredDate; // 등록일
   private int status; // 상태
   private Date modifiedDate; // 수정일
+
   public int getNo() {
     return no;
   }
@@ -67,7 +68,4 @@ public class Comment {
   public void setModifiedDate(Date modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
-
-
-
 }
