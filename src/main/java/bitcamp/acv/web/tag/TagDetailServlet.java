@@ -22,13 +22,11 @@ public class TagDetailServlet  extends HttpServlet {
 
     ServletContext ctx = request.getServletContext();
     TagService tagService =  (TagService) ctx.getAttribute("tagService");
-    response.setContentType("text/html;charset=UTF-8");
 
 
     // 웹주소에 동봉된 데이터(Query String: qs)를 읽는다.
     int no = Integer.parseInt(request.getParameter("no"));
 
-    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");

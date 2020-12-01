@@ -28,7 +28,6 @@ public class TagDeleteServlet extends HttpServlet {
     // 웹주소에 동봉된 데이터(Query String: qs)를 읽는다.
     int no = Integer.parseInt(request.getParameter("no"));
 
-    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
