@@ -43,13 +43,22 @@ public class StillCutChooseServlet extends HttpServlet {
       out.println("<h1>인상 깊은 장면을 골라주세요.</h1>");
 
       List<String> stillcuts = movie.getStillCuts();
+      out.println("<form action='editCard'>");
 
       for (String stillcut : stillcuts) {
-        out.printf("<a href='editCard?stc=%s'><img src='%1$s' alt='%d번 스틸컷'></a>",
+
+        out.println("<label>");
+        out.printf("<input type='radio' name='stc' value='%d' %s>",
+            movieService.getStillCutNo(stillcut),
+            stillcuts.indexOf(stillcut) == 0 ? "checked" : "");
+
+        out.printf("<img src='%s' alt='%d번 스틸컷'>",
             stillcut,
             stillcuts.indexOf(stillcut));
+        out.println("</label>");
       }
 
+      out.println("<button>다음</button></form>");
       out.println("<br><a href='../main.html'>뒤로</a>");
 
     } catch (Exception e) {

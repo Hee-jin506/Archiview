@@ -77,6 +77,15 @@
     where
       m.mvno = #{no}
   </select>
+  
+  <select id="getStillCutNo" resultMap="int" parameterType="string">
+    select
+      stcno
+    from
+      acv_stc
+    where
+      stc_url=#{url}
+  </select>
 </mapper>
 
       
