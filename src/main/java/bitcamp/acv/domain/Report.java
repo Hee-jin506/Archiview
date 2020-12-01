@@ -3,11 +3,18 @@ package bitcamp.acv.domain;
 import java.sql.Date;
 
 public class Report {
-  
+
+  // 신고 대상
   public static final int MEMBER = 1;
   public static final int REVIEW = 2;
   public static final int COMMENT = 3;
-  
+
+  // 처리 상
+  public static final int IN_PROGRESS = 1;
+  public static final int FALSE = 2;
+  public static final int UNTREATED = 3;
+  public static final int PROCESSED = 4;
+
   public int getNo() {
     return no;
   }
