@@ -31,7 +31,7 @@ public class MemberUpdateServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.println("<meta http-equiv='Refresh' content='1;list'>");
+    // out.println("<meta http-equiv='Refresh' content='1;list'>");
     out.println("<title>프로필편집</title></head>");
     out.println("<body>");
     try {
