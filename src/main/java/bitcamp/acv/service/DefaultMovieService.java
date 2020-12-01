@@ -26,4 +26,9 @@ public class DefaultMovieService implements MovieService {
   public Movie findByNo(int no) throws Exception {
     return movieDao.findByNo(no);
   }
+
+  @Override
+  public int getStillCutNo(String stillcut) throws Exception {
+    return movieDao.getStillCutNo(stillcut);
+  }
 }

@@ -38,6 +38,7 @@
     <mapper resource="bitcamp/acv/mapper/TagMapper.xml"/>
     <mapper resource="bitcamp/acv/mapper/MovieMapper.xml"/>
     <mapper resource="bitcamp/acv/mapper/MemberMapper.xml"/>
+    <mapper resource="bitcamp/acv/mapper/ReviewMapper.xml"/>
   </mappers>
 
 </configuration>

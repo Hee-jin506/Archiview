@@ -115,5 +115,12 @@ public class MovieDaoImpl implements MovieDao {
       return sqlSession.selectOne("MovieDao.findByNo", no);
     }
   }
+
+  @Override
+  public int getStillCutNo(String stillcut) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("MovieDao.getStillCutNo", stillcut);
+    }
+  }
 }
 

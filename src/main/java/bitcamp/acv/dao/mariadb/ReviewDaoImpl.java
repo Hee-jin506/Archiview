@@ -3,6 +3,7 @@ package bitcamp.acv.dao.mariadb;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import bitcamp.acv.dao.ReviewDao;
+import bitcamp.acv.domain.Font;
 import bitcamp.acv.domain.Review;
 import bitcamp.util.SqlSessionFactoryProxy;
 
@@ -21,5 +22,13 @@ public class ReviewDaoImpl implements ReviewDao {
       return sqlSession.selectList("ReviewDao.findAll");
     }
   }
+
+  @Override
+  public List<Font> findFonts() throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("ReviewDao.findFonts");
+    }
+  }
 }
+
 
