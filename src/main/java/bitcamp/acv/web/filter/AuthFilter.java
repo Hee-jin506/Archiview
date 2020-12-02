@@ -7,14 +7,13 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 // 필터 역할:
 // - 로그인 하지 않은 경우 커맨드를 실행시키지 않는다.
 //
-@WebFilter("/*")
+//@WebFilter("/*")
 public class AuthFilter implements Filter {
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

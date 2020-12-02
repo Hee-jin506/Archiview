@@ -38,4 +38,10 @@ public class DefaultTagService implements TagService {
   public List<Tag> list(Map<String, Object> keywords) throws Exception{
     return tagDao.findByDetailKeyword(keywords);
   }
+
+  @Override
+  public int add(Tag tag) throws Exception {
+    // TODO Auto-generated method stub
+    return 0;
+  }
 }

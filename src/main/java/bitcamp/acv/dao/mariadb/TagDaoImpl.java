@@ -19,7 +19,7 @@ public class TagDaoImpl implements TagDao {
   @Override
   public List<Tag> findAll(String keyword) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectList("TagDao.findAll");
+      return sqlSession.selectList("TagDao.findAll",keyword);
     }
   }
 

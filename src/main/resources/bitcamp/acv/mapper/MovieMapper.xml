@@ -78,7 +78,7 @@
       m.mvno = #{no}
   </select>
   
-  <select id="getStillCutNo" resultMap="int" parameterType="string">
+  <!-- <select id="getStillCutNo" resultMap="MovieMap" parameterType="string">
     select
       stcno
     from
@@ -86,7 +86,7 @@
     where
       stc_url=#{url}
   </select>
-  
+   -->
   <select id="getStcUrl" resultType="string" parameterType="int">
     select
       stc_url
