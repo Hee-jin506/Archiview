@@ -60,5 +60,18 @@
     </where>
     order by t.tno desc
   </select>
+  
+  <insert id="insert" parameterType="tag" useGeneratedKeys="true">
+    insert into acv_tag(title)
+    values(#{title})
+  </insert>
+  
+  <insert id="insertByReview" parameterType="review">
+    insert into acv_tag_post(rvno, tno)
+    values
+    <foreach collection="tags" item="tag" separator=",">
+      (#{no},#{tag.no})
+    </foreach>
+  </insert>
 
 </mapper>

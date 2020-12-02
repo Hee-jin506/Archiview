@@ -65,9 +65,8 @@
   </select>
   
   <insert id="insert" parameterType="review">
-    insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, rdt, mdt, stat)
-    values(#{})
-    
+    insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+    values(#{stillCut}, #{writer.no}, #{text}, #{textX}, #{textY}, #{textFont}, #{textSize})
   </insert>
 </mapper>
 

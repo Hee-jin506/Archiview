@@ -15,7 +15,6 @@ import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.ReviewService;
-import bitcamp.acv.service.TagService;
 
 @WebServlet("/write/add")
 public class ReviewAddServlet extends HttpServlet {
@@ -33,8 +32,6 @@ public class ReviewAddServlet extends HttpServlet {
     ServletContext ctx = request.getServletContext();
     ReviewService reviewService =
         (ReviewService) ctx.getAttribute("reviewService");
-    TagService tagService =
-        (TagService) ctx.getAttribute("tagService");
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
@@ -69,12 +66,17 @@ public class ReviewAddServlet extends HttpServlet {
         }
         review.setTags(tags);
       }
-
       reviewService.add(review);
-      tagService.addByReview(review);
+
+      out.println("<p>후기를 등록하였습니다.</p>");
+      response.setHeader("Refresh", "3;url=s100");
 
     } catch (Exception e) {
-
+      request.setAttribute("exception", e);
+      request.getRequestDispatcher("/error").forward(request, response);
+      return;
     }
+    out.println("</body>");
+    out.println("</html>");
   }
 }
