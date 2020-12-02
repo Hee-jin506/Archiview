@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=ege"/>
+<meta nmae="viewport" 
+content="user-scalable=no,inital-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,width=device-width">
+
+<!-- 구글 로그인 api -->
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" 
+  content="744106584862-nh6rv1la56329v9iu9t2oo8lo3j7c5b3.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<title>로그인</title>
+
+<style>
+  #header img{
+		position: absolute;
+		width: 527px;
+		left: 456px;
+		top: 80px;
+  }
+</style>
+
+
+</head>
+<body>
+
+<div id="header">
+       <img src="../logo.png" alt="로고">
+</div>
+
+
+<h2>당신의 감성을 담은</h2>
+<h2>영화 후기를 만들어 보세요.</h2>
+<form action="login" method="post">
+이메일 주소 : <input type="email" name="email"><br>
+비밀번호 : <input type="password" name="password"><br>
+<button>로그인</button>
+</form>
+
+<a href="">비밀번호를 잊으셨나요?</a>
+
+<h4>계정이 없으신가요? <a href="../member/form.html">지금 가입하세요.</a> </h4>
+
+<!-- 구글계정으로 로그인 -->
+<div class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+    </script>
+
+<br>
+    
+<!-- 구글계정 로그아웃 -->
+<a href="#" onclick="signOut();">구글 로그아웃</a>
+<script>
+	  function signOut() {
+	    var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.signOut().then(function () {
+	      console.log('User signed out.');
+	    });
+	  }
+</script>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<a id="kakao-login-btn"></a>
+
+<a href="http://developers.kakao.com/logout"></a>
+ 
+<!-- Kakao Login -->
+<script type="text/javascript">
+      // 사용할 앱의 JavaScript 키를 설정해 주세요.
+      Kakao.init('45ebe784a7682a8bfb5d12af670b792c');
+      // 카카오 로그인 버튼을 생성합니다.
+      Kakao.Auth.createLoginButton({
+        container: '#kakao-login-btn',
+        success: function(authObj) {
+          // 로그인 성공시, API를 호출합니다.
+          Kakao.API.request({
+            url: '/v1/user/me',
+            success: function(res) {
+              console.log(JSON.stringify(res.kaccount_email));
+              console.log(JSON.stringify(res.id));
+              console.log(JSON.stringify(res.properties.profile_image));
+              console.log(JSON.stringify(res.properties.nickname));
+            },
+            fail: function(error) {
+              alert(JSON.stringify(error));
+            }
+          });
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원등록</title>
+</head>
+<body>
+<h1>회원 등록</h1>
+<form action="add" method="post" enctype="multipart/form-data">
+  로그인 유형 번호: 
+      <select name="loginNo">
+        <option value="1" selected >아카이뷰</option>
+        <option value="2">구글</option>
+        <option value="3">카카오</option>
+      </select><br>
+  이름: <input type="text" name="name"><br>
+  이메일: <input type="email" name="email"><br>
+  비밀번호: <input type="password" name="password"><br>
+  닉네임: <input type="text" name="nickName"><br>
+  사진: <input type="file" name="photo"><br>
+  한줄 소개: <textarea name="intro" cols="60" rows="10"></textarea><br>
+  비밀번호 힌트 질문: 
+      <select name="questionsNo">
+        <option value="1" selected >내가 키우는 애완 동물의 이름은?</option>
+        <option value="2">가장 기억에 남는 선생님의 성함은?</option>
+        <option value="3">어머니의 고향은?</option>
+        <option value="4">아버지의 고향은?</option>
+        <option value="5">가장 친한 친구의 이름은?</option>
+      </select><br>
+  비밀번호 힌트 정답: <input type="text" name="questionsAnswer"><br>
+  <button>등록</button>
+</form>
+</body>
+</html>
+
+
+
+
+

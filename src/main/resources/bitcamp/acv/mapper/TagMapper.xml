@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="TagDao">
+  
+  <resultMap type="tag" id="TagMap">
+        <id column="tno"       property="no"/>
+    <result column="title"     property="title"/>
+    <result column="stat"      property="status"/>
+    <result column="rdt"       property="registeredDate"/>
+  </resultMap>
+  
+  <sql id="sql1">
+    select 
+    t.tno,
+    t.title,
+    t.stat,
+    t.rdt
+    from acv_tag t
+  </sql>
+       
+  <select id="findAll" resultMap="TagMap" parameterType="string">
+    <include refid="sql1"/>
+    <if test="keyword != null">
+    where 
+      t.tno like concat('%', #{keyword}, '%')
+      or t.title like concat('%', #{keyword}, '%')
+      or t.stat like concat('%', #{keyword}, '%')
+    </if>
+    order by t.tno desc
+  </select>
+  
+  <select id="findByNo" parameterType="int" resultMap="TagMap">
+      <include refid="sql1"/>
+    where 
+      tno = #{tno}
+  </select>
+  
+  <!-- 삭제 = stat을 0으로 업데이트 -->
+  <update id="delete" parameterType="int">
+    update acv_tag
+      set stat = 0
+    where tno = #{tno}
+  </update>
+  
+  <select id="findByDetailKeyword" resultMap="TagMap" parameterType="map">
+    <include refid="sql1"/>
+    <where>
+      <if test="number != null">
+        t.tno like concat('%', #{number}, '%')
+      </if>
+      <if test="title != null">
+        and t.title like concat('%', #{title}, '%')
+      </if>
+      <if test="status != null">
+        and t.stat like concat('%', #{status}, '%')
+      </if>
+    </where>
+    order by t.tno desc
+  </select>
+
+</mapper>

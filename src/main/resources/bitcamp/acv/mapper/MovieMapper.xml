@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="MovieDao">
+  
+  <resultMap type="movie" id="MovieMap">
+    <id column="mvno"           property="no"/>
+    <result column="title"    property="title"/>
+    <result column="dir"  property="directors"/>
+    <result column="eng_title"      property="englishTitle"/>
+    <result column="runtime"      property="runtime"/>
+    <result column="odt"      property="openDate"/>
+    <result column="actors"      property="actors"/>
+    <result column="syn"      property="synopsis"/>
+    <result column="nation"      property="nation"/>
+    <result column="stat"      property="status"/>
+    <result column="rdt"      property="registeredDate"/>
+    <result column="nav_cd"      property="naverCd"/>
+    
+    <collection property="stillCuts" ofType="string">
+      <result column="stc_url"          property="url"/>
+    </collection>
+    
+    <collection property="posters" ofType="string">
+      <result column="ps_url"          property="url"/>
+    </collection>
+    
+    <collection property="genres" ofType="string">
+      <result column="g_title"          property="genres"/>
+    </collection>
+    
+  </resultMap>
+  
+  <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 
+       다음과 같이 별도로 분리한다. -->
+  <sql id="sql1">
+    select 
+    m.mvno,
+    m.title,
+    m.dir,
+    m.eng_title,
+    m.runtime,
+    m.odt,
+    m.actors,
+    m.syn,
+    m.nation,
+    m.stat,
+    m.rdt,
+    m.nav_cd,
+    p.ps_url,
+    s.stc_url,
+    g.title g_title
+    from 
+      acv_mov m
+      inner join acv_pstr p on p.mvno=m.mvno
+      inner join acv_stc s on s.mvno=m.mvno
+      inner join acv_gnr_mov gm on gm.mvno=m.mvno
+      inner join acv_gnr g on g.gno=gm.gno
+  </sql>
+       
+  <select id="findAll" resultMap="MovieMap" parameterType="string">
+    <include refid="sql1"/>
+    <if test="keyword != null">
+    <bind name="pattern" value="'%' + _parameter + '%'" />
+    where 
+      m.title like #{pattern}
+      or m.dir like #{pattern}
+      or m.actors like #{pattern} 
+    </if>
+    order by m.mvno desc
+  </select>
+  
+  <select id="findByNo" resultMap="MovieMap" parameterType="integer">
+    <include refid="sql1" />
+    where
+      m.mvno = #{no}
+  </select>
+  
+  <!-- <select id="getStillCutNo" resultMap="MovieMap" parameterType="string">
+    select
+      stcno
+    from
+      acv_stc
+    where
+      stc_url=#{url}
+  </select>
+   -->
+  <select id="getStcUrl" resultType="string" parameterType="int">
+    select
+      stc_url
+    from
+      acv_stc
+    where
+      stcno=#{no}
+  </select>
+</mapper>
+
+      
+<!-- select 
+    m.mvno,
+    m.title,
+    m.dir,
+    m.eng_title,
+    m.runtime,
+    m.odt,
+    m.actors,
+    m.syn,
+    m.nation,
+    m.stat,
+    m.rdt,
+    m.nav_cd,
+    p.ps_url,
+    s.stc_url,
+    g.title g_title
+from acv_mov m  
+      inner join acv_pstr p on p.mvno=m.mvno
+      inner join acv_stc s on s.mvno=m.mvno
+      inner join acv_gnr_mov gm on gm.mvno=m.mvno
+      inner join acv_gnr g on g.gno=gm.gno
+where 
+  m.title like '%무현%'
+  or m.dir like '%무현%'
+  or m.actors like '%무현%'
+order by m.mvno desc; -->
+
+<!-- select 
+    m.mvno,
+    m.title,
+    m.dir,
+    m.eng_title,
+    m.runtime,
+    m.odt,
+    m.actors,
+    m.syn,
+    m.nation,
+    m.stat,
+    m.rdt,
+    m.nav_cd,
+    p.ps_url,
+    s.stc_url,
+    g.title g_title
+from acv_mov m  
+      inner join acv_pstr p on p.mvno=m.mvno
+      inner join acv_stc s on s.mvno=m.mvno
+      inner join acv_gnr_mov gm on gm.mvno=m.mvno
+      inner join acv_gnr g on g.gno=gm.gno
+where 
+  m.mvno = 1; -->

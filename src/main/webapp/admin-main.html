@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>관리자 메인화면</title>
+    <meta charset="UTF-8">
+    <style>
+      body {
+        background-color: #ffffff;
+      }
+      #header {
+        background-color: #141517;
+        color: white;
+        height: 70px;
+      }
+      #header img {
+        width: 205px;
+        height: 85px;
+        left: 98px;
+        top: 85px;
+        float: left;
+        
+      }
+      #header input {
+        left: 100px
+      }
+      
+      #sidebar {
+        background-color: yellow;
+        color: navy;
+        width: 150px;
+        float: left;
+      }
+      #sidebar a {
+        text-decoration: none;
+      }
+      
+      #sidebar ul {
+        list-style: none;
+      }
+      
+      #sidebar a:hover {
+        text-decoration: underline;
+        background-color: blue;
+        color: yellow;
+      }
+      #content {
+        /* border: 5px dashed blue;  */
+        padding-left: 10px;
+        margin-left: 150px;
+      }
+      #footer {
+        background-color: gray;
+        color: white;
+        padding: 10px
+      }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img src="logo.svg" alt="로고">
+        <form>
+          <input type="search" title="검색">
+
+        </form>
+    </div>
+    <div id="sidebar">
+        <ul>
+            <li><a href="#">게시물 관리</a></li>
+            <li><a href="tag/list">태그 관리</a></li>
+            <li><a href="#">회원 관리</a></li>
+            <li><a href="#">영화 관리</a></li>
+            <li><a href="#">신고 관리</a></li>
+            <li><a href="#">로그아웃</a></li>
+            <li><a href="#">홈 버튼</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <div>
+            <h1>Lorem ipsum dolor sit amet</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div>
+            <h1>Lorem ipsum dolor sit amet</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+    </div>
+    <div id="footer">
+        <span>서울특별시 강서구 내발산동</span>
+    </div>
+</body>
+</html>
+
