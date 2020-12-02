@@ -289,3 +289,33 @@ values(2, 2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 1
 
 insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
 values(3, 3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11, 1);
+
+/* 신고 사유 샘플*/
+insert into acv_rp_why(rwno, title)
+values(1, '음란성/선정성');
+
+insert into acv_rp_why(rwno, title)
+values(2, '폭력성');
+
+insert into acv_rp_why(rwno, title)
+values(3, '혐오/인신공격');
+
+insert into acv_rp_why(rwno, title)
+values(4, '광고성/스팸');
+
+insert into acv_rp_why(rwno, title)
+values(5, '개인정보 노출');
+
+insert into acv_rp_why(rwno, title)
+values(6, '도배');
+
+/* 신고 사유 샘플*/
+insert into acv_rp_stat(rsno, title)
+values(1, '신고대기');
+
+insert into acv_rp_stat(rsno, title)
+values(2, '반려');
+
+insert into acv_rp_stat(rsno, title)
+values(3, '처리완료');
+
