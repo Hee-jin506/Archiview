@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bitcamp.acv.domain.Font;
+import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
 
 @WebServlet("/write/editCard")
@@ -30,6 +31,8 @@ public class ReviewEditServlet extends HttpServlet {
     ServletContext ctx = request.getServletContext();
     ReviewService reviewService =
         (ReviewService) ctx.getAttribute("reviewService");
+    MovieService movieService =
+        (MovieService) ctx.getAttribute("movieService");
 
     try {
 
@@ -39,19 +42,23 @@ public class ReviewEditServlet extends HttpServlet {
       out.println("<title>후기 등록 : 카드 편집</title></head>");
       out.println("<body>");
       out.println("<h1>자기만의 감성으로 카드를 꾸며주세요!</h1>");
-      out.printf("<img src='%s'>", request.getParameter("stc"));
+      int stcNo = Integer.parseInt(request.getParameter("stc"));
+      String url = movieService.getStcUrl(stcNo);
+      out.printf("<img src='%s'>", url);
 
       List<Font> fonts = reviewService.listFont();
-      out.println("<form>");
+      out.println("<form action='add' metho='post'>");
       out.println("<label>폰트");
-      out.println("<select multiple='multiple' name='font'>");
+      out.println("<select name='font'>");
       for (Font font : fonts) {
         out.printf("<option value='%d'>%s</option>\n", font.getNo(), font.getName());
       }
       out.println("</select></label>");
-
-      out.println("<label>내용<textarea rows='10' cols='70' name='content'></textarea><br></label>");
-      out.println("<label>태그<input type='text' name='tag'></label>");
+      out.println("<label>폰트크기<input type='range' name='size' min='10' max='50' value='30'></label><br>");
+      out.println("<label>내용<textarea rows='10' cols='70' name='text'></textarea></label><br>");
+      out.println("<label>태그<input type='text' name='tag'></label><br>");
+      out.println("<label>x좌표<input type='range' name='x' min='0' max='665' value='332'></label><br>");
+      out.println("<label>y좌표<input type='range' name='y' min='0' max='443' value='221'></label><br>");
       out.println("<a href='chooseStc'>뒤로</a>");
       out.println("<button>리뷰 등록</button><br>");
       out.println("</form>");

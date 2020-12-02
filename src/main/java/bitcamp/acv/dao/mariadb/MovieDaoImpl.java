@@ -122,5 +122,12 @@ public class MovieDaoImpl implements MovieDao {
       return sqlSession.selectOne("MovieDao.getStillCutNo", stillcut);
     }
   }
+
+  @Override
+  public String getStcUrl(int stcNo) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("MovieDao.getStcUrl", stcNo);
+    }
+  }
 }
 
