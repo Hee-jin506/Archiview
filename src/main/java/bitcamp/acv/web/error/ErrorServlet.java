@@ -31,6 +31,7 @@ public class ErrorServlet extends HttpServlet {
     out.printf("<pre>%s</pre>\n", e.getMessage());
 
     out.println("<h3>상세 오류 내용</h3>");
+
     StringWriter errOut = new StringWriter();
     e.printStackTrace(new PrintWriter(errOut));
     out.printf("<pre>%s</pre>\n", errOut.toString());
