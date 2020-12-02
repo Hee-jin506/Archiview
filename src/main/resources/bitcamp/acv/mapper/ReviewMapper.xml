@@ -1,3 +1,4 @@
+<!-- 
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -32,8 +33,8 @@
     <id column="tfno" property="no"/>
     <result column="name" property="name"/>
   </resultMap>
-  <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 
-       다음과 같이 별도로 분리한다. -->
+  여러 SQL 문에서 중복되는 코드가 있다면, 
+       다음과 같이 별도로 분리한다.
   <sql id="sql1">
     select 
     rv.rvno,
@@ -50,6 +51,7 @@
     from 
       acv_rv rv
   </sql>
+       
        
   <select id="findAll" resultMap="ReviewMap" parameterType="string">
     <include refid="sql1"/>
@@ -70,6 +72,7 @@
     
   </insert>
 </mapper>
+        -->
 
 
 
