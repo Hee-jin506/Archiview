@@ -29,6 +29,13 @@ public class ReviewDaoImpl implements ReviewDao {
       return sqlSession.selectList("ReviewDao.findFonts");
     }
   }
+
+  @Override
+  public int insert(Review review) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.insert("ReviewDao.insert", review);
+    }
+  }
 }
 
 

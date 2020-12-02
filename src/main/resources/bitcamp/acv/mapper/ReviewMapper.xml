@@ -49,9 +49,6 @@
     rv.stat
     from 
       acv_rv rv
-      
-<!--       inner join acv_mbr m on rv.mno=m.no
-      inner join acv -->
   </sql>
        
   <select id="findAll" resultMap="ReviewMap" parameterType="string">
@@ -66,6 +63,12 @@
     from 
       acv_txt_font
   </select>
+  
+  <insert id="insert" parameterType="review">
+    insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, rdt, mdt, stat)
+    values(#{})
+    
+  </insert>
 </mapper>
 
 

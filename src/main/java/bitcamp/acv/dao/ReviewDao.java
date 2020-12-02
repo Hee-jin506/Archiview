@@ -8,4 +8,5 @@ public interface ReviewDao {
   //  int insert(Movie movie) throws Exception;
   List<Review> findAll() throws Exception;
   List<Font> findFonts() throws Exception;
+  int insert(Review review);
 }

@@ -3,6 +3,7 @@ package bitcamp.acv.web.writeReview;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,11 +45,11 @@ public class ReviewAddServlet extends HttpServlet {
       out.println("<h1>후기 등록</h1>");
       HttpSession session = request.getSession();
       Member loginUser = (Member) session.getAttribute("loginUser");
+      Review review = new Review();
 
       if (loginUser == null) {
         out.println("<p>후기를 등록하시려면 로그인 해주세요.</p>");
       } else {
-        Review review = new Review();
         review.setWriter(loginUser);
         review.setStillCut(Integer.parseInt(request.getParameter("stc")));
         review.setText(request.getParameter("text"));
@@ -57,18 +58,20 @@ public class ReviewAddServlet extends HttpServlet {
         review.setTextFont(Integer.parseInt(request.getParameter("font")));
         review.setTextSize(Integer.parseInt(request.getParameter("size")));
         String str = request.getParameter("tag");
-        String[] tags = str.split("#");
+        String[] tagTitles = str.split("#");
         List<Tag> tags = new ArrayList<>();
-        if (tags.length > 0) {
-          for (String tagTitle : tags) {
+        if (tagTitles.length > 0) {
+          for (String tagTitle : tagTitles) {
             Tag tag = new Tag();
             tag.setTitle(tagTitle);
-
-            review.setTags(tags);
-
+            tags.add(tag);
           }
         }
+        review.setTags(tags);
       }
+
+      reviewService.add(review);
+      tagService.addByReview(review);
 
     } catch (Exception e) {
 
