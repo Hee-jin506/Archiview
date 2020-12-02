@@ -9,7 +9,7 @@ public class Report {
   public static final int REVIEW = 2;
   public static final int COMMENT = 3;
 
-  // 처리 상
+  // 처리 상태
   public static final int IN_PROGRESS = 1;
   public static final int FALSE = 2;
   public static final int UNTREATED = 3;
