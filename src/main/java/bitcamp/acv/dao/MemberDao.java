@@ -11,4 +11,7 @@ public interface MemberDao {
   int update(Member member) throws Exception;
   int delete(int no) throws Exception;
 
+  int inactive(int no) throws Exception;
+  int active(int no) throws Exception;
+
 }

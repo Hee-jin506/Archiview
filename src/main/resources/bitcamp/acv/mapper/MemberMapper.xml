@@ -68,19 +68,18 @@
     order by mb.mno desc
   </select>
   
-    <insert id="insert" parameterType="member">
+  <insert id="insert" parameterType="member">
     insert into acv_mbr(auth,name,ltno,email,pw,nick,photo,intro,qno,pw_hint_a,stno,stat_mdt)
-    values(#{authority},#{name},#{loginNo},#{email},password(#{password}),#{nickName},#{photo},#{intro}
-    ,#{questionsNo},#{questionsAnswer},#{status},#{statusModifiedDate})
+    values(#{authority},#{name},#{loginNo},#{email},password(#{password}),#{nickName},#{photo},#{intro},#{questionsNo},#{questionsAnswer},#{status},#{statusModifiedDate})
   </insert>
   
     <select id="findByNo" parameterType="int" resultMap="MemberMap">
       <include refid="sql1"/>
     where 
-      mno = #{mno}
+      mno = #{no}
   </select>
   
-    <select id="findByEmailPassword" parameterType="map" resultMap="MemberMap">
+  <select id="findByEmailPassword" parameterType="map" resultMap="MemberMap">
     select 
       mno, 
       name,
@@ -105,9 +104,22 @@
     where mno = #{no}
   </update>
   
-    <delete id="delete" parameterType="int">
+  <delete id="delete" parameterType="int">
     delete from acv_mbr
     where mno=#{no}
   </delete>
-
+  
+  <update id="inactive" parameterType="int">
+    update acv_mbr
+    set
+    stno = 2
+    where mno=#{no}
+  </update>
+  
+  <update id="active" parameterType="int">
+    update acv_mbr
+    set
+    stno = 1
+    where mno=#{no}
+  </update>
 </mapper>

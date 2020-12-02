@@ -61,4 +61,20 @@ public class MemberDaoImpl implements MemberDao {
       return sqlSession.delete("MemberDao.delete", no);
     }
   }
+
+  @Override
+  public int inactive(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("MemberDao.inactive", no);
+    }
+  }
+
+  @Override
+  public int active(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("MemberDao.active", no);
+    }
+  }
+
+
 }

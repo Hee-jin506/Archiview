@@ -43,5 +43,15 @@ public class DefaultMemberService implements MemberService {
     return memberDao.delete(no);
   }
 
+  @Override
+  public int inactive(int no) throws Exception {
+    return memberDao.inactive(no);
+  }
+
+  @Override
+  public int active(int no) throws Exception {
+    return memberDao.active(no);
+  }
+
 
 }

@@ -53,6 +53,7 @@ public class LoginServlet extends HttpServlet {
         Member member = memberService.get(email, password);
         if (member == null) {
           out.println("<p>사용자 정보가 맞지 않습니다.</p>");
+          return;
 
         } else {
           // 로그인이 성공했으면 회원 정보를
