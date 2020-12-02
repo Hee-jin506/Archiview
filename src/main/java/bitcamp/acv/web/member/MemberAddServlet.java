@@ -60,29 +60,17 @@ public class MemberAddServlet extends HttpServlet {
 
     member.setPhoto(filename);
 
-    if (photoPart.getContentType().equals("image/png")) {
-      Thumbnails.of(this.uploadDir + "/" + filename)//
-      .size(150, 150)//
-      .outputFormat("png")//
-      .crop(Positions.CENTER)
-      .toFiles(new Rename() {
-        @Override
-        public String apply(String name, ThumbnailParameter param) {
-          return name + "_150x150";
-        }
-      });
-    } else {
-      Thumbnails.of(this.uploadDir + "/" + filename)//
-      .size(150, 150)//
-      .outputFormat("jpg")//
-      .crop(Positions.CENTER)
-      .toFiles(new Rename() {
-        @Override
-        public String apply(String name, ThumbnailParameter param) {
-          return name + "_150x150";
-        }
-      });
-    }
+
+    Thumbnails.of(this.uploadDir + "/" + filename)//
+    .size(150, 150)//
+    .outputFormat("jpg")//
+    .crop(Positions.CENTER)
+    .toFiles(new Rename() {
+      @Override
+      public String apply(String name, ThumbnailParameter param) {
+        return name + "_150x150";
+      }
+    });
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();

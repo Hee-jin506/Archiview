@@ -67,9 +67,6 @@ DROP TABLE IF EXISTS acv_rp_why RESTRICT;
 -- 신고 처리 상태
 DROP TABLE IF EXISTS acv_rp_stat RESTRICT;
 
--- 임시 테이블
-DROP TABLE IF EXISTS Temporary RESTRICT;
-
 -- 회원
 CREATE TABLE acv_mbr (
   mno       INTEGER      NOT NULL, -- 회원번호
@@ -663,10 +660,6 @@ CREATE UNIQUE INDEX UIX_acv_rp_stat
 
 ALTER TABLE acv_rp_stat
   MODIFY COLUMN rsno INTEGER NOT NULL AUTO_INCREMENT;
-
--- 임시 테이블
-CREATE TABLE Temporary (
-);
 
 -- 회원
 ALTER TABLE acv_mbr

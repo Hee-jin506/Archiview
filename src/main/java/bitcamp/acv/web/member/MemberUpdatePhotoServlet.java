@@ -46,14 +46,15 @@ public class MemberUpdatePhotoServlet extends HttpServlet {
       // 회원 사진의 썸네일 이미지 파일 생성하기
       generatePhotoThumbnail(saveFilePath);
     }
+    
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    //    out.printf("<meta http-equiv='Refresh' content='1;url=detail?no=%d'>",
-    //    member.getNo());
+    out.printf("<meta http-equiv='Refresh' content='1;url=detail?no=%d'>",
+    member.getNo());
     out.println("<title>회원사진수정</title></head>");
     out.println("<body>");
 
@@ -102,7 +103,7 @@ public class MemberUpdatePhotoServlet extends HttpServlet {
       .toFiles(new Rename() {
         @Override
         public String apply(String name, ThumbnailParameter param) {
-          return name + "_40x40";
+          return name + "_150x150";
         }
       });
     } catch (Exception e) {

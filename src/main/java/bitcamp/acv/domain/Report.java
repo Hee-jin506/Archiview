@@ -4,16 +4,20 @@ import java.sql.Date;
 
 public class Report {
 
-  // 신고 대상
+  // 신고 대상 타입
   public static final int MEMBER = 1;
   public static final int REVIEW = 2;
   public static final int COMMENT = 3;
 
-  // 처리 상태
-  public static final int IN_PROGRESS = 1;
-  public static final int FALSE = 2;
-  public static final int UNTREATED = 3;
-  public static final int PROCESSED = 4;
+  private int no;
+  private Member reportingMember;
+  private int reportedType;
+  private int reportedNo;
+  private String why;
+  private String status;
+  private String processingContent;
+  private Date reportedDate;
+  private Date ProcessedDate;
 
   public int getNo() {
     return no;
@@ -39,23 +43,29 @@ public class Report {
   public void setReportedNo(int reportedNo) {
     this.reportedNo = reportedNo;
   }
+  public String getWhy() {
+    return why;
+  }
+  public void setWhy(String why) {
+    this.why = why;
+  }
+  public String getStatus() {
+    return status;
+  }
+  public void setStatus(String status) {
+    this.status = status;
+  }
+  public String getProcessingContent() {
+    return processingContent;
+  }
+  public void setProcessingContent(String processingContent) {
+    this.processingContent = processingContent;
+  }
   public Date getReportedDate() {
     return reportedDate;
   }
   public void setReportedDate(Date reportedDate) {
     this.reportedDate = reportedDate;
-  }
-  public String getContent() {
-    return content;
-  }
-  public void setContent(String content) {
-    this.content = content;
-  }
-  public boolean isStatus() {
-    return status;
-  }
-  public void setStatus(boolean status) {
-    this.status = status;
   }
   public Date getProcessedDate() {
     return ProcessedDate;
@@ -72,12 +82,6 @@ public class Report {
   public static int getComment() {
     return COMMENT;
   }
-  private int no;
-  private Member reportingMember;
-  private int reportedType;
-  private int reportedNo;
-  private Date reportedDate;
-  private String content;
-  private boolean status;
-  private Date ProcessedDate;
+
+
 }
