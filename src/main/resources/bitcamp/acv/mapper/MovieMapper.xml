@@ -78,7 +78,7 @@
       m.mvno = #{no}
   </select>
   
-  <select id="getStillCutNo" resultType="int" parameterType="string">
+  <select id="getStillCutNo" resultMap="int" parameterType="string">
     select
       stcno
     from
@@ -95,8 +95,6 @@
     where
       stcno=#{no}
   </select>
-  
-  
 </mapper>
 
       

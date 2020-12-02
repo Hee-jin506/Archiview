@@ -1,6 +1,7 @@
 package bitcamp.acv.service;
 
 import java.util.List;
+import java.util.Map;
 import bitcamp.acv.dao.TagDao;
 import bitcamp.acv.domain.Tag;
 
@@ -15,7 +16,12 @@ public class DefaultTagService implements TagService {
 
   @Override
   public List<Tag> list() throws Exception {
-    return tagDao.findAll();
+    return tagDao.findAll(null);
+  }
+
+  @Override
+  public List<Tag> list(String keyword) throws Exception {
+    return tagDao.findAll(keyword);
   }
 
   @Override
@@ -28,5 +34,8 @@ public class DefaultTagService implements TagService {
     return tagDao.delete(no);
   }
 
-
+  @Override
+  public List<Tag> list(Map<String, Object> keywords) throws Exception{
+    return tagDao.findByDetailKeyword(keywords);
+  }
 }

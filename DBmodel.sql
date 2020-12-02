@@ -61,24 +61,29 @@ DROP TABLE IF EXISTS acv_txt_font RESTRICT;
 -- 로그인유형
 DROP TABLE IF EXISTS acv_lgn_type RESTRICT;
 
+-- 신고 사유
+DROP TABLE IF EXISTS acv_rp_why RESTRICT;
+
+-- 신고 처리 상태
+DROP TABLE IF EXISTS acv_rp_stat RESTRICT;
+
 -- 회원
 CREATE TABLE acv_mbr (
-  mno       INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-  auth      INTEGER      NOT NULL COMMENT '권한', -- 권한
-  name      VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
-  ltno      INTEGER      NOT NULL COMMENT '로그인유형번호', -- 로그인유형번호
-  email     VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
-  pw        VARCHAR(255) NOT NULL COMMENT '비밀번호', -- 비밀번호
-  nick      VARCHAR(50)  NULL     COMMENT '별명', -- 별명
-  photo     MEDIUMTEXT   NULL     COMMENT '사진', -- 사진
-  intro     MEDIUMTEXT   NULL     COMMENT '소개글', -- 소개글
-  qno       INTEGER      NULL     COMMENT '비밀번호 힌트 질문 번호', -- 비밀번호 힌트 질문 번호
-  pw_hint_a VARCHAR(50)  NULL     COMMENT '비밀번호 힌트 정답', -- 비밀번호 힌트 정답
-  rdt       DATETIME     NOT NULL DEFAULT now() COMMENT '회원 가입일', -- 회원 가입일
-  stno      INTEGER      NULL     COMMENT '회원 상태 번호', -- 회원 상태 번호
-  stat_mdt  DATETIME     NULL     DEFAULT now() COMMENT '상태 변경일' -- 상태 변경일
-)
-COMMENT '회원';
+  mno       INTEGER      NOT NULL, -- 회원번호
+  auth      INTEGER      NOT NULL DEFAULT 1, -- 권한
+  name      VARCHAR(50)  NOT NULL, -- 이름
+  ltno      INTEGER      NOT NULL, -- 로그인유형번호
+  email     VARCHAR(40)  NOT NULL, -- 이메일
+  pw        VARCHAR(255) NOT NULL, -- 비밀번호
+  nick      VARCHAR(50)  NULL,     -- 별명
+  photo     MEDIUMTEXT   NULL,     -- 사진
+  intro     MEDIUMTEXT   NULL,     -- 소개글
+  qno       INTEGER      NULL,     -- 비밀번호 힌트 질문 번호
+  pw_hint_a VARCHAR(50)  NULL,     -- 비밀번호 힌트 정답
+  rdt       DATETIME     NOT NULL DEFAULT now(), -- 회원 가입일
+  stno      INTEGER      NULL     DEFAULT 1, -- 회원 상태 번호
+  stat_mdt  DATETIME     NULL     DEFAULT now() -- 상태 변경일
+);
 
 -- 회원
 ALTER TABLE acv_mbr
@@ -100,24 +105,23 @@ CREATE UNIQUE INDEX UIX_acv_mbr4
   );
 
 ALTER TABLE acv_mbr
-  MODIFY COLUMN mno INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원번호';
+  MODIFY COLUMN mno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 영화
 CREATE TABLE acv_mov (
-  mvno      INTEGER     NOT NULL COMMENT '영화 번호', -- 영화 번호
-  title     VARCHAR(50) NOT NULL COMMENT '영화 제목', -- 영화 제목
-  dir       VARCHAR(50) NOT NULL COMMENT '영화 감독', -- 영화 감독
-  eng_title VARCHAR(50) NOT NULL COMMENT '영화 영문명', -- 영화 영문명
-  runtime   INTEGER     NOT NULL COMMENT '상영시간', -- 상영시간
-  odt       DATE        NOT NULL COMMENT '개봉일', -- 개봉일
-  syn       MEDIUMTEXT  NOT NULL COMMENT '시놉시스', -- 시놉시스
-  actors    MEDIUMTEXT  NOT NULL COMMENT '출연', -- 출연
-  nation    VARCHAR(50) NOT NULL COMMENT '국가명', -- 국가명
-  stat      INTEGER     NOT NULL COMMENT '상태', -- 상태
-  rdt       DATETIME    NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  nav_cd    INTEGER     NOT NULL COMMENT '네이버영화코드' -- 네이버영화코드
-)
-COMMENT '영화';
+  mvno      INTEGER     NOT NULL, -- 영화 번호
+  title     VARCHAR(50) NOT NULL, -- 영화 제목
+  dir       VARCHAR(50) NOT NULL, -- 영화 감독
+  eng_title VARCHAR(50) NOT NULL, -- 영화 영문명
+  runtime   INTEGER     NOT NULL, -- 상영시간
+  odt       DATE        NOT NULL, -- 개봉일
+  syn       MEDIUMTEXT  NOT NULL, -- 시놉시스
+  actors    MEDIUMTEXT  NOT NULL, -- 출연
+  nation    VARCHAR(50) NOT NULL, -- 국가명
+  stat      INTEGER     NOT NULL DEFAULT 1, -- 상태
+  rdt       DATETIME    NOT NULL DEFAULT now(), -- 등록일
+  nav_cd    INTEGER     NOT NULL  -- 네이버영화코드
+);
 
 -- 영화
 ALTER TABLE acv_mov
@@ -151,16 +155,15 @@ CREATE INDEX IX_acv_mov2
   );
 
 ALTER TABLE acv_mov
-  MODIFY COLUMN mvno INTEGER NOT NULL AUTO_INCREMENT COMMENT '영화 번호';
+  MODIFY COLUMN mvno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 태그
 CREATE TABLE acv_tag (
-  tno   INTEGER     NOT NULL COMMENT '태그 번호', -- 태그 번호
-  title VARCHAR(50) NOT NULL COMMENT '태그명', -- 태그명
-  stat  INTEGER     NOT NULL COMMENT '상태', -- 상태
-  rdt   DATETIME    NOT NULL DEFAULT now() COMMENT '등록일' -- 등록일
-)
-COMMENT '태그';
+  tno   INTEGER     NOT NULL, -- 태그 번호
+  title VARCHAR(50) NOT NULL, -- 태그명
+  stat  INTEGER     NOT NULL, -- 상태
+  rdt   DATETIME    NOT NULL DEFAULT now() -- 등록일
+);
 
 -- 태그
 ALTER TABLE acv_tag
@@ -176,23 +179,22 @@ CREATE UNIQUE INDEX UIX_acv_tag
   );
 
 ALTER TABLE acv_tag
-  MODIFY COLUMN tno INTEGER NOT NULL AUTO_INCREMENT COMMENT '태그 번호';
+  MODIFY COLUMN tno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 영화 후기
 CREATE TABLE acv_rv (
-  rvno     INTEGER    NOT NULL COMMENT '영화 후기 번호', -- 영화 후기 번호
-  stcno    INTEGER    NOT NULL COMMENT '스틸컷 번호', -- 스틸컷 번호
-  mno      INTEGER    NOT NULL COMMENT '작성자 번호', -- 작성자 번호
-  txt      MEDIUMTEXT NOT NULL COMMENT '후기내용', -- 후기내용
-  txt_x    INTEGER    NOT NULL COMMENT '출력X좌표', -- 출력X좌표
-  txt_y    INTEGER    NOT NULL COMMENT '출력Y좌표', -- 출력Y좌표
-  tfno     INTEGER    NOT NULL COMMENT '폰트 번호', -- 폰트 번호
-  txt_size INTEGER    NOT NULL COMMENT '글자크기', -- 글자크기
-  rdt      DATE       NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  mdt      DATETIME   NULL     COMMENT '수정일', -- 수정일
-  stat     INTEGER    NOT NULL COMMENT '상태' -- 상태
-)
-COMMENT '영화 후기';
+  rvno     INTEGER    NOT NULL, -- 영화 후기 번호
+  stcno    INTEGER    NOT NULL, -- 스틸컷 번호
+  mno      INTEGER    NOT NULL, -- 작성자 번호
+  txt      MEDIUMTEXT NOT NULL, -- 후기내용
+  txt_x    INTEGER    NOT NULL, -- 출력X좌표
+  txt_y    INTEGER    NOT NULL, -- 출력Y좌표
+  tfno     INTEGER    NOT NULL, -- 폰트 번호
+  txt_size INTEGER    NOT NULL, -- 글자크기
+  rdt      DATE       NOT NULL DEFAULT now(), -- 등록일
+  mdt      DATETIME   NULL,     -- 수정일
+  stat     INTEGER    NOT NULL DEFAULT 1 -- 상태
+);
 
 -- 영화 후기
 ALTER TABLE acv_rv
@@ -202,15 +204,14 @@ ALTER TABLE acv_rv
     );
 
 ALTER TABLE acv_rv
-  MODIFY COLUMN rvno INTEGER NOT NULL AUTO_INCREMENT COMMENT '영화 후기 번호';
+  MODIFY COLUMN rvno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 태그_게시물
 CREATE TABLE acv_tag_post (
-  tpno INTEGER NOT NULL COMMENT '태그_게시물 번호', -- 태그_게시물 번호
-  rvno INTEGER NOT NULL COMMENT '영화 후기 번호', -- 영화 후기 번호
-  tno  INTEGER NOT NULL COMMENT '태그 번호' -- 태그 번호
-)
-COMMENT '태그_게시물';
+  tpno INTEGER NOT NULL, -- 태그_게시물 번호
+  rvno INTEGER NOT NULL, -- 영화 후기 번호
+  tno  INTEGER NOT NULL  -- 태그 번호
+);
 
 -- 태그_게시물
 ALTER TABLE acv_tag_post
@@ -227,14 +228,13 @@ CREATE UNIQUE INDEX UIX_acv_tag_post
   );
 
 ALTER TABLE acv_tag_post
-  MODIFY COLUMN tpno INTEGER NOT NULL AUTO_INCREMENT COMMENT '태그_게시물 번호';
+  MODIFY COLUMN tpno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 비밀번호 힌트 질문
 CREATE TABLE acv_pw_hint_q (
-  qno INTEGER     NOT NULL COMMENT '비밀번호 힌트 질문 번호', -- 비밀번호 힌트 질문 번호
-  qtn VARCHAR(50) NOT NULL COMMENT '비밀번호 힌트 질문 내용' -- 비밀번호 힌트 질문 내용
-)
-COMMENT '비밀번호 힌트 질문';
+  qno INTEGER     NOT NULL, -- 비밀번호 힌트 질문 번호
+  qtn VARCHAR(50) NOT NULL  -- 비밀번호 힌트 질문 내용
+);
 
 -- 비밀번호 힌트 질문
 ALTER TABLE acv_pw_hint_q
@@ -250,16 +250,15 @@ CREATE UNIQUE INDEX UIX_acv_pw_hint_q
   );
 
 ALTER TABLE acv_pw_hint_q
-  MODIFY COLUMN qno INTEGER NOT NULL AUTO_INCREMENT COMMENT '비밀번호 힌트 질문 번호';
+  MODIFY COLUMN qno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 저장 이력
 CREATE TABLE acv_save (
-  sno  INTEGER  NOT NULL COMMENT '저장 이력 번호', -- 저장 이력 번호
-  rvno INTEGER  NOT NULL COMMENT '영화 후기 번호', -- 영화 후기 번호
-  mno  INTEGER  NOT NULL COMMENT '회원번호', -- 회원번호
-  sdt  DATETIME NOT NULL DEFAULT now() COMMENT '저장일시' -- 저장일시
-)
-COMMENT '저장 이력';
+  sno  INTEGER  NOT NULL, -- 저장 이력 번호
+  rvno INTEGER  NOT NULL, -- 영화 후기 번호
+  mno  INTEGER  NOT NULL, -- 회원번호
+  sdt  DATETIME NOT NULL DEFAULT now() -- 저장일시
+);
 
 -- 저장 이력
 ALTER TABLE acv_save
@@ -276,16 +275,15 @@ CREATE UNIQUE INDEX UIX_acv_save
   );
 
 ALTER TABLE acv_save
-  MODIFY COLUMN sno INTEGER NOT NULL AUTO_INCREMENT COMMENT '저장 이력 번호';
+  MODIFY COLUMN sno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 영화 포스터
 CREATE TABLE acv_pstr (
-  psno    INTEGER    NOT NULL COMMENT '포스터 번호', -- 포스터 번호
-  mvno    INTEGER    NOT NULL COMMENT '영화 번호', -- 영화 번호
-  ps_url  MEDIUMTEXT NOT NULL COMMENT '이미지 주소', -- 이미지 주소
-  main_ps INTEGER    NOT NULL COMMENT '메인 포스터' -- 메인 포스터
-)
-COMMENT '영화 포스터';
+  psno    INTEGER    NOT NULL, -- 포스터 번호
+  mvno    INTEGER    NOT NULL, -- 영화 번호
+  ps_url  MEDIUMTEXT NOT NULL, -- 이미지 주소
+  main_ps INTEGER    NOT NULL  -- 메인 포스터
+);
 
 -- 영화 포스터
 ALTER TABLE acv_pstr
@@ -301,14 +299,13 @@ CREATE UNIQUE INDEX UIX_acv_pstr
   );
 
 ALTER TABLE acv_pstr
-  MODIFY COLUMN psno INTEGER NOT NULL AUTO_INCREMENT COMMENT '포스터 번호';
+  MODIFY COLUMN psno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 회원 상태
 CREATE TABLE acv_mbr_stat (
-  stno  INTEGER     NOT NULL COMMENT '회원 상태 번호', -- 회원 상태 번호
-  title VARCHAR(50) NOT NULL COMMENT '회원 상태 이름' -- 회원 상태 이름
-)
-COMMENT '회원 상태';
+  stno  INTEGER     NOT NULL, -- 회원 상태 번호
+  title VARCHAR(50) NOT NULL  -- 회원 상태 이름
+);
 
 -- 회원 상태
 ALTER TABLE acv_mbr_stat
@@ -324,14 +321,13 @@ CREATE UNIQUE INDEX UIX_acv_mbr_stat
   );
 
 ALTER TABLE acv_mbr_stat
-  MODIFY COLUMN stno INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원 상태 번호';
+  MODIFY COLUMN stno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 장르
 CREATE TABLE acv_gnr (
-  gno   INTEGER     NOT NULL COMMENT '장르 번호', -- 장르 번호
-  title VARCHAR(50) NOT NULL COMMENT '장르명' -- 장르명
-)
-COMMENT '장르';
+  gno   INTEGER     NOT NULL, -- 장르 번호
+  title VARCHAR(50) NOT NULL  -- 장르명
+);
 
 -- 장르
 ALTER TABLE acv_gnr
@@ -347,15 +343,14 @@ CREATE UNIQUE INDEX UIX_acv_gnr
   );
 
 ALTER TABLE acv_gnr
-  MODIFY COLUMN gno INTEGER NOT NULL AUTO_INCREMENT COMMENT '장르 번호';
+  MODIFY COLUMN gno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 영화 스틸컷
 CREATE TABLE acv_stc (
-  stcno   INTEGER    NOT NULL COMMENT '스틸컷 번호', -- 스틸컷 번호
-  mvno    INTEGER    NOT NULL COMMENT '영화 번호', -- 영화 번호
-  stc_url MEDIUMTEXT NULL     COMMENT '이미지 주소' -- 이미지 주소
-)
-COMMENT '영화 스틸컷';
+  stcno   INTEGER    NOT NULL, -- 스틸컷 번호
+  mvno    INTEGER    NOT NULL, -- 영화 번호
+  stc_url MEDIUMTEXT NULL      -- 이미지 주소
+);
 
 -- 영화 스틸컷
 ALTER TABLE acv_stc
@@ -371,15 +366,14 @@ CREATE UNIQUE INDEX UIX_acv_stc
   );
 
 ALTER TABLE acv_stc
-  MODIFY COLUMN stcno INTEGER NOT NULL AUTO_INCREMENT COMMENT '스틸컷 번호';
+  MODIFY COLUMN stcno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 영화_장르
 CREATE TABLE acv_gnr_mov (
-  gmno INTEGER NOT NULL COMMENT '영화_장르 번호', -- 영화_장르 번호
-  gno  INTEGER NOT NULL COMMENT '장르 번호', -- 장르 번호
-  mvno INTEGER NOT NULL COMMENT '영화 번호' -- 영화 번호
-)
-COMMENT '영화_장르';
+  gmno INTEGER NOT NULL, -- 영화_장르 번호
+  gno  INTEGER NOT NULL, -- 장르 번호
+  mvno INTEGER NOT NULL  -- 영화 번호
+);
 
 -- 영화_장르
 ALTER TABLE acv_gnr_mov
@@ -396,17 +390,16 @@ CREATE UNIQUE INDEX UIX_acv_gnr_mov
   );
 
 ALTER TABLE acv_gnr_mov
-  MODIFY COLUMN gmno INTEGER NOT NULL AUTO_INCREMENT COMMENT '영화_장르 번호';
+  MODIFY COLUMN gmno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 좋아요 이력
 CREATE TABLE acv_like (
-  lno    INTEGER  NOT NULL COMMENT '좋아요 이력 번호', -- 좋아요 이력 번호
-  mno    INTEGER  NOT NULL COMMENT '좋아요한 회원', -- 좋아요한 회원
-  lano   INTEGER  NOT NULL COMMENT '좋아요된 대상 유형', -- 좋아요된 대상 유형
-  target INTEGER  NOT NULL COMMENT '좋아요된 대상', -- 좋아요된 대상
-  ldt    DATETIME NOT NULL DEFAULT now() COMMENT '좋아요 누른 일시' -- 좋아요 누른 일시
-)
-COMMENT '좋아요 이력';
+  lno    INTEGER  NOT NULL, -- 좋아요 이력 번호
+  mno    INTEGER  NOT NULL, -- 좋아요한 회원
+  lano   INTEGER  NOT NULL, -- 좋아요된 대상 유형
+  target INTEGER  NOT NULL, -- 좋아요된 대상
+  ldt    DATETIME NOT NULL DEFAULT now() -- 좋아요 누른 일시
+);
 
 -- 좋아요 이력
 ALTER TABLE acv_like
@@ -424,17 +417,16 @@ CREATE UNIQUE INDEX UIX_acv_like
   );
 
 ALTER TABLE acv_like
-  MODIFY COLUMN lno INTEGER NOT NULL AUTO_INCREMENT COMMENT '좋아요 이력 번호';
+  MODIFY COLUMN lno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 팔로우 이력
 CREATE TABLE acv_flw (
-  fno        INTEGER  NOT NULL COMMENT '팔로우 이력 번호', -- 팔로우 이력 번호
-  flwing_mbr INTEGER  NOT NULL COMMENT '팔로우한 회원', -- 팔로우한 회원
-  target     INTEGER  NOT NULL COMMENT '팔로우된 대상', -- 팔로우된 대상
-  fdt        DATETIME NOT NULL DEFAULT now() COMMENT '팔로우한 일시', -- 팔로우한 일시
-  fano       INTEGER  NOT NULL COMMENT '팔로우된 대상 유형' -- 팔로우된 대상 유형
-)
-COMMENT '팔로우 이력';
+  fno        INTEGER  NOT NULL, -- 팔로우 이력 번호
+  flwing_mbr INTEGER  NOT NULL, -- 팔로우한 회원
+  target     INTEGER  NOT NULL, -- 팔로우된 대상
+  fdt        DATETIME NOT NULL DEFAULT now(), -- 팔로우한 일시
+  fano       INTEGER  NOT NULL  -- 팔로우된 대상 유형
+);
 
 -- 팔로우 이력
 ALTER TABLE acv_flw
@@ -452,14 +444,13 @@ CREATE UNIQUE INDEX UIX_acv_flw
   );
 
 ALTER TABLE acv_flw
-  MODIFY COLUMN fno INTEGER NOT NULL AUTO_INCREMENT COMMENT '팔로우 이력 번호';
+  MODIFY COLUMN fno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 팔로우 유형
 CREATE TABLE acv_flw_able (
-  fano INTEGER     NOT NULL COMMENT '유형 번호', -- 유형 번호
-  name VARCHAR(50) NOT NULL COMMENT '유형 이름' -- 유형 이름
-)
-COMMENT '팔로우 유형';
+  fano INTEGER     NOT NULL, -- 유형 번호
+  name VARCHAR(50) NOT NULL  -- 유형 이름
+);
 
 -- 팔로우 유형
 ALTER TABLE acv_flw_able
@@ -475,14 +466,13 @@ CREATE UNIQUE INDEX UIX_acv_flw_able
   );
 
 ALTER TABLE acv_flw_able
-  MODIFY COLUMN fano INTEGER NOT NULL AUTO_INCREMENT COMMENT '유형 번호';
+  MODIFY COLUMN fano INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 좋아요 유형
 CREATE TABLE acv_lk_able (
-  lano INTEGER     NOT NULL COMMENT '유형 번호', -- 유형 번호
-  name VARCHAR(50) NOT NULL COMMENT '유형 이름' -- 유형 이름
-)
-COMMENT '좋아요 유형';
+  lano INTEGER     NOT NULL, -- 유형 번호
+  name VARCHAR(50) NOT NULL  -- 유형 이름
+);
 
 -- 좋아요 유형
 ALTER TABLE acv_lk_able
@@ -498,20 +488,20 @@ CREATE UNIQUE INDEX UIX_acv_lk_able
   );
 
 ALTER TABLE acv_lk_able
-  MODIFY COLUMN lano INTEGER NOT NULL AUTO_INCREMENT COMMENT '유형 번호';
+  MODIFY COLUMN lano INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 신고 이력
 CREATE TABLE acv_rp (
-  rno     INTEGER    NOT NULL COMMENT '신고 번호', -- 신고 번호
-  mno     INTEGER    NOT NULL COMMENT '신고한 회원', -- 신고한 회원
-  rano    INTEGER    NOT NULL COMMENT '신고된 대상 유형', -- 신고된 대상 유형
-  target  INTEGER    NOT NULL COMMENT '신고된 대상번호', -- 신고된 대상번호
-  rdt     DATETIME   NOT NULL DEFAULT now() COMMENT '신고한 일시', -- 신고한 일시
-  content MEDIUMTEXT NULL     COMMENT '신고사유', -- 신고사유
-  stat    INTEGER    NOT NULL COMMENT '처리 여부', -- 처리 여부
-  pdt     DATETIME   NULL     COMMENT '처리 일시' -- 처리 일시
-)
-COMMENT '신고 이력';
+  rno     INTEGER    NOT NULL, -- 신고 번호
+  mno     INTEGER    NOT NULL, -- 신고한 회원
+  rano    INTEGER    NOT NULL, -- 신고된 대상 유형
+  target  INTEGER    NOT NULL, -- 신고된 대상번호
+  rdt     DATETIME   NOT NULL DEFAULT now(), -- 신고한 일시
+  rwno    INTEGER    NOT NULL, -- 신고 사유 번호
+  rsno    INTEGER    NOT NULL DEFAULT 1, -- 처리 상태 번호
+  content MEDIUMTEXT NULL,     -- 처리 내용
+  pdt     DATETIME   NULL      -- 처리 일시
+);
 
 -- 신고 이력
 ALTER TABLE acv_rp
@@ -529,14 +519,13 @@ CREATE UNIQUE INDEX UIX_acv_rp
   );
 
 ALTER TABLE acv_rp
-  MODIFY COLUMN rno INTEGER NOT NULL AUTO_INCREMENT COMMENT '신고 번호';
+  MODIFY COLUMN rno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 신고 유형
 CREATE TABLE acv_rp_able (
-  rano INTEGER     NOT NULL COMMENT '유형 번호', -- 유형 번호
-  name VARCHAR(50) NOT NULL COMMENT '유형 이름' -- 유형 이름
-)
-COMMENT '신고 유형';
+  rano INTEGER     NOT NULL, -- 유형 번호
+  name VARCHAR(50) NOT NULL  -- 유형 이름
+);
 
 -- 신고 유형
 ALTER TABLE acv_rp_able
@@ -552,21 +541,20 @@ CREATE UNIQUE INDEX UIX_acv_rp_able
   );
 
 ALTER TABLE acv_rp_able
-  MODIFY COLUMN rano INTEGER NOT NULL AUTO_INCREMENT COMMENT '유형 번호';
+  MODIFY COLUMN rano INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 댓글
 CREATE TABLE acv_cmt (
-  cno     INTEGER    NOT NULL COMMENT '댓글 번호', -- 댓글 번호
-  rvno    INTEGER    NOT NULL COMMENT '영화 후기 번호', -- 영화 후기 번호
-  odr     INTEGER    NOT NULL COMMENT '댓글순서', -- 댓글순서
-  lvl     INTEGER    NOT NULL COMMENT '댓글단계', -- 댓글단계
-  mno     INTEGER    NOT NULL COMMENT '댓글단 회원', -- 댓글단 회원
-  content MEDIUMTEXT NOT NULL COMMENT '내용', -- 내용
-  rdt     DATETIME   NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
-  stat    INTEGER    NOT NULL COMMENT '상태', -- 상태
-  mdt     DATETIME   NULL     COMMENT '수정일' -- 수정일
-)
-COMMENT '댓글';
+  cno     INTEGER    NOT NULL, -- 댓글 번호
+  rvno    INTEGER    NOT NULL, -- 영화 후기 번호
+  odr     INTEGER    NOT NULL, -- 댓글순서
+  lvl     INTEGER    NOT NULL, -- 댓글단계
+  mno     INTEGER    NOT NULL, -- 댓글단 회원
+  content MEDIUMTEXT NOT NULL, -- 내용
+  rdt     DATETIME   NOT NULL DEFAULT now(), -- 등록일
+  stat    INTEGER    NOT NULL DEFAULT 1, -- 상태
+  mdt     DATETIME   NULL      -- 수정일
+);
 
 -- 댓글
 ALTER TABLE acv_cmt
@@ -583,14 +571,13 @@ CREATE UNIQUE INDEX UIX_acv_cmt
   );
 
 ALTER TABLE acv_cmt
-  MODIFY COLUMN cno INTEGER NOT NULL AUTO_INCREMENT COMMENT '댓글 번호';
+  MODIFY COLUMN cno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 폰트
 CREATE TABLE acv_txt_font (
-  tfno INTEGER     NOT NULL COMMENT '폰트 번호', -- 폰트 번호
-  name VARCHAR(50) NOT NULL COMMENT '폰트명' -- 폰트명
-)
-COMMENT '폰트';
+  tfno INTEGER     NOT NULL, -- 폰트 번호
+  name VARCHAR(50) NOT NULL  -- 폰트명
+);
 
 -- 폰트
 ALTER TABLE acv_txt_font
@@ -606,14 +593,13 @@ CREATE UNIQUE INDEX UIX_acv_txt_font
   );
 
 ALTER TABLE acv_txt_font
-  MODIFY COLUMN tfno INTEGER NOT NULL AUTO_INCREMENT COMMENT '폰트 번호';
+  MODIFY COLUMN tfno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 로그인유형
 CREATE TABLE acv_lgn_type (
-  ltno INTEGER     NOT NULL COMMENT '로그인유형번호', -- 로그인유형번호
-  name VARCHAR(50) NOT NULL COMMENT '유형명' -- 유형명
-)
-COMMENT '로그인유형';
+  ltno INTEGER     NOT NULL, -- 로그인유형번호
+  name VARCHAR(50) NOT NULL  -- 유형명
+);
 
 -- 로그인유형
 ALTER TABLE acv_lgn_type
@@ -629,7 +615,51 @@ CREATE UNIQUE INDEX UIX_acv_lgn_type
   );
 
 ALTER TABLE acv_lgn_type
-  MODIFY COLUMN ltno INTEGER NOT NULL AUTO_INCREMENT COMMENT '로그인유형번호';
+  MODIFY COLUMN ltno INTEGER NOT NULL AUTO_INCREMENT;
+
+-- 신고 사유
+CREATE TABLE acv_rp_why (
+  rwno  INTEGER     NOT NULL, -- 신고 사유 번호
+  title VARCHAR(50) NOT NULL  -- 신고 사유명
+);
+
+-- 신고 사유
+ALTER TABLE acv_rp_why
+  ADD CONSTRAINT PK_acv_rp_why -- 신고 사유 기본키
+    PRIMARY KEY (
+      rwno -- 신고 사유 번호
+    );
+
+-- 신고 사유 유니크 인덱스
+CREATE UNIQUE INDEX UIX_acv_rp_why
+  ON acv_rp_why ( -- 신고 사유
+    title ASC -- 신고 사유명
+  );
+
+ALTER TABLE acv_rp_why
+  MODIFY COLUMN rwno INTEGER NOT NULL AUTO_INCREMENT;
+
+-- 신고 처리 상태
+CREATE TABLE acv_rp_stat (
+  rsno INTEGER     NOT NULL, -- 처리 상태 번호
+  stat VARCHAR(50) NOT NULL  -- 처리 상태명
+);
+
+-- 신고 처리 상태
+ALTER TABLE acv_rp_stat
+  ADD CONSTRAINT PK_acv_rp_stat -- 신고 처리 상태 기본키
+    PRIMARY KEY (
+      rsno -- 처리 상태 번호
+    );
+
+-- 신고 처리 상태 유니크 인덱스
+CREATE UNIQUE INDEX UIX_acv_rp_stat
+  ON acv_rp_stat ( -- 신고 처리 상태
+    stat ASC -- 처리 상태명
+  );
+
+ALTER TABLE acv_rp_stat
+  MODIFY COLUMN rsno INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 회원
 ALTER TABLE acv_mbr
@@ -829,6 +859,26 @@ ALTER TABLE acv_rp
     )
     REFERENCES acv_mbr ( -- 회원
       mno -- 회원번호
+    );
+
+-- 신고 이력
+ALTER TABLE acv_rp
+  ADD CONSTRAINT FK_acv_rp_why_TO_acv_rp -- 신고 사유 -> 신고 이력
+    FOREIGN KEY (
+      rwno -- 신고 사유 번호
+    )
+    REFERENCES acv_rp_why ( -- 신고 사유
+      rwno -- 신고 사유 번호
+    );
+
+-- 신고 이력
+ALTER TABLE acv_rp
+  ADD CONSTRAINT FK_acv_rp_stat_TO_acv_rp -- 신고 처리 상태 -> 신고 이력
+    FOREIGN KEY (
+      rsno -- 처리 상태 번호
+    )
+    REFERENCES acv_rp_stat ( -- 신고 처리 상태
+      rsno -- 처리 상태 번호
     );
 
 -- 댓글
