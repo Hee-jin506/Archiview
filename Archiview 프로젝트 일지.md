@@ -98,7 +98,7 @@
 
 ### 🎯 태그 조회 기능
 
-- 테스트 방법: http://localhost:9999/Archiview/admin-main.html 접속 -> '태그 관리' 링크 클릭 
+- 테스트 방법: http://localhost:9999/Archiview/tag/list 접속 
 - 진행 상황 : TagListServlet 편집 중
 - 해결할 문제
   - 아직 게시물 수 출력 안함 : 태그 작성한 리뷰 샘플 있어야함
@@ -114,4 +114,8 @@
 - 테스트 방법: http://localhost:9999/Archiview/tag/list 접속 -> 태그명 클릭 -> 삭제 링크 클릭
 - 진행 상황 : TagDeleteServlet 편집 중
 - 해결할 문제
-  - 태그 선택 삭제 기능 추가해야함
+
+### 🎯 태그 선택 삭제 기능
+- 테스트 방법: http://localhost:9999/Archiview/tag/list 접속 -> 태그 선택 -> 삭제 링크 클릭
+- 진행 상황 : TagMultipleDeleteServlet 편집 중
+- 해결할 문제
