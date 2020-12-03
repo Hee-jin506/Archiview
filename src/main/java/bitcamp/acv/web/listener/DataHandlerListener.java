@@ -46,7 +46,8 @@ public class DataHandlerListener implements ServletContextListener {
       MovieService movieService = new DefaultMovieService(movieDao);
       MemberService memberService = new DefaultMemberService(memberDao);
       TagService tagService = new DefaultTagService(tagDao);
-      ReviewService reviewService = new DefaultReviewService(reviewDao);
+      ReviewService reviewService = new DefaultReviewService(reviewDao, tagDao, sqlSessionFactory);
+
 
       ServletContext ctx = sce.getServletContext();
 

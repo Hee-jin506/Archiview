@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import bitcamp.acv.dao.TagDao;
+import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.util.SqlSessionFactoryProxy;
 
@@ -48,6 +49,27 @@ public class TagDaoImpl implements TagDao {
   public int active(int no) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.update("TagDao.active", no);
+    }
+  }
+
+  @Override
+  public int insert(Tag tag) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.insert("TagDao.insert", tag);
+    }
+  }
+
+  @Override
+  public int insertByReview(Review review) {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.insert("TagDao.insertByReview", review);
+    }
+  }
+
+  @Override
+  public Tag findByTitle(String title) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("TagDao.findByTitle", title);
     }
   }
 }

@@ -27,6 +27,11 @@
 		from acv_tag t
 			left outer join acv_tag_post tp on t.tno=tp.tno
 	</sql>
+	
+	<select id="findByTitle" resultMap="TagMap" parameterType="string">
+    <include refid="sql1"/>
+    where t.title=#{title}
+  </select>
 
 	<select id="findAll" resultMap="TagMap" parameterType="string">
 		<include refid="sql1" />
@@ -81,6 +86,19 @@
 		</where>
 		order by t.tno desc
 	</select>
+	
+<insert id="insert" parameterType="tag" useGeneratedKeys="true" keyProperty="no">
+    insert ignore into acv_tag(title)
+    values(#{title})
+  </insert>
+  
+  <insert id="insertByReview" parameterType="review">
+    insert into acv_tag_post(rvno, tno)
+    values
+    <foreach collection="tags" item="tag" separator=",">
+      (#{no},#{tag.no})
+    </foreach>
+  </insert>
 
 	<!-- INSERT INTO test VALUES (now(), now()); -->
 	<!-- select t1, t2 from test where t1 like concat('%', '2020-12-03', '%') 
@@ -97,4 +115,6 @@
     from acv_tag t
       left outer join acv_tag_post tp on t.tno=tp.tno
       where t.stat like 1 -->
+      
+
 </mapper>

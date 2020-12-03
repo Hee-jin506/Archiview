@@ -15,7 +15,6 @@ import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.ReviewService;
-import bitcamp.acv.service.TagService;
 
 @WebServlet("/write/add")
 public class ReviewAddServlet extends HttpServlet {
@@ -33,22 +32,13 @@ public class ReviewAddServlet extends HttpServlet {
     ServletContext ctx = request.getServletContext();
     ReviewService reviewService =
         (ReviewService) ctx.getAttribute("reviewService");
-    TagService tagService =
-        (TagService) ctx.getAttribute("tagService");
-
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head><title>후기등록</title></head>");
-    out.println("<body>");
 
     try {
-      out.println("<h1>후기 등록</h1>");
       HttpSession session = request.getSession();
       Member loginUser = (Member) session.getAttribute("loginUser");
       Review review = new Review();
 
       if (loginUser == null) {
-        out.println("<p>후기를 등록하시려면 로그인 해주세요.</p>");
       } else {
         review.setWriter(loginUser);
         review.setStillCut(Integer.parseInt(request.getParameter("stc")));
@@ -61,20 +51,30 @@ public class ReviewAddServlet extends HttpServlet {
         String[] tagTitles = str.split("#");
         List<Tag> tags = new ArrayList<>();
         if (tagTitles.length > 0) {
+          int n = 0;
           for (String tagTitle : tagTitles) {
-            Tag tag = new Tag();
-            tag.setTitle(tagTitle);
-            tags.add(tag);
+            tagTitle = tagTitle.trim();
+            if (!tagTitle.equals("")) {
+              Tag tag = new Tag();
+              tag.setTitle(tagTitle);
+              System.out.println(n + " : " + tagTitle);
+              tags.add(tag);
+              n++;
+            }
           }
         }
         review.setTags(tags);
       }
-
       reviewService.add(review);
-      tagService.addByReview(review);
+
+      response.sendRedirect("../main.html");
 
     } catch (Exception e) {
-
+      request.setAttribute("exception", e);
+      request.getRequestDispatcher("/error").forward(request, response);
+      return;
     }
+    out.println("</body>");
+    out.println("</html>");
   }
 }

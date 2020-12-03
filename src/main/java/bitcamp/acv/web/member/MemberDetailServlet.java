@@ -33,6 +33,9 @@ public class MemberDetailServlet  extends HttpServlet {
     out.println("<html>");
     out.println("<head><title>회원상세조회</title></head>");
     out.println("<body>");
+
+    request.getRequestDispatcher("/topbar").include(request, response);
+
     try {
       out.println("<h1>[회원 상세 조회]</h1>");
 

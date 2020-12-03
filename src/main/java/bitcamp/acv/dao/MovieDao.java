@@ -8,6 +8,6 @@ public interface MovieDao {
   List<Movie> findAll() throws Exception;
   List<Movie> findAll(String keyword) throws Exception;
   Movie findByNo(int no) throws Exception;
-  //  int getStillCutNo(String stillcut) throws Exception;
   String getStcUrl(int stcNo) throws Exception;
+  int getStcNo(String stillcut) throws Exception;
 }
