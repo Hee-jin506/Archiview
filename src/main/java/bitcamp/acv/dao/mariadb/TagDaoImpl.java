@@ -43,4 +43,11 @@ public class TagDaoImpl implements TagDao {
       return sqlSession.selectList("TagDao.findByDetailKeyword", keywords);
     }
   }
+
+  @Override
+  public int active(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("TagDao.active", no);
+    }
+  }
 }

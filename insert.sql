@@ -75,6 +75,17 @@ insert into acv_rp_able(rano, name) value(2, '후기');
 insert into acv_rp_able(rano, name) value(3, '댓글');
 insert into acv_rp_able(rano, name) value(4, '태그');
 
+/* 태그-게시물 샘플*/
+insert into acv_tag_post(rvno, tno) value(1, 1);
+insert into acv_tag_post(rvno, tno) value(1, 2);
+insert into acv_tag_post(rvno, tno) value(1, 3);
+insert into acv_tag_post(rvno, tno) value(2, 1);
+insert into acv_tag_post(rvno, tno) value(2, 2);
+insert into acv_tag_post(rvno, tno) value(3, 1);
+insert into acv_tag_post(rvno, tno) value(3, 4);
+insert into acv_tag_post(rvno, tno) value(3, 5);
+insert into acv_tag_post(rvno, tno) value(3, 6);
+
 /* 태그 샘플 */
 insert into acv_tag(tno, title, stat)  value(1, '명작', 1);
 insert into acv_tag(tno, title, stat)  value(2, '죽기 전에 봐야할 영화', 1);
@@ -82,6 +93,11 @@ insert into acv_tag(tno, title, stat)  value(3, '인생작', 1);
 insert into acv_tag(tno, title, stat)  value(4, '힐링 영화', 1);
 insert into acv_tag(tno, title, stat)  value(5, '킬링타임', 1);
 insert into acv_tag(tno, title, stat)  value(6, 'B급 감성', 1);
+insert into acv_tag(tno, title, stat)  value(7, '노잼', 1);
+insert into acv_tag(tno, title, stat)  value(8, '스토리 너무 뻔함', 1);
+insert into acv_tag(tno, title, stat)  value(9, '경이롭다', 1);
+insert into acv_tag(tno, title, stat)  value(10, '미쳤다', 1);
+insert into acv_tag(tno, title, stat)  value(11, '스포일러 있음', 1);
 
 /* 회원 샘플 */
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 

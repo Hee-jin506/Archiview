@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import bitcamp.acv.service.TagService;
 
 
-@WebServlet("/tag/delete")
-public class TagDeleteServlet extends HttpServlet {
+@WebServlet("/tag/multipleActive")
+public class TagMultipleActiveServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
@@ -25,9 +25,7 @@ public class TagDeleteServlet extends HttpServlet {
     TagService tagService =
         (TagService) ctx.getAttribute("tagService");
 
-    // 웹주소에 동봉된 데이터(Query String: qs)를 읽는다.
-    int no = Integer.parseInt(request.getParameter("no"));
-
+    String[] tagNoList = request.getParameterValues("tags");
 
     PrintWriter out = response.getWriter();
 
@@ -35,21 +33,27 @@ public class TagDeleteServlet extends HttpServlet {
     out.println("<html>");
     out.println("<head>");
     out.println("<meta http-equiv='Refresh' content='1;list'>");
-    out.println("<title>태그삭제</title></head>");
+    out.println("<title>태그 선택 복구</title></head>");
     out.println("<body>");
     try {
-      out.println("<h1>태그 삭제</h1>");
+      out.println("<h1>태그 선택 복구</h1>");
 
-
-      int count = tagService.delete(no);
       try {
+        int count = 0;
+
+        if (tagNoList != null) {
+          for (String tagNo : tagNoList) {
+            count += tagService.active(Integer.parseInt(tagNo));
+          }
+        }
+
         if (count == 0) {
-          out.printf("<p>해당 번호의 태그가 존재하지 않습니다.</p>\n");
+          out.printf("<p>해당 태그가 존재하지 않습니다.</p>\n");
         } else {
-          out.printf("<p>태그를 삭제하였습니다.</p>\n");
+          out.printf("<p>태그를 복구하였습니다.</p>\n");
         }
       } catch (Exception e) {
-        out.println("태그 삭제 중 오류 발생!");
+        out.println("태그 복구 중 오류 발생!");
         e.printStackTrace();
       }
 
@@ -63,10 +67,7 @@ public class TagDeleteServlet extends HttpServlet {
       out.printf("<h3>상세 오류 내용</h3>");
       out.printf("<pre>%s</pre>\n", errOut.toString());
     }
-
     out.println("</body>");
     out.println("</html>");
   }
-
-
 }

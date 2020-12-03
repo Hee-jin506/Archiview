@@ -44,4 +44,9 @@ public class DefaultTagService implements TagService {
     // TODO Auto-generated method stub
     return 0;
   }
+
+  @Override
+  public int active(int no) throws Exception {
+    return tagDao.active(no);
+  }
 }

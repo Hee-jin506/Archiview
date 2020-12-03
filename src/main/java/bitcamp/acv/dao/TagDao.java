@@ -9,4 +9,5 @@ public interface TagDao {
   Tag findByNo(int no) throws Exception;
   int delete(int no) throws Exception;
   List<Tag> findByDetailKeyword(Map<String, Object> keywords) throws Exception;
+  int active(int no) throws Exception;
 }
