@@ -116,17 +116,17 @@ public class MovieDaoImpl implements MovieDao {
     }
   }
 
-  //  @Override
-  //  public int getStillCutNo(String stillcut) throws Exception {
-  //    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-  //      return sqlSession.selectOne("MovieDao.getStillCutNo", stillcut);
-  //    }
-  //  }
-
   @Override
   public String getStcUrl(int stcNo) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.selectOne("MovieDao.getStcUrl", stcNo);
+    }
+  }
+
+  @Override
+  public int getStcNo(String stillcut) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("MovieDao.getStcNo", stillcut);
     }
   }
 }
