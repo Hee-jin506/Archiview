@@ -1,5 +1,6 @@
 package bitcamp.acv.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import bitcamp.acv.domain.Review;
@@ -14,4 +15,5 @@ public interface TagDao {
   int insert(Tag tag) throws Exception;
   int insertByReview(Review review) throws Exception;
   Tag findByTitle(String title) throws Exception;
+  List<Tag> findByKeyword(HashMap<String, Object> keyMap) throws Exception;
 }

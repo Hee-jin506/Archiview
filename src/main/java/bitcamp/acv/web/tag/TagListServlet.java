@@ -61,7 +61,6 @@ public class TagListServlet extends HttpServlet {
       String keyword = request.getParameter("keyword");
       String no = request.getParameter("no");
       String name = request.getParameter("name");
-      String state = request.getParameter("state");
       String active = request.getParameter("active");
       String inactive = request.getParameter("inactive");
 
@@ -84,11 +83,10 @@ public class TagListServlet extends HttpServlet {
         keyMap.put("keyword", keyword);
         keyMap.put("no", no);
         keyMap.put("name", name);
-        keyMap.put("state", state);
         keyMap.put("active", active);
         keyMap.put("inactive", inactive);
 
-        list = tagService.list(keyMap);
+        list = tagService.list1(keyMap);
 
       } else if (keywordNumber != null) {
         HashMap<String,Object> keywordMap = new HashMap<>();
@@ -127,11 +125,11 @@ public class TagListServlet extends HttpServlet {
       out.println("<p>");
       out.println("<form action='list' method='get'>");
       out.printf("<input type='search' name='keyword' value='%s'>\n",
-          keyword != null ? keyword : "번호, 이름, 상태로 검색");
+          keyword != null ? keyword : "");
       out.println("<button>검색</button><br>");
       out.printf("<input type='checkbox' name='no' value='no' %s>번호\n",
           no != null ? "checked" : "");
-      out.printf("<input type='checkbox' name='name' value='name' %s>태그명\n",
+      out.printf("<input type='checkbox' name='name' value='tt' %s>태그명\n",
           name != null ? "checked" : "");
       out.printf("<input type='checkbox' name='active' value='active' %s>게시중\n",
           active != null ? "checked" : "");

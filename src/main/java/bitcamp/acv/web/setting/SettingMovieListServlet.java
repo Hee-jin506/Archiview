@@ -45,15 +45,15 @@ public class SettingMovieListServlet extends HttpServlet {
       out.println("</form>");
       out.println("</p>");
 
-      List<Movie> list = movieService.list();
-
+      List<Movie> list = movieService.list(null);
+      System.out.println(list.size());
       out.printf("<span>총 영화 수 : %d</span>", list.size());
       out.println("<table border='1'>");
       out.println("<thead><tr>"
           + "<th> </th>"
           + "<th>영화번호</th>"
           + "<th>영화제목</th>"
-          // + "<th>게시글 수</th>"
+          + "<th>게시글 수</th>"
           + "<th>등록일</th>"
           + "<th>상태</th>"
           + "</tr></thead>");
@@ -72,12 +72,13 @@ public class SettingMovieListServlet extends HttpServlet {
         out.printf("<td><input type='checkbox' name='movie' value='%d'</td>"
             + "<td><a href='detail?no=%1$d'>%1$d</a></td> "
             + "<td><a href='detail?no=%1$d'>%s</a></td>"
+            + "<td>%d</td>" // 게시글 수
             + "<td>%s</td>"
-            // + "<td>%d</td>" 게시글 수
             + "<td>%s</td>"
             + "</tr>\n",
             movie.getNo(),
             movie.getTitle(),
+            movie.getReviews().size(),
             movie.getRegisteredDate(),
             stat);
       }

@@ -1,5 +1,6 @@
 package bitcamp.acv.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import bitcamp.acv.dao.TagDao;
@@ -48,5 +49,10 @@ public class DefaultTagService implements TagService {
   @Override
   public int active(int no) throws Exception {
     return tagDao.active(no);
+  }
+
+  @Override
+  public List<Tag> list1(HashMap<String, Object> keyMap) throws Exception {
+    return tagDao.findByKeyword(keyMap);
   }
 }

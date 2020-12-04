@@ -16,10 +16,12 @@ public class Movie {
   private String nation;
   private int status;
   private Date registeredDate;
-  private List<String> stillcuts;
+  private List<Integer> stillCutNo;
+  private List<String> stillCuts;
   private List<String> posters;
   private List<String> genres;
   private int naverCd;
+  private List<Integer> reviews;
 
   public int getNaverCd() {
     return naverCd;
@@ -117,13 +119,6 @@ public class Movie {
     this.registeredDate = registeredDate;
   }
 
-  public List<String> getStillcuts() {
-    return stillcuts;
-  }
-
-  public void setStillcuts(List<String> stillcuts) {
-    this.stillcuts = stillcuts;
-  }
 
   public List<String> getPosters() {
     return posters;
@@ -139,6 +134,30 @@ public class Movie {
 
   public void setGenres(List<String> genres) {
     this.genres = genres;
+  }
+
+  public List<Integer> getReviews() {
+    return reviews;
+  }
+
+  public void setReviews(List<Integer> reviews) {
+    this.reviews = reviews;
+  }
+
+  public List<Integer> getStillCutNo() {
+    return stillCutNo;
+  }
+
+  public void setStillCutNo(List<Integer> stillCutNo) {
+    this.stillCutNo = stillCutNo;
+  }
+
+  public List<String> getStillCuts() {
+    return stillCuts;
+  }
+
+  public void setStillCuts(List<String> stillCuts) {
+    this.stillCuts = stillCuts;
   }
 
 }

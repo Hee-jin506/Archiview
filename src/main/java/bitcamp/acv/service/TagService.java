@@ -1,5 +1,6 @@
 package bitcamp.acv.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import bitcamp.acv.domain.Tag;
@@ -13,4 +14,5 @@ public interface TagService {
   Tag get(int no) throws Exception;
   int delete(int no) throws Exception;
   int active(int no) throws Exception;
+  List<Tag> list1(HashMap<String, Object> keyMap) throws Exception;
 }
