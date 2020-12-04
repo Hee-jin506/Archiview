@@ -89,12 +89,6 @@ public class MovieDaoImpl implements MovieDao {
   //    return 0;
   //  }
 
-  @Override
-  public List<Movie> findAll() throws Exception {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectList("MovieDao.findAll");
-    }
-  }
 
   @Override
   public int insert(Movie movie) throws Exception {
@@ -136,5 +130,6 @@ public class MovieDaoImpl implements MovieDao {
       return sqlSession.selectOne("MovieDao.getStcNo", stillcut);
     }
   }
+
 }
 

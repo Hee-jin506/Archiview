@@ -13,11 +13,6 @@ public class DefaultMovieService implements MovieService {
   }
 
   @Override
-  public List<Movie> list() throws Exception {
-    return movieDao.findAll();
-  }
-
-  @Override
   public List<Movie> list(String keyword) throws Exception {
     return movieDao.findAll(keyword);
   }
