@@ -8,16 +8,17 @@ public class Report {
   public static final int MEMBER = 1;
   public static final int REVIEW = 2;
   public static final int COMMENT = 3;
+  public static final int TAG = 4;
 
-  private int no;
-  private Member reportingMember;
-  private int reportedType;
-  private int reportedNo;
-  private String why;
-  private String status;
-  private String processingContent;
-  private Date reportedDate;
-  private Date ProcessedDate;
+  private int no; // 신고 번호
+  private Member reportingMember; // 신고한 회원
+  private int reportedType; // 신고 유형
+  private int reportedNo; // 신고된 대상 번호
+  private String why; // 신고 사유
+  private String status; // 신고 처리 상태
+  private String processingContent; // 신고 처리 내용
+  private Date reportedDate; // 신고 일시
+  private Date ProcessedDate; //  신고 처리 완료 일시
 
   public int getNo() {
     return no;

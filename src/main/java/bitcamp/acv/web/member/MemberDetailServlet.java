@@ -38,24 +38,22 @@ public class MemberDetailServlet  extends HttpServlet {
 
     try {
       out.println("<h1>[회원 상세 조회]</h1>");
-
       int no = Integer.parseInt(request.getParameter("no"));
       Member member = memberService.get(no);
-
-      int statusLabel = member.getStatus();
-      String label = "";
-      switch (statusLabel) {
-        case 1 : label = "활동중";
-        break;
-        case 2 : label = "정지중";
-        break;
-        case 3 : label = "탈퇴";
-        break;
-      }
 
       if (member == null) {
         out.println("<p>해당 회원이 없습니다.</p>");
       } else {
+        int statusLabel = member.getStatus();
+        String label = "";
+        switch (statusLabel) {
+          case 1 : label = "활동중";
+          break;
+          case 2 : label = "정지중";
+          break;
+          case 3 : label = "탈퇴";
+          break;
+        }
         out.println("<form action='updatePhoto' method='post' enctype='multipart/form-data'>");
         out.printf("<input type='hidden' name='no' value='%d'><br>\n",
             member.getNo());
@@ -87,9 +85,9 @@ public class MemberDetailServlet  extends HttpServlet {
         out.println("<button>변경</button>");
 
         if (member.getStatus() == 1) {
-          out.printf("<a href='inactive?no=%d'>정지</a>\n", member.getNo());
+          out.printf("<a href='inactive?no=%d'>삭제</a>\n", member.getNo());
         } else if (member.getStatus() == 2) {
-          out.printf("<a href='active?no=%d'>활동</a>\n", member.getNo());
+          out.printf("<a href='active?no=%d'>부활</a>\n", member.getNo());
         } else if (member.getStatus() == 3) {
           out.println("탈퇴");
         }

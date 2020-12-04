@@ -126,7 +126,7 @@ public class MovieDaoImpl implements MovieDao {
   @Override
   public int update(Movie movie) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectOne("MovieDao.update", movie);
+      return sqlSession.update("MovieDao.update", movie);
     }
   }
 
@@ -135,6 +135,12 @@ public class MovieDaoImpl implements MovieDao {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.selectOne("MovieDao.getStcNo", stillcut);
     }
+  }
+
+  @Override
+  public int getStillCutNo(String stillcut) throws Exception {
+    // TODO Auto-generated method stub
+    return 0;
   }
 }
 
