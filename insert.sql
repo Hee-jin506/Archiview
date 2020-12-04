@@ -75,17 +75,6 @@ insert into acv_rp_able(rano, name) value(2, '후기');
 insert into acv_rp_able(rano, name) value(3, '댓글');
 insert into acv_rp_able(rano, name) value(4, '태그');
 
-/* 태그-게시물 샘플*/
-insert into acv_tag_post(rvno, tno) value(1, 1);
-insert into acv_tag_post(rvno, tno) value(1, 2);
-insert into acv_tag_post(rvno, tno) value(1, 3);
-insert into acv_tag_post(rvno, tno) value(2, 1);
-insert into acv_tag_post(rvno, tno) value(2, 2);
-insert into acv_tag_post(rvno, tno) value(3, 1);
-insert into acv_tag_post(rvno, tno) value(3, 4);
-insert into acv_tag_post(rvno, tno) value(3, 5);
-insert into acv_tag_post(rvno, tno) value(3, 6);
-
 /* 태그 샘플 */
 insert into acv_tag(tno, title, stat)  value(1, '명작', 1);
 insert into acv_tag(tno, title, stat)  value(2, '죽기 전에 봐야할 영화', 1);
@@ -98,6 +87,30 @@ insert into acv_tag(tno, title, stat)  value(8, '스토리 너무 뻔함', 1);
 insert into acv_tag(tno, title, stat)  value(9, '경이롭다', 1);
 insert into acv_tag(tno, title, stat)  value(10, '미쳤다', 1);
 insert into acv_tag(tno, title, stat)  value(11, '스포일러 있음', 1);
+
+
+/* 리뷰 샘플*/
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
+values(1, 1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11, 1);
+
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
+values(2, 2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11, 1);
+
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
+values(3, 3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11, 1);
+
+
+/* 태그-게시물 샘플*/
+insert into acv_tag_post(rvno, tno) value(1, 1);
+insert into acv_tag_post(rvno, tno) value(1, 2);
+insert into acv_tag_post(rvno, tno) value(1, 3);
+insert into acv_tag_post(rvno, tno) value(2, 1);
+insert into acv_tag_post(rvno, tno) value(2, 2);
+insert into acv_tag_post(rvno, tno) value(3, 1);
+insert into acv_tag_post(rvno, tno) value(3, 4);
+insert into acv_tag_post(rvno, tno) value(3, 5);
+insert into acv_tag_post(rvno, tno) value(3, 6);
+
 
 /* 회원 샘플 */
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
@@ -249,10 +262,10 @@ values(3, 'https://movie-phinf.pstatic.net/20161024_152/1477284828563SyUai_JPEG/
 
 /* 영화 장르 샘플*/
 insert into acv_gnr_mov(gno, mvno) 
-values(1, 2);
+values(1, 3);
 
 insert into acv_gnr_mov(gno, mvno) 
-values(5, 2);
+values(5, 3);
 
 insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
 values(4, '형', '권수경', 'MY ANNOYING BROTHER', 110, '2016-11-23', 
@@ -463,7 +476,6 @@ values(11, 8, 'ㅅ', 506, 350, 8, 11, 1);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
 values(12, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
 
 /* 신고 사유 샘플*/
 insert into acv_rp_why(rwno, title)

@@ -39,6 +39,7 @@ content="user-scalable=no,inital-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,w
 <form method="post">
 <label>이메일 주소<input type="email" name="email" value=<%=request.getAttribute("email")%>></label><br>
 <label>비밀번호<input type="password" name="password"></label><br>
+<label>이메일 저장<input type="checkbox" name="saveEmail" checked></label><br>
 <button>로그인</button>
 </form>
 

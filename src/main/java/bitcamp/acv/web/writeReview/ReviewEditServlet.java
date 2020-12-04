@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bitcamp.acv.domain.Font;
-import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
 
 @WebServlet("/write/editCard")
@@ -20,7 +19,7 @@ public class ReviewEditServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     request.setCharacterEncoding("UTF-8");
@@ -31,15 +30,8 @@ public class ReviewEditServlet extends HttpServlet {
     ServletContext ctx = request.getServletContext();
     ReviewService reviewService =
         (ReviewService) ctx.getAttribute("reviewService");
-    MovieService movieService =
-        (MovieService) ctx.getAttribute("movieService");
 
     try {
-
-      int stcNo = Integer.parseInt(request.getParameter("stc"));
-      String url = movieService.getStcUrl(stcNo);
-      request.setAttribute("url", url);
-
       List<Font> fonts = reviewService.listFont();
       request.setAttribute("fonts", fonts);
 

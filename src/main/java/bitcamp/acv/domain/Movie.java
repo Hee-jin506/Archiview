@@ -119,13 +119,6 @@ public class Movie {
     this.registeredDate = registeredDate;
   }
 
-  public List<String> getStillCuts() {
-    return stillCuts;
-  }
-
-  public void setStillCuts(List<String> stillCuts) {
-    this.stillCuts = stillCuts;
-  }
 
   public List<String> getPosters() {
     return posters;
@@ -157,6 +150,14 @@ public class Movie {
 
   public void setStillCutNo(List<Integer> stillCutNo) {
     this.stillCutNo = stillCutNo;
+  }
+
+  public List<String> getStillCuts() {
+    return stillCuts;
+  }
+
+  public void setStillCuts(List<String> stillCuts) {
+    this.stillCuts = stillCuts;
   }
 
 }
