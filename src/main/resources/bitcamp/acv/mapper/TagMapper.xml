@@ -80,9 +80,9 @@
 			<if test="startDate != null and endDate != null">
 			and t.rdt between date(#{startDate}) and date(#{endDate})+1
 			</if>
-			<!-- <if test="startNumber != null and endNumber != null">
+			<if test="startNumber != '' and endNumber != '' and startNumber != null and endNumber != null">
 				and t.tno >= #{startNumber} and t.tno<![CDATA[<]]> #{endNumber}+1
-			</if> -->
+			</if>
 		</where>
 		order by t.tno desc
 	</select>
