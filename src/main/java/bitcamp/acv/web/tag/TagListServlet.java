@@ -59,9 +59,9 @@ public class TagListServlet extends HttpServlet {
 
       // 기본 검색 파라미터
       String keyword = request.getParameter("keyword");
-      //      String no = request.getParameter("no");
-      //      String name = request.getParameter("name");
-      //      String state = request.getParameter("state");
+      String no = request.getParameter("no");
+      String name = request.getParameter("name");
+      String state = request.getParameter("state");
 
       // 상세 검색 체크박스 파라미터
       String keywordNumber = request.getParameter("keywordNumber");
@@ -78,13 +78,13 @@ public class TagListServlet extends HttpServlet {
       List<Tag> list = null;
 
       if (keyword != null) {
-        //        HashMap<String,Object> keyMap = new HashMap<>();
-        //        keyMap.put("keyword", keyword);
-        //        keyMap.put("no", no);
-        //        keyMap.put("name", name);
-        //        keyMap.put("state", state);
+        HashMap<String,Object> keyMap = new HashMap<>();
+        keyMap.put("keyword", keyword);
+        keyMap.put("no", no);
+        keyMap.put("name", name);
+        keyMap.put("state", state);
 
-        list = tagService.list(keyword);
+        list = tagService.list(keyMap);
 
       } else if (keywordNumber != null) {
         HashMap<String,Object> keywordMap = new HashMap<>();
@@ -124,13 +124,13 @@ public class TagListServlet extends HttpServlet {
       out.println("<form action='list' method='get'>");
       out.printf("<input type='search' name='keyword' value='%s'>\n",
           keyword != null ? keyword : "번호, 이름, 상태로 검색");
-      out.println("<button>검색</button>");
-      //      out.printf("<input type='checkbox' name='no' value='no' %s>번호\n",
-      //          no != null ? "checked" : "");
-      //      out.printf("<input type='checkbox' name='name' value='name' %s>태그명\n",
-      //          name != null ? "checked" : "");
-      //      out.printf("<input type='checkbox' name='state' value='state' %s>상태\n",
-      //          state != null ? "checked" : "");
+      out.println("<button>검색</button><br>");
+      out.printf("<input type='checkbox' name='no' value='no' %s>번호\n",
+          no != null ? "checked" : "");
+      out.printf("<input type='checkbox' name='name' value='name' %s>태그명\n",
+          name != null ? "checked" : "");
+      out.printf("<input type='checkbox' name='state' value='state' %s>상태\n",
+          state != null ? "checked" : "");
       out.println("</form>");
       out.println("</p>");
 

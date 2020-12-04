@@ -65,6 +65,15 @@
 	<select id="findByDetailKeyword" resultMap="TagMap" parameterType="map">
 		<include refid="sql1" />
 		<where>
+			<if test="no != null">
+				t.tno like concat('%',#{keyword},'%')
+			</if>
+			<if test="name != null">
+				or t.title like concat('%', #{keyword}, '%')
+			</if>
+			<if test="state != null">
+				or t.stat like concat('%', #{keyword}, '%')
+			</if>
 			<if test="number != null">
 				t.tno like concat('%',#{number},'%')
 			</if>
@@ -80,9 +89,9 @@
 			<if test="startDate != null and endDate != null">
 			and t.rdt between date(#{startDate}) and date(#{endDate})+1
 			</if>
-			<!-- <if test="startNumber != null and endNumber != null">
+			<if test="startNumber != '' and endNumber != '' and startNumber != null and endNumber != null">
 				and t.tno >= #{startNumber} and t.tno<![CDATA[<]]> #{endNumber}+1
-			</if> -->
+			</if>
 		</where>
 		order by t.tno desc
 	</select>

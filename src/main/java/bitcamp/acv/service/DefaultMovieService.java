@@ -36,4 +36,9 @@ public class DefaultMovieService implements MovieService {
   public String getStcUrl(int stcNo) throws Exception {
     return movieDao.getStcUrl(stcNo);
   }
+
+  @Override
+  public int update(Movie movie) throws Exception {
+    return movieDao.update(movie);
+  }
 }

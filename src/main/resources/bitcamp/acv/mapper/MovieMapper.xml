@@ -77,8 +77,39 @@
     where
       m.mvno = #{no}
   </select>
+<<<<<<< HEAD
+  
+  <update id="updateInactiveMembers" parameterType="int">
+  update acv_mov set
+    stat = 0
+  where no = #{no}
+  </update>
+  
+    <update id="updateActiveMembers" parameterType="int">
+  update acv_mov set
+    stat = 1
+  where no = #{no}
+  </update>
+  
+  <update id="update" parameterType="movie">
+    update acv_mov
+    <set>
+      <if test="registeredDate != null">rdt = #{registeredDate},</if>
+      <if test="title != null">title = #{title},</if>
+      <if test="englishTitle != null">eng_title = #{englishTitle},</if>
+      <if test="runtime != null">runtime = #{runtime},</if>
+      <if test="directors != null">dir = #{directors},</if>
+      <if test="nation != null">nation = #{nation},</if>
+      <if test="openDate != null">odt = #{openDate},</if>
+    </set>
+    where mvno = #{no}
+  </update>
+  
+  <!-- <select id="getStillCutNo" resultMap="MovieMap" parameterType="string">
+=======
 
   <select id="getStcUrl" resultType="string" parameterType="int">
+>>>>>>> 578b6279b39c3ec015a83736c3b53befd1e352f0
     select
       stc_url
     from
@@ -95,4 +126,62 @@
     where
       stc_url=#{keyword}
   </select>
+<<<<<<< HEAD
 </mapper>
+
+      
+<!-- select 
+    m.mvno,
+    m.title,
+    m.dir,
+    m.eng_title,
+    m.runtime,
+    m.odt,
+    m.actors,
+    m.syn,
+    m.nation,
+    m.stat,
+    m.rdt,
+    m.nav_cd,
+    p.ps_url,
+    s.stc_url,
+    g.title g_title
+from acv_mov m  
+      inner join acv_pstr p on p.mvno=m.mvno
+      inner join acv_stc s on s.mvno=m.mvno
+      inner join acv_gnr_mov gm on gm.mvno=m.mvno
+      inner join acv_gnr g on g.gno=gm.gno
+where 
+  m.title like '%무현%'
+  or m.dir like '%무현%'
+  or m.actors like '%무현%'
+order by m.mvno desc; -->
+
+<!-- select 
+    m.mvno,
+    m.title,
+    m.dir,
+    m.eng_title,
+    m.runtime,
+    m.odt,
+    m.actors,
+    m.syn,
+    m.nation,
+    m.stat,
+    m.rdt,
+    m.nav_cd,
+    p.ps_url,
+    s.stc_url,
+    g.title g_title
+from acv_mov m  
+      inner join acv_pstr p on p.mvno=m.mvno
+      inner join acv_stc s on s.mvno=m.mvno
+      inner join acv_gnr_mov gm on gm.mvno=m.mvno
+      inner join acv_gnr g on g.gno=gm.gno
+where 
+  m.mvno = 1; -->
+  
+  
+=======
+</mapper>
+>>>>>>> 578b6279b39c3ec015a83736c3b53befd1e352f0
