@@ -80,15 +80,7 @@
   </select>
   
   <select id="findByEmailPassword" parameterType="map" resultMap="MemberMap">
-    select 
-      mno, 
-      name,
-      nick, 
-      email, 
-      photo, 
-      rdt
-    from 
-      acv_mbr
+  <include refid="sql1"/>
     where 
       email = #{email}
       and pw = password(#{password})
