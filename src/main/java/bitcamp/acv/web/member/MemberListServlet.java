@@ -41,7 +41,7 @@ public class MemberListServlet extends HttpServlet {
 
       String keyword = request.getParameter("keyword");
 
-      List<Member> list = memberService.list();
+      List<Member> list = memberService.list(keyword);
 
       out.println("<table border=\"1\">");
       out.println("<thead><tr>");

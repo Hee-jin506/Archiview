@@ -53,5 +53,10 @@ public class DefaultMemberService implements MemberService {
     return memberDao.active(no);
   }
 
+  @Override
+  public List<Member> list(String keyword) throws Exception {
+    return memberDao.findAll(keyword);
+  }
+
 
 }

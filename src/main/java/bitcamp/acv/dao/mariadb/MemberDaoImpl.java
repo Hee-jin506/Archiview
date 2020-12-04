@@ -24,6 +24,13 @@ public class MemberDaoImpl implements MemberDao {
   }
 
   @Override
+  public List<Member> findAll(String keyword) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("MemberDao.findAll", keyword);
+    }
+  }
+
+  @Override
   public int add(Member member) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.insert("MemberDao.insert", member);

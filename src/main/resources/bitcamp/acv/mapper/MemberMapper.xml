@@ -69,6 +69,8 @@
     <bind name="pattern" value="'%' + _parameter + '%'" />
      where 
       mb.name like #{pattern}
+      or mb.nick like #{pattern}
+      or mb.email like #{pattern}
     </if>
     order by mb.mno desc
   </select>
