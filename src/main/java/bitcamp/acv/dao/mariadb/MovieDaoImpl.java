@@ -136,5 +136,11 @@ public class MovieDaoImpl implements MovieDao {
       return sqlSession.selectOne("MovieDao.getStcNo", stillcut);
     }
   }
+
+  @Override
+  public int getStillCutNo(String stillcut) throws Exception {
+    // TODO Auto-generated method stub
+    return 0;
+  }
 }
 

@@ -77,7 +77,6 @@
     where
       m.mvno = #{no}
   </select>
-<<<<<<< HEAD
   
   <update id="updateInactiveMembers" parameterType="int">
   update acv_mov set
@@ -106,10 +105,8 @@
   </update>
   
   <!-- <select id="getStillCutNo" resultMap="MovieMap" parameterType="string">
-=======
 
   <select id="getStcUrl" resultType="string" parameterType="int">
->>>>>>> 578b6279b39c3ec015a83736c3b53befd1e352f0
     select
       stc_url
     from
@@ -126,11 +123,9 @@
     where
       stc_url=#{keyword}
   </select>
-<<<<<<< HEAD
-</mapper>
 
       
-<!-- select 
+    select 
     m.mvno,
     m.title,
     m.dir,
@@ -182,6 +177,4 @@ where
   m.mvno = 1; -->
   
   
-=======
 </mapper>
->>>>>>> 578b6279b39c3ec015a83736c3b53befd1e352f0
