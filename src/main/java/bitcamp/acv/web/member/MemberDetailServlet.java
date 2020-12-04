@@ -87,9 +87,9 @@ public class MemberDetailServlet  extends HttpServlet {
         out.println("<button>변경</button>");
 
         if (member.getStatus() == 1) {
-          out.printf("<a href='inactive?no=%d'>삭제</a>\n", member.getNo());
+          out.printf("<a href='inactive?no=%d'>정지</a>\n", member.getNo());
         } else if (member.getStatus() == 2) {
-          out.printf("<a href='active?no=%d'>부활</a>\n", member.getNo());
+          out.printf("<a href='active?no=%d'>활동</a>\n", member.getNo());
         } else if (member.getStatus() == 3) {
           out.println("탈퇴");
         }
