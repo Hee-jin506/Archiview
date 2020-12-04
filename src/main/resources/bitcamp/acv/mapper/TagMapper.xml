@@ -65,14 +65,26 @@
 	<select id="findByDetailKeyword" resultMap="TagMap" parameterType="map">
 		<include refid="sql1" />
 		<where>
-			<if test="no != null">
-				t.tno like concat('%',#{keyword},'%')
-			</if>
-			<if test="name != null">
-				or t.title like concat('%', #{keyword}, '%')
-			</if>
-			<if test="state != null">
-				or t.stat like concat('%', #{keyword}, '%')
+		   <if test="keyword != null">
+			   t.tno like concat('%', #{keyword}, '%')
+	       or t.title like concat('%', #{keyword}, '%')
+	       or t.stat like concat('%', #{keyword}, '%')
+				<if test="no != null">
+					t.tno like concat('%',#{keyword},'%')
+				</if>
+				<if test="name != null">
+					or t.title like concat('%', #{keyword}, '%')
+				</if>
+				<if test="inactive != null and active != null">
+				</if>
+				<if test="inactive == null and active == null">
+				</if>
+				<if test="inactive == null and active != null">
+					and t.stat = 1
+				</if>
+				<if test="inactive != null and active == null">
+					and t.stat = 0
+				</if>
 			</if>
 			<if test="number != null">
 				t.tno like concat('%',#{number},'%')

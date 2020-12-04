@@ -54,7 +54,7 @@ public class TagListServlet extends HttpServlet {
           + "<img src='../tag-border-icon.svg' alt='tag-border-icon'>"
           + "</a>");
 
-      out.println("<h1>[태그 목록]</h1>");
+      out.println("<h1>[태그 관리]</h1>");
 
 
       // 기본 검색 파라미터
@@ -62,6 +62,8 @@ public class TagListServlet extends HttpServlet {
       String no = request.getParameter("no");
       String name = request.getParameter("name");
       String state = request.getParameter("state");
+      String active = request.getParameter("active");
+      String inactive = request.getParameter("inactive");
 
       // 상세 검색 체크박스 파라미터
       String keywordNumber = request.getParameter("keywordNumber");
@@ -83,6 +85,8 @@ public class TagListServlet extends HttpServlet {
         keyMap.put("no", no);
         keyMap.put("name", name);
         keyMap.put("state", state);
+        keyMap.put("active", active);
+        keyMap.put("inactive", inactive);
 
         list = tagService.list(keyMap);
 
@@ -129,8 +133,10 @@ public class TagListServlet extends HttpServlet {
           no != null ? "checked" : "");
       out.printf("<input type='checkbox' name='name' value='name' %s>태그명\n",
           name != null ? "checked" : "");
-      out.printf("<input type='checkbox' name='state' value='state' %s>상태\n",
-          state != null ? "checked" : "");
+      out.printf("<input type='checkbox' name='active' value='active' %s>게시중\n",
+          active != null ? "checked" : "");
+      out.printf("<input type='checkbox' name='inactive' value='inactive' %s>삭제\n",
+          inactive != null ? "checked" : "");
       out.println("</form>");
       out.println("</p>");
 

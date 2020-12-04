@@ -49,8 +49,9 @@ public class SettingMovieSetServlet extends HttpServlet {
 
     try {
       out.println("<h1>영화 수정</h1>");
-
-      movieService.update(movie);
+      System.out.println(1);
+      System.out.println(movie.getEnglishTitle());
+      System.out.println(movieService.update(movie));
 
       out.println("<p>영화 정보를 수정하였습니다.</p>");
 
