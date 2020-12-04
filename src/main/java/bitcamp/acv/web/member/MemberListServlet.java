@@ -33,11 +33,12 @@ public class MemberListServlet extends HttpServlet {
     out.println("<head><title>멤버 목록</title></head>");
     out.println("<body>");
 
-    request.getRequestDispatcher("/topbar").include(request, response);
-
     try {
 
       out.println("<h1>[멤버 목록]</h1>");
+
+      // 총 회원수
+      out.printf("<span>총 회원수 : %d</span><br>", memberService.list().size());
 
       String keyword = request.getParameter("keyword");
 
@@ -108,8 +109,9 @@ public class MemberListServlet extends HttpServlet {
       out.println("</tr>");
 
       out.println("<form action='list' method='get'>");
-      out.printf("검색어: <input type='text' name='keyword' value='%s'>\n",
-          keyword != null ? keyword : "");
+      out.printf("검색어: <input type='search' name='keyword' value='%s'>\n",
+          keyword != null ? keyword : "회원 번호, 이름, 이메일, 닉네임, 회원상태번호로 검색");
+      // 상태 번호와 회원 번호가 동시에 검색이 됩니다.
       out.println("<button>검색</button>");
       out.println("</form>");
       out.println("</p>");

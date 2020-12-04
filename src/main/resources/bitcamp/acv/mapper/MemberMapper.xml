@@ -71,6 +71,8 @@
       mb.name like #{pattern}
       or mb.nick like #{pattern}
       or mb.email like #{pattern}
+      or mb.mno like #{pattern}
+      or mb.stno like #{pattern}
     </if>
     order by mb.mno desc
   </select>
