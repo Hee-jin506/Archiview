@@ -15,6 +15,7 @@
 	MovieService movieService = (MovieService) ctx.getAttribute("movieService");
 	List<String> stillcuts = (List<String>) request.getAttribute("stillcuts");
 	for (String stillcut : stillcuts) {
+	  System.out.println(stillcut);
 	%>
 	<form action='editCard'>
 		<input type='radio' name='stc'
