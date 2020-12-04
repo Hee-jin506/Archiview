@@ -103,9 +103,11 @@ public class LoginServlet extends HttpServlet {
       MemberService memberService = (MemberService) ctx.getAttribute("memberService");
 
       Member member = memberService.get(email, password);
+
       if (member == null) {
         out.println("<p>사용자 정보가 맞지 않습니다.</p>");
-
+      } else if (member.getStatus() == 3) {
+        out.println("<p>탈퇴한 아이디입니다.</p>");
       } else {
         session.setAttribute("loginUser", member);
         // 로그인이 성공했으면 메인 화면으로 이동한다.
