@@ -1,12 +1,14 @@
 package bitcamp.acv.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Tag {
   private int no;
   private String title;
   private boolean status;
   private Date registeredDate;
+  private List<Integer> reviews; 
 
   public int getNo() {
     return no;
@@ -31,5 +33,11 @@ public class Tag {
   }
   public void setRegisteredDate(Date registeredDate) {
     this.registeredDate = registeredDate;
+  }
+  public List<Integer> getReviews() {
+    return reviews;
+  }
+  public void setReviews(List<Integer> reviews) {
+    this.reviews = reviews;
   }
 }

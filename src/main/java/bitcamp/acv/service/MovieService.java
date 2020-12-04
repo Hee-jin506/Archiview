@@ -7,7 +7,7 @@ public interface MovieService {
   List<Movie> list() throws Exception;
   List<Movie> list(String keyword) throws Exception;
   Movie findByNo(int no) throws Exception;
-  int getStillCutNo(String stillcut) throws Exception;
   String getStcUrl(int stcNo) throws Exception;
   int update(Movie movie) throws Exception;
+  int getStcNo(String stillcut) throws Exception;
 }

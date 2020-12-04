@@ -11,4 +11,5 @@ public interface MovieDao {
   int getStillCutNo(String stillcut) throws Exception;
   String getStcUrl(int stcNo) throws Exception;
   int update(Movie movie) throws Exception;
+  int getStcNo(String stillcut) throws Exception;
 }

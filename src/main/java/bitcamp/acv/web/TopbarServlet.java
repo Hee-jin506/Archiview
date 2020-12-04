@@ -44,6 +44,7 @@ public class TopbarServlet extends HttpServlet {
     out.printf("  <a href='%s/'>팔로잉피드 하트</a>\n", contextPath);
     out.printf("  <a href='%s/'>뉴스피드 알람</a>\n", contextPath);
     out.printf("  <a href='%s/auth/loginUser'>회원</a>\n", contextPath);
+    out.printf("  <a href='%s/member/list'>회원리스트</a>\n", contextPath);
     out.printf("  <a href='%s/auth/login'>로그인</a>\n", contextPath);
     out.printf("  <a href='%s/auth/logout'>로그아웃</a>\n", contextPath);
     out.println("</div>");

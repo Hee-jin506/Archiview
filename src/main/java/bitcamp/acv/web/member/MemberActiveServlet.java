@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import bitcamp.acv.service.MemberService;
 
 
-@WebServlet("/member/delete")
-public class MemberDeleteServlet extends HttpServlet {
+@WebServlet("/member/active")
+public class MemberActiveServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
@@ -32,17 +32,16 @@ public class MemberDeleteServlet extends HttpServlet {
     out.println("<head>");
     // 일단 리스트로 돌아가도록 해놨습니다.
     out.println("<meta http-equiv='Refresh' content='1;list'>");
-    out.println("<title>회원탈퇴</title></head>");
+    out.println("<title>회원활성화</title></head>");
     out.println("<body>");
     try {
-      out.println("<h1>회원 탈퇴</h1>");
+      out.println("<h1>회원 활성화</h1>");
       int no = Integer.parseInt(request.getParameter("no"));
 
-      if (memberService.delete(no) == 0) {
+      if (memberService.active(no) == 0) {
         out.printf("<p>해당 회원이 존재하지 않습니다.</p>\n");
       } else {
-
-        out.printf("<p>탈퇴 완료되었습니다.</p>\n");
+        out.printf("<p>회원을 활성화하였습니다.</p>\n");
       }
     } catch (Exception e) {
       request.setAttribute("exception", e);

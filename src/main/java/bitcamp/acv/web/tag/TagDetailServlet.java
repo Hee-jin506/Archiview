@@ -63,6 +63,7 @@ public class TagDetailServlet  extends HttpServlet {
       //      out.printf("게시물 수 - %s<br>\n", member.getPhoto());
       out.printf("상태: %s<br>\n", tag.isStatus() ? "게시중" : "삭제");
       out.printf("<a href='delete?no=%d'>삭제</a>\n", tag.getNo());
+      out.printf("<a href='active?no=%d'>복구</a>\n", tag.getNo());
       out.println("</p>");
 
 

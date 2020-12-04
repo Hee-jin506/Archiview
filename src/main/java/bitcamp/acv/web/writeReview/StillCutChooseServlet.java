@@ -14,7 +14,7 @@ import bitcamp.acv.domain.Movie;
 import bitcamp.acv.service.MovieService;
 
 @WebServlet("/write/chooseStc")
-public class StillCutChooseServlet extends HttpServlet {
+public class StillcutChooseServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
@@ -35,31 +35,9 @@ public class StillCutChooseServlet extends HttpServlet {
     try {
       Movie movie = movieService.findByNo(Integer.parseInt(request.getParameter("movieNo")));
 
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<title>후기 등록 : 스틸컷 선택</title></head>");
-      out.println("<body>");
-      out.println("<h1>인상 깊은 장면을 골라주세요.</h1>");
-
       List<String> stillcuts = movie.getStillCuts();
-      out.println("<form action='editCard'>");
-
-      for (String stillcut : stillcuts) {
-
-        out.println("<label>");
-        out.printf("<input type='radio' name='stc' value='%d' %s>",
-            movieService.getStillCutNo(stillcut),
-            stillcuts.indexOf(stillcut) == 0 ? "checked" : "");
-
-        out.printf("<img src='%s' alt='%d번 스틸컷'>",
-            stillcut,
-            stillcuts.indexOf(stillcut));
-        out.println("</label>");
-      }
-
-      out.println("<button>다음</button></form>");
-      out.println("<br><a href='../main.html'>뒤로</a>");
+      request.setAttribute("stillcuts", stillcuts);
+      request.getRequestDispatcher("stillcutChoose.jsp").include(request, response);
 
     } catch (Exception e) {
       out.printf("<p>작업 처리 중 오류 발생! - %s</p>\n", e.getMessage());
@@ -69,7 +47,5 @@ public class StillCutChooseServlet extends HttpServlet {
 
       out.printf("<pre>%s</pre>\n", errOut.toString());
     }
-    out.println("</body>");
-    out.println("</html>");
   }
 }

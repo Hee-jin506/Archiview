@@ -67,10 +67,7 @@ public class TagMultipleDeleteServlet extends HttpServlet {
       out.printf("<h3>상세 오류 내용</h3>");
       out.printf("<pre>%s</pre>\n", errOut.toString());
     }
-
     out.println("</body>");
     out.println("</html>");
   }
-
-
 }

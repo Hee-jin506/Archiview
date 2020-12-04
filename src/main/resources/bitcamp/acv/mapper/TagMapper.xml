@@ -2,63 +2,128 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="TagDao">
+
+	<resultMap type="tag" id="TagMap">
+		    <id column="tno"    property="no" />
+		<result column="title"  property="title" />
+		<result column="stat"   property="status" />
+		<result column="rdt"    property="registeredDate" />
+		
+		<collection property="reviews"    ofType="integer">
+         <result column="rvno"        property="ohora"/>
+    </collection>
+	</resultMap>
+
+	<sql id="sql1">
+			select
+			t.tno,
+			t.title,
+			t.stat,
+			t.rdt,
+			tp.tpno,
+			tp.rvno
+		from acv_tag t
+			left outer join acv_tag_post tp on t.tno=tp.tno
+	</sql>
+	
+	<select id="findByTitle" resultMap="TagMap" parameterType="string">
+    <include refid="sql1"/>
+    where t.title=#{title}
+  </select>
+
+	<select id="findAll" resultMap="TagMap" parameterType="string">
+		<include refid="sql1" />
+		<if test="keyword != null">
+			where
+			t.tno like concat('%', #{keyword}, '%')
+			or t.title like concat('%', #{keyword}, '%')
+			or t.stat like concat('%', #{keyword}, '%')
+		</if>
+		order by t.tno desc
+	</select>
+
+	<select id="findByNo" parameterType="int" resultMap="TagMap">
+		<include refid="sql1" />
+		where t.tno = #{tno}
+	</select>
+
+	<!-- 삭제 = stat을 0으로 업데이트 -->
+	<update id="delete" parameterType="int">
+		update acv_tag
+		set stat = 0
+		where tno = #{tno}
+	</update>
+	
+	<update id="active" parameterType="int">
+		update acv_tag
+		set stat = 1
+		where tno = #{tno}
+	</update>
+
+	<select id="findByDetailKeyword" resultMap="TagMap" parameterType="map">
+		<include refid="sql1" />
+		<where>
+			<if test="no != null">
+				t.tno like concat('%',#{keyword},'%')
+			</if>
+			<if test="name != null">
+				or t.title like concat('%', #{keyword}, '%')
+			</if>
+			<if test="state != null">
+				or t.stat like concat('%', #{keyword}, '%')
+			</if>
+			<if test="number != null">
+				t.tno like concat('%',#{number},'%')
+			</if>
+			<if test="title != null">
+				and t.title like concat('%', #{title}, '%')
+			</if>
+			<if test="status != null">
+				and t.stat like concat('%', #{status}, '%')
+			</if>
+			<if test="registeredDate != null">
+				and t.rdt like concat('%', #{registeredDate}, '%')
+			</if>
+			<if test="startDate != null and endDate != null">
+			and t.rdt between date(#{startDate}) and date(#{endDate})+1
+			</if>
+			<if test="startNumber != '' and endNumber != '' and startNumber != null and endNumber != null">
+				and t.tno >= #{startNumber} and t.tno<![CDATA[<]]> #{endNumber}+1
+			</if>
+		</where>
+		order by t.tno desc
+	</select>
+	
+<insert id="insert" parameterType="tag" useGeneratedKeys="true" keyProperty="no">
+    insert ignore into acv_tag(title)
+    values(#{title})
+  </insert>
   
-  <resultMap type="tag" id="TagMap">
-        <id column="tno"       property="no"/>
-    <result column="title"     property="title"/>
-    <result column="stat"      property="status"/>
-    <result column="rdt"       property="registeredDate"/>
-  </resultMap>
-  
-  <sql id="sql1">
-    select 
-    t.tno,
-    t.title,
-    t.stat,
-    t.rdt
+  <insert id="insertByReview" parameterType="review">
+    insert into acv_tag_post(rvno, tno)
+    values
+    <foreach collection="tags" item="tag" separator=",">
+      (#{no},#{tag.no})
+    </foreach>
+  </insert>
+
+	<!-- INSERT INTO test VALUES (now(), now()); -->
+	<!-- select t1, t2 from test where t1 like concat('%', '2020-12-03', '%') 
+		and t2 like concat('%', '2020-12-03', '%'); -->
+
+
+<!-- select
+      t.tno,
+      t.title,
+      t.stat,
+      t.rdt,
+      tp.tpno,
+      tp.rvno
     from acv_tag t
-  </sql>
-       
-  <select id="findAll" resultMap="TagMap" parameterType="string">
-    <include refid="sql1"/>
-    <if test="keyword != null">
-    where 
-      t.tno like concat('%', #{keyword}, '%')
-      or t.title like concat('%', #{keyword}, '%')
-      or t.stat like concat('%', #{keyword}, '%')
-    </if>
-    order by t.tno desc
-  </select>
-  
-  <select id="findByNo" parameterType="int" resultMap="TagMap">
-      <include refid="sql1"/>
-    where 
-      tno = #{tno}
-  </select>
-  
-  <!-- 삭제 = stat을 0으로 업데이트 -->
-  <update id="delete" parameterType="int">
-    update acv_tag
-      set stat = 0
-    where tno = #{tno}
-  </update>
-  
-  <select id="findByDetailKeyword" resultMap="TagMap" parameterType="map">
-    <include refid="sql1"/>
-    <where>
-      <if test="number != null">
-        t.tno like concat('%', #{number}, '%')
-      </if>
-      <if test="title != null">
-        and t.title like concat('%', #{title}, '%')
-      </if>
-      <if test="status != null">
-        and t.stat like concat('%', #{status}, '%')
-      </if>
-    </where>
-    order by t.tno desc
-  </select>
+      left outer join acv_tag_post tp on t.tno=tp.tno
+      where t.stat like 1 -->
+      
 
 </mapper>
