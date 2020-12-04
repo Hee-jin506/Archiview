@@ -162,6 +162,7 @@ values(1, 1, 'https://movie-phinf.pstatic.net/20170814_17/1502675963099mSfot_JPE
 insert into acv_pstr(psno, mvno, ps_url, main_ps)
 values(2, 1, 'https://movie-phinf.pstatic.net/20161026_271/1477463580542wovM2_JPEG/movie_image.jpg?type=m665_443_2', 0);
 
+/* 영화 장르 샘플*/
 insert into acv_gnr_mov(gmno, gno, mvno) 
 values(1, 10, 1);
 
@@ -179,6 +180,33 @@ values(2, '순종', '김동민,이주훈', 'Obedience', 88, '2016-11-17',
 과연 이들의 상처는 치유될 것인가!', 
 '한국', 1, 154347);
 
+/*스틸컷 샘플*/
+insert into acv_stc(mvno)
+values(2);
+
+insert into acv_stc(mvno, stc_url)
+values(2, 'https://movie-phinf.pstatic.net/20161005_293/1475628867935FG8GR_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(2, 'https://movie-phinf.pstatic.net/20161012_48/14762359440663t467_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(2, 'https://movie-phinf.pstatic.net/20161012_58/14762359442496JxCB_JPEG/movie_image.jpg?type=m665_443_2');
+
+/*포스터 샘플*/
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(2, 'https://movie-phinf.pstatic.net/20161024_276/1477272601802XgGy1_JPEG/movie_image.jpg?type=m665_443_2', 1);
+
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(2, 'https://movie-phinf.pstatic.net/20161014_145/1476432490724174nM_JPEG/movie_image.jpg?type=m665_443_2', 0);
+
+/* 영화 장르 샘플*/
+insert into acv_gnr_mov(gmno, gno, mvno) 
+values(2, 1, 2);
+
+insert into acv_gnr_mov(gmno, gno, mvno) 
+values(3, 10, 2);
+
 insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
 values(3, '연애담', '이현주', 'Our Love Story', 99, '2016-11-17', 
 '이상희,류아벨,박근록,임성미,김종수', 
@@ -189,6 +217,33 @@ values(3, '연애담', '이현주', 'Our Love Story', 99, '2016-11-17',
 얼마 후, 그 사람을 다시 만난 지수는  그 사람에게 마음을 이어나가려 손을 내밀어 본다.  
 두 사람의 마음이 이어진 가장 행복하고 따뜻했던 이 순간은 정말 영원할 수 있을까…',
 '한국', 1, 149481);
+
+/*스틸컷 샘플*/
+insert into acv_stc(mvno)
+values(3);
+
+insert into acv_stc(mvno, stc_url)
+values(3, 'https://movie-phinf.pstatic.net/20161024_208/1477276440225QuosM_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(3, 'https://movie-phinf.pstatic.net/20161024_105/1477276440617SoOFq_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(3, 'https://movie-phinf.pstatic.net/20161024_265/1477276440726EDpbS_JPEG/movie_image.jpg?type=m665_443_2');
+
+/*포스터 샘플*/
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(3, 'https://movie-phinf.pstatic.net/20161028_162/1477618609681NUghJ_JPEG/movie_image.jpg?type=m665_443_2', 1);
+
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(3, 'https://movie-phinf.pstatic.net/20161024_152/1477284828563SyUai_JPEG/movie_image.jpg?type=m665_443_2', 0);
+
+/* 영화 장르 샘플*/
+insert into acv_gnr_mov(gno, mvno) 
+values(1, 2);
+
+insert into acv_gnr_mov(gno, mvno) 
+values(5, 2);
 
 insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
 values(4, '형', '권수경', 'MY ANNOYING BROTHER', 110, '2016-11-23', 
@@ -202,6 +257,34 @@ values(4, '형', '권수경', 'MY ANNOYING BROTHER', 110, '2016-11-23',
 15년동안 단 한번도 연락이 없던 뻔뻔한 형이 집으로 돌아오고  보호자 노릇은커녕 ‘두영’의 삶을 더 엉망진창으로 만드는데…. 
 남보다 못한 형제의 예측불허 동거가 시작된다!', 
 '한국', 1, 142803);
+
+/*스틸컷 샘플*/
+insert into acv_stc(mvno)
+values(4);
+
+insert into acv_stc(mvno, stc_url)
+values(4, 'https://movie-phinf.pstatic.net/20161020_136/14769419489932Nqtl_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(4, 'https://movie-phinf.pstatic.net/20161020_220/1476941949335BE550_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(4, 'https://movie-phinf.pstatic.net/20161024_162/1477288349850Cn1w2_JPEG/movie_image.jpg?type=m665_443_2');
+
+/*포스터 샘플*/
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(4, 'https://movie-phinf.pstatic.net/20161123_110/1479885421852lTvQa_JPEG/movie_image.jpg?type=m665_443_2', 1);
+
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(4, 'https://movie-phinf.pstatic.net/20161111_74/1478853017963NqT1U_JPEG/movie_image.jpg?type=m665_443_2', 0);
+
+/* 영화 장르 샘플*/
+insert into acv_gnr_mov(gno, mvno) 
+values(1, 4);
+
+insert into acv_gnr_mov(gno, mvno) 
+values(11, 4);
+
 
 insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
 values(5, '나의 살던 고향은', '류종헌', 'OGURYEO', 95, '2016-11-24', 

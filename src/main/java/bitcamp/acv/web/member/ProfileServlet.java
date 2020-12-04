@@ -1,4 +1,4 @@
-package bitcamp.acv.web.auth;
+package bitcamp.acv.web.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,29 +11,18 @@ import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
 
 
-@WebServlet("/auth/loginUser")
-public class LoginUserServlet extends HttpServlet {
+@WebServlet("/member/profile")
+public class ProfileServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    // 클라이언트 전용 보관소(httpSession)를 준비한다.
     HttpSession session = request.getSession();
 
-    // 클라이언트로 데이터를 출력할 때 사용할 스트림 준비
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head><title>로그인사용자</title></head>");
-    out.println("<body>");
-
-    request.getRequestDispatcher("/topbar").include(request, response);
-
-    out.println("<h1>로그인 사용자</h1>");
 
     Member member = (Member) session.getAttribute("loginUser");
     if (member == null) {
