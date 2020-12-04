@@ -19,7 +19,7 @@
     <result column="rdt"      property="registeredDate"/>
     <result column="nav_cd"      property="naverCd"/>
     
-    <collection property="stillCuts" ofType="string">
+    <collection property="stillcuts" ofType="string">
       <result column="stc_url"          property="url"/>
     </collection>
     
@@ -78,13 +78,13 @@
       m.mvno = #{no}
   </select>
   
-  <update id="updateInactiveMembers" parameterType="int">
+  <update id="DeleteMembers" parameterType="int">
   update acv_mov set
     stat = 0
   where no = #{no}
   </update>
   
-    <update id="updateActiveMembers" parameterType="int">
+    <update id="ActiveMembers" parameterType="int">
   update acv_mov set
     stat = 1
   where no = #{no}
@@ -104,21 +104,14 @@
     where mvno = #{no}
   </update>
   
-  <select id="getStcUrl" resultType="string" parameterType="int">
-    select
-      stc_url
-    from
-      acv_stc
-    where
-      stcno=#{no}
-  </select>
   
-  <select id="getStcNo" resultType="int" parameterType="String">
+  <select id="getStcNo" resultType="int" parameterType="map">
     select
       stcno
     from
       acv_stc
     where
-      stc_url=#{keyword}
+      stc_url=#{url}
+      and mvno=#{movieNo}
   </select>
 </mapper>

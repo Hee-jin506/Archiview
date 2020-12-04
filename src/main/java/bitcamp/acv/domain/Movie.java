@@ -16,7 +16,7 @@ public class Movie {
   private String nation;
   private int status;
   private Date registeredDate;
-  private List<String> stillCuts;
+  private List<String> stillcuts;
   private List<String> posters;
   private List<String> genres;
   private int naverCd;
@@ -117,12 +117,12 @@ public class Movie {
     this.registeredDate = registeredDate;
   }
 
-  public List<String> getStillCuts() {
-    return stillCuts;
+  public List<String> getStillcuts() {
+    return stillcuts;
   }
 
-  public void setStillCuts(List<String> stillCuts) {
-    this.stillCuts = stillCuts;
+  public void setStillcuts(List<String> stillcuts) {
+    this.stillcuts = stillcuts;
   }
 
   public List<String> getPosters() {

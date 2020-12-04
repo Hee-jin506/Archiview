@@ -3,7 +3,6 @@ package bitcamp.acv.web.writeReview;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +25,6 @@ public class StillcutChooseServlet extends HttpServlet {
     MovieService movieService =
         (MovieService) ctx.getAttribute("movieService");
 
-    // 클라이언트가 POST 요청할 때 보낸 데이터를 읽는다.
     request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html;charset=UTF-8");
 
@@ -34,9 +32,7 @@ public class StillcutChooseServlet extends HttpServlet {
 
     try {
       Movie movie = movieService.findByNo(Integer.parseInt(request.getParameter("movieNo")));
-
-      List<String> stillcuts = movie.getStillCuts();
-      request.setAttribute("stillcuts", stillcuts);
+      request.setAttribute("stillcuts", movie.getStillcuts());
       request.getRequestDispatcher("stillcutChoose.jsp").include(request, response);
 
     } catch (Exception e) {

@@ -1,6 +1,8 @@
 package bitcamp.acv.dao.mariadb;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import bitcamp.acv.dao.MovieDao;
 import bitcamp.acv.domain.Movie;
@@ -117,13 +119,6 @@ public class MovieDaoImpl implements MovieDao {
   }
 
   @Override
-  public String getStcUrl(int stcNo) throws Exception {
-    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectOne("MovieDao.getStcUrl", stcNo);
-    }
-  }
-
-  @Override
   public int update(Movie movie) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.update("MovieDao.update", movie);
@@ -134,6 +129,16 @@ public class MovieDaoImpl implements MovieDao {
   public int getStcNo(String stillcut) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.selectOne("MovieDao.getStcNo", stillcut);
+    }
+  }
+
+  @Override
+  public int getStcNo(int movieNo, String url) {
+    Map<String, Object> map = new HashMap<>();
+    map.put("movieNo", movieNo);
+    map.put("url", url);
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("MovieDao.getStcNo", map);
     }
   }
 }

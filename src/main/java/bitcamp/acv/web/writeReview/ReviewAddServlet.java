@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
+import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
 
 @WebServlet("/write/add")
@@ -32,16 +33,19 @@ public class ReviewAddServlet extends HttpServlet {
     ServletContext ctx = request.getServletContext();
     ReviewService reviewService =
         (ReviewService) ctx.getAttribute("reviewService");
+    MovieService movieService =
+        (MovieService) ctx.getAttribute("movieService");
 
     try {
       HttpSession session = request.getSession();
       Member loginUser = (Member) session.getAttribute("loginUser");
       Review review = new Review();
+      int stcNo = movieService.getStcNo(Integer.parseInt(request.getParameter("movieNo")), request.getParameter("stc"));
 
       if (loginUser == null) {
       } else {
         review.setWriter(loginUser);
-        review.setStillCut(Integer.parseInt(request.getParameter("stc")));
+        review.setStillCut(stcNo);
         review.setText(request.getParameter("text"));
         review.setTextX(Integer.parseInt(request.getParameter("x")));
         review.setTextY(Integer.parseInt(request.getParameter("x")));
