@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ReportDao">
+  
+  <resultMap type="Report" id="ReportMap">
+    <id column="rno"           property="no"/>
+    <result column="rano"      property="reportedType"/> 
+    <result column="target"     property="reportedNo"/>
+    <result column="rdt"       property="reportedDate"/>
+    <result column="rwno"      property="why"/> 
+    <result column="rsno"      property="status"/> 
+    <result column="content"   property="processingContent"/>
+    <result column="pdt"       property="ProcessedDate"/>
+    
+  <association property="reportingMember" javaType="Member">
+		<id column="mno" property="no"/>
+		<result column="nick" property="nickName"/>
+	</association>
+  </resultMap>
+
+<!--
+  <sql id="sql1">
+  select
+    rp.rno,
+    rp.rano,
+    rp.target,
+    rp.rdt,
+    rp.rwno,
+    rp.rsno,
+    rp.content,
+    rp.pdt
+  from 
+    acv_rp rp
+  </sql> 
+-->
+
+  <select id="findAll" resultMap="ReportMap">
+    select
+      rp.rno,
+      rp.rano,
+      rp.target,
+      rp.rdt,
+      rp.rwno,
+      rp.rsno,
+      rp.content,
+      rp.pdt,
+      mb.mno mno,
+      mb.nick nick
+    from
+      acv_rp rp
+      inner join acv_mbr mb on rp.mno=mb.mno
+    order by
+      rp.rno desc
+  </select>
+  
+    <insert id="insert" parameterType="report">
+    insert into acv_rp(mno,rano,target,rwno,rsno,content,pdt)
+    values(#{mb.mno},#{rano},#{targer},#{rwno},#{rsno},#{content},#{pdt})
+  </insert>
+  
+    <select id="findByNo" parameterType="java.lang.Integer" resultMap="ReportMap">
+    select
+      rp.rno,
+      rp.rano,
+      rp.target,
+      rp.rdt,
+      rp.rwno,
+      rp.rsno,
+      rp.content,
+      rp.pdt,
+      mb.mno mno,
+      mb.nick nick
+    from
+      acv_rp rp
+      inner join acv_mbr mb on rp.mno=mb.mno
+    where rp.rno = #{reportNo}
+  </select>
+
+
+  <!--
+  // 신고 대상 타입
+  public static final int MEMBER = 1;
+  public static final int REVIEW = 2;
+  public static final int COMMENT = 3;
+  public static final int TAG = 4;
+
+  private int no; // 신고 번호 rno
+  private Member reportingMember; // 신고한 회원 mno
+  private int reportedType; // 신고 유형 rano
+  private int reportedNo; // 신고된 대상 번호 target
+  private String why; // 신고 사유 rwno
+  private String status; // 신고 처리 상태 rsno
+  private String processingContent; // 신고 처리 내용 content
+  private Date reportedDate; // 신고 일시 rdt
+  private Date ProcessedDate; //  신고 처리 완료 일시 pdt
+  -->
+  
+  </mapper>
