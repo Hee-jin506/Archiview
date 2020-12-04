@@ -78,6 +78,32 @@
       m.mvno = #{no}
   </select>
   
+  <update id="updateInactiveMembers" parameterType="int">
+  update acv_mov set
+    stat = 0
+  where no = #{no}
+  </update>
+  
+    <update id="updateActiveMembers" parameterType="int">
+  update acv_mov set
+    stat = 1
+  where no = #{no}
+  </update>
+  
+  <update id="update" parameterType="movie">
+    update acv_mov
+    <set>
+      <if test="registeredDate != null">rdt = #{registeredDate},</if>
+      <if test="title != null">title = #{title},</if>
+      <if test="englishTitle != null">eng_title = #{englishTitle},</if>
+      <if test="runtime != null">runtime = #{runtime},</if>
+      <if test="directors != null">dir = #{directors},</if>
+      <if test="nation != null">nation = #{nation},</if>
+      <if test="openDate != null">odt = #{openDate},</if>
+    </set>
+    where mvno = #{no}
+  </update>
+  
   <!-- <select id="getStillCutNo" resultMap="MovieMap" parameterType="string">
     select
       stcno
@@ -148,3 +174,5 @@ from acv_mov m
       inner join acv_gnr g on g.gno=gm.gno
 where 
   m.mvno = 1; -->
+  
+  
