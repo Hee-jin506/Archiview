@@ -36,6 +36,7 @@ public class MemberListServlet extends HttpServlet {
     request.getRequestDispatcher("/topbar").include(request, response);
 
     try {
+
       out.println("<h1>[멤버 목록]</h1>");
 
       List<Member> list = memberService.list();
@@ -57,7 +58,6 @@ public class MemberListServlet extends HttpServlet {
       out.println("<th>회원 상태 번호</th>");
       out.println("<th>회원 상태 변경일</th>");
       out.println("</tr></thead>");
-
 
       for (Member member : list ) {
 
