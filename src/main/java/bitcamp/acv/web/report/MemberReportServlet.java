@@ -48,7 +48,7 @@ public class MemberReportServlet extends HttpServlet {
 
       out.print("신고 유형: \n");
 
-      List<Report> typeList = reportService.findAll();
+      List<Report> typeList = reportService.list();
       for (Report r : typeList) {
         String type = null;
         switch (r.getReportedType()) {
@@ -117,7 +117,6 @@ public class MemberReportServlet extends HttpServlet {
       report.setReportedType(Integer.parseInt(request.getParameter("reportedType")));
       report.setStatus(request.getParameter("status")); // 신고 처리 상태
       report.setWhy(request.getParameter("why")); // 신고 사유
-      // 유형이 자꾸 에러남
 
 
       reportService.add(report);

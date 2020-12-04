@@ -1,7 +1,7 @@
 package bitcamp.acv.service;
 
 import java.util.List;
-import bitcamp.acv.dao.CommentDao;
+import java.util.Map;
 import bitcamp.acv.dao.MemberDao;
 import bitcamp.acv.dao.ReportDao;
 import bitcamp.acv.dao.ReviewDao;
@@ -13,15 +13,30 @@ public class DefaultReportService implements ReportService {
   MemberDao memberDao;
   ReviewDao reviewDao;
   TagDao tagDao;
-  CommentDao commentDao;
 
-  public DefaultReportService(ReportDao reportDao) {
+  public DefaultReportService(ReportDao reportDao,
+      MemberDao memberDao,
+      ReviewDao reviewDao,
+      TagDao tagDao) {
     this.reportDao = reportDao;
+    this.memberDao = memberDao;
+    this.reviewDao = reviewDao;
+    this.tagDao = tagDao;
   }
 
   @Override
-  public List<Report> findAll() throws Exception {
-    return reportDao.findAll();
+  public List<Report> list() throws Exception {
+    return reportDao.findAll(null);
+  }
+
+  @Override
+  public List<Report> list(String keyword) throws Exception {
+    return reportDao.findAll(keyword);
+  }
+
+  @Override
+  public List<Report> list(Map<String, Object> keywords) throws Exception {
+    return reportDao.findByDetailKeyword(keywords);
   }
 
   @Override
@@ -42,8 +57,6 @@ public class DefaultReportService implements ReportService {
       return reviewDao.findAll();
     } else if (report.getReportedType() == Report.TAG) {
       return tagDao.findByNo(report.getReportedNo());
-    } else if (report.getComment() == report.COMMENT) {
-      return commentDao.findByNo(Report.COMMENT);
     }
     return null;
   }

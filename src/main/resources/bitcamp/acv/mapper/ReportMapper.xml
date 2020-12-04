@@ -22,51 +22,7 @@
 		
   </resultMap>
 
-<!--
   <sql id="sql1">
-  select
-    rp.rno,
-    rp.rano,
-    rp.target,
-    rp.rdt,
-    rp.rwno,
-    rp.rsno,
-    rp.content,
-    rp.pdt
-  from 
-    acv_rp rp
-  </sql> 
--->
-
-  <select id="findAll" resultMap="ReportMap">
-    select
-      rp.rno,
-      rp.rano,
-      rp.target,
-      rp.rdt,
-      rp.rwno,
-      rp.rsno,
-      rp.content,
-      rp.pdt,
-      mb.mno mno,
-      mb.nick nick,
-      rps.rsno,
-      rps.title stat_title
-    from
-      acv_rp rp
-      inner join acv_mbr mb on rp.mno=mb.mno
-      inner join acv_rp_stat rps on rp.rsno = rps.rsno
-    order by
-      rp.rno desc
-  </select>
-  
-    <insert id="insert" parameterType="report">
-    insert into acv_rp(mno,rano,target,rwno,rsno,content,pdt)
-    values(#{mb.mno},#{rano},#{targer},#{rwno},#{rsno},#{content},#{pdt})
-  </insert>
-  
-  
-    <select id="findByNo" parameterType="Integer" resultMap="ReportMap">
     select
       rp.rno,
       rp.rano,
@@ -85,7 +41,57 @@
       inner join acv_mbr mb on rp.mno=mb.mno
       inner join acv_rp_why rpw on rp.rwno = rpw.rwno
       inner join acv_rp_stat rps on rp.rsno = rps.rsno
+  </sql> 
+
+  <select id="findAll" resultMap="ReportMap" parameterType="string">
+    select
+      rp.rno,
+      rp.rano,
+      rp.target,
+      rp.rdt,
+      rp.rwno,
+      rp.rsno,
+      rp.content,
+      rp.pdt,
+      mb.mno mno,
+      mb.nick nick,
+      rps.rsno,
+      rps.title stat_title
+    from
+      acv_rp rp
+      inner join acv_mbr mb on rp.mno=mb.mno
+      inner join acv_rp_stat rps on rp.rsno = rps.rsno
+      <if test="keyword != null">
+    where 
+      rp.rno like concat('%', #{keyword}, '%')
+      or rps.title like concat('%', #{keyword}, '%')
+      </if>
+    order by
+      rp.rno desc
+  </select>
+  
+    <insert id="insert" parameterType="report">
+    insert into acv_rp(mno,rano,target,rwno,rsno)
+    values(#{mb.mno},#{rano},#{targer},#{rwno},#{rsno})
+  </insert>
+  
+    <select id="findByNo" parameterType="Integer" resultMap="ReportMap">
+    <include refid="sql1"/>
     where rp.rno = #{reportNo}
+  </select>
+  
+    <select id="findByDetailKeyword" resultMap="ReportMap" parameterType="map">
+    <include refid="sql1"/>
+    <where>
+      <if test="reportedType != null">
+        rp.rano like concat('%', #{reportedType}, '%')
+      </if>
+      <if test="status != null">
+        and rps.title like concat('%', #{status}, '%')
+      </if>
+    </where>
+    order by
+      rp.rno desc
   </select>
 
   <!--
