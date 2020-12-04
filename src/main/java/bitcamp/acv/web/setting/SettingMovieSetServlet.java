@@ -17,7 +17,7 @@ public class SettingMovieSetServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
 
@@ -43,7 +43,7 @@ public class SettingMovieSetServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.println("<meta http-equiv='Refresh' content='1;url=list'>");
+    out.println("<meta http-equiv='Refresh' content='2;url=list'>");
     out.println("<title>영화수정</title></head>");
     out.println("<body>");
 
@@ -52,7 +52,7 @@ public class SettingMovieSetServlet extends HttpServlet {
 
       movieService.update(movie);
 
-      out.println("<p>영화를 수정하였습니다.</p>");
+      out.println("<p>영화 정보를 수정하였습니다.</p>");
 
     } catch (Exception e) {
       request.setAttribute("exception", e);

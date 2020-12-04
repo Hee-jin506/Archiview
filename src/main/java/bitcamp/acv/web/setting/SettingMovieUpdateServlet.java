@@ -59,7 +59,7 @@ public class SettingMovieUpdateServlet extends HttpServlet {
         genres.append("\n");
       }
 
-      out.println("<form action='set' method=post'>");
+      out.println("<form action='set' method='post'>");
       out.println("<button>수정</button>");
       out.printf("<a href='detail?no=%d'>취소</a>\n", movie.getNo());
       out.printf("<p>영화번호 <input type='text' name='mvno' value='%d' readonly></p>\n", movie.getNo());
