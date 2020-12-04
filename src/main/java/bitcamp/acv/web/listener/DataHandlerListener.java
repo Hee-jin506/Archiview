@@ -8,18 +8,22 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import bitcamp.acv.dao.MemberDao;
 import bitcamp.acv.dao.MovieDao;
+import bitcamp.acv.dao.ReportDao;
 import bitcamp.acv.dao.ReviewDao;
 import bitcamp.acv.dao.TagDao;
 import bitcamp.acv.dao.mariadb.MemberDaoImpl;
 import bitcamp.acv.dao.mariadb.MovieDaoImpl;
+import bitcamp.acv.dao.mariadb.ReportDaoImpl;
 import bitcamp.acv.dao.mariadb.ReviewDaoImpl;
 import bitcamp.acv.dao.mariadb.TagDaoImpl;
 import bitcamp.acv.service.DefaultMemberService;
 import bitcamp.acv.service.DefaultMovieService;
+import bitcamp.acv.service.DefaultReportService;
 import bitcamp.acv.service.DefaultReviewService;
 import bitcamp.acv.service.DefaultTagService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
+import bitcamp.acv.service.ReportService;
 import bitcamp.acv.service.ReviewService;
 import bitcamp.acv.service.TagService;
 import bitcamp.util.SqlSessionFactoryProxy;
@@ -40,6 +44,7 @@ public class DataHandlerListener implements ServletContextListener {
       MemberDao memberDao = new MemberDaoImpl(sqlSessionFactory);
       TagDao tagDao = new TagDaoImpl(sqlSessionFactory);
       ReviewDao reviewDao = new ReviewDaoImpl(sqlSessionFactory);
+      ReportDao reportDao = new ReportDaoImpl(sqlSessionFactory);
 
 
       // Service 구현체 생성
@@ -47,7 +52,7 @@ public class DataHandlerListener implements ServletContextListener {
       MemberService memberService = new DefaultMemberService(memberDao);
       TagService tagService = new DefaultTagService(tagDao);
       ReviewService reviewService = new DefaultReviewService(reviewDao, tagDao, sqlSessionFactory);
-
+      ReportService reportService = new DefaultReportService(reportDao);
 
       ServletContext ctx = sce.getServletContext();
 
@@ -57,6 +62,7 @@ public class DataHandlerListener implements ServletContextListener {
       ctx.setAttribute("memberService", memberService);
       ctx.setAttribute("tagService", tagService);
       ctx.setAttribute("reviewService", reviewService);
+      ctx.setAttribute("reportService", reportService);
 
     } catch (Exception e) {
       System.out.println("Mybatis 및 DAO, 서비스 객체 준비 중 오류 발생!");
