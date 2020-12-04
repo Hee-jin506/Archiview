@@ -7,4 +7,5 @@ public interface ReportService {
   List<Report> findAll() throws Exception;
   void add(Report report) throws Exception;
   Report get(int no) throws Exception;
+  Object getTarget(Report report) throws Exception;
 }

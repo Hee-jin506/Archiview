@@ -10,8 +10,8 @@
     <result column="rano"      property="reportedType"/> 
     <result column="target"     property="reportedNo"/>
     <result column="rdt"       property="reportedDate"/>
-    <result column="rwno"      property="why"/> 
-    <result column="rsno"      property="status"/> 
+    <result column="why_title"      property="why"/> 
+    <result column="stat_title"      property="status"/> 
     <result column="content"   property="processingContent"/>
     <result column="pdt"       property="ProcessedDate"/>
     
@@ -19,6 +19,7 @@
 		<id column="mno" property="no"/>
 		<result column="nick" property="nickName"/>
 	</association>
+		
   </resultMap>
 
 <!--
@@ -48,10 +49,13 @@
       rp.content,
       rp.pdt,
       mb.mno mno,
-      mb.nick nick
+      mb.nick nick,
+      rps.rsno,
+      rps.title stat_title
     from
       acv_rp rp
       inner join acv_mbr mb on rp.mno=mb.mno
+      inner join acv_rp_stat rps on rp.rsno = rps.rsno
     order by
       rp.rno desc
   </select>
@@ -61,24 +65,28 @@
     values(#{mb.mno},#{rano},#{targer},#{rwno},#{rsno},#{content},#{pdt})
   </insert>
   
-    <select id="findByNo" parameterType="java.lang.Integer" resultMap="ReportMap">
+  
+    <select id="findByNo" parameterType="Integer" resultMap="ReportMap">
     select
       rp.rno,
       rp.rano,
       rp.target,
       rp.rdt,
-      rp.rwno,
-      rp.rsno,
       rp.content,
       rp.pdt,
       mb.mno mno,
-      mb.nick nick
+      mb.nick nick,
+      rpw.rwno,
+      rpw.title why_title,
+      rps.rsno,
+      rps.title stat_title
     from
       acv_rp rp
       inner join acv_mbr mb on rp.mno=mb.mno
+      inner join acv_rp_why rpw on rp.rwno = rpw.rwno
+      inner join acv_rp_stat rps on rp.rsno = rps.rsno
     where rp.rno = #{reportNo}
   </select>
-
 
   <!--
   // 신고 대상 타입
@@ -89,12 +97,12 @@
 
   private int no; // 신고 번호 rno
   private Member reportingMember; // 신고한 회원 mno
-  private int reportedType; // 신고 유형 rano
+  private int reportedType; // 신고된 대상의 유형 rano
   private int reportedNo; // 신고된 대상 번호 target
   private String why; // 신고 사유 rwno
   private String status; // 신고 처리 상태 rsno
-  private String processingContent; // 신고 처리 내용 content
   private Date reportedDate; // 신고 일시 rdt
+  private String processingContent; // 신고 처리 내용 content
   private Date ProcessedDate; //  신고 처리 완료 일시 pdt
   -->
   

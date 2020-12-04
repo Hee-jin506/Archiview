@@ -40,6 +40,20 @@ public class ReportDetailServlet extends HttpServlet{
       int no = Integer.parseInt(request.getParameter("no"));
 
       Report report = reportService.get(no);
+      //      Object target = reportService.getTarget(report);
+      //      if (target instanceof Member) {
+      //        request.setAttribute("member", target);
+      //        request.getRequestDispatcher("memberTarget.jsp").include(request, response);
+      //      } else if (target instanceof Review) {
+      //        request.setAttribute("review", target);
+      //        request.getRequestDispatcher("reviewTarget.jsp").include(request, response);
+      //      } else if (target instanceof Comment) {
+      //        request.setAttribute("comment", target);
+      //        request.getRequestDispatcher("commentTarget.jsp").include(request, response);
+      //      } else if (target instanceof Tag) {
+      //        request.setAttribute("tag", target);
+      //        request.getRequestDispatcher("tagTarget.jsp").include(request, response);
+      //      }
 
       if (report == null) {
         out.println("<p>해당 신고 번호가 없습니다.</p>");
@@ -50,33 +64,44 @@ public class ReportDetailServlet extends HttpServlet{
       out.printf("신고번호: <input type='text' name='no' value='%d' readonly><br>\n",
           report.getNo());
 
-        String type = null;
-        switch (report.getReportedType()) {
-          case 1 :
-            type = "회원";
-            break;
-          case 2:
-            type = "게시물";
-            break;
-          case 3:
-            type = "댓글";
-            break;
-          default:
-            type = "태그";
-        }
+      String type = null;
+      switch (report.getReportedType()) {
+        case 1 :
+          type = "회원";
+          break;
+        case 2:
+          type = "게시물";
+          break;
+        case 3:
+          type = "댓글";
+          break;
+        default:
+          type = "태그";
+      }
 
-        out.printf("신고유형: %s<br>\n", type);
-        out.printf("신고자: %d<br>\n", report.getReportingMember().getNo());
-        out.printf("신고일: %s<br>\n", report.getReportedDate());
-        out.printf("신고 내용: %s<br>\n", report.getProcessingContent());
-        out.printf("처리상태: %s<br>\n", report.getStatus());
-        out.printf("처리일: %s<br>\n", report.getProcessedDate());
-        out.printf("처리내용: %s<br>\n", report.getProcessingContent());
-        out.println("<p>");
-        out.println("<button>변경</button>");
-        out.printf("<a href='delete?no=%d'>삭제</a>\n", report.getNo());
-        out.println("</p>");
-        out.println("</form>");
+      out.printf("신고유형: %s<br>\n", type);
+      out.printf("신고자: %d<br>\n", report.getReportingMember().getNo());
+      out.printf("신고일: %s<br>\n", report.getReportedDate());
+      out.printf("신고 내용: %s<br>\n", report.getWhy());
+      out.println("</select><br>");
+      String[] stateLabels = {"신고대기", "반려", "처리완료"};
+      out.println("처리상태: ");
+      out.println("<select name='status'>");
+      for (int i = 0; i < 3; i++) {
+        out.printf("<option value='%d'>%s</option>\n",
+            i, stateLabels[i]);
+      }
+      out.println();
+      out.println("</select><br>");
+      out.printf("처리일: <input type='date' name='ProcessedDate' value='%s'><br>\n",
+          report.getProcessedDate());
+      out.printf("처리내용: <textarea name='content'>%s</textarea><br>\n",
+          report.getProcessingContent());
+      out.println("<p>");
+      out.println("<button>변경</button>");
+      out.printf("<a href='delete?no=%d'>삭제</a>\n", report.getNo());
+      out.println("</p>");
+      out.println("</form>");
 
     } catch (Exception e) {
       out.println("<h2>작업 처리 중 오류 발생!</h2>");
