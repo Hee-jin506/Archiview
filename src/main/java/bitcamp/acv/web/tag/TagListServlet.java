@@ -91,6 +91,8 @@ public class TagListServlet extends HttpServlet {
         keywordMap.put("number", keywordNumber);
         keywordMap.put("title", keywordTitle);
         keywordMap.put("status", keywordStatus);
+        System.out.println(startNumber);
+        System.out.println(endNumber);
         keywordMap.put("startNumber", startNumber);
         keywordMap.put("endNumber", endNumber);
 
