@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +19,10 @@ content="user-scalable=no,inital-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,w
 
 <style>
   #header img{
-		position: absolute;
-		width: 527px;
-		left: 456px;
-		top: 80px;
+    position: absolute;
+    width: 527px;
+    left: 456px;
+    top: 80px;
   }
 </style>
 
@@ -32,12 +34,11 @@ content="user-scalable=no,inital-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,w
        <img src="../logo.png" alt="로고">
 </div>
 
-
 <h2>당신의 감성을 담은</h2>
 <h2>영화 후기를 만들어 보세요.</h2>
-<form action="login" method="post">
-이메일 주소 : <input type="email" name="email"><br>
-비밀번호 : <input type="password" name="password"><br>
+<form method="post">
+<label>이메일 주소<input type="email" name="email" value=<%=request.getAttribute("email")%>></label><br>
+<label>비밀번호<input type="password" name="password"></label><br>
 <button>로그인</button>
 </form>
 
@@ -63,18 +64,17 @@ content="user-scalable=no,inital-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,w
         console.log("ID Token: " + id_token);
       }
     </script>
-
 <br>
     
 <!-- 구글계정 로그아웃 -->
 <a href="#" onclick="signOut();">구글 로그아웃</a>
 <script>
-	  function signOut() {
-	    var auth2 = gapi.auth2.getAuthInstance();
-	    auth2.signOut().then(function () {
-	      console.log('User signed out.');
-	    });
-	  }
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
 </script>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
