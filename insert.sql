@@ -335,3 +335,13 @@ values(2, '반려');
 insert into acv_rp_stat(rsno, title)
 values(3, '처리완료');
 
+/* 신고 처리 샘플 */
+insert into acv_rp(rno,mno,rano,target,rwno,rsno,content,pdt) 
+values(1, 1, 3, 9, 5, 1, '처리대기', null);
+
+insert into acv_rp(rno,mno,rano,target,rwno,rsno,content,pdt) 
+values(2, 2, 2, 8, 2, 2,'허위신고', '2020-12-04');
+
+insert into acv_rp(rno,mno,rano,target,rwno,rsno,content,pdt) 
+values(3, 3, 1, 7, 3, 3,'처리완료, 신고 대상 회원 3일 정지', '2020-12-04 11:11:11');
+
