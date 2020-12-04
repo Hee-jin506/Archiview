@@ -130,3 +130,16 @@
 - 테스트 방법: http://localhost:9999/Archiview/tag/list 접속 -> 태그 선택 -> 삭제 링크 클릭
 - 진행 상황 : TagMultipleDeleteServlet 편집 중
 - 해결할 문제
+
+### 🎯 신고 관리 (스태프 권한)
+
+- 테스트 방법: http://localhost:9999/Archiview/report/list 접속-> 등록된 신고 리스트 조회 가능
+- 진행 상황: ReportListServlet 수정 중
+- 해결할 문제
+
+### 🎯 멤버 신고 등록 (로그인 후 권한)
+
+- 테스트 방법: 
+- 진행 상황: MemberReportServlet 수정 중
+- 해결할 문제
+
