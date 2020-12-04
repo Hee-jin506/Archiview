@@ -126,7 +126,7 @@ public class MovieDaoImpl implements MovieDao {
   @Override
   public int update(Movie movie) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectOne("MovieDao.update", movie);
+      return sqlSession.update("MovieDao.update", movie);
     }
   }
 
