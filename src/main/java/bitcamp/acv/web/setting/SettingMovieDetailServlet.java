@@ -81,6 +81,9 @@ public class SettingMovieDetailServlet  extends HttpServlet {
       out.println("<br>");
       out.printf("<a href='update?no=%d'>[수정]</a>\n ",
           movie.getNo());
+      out.printf("<a href='delete?no=%d'>[삭제]</a>\n", movie.getNo());
+      out.printf("<a href='active?no=%d'>[복구]</a>\n", movie.getNo());
+      out.println("<a href='list'>[취소]</a>");
     } catch (Exception e) {
       request.setAttribute("exception", e);
       request.getRequestDispatcher("/error").forward(request, response);
