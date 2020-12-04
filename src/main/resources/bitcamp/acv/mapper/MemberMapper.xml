@@ -104,10 +104,20 @@
     where mno = #{no}
   </update>
   
+  <!--  
   <delete id="delete" parameterType="int">
     delete from acv_mbr
     where mno=#{no}
   </delete>
+  -->
+
+  <update id="active" parameterType="int">
+    update acv_mbr
+    set
+    stno = 1,
+    stat_mdt,
+    where mno=#{no}
+  </update>
   
   <update id="inactive" parameterType="int">
     update acv_mbr
@@ -116,10 +126,11 @@
     where mno=#{no}
   </update>
   
-  <update id="active" parameterType="int">
+  <update id="delete" parameterType="int">
     update acv_mbr
     set
-    stno = 1
+    stno = 3
     where mno=#{no}
   </update>
+  
 </mapper>

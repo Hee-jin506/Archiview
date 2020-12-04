@@ -45,6 +45,10 @@ public class LoginUserServlet extends HttpServlet {
       out.printf("이메일: %s<br>\n", member.getEmail());
       out.printf("사진: %s<br>\n", member.getPhoto());
       out.printf("소개: %s<br>\n", member.getIntro());
+
+      if (member.getStatus() == 1 || member.getStatus() == 2) {
+        out.printf("<a href='../member/delete?no=%d'>탈퇴</a>\n", member.getNo());
+      }
     }
   }
 }

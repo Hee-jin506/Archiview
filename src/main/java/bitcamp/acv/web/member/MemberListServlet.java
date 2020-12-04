@@ -58,7 +58,19 @@ public class MemberListServlet extends HttpServlet {
       out.println("<th>회원 상태 변경일</th>");
       out.println("</tr></thead>");
 
+
       for (Member member : list ) {
+
+        int statusLabel = member.getStatus();
+        String label = "";
+        switch (statusLabel) {
+          case 1 : label = "활동중";
+          break;
+          case 2 : label = "정지중";
+          break;
+          case 3 : label = "탈퇴";
+          break;
+        }
 
         out.printf("<tr>"
             + "<td>%d</td>\n" // no
@@ -73,7 +85,7 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%d</td>\n" // qno
             + "<td>%s</td>\n" // qan
             + "<td>%s</td>\n" // rdt
-            + "<td>%d</td>\n" // stat
+            + "<td>%s</td>\n" // stat
             + "<td>%s</td>\n", // smdt
 
             member.getNo(),
@@ -88,7 +100,7 @@ public class MemberListServlet extends HttpServlet {
             member.getQuestionsNo(),
             member.getQuestionsAnswer(),
             member.getRegisteredDate(),
-            member.getStatus(),
+            label,
             member.getStatusModifiedDate());
       }
       out.println("</tr>");

@@ -42,6 +42,17 @@ public class MemberDetailServlet  extends HttpServlet {
       int no = Integer.parseInt(request.getParameter("no"));
       Member member = memberService.get(no);
 
+      int statusLabel = member.getStatus();
+      String label = "";
+      switch (statusLabel) {
+        case 1 : label = "활동중";
+        break;
+        case 2 : label = "정지중";
+        break;
+        case 3 : label = "탈퇴";
+        break;
+      }
+
       if (member == null) {
         out.println("<p>해당 회원이 없습니다.</p>");
       } else {
@@ -71,10 +82,17 @@ public class MemberDetailServlet  extends HttpServlet {
         out.printf("비밀번호 힌트 질문 번호 - %d<br>\n", member.getQuestionsNo());
         out.printf("비밀번호 힌트 정답 - %s<br>\n", member.getQuestionsAnswer());
         out.printf("회원 가입일 - %s<br>\n", member.getRegisteredDate());
-        out.printf("회원 상태 번호 - %s<br>\n", member.getStatus());
+        out.printf("회원 상태 - %s<br>\n", label);
         out.printf("회원 상태 변경일 - %s<br>\n", member.getStatusModifiedDate());
         out.println("<button>변경</button>");
-        out.printf("<a href='delete?no=%d'>삭제</a>\n", member.getNo());
+
+        if (member.getStatus() == 1) {
+          out.printf("<a href='inactive?no=%d'>삭제</a>\n", member.getNo());
+        } else if (member.getStatus() == 2) {
+          out.printf("<a href='active?no=%d'>부활</a>\n", member.getNo());
+        } else if (member.getStatus() == 3) {
+          out.println("탈퇴");
+        }
         out.println("</p>");
         out.println("</form>");
       }
