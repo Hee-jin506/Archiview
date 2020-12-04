@@ -65,6 +65,11 @@
        
   <select id="findAll" resultMap="MemberMap" parameterType="string">
     <include refid="sql1"/>
+    <if test="keyword != null">
+    <bind name="pattern" value="'%' + _parameter + '%'" />
+     where 
+      mb.name like #{pattern}
+    </if>
     order by mb.mno desc
   </select>
   

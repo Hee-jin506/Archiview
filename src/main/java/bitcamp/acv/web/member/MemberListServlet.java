@@ -39,6 +39,8 @@ public class MemberListServlet extends HttpServlet {
 
       out.println("<h1>[멤버 목록]</h1>");
 
+      String keyword = request.getParameter("keyword");
+
       List<Member> list = memberService.list();
 
       out.println("<table border=\"1\">");
@@ -104,6 +106,14 @@ public class MemberListServlet extends HttpServlet {
             member.getStatusModifiedDate());
       }
       out.println("</tr>");
+
+      out.println("<form action='list' method='get'>");
+      out.printf("검색어: <input type='text' name='keyword' value='%s'>\n",
+          keyword != null ? keyword : "");
+      out.println("<button>검색</button>");
+      out.println("</form>");
+      out.println("</p>");
+
     } catch (Exception e) {
       out.printf("작업 처리 중 오류 발생! - %s\n", e.getMessage());
       StringWriter errOut = new StringWriter();
