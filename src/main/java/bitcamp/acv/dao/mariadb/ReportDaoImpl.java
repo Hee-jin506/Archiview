@@ -1,7 +1,6 @@
 package bitcamp.acv.dao.mariadb;
 
 import java.util.List;
-import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import bitcamp.acv.dao.ReportDao;
 import bitcamp.acv.domain.Report;
@@ -37,16 +36,16 @@ public class ReportDaoImpl implements ReportDao {
   }
 
   @Override
-  public List<Report> findByDetailKeyword(Map<String, Object> keywords) throws Exception {
+  public Report findByNo(int no) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectList("reportDao.findAll", keywords);
+      return sqlSession.selectOne("ReportDao.findByNo", no);
     }
   }
 
   @Override
-  public Report findByNo(int no) throws Exception {
+  public int update(Report report) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectOne("ReportDao.findByNo", no);
+      return sqlSession.update("ReportDao.update", report);
     }
   }
 }

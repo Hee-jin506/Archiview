@@ -1,7 +1,6 @@
 package bitcamp.acv.service;
 
 import java.util.List;
-import java.util.Map;
 import bitcamp.acv.dao.MemberDao;
 import bitcamp.acv.dao.ReportDao;
 import bitcamp.acv.dao.ReviewDao;
@@ -35,11 +34,6 @@ public class DefaultReportService implements ReportService {
   }
 
   @Override
-  public List<Report> list(Map<String, Object> keywords) throws Exception {
-    return reportDao.findByDetailKeyword(keywords);
-  }
-
-  @Override
   public void add(Report report) throws Exception {
     reportDao.insert(report);
   }
@@ -47,6 +41,11 @@ public class DefaultReportService implements ReportService {
   @Override
   public Report get(int no) throws Exception {
     return reportDao.findByNo(no);
+  }
+
+  @Override
+  public int update(Report report) throws Exception {
+    return reportDao.update(report);
   }
 
   @Override

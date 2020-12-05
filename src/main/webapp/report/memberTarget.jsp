@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>[신고 관리]]</title>
+<title>[신고 관리]</title>
 </head>
 
 <body>

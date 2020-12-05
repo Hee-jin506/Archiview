@@ -3,7 +3,6 @@ package bitcamp.acv.web.report;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.HashMap;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -41,18 +40,9 @@ public class ReportListServlet extends HttpServlet {
       List<Report> list = null;
 
       String keyword = request.getParameter("keyword");
-      String keywordType = request.getParameter("keywordType");
-      String keywordStatus = request.getParameter("keywordStatus");
 
       if (keyword != null) {
         list = reportService.list(keyword);
-
-      } else if (keywordType != null) {
-        HashMap<String,Object> keywordMap = new HashMap<>();
-        keywordMap.put("reportedType", keywordType);
-        keywordMap.put("status", keywordStatus);
-
-        list = reportService.list(keywordMap);
 
       } else {
         list = reportService.list();
@@ -112,18 +102,6 @@ public class ReportListServlet extends HttpServlet {
       out.println("<form action='list' method='get'>");
       out.printf("검색어: <input type='text' name='keyword' value='%s'>\n",
           keyword != null ? keyword : "");
-      out.println("<button>검색</button>");
-      out.println("</form>");
-      out.println("</p>");
-
-      out.println("<hr>");
-      out.println("<h2>상세 검색</h2>");
-      out.println("<p>");
-      out.println("<form action='list' method='get'>");
-      out.printf("신고 유형: <input type='text' name='keywordType' value='%s'><br>\n",
-          keywordType != null ? keywordType : "");
-      out.printf("관리자: <input type='text' name='keywordStatus' value='%s'><br>\n",
-          keywordStatus != null ? keywordStatus : "");
       out.println("<button>검색</button>");
       out.println("</form>");
       out.println("</p>");
