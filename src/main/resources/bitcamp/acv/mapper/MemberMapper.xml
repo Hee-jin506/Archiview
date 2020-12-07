@@ -105,6 +105,14 @@
     where mno = #{no}
   </update>
   
+  <update id="updatePassword" parameterType="member">
+    update acv_mbr
+      <set>
+        <if test="password != null">pw = password(#{password})</if>
+      </set>
+    where mno = #{no}
+  </update>
+  
   <!--  
   <delete id="delete" parameterType="int">
     delete from acv_mbr

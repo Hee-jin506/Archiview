@@ -58,5 +58,10 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findAll(keyword);
   }
 
+  @Override
+  public int updatePassword(Member member) throws Exception {
+    return memberDao.updatePassword(member);
+  }
+
 
 }

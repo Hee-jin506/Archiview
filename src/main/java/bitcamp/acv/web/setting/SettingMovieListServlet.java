@@ -32,6 +32,8 @@ public class SettingMovieListServlet extends HttpServlet {
     out.println("<head><title>영화관리</title></head>");
     out.println("<body>");
 
+    // request.getRequestDispatcher("/topbar.jsp").include(request, response);
+
     try {
       out.println("<h1>영화 관리</h1>");
 
