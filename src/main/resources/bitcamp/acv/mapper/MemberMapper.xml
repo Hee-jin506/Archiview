@@ -22,6 +22,24 @@
     <result column="stat_mdt"      property="statusModifiedDate"/>
   </resultMap>
   
+  <resultMap type="member" id="MemberMap2">
+    <id column="mno"           property="no"/>
+    <result column="auth"    property="authority"/>
+    <result column="name"  property="name"/>
+    <result column="ltno"      property="loginNo"/>
+    <result column="email"      property="email"/>
+    <result column="pw"      property="password"/>
+    <result column="nick"      property="nickName"/>
+    <result column="photo"      property="photo"/>
+    <result column="intro"      property="intro"/>
+    <result column="qno"      property="questionsNo"/>
+    <result column="pw_hint_a"      property="questionsAnswer"/>
+    <result column="rdt"      property="registeredDate"/>
+    <result column="stno"      property="status"/>
+    <result column="stat_mdt"      property="statusModifiedDate"/>
+    <result column="count(*)"   property="followers"/>
+  </resultMap>
+  
   <!--
     private int no; // 회원 번호
   private int authority; // 권한
@@ -85,7 +103,7 @@
     <select id="findByNo" parameterType="int" resultMap="MemberMap">
       <include refid="sql1"/>
     where 
-      mno = #{no}
+      mno = #{no} 
   </select>
   
   <select id="findByEmailPassword" parameterType="map" resultMap="MemberMap">
@@ -144,4 +162,30 @@
     where mno=#{no}
   </update>
   
+  <select id="findByPop" parameterType="map" resultMap="MemberMap">
+    select 
+  mb.mno,
+  mb.auth,
+  mb.name,
+  mb.ltno,
+  mb.email,
+  mb.pw,
+  mb.nick,
+  mb.photo,
+  mb.intro,
+  mb.qno,
+  mb.pw_hint_a,
+  mb.rdt,
+  mb.stno,
+  mb.stat_mdt,
+  fw.target, 
+  fw.fano, 
+  count(*)
+from acv_flw fw
+  inner join acv_mbr mb on fw.fano=mb.mno
+  where fano = 1 
+  group by target, fano;
+  </select>
 </mapper>
+
+

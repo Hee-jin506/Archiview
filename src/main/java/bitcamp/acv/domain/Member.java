@@ -4,18 +4,18 @@ import java.sql.Date;
 import java.util.List;
 
 public class Member {
-  
+
   public static final int GENERAL = 1;
   public static final int MANAGER = 0;
-  
+
   public static final int ARCHIVIEW = 1;
   public static final int GOOGLE = 2;
   public static final int KAKAO = 3;
-  
+
   public static final int IN_ACTION = 1;
   public static final int SUSPENSION = 2;
   public static final int WITHDRAWAL = 3;
-  
+
   private int no; // 회원 번호
   private int authority; // 권한
   private String name; // 이름
@@ -31,8 +31,10 @@ public class Member {
   private int status; // 회원 상태 번호
   private Date statusModifiedDate; // 회원 상태 변경일
   private List<Review> saving;
+  private int followers;
+  private int likers;
 
- 
+
   public List<Review> getSaving() {
     return saving;
   }
@@ -131,7 +133,17 @@ public class Member {
   public void setStatusModifiedDate(Date statusModifiedDate) {
     this.statusModifiedDate = statusModifiedDate;
   }
-
-
+  public int getFollowers() {
+    return followers;
+  }
+  public void setFollowers(int followers) {
+    this.followers = followers;
+  }
+  public int getLikers() {
+    return likers;
+  }
+  public void setLikers(int likers) {
+    this.likers = likers;
+  }
 
 }

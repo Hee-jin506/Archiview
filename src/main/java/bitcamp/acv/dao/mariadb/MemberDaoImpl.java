@@ -90,4 +90,10 @@ public class MemberDaoImpl implements MemberDao {
     }
   }
 
+  @Override
+  public List<Member> findByPop() throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("MemberDao.findByPop");
+    }
+  }
 }

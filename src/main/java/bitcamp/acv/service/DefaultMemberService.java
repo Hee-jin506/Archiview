@@ -63,5 +63,10 @@ public class DefaultMemberService implements MemberService {
     return memberDao.updatePassword(member);
   }
 
+  @Override
+  public List<Member> listByPop() throws Exception {
+    member
+  }
+
 
 }
