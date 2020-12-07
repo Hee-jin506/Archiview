@@ -129,8 +129,9 @@ public class TagListServlet extends HttpServlet {
       out.println("<button>검색</button><br>");
       out.printf("<input type='checkbox' name='no' value='no' %s>번호\n",
           no != null ? "checked" : "");
-      out.printf("<input type='checkbox' name='name' value='tt' %s>태그명\n",
+      out.printf("<input type='checkbox' name='name' value='tt' %s>태그명<br>\n",
           name != null ? "checked" : "");
+      out.println("<span>상태 선택: </span>");
       out.printf("<input type='checkbox' name='active' value='active' %s>게시중\n",
           active != null ? "checked" : "");
       out.printf("<input type='checkbox' name='inactive' value='inactive' %s>삭제\n",
