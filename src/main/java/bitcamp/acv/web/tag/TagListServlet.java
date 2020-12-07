@@ -23,6 +23,7 @@ public class TagListServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
+
   @Override
   protected void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -44,6 +45,7 @@ public class TagListServlet extends HttpServlet {
         + "</head>");
     out.println("<body>");
 
+    //    request.getRequestDispatcher("/tag/detail").include(request, response);
     try {
       // 홈 아이콘
       out.println("<a href='../admin-main.html'>"
@@ -61,18 +63,18 @@ public class TagListServlet extends HttpServlet {
       String keyword = request.getParameter("keyword");
       String no = request.getParameter("no");
       String name = request.getParameter("name");
-      String active = request.getParameter("active");
-      String inactive = request.getParameter("inactive");
 
       // 상세 검색 체크박스 파라미터
       String keywordNumber = request.getParameter("keywordNumber");
       String keywordTitle = request.getParameter("keywordTitle");
-      String keywordStatus = request.getParameter("keywordStatus");
+      //      String keywordStatus = request.getParameter("keywordStatus");
       String registeredDate= request.getParameter("registeredDate");
       String startDate= request.getParameter("startDate");
       String endDate= request.getParameter("endDate");
       String startNumber= request.getParameter("startNumber");
       String endNumber= request.getParameter("endNumber");
+      String active = request.getParameter("active");
+      String inactive = request.getParameter("inactive");
 
 
       // 검색 조건에 맞춰 가져올 리스트
@@ -83,8 +85,7 @@ public class TagListServlet extends HttpServlet {
         keyMap.put("keyword", keyword);
         keyMap.put("no", no);
         keyMap.put("name", name);
-        keyMap.put("active", active);
-        keyMap.put("inactive", inactive);
+
 
         list = tagService.list1(keyMap);
 
@@ -92,9 +93,11 @@ public class TagListServlet extends HttpServlet {
         HashMap<String,Object> keywordMap = new HashMap<>();
         keywordMap.put("number", keywordNumber);
         keywordMap.put("title", keywordTitle);
-        keywordMap.put("status", keywordStatus);
+        //        keywordMap.put("status", keywordStatus);
         keywordMap.put("startNumber", startNumber);
         keywordMap.put("endNumber", endNumber);
+        keywordMap.put("active", active);
+        keywordMap.put("inactive", inactive);
 
         if(registeredDate != "") {
           String[] s = registeredDate.split("\n");
@@ -131,11 +134,7 @@ public class TagListServlet extends HttpServlet {
           no != null ? "checked" : "");
       out.printf("<input type='checkbox' name='name' value='tt' %s>태그명<br>\n",
           name != null ? "checked" : "");
-      out.println("<span>상태 선택: </span>");
-      out.printf("<input type='checkbox' name='active' value='active' %s>게시중\n",
-          active != null ? "checked" : "");
-      out.printf("<input type='checkbox' name='inactive' value='inactive' %s>삭제\n",
-          inactive != null ? "checked" : "");
+
       out.println("</form>");
       out.println("</p>");
 
@@ -148,8 +147,8 @@ public class TagListServlet extends HttpServlet {
           keywordNumber != null ? keywordNumber : "");
       out.printf("태그명: <input type='text' name='keywordTitle' value='%s'><br>\n",
           keywordTitle != null ? keywordTitle : "");
-      out.printf("상태: <input type='text' name='keywordStatus' value='%s'><br>\n",
-          keywordStatus != null ? keywordStatus : "");
+      //      out.printf("상태: <input type='text' name='keywordStatus' value='%s'><br>\n",
+      //          keywordStatus != null ? keywordStatus : "");
       out.printf("등록일: <input type='date' name='registeredDate' value='%s'><br>\n",
           registeredDate != null ? registeredDate : "");
       out.printf("날짜 범위: <input type='date' name='startDate' value='%s'>~\n",
@@ -160,7 +159,11 @@ public class TagListServlet extends HttpServlet {
           startNumber != null ? startNumber : "");
       out.printf("<input type='text' name='endNumber' value='%s'><br>\n",
           endNumber != null ? endNumber : "");
-
+      out.println("<span>상태 선택: </span>");
+      out.printf("<input type='checkbox' name='active' value='active' %s>게시중\n",
+          active != null ? "checked" : "");
+      out.printf("<input type='checkbox' name='inactive' value='inactive' %s>삭제<br>\n",
+          inactive != null ? "checked" : "");
       out.println("<button>검색</button>");
       out.println("<input type='reset'>");
       out.println("</form>");
