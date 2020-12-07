@@ -87,13 +87,13 @@
       m.mvno = #{no}
   </select>
   
-  <update id="DeleteMembers" parameterType="int">
+  <update id="DeleteMovie" parameterType="int">
   update acv_mov set
     stat = 0
   where no = #{no}
   </update>
   
-    <update id="ActiveMembers" parameterType="int">
+    <update id="ActiveMovie" parameterType="int">
   update acv_mov set
     stat = 1
   where no = #{no}

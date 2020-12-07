@@ -5,6 +5,8 @@ import bitcamp.acv.domain.Report;
 
 public interface ReportDao {
   int insert(Report report) throws Exception;
-  List<Report> findAll() throws Exception;
+  List<Report> fondAll() throws Exception;
+  List<Report> findAll(String keyword) throws Exception;
   Report findByNo(int no) throws Exception;
+  int update(Report report) throws Exception;
 }

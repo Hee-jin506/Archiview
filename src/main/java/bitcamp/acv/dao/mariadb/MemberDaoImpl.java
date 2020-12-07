@@ -83,5 +83,11 @@ public class MemberDaoImpl implements MemberDao {
     }
   }
 
+  @Override
+  public int updatePassword(Member member) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("MemberDao.updatePassword", member);
+    }
+  }
 
 }

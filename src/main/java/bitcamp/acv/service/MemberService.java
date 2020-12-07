@@ -13,4 +13,5 @@ public interface MemberService {
   int delete(int no) throws Exception;
   int inactive(int no) throws Exception;
   int active(int no) throws Exception;
+  int updatePassword(Member member) throws Exception;
 }

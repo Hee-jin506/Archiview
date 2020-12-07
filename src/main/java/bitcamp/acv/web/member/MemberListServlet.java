@@ -49,7 +49,7 @@ public class MemberListServlet extends HttpServlet {
 
 
       // 총 회원수
-      out.printf("<span>총 회원수 : %d</span><br>", memberService.list().size());
+      //      out.printf("<span>총 회원수 : %d</span><br>", memberService.list().size());
 
       List<Member> list = memberService.list(keyword);
 
@@ -101,7 +101,7 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%s</td>\n" // qan
             + "<td>%s</td>\n" // rdt
             + "<td>%s</td>\n" // stat
-            + "<td>%s</td>\n" ,// smdt
+            + "<td>%s</td>\n", // smdt
 
             member.getNo(),
             member.getAuthority(),

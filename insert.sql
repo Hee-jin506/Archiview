@@ -442,3 +442,6 @@ values(2, 2, 2, 8, 2, 2,'허위신고', '2020-12-04');
 insert into acv_rp(rno,mno,rano,target,rwno,rsno,content,pdt) 
 values(3, 3, 1, 7, 3, 3,'처리완료, 신고 대상 회원 3일 정지', '2020-12-04 11:11:11');
 
+insert into acv_rp(rno,mno,rano,target,rwno,rsno,content) 
+values(4, 4, 1, 6, 6, 1,'');
+

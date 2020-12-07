@@ -14,11 +14,11 @@ public class Report {
   private Member reportingMember; // 신고한 회원
   private int reportedType; // 신고 유형
   private int reportedNo; // 신고된 대상 번호
-  private String why; // 신고 사유
   private String status; // 신고 처리 상태
   private String processingContent; // 신고 처리 내용
   private Date reportedDate; // 신고 일시
   private Date ProcessedDate; //  신고 처리 완료 일시
+  private String why; // 신고 사유
 
   public int getNo() {
     return no;

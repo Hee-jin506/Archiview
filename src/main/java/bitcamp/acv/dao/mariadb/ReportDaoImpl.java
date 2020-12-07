@@ -22,9 +22,16 @@ public class ReportDaoImpl implements ReportDao {
   }
 
   @Override
-  public List<Report> findAll() throws Exception {
+  public List<Report> fondAll() throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.selectList("ReportDao.findAll");
+    }
+  }
+
+  @Override
+  public List<Report> findAll(String keyword) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("ReportDao.findAll", keyword);
     }
   }
 
@@ -32,6 +39,13 @@ public class ReportDaoImpl implements ReportDao {
   public Report findByNo(int no) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.selectOne("ReportDao.findByNo", no);
+    }
+  }
+
+  @Override
+  public int update(Report report) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("ReportDao.update", report);
     }
   }
 }
