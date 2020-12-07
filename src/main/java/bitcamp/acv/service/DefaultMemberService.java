@@ -67,6 +67,4 @@ public class DefaultMemberService implements MemberService {
   public List<Member> listByPop() throws Exception {
     member
   }
-
-
 }
