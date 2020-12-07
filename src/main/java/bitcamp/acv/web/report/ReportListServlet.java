@@ -37,7 +37,16 @@ public class ReportListServlet extends HttpServlet {
     try {
       out.println("<h1>[신고 관리]</h1>");
 
-      List<Report> list = reportService.findAll();
+      List<Report> list = null;
+
+      String keyword = request.getParameter("keyword");
+
+      if (keyword != null) {
+        list = reportService.list(keyword);
+
+      } else {
+        list = reportService.list();
+      }
 
       out.println("<table border='1'>");
       out.println("<thead><tr>"
@@ -89,6 +98,14 @@ public class ReportListServlet extends HttpServlet {
       out.println("</tbody>");
       out.println("</table>");
 
+      out.println("<p>");
+      out.println("<form action='list' method='get'>");
+      out.printf("검색어: <input type='text' name='keyword' value='%s'>\n",
+          keyword != null ? keyword : "");
+      out.println("<button>검색</button>");
+      out.println("</form>");
+      out.println("</p>");
+
     } catch (Exception e) {
       out.println("<h2>작업 처리 중 오류 발생!</h2>");
       out.printf("<pre>%s</pre>\n", e.getMessage());
@@ -99,4 +116,5 @@ public class ReportListServlet extends HttpServlet {
       out.printf("<pre>%s</pre>\n", errOut.toString());
     }
   }
+
 }

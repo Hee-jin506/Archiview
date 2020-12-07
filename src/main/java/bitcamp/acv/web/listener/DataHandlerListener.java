@@ -52,7 +52,7 @@ public class DataHandlerListener implements ServletContextListener {
       MemberService memberService = new DefaultMemberService(memberDao);
       TagService tagService = new DefaultTagService(tagDao);
       ReviewService reviewService = new DefaultReviewService(reviewDao, tagDao, sqlSessionFactory);
-      ReportService reportService = new DefaultReportService(reportDao);
+      ReportService reportService = new DefaultReportService(reportDao, memberDao, reviewDao, tagDao);
 
       ServletContext ctx = sce.getServletContext();
 

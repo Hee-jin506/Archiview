@@ -152,12 +152,14 @@ public class Movie {
     this.stillCutNo = stillCutNo;
   }
 
-  public List<String> getStillCuts() {
+  public List<String> getStillcuts() {
     return stillcuts;
   }
 
-  public void setStillCuts(List<String> stillCuts) {
-    this.stillcuts = stillCuts;
+  public void setStillcuts(List<String> stillcuts) {
+    this.stillcuts = stillcuts;
   }
+
+
 
 }
