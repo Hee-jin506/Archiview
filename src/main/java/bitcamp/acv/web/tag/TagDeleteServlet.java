@@ -1,8 +1,6 @@
 package bitcamp.acv.web.tag;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,51 +20,20 @@ public class TagDeleteServlet extends HttpServlet {
       throws ServletException, IOException {
 
     ServletContext ctx = request.getServletContext();
-    TagService tagService =
-        (TagService) ctx.getAttribute("tagService");
-
-    // 웹주소에 동봉된 데이터(Query String: qs)를 읽는다.
-    int no = Integer.parseInt(request.getParameter("no"));
+    TagService tagService = (TagService) ctx.getAttribute("tagService");
 
 
-    PrintWriter out = response.getWriter();
-
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    out.println("<meta http-equiv='Refresh' content='1;list'>");
-    out.println("<title>태그삭제</title></head>");
-    out.println("<body>");
     try {
-      out.println("<h1>태그 삭제</h1>");
+      int no = Integer.parseInt(request.getParameter("no"));
 
-
-      int count = tagService.delete(no);
-      try {
-        if (count == 0) {
-          out.printf("<p>해당 번호의 태그가 존재하지 않습니다.</p>\n");
-        } else {
-          out.printf("<p>태그를 삭제하였습니다.</p>\n");
-        }
-      } catch (Exception e) {
-        out.println("태그 삭제 중 오류 발생!");
-        e.printStackTrace();
-      }
+      if (tagService.delete(no) == 0) {
+        throw new Exception("해당 번호의 태그가 존재하지 않습니다.");
+      } 
+      response.sendRedirect("list");
 
     } catch (Exception e) {
-      out.printf("<h2>작업 처리 중 오류 발생!</h2>");
-      out.printf("<pre>%s</pre>\n", e.getMessage());
-
-      StringWriter errOut = new StringWriter();
-      e.printStackTrace(new PrintWriter(errOut));
-
-      out.printf("<h3>상세 오류 내용</h3>");
-      out.printf("<pre>%s</pre>\n", errOut.toString());
+      request.setAttribute("exception", e);
+      request.getRequestDispatcher("/error.jsp").forward(request, response);
     }
-
-    out.println("</body>");
-    out.println("</html>");
   }
-
-
 }

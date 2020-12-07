@@ -101,20 +101,26 @@
 - 해결할 문제
 
   - 상단바, 관리자 메인화면
-  - 인기 태그 : 등록된 게시물 수 + 팔로워수 * 2
+  - 인기 태그 : 등록된 게시물 수 + 팔로워수 * 2(희진님)
 
   - 페이지(커서) - 스프링하고 해야할듯
   - 항목별 오름차순, 내림차순 버튼 - 페이징이랑 같이 해야될듯
 
-  - jsp+jstl
-    - TagMutilpleActive : 멀티플딜리트에서 포워드?
-    - 조회, 상세조회를 한화면에(include)
+  - 조회, 상세조회를 한화면에
 
   - 새로고침 버튼
 
 - 추가 문제
+  - 전체 선택기능 있어야 할듯
   - 사진 나오게?
   - 상세 검색 리셋 버튼 : 요청 후에는 초기화가 안됨..
+
+- 해결 
+  - 한개 form 안에 여러개 submit : formaction 속성
+    out.println("<input type='submit' value='복구' formaction='multipleActive'>");
+    out.println("<input type='submit' value='삭제' formaction='multipleDelete'>");
+    (단 HTML5 에서 새로 생긴 속성이라, IE 9 이하는 지원하지 안함, 나중에 javaScript배우면 바꾸자)
+    참고 : https://kutar37.tistory.com/entry/%ED%95%9C%EA%B0%9C%EC%9D%98-Form%EC%97%90%EC%84%9C-%EC%97%AC%EB%9F%AC%EA%B0%9C-Submit-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
 
 ### 🎯 태그 상세 조회 기능
 
