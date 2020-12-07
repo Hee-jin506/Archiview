@@ -42,7 +42,7 @@ public class SettingMovieUpdateServlet extends HttpServlet {
       }
 
       StringBuilder stillCuts = new StringBuilder();
-      for (String stillCut : movie.getStillCuts()) {
+      for (String stillCut : movie.getStillcuts()) {
         stillCuts.append(stillCut);
         stillCuts.append("\n");
       }
@@ -80,7 +80,7 @@ public class SettingMovieUpdateServlet extends HttpServlet {
         out.printf("<img src='%s' width='120'>\n", poster);
       }
       out.println("<p>스틸컷<p>");
-      for (String stillCut : movie.getStillCuts()) {
+      for (String stillCut : movie.getStillcuts()) {
         out.printf("<img src='%s' width='120'>\n", stillCut);
       }
 
