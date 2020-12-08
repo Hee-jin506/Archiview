@@ -41,7 +41,7 @@ public class MemberListServlet extends HttpServlet {
 
       out.println("<form action='list' method='get'>");
       out.printf("검색어: <input type='search' name='keyword' value='%s'>\n",
-          keyword != null ? keyword : "회원 번호, 이름, 이메일, 닉네임, 회원상태번호로 검색");
+          keyword != null ? keyword : "회원 번호, 이름, 이메일, 닉네임, 회원상태로 검색");
       // 상태 번호와 회원 번호가 동시에 검색이 됩니다.
       out.println("<button>검색</button>");
       out.println("</form>");

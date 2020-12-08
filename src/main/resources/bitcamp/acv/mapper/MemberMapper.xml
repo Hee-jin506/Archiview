@@ -18,7 +18,7 @@
   <result column="qno" property="questionsNo" />
   <result column="pw_hint_a" property="questionsAnswer" />
   <result column="rdt" property="registeredDate" />
-  <result column="stno" property="status" />
+  <result column="stat_title"      property="status"/>
   <result column="stat_mdt" property="statusModifiedDate" />
  </resultMap>
 
@@ -50,29 +50,46 @@
   // 회원 상태 변경일 private List<Review> saving; -->
 
  <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 다음과 같이 별도로 분리한다. -->
- <sql id="sql1">
-  select
-  mb.mno,
-  mb.auth,
-  mb.name,
-  mb.ltno,
-  mb.email,
-  mb.pw,
-  mb.nick,
-  mb.photo,
-  mb.intro,
-  mb.qno,
-  mb.pw_hint_a,
-  mb.rdt,
-  mb.stno,
-  mb.stat_mdt
-  from
-  acv_mbr mb
- </sql>
+  <sql id="sql1">
+    select 
+    mb.mno,
+    mb.auth,
+    mb.name,
+    mb.ltno,
+    mb.email,
+    mb.pw,
+    mb.nick,
+    mb.photo,
+    mb.intro,
+    mb.qno,
+    mb.pw_hint_a,
+    mb.rdt,
+    mb.stno,
+    mb.stat_mdt,
+    mbs.stno,
+    mbs.title stat_title,
+    mb.stat_mdt
+    from 
+      acv_mbr mb
+      inner join acv_mbr_stat mbs on mb.stno = mbs.stno
+  </sql>
 
- <select id="findAll" resultMap="MemberMap"
-  parameterType="string">
-  <include refid="sql1" />
+ <select id="findAll" resultMap="MemberMap" parameterType="string">
+    select 
+    mb.mno,
+    mb.auth,
+    mb.name,
+    mb.ltno,
+    mb.email,
+    mb.nick,
+    mb.photo,
+    mb.intro,
+    mb.rdt,
+    mbs.title stat_title,
+    mb.stat_mdt
+    from 
+      acv_mbr mb
+      inner join acv_mbr_stat mbs on mb.stno = mbs.stno
   <if test="keyword != null">
    <bind name="pattern" value="'%' + _parameter + '%'" />
    where
