@@ -2,15 +2,13 @@ package bitcamp.acv.web.comment;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.io.StringWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bitcamp.acv.domain.Comment;
-import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.ReviewService;
 
@@ -26,7 +24,7 @@ public class CommentListServlet extends HttpServlet {
     ReviewService reviewService = (ReviewService) ctx.getAttribute("reviewService");
     CommentService commentService = (CommentService) ctx.getAttribute("commentService");
 
-    int no = Integer.parseInt(request.getParameter("no"));
+    //    int no = Integer.parseInt(request.getParameter("no"));
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -40,8 +38,8 @@ public class CommentListServlet extends HttpServlet {
 
       out.println("<h1>코멘트 목록</h1>");
 
-      List<Comment> list = commentService.getByReviewNo(no);
-      Review review = reviewService.get(no);
+      //      List<Comment> list = commentService.list();
+      //      Review review = reviewService.get(no);
 
       out.println("<table border='1'>");
       out.println("<thead><tr>"
@@ -56,30 +54,33 @@ public class CommentListServlet extends HttpServlet {
 
       out.println("<tbody>");
 
-      for (Comment comment : list) {
-        out.printf("<tr>"
-            + "<td>%s</td>"
-            + "<td>%s</td>"
-            + "<td>%s</td>"
-            + "<td>%s</td>"
-            + "<td>%s</td>"
-            + "</tr>\n",
-            comment.getNo(),
-            review.getNo(),
-            comment.getMemberNo(),
-            comment.getContent(),
-            comment.getOrder(),
-            comment.getLevel(),
-            comment.getRegisteredDate()
-            );
-
-      }
+      //      for (Comment comment : list) {
+      //        out.printf("<tr>"
+      //            + "<td>%s</td>"
+      //            //            + "<td>%s</td>"
+      //            + "<td>%s</td>"
+      //            + "<td>%s</td>"
+      //            + "<td>%s</td>"
+      //            + "</tr>\n",
+      //            comment.getNo(),
+      //            //            review.getNo(),
+      //            comment.getMemberNo(),
+      //            comment.getContent(),
+      //            comment.getOrder(),
+      //            comment.getLevel(),
+      //            comment.getRegisteredDate()
+      //            );
+      //
+      //      }
       out.println("</tbody>");
       out.println("</table>");
     } catch (Exception e) {
-      request.setAttribute("exception", e);
-      request.getRequestDispatcher("/error.jsp").forward(request, response);
-      return;
+      out.printf("작업 처리 중 오류 발생! - %s\n", e.getMessage());
+      StringWriter errOut = new StringWriter();
+      e.printStackTrace(new PrintWriter(errOut));
+      out.printf("<pre>%s</pre>\n", errOut.toString());
     }
+    out.println("</body>");
+    out.println("</html>");
   }
 }
