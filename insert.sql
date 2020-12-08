@@ -224,7 +224,6 @@ values(17, 6, 3, 1);
 insert into acv_flw(fno, flwing_mbr, target, fano)
 values(18, 6, 3, 2);
 
-insert into acv_flw
 /*영화 샘플*/
 insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
 values(1, '무현, 두 도시 이야기', '전인환', 'Moo-hyun, Tale of Two Cities', 124, '2016-10-26', 
