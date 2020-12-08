@@ -1,5 +1,6 @@
 package bitcamp.acv.service;
 
+import java.util.HashMap;
 import java.util.List;
 import bitcamp.acv.dao.ReviewDao;
 import bitcamp.acv.dao.TagDao;
@@ -50,5 +51,26 @@ public class DefaultReviewService implements ReviewService {
     } finally {
       factoryProxy.endTransaction();
     }
+  }
+
+  @Override
+  public List<Review> list1(HashMap<String, Object> keyMap) throws Exception {
+    return reviewDao.findByKeyword(keyMap);
+  }
+
+  @Override
+  public List<Review> list() throws Exception {
+    return reviewDao.findAllByKeyword(null);
+  }
+
+  @Override
+  public List<Review> list(HashMap<String, Object> keywords) throws Exception {
+    return reviewDao.findByDetailKeyword(keywords);
+  }
+
+  @Override
+  public Review get(int no) throws Exception {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

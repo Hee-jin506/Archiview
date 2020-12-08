@@ -1,5 +1,6 @@
 package bitcamp.acv.dao.mariadb;
 
+import java.util.HashMap;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import bitcamp.acv.dao.ReviewDao;
@@ -34,6 +35,30 @@ public class ReviewDaoImpl implements ReviewDao {
   public int insert(Review review) {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.insert("ReviewDao.insert", review);
+    }
+  }
+
+
+
+
+  @Override
+  public List<Review> findAllByKeyword(String keyword) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("ReviewDao.findAllByKeyword",keyword);
+    }
+  }
+
+  @Override
+  public List<Review> findByKeyword(HashMap<String, Object> keyMap) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("ReviewDao.findAllByKeyword", keyMap);
+    }
+  }
+
+  @Override
+  public List<Review> findByDetailKeyword(HashMap<String, Object> keywords) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("ReviewDao.findByDetailKeyword", keywords);
     }
   }
 }

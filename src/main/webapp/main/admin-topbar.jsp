@@ -31,7 +31,7 @@
 	<div id='menubar'>
 		
 		<a href='<%=getServletContext().getContextPath()%>/admin-main.html'>[메인]</a>
-    <a href='<%=getServletContext().getContextPath()%>/'>[게시물 관리]</a>
+    <a href='<%=getServletContext().getContextPath()%>/review/list'>[게시물 관리]</a>
     <a href='<%=getServletContext().getContextPath()%>/tag/list'>[태그 관리]</a> 
     <a href='<%=getServletContext().getContextPath()%>/'>[회원 관리]</a>
     <a href='<%=getServletContext().getContextPath()%>/'>[영화 관리]</a>
