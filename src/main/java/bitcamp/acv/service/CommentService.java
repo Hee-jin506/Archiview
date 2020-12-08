@@ -1,7 +1,10 @@
 package bitcamp.acv.service;
 
+import java.util.List;
 import bitcamp.acv.domain.Comment;
 
 public interface CommentService {
-  Comment get(int no) throws Exception;
+  int add(Comment comment) throws Exception;
+  List<Comment> list ()throws Exception;
+  List<Comment> getByReviewNo(int no) throws Exception;
 }
