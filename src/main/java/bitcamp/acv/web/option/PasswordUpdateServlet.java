@@ -40,8 +40,8 @@ public class PasswordUpdateServlet extends HttpServlet {
         out.println("<form action='check' method='post'>");
         out.printf("<input type='hidden' name='no' value='%d'><br>\n",
             member.getNo());
+        out.println("기존 비밀번호 <input type='password' name='oldpassword'><br>");
         out.println("새 비밀번호 <input type='password' name='newpassword'><br>");
-        out.println("새 비밀번호 확인 <input type='password' name='newpassword2'><br>");
         out.println("<button>변경</button>");
         out.println("</form>");
       }
