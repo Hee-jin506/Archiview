@@ -69,23 +69,22 @@ public class MemberListServlet extends HttpServlet {
       out.println("<th>비밀번호 힌트 질문 번호</th>");
       out.println("<th>비밀번호 힌트 정답</th>");
       out.println("<th>회원 가입일</th>");
-      out.println("<th>회원 상태 번호</th>");
-      out.println("<th>회원 상태 변경일</th>");
       out.println("<th>회원 상태</th>");
+      out.println("<th>회원 상태 변경일</th>");
       out.println("</tr></thead>");
 
       for (Member member : list ) {
 
-        int statusLabel = member.getStatus();
-        String label = "";
-        switch (statusLabel) {
-          case 1 : label = "활동중";
-          break;
-          case 2 : label = "정지";
-          break;
-          case 3 : label = "탈퇴";
-          break;
-        }
+        //        int statusLabel = member.getStatus();
+        //        String label = "";
+        //        switch (statusLabel) {
+        //          case 1 : label = "활동중";
+        //          break;
+        //          case 2 : label = "정지";
+        //          break;
+        //          case 3 : label = "탈퇴";
+        //          break;
+        //        }
 
         out.printf("<tr>"
             + "<td><input type='checkbox' name='members' value='%d'</td>\n" // 선택
@@ -100,7 +99,7 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%d</td>\n" // qno
             + "<td>%s</td>\n" // qan
             + "<td>%s</td>\n" // rdt
-            + "<td>%s</td>\n" // stat
+            + "<td>%s</td>\n" // statusTitle
             + "<td>%s</td>\n", // smdt
 
             member.getNo(),
@@ -114,7 +113,7 @@ public class MemberListServlet extends HttpServlet {
             member.getQuestionsNo(),
             member.getQuestionsAnswer(),
             member.getRegisteredDate(),
-            label,
+            member.getStatusTitle(),
             member.getStatusModifiedDate()
             );
       }
