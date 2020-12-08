@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<jsp:include page="/main/topbar.jsp"></jsp:include>
+<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
 
 <h1>[태그 관리]</h1>
 <%

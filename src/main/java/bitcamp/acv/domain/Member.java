@@ -12,9 +12,9 @@ public class Member {
   public static final int GOOGLE = 2;
   public static final int KAKAO = 3;
 
-  public static final int IN_ACTION = 1;
-  public static final int SUSPENSION = 2;
-  public static final int WITHDRAWAL = 3;
+  //  public static final int IN_ACTION = 1;
+  //  public static final int SUSPENSION = 2;
+  //  public static final int WITHDRAWAL = 3;
 
   private int no; // 회원 번호
   private int authority; // 권한
@@ -29,6 +29,7 @@ public class Member {
   private String questionsAnswer; // 비밀번호 힌트 정답
   private Date registeredDate; // 회원 가입일
   private int status; // 회원 상태 번호
+  private String statusTitle;
   private Date statusModifiedDate; // 회원 상태 변경일
   private List<Review> saving;
   private int followers;
@@ -144,6 +145,12 @@ public class Member {
   }
   public void setLikers(int likers) {
     this.likers = likers;
+  }
+  public String getStatusTitle() {
+    return statusTitle;
+  }
+  public void setStatusTitle(String statusTitle) {
+    this.statusTitle = statusTitle;
   }
 
 }

@@ -18,7 +18,7 @@
   <result column="qno" property="questionsNo" />
   <result column="pw_hint_a" property="questionsAnswer" />
   <result column="rdt" property="registeredDate" />
-  <result column="stat_title"      property="status"/>
+  <result column="stat_title"      property="statusTitle"/>
   <result column="stat_mdt" property="statusModifiedDate" />
  </resultMap>
 
@@ -101,7 +101,7 @@
   </if>
   order by mb.mno desc
  </select>
-
+ 
  <insert id="insert" parameterType="member">
   insert into
   acv_mbr(auth,name,ltno,email,pw,nick,photo,intro,qno,pw_hint_a,stno,stat_mdt)
