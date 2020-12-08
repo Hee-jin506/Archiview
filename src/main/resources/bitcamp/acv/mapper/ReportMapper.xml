@@ -72,7 +72,7 @@
   
     <insert id="insert" parameterType="report">
     insert into acv_rp(mno,rano,target,rwno,rsno)
-    values(#{mb.mno},#{rano},#{targer},#{rwno},#{rsno})
+    values(#{reportingMember.no},#{reportedType},#{targer},#{rwno},#{rsno})
   </insert>
   
     <select id="findByNo" parameterType="Integer" resultMap="ReportMap">
@@ -84,16 +84,16 @@
   update acv_rp
     <set>
       <if test="processingContent != null">content = #{processingContent},</if>
-      <if test="status != null">status = #{status},</if>
       <if test="processedDate != null">pdt = #{processedDate}</if>
     </set>
   where rno = #{no}
   </update>
 
   <!--
+
   // 신고 대상 타입
   public static final int MEMBER = 1;
-  public static final int REVIEW = 2;uiuiuiuioioioioiooiioioiooioioo
+  public static final int REVIEW = 2;
   public static final int COMMENT = 3;
   public static final int TAG = 4;
 

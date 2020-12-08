@@ -20,7 +20,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>[신고 관리]</title></head>
+<title>[신고 관리]</title>
+</head>
 <body>
 
 <h1>[신고 관리] - JSP</h1>
