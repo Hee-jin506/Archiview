@@ -17,7 +17,7 @@ public class ReportDaoImpl implements ReportDao {
   @Override
   public int insert(Report report) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.insert("ReportDao.inset", report);
+      return sqlSession.insert("ReportDao.insert", report);
     }
   }
 

@@ -8,10 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Report;
-import bitcamp.acv.domain.Review;
-import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.ReportService;
 
 @WebServlet("/report/detail")
@@ -42,18 +39,17 @@ public class ReportDetailServlet extends HttpServlet{
 
       Report report = reportService.get(no);
 
-      Object target = reportService.getTarget(report);
-      if (target instanceof Member) {
-        request.setAttribute("member", target);
-        request.getRequestDispatcher("memberTarget.jsp").include(request, response);
-      } else if (target instanceof Review) {
-        request.setAttribute("review", target);
-        request.getRequestDispatcher("reviewTarget.jsp").include(request, response);
-      }  else if (target instanceof Tag) {
-        request.setAttribute("tag", target);
-        request.getRequestDispatcher("tagTarget.jsp").include(request, response);
-      }
-
+      //      Object target = reportService.getTarget(report);
+      //      if (target instanceof Member) {
+      //        request.setAttribute("member", target);
+      //        request.getRequestDispatcher("memberTarget.jsp").include(request, response);
+      //      } else if (target instanceof Review) {
+      //        request.setAttribute("review", target);
+      //        request.getRequestDispatcher("reviewTarget.jsp").include(request, response);
+      //      }  else if (target instanceof Tag) {
+      //        request.setAttribute("tag", target);
+      //        request.getRequestDispatcher("tagTarget.jsp").include(request, response);
+      //      }
       // else if (target instanceof Comment) {
       // request.setAttribute("comment", target);
       // request.getRequestDispatcher("commentTarget.jsp").include(request, response);
@@ -88,12 +84,12 @@ public class ReportDetailServlet extends HttpServlet{
         out.printf("신고 내용: %s<br>\n", report.getWhy());
         out.println("</select><br>");
 
-        String[] stateLabels = {"", "신고대기", "반려", "처리완료"};
+        String[] stateLabels = {"신고대기", "반려", "처리완료"};
         out.println("처리상태: ");
         out.println("<select name='status'>");
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < stateLabels.length; i++) {
           out.printf("<option value='%d' %s>%s</option>\n",
-              i, report.getStatus(), stateLabels[i]);
+              i+1, report.getStatus(), stateLabels[i]);
         }
 
         out.println();
