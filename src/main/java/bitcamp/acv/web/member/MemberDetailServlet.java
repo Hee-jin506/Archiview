@@ -42,16 +42,6 @@ public class MemberDetailServlet  extends HttpServlet {
       if (member == null) {
         out.println("<p>해당 회원이 없습니다.</p>");
       } else {
-        int statusLabel = member.getStatus();
-        String label = "";
-        switch (statusLabel) {
-          case 1 : label = "활동중";
-          break;
-          case 2 : label = "정지중";
-          break;
-          case 3 : label = "탈퇴";
-          break;
-        }
         out.println("<form action='updatePhoto' method='post' enctype='multipart/form-data'>");
         out.printf("<input type='hidden' name='no' value='%d'><br>\n",
             member.getNo());
@@ -78,21 +68,21 @@ public class MemberDetailServlet  extends HttpServlet {
         out.printf("비밀번호 힌트 질문 번호 - %d<br>\n", member.getQuestionsNo());
         out.printf("비밀번호 힌트 정답 - %s<br>\n", member.getQuestionsAnswer());
         out.printf("회원 가입일 - %s<br>\n", member.getRegisteredDate());
-        out.printf("회원 상태 - %s<br>\n", label);
+        out.printf("회원 상태 - %s<br>\n", member.getStatusTitle());
         out.printf("회원 상태 변경일 - %s<br>\n", member.getStatusModifiedDate());
         out.println("<button>변경</button>");
 
         if (member.getStatus() == 1) {
-          out.printf("<a href='inactive?no=%d'>삭제</a>\n", member.getNo());
+          out.printf("<a href='inactive?no=%d'>비활성화</a>\n", member.getNo());
         } else if (member.getStatus() == 2) {
-          out.printf("<a href='active?no=%d'>부활</a>\n", member.getNo());
+          out.printf("<a href='active?no=%d'>활성화</a>\n", member.getNo());
         } else if (member.getStatus() == 3) {
           out.println("탈퇴");
         }
         out.println("</p>");
         out.println("</form>");
-      }
 
+      }
     } catch (Exception e) {
       out.printf("<p>작업 처리 중 오류 발생! - %s</p>\n", e.getMessage());
 

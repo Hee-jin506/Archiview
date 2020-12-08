@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 
 
@@ -24,14 +26,14 @@ public class MemberDeleteServlet extends HttpServlet {
     MemberService memberService =
         (MemberService) ctx.getAttribute("memberService");
 
+    HttpSession session = request.getSession();
+
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    // 일단 리스트로 돌아가도록 해놨습니다.
-    out.println("<meta http-equiv='Refresh' content='1;list'>");
     out.println("<title>회원탈퇴</title></head>");
     out.println("<body>");
     try {
@@ -41,8 +43,9 @@ public class MemberDeleteServlet extends HttpServlet {
       if (memberService.delete(no) == 0) {
         out.printf("<p>해당 회원이 존재하지 않습니다.</p>\n");
       } else {
-
-        out.printf("<p>탈퇴 완료되었습니다.</p>\n");
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        // 인풋받는 패스워드와 로긴유저에 저장된 패스워드를 비교해서 일치하는지 검사
+        loginUser.getPassword();
       }
     } catch (Exception e) {
       request.setAttribute("exception", e);
