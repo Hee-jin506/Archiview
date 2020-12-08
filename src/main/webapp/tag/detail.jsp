@@ -6,7 +6,7 @@
 <html>
 <head><title>태그 상세 조회</title></head>
 <body>
-<body>
+<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
 <h3>[태그 상세 조회]</h3>
 태그 번호: ${tag.no}<br>
 태그명: ${tag.title}<br>
