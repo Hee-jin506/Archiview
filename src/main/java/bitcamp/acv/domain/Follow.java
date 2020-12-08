@@ -3,15 +3,16 @@ package bitcamp.acv.domain;
 import java.sql.Date;
 
 public class Follow {
-  
+
   public static final int MEMBER = 1;
   public static final int TAG = 2;
-  
+
   private int no;
   private Member followingMember;
   private int followedType;
   private int followedNo;
   private Date followedDate;
+
   public int getNo() {
     return no;
   }
@@ -48,7 +49,7 @@ public class Follow {
   public static int getTag() {
     return TAG;
   }
-  
-  
+
+
 
 }
