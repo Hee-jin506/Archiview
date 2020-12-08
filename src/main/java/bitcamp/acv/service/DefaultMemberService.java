@@ -65,6 +65,13 @@ public class DefaultMemberService implements MemberService {
 
   @Override
   public List<Member> listByPop() throws Exception {
-    member
+    List<Member> members = memberDao.findByPop();
+    //    int i, j;
+    //    for (i = members.size() - 1; i>0; i--)
+    //      for (j = 0; j<i; j++)
+    //        if (arr[j]<arr[j + 1])
+    //          swap(&arr[j], &arr[j + 1]);
+    return null;
   }
+
 }

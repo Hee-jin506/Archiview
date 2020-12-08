@@ -252,15 +252,6 @@ values(3, 1, 'https://movie-phinf.pstatic.net/20170816_246/1502850756536szMwe_JP
 insert into acv_stc(stcno, mvno, stc_url)
 values(4, 1, 'https://movie-phinf.pstatic.net/20170807_170/1502069264980Amq9T_JPEG/movie_image.jpg?type=m427_320_2');
 
-insert into acv_stc(mvno, stc_url) values(2, 'ㄱ');
-insert into acv_stc(mvno, stc_url) values(2, 'ㄴ');
-insert into acv_stc(mvno, stc_url) values(3, 'ㄷ');
-insert into acv_stc(mvno, stc_url) values(3, 'ㄹ');
-insert into acv_stc(mvno, stc_url) values(3, 'ㅁ');
-insert into acv_stc(mvno, stc_url) values(4, 'ㅂ');
-insert into acv_stc(mvno, stc_url) values(3, 'ㅅ');
-insert into acv_stc(mvno, stc_url) values(3, 'ㅇ');
-
 /*포스터 샘플*/
 insert into acv_pstr(psno, mvno, ps_url, main_ps)
 values(1, 1, 'https://movie-phinf.pstatic.net/20170814_17/1502675963099mSfot_JPEG/movie_image.jpg?type=m665_443_2', 1);
@@ -495,71 +486,6 @@ values(2, 2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 1
 insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
 values(3, 3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11, 1);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(3, 8, 'ㄱ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(4, 8, 'ㄴ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(4, 8, 'ㄷ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(4, 8, 'ㄹ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(5, 8, 'ㅁ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(5, 8, 'ㅂ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(6, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(6, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(6, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(6, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(7, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(7, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(8, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(9, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(9, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(9, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(10, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(10, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(10, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(10, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(11, 8, 'ㅅ', 506, 350, 8, 11, 1);
-
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(12, 8, 'ㅅ', 506, 350, 8, 11, 1);
 
 /* 신고 사유 샘플*/
 insert into acv_rp_why(rwno, title)

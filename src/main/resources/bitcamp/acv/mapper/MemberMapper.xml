@@ -37,7 +37,8 @@
   <result column="rdt" property="registeredDate" />
   <result column="stno" property="status" />
   <result column="stat_mdt" property="statusModifiedDate" />
-  <result column="count(*)" property="followers" />
+  <result column="flw_length" property="followers" />
+  <result column="lk_length"  property="likers"/>
  </resultMap>
 
  <!-- private int no; // 회원 번호 private int authority; // 권한 private String 
@@ -149,7 +150,7 @@
   where mno=#{no}
  </update>
 
- <select id="findByPop" parameterType="map" resultMap="MemberMap">
+ <select id="findByPop" parameterType="map" resultMap="MemberMap2">
   select
     mb.mno,
     mb.auth,
@@ -176,90 +177,6 @@
     inner join acv_rv rv on target=rvno 
     where lano=1 
     group by target, lano)lk
-    on lk.mno=mb.mno;
-    
+    on lk.mno=mb.mno; 
  </select>
 </mapper>
-
-select
-  fw.target,
-  fw.fano,
-  distinct(select count(*) from acv_flw) "flw_length", (select count(*) from"
-  
-  
-  select 
-  target, lano, count(*) lk_length, rv.mno 
-  from acv_like 
-  inner join acv_rv rv on target=rvno
-  where lano=1 
-  group by target, lano
-  
-  
-select
-    mb.mno,
-    mb.auth,
-    mb.name,
-    mb.ltno,
-    mb.email,
-    mb.pw,
-    mb.nick,
-    mb.photo,
-    mb.intro,
-    mb.qno,
-    mb.pw_hint_a,
-    mb.rdt,
-    mb.stno,
-    mb.stat_mdt,
-    lk.
-    
-    
-  select
-    mb.mno,
-    mb.auth,
-    mb.name,
-    mb.ltno,
-    mb.email,
-    mb.pw,
-    mb.nick,
-    mb.photo,
-    mb.intro,
-    mb.qno,
-    mb.pw_hint_a,
-    mb.rdt,
-    mb.stno,
-    mb.stat_mdt,
-    count(*)
-  from acv_flw fw
-    inner join acv_mbr mb on fw.target=mb.mno
-    outer left join acv_rv rv on rv.mno=mb.mno
-    outer left join acv_like lk on lk.target=rv.rvno
-    where fano = 1, lano=1
-    group by target, fano
-    order by count(*) desc
-    
-select target, fano, count(*) from acv_flw where fano=1 group by target, fano;
- 
-
-
-  select
-    mb.mno,
-    mb.auth,
-    mb.name,
-    mb.ltno,
-    mb.email,
-    mb.pw,
-    mb.nick,
-    mb.photo,
-    mb.intro,
-    mb.qno,
-    mb.pw_hint_a,
-    mb.rdt,
-    mb.stno,
-    mb.stat_mdt
-  from acv_mbr mb, 
-    inner join acv_flw fw on mb.mno=fw.target
-    left outer join acv_rv rv on rv.mno=mb.mno
-    left outer join acv_like lk on lk.target=rv.rvno
-    where fw.fano = 1
-    and lk.lano=1
-

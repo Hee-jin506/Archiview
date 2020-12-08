@@ -1,13 +1,11 @@
 package bitcamp.acv.web.main;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.TagService;
@@ -26,7 +24,7 @@ public class SidBarServlet extends HttpServlet {
 
     response.setContentType("text/html;charset=UTF-8");
 
-    List<Member> members = memberService.listByPop();
+    //    List<Member> members = memberService.listByPop();
 
 
 
