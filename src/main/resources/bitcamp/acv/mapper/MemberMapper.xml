@@ -18,6 +18,7 @@
   <result column="qno" property="questionsNo" />
   <result column="pw_hint_a" property="questionsAnswer" />
   <result column="rdt" property="registeredDate" />
+  <result column="stno"      property="status"/>
   <result column="stat_title"      property="statusTitle"/>
   <result column="stat_mdt" property="statusModifiedDate" />
  </resultMap>
@@ -66,7 +67,6 @@
     mb.rdt,
     mb.stno,
     mb.stat_mdt,
-    mbs.stno,
     mbs.title stat_title,
     mb.stat_mdt
     from 
@@ -75,21 +75,7 @@
   </sql>
 
  <select id="findAll" resultMap="MemberMap" parameterType="string">
-    select 
-    mb.mno,
-    mb.auth,
-    mb.name,
-    mb.ltno,
-    mb.email,
-    mb.nick,
-    mb.photo,
-    mb.intro,
-    mb.rdt,
-    mbs.title stat_title,
-    mb.stat_mdt
-    from 
-      acv_mbr mb
-      inner join acv_mbr_stat mbs on mb.stno = mbs.stno
+  <include refid="sql1" />
   <if test="keyword != null">
    <bind name="pattern" value="'%' + _parameter + '%'" />
    where
@@ -97,7 +83,7 @@
    or mb.nick like #{pattern}
    or mb.email like #{pattern}
    or mb.mno like #{pattern}
-   or mb.stno like #{pattern}
+   or mbs.title stat_title like #{pattern}
   </if>
   order by mb.mno desc
  </select>

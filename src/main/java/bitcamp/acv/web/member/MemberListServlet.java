@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 
@@ -42,7 +43,7 @@ public class MemberListServlet extends HttpServlet {
       out.println("<form action='list' method='get'>");
       out.printf("검색어: <input type='search' name='keyword' value='%s'>\n",
           keyword != null ? keyword : "회원 번호, 이름, 이메일, 닉네임, 회원상태로 검색");
-      // 상태 번호와 회원 번호가 동시에 검색이 됩니다.
+      // 회원 상태 검색 에러
       out.println("<button>검색</button>");
       out.println("</form>");
       out.println("</p>");
@@ -66,25 +67,15 @@ public class MemberListServlet extends HttpServlet {
       out.println("<th>암호</th>");
       out.println("<th>별명</th>");
       out.println("<th>소개글</th>");
-      out.println("<th>비밀번호 힌트 질문 번호</th>");
-      out.println("<th>비밀번호 힌트 정답</th>");
       out.println("<th>회원 가입일</th>");
       out.println("<th>회원 상태</th>");
+      out.println("<th>회원 상태 번호</th>");
       out.println("<th>회원 상태 변경일</th>");
       out.println("</tr></thead>");
 
       for (Member member : list ) {
-
-        //        int statusLabel = member.getStatus();
-        //        String label = "";
-        //        switch (statusLabel) {
-        //          case 1 : label = "활동중";
-        //          break;
-        //          case 2 : label = "정지";
-        //          break;
-        //          case 3 : label = "탈퇴";
-        //          break;
-        //        }
+        HttpSession session = request.getSession();
+        Member loginUser = (Member) session.getAttribute("loginUser");
 
         out.printf("<tr>"
             + "<td><input type='checkbox' name='members' value='%d'</td>\n" // 선택
@@ -96,10 +87,9 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%s</td>\n" // pw
             + "<td>%s</td>\n" // nick
             + "<td>%s</td>\n" // intro
-            + "<td>%d</td>\n" // qno
-            + "<td>%s</td>\n" // qan
             + "<td>%s</td>\n" // rdt
             + "<td>%s</td>\n" // statusTitle
+            + "<td>%s</td>\n" // stno
             + "<td>%s</td>\n", // smdt
 
             member.getNo(),
@@ -110,10 +100,9 @@ public class MemberListServlet extends HttpServlet {
             member.getPassword(),
             member.getNickName(),
             member.getIntro(),
-            member.getQuestionsNo(),
-            member.getQuestionsAnswer(),
             member.getRegisteredDate(),
             member.getStatusTitle(),
+            member.getStatus(),
             member.getStatusModifiedDate()
             );
       }

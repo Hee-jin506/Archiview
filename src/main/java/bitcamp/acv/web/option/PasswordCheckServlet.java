@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 
@@ -19,6 +20,7 @@ public class PasswordCheckServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    HttpSession session = request.getSession();
     ServletContext ctx = request.getServletContext();
     MemberService memberService =
         (MemberService) ctx.getAttribute("memberService");
@@ -32,18 +34,19 @@ public class PasswordCheckServlet extends HttpServlet {
     out.println("<body>");
 
     try {
-      if (request.getParameter("newpassword").toString() == request.getParameter("newpassword2").toString()) {
-        Member member = new Member();
-        member.setNo(Integer.parseInt(request.getParameter("no")));
-        member.setPassword(request.getParameter("newpassword2"));
+      Member old = (Member) session.getAttribute("loginUser");
+      String email = old.getEmail();
+      String oldPassword = request.getParameter("oldpassword");
 
-        memberService.updatePassword(member);
+      Member m = memberService.get(email, oldPassword);
 
+      if (m != null) {
+        String newPassword = request.getParameter("newpassword");
+        m.setPassword(newPassword);
+        memberService.updatePassword(m);
         out.println("<p>비밀번호를 변경 하였습니다.</p>");
       } else {
-        out.println("<p>두 비밀번호가 일치하지 않습니다.</p>");
-        out.printf("%s<br>", request.getParameter("newpassword"));
-        out.printf("%s", request.getParameter("newpassword2"));
+        out.println("<p>입력한 정보가 맞지 않습니다.</p>");
       }
       out.println("<meta http-equiv='Refresh' content='2;update'>");
 

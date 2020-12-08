@@ -7,6 +7,61 @@
 <head>
 <meta charset="UTF-8">
 <title>영화관리</title>
+<style>
+
+  html {
+    background-color: #000000;
+    color: #ffffff;
+    }
+    
+  #movielist {
+  position: absolute;
+  /* top: 100%; */
+  left: 10%;
+  width: 80%;
+  }
+    
+  #bar1 {
+    background-color: #141517;
+    font-size: x-small;
+    font-style: normal;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  #check {
+  width: 1%;
+  }
+  
+  #movieno {
+  width: 5%;
+  }
+  
+  #moviename {
+  width: 19%;
+  }
+  
+  #reviews {
+  width: 5%;
+  }
+  
+  #rdt {
+  width: 8%;
+  }
+  
+  #stat {
+  width: 5%;
+  }
+  
+  #movies * {
+  color: white;
+  font-size:xx-small;
+  text-decoration: none;
+  }
+  
+   
+    
+</style>
 </head>
 <body>
 
@@ -21,14 +76,14 @@
 List<Movie> list = (List<Movie>) request.getAttribute("list");
 %>
 <span>총 영화 수 : <%list.size();%></span>
-  <table border='1'>
-  <thead><tr>
-    <th> </th>
-    <th>영화번호</th>
-    <th>영화제목</th>
-    <th>게시글 수</th>
-    <th>등록일</th>
-    <th>상태</th>
+  <table id="movielist" border='0'>
+  <thead id="bar1"><tr>
+  <th id="check"> </th>
+  <th id="movieno">영화번호</th>
+  <th id="moviename">영화제목</th>
+  <th id="reviews">게시글 수</th>
+  <th id="rdt">등록일</th>
+  <th id="stat">상태</th>
   </tr></thead>
   
   <tbody>
@@ -40,9 +95,9 @@ List<Movie> list = (List<Movie>) request.getAttribute("list");
     } else {
       stat = "삭제";
     }%>
-    <tr>
+    <tr id="movies">
       <td><input type='checkbox' name='movie' value='<%=movie.getNo()%>'></td>
-      <td><a href='detail?no=<%=movie.getNo()%>'><%=movie.getNo()%></a></td> 
+      <td><a  href='detail?no=<%=movie.getNo()%>'><%=movie.getNo()%></a></td> 
       <td><a href='detail?no=<%=movie.getNo()%>'><%=movie.getTitle()%></a></td>
       <td><%=movie.getReviews().size()%></td>
       <td><%=movie.getRegisteredDate()%></td>
