@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="CommentDao">
+  
+  <resultMap type="comment" id="CommentMap">
+    <id column="cno"           property="no"/>
+    <result column="rvno"    property="reviewNo"/>
+    <result column="odr"    property="order"/>
+    <result column="lvl"    property="level"/>
+    <result column="mno"    property="memberNo"/>
+    <result column="content"    property="content"/>
+    <result column="rdt"    property="registerdDate"/>
+    <result column="stat"    property="status"/>
+    <result column="mdt"    property="modifiedDate"/>
+    
+    <association property="writer" javaType="member">
+      <id column="mno" property="no"/>
+      <result column="nick" property="nickName"/>
+      <result column="photo" property="photo"/>
+    </association>
+      
+    <association property="review" javaType="review">
+      <id column="rvno" property="no"/>
+      <result column="title" property="title"/>
+    </association>
+  </resultMap>
+  
+  <!--
+  private int no; // 댓글 번호
+  private int reviewNo; // 영화 후기 번호
+  private int order; // 댓글 순서
+  private int level; // 댓글 단계
+  private int memberNo; // 댓글단 회원
+  private String content; // 내용
+  private Date registeredDate; // 등록일
+  private int status; // 상태
+  private Date modifiedDate; // 수정일
+  -->
+  
+  <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 
+       다음과 같이 별도로 분리한다. -->
+  <sql id="sql1">
+    select 
+    c.cno,
+    c.rvno,
+    c.odr,
+    c.lvl,
+    c.mno,
+    c.content,
+    c.rdt,
+    c.stat,
+    c.mdt,
+    r.rvno,
+    mb.nick,
+    mb.photo
+  </sql>
+       
+  <insert id="insert" parameterType="comment">
+    insert into acv_cmt(cno, avno, content, odr, lvl, rdt, stat) 
+    <if test="content != ''">
+      values(#{no}, #{reviewNo}, #{order}, #{level}, #{memberNo}, #{content},
+      #{now()}, 1)
+    </if>
+  </insert>
+  
+  <select id="findByReviewNo" resultMap="CommentMap" parameterType="int">
+    <include refid="sql1"/>
+      from 
+      acv_cmt c
+      left outer join acv_rv r on r.rvno = c.rvno
+      left outer join acv_mbr mb on mb.mno = c.mno
+    where r.rvno=#{reviewNo}
+    order by c.odr desc;
+  </select>
+  
+</mapper>

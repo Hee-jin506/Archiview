@@ -99,6 +99,34 @@ values(2, 2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 1
 insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
 values(3, 3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11, 1);
 
+/* 좋아요 이력 샘플 */
+insert into acv_like(lno, mno, lano, target) values(1, 2, 1, 1);
+
+insert into acv_like(lno, mno, lano, target) values(2, 3, 1, 1);
+
+insert into acv_like(lno, mno, lano, target) values(3, 4, 1, 1);
+
+insert into acv_like(lno, mno, lano, target) values(4, 5, 1, 1);
+
+insert into acv_like(lno, mno, lano, target) values(5, 6, 1, 1);
+
+insert into acv_like(lno, mno, lano, target) values(6, 7, 1, 1);
+
+insert into acv_like(lno, mno, lano, target) values(7, 8, 2, 1);
+
+insert into acv_like(lno, mno, lano, target) values(6, 1, 1, 2);
+
+insert into acv_like(lno, mno, lano, target) values(7, 2, 1, 2);
+
+insert into acv_like(lno, mno, lano, target) values(8, 3, 1, 2);
+
+insert into acv_like(lno, mno, lano, target) values(9, 4, 1, 2);
+
+insert into acv_like(lno, mno, lano, target) values(10, 5, 1, 2);
+
+insert into acv_like(lno, mno, lano, target) values(11, 1, 1, 3);
+
+insert into acv_like(lno, mno, lano, target) values(12, 2, 1, 3);
 
 /* 태그-게시물 샘플*/
 insert into acv_tag_post(rvno, tno) value(1, 1);
@@ -141,6 +169,62 @@ insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, p
 values(9, 1, '이용민', 3, 'acv9@test.com', password('9999'), '스트릿패션', 'dog4.jpeg',
 '리셀가 80만원', 1, '캔디', 1);
 
+/* 팔로우 이력 샘플*/
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(1, 2, 1, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(2, 3, 1, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(3, 4, 1, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(4, 5, 1, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(5, 6, 1, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(6, 7, 1, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(7, 8, 1, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(8, 9, 1, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(9, 3, 2, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(10, 4, 2, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(11, 5, 2, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(12, 6, 2, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(13, 7, 2, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(14, 8, 2, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(15, 4, 3, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(16, 5, 3, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(17, 6, 3, 1);
+
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(18, 6, 3, 2);
+
+insert into acv_flw
 /*영화 샘플*/
 insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
 values(1, '무현, 두 도시 이야기', '전인환', 'Moo-hyun, Tale of Two Cities', 124, '2016-10-26', 

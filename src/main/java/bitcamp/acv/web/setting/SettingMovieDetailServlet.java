@@ -26,10 +26,6 @@ public class SettingMovieDetailServlet  extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head><title>영화관리(상세조회)</title></head>");
-    out.println("<body>");
     try {
 
       int no = Integer.parseInt(request.getParameter("no"));
@@ -40,50 +36,9 @@ public class SettingMovieDetailServlet  extends HttpServlet {
         return;
       }
 
-      StringBuilder stillCuts = new StringBuilder();
-      for (String stillCut : movie.getStillcuts()) {
-        stillCuts.append(stillCut);
-        stillCuts.append("\n");
-      }
+      request.setAttribute("movie", movie);
+      request.getRequestDispatcher("/setting/movie/detail.jsp").include(request, response);
 
-      StringBuilder posters = new StringBuilder();
-      for (String poster : movie.getPosters()) {
-        posters.append(poster);
-        posters.append("\n");
-      }
-
-      StringBuilder genres = new StringBuilder();
-      for (String genre : movie.getGenres()) {
-        genres.append(genre);
-        genres.append("\n");
-      }
-
-      out.printf("<p>영화번호    %d</p>\n", movie.getNo());
-      out.printf("<p>등록일      %s</p>\n", movie.getRegisteredDate());
-      out.printf("<p>제목        %s</p>\n", movie.getTitle());
-      out.printf("<p>영문명      %s</p>\n", movie.getEnglishTitle());
-      out.printf("<p>장르        %s</p>\n", genres.toString());
-      out.printf("<p>상영시간    %d분</p>\n", movie.getRuntime());
-      out.printf("<p>감독        %s</p>\n", movie.getDirectors());
-      out.printf("<p>제작국가    %s</p>\n", movie.getNation());
-      out.printf("<p>개봉일      %s</p>\n", movie.getOpenDate());
-      out.printf("<p>출연        %s</p>\n", movie.getActors());
-      out.printf("<p>시놉시스    %s</p>\n", movie.getSynopsis());
-
-      out.println("<p>포스터</p>");
-      for (String poster : movie.getPosters()) {
-        out.printf("<img src='%s' width='120'>\n", poster);
-      }
-      out.println("<p>스틸컷<p>");
-      for (String stillCut : movie.getStillcuts()) {
-        out.printf("<img src='%s' width='120'>\n", stillCut);
-      }
-      out.println("<br>");
-      out.printf("<a href='update?no=%d'>[수정]</a>\n ",
-          movie.getNo());
-      out.printf("<a href='delete?no=%d'>[삭제]</a>\n", movie.getNo());
-      out.printf("<a href='active?no=%d'>[복구]</a>\n", movie.getNo());
-      out.println("<a href='list'>[취소]</a>");
     } catch (Exception e) {
       request.setAttribute("exception", e);
       request.getRequestDispatcher("/error").forward(request, response);

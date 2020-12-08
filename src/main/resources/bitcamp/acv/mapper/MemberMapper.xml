@@ -2,47 +2,54 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="MemberDao">
-  
-  <resultMap type="member" id="MemberMap">
-    <id column="mno"           property="no"/>
-    <result column="auth"    property="authority"/>
-    <result column="name"  property="name"/>
-    <result column="ltno"      property="loginNo"/>
-    <result column="email"      property="email"/>
-    <result column="pw"      property="password"/>
-    <result column="nick"      property="nickName"/>
-    <result column="photo"      property="photo"/>
-    <result column="intro"      property="intro"/>
-    <result column="qno"      property="questionsNo"/>
-    <result column="pw_hint_a"      property="questionsAnswer"/>
-    <result column="rdt"      property="registeredDate"/>
-    <result column="stno"      property="status"/>
-    <result column="stat_mdt"      property="statusModifiedDate"/>
-  </resultMap>
-  
-  <!--
-    private int no; // 회원 번호
-  private int authority; // 권한
-  private String name; // 이름
-  private int loginNo; // 로그인 유형 번호
-  private String email; // 이메일
-  private String password; // 암호
-  private String nickName; // 별명
-  private String photo; // 사진
-  private String intro; // 소개글
-  private int questionsNo; // 비밀번호 힌트 질문 번호
-  private String questionsAnswer; // 비밀번호 힌트 정답
-  private Date registeredDate; // 회원 가입일
-  private int status; // 회원 상태 번호
-  private Date statusModifiedDate; // 회원 상태 변경일
-  private List<Review> saving;
-  
-  -->
-  
-  <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 
-       다음과 같이 별도로 분리한다. -->
+
+ <resultMap type="member" id="MemberMap">
+  <id column="mno" property="no" />
+  <result column="auth" property="authority" />
+  <result column="name" property="name" />
+  <result column="ltno" property="loginNo" />
+  <result column="email" property="email" />
+  <result column="pw" property="password" />
+  <result column="nick" property="nickName" />
+  <result column="photo" property="photo" />
+  <result column="intro" property="intro" />
+  <result column="qno" property="questionsNo" />
+  <result column="pw_hint_a" property="questionsAnswer" />
+  <result column="rdt" property="registeredDate" />
+  <result column="stat_title"      property="status"/>
+  <result column="stat_mdt" property="statusModifiedDate" />
+ </resultMap>
+
+ <resultMap type="member" id="MemberMap2">
+  <id column="mno" property="no" />
+  <result column="auth" property="authority" />
+  <result column="name" property="name" />
+  <result column="ltno" property="loginNo" />
+  <result column="email" property="email" />
+  <result column="pw" property="password" />
+  <result column="nick" property="nickName" />
+  <result column="photo" property="photo" />
+  <result column="intro" property="intro" />
+  <result column="qno" property="questionsNo" />
+  <result column="pw_hint_a" property="questionsAnswer" />
+  <result column="rdt" property="registeredDate" />
+  <result column="stno" property="status" />
+  <result column="stat_mdt" property="statusModifiedDate" />
+  <result column="flw_length" property="followers" />
+  <result column="lk_length"  property="likers"/>
+ </resultMap>
+
+ <!-- private int no; // 회원 번호 private int authority; // 권한 private String 
+  name; // 이름 private int loginNo; // 로그인 유형 번호 private String email; // 이메일 
+  private String password; // 암호 private String nickName; // 별명 private String 
+  photo; // 사진 private String intro; // 소개글 private int questionsNo; // 비밀번호 
+  힌트 질문 번호 private String questionsAnswer; // 비밀번호 힌트 정답 private Date registeredDate; 
+  // 회원 가입일 private int status; // 회원 상태 번호 private Date statusModifiedDate; 
+  // 회원 상태 변경일 private List<Review> saving; -->
+
+ <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 다음과 같이 별도로 분리한다. -->
   <sql id="sql1">
     select 
     mb.mno,
@@ -58,90 +65,135 @@
     mb.pw_hint_a,
     mb.rdt,
     mb.stno,
+    mb.stat_mdt,
+    mbs.stno,
+    mbs.title stat_title,
     mb.stat_mdt
     from 
       acv_mbr mb
+      inner join acv_mbr_stat mbs on mb.stno = mbs.stno
   </sql>
-       
-  <select id="findAll" resultMap="MemberMap" parameterType="string">
-    <include refid="sql1"/>
-    <if test="keyword != null">
-    <bind name="pattern" value="'%' + _parameter + '%'" />
-     where 
-      mb.name like #{pattern}
-      or mb.nick like #{pattern}
-      or mb.email like #{pattern}
-      or mb.mno like #{pattern}
-      or mb.stno like #{pattern}
-    </if>
-    order by mb.mno desc
-  </select>
-  
-  <insert id="insert" parameterType="member">
-    insert into acv_mbr(auth,name,ltno,email,pw,nick,photo,intro,qno,pw_hint_a,stno,stat_mdt)
-    values(#{authority},#{name},#{loginNo},#{email},password(#{password}),#{nickName},#{photo},#{intro},#{questionsNo},#{questionsAnswer},#{status},#{statusModifiedDate})
-  </insert>
-  
-    <select id="findByNo" parameterType="int" resultMap="MemberMap">
-      <include refid="sql1"/>
-    where 
-      mno = #{no}
-  </select>
-  
-  <select id="findByEmailPassword" parameterType="map" resultMap="MemberMap">
-  <include refid="sql1"/>
-    where 
-      email = #{email}
-      and pw = password(#{password})
-  </select>
-  
-  <update id="update" parameterType="member">
-    update acv_mbr
-      <set>
-	      <if test="nickName != null">nick = #{nickName},</if>
-	      <if test="intro != null">intro = #{intro},</if>
-	      <if test="photo != null">photo = #{photo}</if>
-      </set>
-    where mno = #{no}
-  </update>
-  
-  <update id="updatePassword" parameterType="member">
-    update acv_mbr
-      <set>
-        <if test="password != null">pw = password(#{password})</if>
-      </set>
-    where mno = #{no}
-  </update>
-  
-  <!--  
-  <delete id="delete" parameterType="int">
-    delete from acv_mbr
-    where mno=#{no}
-  </delete>
-  -->
 
-  <update id="active" parameterType="int">
-    update acv_mbr
-    set
-    stno = 1,
-    stat_mdt = now()
-    where mno=#{no}
-  </update>
-  
-  <update id="inactive" parameterType="int">
-    update acv_mbr
-    set
-    stno = 2,
-    stat_mdt = now()
-    where mno=#{no}
-  </update>
-  
-  <update id="delete" parameterType="int">
-    update acv_mbr
-    set
-    stno = 3,
-    stat_mdt = now()
-    where mno=#{no}
-  </update>
-  
+ <select id="findAll" resultMap="MemberMap" parameterType="string">
+    select 
+    mb.mno,
+    mb.auth,
+    mb.name,
+    mb.ltno,
+    mb.email,
+    mb.nick,
+    mb.photo,
+    mb.intro,
+    mb.rdt,
+    mbs.title stat_title,
+    mb.stat_mdt
+    from 
+      acv_mbr mb
+      inner join acv_mbr_stat mbs on mb.stno = mbs.stno
+  <if test="keyword != null">
+   <bind name="pattern" value="'%' + _parameter + '%'" />
+   where
+   mb.name like #{pattern}
+   or mb.nick like #{pattern}
+   or mb.email like #{pattern}
+   or mb.mno like #{pattern}
+   or mb.stno like #{pattern}
+  </if>
+  order by mb.mno desc
+ </select>
+
+ <insert id="insert" parameterType="member">
+  insert into
+  acv_mbr(auth,name,ltno,email,pw,nick,photo,intro,qno,pw_hint_a,stno,stat_mdt)
+  values(#{authority},#{name},#{loginNo},#{email},password(#{password}),#{nickName},#{photo},#{intro},#{questionsNo},#{questionsAnswer},#{status},#{statusModifiedDate})
+ </insert>
+
+ <select id="findByNo" parameterType="int" resultMap="MemberMap">
+  <include refid="sql1" />
+  where
+  mno = #{no}
+ </select>
+
+ <select id="findByEmailPassword" parameterType="map"
+  resultMap="MemberMap">
+  <include refid="sql1" />
+  where
+  email = #{email}
+  and pw = password(#{password})
+ </select>
+
+ <update id="update" parameterType="member">
+  update acv_mbr
+  <set>
+   <if test="nickName != null">nick = #{nickName},</if>
+   <if test="intro != null">intro = #{intro},</if>
+   <if test="photo != null">photo = #{photo}</if>
+  </set>
+  where mno = #{no}
+ </update>
+
+ <update id="updatePassword" parameterType="member">
+  update acv_mbr
+  <set>
+   <if test="password != null">pw = password(#{password})</if>
+  </set>
+  where mno = #{no}
+ </update>
+
+ <!-- <delete id="delete" parameterType="int"> delete from acv_mbr where 
+  mno=#{no} </delete> -->
+
+ <update id="active" parameterType="int">
+  update acv_mbr
+  set
+  stno = 1,
+  stat_mdt = now()
+  where mno=#{no}
+ </update>
+
+ <update id="inactive" parameterType="int">
+  update acv_mbr
+  set
+  stno = 2,
+  stat_mdt = now()
+  where mno=#{no}
+ </update>
+
+ <update id="delete" parameterType="int">
+  update acv_mbr
+  set
+  stno = 3,
+  stat_mdt = now()
+  where mno=#{no}
+ </update>
+
+ <select id="findByPop" parameterType="map" resultMap="MemberMap2">
+  select
+    mb.mno,
+    mb.auth,
+    mb.name,
+    mb.ltno,
+    mb.email,
+    mb.pw,
+    mb.nick,
+    mb.photo,
+    mb.intro,
+    mb.qno,
+    mb.pw_hint_a,
+    mb.rdt,
+    mb.stno,
+    mb.stat_mdt,
+    flw_length,
+    lk_length
+  from acv_mbr mb
+    left outer join 
+    (select target, fano, count(*) flw_length from acv_flw where fano=1 group by target, fano)fw
+    on fw.target=mb.mno
+    left outer join
+    (select target, lano, count(*) lk_length, rv.mno from acv_like 
+    inner join acv_rv rv on target=rvno 
+    where lano=1 
+    group by target, lano)lk
+    on lk.mno=mb.mno; 
+ </select>
 </mapper>

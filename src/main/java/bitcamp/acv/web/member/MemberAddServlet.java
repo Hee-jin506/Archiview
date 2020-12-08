@@ -71,6 +71,18 @@ public class MemberAddServlet extends HttpServlet {
         return name + "_150x150";
       }
     });
+    
+    Thumbnails.of(this.uploadDir + "/" + filename)//
+    .size(35, 35)//
+    .outputFormat("jpg")//
+    .crop(Positions.CENTER)
+    .toFiles(new Rename() {
+      @Override
+      public String apply(String name, ThumbnailParameter param) {
+        return name + "_35x35";
+      }
+    });
+
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
