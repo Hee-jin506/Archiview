@@ -99,15 +99,11 @@
 - 진행 상황 : ReviewListServlet 편집 중
 - 해결할 문제
   - 태그 조회랑 같음
-  
-  - 기본검색기능의 체크박스 추가
-  - 태그 목록 출력
 
 ### 🎯 게시물 상세 조회 기능
 - 테스트 방법: http://localhost:9999/Archiview/review/list 접속 
 - 진행 상황 : ReviewDetailServlet 편집 중
 - 해결할 문제
-  - 아직 하는 
 
 ### 🎯 태그 조회 기능
 
