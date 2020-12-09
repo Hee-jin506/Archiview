@@ -69,7 +69,6 @@ public class MemberListServlet extends HttpServlet {
       out.println("<th>소개글</th>");
       out.println("<th>회원 가입일</th>");
       out.println("<th>회원 상태</th>");
-      out.println("<th>회원 상태 번호</th>");
       out.println("<th>회원 상태 변경일</th>");
       out.println("</tr></thead>");
 
@@ -89,7 +88,6 @@ public class MemberListServlet extends HttpServlet {
             + "<td>%s</td>\n" // intro
             + "<td>%s</td>\n" // rdt
             + "<td>%s</td>\n" // statusTitle
-            + "<td>%s</td>\n" // stno
             + "<td>%s</td>\n", // smdt
 
             member.getNo(),
@@ -102,7 +100,6 @@ public class MemberListServlet extends HttpServlet {
             member.getIntro(),
             member.getRegisteredDate(),
             member.getStatusTitle(),
-            member.getStatus(),
             member.getStatusModifiedDate()
             );
       }
