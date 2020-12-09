@@ -6,7 +6,7 @@
 <mapper namespace="MovieDao">
   
   <resultMap type="movie" id="MovieMap">
-        <id column="mvno"           property="no"/>
+    <id column="mvno"           property="no"/>
     <result column="title"          property="title"/>
     <result column="dir"            property="directors"/>
     <result column="eng_title"      property="englishTitle"/>
@@ -36,6 +36,12 @@
     </collection>
     
   </resultMap>
+  
+ <!--  <resultMap type="movie" id="MovieMap2">
+     <id column="mvno"           property="no"/>
+     <result column="title"          property="title"/>
+     <result column="count(*)"          property="review"/>
+  </resultMap> -->
   
   <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 
        다음과 같이 별도로 분리한다. -->
@@ -80,6 +86,23 @@
     order by m.mvno desc
   </select>
   
+  <select id="findByPop" resultMap="MovieMap2">
+    select
+      mvno,
+      title,
+      count(*)
+    from
+      (select
+         stc.mvno,
+         mov.title,
+         stc.stcno,
+         rv.rvno
+       from
+         acv_stc stc
+       inner join acv_rv rv on rv.stcno=stc.stcno
+       inner join acv_mov mov on mov.mvno=stc.mvno)rvl
+     group by mvno
+  </select>
   
   <select id="findByNo" resultMap="MovieMap" parameterType="integer">
     <include refid="sql1" />
@@ -123,4 +146,7 @@
       stc_url=#{url}
       and mvno=#{movieNo}
   </select>
+  
+  
+  
 </mapper>

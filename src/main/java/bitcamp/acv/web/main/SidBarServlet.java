@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bitcamp.acv.domain.Member;
+import bitcamp.acv.domain.Movie;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.TagService;
@@ -29,6 +30,7 @@ public class SidBarServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     try {
       List<Member> members = memberService.listByPop();
+      List<Movie> movies = movieService.listByPop();
 
       Member[] topMembers = new Member[3];
       for (int i = 0; i < 3; i++) {

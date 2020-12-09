@@ -31,4 +31,10 @@ public class DefaultMovieService implements MovieService {
   public int getStcNo(int movieNo, String url) throws Exception {
     return movieDao.getStcNo(movieNo, url);
   }
+
+  @Override
+  public List<Movie> listByPop() throws Exception {
+    // movieDao.findAll(keyword)
+    return null;
+  }
 }

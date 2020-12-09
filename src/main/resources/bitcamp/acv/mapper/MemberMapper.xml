@@ -182,28 +182,3 @@
     on lk.mno=mb.mno; 
  </select>
 </mapper>
-
-<!-- 
-
-    select 
-    mb.mno,
-    mb.auth,
-    mb.name,
-    mb.ltno,
-    mb.email,
-    mb.pw,
-    mb.nick,
-    mb.photo,
-    mb.intro,
-    mb.qno,
-    mb.pw_hint_a,
-    mb.rdt,
-    mb.stno,
-    mb.stat_mdt,
-    mbs.title stat_title,
-    mb.stat_mdt
-    from 
-      acv_mbr mb
-      inner join acv_mbr_stat mbs on mb.stno = mbs.stno
-         where mbs.title like concat('%', '정' '%')
- -->

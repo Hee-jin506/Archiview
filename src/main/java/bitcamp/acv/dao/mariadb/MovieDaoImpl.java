@@ -127,7 +127,7 @@ public class MovieDaoImpl implements MovieDao {
   }
 
   @Override
-  public int getStcNo(int movieNo, String url) {
+  public int getStcNo(int movieNo, String url) throws Exception {
     Map<String, Object> map = new HashMap<>();
     map.put("movieNo", movieNo);
     map.put("url", url);
@@ -136,5 +136,11 @@ public class MovieDaoImpl implements MovieDao {
     }
   }
 
+  @Override
+  public List<Movie> finByPop() throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("MovieDao.finByPop");
+    }
+  }
 }
 

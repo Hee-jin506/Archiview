@@ -8,4 +8,5 @@ public interface MovieService {
   Movie findByNo(int no) throws Exception;
   int update(Movie movie) throws Exception;
   int getStcNo(int movieNo, String url) throws Exception;
+  List<Movie> listByPop() throws Exception;
 }
