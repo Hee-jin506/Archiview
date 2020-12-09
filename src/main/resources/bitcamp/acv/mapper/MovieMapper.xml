@@ -86,11 +86,8 @@
     </if>
     order by m.mvno desc
   </select>
-<<<<<<< HEAD
-  <!-- 
-  <select id="findByPop" resultMap="MovieMap2">
-=======
-  
+
+ 
  <!--  <select id="findByPop" resultMap="MovieMap2">
 >>>>>>> 63a0c30bbc266ddb8ede36b739001525468f28d1
     select
@@ -111,10 +108,7 @@
 <<<<<<< HEAD
   </select>
    -->
-=======
-  </select> -->
   
->>>>>>> 63a0c30bbc266ddb8ede36b739001525468f28d1
   <select id="findByNo" resultMap="MovieMap" parameterType="integer">
     <include refid="sql1" />
     where
