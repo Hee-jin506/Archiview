@@ -44,14 +44,14 @@ public class ReviewDaoImpl implements ReviewDao {
   @Override
   public List<Review> findAllByKeyword(String keyword) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectList("ReviewDao.findAllByKeyword",keyword);
+      return sqlSession.selectList("ReviewDao.findAllByKeyword", keyword);
     }
   }
 
   @Override
   public List<Review> findByKeyword(HashMap<String, Object> keyMap) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectList("ReviewDao.findAllByKeyword", keyMap);
+      return sqlSession.selectList("ReviewDao.findByKeyword", keyMap);
     }
   }
 
@@ -59,6 +59,27 @@ public class ReviewDaoImpl implements ReviewDao {
   public List<Review> findByDetailKeyword(HashMap<String, Object> keywords) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.selectList("ReviewDao.findByDetailKeyword", keywords);
+    }
+  }
+
+  @Override
+  public int delete(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("ReviewDao.delete", no);
+    }
+  }
+
+  @Override
+  public int active(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("ReviewDao.active", no);
+    }
+  }
+
+  @Override
+  public Review findByNo(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("ReviewDao.findByNo", no);
     }
   }
 }

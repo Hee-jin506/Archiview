@@ -10,6 +10,7 @@ public interface TagService {
   List<Tag> list() throws Exception;
   List<Tag> list(String keyword) throws Exception;
   List<Tag> list(Map<String, Object> keywords) throws Exception;
+  List<Tag> listByReview(int reviewNo) throws Exception;
 
   Tag get(int no) throws Exception;
   int delete(int no) throws Exception;

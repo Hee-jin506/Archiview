@@ -80,4 +80,11 @@ public class TagDaoImpl implements TagDao {
       return sqlSession.selectList("TagDao.findByKeyword", keyMap);
     }
   }
+
+  @Override
+  public List<Tag> findByReviewNo(int reviewNo) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("TagDao.findByReviewNo", reviewNo);
+    }
+  }
 }

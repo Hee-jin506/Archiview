@@ -44,10 +44,20 @@
 		order by t.tno desc
 	</select>
 
-	<select id="findByNo" parameterType="int" resultMap="TagMap">
-		<include refid="sql1" />
-		where t.tno = #{tno}
+
+	<select id="findByReviewNo" parameterType="int" resultMap="TagMap">
+	select
+      t.tno,
+      t.title,
+      t.stat,
+      t.rdt,
+      tp.tpno,
+      tp.rvno
+    from acv_tag t
+      left outer join acv_tag_post tp on t.tno=tp.tno
+		where tp.rvno = #{rvno}
 	</select>
+
 
 	<!-- 삭제 = stat을 0으로 업데이트 -->
 	<update id="delete" parameterType="int">
