@@ -37,11 +37,11 @@
     
   </resultMap>
   
-  <resultMap type="movie" id="MovieMap2">
+ <!--  <resultMap type="movie" id="MovieMap2">
      <id column="mvno"           property="no"/>
      <result column="title"          property="title"/>
      <result column="count(*)"          property="review"/>
-  </resultMap>
+  </resultMap> -->
   
   <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 
        다음과 같이 별도로 분리한다. -->

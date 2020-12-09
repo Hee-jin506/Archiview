@@ -34,6 +34,7 @@ public class DefaultMovieService implements MovieService {
 
   @Override
   public List<Movie> listByPop() throws Exception {
-    movieDao.findAll(keyword)
+    // movieDao.findAll(keyword)
+    return null;
   }
 }
