@@ -55,15 +55,15 @@
   
   <sql id="sql2">
     select 
-      rv.rvno,
-      mv.mvno,
-      mv.title mvTitle,
+      rv.rvno, 
       m.nick,
-      rv.txt,
       rv.rdt,
-      rv.stat,
+      mv.mvno, 
+      mv.title mvTitle,
       tp.tno,
-      t.title
+      t.title,
+      rv.txt,
+      rv.stat
     from 
       acv_rv rv
       inner join acv_mbr m on rv.mno=m.mno
@@ -74,6 +74,19 @@
   </sql>
        
        
+   <!-- 삭제 = stat을 0으로 업데이트 -->
+  <update id="delete" parameterType="int">
+    update acv_rv
+    set stat = 0
+    where rvno = #{rvno}
+  </update>
+  
+  <update id="active" parameterType="int">
+    update acv_rv
+    set stat = 1
+    where rvno = #{rvno}
+  </update>
+   
   <select id="findAll" resultMap="ReviewMap" parameterType="string">
     <include refid="sql1"/>
     order by rv.rvno desc

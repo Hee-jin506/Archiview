@@ -13,4 +13,6 @@ public interface ReviewService {
   List<Review> list() throws Exception;
   List<Review> list(HashMap<String, Object> keywordMap) throws Exception;
   Review get(int no) throws Exception;
+  int delete(int no) throws Exception;
+  int active(int no) throws Exception;
 }

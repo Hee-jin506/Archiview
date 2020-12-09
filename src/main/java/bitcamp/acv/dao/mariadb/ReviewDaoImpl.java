@@ -61,6 +61,27 @@ public class ReviewDaoImpl implements ReviewDao {
       return sqlSession.selectList("ReviewDao.findByDetailKeyword", keywords);
     }
   }
+
+  @Override
+  public int delete(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("ReviewDao.delete", no);
+    }
+  }
+
+  @Override
+  public int active(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("ReviewDao.active", no);
+    }
+  }
+
+  @Override
+  public Review findByNo(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.update("ReviewDao.active", no);
+    }
+  }
 }
 
 
