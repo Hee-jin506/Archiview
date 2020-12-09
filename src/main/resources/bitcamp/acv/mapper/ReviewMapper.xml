@@ -175,7 +175,7 @@
         (m.nick like concat('%', #{keyword}, '%') or mv.title like concat('%', #{keyword}, '%'))
       </if>
      </where>
-     order by t.tno desc
+     order by rv.rvno desc
   </select>
   
   
