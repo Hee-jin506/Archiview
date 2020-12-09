@@ -70,7 +70,16 @@ public class DefaultReviewService implements ReviewService {
 
   @Override
   public Review get(int no) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
+    return reviewDao.findByNo(no);
+  }
+
+  @Override
+  public int delete(int no) throws Exception {
+    return reviewDao.delete(no);
+  }
+
+  @Override
+  public int active(int no) throws Exception {
+    return reviewDao.active(no);
   }
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 
+// 처리
 
 @WebServlet("/member/delete")
 public class MemberDeleteServlet extends HttpServlet {
@@ -19,7 +20,7 @@ public class MemberDeleteServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     ServletContext ctx = request.getServletContext();
@@ -27,12 +28,13 @@ public class MemberDeleteServlet extends HttpServlet {
         (MemberService) ctx.getAttribute("memberService");
 
     HttpSession session = request.getSession();
-
-    int no = Integer.parseInt(request.getParameter("no"));
-    Member loginUser = (Member) session.getAttribute("loginUser");
-
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
+
+    String inputPassword = request.getParameter("password");
+    Member member = (Member) session.getAttribute("loginUser");
+
+    String email = member.getEmail();
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
@@ -40,25 +42,14 @@ public class MemberDeleteServlet extends HttpServlet {
     out.println("<title>회원탈퇴</title></head>");
     out.println("<body>");
     try {
-      out.println("<h1>회원 탈퇴</h1>");
+      Member m = memberService.get(email, inputPassword);
 
-      if (loginUser != null) {
-
-        // 인풋받는 패스워드와 로긴유저에 저장된 패스워드를 비교해서 일치하는지 검사
-        out.println("<form method='post'>");
-        out.println("비밀번호 : <input type='password' value='password'><br>");
-        out.println("<button><a href='../member/delete?no=%d'>탈퇴</a>\n</button>");
-        out.println("</form");
-
-        String password = (String) request.getAttribute("password");
-
-        if (loginUser.getPassword() == password) {
-          memberService.delete(no);
-        }
+      if (m == null) {
+        out.println("패스워드가 틀렸습니다.");
       } else {
-        out.printf("<p>해당 회원이 존재하지 않습니다.</p>\n");
+        memberService.delete(m.getNo());
+        out.println("회원탈퇴가 완료되었습니다.");
       }
-
     } catch (Exception e) {
       request.setAttribute("exception", e);
       request.getRequestDispatcher("/error").forward(request, response);

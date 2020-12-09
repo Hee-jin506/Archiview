@@ -14,17 +14,17 @@
 <h1>[게시물 관리]</h1>
 <%
 String keyword = request.getParameter("keyword");
-/* String no = request.getParameter("no");
+String no = request.getParameter("no");
 String writer = request.getParameter("writer");
-String movie = request.getParameter("movie"); */
+String movie = request.getParameter("movie");
 %>
 
 <form action='list' method='get'>
 <input type='search' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
 <button>검색</button><br>
-<%-- <input type='checkbox' name='no' value='no' <%=no != null ? "checked" : ""%>>번호
+<input type='checkbox' name='no' value='no' <%=no != null ? "checked" : ""%>>번호
 <input type='checkbox' name='writer' value='writer' <%=writer != null ? "checked" : ""%>>작성자
-<input type='checkbox' name='movie' value='movie' <%=movie != null ? "checked" : ""%>>영화<br> --%>
+<input type='checkbox' name='movie' value='movie' <%=movie != null ? "checked" : ""%>>영화<br>
 </form>
 <hr>
 <h2>상세 검색</h2>
@@ -99,7 +99,7 @@ String inactive = request.getParameter("inactive");
 <c:forEach items="${list}" var="r">
 <tr>
 	<td><input type='checkbox' name='reviews' value='${r.no}'></td>
-	<td><a href='detail?no=${r.no}'></a>${r.no}</td>
+	<td><a href='detail?no=${r.no}'>${r.no}</a></td>
 	<td>${r.writer.nickName}</td>
 	<td>${r.movieTitle}</td>
 	<td>${r.registeredDate}</td>

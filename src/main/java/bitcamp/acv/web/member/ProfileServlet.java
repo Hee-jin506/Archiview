@@ -26,17 +26,18 @@ public class ProfileServlet extends HttpServlet {
 
     Member member = (Member) session.getAttribute("loginUser");
     if (member == null) {
-      out.println("<p>로그인 하지 않았습니다!</p>");
+      out.println("<p>로그인 된 상태가 아닙니다.</p>");
     } else {
 
-      out.printf("사용자 번호: %d<br>\n", member.getNo());
       out.printf("이름: %s<br>\n", member.getName());
       out.printf("이메일: %s<br>\n", member.getEmail());
       out.printf("사진: %s<br>\n", member.getPhoto());
       out.printf("소개: %s<br>\n", member.getIntro());
 
       if (member.getStatus() == 1 || member.getStatus() == 2) {
-        out.printf("<a href='../member/delete?no=%d'>탈퇴</a>\n", member.getNo());
+        // no값을 넘긴다.
+
+        out.printf("<a href='../option/member/withdraw'>탈퇴</a>\n");
       }
     }
   }

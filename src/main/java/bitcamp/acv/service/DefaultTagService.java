@@ -55,4 +55,9 @@ public class DefaultTagService implements TagService {
   public List<Tag> list1(HashMap<String, Object> keyMap) throws Exception {
     return tagDao.findByKeyword(keyMap);
   }
+
+  @Override
+  public List<Tag> listByReview(int reviewNo) throws Exception {
+    return tagDao.findByReviewNo(reviewNo);
+  }
 }
