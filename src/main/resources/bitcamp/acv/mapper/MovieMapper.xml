@@ -86,7 +86,7 @@
     order by m.mvno desc
   </select>
   
-  <select id="findByPop" resultMap="MovieMap2">
+ <!--  <select id="findByPop" resultMap="MovieMap2">
     select
       mvno,
       title,
@@ -102,7 +102,7 @@
        inner join acv_rv rv on rv.stcno=stc.stcno
        inner join acv_mov mov on mov.mvno=stc.mvno)rvl
      group by mvno
-  </select>
+  </select> -->
   
   <select id="findByNo" resultMap="MovieMap" parameterType="integer">
     <include refid="sql1" />
