@@ -199,6 +199,14 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
+
 # End of https://www.gitignore.io/api/java,linux,macos,gradle,windows,eclipse,java-web,visualstudiocode
 # Ignore Gradle build output directory
 build
+
+*exe
+node_modules/
+temp/
+Debug/
+Release/
+html-exam/

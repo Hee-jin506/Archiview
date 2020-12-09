@@ -9,5 +9,6 @@ public interface MovieDao {
   Movie findByNo(int no) throws Exception;
   int update(Movie movie) throws Exception;
   int getStcNo(String stillcut) throws Exception;
-  int getStcNo(int movieNo, String url);
+  int getStcNo(int movieNo, String url) throws Exception;
+  List<Movie> finByPop() throws Exception;
 }
