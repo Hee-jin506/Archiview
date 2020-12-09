@@ -55,7 +55,6 @@ public class MemberListServlet extends HttpServlet {
       List<Member> list = memberService.list(keyword);
 
       out.println("<form action='multipleDelete' method='get'>");
-      out.println("<button>삭제</button>");
       out.println("<table border=\"1\">");
       out.println("<thead><tr>");
       out.println("<th></th>");
@@ -104,6 +103,9 @@ public class MemberListServlet extends HttpServlet {
             );
       }
       out.println("</tr>");
+      out.println("</table>");
+      out.println("<button>정지</button>");
+      out.println("</form>");
 
     } catch (Exception e) {
       out.printf("작업 처리 중 오류 발생! - %s\n", e.getMessage());
