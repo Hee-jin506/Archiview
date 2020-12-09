@@ -36,8 +36,14 @@ public class SidBarServlet extends HttpServlet {
       for (int i = 0; i < 3; i++) {
         topMembers[i] = members.get(i);
       }
+
+      Movie[] topMovies = new Movie[3];
+      for (int i = 0; i < 3; i++) {
+        topMovies[i] = movies.get(i);
+      }
       request.setAttribute("topMembers", topMembers);
-      request.getRequestDispatcher("sidebar.jsp").include(request, response);
+      request.setAttribute("topMovies", topMovies);
+      request.getRequestDispatcher("../sidebar.jsp").include(request, response);
 
     } catch (Exception e) {
       request.setAttribute("exception", e);

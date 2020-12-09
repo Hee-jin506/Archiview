@@ -21,6 +21,17 @@ for (Member member : members) {
 <%
 }
 %>
+
+<%-- Movie[] movies = (Movie[])request.getAttribute("topMovies");
+for (Movie movie : movies) {
+%>
+<img src=<%=movie.getPhoto()%>>
+<p><%=member.getNickName() %></p>
+<p><%=member.getIntro() %></p>
+<%
+}
+%> --%>
+
 </div>
 </body>
 </html>
