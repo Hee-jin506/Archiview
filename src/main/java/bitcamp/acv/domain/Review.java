@@ -15,8 +15,10 @@ public class Review {
   private Date registeredDate;
   private Date modifiedDate;
   private boolean status;
+  private String statusName;
   private List<Tag> tags;
-  
+  private String movieTitle;
+
   public List<Tag> getTags() {
     return tags;
   }
@@ -89,5 +91,17 @@ public class Review {
   public void setStatus(boolean status) {
     this.status = status;
   }
-  
+  public String getStatusName() {
+    return this.isStatus() ? "게시중" : "삭제";
+  }
+  public void setStatusName(String statusName) {
+    this.statusName = statusName;
+  }
+  public String getMovieTitle() {
+    return movieTitle;
+  }
+  public void setMovieTitle(String movieTitle) {
+    this.movieTitle = movieTitle;
+  }
+
 }

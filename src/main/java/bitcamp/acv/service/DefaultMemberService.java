@@ -66,12 +66,21 @@ public class DefaultMemberService implements MemberService {
   @Override
   public List<Member> listByPop() throws Exception {
     List<Member> members = memberDao.findByPop();
-    //    int i, j;
-    //    for (i = members.size() - 1; i>0; i--)
-    //      for (j = 0; j<i; j++)
-    //        if (arr[j]<arr[j + 1])
-    //          swap(&arr[j], &arr[j + 1]);
-    return null;
+    for (int i = 0; i < members.size(); i++) {
+      for (int j =  members.size() -1; j > i; j--) {
+        int frontPop = members.get(j - 1).getFollowers() * 2 + members.get(j - 1).getLikers();
+        int backPop = members.get(j).getFollowers() * 2 + members.get(j).getLikers();
+        if (frontPop < backPop) {
+          swap(members, j-1, j);
+        }
+      }
+    }
+    return members;
   }
 
+  public void swap(List<Member> members, int a, int b) {
+    Member temp = members.get(a);
+    members.set(a, members.get(b));
+    members.set(b, temp);
+  }
 }

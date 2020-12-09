@@ -89,15 +89,6 @@ insert into acv_tag(tno, title, stat)  value(10, '미쳤다', 1);
 insert into acv_tag(tno, title, stat)  value(11, '스포일러 있음', 1);
 
 
-/* 리뷰 샘플*/
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(1, 1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11, 1);
-
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(2, 2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11, 1);
-
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(3, 3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11, 1);
 
 /* 좋아요 이력 샘플 */
 insert into acv_like(lno, mno, lano, target) values(1, 2, 1, 1);
@@ -476,14 +467,29 @@ values(11, '더 플랜', '최진성', 'The Host, 2006', 102, '2017-04-20',
 '한국', 1, 162471);
 
 /* 리뷰 샘플*/
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(1, 1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11, 1);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11);
 
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(2, 2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11, 1);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11);
 
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size, stat)
-values(3, 3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11, 1);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(5, 7, '무슨 영화임?', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(5, 2, '재미없어', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(9, 4, '와 재밌다', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(10, 7, '또 보고싶다', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(10, 1, '돈 아깝다', 506, 350, 8, 11);
 
 
 /* 신고 사유 샘플*/

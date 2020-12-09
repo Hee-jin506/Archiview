@@ -16,6 +16,7 @@
     <result column="rdt"      property="registeredDate"/>
     <result column="mdt"      property="modifiedDate"/>
     <result column="stat"      property="status"/>
+    <result column="mvTitle"      property="movieTitle"/>
     
     <association property="writer" javaType="member">
       <id column="mno"          property="no"/>
@@ -27,6 +28,7 @@
       <result column="title"    property="title"/>
     </collection>
   </resultMap>
+  
   
   <resultMap type="font" id="FontMap">
     <id column="tfno" property="no"/>
@@ -50,12 +52,101 @@
     from 
       acv_rv rv
   </sql>
+  
+  <sql id="sql2">
+    select 
+      rv.rvno,
+      mv.mvno,
+      mv.title mvTitle,
+      m.nick,
+      rv.txt,
+      rv.rdt,
+      rv.stat,
+      tp.tno,
+      t.title
+    from 
+      acv_rv rv
+      inner join acv_mbr m on rv.mno=m.mno
+      inner join acv_stc s on rv.stcno=s.stcno
+      inner join acv_mov mv on s.mvno=mv.mvno
+      left outer join acv_tag_post tp on rv.rvno=tp.rvno
+      left outer join acv_tag t on tp.tno=t.tno
+  </sql>
        
        
   <select id="findAll" resultMap="ReviewMap" parameterType="string">
     <include refid="sql1"/>
     order by rv.rvno desc
   </select>
+  
+  
+  <select id="findByDetailKeyword" resultMap="ReviewMap" parameterType="map">
+    <include refid="sql2" />
+    <where>
+      <if test="number != null">
+        and rv.rvno like concat('%', #{number}, '%') 
+      </if>
+      <if test="writerName != null">
+        and m.nick like concat('%', #{writerName}, '%') 
+      </if> 
+      <if test="movieTitle != null">
+        and mv.title like concat('%', #{movieTitle}, '%') 
+      </if> 
+      <if test="status != null">
+        and rv.stat like concat('%', #{status}, '%') 
+      </if>
+      <if test="registeredDate != null">
+        and rv.rdt like concat('%', #{registeredDate}, '%') 
+      </if>
+      <if test="startDate != null and endDate != null">
+        and rv.rdt between date(#{startDate}) and date(#{endDate})+1 
+      </if>
+      <if test="startNumber != '' and endNumber != '' and startNumber != null and endNumber != null">
+        and rv.rvno >= #{startNumber} and rv.rvno<![CDATA[<]]> #{endNumber}+1 
+      </if>
+      <if test="inactive == null and active != null">
+        and rv.stat = 1
+      </if>
+      <if test="inactive != null and active == null">
+        and rv.stat = 0
+      </if>
+    </where>
+    order by rv.rvno desc
+  </select>
+  
+  
+  <select id="findAllByKeyword" resultMap="ReviewMap" parameterType="string">
+    <include refid="sql2" />
+    <if test="keyword != null">
+      where
+      rv.rvno like concat('%', #{keyword}, '%')
+      or m.name like concat('%', #{keyword}, '%')
+      or mv.title like concat('%', #{keyword}, '%')
+    </if>
+    order by rv.rvno desc
+  </select>
+  
+  <!-- <select id="findByKeyword" resultMap="ReviewMap" parameterType="map">
+    <include refid="sql1" />
+    <where>
+      <if test="no == null and name == null">
+        (t.tno like concat('%', #{keyword}, '%') or t.title like concat('%', #{keyword}, '%'))
+      </if>
+      <if test="no != null and name != null">
+        (t.tno like concat('%', #{keyword}, '%') or t.title like concat('%', #{keyword}, '%'))
+      </if>
+      <if test="no != null and name == null">
+        t.tno like concat('%', #{keyword}, '%')
+      </if>
+      <if test="no == null and name != null">
+        t.title like concat('%', #{keyword}, '%')
+      </if>
+     </where>
+     order by t.tno desc
+  </select> -->
+  
+  
+  
   
   <select id="findFonts" resultMap="FontMap">
     select

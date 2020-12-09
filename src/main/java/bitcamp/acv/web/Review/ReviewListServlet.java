@@ -1,4 +1,4 @@
-package bitcamp.acv.web.tag;
+package bitcamp.acv.web.Review;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -14,11 +14,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bitcamp.acv.domain.Tag;
-import bitcamp.acv.service.TagService;
+import bitcamp.acv.domain.Review;
+import bitcamp.acv.service.ReviewService;
 
-@WebServlet("/tag/list")
-public class TagListServlet extends HttpServlet {
+@WebServlet("/review/list")
+public class ReviewListServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
@@ -28,19 +28,21 @@ public class TagListServlet extends HttpServlet {
       throws ServletException, IOException {
 
     ServletContext ctx = request.getServletContext();
-    TagService tagService =  (TagService) ctx.getAttribute("tagService");
-
+    ReviewService reviewService =  (ReviewService) ctx.getAttribute("reviewService");
 
     try {
-
       // 기본 검색 파라미터
       String keyword = request.getParameter("keyword");
-      String no = request.getParameter("no");
-      String name = request.getParameter("name");
+
+      //      String no = request.getParameter("no"); 
+      //      String writer = request.getParameter("writer");
+      //      String movie = request.getParameter("movie");
+
 
       // 상세 검색 체크박스 파라미터
       String keywordNumber = request.getParameter("keywordNumber");
-      String keywordTitle = request.getParameter("keywordTitle");
+      String keywordWriterName = request.getParameter("keywordWriterName");
+      String keywordMovieTitle = request.getParameter("keywordMovieTitle");
       String registeredDate= request.getParameter("registeredDate");
       String startDate= request.getParameter("startDate");
       String endDate= request.getParameter("endDate");
@@ -51,21 +53,25 @@ public class TagListServlet extends HttpServlet {
 
 
       // 검색 조건에 맞춰 가져올 리스트
-      List<Tag> list = null;
+      List<Review> list = null;
 
       if (keyword != null) {
         HashMap<String,Object> keyMap = new HashMap<>();
         keyMap.put("keyword", keyword);
-        keyMap.put("no", no);
-        keyMap.put("name", name);
+        //        keyMap.put("no", no);
+        //        keyMap.put("writer", writer);
+        //        keyMap.put("movie", movie);
 
 
-        list = tagService.list1(keyMap);
+        list = reviewService.list1(keyMap);
 
-      } else if (keywordNumber != null) {
+      } 
+
+      else if (keywordNumber != null) {
         HashMap<String,Object> keywordMap = new HashMap<>();
         keywordMap.put("number", keywordNumber);
-        keywordMap.put("title", keywordTitle);
+        keywordMap.put("writerName", keywordWriterName);
+        keywordMap.put("movieTitle", keywordMovieTitle);
         keywordMap.put("startNumber", startNumber);
         keywordMap.put("endNumber", endNumber);
         keywordMap.put("active", active);
@@ -90,30 +96,30 @@ public class TagListServlet extends HttpServlet {
           keywordMap.put("endDate", d);
         }
 
-        list = tagService.list(keywordMap);
+        list = reviewService.list(keywordMap);
 
-      } else {
-        list = tagService.list();
+
+      } 
+      else {
+        list = reviewService.list();
       }
 
-
-
-      // 총 태그 수
-      List<Tag> chartList = tagService.list();
+      // 총 게시물 수
+      List<Review> chartList = reviewService.list();
 
       // jsp에 넘겨줄 값들
       Map<String,Object> chartSizeMap = new HashMap<>();
       chartSizeMap.put("all",chartList.size());
 
-      // 삭제된 태그 수
+      // 삭제된 게시물 수
       HashMap<String,Object> keyMap = new HashMap<>();
       keyMap.put("status", 0);
-      chartList = tagService.list(keyMap);
+      chartList = reviewService.list(keyMap);
       chartSizeMap.put("inactive",chartList.size());
 
-      // 게시중인 태그 수
+      // 게시중인 게시물 수
       keyMap.put("status", 1);
-      chartList = tagService.list(keyMap);
+      chartList = reviewService.list(keyMap);
       chartSizeMap.put("active",chartList.size());
 
       // 오늘날짜 구하기
@@ -139,38 +145,37 @@ public class TagListServlet extends HttpServlet {
       Date firstMonthDay = new Date(cal.getTimeInMillis());
       //      System.out.println("이번달의 첫날(1일) : " + firstMonthDay);
 
-      // 어제 등록한 태그 수
+      // 어제 등록한 게시물 수
       keyMap.remove("status");
       keyMap.put("registeredDate", yesterday);
-      chartList = tagService.list(keyMap);
+      chartList = reviewService.list(keyMap);
       chartSizeMap.put("yesterday",chartList.size());
 
-      // 오늘 등록한 태그 수
+      // 오늘 등록한 게시물 수
       keyMap.remove("registeredDate");
       keyMap.put("registeredDate", today);
-      chartList = tagService.list(keyMap);
+      chartList = reviewService.list(keyMap);
       chartSizeMap.put("today",chartList.size());
 
-      // 이번 주에 등록된 태그 수
+      // 이번 주에 등록된 게시물 수
       keyMap.remove("registeredDate");
       keyMap.put("startDate", firstWeekDay);
       keyMap.put("endDate", today);
-      chartList = tagService.list(keyMap);
+      chartList = reviewService.list(keyMap);
       chartSizeMap.put("thisWeek",chartList.size());
 
-      // 이번 달에 등록된 태그 수
+      // 이번 달에 등록된 게시물 수
       keyMap.put("startDate", firstMonthDay);
       keyMap.put("endDate", today);
-      chartList = tagService.list(keyMap);
+      chartList = reviewService.list(keyMap);
       chartSizeMap.put("thisMonth",chartList.size());
 
 
       request.setAttribute("chartSizeMap", chartSizeMap);
 
 
-
       request.setAttribute("list", list);
-      request.getRequestDispatcher("/tag/list.jsp").include(request, response);
+      request.getRequestDispatcher("/review/list.jsp").include(request, response);
 
 
     } catch (Exception e) {
