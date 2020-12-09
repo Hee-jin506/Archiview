@@ -39,8 +39,15 @@ public class MemberAddServlet extends HttpServlet {
     MemberService memberService =  (MemberService) ctx.getAttribute("memberService");
     response.setContentType("text/html;charset=UTF-8");
 
-    if ((String name = request.getParameter("name")).equals(""))
-    
+    if ((request.getParameter("name")).equals("")
+        || request.getParameter("email").equals("")
+        || request.getParameter("email").equals("")
+        || request.getParameter("email").equals("")
+        || request.getParameter("email").equals("")
+        || request.getParameter("email").equals("")) {
+
+    }
+
     Member member = new Member();
     member.setAuthority(1);
     member.setStatus(1);
@@ -73,7 +80,7 @@ public class MemberAddServlet extends HttpServlet {
         return name + "_150x150";
       }
     });
-    
+
     Thumbnails.of(this.uploadDir + "/" + filename)//
     .size(35, 35)//
     .outputFormat("jpg")//
