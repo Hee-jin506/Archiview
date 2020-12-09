@@ -39,6 +39,8 @@ public class MemberAddServlet extends HttpServlet {
     MemberService memberService =  (MemberService) ctx.getAttribute("memberService");
     response.setContentType("text/html;charset=UTF-8");
 
+    if ((String name = request.getParameter("name")).equals(""))
+    
     Member member = new Member();
     member.setAuthority(1);
     member.setStatus(1);
