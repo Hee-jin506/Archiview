@@ -13,7 +13,7 @@
 </head>
 <body>
 <jsp:include page="/main/topbar"></jsp:include>
-<jsp:include page="sidebar"></jsp:include>
+<jsp:include page="/main/sidebar"></jsp:include>
 
 </body>
 </html>

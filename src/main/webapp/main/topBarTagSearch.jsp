@@ -4,18 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>탑바 검색 결과</title>
+<title>탑바 검색창 검색 결과</title>
 <style>body {background-color: #000000;color: #ffffff;}</style>
 </head>
 <body>
-
-<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
-
-<h3>[리뷰어]</h3>
+<jsp:include page="/main/topbar.jsp"></jsp:include>
 <%
 String keyword = request.getParameter("keyword");
 %>
-<h3>[영화]</h3>
+
+<h3>[태그]</h3>
+<jsp:include page="/tag/search?keyword=${keyword}"></jsp:include>
 
 </body>
 </html>

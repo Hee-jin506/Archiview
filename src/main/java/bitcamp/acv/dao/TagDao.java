@@ -20,4 +20,6 @@ public interface TagDao {
 
   List<Tag> findByReviewNo(int reviewNo) throws Exception;
 
+  List<Tag> findByKeywordTitle(String keyword) throws Exception;
+
 }

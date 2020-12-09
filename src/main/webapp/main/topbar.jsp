@@ -68,7 +68,6 @@
         href='<%=getServletContext().getContextPath()%>/main/newsfeed'>
         <img src='<%=getServletContext().getContextPath()%>/main_resource/bell.png' alt='알람'></a>
     </div>
-
 <%
 Member member = (Member) request.getAttribute("loginUser");
 %>

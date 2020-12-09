@@ -145,6 +145,14 @@
     order by rv.rvno desc
   </select>
   
+  <!-- 태그명으로 리뷰를 찾는다 -->
+  <select id="findByKeywordTagTitle" resultMap="ReviewMap" parameterType="string">
+    <include refid="sql2" />
+      where
+      t.title = #{keyword}
+    order by rv.rvno desc
+  </select>
+  
   
   <!-- 살기 싫어지네 -->
  <select id="findByKeyword" resultMap="ReviewMap" parameterType="map">

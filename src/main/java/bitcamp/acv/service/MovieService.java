@@ -9,4 +9,5 @@ public interface MovieService {
   int update(Movie movie) throws Exception;
   int getStcNo(int movieNo, String url) throws Exception;
   List<Movie> listByPop() throws Exception;
+  List<Movie> listByKeywordTitle(String keyword) throws Exception;
 }
