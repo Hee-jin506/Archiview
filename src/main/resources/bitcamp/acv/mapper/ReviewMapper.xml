@@ -87,6 +87,12 @@
     where rvno = #{rvno}
   </update>
    
+  <select id="findByNo" resultMap="ReviewMap" parameterType="int">
+    <include refid="sql2"/>
+    where rv.rvno = #{rvno}
+    order by rv.rvno desc
+  </select>
+  
   <select id="findAll" resultMap="ReviewMap" parameterType="string">
     <include refid="sql1"/>
     order by rv.rvno desc
@@ -139,24 +145,38 @@
     order by rv.rvno desc
   </select>
   
-  <!-- <select id="findByKeyword" resultMap="ReviewMap" parameterType="map">
-    <include refid="sql1" />
+  
+  <!-- 살기 싫어지네 -->
+ <select id="findByKeyword" resultMap="ReviewMap" parameterType="map">
+    <include refid="sql2" />
     <where>
-      <if test="no == null and name == null">
-        (t.tno like concat('%', #{keyword}, '%') or t.title like concat('%', #{keyword}, '%'))
+      <if test="no == null and writer == null and movie==null">
+        (rv.rvno like concat('%', #{keyword}, '%') or m.nick like concat('%', #{keyword}, '%') or mv.title like concat('%', #{keyword}, '%'))
       </if>
-      <if test="no != null and name != null">
-        (t.tno like concat('%', #{keyword}, '%') or t.title like concat('%', #{keyword}, '%'))
+      <if test="no != null and writer != nul and movie!=nulll">
+        (rv.rvno like concat('%', #{keyword}, '%') or m.nick like concat('%', #{keyword}, '%') or mv.title like concat('%', #{keyword}, '%'))
       </if>
-      <if test="no != null and name == null">
-        t.tno like concat('%', #{keyword}, '%')
+      <if test="no == null and writer == null and movie!=null">
+        (mv.title like concat('%', #{keyword}, '%'))
       </if>
-      <if test="no == null and name != null">
-        t.title like concat('%', #{keyword}, '%')
+      <if test="no == null and writer != null and movie==null">
+        (m.nick like concat('%', #{keyword}, '%'))
+      </if>
+      <if test="no != null and writer == null and movie==null">
+        (rv.rvno like concat('%', #{keyword}, '%'))
+      </if>
+      <if test="no != null and writer != null and movie==null">
+        (rv.rvno like concat('%', #{keyword}, '%') or m.nick like concat('%', #{keyword}, '%'))
+      </if>
+      <if test="no != null and writer == null and movie!=null">
+        (rv.rvno like concat('%', #{keyword}, '%') or mv.title like concat('%', #{keyword}, '%'))
+      </if>
+      <if test="no == null and writer != null and movie!=null">
+        (m.nick like concat('%', #{keyword}, '%') or mv.title like concat('%', #{keyword}, '%'))
       </if>
      </where>
      order by t.tno desc
-  </select> -->
+  </select>
   
   
   

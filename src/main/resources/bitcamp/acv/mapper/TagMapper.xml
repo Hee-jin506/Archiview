@@ -46,7 +46,6 @@
 
 
 	<select id="findByReviewNo" parameterType="int" resultMap="TagMap">
-	<include refid="sql1"/>
 	select
       t.tno,
       t.title,

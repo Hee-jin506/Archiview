@@ -34,9 +34,9 @@ public class ReviewListServlet extends HttpServlet {
       // 기본 검색 파라미터
       String keyword = request.getParameter("keyword");
 
-      //      String no = request.getParameter("no"); 
-      //      String writer = request.getParameter("writer");
-      //      String movie = request.getParameter("movie");
+      String no = request.getParameter("no"); 
+      String writer = request.getParameter("writer");
+      String movie = request.getParameter("movie");
 
 
       // 상세 검색 체크박스 파라미터
@@ -58,9 +58,9 @@ public class ReviewListServlet extends HttpServlet {
       if (keyword != null) {
         HashMap<String,Object> keyMap = new HashMap<>();
         keyMap.put("keyword", keyword);
-        //        keyMap.put("no", no);
-        //        keyMap.put("writer", writer);
-        //        keyMap.put("movie", movie);
+        keyMap.put("no", no);
+        keyMap.put("writer", writer);
+        keyMap.put("movie", movie);
 
 
         list = reviewService.list1(keyMap);
