@@ -71,7 +71,7 @@ public class MemberAddServlet extends HttpServlet {
         return name + "_150x150";
       }
     });
-    
+
     Thumbnails.of(this.uploadDir + "/" + filename)//
     .size(35, 35)//
     .outputFormat("jpg")//

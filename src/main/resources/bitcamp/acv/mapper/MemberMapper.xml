@@ -77,13 +77,12 @@
  <select id="findAll" resultMap="MemberMap" parameterType="string">
   <include refid="sql1" />
   <if test="keyword != null">
-   <bind name="pattern" value="'%' + _parameter + '%'" />
    where
-   mb.name like #{pattern}
-   or mb.nick like #{pattern}
-   or mb.email like #{pattern}
-   or mb.mno like #{pattern}
-   or mbs.title stat_title like #{pattern}
+   mb.name like concat('%', #{keyword}, '%')
+   or mb.nick like concat('%', #{keyword}, '%')
+   or mb.email like concat('%', #{keyword}, '%')
+   or mb.mno like concat('%', #{keyword}, '%')
+   or mbs.title like concat('%', #{keyword}, '%')
   </if>
   order by mb.mno desc
  </select>
@@ -183,3 +182,28 @@
     on lk.mno=mb.mno; 
  </select>
 </mapper>
+
+<!-- 
+
+    select 
+    mb.mno,
+    mb.auth,
+    mb.name,
+    mb.ltno,
+    mb.email,
+    mb.pw,
+    mb.nick,
+    mb.photo,
+    mb.intro,
+    mb.qno,
+    mb.pw_hint_a,
+    mb.rdt,
+    mb.stno,
+    mb.stat_mdt,
+    mbs.title stat_title,
+    mb.stat_mdt
+    from 
+      acv_mbr mb
+      inner join acv_mbr_stat mbs on mb.stno = mbs.stno
+         where mbs.title like concat('%', '정' '%')
+ -->
