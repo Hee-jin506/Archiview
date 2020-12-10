@@ -52,4 +52,10 @@ public class DefaultMovieService implements MovieService {
     movies.set(a, movies.get(b));
     movies.set(b, temp);
   }
+
+  // title에 keyword 포함된 애들 리턴
+  @Override
+  public List<Movie> listByKeywordTitle(String keyword) throws Exception {
+    return movieDao.findByKeywordTitle(keyword);
+  }
 }

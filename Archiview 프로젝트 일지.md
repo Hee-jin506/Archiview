@@ -162,3 +162,11 @@
 - 진행 상황: MemberReportServlet 수정 중
 - 해결할 문제
 
+### 🎯 탑바 검색창 검색 기능
+
+- 테스트 방법: http://localhost:9999/Archiview/main/topbar -> 검색(#을 붙이거나 안붙이거나)
+- 진행 상황: SearchServlet 수정 중
+- 해결할 문제
+  - 아카이뷰 로고가 너무 크다
+  - ##XXX로 검색했을때 문제
+

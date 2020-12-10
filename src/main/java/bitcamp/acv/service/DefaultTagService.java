@@ -31,6 +31,11 @@ public class DefaultTagService implements TagService {
   }
 
   @Override
+  public Tag get(String title) throws Exception {
+    return tagDao.findByTitle(title);
+  }
+
+  @Override
   public int delete(int no) throws Exception {
     return tagDao.delete(no);
   }
@@ -80,5 +85,10 @@ public class DefaultTagService implements TagService {
     Tag temp = tags.get(a);
     tags.set(a, tags.get(b));
     tags.set(b, temp);
+  }
+
+  @Override
+  public List<Tag> listByKeywordTitle(String keyword) throws Exception {
+    return tagDao.findByKeywordTitle(keyword);
   }
 }

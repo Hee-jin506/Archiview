@@ -82,4 +82,9 @@ public class DefaultReviewService implements ReviewService {
   public int active(int no) throws Exception {
     return reviewDao.active(no);
   }
+
+  @Override
+  public List<Review> listByKeywordTagTitle(String keyword) throws Exception {
+    return reviewDao.findByKeywordTagTitle(keyword);
+  }
 }

@@ -82,6 +82,14 @@ public class ReviewDaoImpl implements ReviewDao {
       return sqlSession.selectOne("ReviewDao.findByNo", no);
     }
   }
+
+  // 태그명으로 리뷰를 찾는다
+  @Override
+  public List<Review> findByKeywordTagTitle(String keyword) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("ReviewDao.findByKeywordTagTitle", keyword);
+    }
+  }
 }
 
 

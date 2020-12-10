@@ -142,5 +142,13 @@ public class MovieDaoImpl implements MovieDao {
       return sqlSession.selectList("MovieDao.finByPop");
     }
   }
+
+  // title에 keword 포함된 애들 리턴
+  @Override
+  public List<Movie> findByKeywordTitle(String keyword) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("MovieDao.findByKeywordTitle", keyword);
+    }
+  }
 }
 

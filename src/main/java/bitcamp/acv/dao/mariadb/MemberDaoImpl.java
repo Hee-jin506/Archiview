@@ -96,4 +96,12 @@ public class MemberDaoImpl implements MemberDao {
       return sqlSession.selectList("MemberDao.findByPop");
     }
   }
+
+  // 이름에 keyword가 포함된 애들을 리턴
+  @Override
+  public List<Member> findByKeywordNickName(String keyword) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("MemberDao.findByKeywordNickName",keyword);
+    }
+  }
 }
