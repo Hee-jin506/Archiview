@@ -21,6 +21,7 @@
     <association property="writer" javaType="member">
       <id column="mno"          property="no"/>
       <result column="nick"    property="nickName"/>
+      <result column="intro"    property="intro"/>
     </association>
     
     <collection property="tags" ofType="tag">
@@ -57,6 +58,7 @@
     select 
       rv.rvno, 
       m.nick,
+      m.intro,
       rv.rdt,
       mv.mvno, 
       mv.title mvTitle,

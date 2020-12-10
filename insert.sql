@@ -87,6 +87,7 @@ insert into acv_tag(tno, title, stat)  value(8, '스토리 너무 뻔함', 1);
 insert into acv_tag(tno, title, stat)  value(9, '경이롭다', 1);
 insert into acv_tag(tno, title, stat)  value(10, '미쳤다', 1);
 insert into acv_tag(tno, title, stat)  value(11, '스포일러 있음', 1);
+insert into acv_tag(tno, title, stat)  value(12, '비트모비스', 1);
 
 /* 회원 샘플 */
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
@@ -536,6 +537,9 @@ values(5, 2, 3, 1, 3, 1);
 
 insert into acv_rp(rno,mno,rano,target,rwno,rsno) 
 values(6, 3, 3, 2, 6, 2);
+
+insert into acv_rp(rno,mno,rano,target,rwno,rsno) 
+values(7, 5, 4, 4, 4, 3);
 
 
 /* 댓글 샘플 */
