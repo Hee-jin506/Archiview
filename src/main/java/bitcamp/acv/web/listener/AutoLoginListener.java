@@ -1,4 +1,4 @@
-package bitcmap.acv.web.listener;
+package bitcamp.acv.web.listener;
 
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
@@ -10,7 +10,6 @@ import bitcamp.acv.service.MemberService;
 
 @WebListener
 public class AutoLoginListener implements ServletRequestListener {
-  @SuppressWarnings("unchecked")
   @Override
   public void requestInitialized(ServletRequestEvent sre) {
     System.out.println("ㅋㅋ 자동 로그인!");
