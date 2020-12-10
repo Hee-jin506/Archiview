@@ -58,6 +58,12 @@ public class DefaultMemberService implements MemberService {
     return memberDao.findAll(keyword);
   }
 
+  // nickName에 keyword가 포함된 애들을 리턴
+  @Override
+  public List<Member> listByKeywordNickName(String keyword) throws Exception {
+    return memberDao.findByKeywordNickName(keyword);
+  }
+
   @Override
   public int updatePassword(Member member) throws Exception {
     return memberDao.updatePassword(member);

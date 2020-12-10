@@ -74,6 +74,14 @@
       left outer join acv_rv r on s.stcno=r.stcno
   </sql>
   
+  <!-- title에 keyword 포함된애들 리턴 -->
+  <select id="findByKeywordTitle" resultMap="MovieMap" parameterType="string">
+    <include refid="sql1"/>
+    <bind name="pattern" value="'%' + _parameter + '%'" />
+    where 
+      m.title like #{pattern}
+    order by m.mvno desc
+  </select>
   
   <select id="findAll" resultMap="MovieMap" parameterType="string">
     <include refid="sql1"/>
@@ -87,9 +95,7 @@
     order by m.mvno desc
   </select>
 
- 
  <!--  <select id="findByPop" resultMap="MovieMap2">
->>>>>>> 63a0c30bbc266ddb8ede36b739001525468f28d1
     select
       mvno,
       title,
@@ -105,9 +111,7 @@
        inner join acv_rv rv on rv.stcno=stc.stcno
        inner join acv_mov mov on mov.mvno=stc.mvno)rvl
      group by mvno
-<<<<<<< HEAD
-  </select>
-   -->
+  </select> -->
   
   <select id="findByNo" resultMap="MovieMap" parameterType="integer">
     <include refid="sql1" />
@@ -151,7 +155,4 @@
       stc_url=#{url}
       and mvno=#{movieNo}
   </select>
-  
-  
-  
 </mapper>

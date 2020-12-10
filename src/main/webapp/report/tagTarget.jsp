@@ -5,15 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
- body {
-   background_color : #000000;
- }
-</style>
 </head>
 <body>
-<jsp:include page="/main/topbar"></jsp:include>
-<jsp:include page="/main/sidebar"></jsp:include>
 
 </body>
 </html>

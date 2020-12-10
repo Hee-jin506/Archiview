@@ -15,4 +15,5 @@ public interface ReviewService {
   Review get(int no) throws Exception;
   int delete(int no) throws Exception;
   int active(int no) throws Exception;
+  List<Review> listByKeywordTagTitle(String keyword) throws Exception;
 }

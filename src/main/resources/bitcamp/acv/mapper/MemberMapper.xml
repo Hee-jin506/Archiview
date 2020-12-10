@@ -74,6 +74,14 @@
       inner join acv_mbr_stat mbs on mb.stno = mbs.stno
   </sql>
 
+<!-- nickName에 keyword가 포함된 애들을 리턴 -->
+ <select id="findByKeywordNickName" resultMap="MemberMap" parameterType="string">
+  <include refid="sql1" />
+   where
+   mb.nick like concat('%', #{keyword}, '%')
+  order by mb.mno desc
+ </select>
+ 
  <select id="findAll" resultMap="MemberMap" parameterType="string">
   <include refid="sql1" />
   <if test="keyword != null">

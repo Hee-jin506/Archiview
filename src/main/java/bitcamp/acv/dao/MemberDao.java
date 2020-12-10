@@ -15,4 +15,5 @@ public interface MemberDao {
   int active(int no) throws Exception;
   int updatePassword(Member member) throws Exception;
   List<Member> findByPop() throws Exception;
+  List<Member> findByKeywordNickName(String keyword) throws Exception;
 }

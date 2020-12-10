@@ -34,7 +34,28 @@ public class DefaultMovieService implements MovieService {
 
   @Override
   public List<Movie> listByPop() throws Exception {
-    // movieDao.findAll(keyword)
-    return null;
+    List<Movie> movies = movieDao.findAll(null);
+    for (int i = 0; i < movies.size(); i++) {
+      for (int j =  movies.size() -1; j > i; j--) {
+        int frontPop = movies.get(j - 1).getReviews().size();
+        int backPop = movies.get(j).getReviews().size();
+        if (frontPop < backPop) {
+          swap(movies, j-1, j);
+        }
+      }
+    }
+    return movies;
+  }
+
+  public void swap(List<Movie> movies, int a, int b) {
+    Movie temp = movies.get(a);
+    movies.set(a, movies.get(b));
+    movies.set(b, temp);
+  }
+
+  // title에 keyword 포함된 애들 리턴
+  @Override
+  public List<Movie> listByKeywordTitle(String keyword) throws Exception {
+    return movieDao.findByKeywordTitle(keyword);
   }
 }

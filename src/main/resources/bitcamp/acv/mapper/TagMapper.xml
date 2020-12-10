@@ -28,6 +28,11 @@
 			left outer join acv_tag_post tp on t.tno=tp.tno
 	</sql>
 	
+	<select id="findByKeywordTitle" resultMap="TagMap" parameterType="string">
+    <include refid="sql1"/>
+    where t.title like concat('%', #{keyword}, '%')
+  </select>
+  
 	<select id="findByTitle" resultMap="TagMap" parameterType="string">
     <include refid="sql1"/>
     where t.title=#{title}

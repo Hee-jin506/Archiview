@@ -17,4 +17,7 @@ public interface ReviewDao {
   int delete(int no) throws Exception;
   int active(int no) throws Exception;
   Review findByNo(int no) throws Exception;
+
+  // 태그명으로 리뷰를 찾는다
+  List<Review> findByKeywordTagTitle(String keyword) throws Exception;
 }

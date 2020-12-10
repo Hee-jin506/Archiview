@@ -11,4 +11,5 @@ public interface MovieDao {
   int getStcNo(String stillcut) throws Exception;
   int getStcNo(int movieNo, String url) throws Exception;
   List<Movie> finByPop() throws Exception;
+  List<Movie> findByKeywordTitle(String keyword) throws Exception;
 }

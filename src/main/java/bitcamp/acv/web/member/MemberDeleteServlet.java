@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 
+// 처리
 
 @WebServlet("/member/delete")
 public class MemberDeleteServlet extends HttpServlet {
@@ -32,7 +33,8 @@ public class MemberDeleteServlet extends HttpServlet {
 
     String inputPassword = request.getParameter("password");
     Member member = (Member) session.getAttribute("loginUser");
-    String password = member.getPassword();
+
+    String email = member.getEmail();
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
@@ -40,20 +42,14 @@ public class MemberDeleteServlet extends HttpServlet {
     out.println("<title>회원탈퇴</title></head>");
     out.println("<body>");
     try {
-      out.println("<h1>회원 탈퇴</h1>");
+      Member m = memberService.get(email, inputPassword);
 
-      if (password != inputPassword) {
-        out.println(password);
-        out.println(inputPassword);
-
-        out.println("<p>비밀번호가 틀립니다.</p>\n");
-
+      if (m == null) {
+        out.println("패스워드가 틀렸습니다.");
       } else {
-
-        out.println("<p>탈퇴되었습니다.</p>\\n");
-        memberService.delete(member.getNo());
+        memberService.delete(m.getNo());
+        out.println("회원탈퇴가 완료되었습니다.");
       }
-
     } catch (Exception e) {
       request.setAttribute("exception", e);
       request.getRequestDispatcher("/error").forward(request, response);
