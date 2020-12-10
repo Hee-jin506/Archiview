@@ -1,6 +1,7 @@
 package bitcamp.acv.service;
 
 import java.util.List;
+import bitcamp.acv.dao.CommentDao;
 import bitcamp.acv.dao.MemberDao;
 import bitcamp.acv.dao.ReportDao;
 import bitcamp.acv.dao.ReviewDao;
@@ -12,15 +13,18 @@ public class DefaultReportService implements ReportService {
   MemberDao memberDao;
   ReviewDao reviewDao;
   TagDao tagDao;
+  CommentDao commentDao;
 
   public DefaultReportService(ReportDao reportDao,
       MemberDao memberDao,
       ReviewDao reviewDao,
-      TagDao tagDao) {
+      TagDao tagDao,
+      CommentDao commentDao) {
     this.reportDao = reportDao;
     this.memberDao = memberDao;
     this.reviewDao = reviewDao;
     this.tagDao = tagDao;
+    this.commentDao = commentDao;
   }
 
   @Override
@@ -53,9 +57,11 @@ public class DefaultReportService implements ReportService {
     if (report.getReportedType() == Report.MEMBER) {
       return memberDao.findByNo(report.getReportedNo());
     } else if (report.getReportedType() == Report.REVIEW) {
-      return reviewDao.findAll();
+      return reviewDao.findByNo(report.getReportedNo());
     } else if (report.getReportedType() == Report.TAG) {
       return tagDao.findByNo(report.getReportedNo());
+    } else if (report.getReportedType() == Report.COMMENT) {
+      return commentDao.findByNo(report.getReportedNo());
     }
     return null;
   }

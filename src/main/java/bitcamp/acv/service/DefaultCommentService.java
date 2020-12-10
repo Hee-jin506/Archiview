@@ -27,5 +27,8 @@ public class DefaultCommentService implements CommentService {
     return commentDao.findByReviewNo(no);
   }
 
-
+  @Override
+  public Comment getByNo(int no) throws Exception {
+    return commentDao.findByNo(no);
+  }
 }

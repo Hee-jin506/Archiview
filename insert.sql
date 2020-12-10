@@ -467,29 +467,29 @@ values(11, '더 플랜', '최진성', 'The Host, 2006', 102, '2017-04-20',
 '한국', 1, 162471);
 
 /* 리뷰 샘플*/
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(1, 1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(2, 2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(3, 3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(5, 7, '무슨 영화임?', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(4, 5, 7, '무슨 영화임?', 506, 350, 8, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(5, 2, '재미없어', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(5, 5, 2, '재미없어', 506, 350, 8, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(9, 4, '와 재밌다', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(6, 9, 4, '와 재밌다', 506, 350, 8, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(10, 7, '또 보고싶다', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(7, 10, 7, '또 보고싶다', 506, 350, 8, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(10, 1, '돈 아깝다', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(8, 10, 1, '돈 아깝다', 506, 350, 8, 11);
 
 
 /* 신고 사유 샘플*/
@@ -521,7 +521,7 @@ values(2, '반려');
 insert into acv_rp_stat(rsno, title)
 values(3, '처리완료');
 
-/* 신고 처리 샘플 */
+/* 신고 등록 샘플 */
 insert into acv_rp(rno,mno,rano,target,rwno,rsno,content,pdt) 
 values(1, 1, 3, 9, 5, 1, '처리대기', null);
 
@@ -531,6 +531,21 @@ values(2, 2, 2, 8, 2, 2,'허위신고', '2020-12-04');
 insert into acv_rp(rno,mno,rano,target,rwno,rsno,content,pdt) 
 values(3, 3, 1, 7, 3, 3,'처리완료, 신고 대상 회원 3일 정지', '2020-12-04 11:11:11');
 
-insert into acv_rp(rno,mno,rano,target,rwno,rsno,content) 
-values(4, 4, 1, 6, 6, 1,'');
+insert into acv_rp(rno,mno,rano,target,rwno,rsno) 
+values(4, 4, 1, 6, 6, 1);
+
+insert into acv_rp(rno,mno,rano,target,rwno,rsno) 
+values(5, 2, 3, 1, 3, 1);
+
+insert into acv_rp(rno,mno,rano,target,rwno,rsno) 
+values(6, 3, 3, 2, 6, 2);
+
+
+/* 댓글 샘플 */
+insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
+values(1, 1, 1, 0, 1, '메롱메롱');
+
+insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
+values(2, 1, 2, 1, 9, '안녕하세요...~');
+
 

@@ -84,6 +84,7 @@
   update acv_rp
     <set>
       <if test="processingContent != null">content = #{processingContent},</if>
+      <if test="status != null">status = #{status},</if>
       <if test="processedDate != null">pdt = #{processedDate}</if>
     </set>
   where rno = #{no}
