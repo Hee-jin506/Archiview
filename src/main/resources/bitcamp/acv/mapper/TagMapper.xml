@@ -16,6 +16,21 @@
     </collection>
 	</resultMap>
 
+  <resultMap type="tag" id="TagMap2">
+        <id column="tno"    property="no" />
+    <result column="title"  property="title" />
+    <result column="stat"   property="status" />
+    <result column="rdt"    property="registeredDate" />
+    
+    <collection property="reviews"    ofType="integer">
+         <result column="rvno"        property="ohora"/>
+    </collection>
+    
+    <collection property="followers"    ofType="integer">
+         <result column="flwing_mbr"        property="ohora"/>
+    </collection>
+  </resultMap>
+
 	<sql id="sql1">
 			select
 			t.tno,
@@ -121,8 +136,24 @@
      </where>
      order by t.tno desc
   </select>
+  
+  <select id="findByPop" resultMap="TagMap2">
+    select
+      t.tno,
+      t.title,
+      t.stat,
+      t.rdt,
+      tp.tpno,
+      tp.rvno,
+      fw.flwing_mbr
+    from acv_tag t
+      left outer join acv_tag_post tp on t.tno=tp.tno
+      left outer join 
+      (select flwing_mbr, target from acv_flw where fano=2)fw
+    on fw.target=t.tno 
+  </select>
 	
-<insert id="insert" parameterType="tag" useGeneratedKeys="true" keyProperty="no">
+  <insert id="insert" parameterType="tag" useGeneratedKeys="true" keyProperty="no">
     insert ignore into acv_tag(title)
     values(#{title})
   </insert>

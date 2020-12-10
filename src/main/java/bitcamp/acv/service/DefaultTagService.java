@@ -60,4 +60,25 @@ public class DefaultTagService implements TagService {
   public List<Tag> listByReview(int reviewNo) throws Exception {
     return tagDao.findByReviewNo(reviewNo);
   }
+
+  @Override
+  public List<Tag> listByPop() throws Exception {
+    List<Tag> tags = tagDao.findByPop();
+    for (int i = 0; i < tags.size(); i++) {
+      for (int j =  tags.size() -1; j > i; j--) {
+        int frontPop = tags.get(j - 1).getReviews().size() + tags.get(j - 1).getFollowers().size() * 2;
+        int backPop = tags.get(j).getReviews().size() + tags.get(j).getFollowers().size() * 2;
+        if (frontPop < backPop) {
+          swap(tags, j-1, j);
+        }
+      }
+    }
+    return tags;
+  }
+
+  public void swap(List<Tag> tags, int a, int b) {
+    Tag temp = tags.get(a);
+    tags.set(a, tags.get(b));
+    tags.set(b, temp);
+  }
 }

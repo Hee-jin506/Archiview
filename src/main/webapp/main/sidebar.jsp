@@ -1,3 +1,5 @@
+<%@page import="bitcamp.acv.domain.Tag"%>
+<%@page import="bitcamp.acv.domain.Movie"%>
 <%@page import="bitcamp.acv.domain.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,31 +10,49 @@
 <title>사이드바</title>
 </head>
 <body>
-<div id='reviewer'>
-<p>추천 리뷰어 목록</p>
+
+<div id='topMembers'>
+<h3>추천 리뷰어 목록</h3>
 <hr>
 <%
 Member[] members = (Member[])request.getAttribute("topMembers");
 for (Member member : members) {
 %>
-<img src=<%=member.getPhoto()%>>
-<p><%=member.getNickName() %></p>
+<h3><img src=<%=member.getPhoto()%>><%=member.getNickName() %></h3>
 <p><%=member.getIntro() %></p>
 <%
 }
 %>
+</div>
 
-<%-- Movie[] movies = (Movie[])request.getAttribute("topMovies");
+<div id='topMovies'>
+<h3>인기 영화 목록</h3>
+<hr>
+<% Movie[] movies = (Movie[])request.getAttribute("topMovies");
+int count = 1;
 for (Movie movie : movies) {
 %>
-<img src=<%=movie.getPhoto()%>>
-<p><%=member.getNickName() %></p>
-<p><%=member.getIntro() %></p>
+<h3><%=count%> <%=movie.getTitle()%></h3>
+<p>게시물 <%=movie.getReviews().size()%>개</p>
+<%
+count++;
+}
+%>
+</div>
+
+<div id='topTags'>
+<h3>인기 태그 목록</h3>
+<hr>
+<% Tag[] tags = (Tag[])request.getAttribute("topTags");
+for (Tag tag : tags) {
+%>
+<h3># <%=tag.getTitle()%></h3>
+<p>게시물 <%=tag.getReviews().size()%>개 팔로워 <%=tag.getFollowers().size()%>명</p>
 <%
 }
-%> --%>
-
+%>
 </div>
+
 </body>
 </html>
 

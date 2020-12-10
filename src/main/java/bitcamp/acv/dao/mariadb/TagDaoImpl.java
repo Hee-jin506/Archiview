@@ -87,4 +87,11 @@ public class TagDaoImpl implements TagDao {
       return sqlSession.selectList("TagDao.findByReviewNo", reviewNo);
     }
   }
+
+  @Override
+  public List<Tag> findByPop() throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("TagDao.findByPop");
+    }
+  }
 }
