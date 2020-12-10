@@ -91,31 +91,31 @@ insert into acv_tag(tno, title, stat)  value(12, '비트모비스', 1);
 
 /* 회원 샘플 */
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(1, 1, '스티븐잡스', 1, 'acv1@test.com', password('1111'), '스티븐잡스', '9d75dbe5-92fc-4c62-a0ed-116178f0f32a.jpg', 
+values(1, 1, '스티븐잡스', 1, 'acv1@test.com', password('1111'), '스티븐잡스', '9d75dbe5-92fc-4c62-a0ed-116178f0f32a', 
 'iphone 12 mini comming soon', 1, '팀쿡', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(2, 1, '팀쿡', 1, 'acv2@test.com', password('2222'), '팀쿡', 'de4978dd-45e9-4de5-b3ed-0db57671e37b.jpg',
+values(2, 1, '팀쿡', 1, 'acv2@test.com', password('2222'), '팀쿡', 'de4978dd-45e9-4de5-b3ed-0db57671e37b',
 'mac mini nice product', 2, '스티븐잡스', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(3, 1, '이건목', 2, 'acv3@test.com', password('3333'), '자바171기이건목', 'b302ea4f-c024-4dea-a81a-ca9925835294.jpg',
+values(3, 1, '이건목', 2, 'acv3@test.com', password('3333'), '자바171기이건목', 'b302ea4f-c024-4dea-a81a-ca9925835294',
 '코딩몽키', 2, '엄진영', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(4, 1, '김찬구', 3, 'acv4@test.com', password('4444'), '포켓몬박사', '5dcc75cc-5d23-48c6-b4f3-3cbf6475296c.jpg',
+values(4, 1, '김찬구', 3, 'acv4@test.com', password('4444'), '포켓몬박사', '5dcc75cc-5d23-48c6-b4f3-3cbf6475296c',
 '포켓몬 도감 만드실 개발자 구함', 5, '김태희', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(5, 1, '엄영진', 1, 'acv5@test.com', password('5555'), 'javaMaster', 'c006dc41-f6b7-455b-9299-b07b4a65fce4.jpg',
+values(5, 1, '엄영진', 1, 'acv5@test.com', password('5555'), 'javaMaster', 'c006dc41-f6b7-455b-9299-b07b4a65fce4',
 'Hul과 Null의 차이', 4, '강원도', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(6, 1, '김태희', 1, 'acv6@test.com', password('6666'), '영업왕이될꺼야', '0ffece29-0d63-448d-ba8a-8c450f0d3f0d.jpg',
+values(6, 1, '김태희', 1, 'acv6@test.com', password('6666'), '영업왕이될꺼야', '0ffece29-0d63-448d-ba8a-8c450f0d3f0d',
 '이것이 기술 영업이다', 1, '도비', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(7, 1, '최희진', 1, 'acv7@test.com', password('7777'), '청축키보드', 'b544b804-fb66-4834-bc16-1a5dc0a3657d.jpg',
+values(7, 1, '최희진', 1, 'acv7@test.com', password('7777'), '청축키보드', 'b544b804-fb66-4834-bc16-1a5dc0a3657d',
 '키보드는 기계식이지', 1, '쏭', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(8, 1, '류승희', 2, 'acv8@test.com', password('8888'), '타래', '0ffece29-0d63-448d-ba8a-8c450f0d3f0d.jpg',
+values(8, 1, '류승희', 2, 'acv8@test.com', password('8888'), '타래', '0ffece29-0d63-448d-ba8a-8c450f0d3f0d',
 '타래가 쵝오야', 1, '타래', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(9, 1, '이용민', 3, 'acv9@test.com', password('9999'), '스트릿패션', 'fabfbea9-1a38-4c3e-83c2-de0a47cb7524.jpg',
+values(9, 1, '이용민', 3, 'acv9@test.com', password('9999'), '스트릿패션', 'fabfbea9-1a38-4c3e-83c2-de0a47cb7524',
 '리셀가 80만원', 1, '캔디', 1);
 
 /* 팔로우 이력 샘플*/
