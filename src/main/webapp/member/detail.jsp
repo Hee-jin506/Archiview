@@ -17,8 +17,8 @@
 번호 : ${member.no}<br>
 이름 : ${member.name}<br>
 이메일 : ${member.email}<br>
-닉네임 : <input type='text' name='nickName' value='${member.nickName}'><br>
-소개 : <textarea name='intro'>${member.intro}</textarea><br>
+닉네임 : ${member.nickName}<br>
+소개 : ${member.intro}<br>
 회원 가입일 : ${member.registeredDate}<br>
 회원 상태 : ${member.statusTitle}<br>
 회원 상태 변경일 : ${member.statusModifiedDate}<br>

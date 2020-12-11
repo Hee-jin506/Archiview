@@ -1,4 +1,4 @@
-package bitcamp.acv.web.member;
+package bitcamp.acv.web.option;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +21,7 @@ import net.coobird.thumbnailator.name.Rename;
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @WebServlet("/member/updatePhoto")
-public class MemberUpdatePhotoServlet extends HttpServlet {
+public class ProfileUpdatePhotoServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
@@ -46,15 +46,14 @@ public class MemberUpdatePhotoServlet extends HttpServlet {
       // 회원 사진의 썸네일 이미지 파일 생성하기
       generatePhotoThumbnail(saveFilePath);
     }
-    
+
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.printf("<meta http-equiv='Refresh' content='1;url=detail?no=%d'>",
-    member.getNo());
+    out.println("<meta http-equiv='Refresh' content='1;url=profile'>");
     out.println("<title>회원사진수정</title></head>");
     out.println("<body>");
 

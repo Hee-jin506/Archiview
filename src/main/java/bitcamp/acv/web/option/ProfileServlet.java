@@ -3,7 +3,6 @@ package bitcamp.acv.web.option;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
-import bitcamp.acv.service.MemberService;
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @WebServlet("/member/profile")
@@ -24,10 +22,6 @@ public class ProfileServlet extends HttpServlet {
       throws ServletException, IOException {
 
     HttpSession session = request.getSession();
-
-    ServletContext ctx = request.getServletContext();
-    MemberService memberService =
-        (MemberService) ctx.getAttribute("memberService");
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
