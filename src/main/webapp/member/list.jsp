@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
-<head><title>멤버 관리 화면</title>
+<head><title>회원 관리 화면</title>
 <style>body {background-color: #000000;color: #ffffff;}</style>
 </head>
 <body>
 
 <jsp:include page="/main/admin-topbar.jsp"></jsp:include>
 
-<h1>[멤버 관리]</h1>
+<h1>[회원 관리]</h1>
 <%
 String keyword = request.getParameter("keyword");
 %>
@@ -19,6 +19,7 @@ String keyword = request.getParameter("keyword");
 검색어: <input type='search' name='keyword' value='<%=keyword != null ? keyword : "회원 번호, 이름, 이메일, 닉네임, 회원상태로 검색"%>'>
 <button>검색</button><br>
 </form>
+<br>
 
 <form action='multipleDelete' method='get'>
 <table border="1">
@@ -55,6 +56,7 @@ String keyword = request.getParameter("keyword");
 </c:forEach>
 </tbody>
 </table>
+<br>
 <button>정지</button>
 </form>
 

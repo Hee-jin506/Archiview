@@ -30,8 +30,7 @@ public class MemberInactiveServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    // 일단 리스트로 돌아가도록 해놨습니다.
-    out.println("<meta http-equiv='Refresh' content='1;list'>");
+    out.println("<meta http-equiv='Refresh' content='10;list'>");
     out.println("<title>회원비활성화</title></head>");
     out.println("<body>");
     try {
