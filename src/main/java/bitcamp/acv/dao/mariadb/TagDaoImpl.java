@@ -89,6 +89,13 @@ public class TagDaoImpl implements TagDao {
   }
 
   @Override
+  public List<Tag> findByPop() throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectList("TagDao.findByPop");
+    }
+  }
+
+  @Override
   public List<Tag> findByKeywordTitle(String keyword) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       return sqlSession.selectList("TagDao.findByKeywordTitle", keyword);

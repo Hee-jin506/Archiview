@@ -46,7 +46,7 @@ Report report = (Report) request.getAttribute("report");
 		</select><br>
 		<p>
 			<button>변경</button>
-			<a href='delete?no=<%=report.getNo()%>'>[삭제]</a>
+			<a href='delete?no= <%=report.getNo()%>'>[삭제]</a>
 			<a href='list'>[목록]</a>
 		</p>
 	</form>

@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
+import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.TagService;
 
 @WebServlet("/main/sidebar")
-public class SidBarServlet extends HttpServlet {
+public class SideBarServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
@@ -31,6 +32,7 @@ public class SidBarServlet extends HttpServlet {
     try {
       List<Member> members = memberService.listByPop();
       List<Movie> movies = movieService.listByPop();
+      List<Tag> tags = tagService.listByPop();
 
       Member[] topMembers = new Member[3];
       for (int i = 0; i < 3; i++) {
@@ -41,9 +43,16 @@ public class SidBarServlet extends HttpServlet {
       for (int i = 0; i < 3; i++) {
         topMovies[i] = movies.get(i);
       }
+
+      Tag[] topTags = new Tag[3];
+      for (int i = 0; i < 3; i++) {
+        topTags[i] = tags.get(i);
+      }
+
       request.setAttribute("topMembers", topMembers);
       request.setAttribute("topMovies", topMovies);
-      request.getRequestDispatcher("../sidebar.jsp").include(request, response);
+      request.setAttribute("topTags", topTags);
+      request.getRequestDispatcher("/main/sidebar.jsp").include(request, response);
 
     } catch (Exception e) {
       request.setAttribute("exception", e);

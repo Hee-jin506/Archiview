@@ -12,8 +12,8 @@
 </style>
 </head>
 <body>
-<jsp:include page="/main/topbar"></jsp:include>
-<jsp:include page="/main/sidebar"></jsp:include>
+<jsp:include page="/main/topbar"/>
+<jsp:include page="/main/sidebar"/>
 
 </body>
 </html>

@@ -13,7 +13,7 @@ public class Tag {
   private boolean status;
   private Date registeredDate;
   private List<Integer> reviews;
-  private int numOfReviews;
+  private List<Integer> followers;
   private String statusName;
 
   public int getNo() {
@@ -47,14 +47,12 @@ public class Tag {
     this.reviews = reviews;
   }
 
-  // 게시물 수
-  public int getNumOfReviews() {
-    return this.getReviews().size();
+  public List<Integer> getFollowers() {
+    return followers;
   }
-  public void setNumOfReviews(int numOfReviews) {
-    this.numOfReviews = numOfReviews;
+  public void setFollowers(List<Integer> followers) {
+    this.followers = followers;
   }
-
   // 상태명
   public String getStatusName() {
     return this.isStatus() ? ACTIVE : INACTIVE;

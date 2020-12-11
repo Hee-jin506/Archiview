@@ -68,12 +68,10 @@
         href='<%=getServletContext().getContextPath()%>/main/newsfeed'>
         <img src='<%=getServletContext().getContextPath()%>/main_resource/bell.png' alt='알람'></a>
     </div>
-<%
-Member member = (Member) request.getAttribute("loginUser");
-%>
+<% Member member = (Member) request.getAttribute("loginUser"); %>
     <div id='profile'>
       <a href='<%=getServletContext().getContextPath()%>/member/profile'>
-      <img src='<%=getServletContext().getContextPath()+"/upload/"+member.getPhoto()+"_35x35.jpg"%>' alt='프로필'></a>
+      <img src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'></a>
     </div>
   </div>
 </body>
