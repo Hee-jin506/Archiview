@@ -22,7 +22,7 @@ public class MemberSearchServlet extends HttpServlet {
 
     ServletContext ctx = request.getServletContext();
     MemberService memberService =  (MemberService) ctx.getAttribute("memberService");
-
+    response.setContentType("text/html;charset=UTF-8");
     try {
 
       String keyword = request.getParameter("keyword");

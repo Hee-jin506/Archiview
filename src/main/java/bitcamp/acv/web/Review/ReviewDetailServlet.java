@@ -20,7 +20,7 @@ public class ReviewDetailServlet  extends HttpServlet {
 
     ServletContext ctx = request.getServletContext();
     ReviewService reviewService =  (ReviewService) ctx.getAttribute("reviewService");
-
+    response.setContentType("text/html;charset=UTF-8");
     try {
       int no = Integer.parseInt(request.getParameter("no"));
       Review review = reviewService.get(no);

@@ -22,7 +22,7 @@ public class ReviewSearchBestServlet extends HttpServlet {
 
     ServletContext ctx = request.getServletContext();
     ReviewService reviewService =  (ReviewService) ctx.getAttribute("reviewService");
-
+    response.setContentType("text/html;charset=UTF-8");
     try {
 
       String keyword = request.getParameter("keyword");

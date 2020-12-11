@@ -29,7 +29,7 @@ public class ReviewListServlet extends HttpServlet {
 
     ServletContext ctx = request.getServletContext();
     ReviewService reviewService =  (ReviewService) ctx.getAttribute("reviewService");
-
+    response.setContentType("text/html;charset=UTF-8");
     try {
       // 기본 검색 파라미터
       String keyword = request.getParameter("keyword");

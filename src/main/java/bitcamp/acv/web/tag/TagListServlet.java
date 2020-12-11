@@ -29,7 +29,7 @@ public class TagListServlet extends HttpServlet {
 
     ServletContext ctx = request.getServletContext();
     TagService tagService =  (TagService) ctx.getAttribute("tagService");
-
+    response.setContentType("text/html;charset=UTF-8");
 
     try {
 

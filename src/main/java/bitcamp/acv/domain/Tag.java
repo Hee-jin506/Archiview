@@ -15,6 +15,7 @@ public class Tag {
   private List<Integer> reviews;
   private List<Integer> followers;
   private String statusName;
+  private int numOfReviews;
 
   public int getNo() {
     return no;
@@ -59,5 +60,11 @@ public class Tag {
   }
   public void setStatusName(String statusName) {
     this.statusName = statusName;
+  }
+  public int getNumOfReviews() {
+    return this.reviews.size();
+  }
+  public void setNumOfReviews(int numOfReviews) {
+    this.numOfReviews = numOfReviews;
   }
 }

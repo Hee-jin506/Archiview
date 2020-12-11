@@ -22,7 +22,7 @@ public class TagSearchServlet extends HttpServlet {
 
     ServletContext ctx = request.getServletContext();
     TagService tagService =  (TagService) ctx.getAttribute("tagService");
-
+    response.setContentType("text/html;charset=UTF-8");
     try {
 
       String keyword = request.getParameter("keyword");

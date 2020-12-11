@@ -1,7 +1,6 @@
 package bitcamp.acv.web.main;
 
 import java.io.IOException;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +17,7 @@ public class SearchServlet extends HttpServlet {
   protected void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    ServletContext ctx = request.getServletContext();
-
+    response.setContentType("text/html;charset=UTF-8");
     try {
       // 검색 키워드 파라미터
       String keyword = request.getParameter("keyword");
