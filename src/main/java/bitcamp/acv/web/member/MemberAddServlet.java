@@ -58,7 +58,7 @@ public class MemberAddServlet extends HttpServlet {
     String saveFilePath = ctx.getRealPath("/upload/" + filename);
     photoPart.write(saveFilePath);
 
-    member.setPhoto(filename);
+    member.setPhoto(filename.split(".jpg")[0]);
 
 
     Thumbnails.of(this.uploadDir + "/" + filename)//
@@ -68,7 +68,7 @@ public class MemberAddServlet extends HttpServlet {
     .toFiles(new Rename() {
       @Override
       public String apply(String name, ThumbnailParameter param) {
-        return name + "_150x150";
+        return name.split(".jpg")[0] + "_150x150";
       }
     });
 
