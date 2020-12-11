@@ -52,7 +52,7 @@ public class SideBarServlet extends HttpServlet {
       request.setAttribute("topMembers", topMembers);
       request.setAttribute("topMovies", topMovies);
       request.setAttribute("topTags", topTags);
-      request.getRequestDispatcher("../sidebar.jsp").include(request, response);
+      request.getRequestDispatcher("/main/sidebar.jsp").include(request, response);
 
     } catch (Exception e) {
       request.setAttribute("exception", e);
