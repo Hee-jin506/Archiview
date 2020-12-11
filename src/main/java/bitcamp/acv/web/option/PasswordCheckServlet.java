@@ -1,7 +1,6 @@
 package bitcamp.acv.web.option;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,12 +25,6 @@ public class PasswordCheckServlet extends HttpServlet {
         (MemberService) ctx.getAttribute("memberService");
 
     response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head><title>비밀번호체크</title></head>");
-    out.println("<body>");
 
     try {
       Member old = (Member) session.getAttribute("loginUser");
@@ -44,19 +37,14 @@ public class PasswordCheckServlet extends HttpServlet {
         String newPassword = request.getParameter("newpassword");
         m.setPassword(newPassword);
         memberService.updatePassword(m);
-        out.println("<p>비밀번호를 변경 하였습니다.</p>");
       } else {
-        out.println("<p>입력한 정보가 맞지 않습니다.</p>");
       }
-      out.println("<meta http-equiv='Refresh' content='2;update'>");
+      response.sendRedirect("update");
 
     } catch (Exception e) {
       request.setAttribute("exception", e);
-      request.getRequestDispatcher("/error").forward(request, response);
-      return;
+      request.getRequestDispatcher("/error.jsp").forward(request, response);
     }
-    out.println("</body></html>");
-
 
   }
 }

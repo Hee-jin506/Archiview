@@ -1,7 +1,6 @@
 package bitcamp.acv.web.option;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,21 +23,20 @@ public class MemberWithdrawServlet extends HttpServlet{
     HttpSession session = request.getSession();
 
     response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
 
-    Member member = (Member) session.getAttribute("loginUser");
+    try {
+      Member member = (Member) session.getAttribute("loginUser");
 
-    if (member != null) {
-
-      out.printf("<form action='../../member/delete' method='post'>");
-      out.printf("<input type='hidden' name='no', value='%s'>", member.getNo());
-      out.printf("이메일 : <input type='email' name='email' value='%s' readonly><br>", member.getEmail());
-      out.printf("패스워드 : <input type='password' name='password'><br>");
-      out.printf("<button>탈퇴</button>");
-      out.printf("</form>");
-
+      if (member == null) {
+        throw new Exception("로그인 되어있지 않습니다.");
+      } else {
+        request.setAttribute("member", member);
+        request.getRequestDispatcher("/option/member/memberWithdraw.jsp").include(request, response);
+      }
+    } catch (Exception e) {
+      request.setAttribute("exception", e);
+      request.getRequestDispatcher("/error.jsp").forward(request, response);
     }
-
   }
 
 }

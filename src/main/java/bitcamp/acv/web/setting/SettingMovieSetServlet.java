@@ -1,7 +1,6 @@
 package bitcamp.acv.web.setting;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -25,41 +24,33 @@ public class SettingMovieSetServlet extends HttpServlet {
     MovieService movieService =
         (MovieService) ctx.getAttribute("movieService");
 
-    Movie movie = new Movie();
-    movie.setNo(Integer.parseInt(request.getParameter("mvno")));
-    movie.setRegisteredDate(Date.valueOf(request.getParameter("rdt")));
-    movie.setTitle(request.getParameter("title"));
-    movie.setEnglishTitle(request.getParameter("eng_title"));
-    movie.setRuntime(Integer.parseInt(request.getParameter("runtime")));
-    movie.setDirectors(request.getParameter("dir"));
-    movie.setNation(request.getParameter("nation"));
-    movie.setOpenDate(Date.valueOf(request.getParameter("odt")));
-    movie.setActors(request.getParameter("actors"));
-    movie.setSynopsis(request.getParameter("syn"));
-
     response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    out.println("<meta http-equiv='Refresh' content='2;url=list'>");
-    out.println("<title>영화수정</title></head>");
-    out.println("<body>");
 
     try {
-      out.println("<h1>영화 수정</h1>");
-      movieService.update(movie);
+      Movie movie = new Movie();
+      movie.setNo(Integer.parseInt(request.getParameter("mvno")));
+      movie.setRegisteredDate(Date.valueOf(request.getParameter("rdt")));
+      movie.setTitle(request.getParameter("title"));
+      movie.setEnglishTitle(request.getParameter("eng_title"));
+      movie.setRuntime(Integer.parseInt(request.getParameter("runtime")));
+      movie.setDirectors(request.getParameter("dir"));
+      movie.setNation(request.getParameter("nation"));
+      movie.setOpenDate(Date.valueOf(request.getParameter("odt")));
+      movie.setActors(request.getParameter("actors"));
+      movie.setSynopsis(request.getParameter("syn"));
 
-      out.println("<p>영화 정보를 수정하였습니다.</p>");
+      int count = movieService.update(movie);
+
+      if (count == 0) {
+        throw new Exception("해당 번호의 영화가 없습니다.");
+      }
+
+      response.sendRedirect("list");
 
     } catch (Exception e) {
       request.setAttribute("exception", e);
-      request.getRequestDispatcher("/error").forward(request, response);
-      return;
+      request.getRequestDispatcher("/error.jsp").forward(request, response);
     }
 
-    out.println("</body>");
-    out.println("</html>");
   }
 }

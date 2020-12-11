@@ -1,7 +1,6 @@
 package bitcamp.acv.web.setting;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +23,6 @@ public class SettingMovieDetailServlet  extends HttpServlet {
         (MovieService) ctx.getAttribute("movieService");
 
     response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
 
     try {
 
@@ -32,8 +30,7 @@ public class SettingMovieDetailServlet  extends HttpServlet {
       Movie movie = movieService.findByNo(no);
 
       if (movie == null) {
-        out.println("<p>해당 번호의 영화가 없습니다.</p>");
-        return;
+        throw new Exception("해당 번호의 영화가 없습니다.");
       }
 
       request.setAttribute("movie", movie);
@@ -41,10 +38,8 @@ public class SettingMovieDetailServlet  extends HttpServlet {
 
     } catch (Exception e) {
       request.setAttribute("exception", e);
-      request.getRequestDispatcher("/error").forward(request, response);
-      return;
+      request.getRequestDispatcher("/error.jsp").forward(request, response);
     }
 
-    out.println("</body></html>");
   }
 }
