@@ -1,17 +1,13 @@
 package bitcamp.acv.web.member;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.UUID;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 import net.coobird.thumbnailator.ThumbnailParameter;
@@ -19,40 +15,45 @@ import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 import net.coobird.thumbnailator.name.Rename;
 
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
-@WebServlet("/member/add")
-public class MemberAddServlet extends HttpServlet {
+@Controller
+@RequestMapping("/member")
+public class MemberController {
 
-  private static final long serialVersionUID = 1L;
-  private String uploadDir;
+  @Autowired MemberService memberService;
+  @Autowired ServletContext servletContext;
 
-  @Override
-  public void init() throws ServletException {
-    this.uploadDir = this.getServletContext().getRealPath("/upload");
+  @RequestMapping("active")
+  public String active(int no) throws Exception {
+    if (memberService.active(no) == 0) {
+      throw new Exception("해당 회원이 존재하지 않습니다.");
+    }
+    return "redirect:list";
   }
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-
-    ServletContext ctx = request.getServletContext();
-    MemberService memberService =  (MemberService) ctx.getAttribute("memberService");
-    response.setContentType("text/html;charset=UTF-8");
+  @RequestMapping("add")
+  public String add(
+      int loginNo,
+      String name,
+      String email,
+      String password,
+      String nickName,
+      Part photoFile,
+      String intro,
+      int questionsNo,
+      String questionsAnswer) throws Exception {
 
     Member member = new Member();
     member.setAuthority(1);
     member.setStatus(1);
-    member.setLoginNo(Integer.parseInt((request.getParameter("loginNo"))));
-    member.setName(request.getParameter("name"));
-    member.setEmail(request.getParameter("email"));
-    member.setPassword(request.getParameter("password"));
-    member.setNickName(request.getParameter("nickName"));
-    member.setPhoto(request.getParameter("photo"));
-    member.setIntro(request.getParameter("intro"));
-    member.setQuestionsNo(Integer.parseInt(request.getParameter("questionsNo")));
-    member.setQuestionsAnswer(request.getParameter("questionsAnswer"));
+    member.setLoginNo(loginNo);
+    member.setName(name);
+    member.setEmail(email);
+    member.setPassword(password);
+    member.setNickName(nickName);
+    member.setIntro(intro);
+    member.setQuestionsNo(questionsNo);
+    member.setQuestionsAnswer(questionsAnswer);
 
-    Part photoPart = request.getPart("photo");
 
     String filename = UUID.randomUUID().toString();
     String saveFilePath = ctx.getRealPath("/upload/" + filename);
@@ -113,6 +114,3 @@ public class MemberAddServlet extends HttpServlet {
     out.println("</html>");
   }
 }
-
-
-
