@@ -16,6 +16,7 @@ public interface TagService {
   int delete(int no) throws Exception;
   int active(int no) throws Exception;
   List<Tag> list1(HashMap<String, Object> keyMap) throws Exception;
+  List<Tag> listByPop() throws Exception;
   List<Tag> listByKeywordTitle(String keyword) throws Exception;
   Tag get(String title) throws Exception;
 }

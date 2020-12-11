@@ -87,34 +87,35 @@ insert into acv_tag(tno, title, stat)  value(8, '스토리 너무 뻔함', 1);
 insert into acv_tag(tno, title, stat)  value(9, '경이롭다', 1);
 insert into acv_tag(tno, title, stat)  value(10, '미쳤다', 1);
 insert into acv_tag(tno, title, stat)  value(11, '스포일러 있음', 1);
+insert into acv_tag(tno, title, stat)  value(12, '비트모비스', 1);
 
 /* 회원 샘플 */
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(1, 1, '스티븐잡스', 1, 'acv1@test.com', password('1111'), '스티븐잡스', '9d75dbe5-92fc-4c62-a0ed-116178f0f32a.jpg', 
+values(1, 1, '스티븐잡스', 1, 'acv1@test.com', password('1111'), '스티븐잡스', '9d75dbe5-92fc-4c62-a0ed-116178f0f32a', 
 'iphone 12 mini comming soon', 1, '팀쿡', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(2, 1, '팀쿡', 1, 'acv2@test.com', password('2222'), '팀쿡', 'de4978dd-45e9-4de5-b3ed-0db57671e37b.jpg',
+values(2, 1, '팀쿡', 1, 'acv2@test.com', password('2222'), '팀쿡', 'de4978dd-45e9-4de5-b3ed-0db57671e37b',
 'mac mini nice product', 2, '스티븐잡스', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(3, 1, '이건목', 2, 'acv3@test.com', password('3333'), '자바171기이건목', 'b302ea4f-c024-4dea-a81a-ca9925835294.jpg',
+values(3, 1, '이건목', 2, 'acv3@test.com', password('3333'), '자바171기이건목', 'b302ea4f-c024-4dea-a81a-ca9925835294',
 '코딩몽키', 2, '엄진영', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(4, 1, '김찬구', 3, 'acv4@test.com', password('4444'), '포켓몬박사', '5dcc75cc-5d23-48c6-b4f3-3cbf6475296c.jpg',
+values(4, 1, '김찬구', 3, 'acv4@test.com', password('4444'), '포켓몬박사', '5dcc75cc-5d23-48c6-b4f3-3cbf6475296c',
 '포켓몬 도감 만드실 개발자 구함', 5, '김태희', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(5, 1, '엄영진', 1, 'acv5@test.com', password('5555'), 'javaMaster', 'c006dc41-f6b7-455b-9299-b07b4a65fce4.jpg',
+values(5, 1, '엄영진', 1, 'acv5@test.com', password('5555'), 'javaMaster', 'c006dc41-f6b7-455b-9299-b07b4a65fce4',
 'Hul과 Null의 차이', 4, '강원도', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(6, 1, '김태희', 1, 'acv6@test.com', password('6666'), '영업왕이될꺼야', '0ffece29-0d63-448d-ba8a-8c450f0d3f0d.jpg',
+values(6, 1, '김태희', 1, 'acv6@test.com', password('6666'), '영업왕이될꺼야', '0ffece29-0d63-448d-ba8a-8c450f0d3f0d',
 '이것이 기술 영업이다', 1, '도비', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(7, 1, '최희진', 1, 'acv7@test.com', password('7777'), '청축키보드', 'b544b804-fb66-4834-bc16-1a5dc0a3657d.jpg',
+values(7, 1, '최희진', 1, 'acv7@test.com', password('7777'), '청축키보드', 'b544b804-fb66-4834-bc16-1a5dc0a3657d',
 '키보드는 기계식이지', 1, '쏭', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(8, 1, '류승희', 2, 'acv8@test.com', password('8888'), '타래', '0ffece29-0d63-448d-ba8a-8c450f0d3f0d.jpg',
+values(8, 1, '류승희', 2, 'acv8@test.com', password('8888'), '타래', '0ffece29-0d63-448d-ba8a-8c450f0d3f0d',
 '타래가 쵝오야', 1, '타래', 1);
 insert into acv_mbr(mno, auth, name, ltno, email, pw, nick, photo, intro, qno, pw_hint_a, stno) 
-values(9, 1, '이용민', 3, 'acv9@test.com', password('9999'), '스트릿패션', 'fabfbea9-1a38-4c3e-83c2-de0a47cb7524.jpg',
+values(9, 1, '이용민', 3, 'acv9@test.com', password('9999'), '스트릿패션', 'fabfbea9-1a38-4c3e-83c2-de0a47cb7524',
 '리셀가 80만원', 1, '캔디', 1);
 
 /* 팔로우 이력 샘플*/
@@ -424,29 +425,29 @@ values(11, '더 플랜', '최진성', 'The Host, 2006', 102, '2017-04-20',
 '한국', 1, 162471);
 
 /* 리뷰 샘플*/
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(1, 1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(2, 2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(3, 3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(5, 7, '무슨 영화임?', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(4, 5, 7, '무슨 영화임?', 506, 350, 8, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(5, 2, '재미없어', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(5, 5, 2, '재미없어', 506, 350, 8, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(9, 4, '와 재밌다', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(6, 9, 4, '와 재밌다', 506, 350, 8, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(10, 7, '또 보고싶다', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(7, 10, 7, '또 보고싶다', 506, 350, 8, 11);
 
-insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(10, 1, '돈 아깝다', 506, 350, 8, 11);
+insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(8, 10, 1, '돈 아깝다', 506, 350, 8, 11);
 
 /* 좋아요 이력 샘플 */
 insert into acv_like(lno, mno, lano, target) values(1, 2, 1, 1);
@@ -518,7 +519,7 @@ values(2, '반려');
 insert into acv_rp_stat(rsno, title)
 values(3, '처리완료');
 
-/* 신고 처리 샘플 */
+/* 신고 등록 샘플 */
 insert into acv_rp(rno,mno,rano,target,rwno,rsno,content,pdt) 
 values(1, 1, 3, 9, 5, 1, '처리대기', null);
 
@@ -528,6 +529,24 @@ values(2, 2, 2, 8, 2, 2,'허위신고', '2020-12-04');
 insert into acv_rp(rno,mno,rano,target,rwno,rsno,content,pdt) 
 values(3, 3, 1, 7, 3, 3,'처리완료, 신고 대상 회원 3일 정지', '2020-12-04 11:11:11');
 
-insert into acv_rp(rno,mno,rano,target,rwno,rsno,content) 
-values(4, 4, 1, 6, 6, 1,'');
+insert into acv_rp(rno,mno,rano,target,rwno,rsno) 
+values(4, 4, 1, 6, 6, 1);
+
+insert into acv_rp(rno,mno,rano,target,rwno,rsno) 
+values(5, 2, 3, 1, 3, 1);
+
+insert into acv_rp(rno,mno,rano,target,rwno,rsno) 
+values(6, 3, 3, 2, 6, 2);
+
+insert into acv_rp(rno,mno,rano,target,rwno,rsno) 
+values(7, 5, 4, 4, 4, 3);
+
+
+/* 댓글 샘플 */
+insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
+values(1, 1, 1, 0, 1, '메롱메롱');
+
+insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
+values(2, 1, 2, 1, 9, '안녕하세요...~');
+
 

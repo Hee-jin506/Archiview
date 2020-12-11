@@ -6,16 +6,20 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import bitcamp.acv.dao.CommentDao;
 import bitcamp.acv.dao.MemberDao;
 import bitcamp.acv.dao.MovieDao;
 import bitcamp.acv.dao.ReportDao;
 import bitcamp.acv.dao.ReviewDao;
 import bitcamp.acv.dao.TagDao;
+import bitcamp.acv.dao.mariadb.CommentDaoImpl;
 import bitcamp.acv.dao.mariadb.MemberDaoImpl;
 import bitcamp.acv.dao.mariadb.MovieDaoImpl;
 import bitcamp.acv.dao.mariadb.ReportDaoImpl;
 import bitcamp.acv.dao.mariadb.ReviewDaoImpl;
 import bitcamp.acv.dao.mariadb.TagDaoImpl;
+import bitcamp.acv.service.CommentService;
+import bitcamp.acv.service.DefaultCommentService;
 import bitcamp.acv.service.DefaultMemberService;
 import bitcamp.acv.service.DefaultMovieService;
 import bitcamp.acv.service.DefaultReportService;
@@ -45,6 +49,7 @@ public class DataHandlerListener implements ServletContextListener {
       TagDao tagDao = new TagDaoImpl(sqlSessionFactory);
       ReviewDao reviewDao = new ReviewDaoImpl(sqlSessionFactory);
       ReportDao reportDao = new ReportDaoImpl(sqlSessionFactory);
+      CommentDao commentDao = new CommentDaoImpl(sqlSessionFactory);
 
 
       // Service 구현체 생성
@@ -52,7 +57,9 @@ public class DataHandlerListener implements ServletContextListener {
       MemberService memberService = new DefaultMemberService(memberDao);
       TagService tagService = new DefaultTagService(tagDao);
       ReviewService reviewService = new DefaultReviewService(reviewDao, tagDao, sqlSessionFactory);
-      ReportService reportService = new DefaultReportService(reportDao, memberDao, reviewDao, tagDao);
+      ReportService reportService = new DefaultReportService(reportDao, memberDao,
+          reviewDao, tagDao, commentDao);
+      CommentService commentService = new DefaultCommentService(commentDao);
 
       ServletContext ctx = sce.getServletContext();
 
@@ -63,6 +70,7 @@ public class DataHandlerListener implements ServletContextListener {
       ctx.setAttribute("tagService", tagService);
       ctx.setAttribute("reviewService", reviewService);
       ctx.setAttribute("reportService", reportService);
+      ctx.setAttribute("commentService", commentService);
 
     } catch (Exception e) {
       System.out.println("Mybatis 및 DAO, 서비스 객체 준비 중 오류 발생!");

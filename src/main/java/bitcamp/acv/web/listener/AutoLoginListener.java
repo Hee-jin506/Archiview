@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 
-
 @WebListener
 public class AutoLoginListener implements ServletRequestListener {
   @Override
@@ -18,9 +17,12 @@ public class AutoLoginListener implements ServletRequestListener {
       HttpSession session = ((HttpServletRequest)sre.getServletRequest()).getSession();
 
       if (session.getAttribute("loginUser") == null) {
+
         MemberService memberService =
             (MemberService) session.getServletContext().getAttribute("memberService");
-        Member member = memberService.get("aaa@test.com", "1111");
+
+        Member member = memberService.get("acv1@test.com", "1111");
+
         session.setAttribute("loginUser", member);
       }
     } catch (Exception e) {

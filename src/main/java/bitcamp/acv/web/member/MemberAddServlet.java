@@ -54,12 +54,11 @@ public class MemberAddServlet extends HttpServlet {
 
     Part photoPart = request.getPart("photo");
 
-    String filename = UUID.randomUUID().toString() + ".jpg";
+    String filename = UUID.randomUUID().toString();
     String saveFilePath = ctx.getRealPath("/upload/" + filename);
     photoPart.write(saveFilePath);
 
     member.setPhoto(filename.split(".jpg")[0]);
-
 
     Thumbnails.of(this.uploadDir + "/" + filename)//
     .size(150, 150)//

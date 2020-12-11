@@ -17,6 +17,6 @@ public class TopbarServlet extends HttpServlet {
 
     response.setContentType("text/html;charset=UTF-8");
 
-    request.getRequestDispatcher("topbar.jsp").include(request, response);
+    request.getRequestDispatcher("../topbar.jsp").include(request, response);
   }
 }

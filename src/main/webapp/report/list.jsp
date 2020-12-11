@@ -21,10 +21,13 @@
 <head>
 <meta charset="UTF-8">
 <title>[신고 관리]</title>
+<style>body {background-color: #000000;color: #ffffff;}</style>
 </head>
 <body>
 
-<h1>[신고 관리] - JSP</h1>
+<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
+
+<h1>[신고 관리]</h1>
 
 <table border='1'>
 <thead>
