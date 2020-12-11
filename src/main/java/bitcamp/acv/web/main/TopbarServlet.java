@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/main/topbar")
 public class TopbarServlet extends HttpServlet {
@@ -17,6 +18,10 @@ public class TopbarServlet extends HttpServlet {
 
     response.setContentType("text/html;charset=UTF-8");
 
+    if (request.getAttribute("loginUser") == null) {
+      HttpSession session = request.getSession();
+      request.setAttribute("loginUser", session.getAttribute("loginUser"));
+    }
     request.getRequestDispatcher("/main/topbar.jsp").include(request, response);
   }
 }
