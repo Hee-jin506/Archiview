@@ -10,7 +10,7 @@
 <body>
   <form action='set' method='post'>");
       <button>수정</button>");
-      <a href='detail?no=%d'>취소</a>\n", movie.getNo());
+      <a href='detail?no=%d'>취소</a>
       <p>영화번호 <input type='text' name='mvno' value='${movie.no}' readonly></p>
       <p>등록일 <input type='date' name='rdt' value='${movie.registeredDate}'></p>
       <p>제목 <input type='text' name='title' value='${movie.title}'></p>

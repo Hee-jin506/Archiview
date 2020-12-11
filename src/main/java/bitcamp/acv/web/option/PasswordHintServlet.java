@@ -28,7 +28,7 @@ public class PasswordHintServlet extends HttpServlet{
         throw new Exception("로그인 되어있지 않습니다.");
       } else {
         request.setAttribute("member", member);
-        request.getRequestDispatcher("/option/member/passwordHint.jsp").include(request, response);
+        request.getRequestDispatcher("/option/passwordHint.jsp").include(request, response);
       }
     } catch (Exception e) {
       request.setAttribute("exception", e);

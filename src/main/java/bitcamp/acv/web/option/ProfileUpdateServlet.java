@@ -33,7 +33,7 @@ public class ProfileUpdateServlet extends HttpServlet {
       } else {
 
         request.setAttribute("member", member);
-        request.getRequestDispatcher("/option/member/profileUpdate.jsp").include(request, response);
+        request.getRequestDispatcher("/option/profileUpdate.jsp").include(request, response);
 
       }
     }catch (Exception e) {

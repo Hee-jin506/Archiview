@@ -11,9 +11,9 @@
 
 <h1>[회원 프로필]</h1>
 
-<form action='updatePhoto' method='post' enctype='multipart/form-data'>"
+<form action='updatePhoto' method='post' enctype='multipart/form-data'>
   <input type='hidden' name='no' value='${member.no}'><br>
-  <a href='../upload/${member.photo}'><img src='../upload/${member.photo}_150x150.jpg'></a><br>\n",
+  <a href='../upload/${member.photo}'><img src='../upload/${member.photo}_150x150.jpg'></a><br>
   <input type='file' name='photo'>
   <button>변경</button>
 </form>

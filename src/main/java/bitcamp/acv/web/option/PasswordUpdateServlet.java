@@ -29,7 +29,7 @@ public class PasswordUpdateServlet extends HttpServlet {
       } else {
 
         request.setAttribute("member", member);
-        request.getRequestDispatcher("/option/member/passwordUpdate.jsp").include(request, response);
+        request.getRequestDispatcher("/option/passwordUpdate.jsp").include(request, response);
       }
     } catch (Exception e) {
       request.setAttribute("exception", e);

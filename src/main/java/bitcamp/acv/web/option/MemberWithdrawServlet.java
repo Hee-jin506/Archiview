@@ -11,7 +11,7 @@ import bitcamp.acv.domain.Member;
 
 // 입력
 
-@WebServlet("/option/member/withdraw")
+@WebServlet("/option/withdraw")
 public class MemberWithdrawServlet extends HttpServlet{
 
   private static final long serialVersionUID = 1L;
@@ -31,7 +31,7 @@ public class MemberWithdrawServlet extends HttpServlet{
         throw new Exception("로그인 되어있지 않습니다.");
       } else {
         request.setAttribute("member", member);
-        request.getRequestDispatcher("/option/member/memberWithdraw.jsp").include(request, response);
+        request.getRequestDispatcher("/option/memberWithdraw.jsp").include(request, response);
       }
     } catch (Exception e) {
       request.setAttribute("exception", e);

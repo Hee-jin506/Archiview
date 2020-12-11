@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
-@WebServlet("/member/profile")
+@WebServlet("/option/profile")
 public class ProfileServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class ProfileServlet extends HttpServlet {
       } else {
 
         request.setAttribute("member", member);
-        request.getRequestDispatcher("/option/member/profile.jsp").include(request, response);
+        request.getRequestDispatcher("/option/profile.jsp").include(request, response);
       }
     } catch (Exception e) {
       request.setAttribute("exception", e);
