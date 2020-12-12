@@ -13,6 +13,8 @@ public class Comment {
   private Date registeredDate; // 등록일
   private int status; // 상태
   private Date modifiedDate; // 수정일
+  private Member name;
+  private Review review;
 
   public int getNo() {
     return no;
@@ -67,5 +69,17 @@ public class Comment {
   }
   public void setModifiedDate(Date modifiedDate) {
     this.modifiedDate = modifiedDate;
+  }
+  public Member getName() {
+    return name;
+  }
+  public void setName(Member name) {
+    this.name = name;
+  }
+  public Review getReview() {
+    return review;
+  }
+  public void setReview(Review review) {
+    this.review = review;
   }
 }

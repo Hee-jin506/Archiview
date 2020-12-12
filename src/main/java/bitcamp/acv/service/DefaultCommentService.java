@@ -28,7 +28,7 @@ public class DefaultCommentService implements CommentService {
   }
 
   @Override
-  public Comment getByNo(int no) throws Exception {
-    return commentDao.findByNo(no);
+  public List<Comment> getByMemberNo(int no) throws Exception {
+    return commentDao.findByMemberNo(no);
   }
 }

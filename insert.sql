@@ -562,6 +562,6 @@ insert into acv_cmt(cno,rvno,odr,lvl,mno,content)
 values(6, 1, 4, 1, 2, 're:메롱메롱 댓글샘플');
 
 insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(7, 2, 3, 2, 1, 're:댓글샘플4');
+values(7, 2, 3, 2, 1, 're:re;댓글샘플4');
 
 

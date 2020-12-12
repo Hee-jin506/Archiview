@@ -12,11 +12,11 @@
     <result column="lvl"    property="level"/>
     <result column="mno"    property="memberNo"/>
     <result column="content"    property="content"/>
-    <result column="rdt"    property="registerdDate"/>
+    <result column="rdt"    property="registeredDate"/>
     <result column="stat"    property="status"/>
     <result column="mdt"    property="modifiedDate"/>
     
-    <association property="writer" javaType="member">
+    <association property="name" javaType="member">
       <id column="mno" property="no"/>
       <result column="nick" property="nickName"/>
       <result column="photo" property="photo"/>
@@ -63,34 +63,34 @@
     </if>
   </insert>
   
-  <select id="findAll" resultMap="MemberMap" parameterType="string">
+  <select id="findAll" resultMap="CommentMap">
   <include refid="sql1" />
     from
     acv_cmt c
-      left outer join acv_rv r on r.rvno = c.rvno
-      left outer join acv_mbr mb on mb.mno = c.mno
-    order by c.cno asc;
+      inner join acv_rv r on r.rvno = c.rvno
+      inner join acv_mbr mb on mb.mno = c.mno
+    order by r.rvno, c.odr, c.lvl, c.cno asc;
   </select>
   
   <select id="findByReviewNo" resultMap="CommentMap" parameterType="int">
     <include refid="sql1"/>
       from 
       acv_cmt c
-      left outer join acv_rv r on r.rvno = c.rvno
-      left outer join acv_mbr mb on mb.mno = c.mno
+      inner join acv_rv r on r.rvno = c.rvno
+      inner join acv_mbr mb on mb.mno = c.mno
     where r.rvno=#{reviewNo}
-    order by c.odr asc;
+  order by c.odr, c.lvl, c.cno asc;
   </select>
   
-    <select id="findByNo" resultMap="CommentMap" parameterType="int">
+    <select id="findByMemberNo" resultMap="CommentMap" parameterType="int">
     <include refid="sql1"/>
       from 
       acv_cmt c
-      left outer join acv_rv r on r.rvno = c.rvno
-      left outer join acv_mbr mb on mb.mno = c.mno
+      inner join acv_rv r on r.rvno = c.rvno
+      inner join acv_mbr mb on mb.mno = c.mno
     where
-      c.cno=#{cno}
-    order by c.cno desc;
+      c.mno=#{mno}
+    order by r.rvno, c.odr, c.lvl, c.cno asc;
   </select>
   
 </mapper>
