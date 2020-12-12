@@ -16,7 +16,7 @@
     <result column="stat"    property="status"/>
     <result column="mdt"    property="modifiedDate"/>
     
-    <association property="name" javaType="member">
+    <association property="member" javaType="member">
       <id column="mno" property="no"/>
       <result column="nick" property="nickName"/>
       <result column="photo" property="photo"/>
@@ -24,7 +24,9 @@
       
     <association property="review" javaType="review">
       <id column="rvno" property="no"/>
-      <result column="title" property="title"/>
+      <result column="txt"      property="text"/>
+      
+    
     </association>
   </resultMap>
   
@@ -52,6 +54,7 @@
     c.stat,
     c.mdt,
     r.rvno,
+    r.txt,
     mb.nick,
     mb.photo
   </sql>
@@ -63,12 +66,18 @@
     </if>
   </insert>
   
-  <select id="findAll" resultMap="CommentMap">
+  <select id="findAll" resultMap="CommentMap" parameterType="string">
   <include refid="sql1" />
     from
     acv_cmt c
       inner join acv_rv r on r.rvno = c.rvno
       inner join acv_mbr mb on mb.mno = c.mno
+  <if test="keyword != null">
+    where
+      c.rvno like concat('%', #{keyword}, '%')
+      or c.cno like concat('%', #{keyword}, '%')
+      or mb.nick like concat('%', #{keyword}, '%')
+  </if>
     order by r.rvno, c.odr, c.lvl, c.cno asc;
   </select>
   

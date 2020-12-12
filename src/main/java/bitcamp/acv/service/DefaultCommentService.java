@@ -18,8 +18,8 @@ public class DefaultCommentService implements CommentService {
   }
 
   @Override
-  public List<Comment> list() throws Exception {
-    return commentDao.findAll();
+  public List<Comment> list(String keyword) throws Exception {
+    return commentDao.findAll(keyword);
   }
 
   @Override
@@ -31,4 +31,5 @@ public class DefaultCommentService implements CommentService {
   public List<Comment> getByMemberNo(int no) throws Exception {
     return commentDao.findByMemberNo(no);
   }
+
 }
