@@ -104,3 +104,37 @@
   </select>
   
 </mapper>
+
+<!-- 
+
+  
+  select
+  r.rvno,
+  r.txt,
+  c.cno,
+  c.content,
+  c.mno,
+  m.nick,
+  m.photo,
+  rv.stcno,
+  mv.mvno,
+  mv.title
+  from
+  acv_cmt c,
+  acv_rv r,
+  acv_mbr m,
+  acv_stc s,
+  acv_mov mv
+  where
+  c.rvno = r.rvno
+  and r.stcno = s.stcno
+  and c.mno = m.mno
+  and s.mvno = mv.mvno
+  order by r.rvno, c.odr, c.lvl, c.cno asc;
+  
+  
+  
+ -->
+
+
+
