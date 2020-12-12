@@ -1,13 +1,18 @@
 package bitcamp.acv.web.member;
 
+import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.UUID;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
 import net.coobird.thumbnailator.ThumbnailParameter;
@@ -56,61 +61,78 @@ public class MemberController {
 
 
     String filename = UUID.randomUUID().toString();
-    String saveFilePath = ctx.getRealPath("/upload/" + filename);
-    photoPart.write(saveFilePath);
-
+    String saveFilePath = servletContext.getRealPath("/upload/" + filename);
+    photoFile.write(saveFilePath);
     member.setPhoto(filename);
 
-    Thumbnails.of(this.uploadDir + "/" + filename)//
-    .size(150, 150)//
-    .outputFormat("jpg")//
-    .crop(Positions.CENTER)
-    .toFiles(new Rename() {
-      @Override
-      public String apply(String name, ThumbnailParameter param) {
-        return name + "_150x150";
+    generatePhotoThumbnail(saveFilePath);
+
+    memberService.add(member);
+    return "redirect:list";
+  }
+
+  @RequestMapping("delete")
+  protected ModelAndView delete(String password, HttpServletRequest request)
+      throws Exception {
+
+    ModelAndView mv = new ModelAndView();
+    HttpSession session = request.getSession();
+
+    if (request.getMethod().equals("GET")) {
+      Member member = (Member) session.getAttribute("loginUser");
+
+      if (member != null) {
+        return "/member/withdrawForm.jsp";
       }
-    });
-
-    Thumbnails.of(this.uploadDir + "/" + filename)//
-    .size(35, 35)//
-    .outputFormat("jpg")//
-    .crop(Positions.CENTER)
-    .toFiles(new Rename() {
-      @Override
-      public String apply(String name, ThumbnailParameter param) {
-        return name + "_35x35";
-      }
-    });
-
-
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    //    out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-    out.println("<title>회원 등록</title></head>");
-    out.println("<body>");
-    try {
-      out.println("<h1>회원 등록</h1>");
-
-      memberService.add(member);
-
-      out.println("<p>회원 등록이 완료되었습니다.</p>");
-
-    } catch (Exception e) {
-      out.println("<h2>작업 처리 중 오류 발생!</h2>");
-      out.printf("<pre>%s</pre>\n", e.getMessage());
-
-      StringWriter errOut = new StringWriter();
-      e.printStackTrace(new PrintWriter(errOut));
-      out.println("<h3>상세 오류 내용</h3>");
-      out.printf("<pre>%s</pre>\n", errOut.toString());
     }
 
+    Member member = (Member) session.getAttribute("loginUser");
+
+    String email = member.getEmail();
+
+    try {
+      Member m = memberService.get(email, password);
+
+      if (m == null) {
+        return "
+      } else {
+        memberService.delete(m.getNo());
+        out.println("회원탈퇴가 완료되었습니다.");
+      }
+    } catch (Exception e) {
+      request.setAttribute("exception", e);
+      request.getRequestDispatcher("/error").forward(request, response);
+      return;
+    }
     out.println("</body>");
     out.println("</html>");
+  }
+
+  private void generatePhotoThumbnail(String saveFilePath) {
+    try {
+      Thumbnails.of(saveFilePath)
+      .size(35, 35)
+      .outputFormat("jpg")
+      .crop(Positions.CENTER)
+      .toFiles(new Rename() {
+        @Override
+        public String apply(String name, ThumbnailParameter param) {
+          return name + "_35x35";
+        }
+      });
+
+      Thumbnails.of(saveFilePath)
+      .size(150, 150)
+      .outputFormat("jpg")
+      .crop(Positions.CENTER)
+      .toFiles(new Rename() {
+        @Override
+        public String apply(String name, ThumbnailParameter param) {
+          return name + "_150x150";
+        }
+      });
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }
