@@ -39,7 +39,7 @@ public class CommentListServlet extends HttpServlet {
 
       out.println("<form action='list' method='get'>");
       out.printf("검색어: <input type='search' name='keyword' value='%s'>\n",
-          keyword != null ? keyword : "리뷰 넘버, 코멘트 번호, 리뷰 작성자로 검색");
+          keyword != null ? keyword : "코멘트 번호, 리뷰 작성자로 검색");
       out.println("<button>검색</button>");
       out.println("</form>");
       out.println("</p>");
@@ -69,6 +69,7 @@ public class CommentListServlet extends HttpServlet {
           + "<th>레벨</th>"
           + "<th>등록일</th>"
           + "<th>사진</th>"
+          + "<th>스틸컷 번호</th>"
           + "</tr></thead>");
 
       for (Comment comment : list) {
@@ -83,6 +84,7 @@ public class CommentListServlet extends HttpServlet {
             + "<td>%d</td>"
             + "<td>%s</td>"
             + "<td>%s</td>"
+            + "<td>%s</td>"
             + "</tr>\n",
             comment.getNo(),
             comment.getReviewNo(),
@@ -93,7 +95,8 @@ public class CommentListServlet extends HttpServlet {
             comment.getOrder(),
             comment.getLevel(),
             comment.getRegisteredDate(),
-            comment.getMember().getPhoto()
+            comment.getMember().getPhoto(),
+            comment.getReview().getStillCut()
             );
 
       }

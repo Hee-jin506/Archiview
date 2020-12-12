@@ -25,9 +25,10 @@
     <association property="review" javaType="review">
       <id column="rvno" property="no"/>
       <result column="txt"      property="text"/>
-      
-    
+      <result column="stcno"      property="stillCut"/>
     </association>
+    
+
   </resultMap>
   
   <!--
@@ -55,6 +56,7 @@
     c.mdt,
     r.rvno,
     r.txt,
+    r.stcno,
     mb.nick,
     mb.photo
   </sql>
@@ -74,7 +76,7 @@
       inner join acv_mbr mb on mb.mno = c.mno
   <if test="keyword != null">
     where
-      or c.cno like concat('%', #{keyword}, '%')
+      c.cno like concat('%', #{keyword}, '%')
       or mb.nick like concat('%', #{keyword}, '%')
   </if>
     order by r.rvno, c.odr, c.lvl, c.cno asc;
