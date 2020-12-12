@@ -74,7 +74,6 @@
       inner join acv_mbr mb on mb.mno = c.mno
   <if test="keyword != null">
     where
-      c.rvno like concat('%', #{keyword}, '%')
       or c.cno like concat('%', #{keyword}, '%')
       or mb.nick like concat('%', #{keyword}, '%')
   </if>
