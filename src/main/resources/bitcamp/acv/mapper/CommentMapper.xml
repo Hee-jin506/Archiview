@@ -40,8 +40,6 @@
   private Date modifiedDate; // 수정일
   -->
   
-  <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 
-       다음과 같이 별도로 분리한다. -->
   <sql id="sql1">
     select 
     c.cno,
@@ -59,12 +57,20 @@
   </sql>
        
   <insert id="insert" parameterType="comment">
-    insert into acv_cmt(cno, avno, content, odr, lvl, rdt, stat) 
+    insert into acv_cmt(cno, rvno, odr, lvl, mno, content) 
     <if test="content != ''">
-      values(#{no}, #{reviewNo}, #{order}, #{level}, #{memberNo}, #{content},
-      #{now()}, 1)
+      values(#{no}, #{reviewNo}, #{order}, #{level}, #{memberNo}, #{content})
     </if>
   </insert>
+  
+  <select id="findAll" resultMap="MemberMap" parameterType="string">
+  <include refid="sql1" />
+    from
+    acv_cmt c
+      left outer join acv_rv r on r.rvno = c.rvno
+      left outer join acv_mbr mb on mb.mno = c.mno
+    order by c.cno asc;
+  </select>
   
   <select id="findByReviewNo" resultMap="CommentMap" parameterType="int">
     <include refid="sql1"/>
@@ -73,7 +79,7 @@
       left outer join acv_rv r on r.rvno = c.rvno
       left outer join acv_mbr mb on mb.mno = c.mno
     where r.rvno=#{reviewNo}
-    order by c.odr desc;
+    order by c.odr asc;
   </select>
   
     <select id="findByNo" resultMap="CommentMap" parameterType="int">
@@ -84,6 +90,7 @@
       left outer join acv_mbr mb on mb.mno = c.mno
     where
       c.cno=#{cno}
+    order by c.cno desc;
   </select>
   
 </mapper>

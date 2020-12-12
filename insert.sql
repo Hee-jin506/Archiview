@@ -547,6 +547,21 @@ insert into acv_cmt(cno,rvno,odr,lvl,mno,content)
 values(1, 1, 1, 0, 1, '메롱메롱');
 
 insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(2, 1, 2, 1, 9, '안녕하세요...~');
+values(2, 1, 2, 1, 9, 're:메롱메롱 안녕하세요...~');
+
+insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
+values(3, 1, 3, 2, 3, 're:re:메롱메롱 안녕하세요...~');
+
+insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
+values(4, 2, 1, 0, 5, '댓글샘플4');
+
+insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
+values(5, 2, 2, 1, 2, 're:댓글샘플4');
+
+insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
+values(6, 1, 4, 1, 2, 're:메롱메롱 댓글샘플');
+
+insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
+values(7, 2, 3, 2, 1, 're:댓글샘플4');
 
 
