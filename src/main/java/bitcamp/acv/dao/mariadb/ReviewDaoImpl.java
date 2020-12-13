@@ -3,12 +3,13 @@ package bitcamp.acv.dao.mariadb;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 import bitcamp.acv.dao.ReviewDao;
 import bitcamp.acv.domain.Font;
 import bitcamp.acv.domain.Review;
 import bitcamp.util.SqlSessionFactoryProxy;
 
-
+@Repository
 public class ReviewDaoImpl implements ReviewDao {
 
   SqlSessionFactoryProxy sqlSessionFactory;

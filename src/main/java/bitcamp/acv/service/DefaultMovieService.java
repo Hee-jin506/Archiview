@@ -1,9 +1,10 @@
 package bitcamp.acv.service;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 import bitcamp.acv.dao.MovieDao;
 import bitcamp.acv.domain.Movie;
-
+@Service
 public class DefaultMovieService implements MovieService {
 
   MovieDao movieDao;

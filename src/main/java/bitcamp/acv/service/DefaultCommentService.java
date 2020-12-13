@@ -1,9 +1,10 @@
 package bitcamp.acv.service;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 import bitcamp.acv.dao.CommentDao;
 import bitcamp.acv.domain.Comment;
-
+@Service
 public class DefaultCommentService implements CommentService {
 
   CommentDao commentDao;

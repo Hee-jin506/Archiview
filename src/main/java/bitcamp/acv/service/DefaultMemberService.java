@@ -1,10 +1,11 @@
 package bitcamp.acv.service;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 import bitcamp.acv.dao.MemberDao;
 import bitcamp.acv.domain.Member;
 
-
+@Service
 public class DefaultMemberService implements MemberService {
 
   MemberDao memberDao;

@@ -4,12 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 import bitcamp.acv.dao.TagDao;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.util.SqlSessionFactoryProxy;
 
-
+@Repository
 public class TagDaoImpl implements TagDao {
 
   SqlSessionFactoryProxy sqlSessionFactory;

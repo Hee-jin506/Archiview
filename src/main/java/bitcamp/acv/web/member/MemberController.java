@@ -1,0 +1,203 @@
+package bitcamp.acv.web.member;
+
+import java.util.List;
+import java.util.UUID;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import bitcamp.acv.domain.Member;
+import bitcamp.acv.service.MemberService;
+import net.coobird.thumbnailator.ThumbnailParameter;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
+import net.coobird.thumbnailator.name.Rename;
+
+@Controller
+@RequestMapping("/member")
+public class MemberController {
+
+  @Autowired MemberService memberService;
+  @Autowired ServletContext servletContext;
+
+  @RequestMapping("active")
+  public String active(int no) throws Exception {
+    if (memberService.active(no) == 0) {
+      throw new Exception("해당 회원이 존재하지 않습니다.");
+    }
+    return "redirect:list";
+  }
+
+  @RequestMapping("add")
+  public String add(
+      int loginNo,
+      String name,
+      String email,
+      String password,
+      String nickName,
+      Part photoFile,
+      String intro,
+      int questionsNo,
+      String questionsAnswer) throws Exception {
+
+    Member member = new Member();
+    member.setAuthority(1);
+    member.setStatus(1);
+    member.setLoginNo(loginNo);
+    member.setName(name);
+    member.setEmail(email);
+    member.setPassword(password);
+    member.setNickName(nickName);
+    member.setIntro(intro);
+    member.setQuestionsNo(questionsNo);
+    member.setQuestionsAnswer(questionsAnswer);
+
+
+    String filename = UUID.randomUUID().toString();
+    String saveFilePath = servletContext.getRealPath("/upload/" + filename);
+    photoFile.write(saveFilePath);
+    member.setPhoto(filename);
+
+    generatePhotoThumbnail(saveFilePath);
+
+    memberService.add(member);
+    return "redirect:../auth/login";
+  }
+
+  private void generatePhotoThumbnail(String saveFilePath) {
+    try {
+      Thumbnails.of(saveFilePath)
+      .size(35, 35)
+      .outputFormat("jpg")
+      .crop(Positions.CENTER)
+      .toFiles(new Rename() {
+        @Override
+        public String apply(String name, ThumbnailParameter param) {
+          return name + "_35x35";
+        }
+      });
+
+      Thumbnails.of(saveFilePath)
+      .size(150, 150)
+      .outputFormat("jpg")
+      .crop(Positions.CENTER)
+      .toFiles(new Rename() {
+        @Override
+        public String apply(String name, ThumbnailParameter param) {
+          return name + "_150x150";
+        }
+      });
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+
+  @RequestMapping("delete")
+  protected ModelAndView delete(String password, HttpServletRequest request)
+      throws Exception {
+
+    ModelAndView mv = new ModelAndView();
+    HttpSession session = request.getSession();
+    boolean wrongInput = false;
+
+    if (request.getMethod().equals("GET")) {
+      Member member = (Member) session.getAttribute("loginUser");
+
+      if (member == null) {
+        throw new Exception("로그인 되어있지 않습니다.");
+      } else {
+        mv.addObject("wrongInput", wrongInput);
+        mv.setViewName("/member/withdrawForm.jsp");
+        return mv;
+      }
+    }
+
+    String inputPassword = request.getParameter("password");
+    Member member = (Member) session.getAttribute("loginUser");
+
+    String email = member.getEmail();
+
+    Member m = memberService.get(email, inputPassword);
+
+    if (m == null) {
+      wrongInput = true;
+      mv.addObject("wrongInput", wrongInput);
+      mv.setViewName("/member/withdrawForm.jsp");
+    } else {
+      memberService.delete(m.getNo());
+      mv.setViewName("redirect:/auth/login.jsp");
+    }
+    return mv;
+  }
+
+  @RequestMapping("detail")
+  protected ModelAndView detail(int no) throws Exception {
+
+    Member member = memberService.get(no);
+
+    if (member == null) {
+      throw new Exception("해당 회원이 없습니다.");
+    }
+
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("member", member);
+    mv.setViewName("/member/detail.jsp");
+    return mv;
+  }
+
+  @RequestMapping("inactive")
+  protected String inactive(int no) throws Exception {
+    if (memberService.inactive(no) == 0) {
+      throw new Exception("해당 번호의 회원이 없습니다.");
+    } else {
+      return "redirect:list";
+    }
+  }
+
+  @RequestMapping("list")
+  protected ModelAndView list(String keyword) throws Exception {
+    List<Member> list = memberService.list(keyword);
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("list", list);
+    mv.setViewName("/member/list.jsp");
+    return mv;
+  }
+
+  @RequestMapping("multipleDelete")
+  protected String multipleDelete(String[] members, HttpServletResponse response)
+      throws Exception {
+    int count = 0;
+    if (members != null) {
+      for (String memberNo : members) {
+        count += memberService.inactive(Integer.parseInt(memberNo));
+      }
+    }
+
+    if (count == 0) {
+      throw new Exception("<p>해당 회원이 존재하지 않습니다.</p>\n");
+    } else {
+      return "redirect:list";
+    }
+  }
+
+  @RequestMapping("search")
+  protected ModelAndView search(String keyword) throws Exception {
+    List<Member> memberList = memberService.listByKeywordNickName(keyword);
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("memberList", memberList);
+    mv.setViewName("memberSearch.jsp");
+    return mv;
+  }
+
+  @RequestMapping("update")
+  protected String update(Member member) throws Exception {
+    memberService.update(member);
+    return "redirect:list";
+  }
+}

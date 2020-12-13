@@ -2,12 +2,12 @@ package bitcamp.acv.dao.mariadb;
 
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 import bitcamp.acv.dao.CommentDao;
 import bitcamp.acv.domain.Comment;
 import bitcamp.util.SqlSessionFactoryProxy;
-
+@Repository
 public class CommentDaoImpl implements CommentDao {
-
 
   SqlSessionFactoryProxy sqlSessionFactory;
 
