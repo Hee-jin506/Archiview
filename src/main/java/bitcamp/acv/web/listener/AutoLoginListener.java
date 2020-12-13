@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import bitcamp.acv.domain.Member;
-import bitcamp.acv.service.MemberService;
 
 @WebListener
 public class AutoLoginListener implements ServletRequestListener {
@@ -18,10 +17,20 @@ public class AutoLoginListener implements ServletRequestListener {
 
       if (session.getAttribute("loginUser") == null) {
 
-        MemberService memberService =
-            (MemberService) session.getServletContext().getAttribute("memberService");
+        //        MemberService memberService =
+        //            (MemberService) session.getServletContext().getAttribute("memberService");
+        //
+        //        Member member = memberService.get("acv1@test.com", "1111");
 
-        Member member = memberService.get("acv1@test.com", "1111");
+        Member member = new Member();
+        member.setNo(1);
+        member.setAuthority(1);
+        member.setName("스티븐잡스");
+        member.setEmail("acv1@test.com");
+        member.setPassword("*89C6B530AA78695E257E55D63C00A6EC9AD3E977");
+        member.setNickName("스티븐잡스");
+        member.setPhoto("9d75dbe5-92fc-4c62-a0ed-116178f0f32a");
+        member.setIntro("iphone 12 mini comming soon");
 
         session.setAttribute("loginUser", member);
       }

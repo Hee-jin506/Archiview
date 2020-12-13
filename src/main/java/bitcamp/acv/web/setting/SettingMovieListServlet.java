@@ -22,6 +22,7 @@ public class SettingMovieListServlet extends HttpServlet {
 
     ServletContext ctx = request.getServletContext();
     MovieService movieService =  (MovieService) ctx.getAttribute("movieService");
+
     response.setContentType("text/html;charset=UTF-8");
 
     // request.getRequestDispatcher("/topbar.jsp").include(request, response);
@@ -43,8 +44,7 @@ public class SettingMovieListServlet extends HttpServlet {
 
     } catch (Exception e) {
       request.setAttribute("exception", e);
-      request.getRequestDispatcher("/error").forward(request, response);
-      return;
+      request.getRequestDispatcher("/error.jsp").forward(request, response);
     }
   }
 }

@@ -2,12 +2,12 @@ package bitcamp.acv.dao.mariadb;
 
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 import bitcamp.acv.dao.CommentDao;
 import bitcamp.acv.domain.Comment;
 import bitcamp.util.SqlSessionFactoryProxy;
-
+@Repository
 public class CommentDaoImpl implements CommentDao {
-
 
   SqlSessionFactoryProxy sqlSessionFactory;
 
@@ -23,9 +23,9 @@ public class CommentDaoImpl implements CommentDao {
   }
 
   @Override
-  public List<Comment> findAll() throws Exception {
+  public List<Comment> findAll(String keyword) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectList("CommentDao.findAll");
+      return sqlSession.selectList("CommentDao.findAll", keyword);
     }
   }
 
@@ -37,9 +37,9 @@ public class CommentDaoImpl implements CommentDao {
   }
 
   @Override
-  public Comment findByNo(int no) throws Exception {
+  public List<Comment> findByMemberNo(int no) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      return sqlSession.selectOne("CommentDao.findByNo", no);
+      return sqlSession.selectList("CommentDao.findByMemberNo", no);
     }
   }
 }

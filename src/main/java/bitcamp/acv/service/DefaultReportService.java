@@ -1,13 +1,14 @@
 package bitcamp.acv.service;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 import bitcamp.acv.dao.CommentDao;
 import bitcamp.acv.dao.MemberDao;
 import bitcamp.acv.dao.ReportDao;
 import bitcamp.acv.dao.ReviewDao;
 import bitcamp.acv.dao.TagDao;
 import bitcamp.acv.domain.Report;
-
+@Service
 public class DefaultReportService implements ReportService {
   ReportDao reportDao;
   MemberDao memberDao;

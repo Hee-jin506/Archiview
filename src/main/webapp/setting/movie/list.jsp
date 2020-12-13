@@ -14,19 +14,20 @@
     color: #ffffff;
     }
     
-  #movielist {
+  body {
   position: absolute;
   /* top: 100%; */
   left: 10%;
   width: 80%;
   }
-    
+  
   #bar1 {
-    background-color: #141517;
-    font-size: x-small;
-    font-style: normal;
-    color: #ffffff;
-    text-align: left;
+  background-color: #141517;
+  font-size: x-small;
+  font-style: normal;
+  color: #ffffff;
+  text-align: left;
+    
   }
   
   #check {
@@ -59,24 +60,88 @@
   text-decoration: none;
   }
   
-   
-    
+  #delete {
+  position: absolute;
+  border-radius: 3px;
+  border: 1px solid #6B6B6B;
+  background: #000000;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  }
+  
+  #delete:hover {
+  background: #626473;
+  color: red;
+  }
+  
+  #search-box {
+  position: absolute;
+  border-radius: 3px;
+  border: 1px solid #6B6B6B;
+  background: #000000;
+  left: 38%;
+  top: 0%;
+  }
+  
+  #search-txt {
+  border: none;
+  color: white;
+  background-color: #000000;
+  font-size: x-small;
+  
+  }
+  
+  #search-btn {
+  border: 0px;
+  background-color: #000000;
+  }
+  
+  #search-txt::-webkit-input-placeholder {
+  text-align: center;
+  }
+  
+  #movieAll {
+  position: absolute;
+  left: 85%;
+  top: 0%;
+  font-size: xx-small;
+  }
+  
+  #refresh {
+  display: inline-block;
+  color: white;
+  font-size: xx-small;
+  margin-top: 15px;
+  text-decoration: none; 
+  font-size: small;
+  }
+  
+  
 </style>
 </head>
 <body>
 
-<h1>[영화 관리]</h1>
+<img src='../../setting_resource/movie.png' width='18'> 영화 관리<br>
+
+<div id='search-box'>
   <%String keyword = request.getParameter("keyword");%>
    <form action='list' method='get'>
-    <input type='text' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
-    <button>검색</button> 
+    <input id='search-txt' type='text' placeholder='    검색' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
+    <button id='search-btn'><img src='../../setting_resource/search.png' width='15'></button> 
    </form>
+</div>
   
 <%
 List<Movie> list = (List<Movie>) request.getAttribute("list");
 %>
-<span>총 영화 수 : <%list.size();%></span>
-  <table id="movielist" border='0'>
+<div id='movieAll'>
+총 영화 수 : <%=list.size()%>
+</div>
+
+<a href='list' id='refresh' style=""><img src='../../setting_resource/refresh.png' width='15'>  새로고침</a><br>
+   
+  <table id="movielist">
   <thead id="bar1"><tr>
   <th id="check"> </th>
   <th id="movieno">영화번호</th>
@@ -96,8 +161,9 @@ List<Movie> list = (List<Movie>) request.getAttribute("list");
       stat = "삭제";
     }%>
     <tr id="movies">
-      <td><input type='checkbox' name='movie' value='<%=movie.getNo()%>'></td>
-      <td><a  href='detail?no=<%=movie.getNo()%>'><%=movie.getNo()%></a></td> 
+      <td><input type='checkbox' id='ck' name='movie' value='<%=movie.getNo()%>'>
+          <label for='ck'></label></td>
+      <td><a href='detail?no=<%=movie.getNo()%>'><%=movie.getNo()%></a></td> 
       <td><a href='detail?no=<%=movie.getNo()%>'><%=movie.getTitle()%></a></td>
       <td><%=movie.getReviews().size()%></td>
       <td><%=movie.getRegisteredDate()%></td>
@@ -105,5 +171,7 @@ List<Movie> list = (List<Movie>) request.getAttribute("list");
     </tr>
   <%}%>
   </tbody></table>
+  <br>
+  <button id='delete'><img src='../../setting_resource/minus.png' width="13"> 삭제</button>
 </body>
 </html>

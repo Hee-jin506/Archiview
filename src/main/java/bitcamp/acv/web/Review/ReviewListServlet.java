@@ -27,6 +27,8 @@ public class ReviewListServlet extends HttpServlet {
   protected void service(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    response.setContentType("text/html;charset=UTF-8");
+
     ServletContext ctx = request.getServletContext();
     ReviewService reviewService =  (ReviewService) ctx.getAttribute("reviewService");
     response.setContentType("text/html;charset=UTF-8");
@@ -34,7 +36,7 @@ public class ReviewListServlet extends HttpServlet {
       // 기본 검색 파라미터
       String keyword = request.getParameter("keyword");
 
-      String no = request.getParameter("no"); 
+      String no = request.getParameter("no");
       String writer = request.getParameter("writer");
       String movie = request.getParameter("movie");
 
@@ -65,7 +67,7 @@ public class ReviewListServlet extends HttpServlet {
 
         list = reviewService.list1(keyMap);
 
-      } 
+      }
 
       else if (keywordNumber != null) {
         HashMap<String,Object> keywordMap = new HashMap<>();
@@ -99,7 +101,7 @@ public class ReviewListServlet extends HttpServlet {
         list = reviewService.list(keywordMap);
 
 
-      } 
+      }
       else {
         list = reviewService.list();
       }

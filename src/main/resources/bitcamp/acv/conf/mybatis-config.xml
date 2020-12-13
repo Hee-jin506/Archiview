@@ -40,6 +40,7 @@
     <mapper resource="bitcamp/acv/mapper/MemberMapper.xml"/>
     <mapper resource="bitcamp/acv/mapper/ReviewMapper.xml"/>
     <mapper resource="bitcamp/acv/mapper/ReportMapper.xml"/>
+    <mapper resource="bitcamp/acv/mapper/CommentMapper.xml"/>
   </mappers>
 
 </configuration>

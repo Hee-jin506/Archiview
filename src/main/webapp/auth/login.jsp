@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=ege"/>
 <meta nmae="viewport" 
@@ -24,21 +23,24 @@ content="user-scalable=no,inital-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,w
     left: 456px;
     top: 80px;
   }
+  
+  body {
+  background-color: #000000;color: #ffffff;
+  }
+  
 </style>
-
-
 </head>
 <body>
 
-<div id="header">
-       <img src="../logo.png" alt="로고">
+<div class="header">
+       <img src="../logo.svg" alt="로고">
 </div>
 
 <h2>당신의 감성을 담은</h2>
 <h2>영화 후기를 만들어 보세요.</h2>
 <form method="post">
-<label>이메일 주소<input type="email" name="email" value=<%=request.getAttribute("email")%>></label><br>
-<label>비밀번호<input type="password" name="password"></label><br>
+<label>이메일 주소<input type="email" name="email" value=<%=request.getAttribute("email")%> autofocus required></label><br>
+<label>비밀번호<input type="password" name="password" autofocus required></label><br>
 <label>이메일 저장<input type="checkbox" name="saveEmail" checked></label><br>
 <button>로그인</button>
 </form>

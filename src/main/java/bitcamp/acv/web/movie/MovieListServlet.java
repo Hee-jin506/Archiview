@@ -61,7 +61,7 @@ public class MovieListServlet extends HttpServlet {
 
       for (Movie movie : list ) {
         StringBuilder stillCuts = new StringBuilder();
-        for (String stillCut : movie.getStillCuts()) {
+        for (String stillCut : movie.getStillcuts()) {
           stillCuts.append(stillCut);
           stillCuts.append("\n");
         }

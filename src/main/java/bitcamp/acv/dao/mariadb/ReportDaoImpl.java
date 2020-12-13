@@ -2,10 +2,11 @@ package bitcamp.acv.dao.mariadb;
 
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 import bitcamp.acv.dao.ReportDao;
 import bitcamp.acv.domain.Report;
 import bitcamp.util.SqlSessionFactoryProxy;
-
+@Repository
 public class ReportDaoImpl implements ReportDao {
 
   SqlSessionFactoryProxy sqlSessionFactory;

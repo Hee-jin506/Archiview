@@ -1,8 +1,6 @@
-package bitcamp.acv.web.member;
+package bitcamp.acv.web.option;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,7 +19,7 @@ import net.coobird.thumbnailator.name.Rename;
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 @WebServlet("/member/updatePhoto")
-public class MemberUpdatePhotoServlet extends HttpServlet {
+public class ProfileUpdatePhotoServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
@@ -32,6 +30,8 @@ public class MemberUpdatePhotoServlet extends HttpServlet {
     ServletContext ctx = request.getServletContext();
     MemberService memberService =
         (MemberService) ctx.getAttribute("memberService");
+
+    response.setContentType("text/html;charset=UTF-8");
 
     Member member = new Member();
     member.setNo(Integer.parseInt(request.getParameter("no")));
@@ -46,41 +46,18 @@ public class MemberUpdatePhotoServlet extends HttpServlet {
       // 회원 사진의 썸네일 이미지 파일 생성하기
       generatePhotoThumbnail(saveFilePath);
     }
-    
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    out.printf("<meta http-equiv='Refresh' content='1;url=detail?no=%d'>",
-    member.getNo());
-    out.println("<title>회원사진수정</title></head>");
-    out.println("<body>");
 
     try {
-      out.println("<h1>회원 사진 수정</h1>");
-
-      if (member.getPhoto() != null) {
-        memberService.update(member);
-        out.println("<p>회원 사진을 수정하였습니다.</p>");
+      if (member.getPhoto() == null) {
+        throw new Exception("사진을 선택하지 않았습니다.");
       } else {
-        out.println("<p>사진을 선택하지 않았습니다.</p>");
+        memberService.update(member);
       }
-
+      response.sendRedirect("profile");
     } catch (Exception e) {
-      e.printStackTrace();
-      out.println("<h2>작업 처리 중 오류 발생!</h2>");
-      out.printf("<pre>%s</pre>\n", e.getMessage());
-
-      StringWriter errOut = new StringWriter();
-      e.printStackTrace(new PrintWriter(errOut));
-      out.println("<h3>상세 오류 내용</h3>");
-      out.printf("<pre>%s</pre>\n", errOut.toString());
+      request.setAttribute("exception", e);
+      request.getRequestDispatcher("/error.jsp").forward(request, response);
     }
-
-    out.println("</body>");
-    out.println("</html>");
   }
 
   private void generatePhotoThumbnail(String saveFilePath) {

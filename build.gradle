@@ -23,6 +23,8 @@ repositories {
 
 dependencies {
 
+  implementation 'org.springframework:spring-webmvc:5.3.2'
+
   implementation 'net.coobird:thumbnailator:0.4.13'
 
   implementation 'commons-fileupload:commons-fileupload:1.4'
@@ -31,19 +33,17 @@ dependencies {
 
   implementation 'jstl:jstl:1.2'
 
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+  compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 
-    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-    // This dependency is used by the application.
-    implementation 'com.google.guava:guava:29.0-jre'
+  implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+  
+  implementation 'com.google.guava:guava:29.0-jre'
 
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.13'
+  testImplementation 'junit:junit:4.13'
 
-    implementation 'org.jsoup:jsoup:1.13.1'
+  implementation 'org.jsoup:jsoup:1.13.1'
 
-    implementation 'org.mybatis:mybatis:3.5.6'
+  implementation 'org.mybatis:mybatis:3.5.6'
 
-    // MariaDB JDBC 드라이버
-    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.0'
+  implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.0'
 }

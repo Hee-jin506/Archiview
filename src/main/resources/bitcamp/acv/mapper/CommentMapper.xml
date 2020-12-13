@@ -12,11 +12,11 @@
     <result column="lvl"    property="level"/>
     <result column="mno"    property="memberNo"/>
     <result column="content"    property="content"/>
-    <result column="rdt"    property="registerdDate"/>
+    <result column="rdt"    property="registeredDate"/>
     <result column="stat"    property="status"/>
     <result column="mdt"    property="modifiedDate"/>
     
-    <association property="writer" javaType="member">
+    <association property="member" javaType="member">
       <id column="mno" property="no"/>
       <result column="nick" property="nickName"/>
       <result column="photo" property="photo"/>
@@ -24,8 +24,11 @@
       
     <association property="review" javaType="review">
       <id column="rvno" property="no"/>
-      <result column="title" property="title"/>
+      <result column="txt"      property="text"/>
+      <result column="stcno"      property="stillCut"/>
     </association>
+    
+
   </resultMap>
   
   <!--
@@ -40,8 +43,6 @@
   private Date modifiedDate; // 수정일
   -->
   
-  <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 
-       다음과 같이 별도로 분리한다. -->
   <sql id="sql1">
     select 
     c.cno,
@@ -54,36 +55,86 @@
     c.stat,
     c.mdt,
     r.rvno,
+    r.txt,
+    r.stcno,
     mb.nick,
     mb.photo
   </sql>
        
   <insert id="insert" parameterType="comment">
-    insert into acv_cmt(cno, avno, content, odr, lvl, rdt, stat) 
+    insert into acv_cmt(cno, rvno, odr, lvl, mno, content) 
     <if test="content != ''">
-      values(#{no}, #{reviewNo}, #{order}, #{level}, #{memberNo}, #{content},
-      #{now()}, 1)
+      values(#{no}, #{reviewNo}, #{order}, #{level}, #{memberNo}, #{content})
     </if>
   </insert>
+  
+  <select id="findAll" resultMap="CommentMap" parameterType="string">
+  <include refid="sql1" />
+    from
+    acv_cmt c
+      inner join acv_rv r on r.rvno = c.rvno
+      inner join acv_mbr mb on mb.mno = c.mno
+  <if test="keyword != null">
+    where
+      c.cno like concat('%', #{keyword}, '%')
+      or mb.nick like concat('%', #{keyword}, '%')
+  </if>
+    order by r.rvno, c.odr, c.lvl, c.cno asc;
+  </select>
   
   <select id="findByReviewNo" resultMap="CommentMap" parameterType="int">
     <include refid="sql1"/>
       from 
       acv_cmt c
-      left outer join acv_rv r on r.rvno = c.rvno
-      left outer join acv_mbr mb on mb.mno = c.mno
+      inner join acv_rv r on r.rvno = c.rvno
+      inner join acv_mbr mb on mb.mno = c.mno
     where r.rvno=#{reviewNo}
-    order by c.odr desc;
+  order by c.odr, c.lvl, c.cno asc;
   </select>
   
-    <select id="findByNo" resultMap="CommentMap" parameterType="int">
+    <select id="findByMemberNo" resultMap="CommentMap" parameterType="int">
     <include refid="sql1"/>
       from 
       acv_cmt c
-      left outer join acv_rv r on r.rvno = c.rvno
-      left outer join acv_mbr mb on mb.mno = c.mno
+      inner join acv_rv r on r.rvno = c.rvno
+      inner join acv_mbr mb on mb.mno = c.mno
     where
-      c.cno=#{cno}
+      c.mno=#{mno}
+    order by r.rvno, c.odr, c.lvl, c.cno asc;
   </select>
   
 </mapper>
+
+<!-- 
+
+  
+  select
+  r.rvno,
+  r.txt,
+  c.cno,
+  c.content,
+  c.mno,
+  m.nick,
+  m.photo,
+  rv.stcno,
+  mv.mvno,
+  mv.title
+  from
+  acv_cmt c,
+  acv_rv r,
+  acv_mbr m,
+  acv_stc s,
+  acv_mov mv
+  where
+  c.rvno = r.rvno
+  and r.stcno = s.stcno
+  and c.mno = m.mno
+  and s.mvno = mv.mvno
+  order by r.rvno, c.odr, c.lvl, c.cno asc;
+  
+  
+  
+ -->
+
+
+

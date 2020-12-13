@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 </head>
 <body>
+<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
+
 <%Comment comment = (Comment) request.getAttribute("comment"); %>
 
 <%=comment.getNo() %>

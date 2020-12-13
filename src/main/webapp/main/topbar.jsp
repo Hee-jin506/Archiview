@@ -46,7 +46,7 @@
 <body>
   <div id='menubar'>
     <div id='logo'>
-      <a href="<%=getServletContext().getContextPath()%>/index.html"> <img
+      <a href="<%=getServletContext().getContextPath()%>"> <img
         src="<%=getServletContext().getContextPath()%>/main_resource/logo.png"
         alt="로고"></a>
     </div>
@@ -59,7 +59,7 @@
       </form>
     </div>
     <div id='icon'>
-      <a href='<%=getServletContext().getContextPath()%>/main'>
+      <a href='<%=getServletContext().getContextPath()%>'>
       <img src='<%=getServletContext().getContextPath()%>/main_resource/home.png' alt='메인화면'></a> <a
         href='<%=getServletContext().getContextPath()%>/write/movieSearch'>
         <img src='<%=getServletContext().getContextPath()%>/main_resource/plus.png' alt='글쓰기'></a> <a

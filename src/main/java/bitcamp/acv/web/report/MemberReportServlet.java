@@ -3,7 +3,6 @@ package bitcamp.acv.web.report;
 import java.io.IOException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +11,7 @@ import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Report;
 import bitcamp.acv.service.ReportService;
 
-@WebServlet("/report/add")
+// @WebServlet("/report/add")
 public class MemberReportServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 

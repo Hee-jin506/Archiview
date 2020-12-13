@@ -2,13 +2,14 @@ package bitcamp.acv.service;
 
 import java.util.HashMap;
 import java.util.List;
+import org.springframework.stereotype.Service;
 import bitcamp.acv.dao.ReviewDao;
 import bitcamp.acv.dao.TagDao;
 import bitcamp.acv.domain.Font;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.util.SqlSessionFactoryProxy;
-
+@Service
 public class DefaultReviewService implements ReviewService {
 
   ReviewDao reviewDao;

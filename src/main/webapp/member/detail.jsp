@@ -13,12 +13,12 @@
 <h1>[회원 상세 조회]</h1>
 <br>
 <input type='hidden' name='no' value='${member.no}'><br>
-사진 : <img src='../upload/${member.photo}_120x120.jpg'><br>
+사진 : <img src='../../upload/${member.photo}_150x150.jpg'><br>
 번호 : ${member.no}<br>
 이름 : ${member.name}<br>
 이메일 : ${member.email}<br>
-닉네임 : <input type='text' name='nickName' value='${member.nickName}'><br>
-소개 : <textarea name='intro'>${member.intro}</textarea><br>
+닉네임 : ${member.nickName}<br>
+소개 : ${member.intro}<br>
 회원 가입일 : ${member.registeredDate}<br>
 회원 상태 : ${member.statusTitle}<br>
 회원 상태 변경일 : ${member.statusModifiedDate}<br>
