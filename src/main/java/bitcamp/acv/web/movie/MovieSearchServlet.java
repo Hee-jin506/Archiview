@@ -21,6 +21,8 @@ public class MovieSearchServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    response.setContentType("text/html;charset=UTF-8");
+
     ServletContext ctx = request.getServletContext();
     MovieService movieService =  (MovieService) ctx.getAttribute("movieService");
 

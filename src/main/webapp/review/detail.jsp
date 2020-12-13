@@ -7,6 +7,9 @@
 <head><title>게시물 상세 조회</title></head>
 <body>
 <jsp:include page="/main/admin-topbar.jsp"></jsp:include>
+<br>
+<a href='../report/add?no=<%=request.getParameter("no")%>'>신고</a>
+
 <h3>[게시물 상세 조회]</h3>
 게시물 번호: ${review.no}<br>
 작성자: ${review.writer.nickName}<br>

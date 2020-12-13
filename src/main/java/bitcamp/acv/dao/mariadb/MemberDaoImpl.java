@@ -3,11 +3,12 @@ package bitcamp.acv.dao.mariadb;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 import bitcamp.acv.dao.MemberDao;
 import bitcamp.acv.domain.Member;
 import bitcamp.util.SqlSessionFactoryProxy;
 
-
+@Repository
 public class MemberDaoImpl implements MemberDao {
 
   SqlSessionFactoryProxy sqlSessionFactory;

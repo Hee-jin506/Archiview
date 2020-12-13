@@ -13,7 +13,7 @@
 <h1>[회원 상세 조회]</h1>
 <br>
 <input type='hidden' name='no' value='${member.no}'><br>
-사진 : <img src='../upload/${member.photo}_150x150.jpg'><br>
+사진 : <img src='../../upload/${member.photo}_150x150.jpg'><br>
 번호 : ${member.no}<br>
 이름 : ${member.name}<br>
 이메일 : ${member.email}<br>

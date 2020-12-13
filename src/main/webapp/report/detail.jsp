@@ -5,13 +5,10 @@
     switch (reportedType) {
       case 1 :
         return "회원";
-        break;
       case 2:
         return "게시물";
-        break;
       case 3:
         return "댓글";
-        break;
       default:
         return "태그";
     }
@@ -20,6 +17,7 @@
 <html>
 <head>
 <title>[신고 상세 정보]</title>
+<style>body {background-color: #000000;color: #ffffff;}</style>
 </head>
 <body>
 
@@ -29,24 +27,25 @@ Report report = (Report) request.getAttribute("report");
 %>
 
 	<form action='update' method='post'>
-		신고번호: <input type='text' name='no' value='<%=report.getNo()%>'
-			readonly>
-		신고 유형: <%=getType(report.getReportedType())%>
-		신고자: <%=report.getReportingMember().getNo()%>
-		신고일: <%=report.getReportedDate()%>
-		신고 내용: <%=report.getWhy()%>
-		처리일: <input type='date' name='processedDate' value='<%=report.getProcessedDate()%>'><br>
-		처리내용: <textarea name='processingContent'><%=report.getProcessingContent()%></textarea><br>
-		처리상태: <select name='status'>
+		<p>신고번호: <input type='text' name='no' value='<%=report.getNo()%>'
+			readonly></p>
+		<p>신고 유형: <%=getType(report.getReportedType())%></p>
+		<p>신고자: <%=report.getReportingMember().getNo()%></p>
+		<p>신고일: <%=report.getReportedDate()%></p>
+		<p>신고 내용: <%=report.getWhy()%></p>
+		<p>처리일: <input type='date' name='processedDate' value='<%=report.getProcessedDate()%>'></p>
+		<p>처리내용: <textarea name='processingContent'><%=report.getProcessingContent()%></textarea></p>
+		<p>처리상태: <select name='status'>
 			<%
-			 String[] stateLabels = {"신고대기", "반려", "처리완료"};
+			String[] stateLabels = {"신고대기", "반려", "처리완료"};
 			   for (int i = 0; i < stateLabels.length; i++) {
       %>
 			<option value='<%=i+1%>'><%=stateLabels[i]%></option>
-		</select><br>
+  	 <%} %>
+		</select></p>
 		<p>
 			<button>변경</button>
-			<a href='delete?no= <%=report.getNo()%>'>[삭제]</a>
+			<a href='delete?no=<%=report.getNo()%>'>[삭제]</a>
 			<a href='list'>[목록]</a>
 		</p>
 	</form>
