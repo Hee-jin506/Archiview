@@ -8,20 +8,25 @@
 <title>영화관리(상세조회)</title>
 <style>
 
- html {
-    background-color: #000000;
-    color: #ffffff;
-    }
+ body {
+ position: relative;
+ border: 1px solid #6B6B6B;
+ background-color: #000000;
+ color: #ffffff;
+ }
     
  #movie_info {
+ position: relative;
  width: 50%;
  text-align: left;
+ margin: 10px;
  }
  
  #aside {
- float: right;
+ position: absolute;
  width: 45%;
- margin-top: -350px;
+ left: 55%;
+ top: 0%;
  }
  
  #movie_body {
@@ -31,6 +36,7 @@
  
  #menu {
  text-align: right;
+ margin:15px;
  }
  
  #syn {
@@ -39,7 +45,7 @@
 </style>
 </head>
 
-<body>
+<body id='detail_body'>
 <table id="movie_info" border="0">
 	 <tbody id="movie_body">
 	  <tr><th id="movie_no">영화번호</th><td>${movie.no}</td></tr>
@@ -59,18 +65,17 @@
 
 <div id ="aside">
 	<div id="menu">
-	<a href='update?no=${movie.no}'>[수정]</a>
-	<a href='delete?no=${movie.no}'>[삭제]</a>
-	<a href='active?no=${movie.no}'>[복구]</a>
-	<a href='list'>[취소]</a><br>
+	<a href='active?no=${movie.no}'><img src='../../setting_resource/edit.png' width='30'></a>
+	<a href='delete?no=${movie.no}'><img src='../../setting_resource/trash.png' width='30'></a>
+	<a href='list'><img src='../../setting_resource/x.png' width='28' height="28" ></a><br>
 	</div>
 
 	<div id="post">포스터<br>
-	<c:forEach items="${movie.posters}" var="poster"><img src='${poster}' width='120'></c:forEach><br>
+	<c:forEach items="${movie.posters}" var="poster"><img src='${poster}' width='120' ></c:forEach><br>
   </div>
 
 	<div id="still">스틸컷<br>
-	<c:forEach items="${movie.stillcuts}" var="stillcut"><img src='${stillcut}' width='120'></c:forEach><br>
+	<c:forEach items="${movie.stillcuts}" var="stillcut"><img src='${stillcut}' width='100' height="80"></c:forEach><br>
   </div>
 </div>
 </body>

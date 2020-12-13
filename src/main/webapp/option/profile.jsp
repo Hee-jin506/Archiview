@@ -5,15 +5,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>프로필편집</title>
+<style>
+ 
+ body {
+ border-color: #ffffff;
+ border-radius: 3px;
+ background-color: #141517;
+ color: #ffffff;
+ }
+ 
+ #profile-photo {
+ border-radius: 50px;
+ }
+ 
+  #submit {
+  position: absolute;
+  border-radius: 3px;
+  border: 1px solid #6B6B6B;
+  background: #000000;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  width: 100px;
+  height: 40px;
+  }
+  
+  #submit:hover {
+  background: #626473;
+  color: blue;
+  }
+  
+  input {
+  width: 300px;
+  height: 30px;
+  border-radius: 3px;
+  border: 1px solid #6B6B6B;
+  color: white;
+  background-color: #000000;
+  font-size: x-small;
+  }
+  
+  textarea {
+  border-radius: 3px;
+  border: 1px solid #6B6B6B;
+  color: white;
+  background-color: #000000;
+  font-size: x-small;
+  }
+  
+</style>
 </head>
 <body>
 
-<h1>[회원 프로필]</h1>
 
 <form action='updatePhoto' method='post' enctype='multipart/form-data'>
   <input type='hidden' name='no' value='${member.no}'><br>
-  <a href='../upload/${member.photo}'><img src='../upload/${member.photo}_150x150.jpg'></a><br>
+  <img id='profile-photo' src='../upload/${member.photo}_150x150.jpg' width="60"> <p>${member.email}</p><br><br>
   <input type='file' name='photo'>
   <button>변경</button>
 </form>
@@ -21,15 +69,11 @@
 
 <form action='update' method='post'>
 <input type='hidden' name='no' value='${member.photo}'><br>
-이메일: ${member.email}<br>
-닉네임: <input type='text' name='nickName' value='${member.nickName}'><br>
-소개: <textarea name='intro'>${member.intro}</textarea><br>
-비밀번호 힌트 질문 번호 - ${member.questionsNo}<br>
-비밀번호 힌트 정답 - ${member.questionsAnswer}<br>
-<button>변경</button>
+이름: <input type='text' name='name' value='${member.name}' readonly="readonly"><br><br>
+닉네임: <input type='text' name='nickName' value='${member.nickName}'><br><br>
+소개: <textarea name='intro'>${member.intro}</textarea><br><br>
+<button id='submit'>제출</button>
 </form>
-
-<a href='../option/member/withdraw'>탈퇴</a>
 
 </body>
 </html>
