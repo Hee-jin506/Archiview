@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 import bitcamp.acv.dao.MovieDao;
 import bitcamp.acv.domain.Movie;
 import bitcamp.util.SqlSessionFactoryProxy;
 
-
+@Repository
 public class MovieDaoImpl implements MovieDao {
 
   SqlSessionFactoryProxy sqlSessionFactory;
