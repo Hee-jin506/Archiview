@@ -47,7 +47,7 @@ String inactive = request.getParameter("inactive");
   value='<%=keywordNumber != null ? keywordNumber : ""%>'><br>
 작성자: <input type='text' name='keywordWriterName' 
   value='<%=keywordWriterName != null ? keywordWriterName : ""%>'><br>
-영화 제목: <input type='text' name='keywordTitle' 
+영화 제목: <input type='text' name='keywordMovieTitle' 
   value='<%=keywordMovieTitle != null ? keywordMovieTitle : ""%>'><br>
 등록일: <input type='date' name='registeredDate' 
   value='<%=registeredDate != null ? registeredDate : ""%>'><br>

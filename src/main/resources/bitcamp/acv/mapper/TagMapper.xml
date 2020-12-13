@@ -64,6 +64,11 @@
 		order by t.tno desc
 	</select>
 
+  <select id="findByNo" parameterType="int" resultMap="TagMap">
+      <include refid="sql1"/>
+    where 
+      t.tno = #{tno}
+  </select>
 
 	<select id="findByReviewNo" parameterType="int" resultMap="TagMap">
 	select
