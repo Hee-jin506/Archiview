@@ -18,6 +18,8 @@ public class ReviewDetailServlet  extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    response.setContentType("text/html;charset=UTF-8");
+
     ServletContext ctx = request.getServletContext();
     ReviewService reviewService =  (ReviewService) ctx.getAttribute("reviewService");
 
