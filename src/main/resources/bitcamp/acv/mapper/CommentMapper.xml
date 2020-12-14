@@ -76,8 +76,7 @@
       inner join acv_mbr mb on mb.mno = c.mno
   <if test="keyword != null">
     where
-      c.cno like concat('%', #{keyword}, '%')
-      or mb.nick like concat('%', #{keyword}, '%')
+      mb.nick like concat('%', #{keyword}, '%')
   </if>
     order by r.rvno, c.odr, c.lvl, c.cno asc;
   </select>
@@ -103,22 +102,32 @@
     order by r.rvno, c.odr, c.lvl, c.cno asc;
   </select>
   
+  <select id="findByNo" resultMap="CommentMap" parameterType="int">
+    <include refid="sql1"/>
+      from 
+      acv_cmt c
+      left outer join acv_rv r on r.rvno = c.rvno
+      left outer join acv_mbr mb on mb.mno = c.mno
+    where
+      c.cno=#{cno}
+  </select>
+  
 </mapper>
 
 <!-- 
 
   
   select
+  mv.mvno,
+  mv.title,
+  r.stcno,
   r.rvno,
   r.txt,
   c.cno,
   c.content,
   c.mno,
   m.nick,
-  m.photo,
-  rv.stcno,
-  mv.mvno,
-  mv.title
+  m.photo
   from
   acv_cmt c,
   acv_rv r,
@@ -130,7 +139,7 @@
   and r.stcno = s.stcno
   and c.mno = m.mno
   and s.mvno = mv.mvno
-  order by r.rvno, c.odr, c.lvl, c.cno asc;
+  order by r.rvno, c.odr, c.lvl asc;
   
   
   

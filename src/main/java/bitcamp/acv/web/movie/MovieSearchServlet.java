@@ -1,7 +1,6 @@
 package bitcamp.acv.web.movie;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -26,8 +25,7 @@ public class MovieSearchServlet extends HttpServlet {
     ServletContext ctx = request.getServletContext();
     MovieService movieService =  (MovieService) ctx.getAttribute("movieService");
 
-    PrintWriter out = response.getWriter();
-
+    response.setContentType("text/html;charset=UTF-8");
 
     try {
 

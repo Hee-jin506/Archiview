@@ -33,4 +33,8 @@ public class DefaultCommentService implements CommentService {
     return commentDao.findByMemberNo(no);
   }
 
+  @Override
+  public Comment getByNo(int no) throws Exception {
+    return commentDao.findByNo(no);
+  }
 }

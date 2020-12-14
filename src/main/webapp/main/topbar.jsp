@@ -55,7 +55,7 @@
       <form action='search'>
         <label><img
           src='<%=getServletContext().getContextPath()%>/main_resource/search.png'></label>
-        <input type='search' name='keyword' value='검색'>
+        <input type='search' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
       </form>
     </div>
     <div id='icon'>

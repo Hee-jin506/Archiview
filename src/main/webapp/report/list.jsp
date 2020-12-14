@@ -71,11 +71,10 @@ if (ex != null) {%>
 <%
 String keyword = request.getParameter("keyword");
 %>
-
+</p>
 <form action='list' method='get'>
-검색어: <input type='text' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
+검색어: <input type='search' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
 <button>검색</button>
 </form>
-</p>
 </body>
 </html>

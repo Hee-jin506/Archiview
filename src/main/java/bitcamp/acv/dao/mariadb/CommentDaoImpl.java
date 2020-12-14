@@ -42,4 +42,11 @@ public class CommentDaoImpl implements CommentDao {
       return sqlSession.selectList("CommentDao.findByMemberNo", no);
     }
   }
+
+  @Override
+  public Comment findByNo(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("CommentDao.findByNo", no);
+    }
+  }
 }
