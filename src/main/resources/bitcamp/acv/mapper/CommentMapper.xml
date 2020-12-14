@@ -109,16 +109,16 @@
 
   
   select
+  mv.mvno,
+  mv.title,
+  r.stcno,
   r.rvno,
   r.txt,
   c.cno,
   c.content,
   c.mno,
   m.nick,
-  m.photo,
-  rv.stcno,
-  mv.mvno,
-  mv.title
+  m.photo
   from
   acv_cmt c,
   acv_rv r,
@@ -130,7 +130,7 @@
   and r.stcno = s.stcno
   and c.mno = m.mno
   and s.mvno = mv.mvno
-  order by r.rvno, c.odr, c.lvl, c.cno asc;
+  order by r.rvno, c.odr, c.lvl asc;
   
   
   
