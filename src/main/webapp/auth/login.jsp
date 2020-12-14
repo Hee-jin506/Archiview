@@ -41,12 +41,23 @@ content="user-scalable=no,inital-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,w
 value=<%=request.getAttribute("email") == null ? "" : request.getAttribute("email")%>></label><br>
 <label>비밀번호<input type="password" name="password"></label><br>
 <label>이메일 저장<input type="checkbox" name="saveEmail" checked></label><br>
+<%
+if (((Boolean) request.getAttribute("wrongInput")) == true) {
+%>
+<p>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</p>
+<%
+} else if (((Boolean) request.getAttribute("withdrawedMember")) == true) {
+%>
+<p>이미 탈퇴한 회원입니다. 새로 가입해주세요.</p>
+<%
+}
+%>
 <button>로그인</button>
 </form>
 
 <a href="">비밀번호를 잊으셨나요?</a>
 
-<h4>계정이 없으신가요? <a href="../member/form.html">지금 가입하세요.</a> </h4>
+<h4>계정이 없으신가요? <a href="../app/member/form.html">지금 가입하세요.</a> </h4>
 
 <!-- 구글계정으로 로그인 -->
 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></div>

@@ -10,6 +10,13 @@
 <form action='../../app/member/delete' method='post'>
 <input type='hidden' name='no', value='${member.no}'>
 패스워드 : <input type='password' name='password'><br>
+<%
+if (((Boolean) request.getAttribute("wrongInput")) == true) {
+%>
+<p>비밀번호가 일치하지 않습니다.</p>
+<%
+}
+%>
 <button>탈퇴</button>
 </form>
 </body>
