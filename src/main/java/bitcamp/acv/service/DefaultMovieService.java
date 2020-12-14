@@ -29,6 +29,16 @@ public class DefaultMovieService implements MovieService {
   }
 
   @Override
+  public int delete(int no) throws Exception {
+    return movieDao.delete(no);
+  }
+
+  @Override
+  public int active(int no) throws Exception {
+    return movieDao.active(no);
+  }
+
+  @Override
   public int getStcNo(int movieNo, String url) throws Exception {
     return movieDao.getStcNo(movieNo, url);
   }

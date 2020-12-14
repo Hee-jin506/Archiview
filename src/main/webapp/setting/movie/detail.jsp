@@ -65,9 +65,9 @@
 
 <div id ="aside">
 	<div id="menu">
-	<a href='active?no=${movie.no}'><img src='../../setting_resource/edit.png' width='30'></a>
-	<a href='delete?no=${movie.no}'><img src='../../setting_resource/trash.png' width='30'></a>
-	<a href='list'><img src='../../setting_resource/x.png' width='28' height="28" ></a><br>
+	<a href='active?no=${movie.no}'><img src='../../../setting_resource/edit.png' width='30'></a>
+	<a href='delete?no=${movie.no}'><img src='../../../setting_resource/trash.png' width='30'></a>
+	<a href='list'><img src='../../../setting_resource/x.png' width='28' height="28" ></a><br>
 	</div>
 
 	<div id="post">포스터<br>
