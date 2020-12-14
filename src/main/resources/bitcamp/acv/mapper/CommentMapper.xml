@@ -103,6 +103,16 @@
     order by r.rvno, c.odr, c.lvl, c.cno asc;
   </select>
   
+  <select id="findByNo" resultMap="CommentMap" parameterType="int">
+    <include refid="sql1"/>
+      from 
+      acv_cmt c
+      left outer join acv_rv r on r.rvno = c.rvno
+      left outer join acv_mbr mb on mb.mno = c.mno
+    where
+      c.cno=#{cno}
+  </select>
+  
 </mapper>
 
 <!-- 
