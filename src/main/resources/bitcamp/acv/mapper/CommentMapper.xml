@@ -76,8 +76,7 @@
       inner join acv_mbr mb on mb.mno = c.mno
   <if test="keyword != null">
     where
-      c.cno like concat('%', #{keyword}, '%')
-      or mb.nick like concat('%', #{keyword}, '%')
+      mb.nick like concat('%', #{keyword}, '%')
   </if>
     order by r.rvno, c.odr, c.lvl, c.cno asc;
   </select>
