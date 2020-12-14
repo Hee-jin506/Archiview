@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +14,6 @@ import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.ReportService;
 
-@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
-@WebServlet("/report/detail")
 public class ReportDetailServlet extends HttpServlet{
   private static final long serialVersionUID = 1L;
 
