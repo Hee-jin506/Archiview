@@ -78,7 +78,7 @@
     where
       mb.nick like concat('%', #{keyword}, '%')
   </if>
-    order by r.rvno, c.odr, c.lvl, c.cno asc;
+    order by c.odr, r.rvno asc;
   </select>
   
   <select id="findByReviewNo" resultMap="CommentMap" parameterType="int">
