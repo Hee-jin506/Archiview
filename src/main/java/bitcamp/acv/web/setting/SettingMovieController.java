@@ -50,7 +50,7 @@ public class SettingMovieController {
 
   @RequestMapping("delete")
   public String delete(int no) throws Exception {
-    if (movieService.active(no) == 0) {
+    if (movieService.delete(no) == 0) {
       throw new Exception("해당 번호의 영화가 없습니다.");
     }
     return "redirect:list";
