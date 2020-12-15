@@ -108,7 +108,7 @@ public class ReviewController {
   @RequestMapping("list")
   protected ModelAndView list(
       // 기본 검색 파라미터
-      String keyword, 
+      String keyword,
       String no,
       String writer,
       String movie,

@@ -40,9 +40,7 @@ public class MainController {
       if(keyword.toCharArray()[0] != '#') {
         mv.addObject("keyword", keyword);
         mv.setViewName("/main/topBarNonTagSearch.jsp");
-
       } else {
-
         // 맨 앞글자가 '#'이면 topBarTagSearch.jsp를 include
         // #을 뗀다
         mv.addObject("keyword", keyword.substring(1));
