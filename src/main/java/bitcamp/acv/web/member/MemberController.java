@@ -33,7 +33,7 @@ public class MemberController {
     return "redirect:list";
   }
 
-  @RequestMapping("add")
+  @RequestMapping(value="add")
   public String add(
       int loginNo,
       String name,
@@ -59,7 +59,10 @@ public class MemberController {
 
 
     String filename = UUID.randomUUID().toString();
+    System.out.println(filename);
     String saveFilePath = servletContext.getRealPath("/upload/" + filename);
+    System.out.println(saveFilePath);
+    System.out.println(photoFile);
     photoFile.write(saveFilePath);
     member.setPhoto(filename);
 

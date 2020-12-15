@@ -58,7 +58,7 @@ if (((Boolean) request.getAttribute("wrongInput")) == true) {
 
 <a href="">비밀번호를 잊으셨나요?</a>
 
-<h4>계정이 없으신가요? <a href="../app/member/form.html">지금 가입하세요.</a> </h4>
+<h4>계정이 없으신가요? <a href="../../member/form.html">지금 가입하세요.</a> </h4>
 
 <!-- 구글계정으로 로그인 -->
 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></div>
