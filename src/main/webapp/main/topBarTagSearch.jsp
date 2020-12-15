@@ -8,7 +8,7 @@
 <style>body {background-color: #000000;color: #ffffff;}</style>
 </head>
 <body>
-<jsp:include page="/main/topbar.jsp"></jsp:include>
+<jsp:include page="/app/main/topbar"></jsp:include>
 <%
 String keyword = request.getParameter("keyword");
 %>

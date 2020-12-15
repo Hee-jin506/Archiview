@@ -50,7 +50,9 @@
         src="<%=getServletContext().getContextPath()%>/main_resource/logo.png"
         alt="로고"></a>
     </div>
-
+<%
+String keyword = request.getParameter("keyword");
+%>
     <div id='search'>
       <form action='search'>
         <label><img
@@ -71,7 +73,8 @@
 <% Member member = (Member) request.getAttribute("loginUser"); %>
     <div id='profile'>
       <a href='<%=getServletContext().getContextPath()%>/member/profile'>
-      <img src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'></a>
+      <img src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
+      </a>
     </div>
   </div>
 </body>

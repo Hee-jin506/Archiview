@@ -8,16 +8,16 @@
 <style>body {background-color: #000000;color: #ffffff;}</style>
 </head>
 <body>
-<jsp:include page="/main/topbar.jsp"></jsp:include>
+<jsp:include page="/app/main/topbar"></jsp:include>
 
 <%
 String keyword = request.getParameter("keyword");
 %>
 
 <h3>[리뷰어]</h3>
-<jsp:include page="/member/search?keyword=${keyword}"></jsp:include>
+<jsp:include page="app/member/search?keyword=${keyword}"></jsp:include>
 <h3>[영화]</h3>
-<jsp:include page="/movie/search?keyword=${keyword}"></jsp:include>
+<jsp:include page="app/movie/search?keyword=${keyword}"></jsp:include>
 
 
 </body>
