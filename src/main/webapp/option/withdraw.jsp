@@ -48,9 +48,9 @@
 </head>
 <body>
 <form action='../../member/delete' method='post'>
-<input type='hidden' name='no', value='${member.no}'>
+<input type='hidden' name='no' value='${member.no}'>
 <input type='hidden' name='email' value='${member.email}'>
-<img id='profile-photo' src='../upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
+<img id='profile-photo' src='../../upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
 비밀번호 확인 <input type='password' name='password'><br><br>
 <button id='submit'>탈퇴</button>
 </form>
