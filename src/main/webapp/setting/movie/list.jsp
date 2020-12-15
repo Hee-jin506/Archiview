@@ -122,13 +122,13 @@
 </head>
 <body>
 
-<img src='../../setting_resource/movie.png' width='18'> 영화 관리<br>
+<img src='../../../setting_resource/movie.png' width='18'> 영화 관리<br>
 
 <div id='search-box'>
   <%String keyword = request.getParameter("keyword");%>
    <form action='list' method='get'>
     <input id='search-txt' type='text' placeholder='    검색' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
-    <button id='search-btn'><img src='../../setting_resource/search.png' width='15'></button> 
+    <button id='search-btn'><img src='../../../setting_resource/search.png' width='15'></button> 
    </form>
 </div>
   
@@ -139,7 +139,7 @@ List<Movie> list = (List<Movie>) request.getAttribute("list");
 총 영화 수 : <%=list.size()%>
 </div>
 
-<a href='list' id='refresh' style=""><img src='../../setting_resource/refresh.png' width='15'>  새로고침</a><br>
+<a href='list' id='refresh' style=""><img src='../../../setting_resource/refresh.png' width='15'>  새로고침</a><br>
    
   <table id="movielist">
   <thead id="bar1"><tr>
@@ -172,6 +172,6 @@ List<Movie> list = (List<Movie>) request.getAttribute("list");
   <%}%>
   </tbody></table>
   <br>
-  <button id='delete'><img src='../../setting_resource/minus.png' width="13"> 삭제</button>
+  <button id='delete'><img src='../../../setting_resource/minus.png' width="13"> 삭제</button>
 </body>
 </html>

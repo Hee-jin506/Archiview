@@ -59,16 +59,16 @@
 <body>
 
 
-<form action='updatePhoto' method='post' enctype='multipart/form-data'>
+<form action='profile/updatePhoto' method='post' enctype='multipart/form-data'>
   <input type='hidden' name='no' value='${member.no}'><br>
-  <img id='profile-photo' src='../upload/${member.photo}_150x150.jpg' width="60"> <p>${member.email}</p><br><br>
+  <img id='profile-photo' src='../../upload/${member.photo}_150x150.jpg' width="60"> <p>${member.email}</p><br><br>
   <input type='file' name='photo'>
   <button>변경</button>
 </form>
 <br>
 
-<form action='update' method='post'>
-<input type='hidden' name='no' value='${member.photo}'><br>
+<form action='profile/update' method='post'>
+<input type='hidden' name='no' value='${member.no}'><br>
 이름: <input type='text' name='name' value='${member.name}' readonly="readonly"><br><br>
 닉네임: <input type='text' name='nickName' value='${member.nickName}'><br><br>
 소개: <textarea name='intro'>${member.intro}</textarea><br><br>

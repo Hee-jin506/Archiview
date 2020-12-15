@@ -69,7 +69,7 @@
 <body>
 <form action='password/hintUpdate' method='post'>
 <input type='hidden' name='no' value='${member.no}'><br>
-<img id='profile-photo' src='../../upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
+<img id='profile-photo' src='../../../upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
 내 질문 <input type='text' name='hint' value='
 <c:if test='${member.questionsNo == 1}'>내가 키우는 애완 동물의 이름은 ?</c:if>
 <c:if test='${member.questionsNo == 2}'>가장 기억에 남는 선생님의 성함은 ?</c:if>

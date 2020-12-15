@@ -8,6 +8,8 @@ public interface MovieDao {
   List<Movie> findAll(String keyword) throws Exception;
   Movie findByNo(int no) throws Exception;
   int update(Movie movie) throws Exception;
+  int delete(int no) throws Exception;
+  int active(int no) throws Exception;
   int getStcNo(String stillcut) throws Exception;
   int getStcNo(int movieNo, String url) throws Exception;
   List<Movie> finByPop() throws Exception;

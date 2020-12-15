@@ -52,7 +52,7 @@
 	  <tr><th id="movie_rdt">등록일</th><td>${movie.registeredDate}</td></tr>
 	  <tr><th id="movie_title">제목</th><td>${movie.title}</td></tr>
 	  <tr><th id="movie_eng">영문명</th><td>${movie.englishTitle}</td></tr>
-	  <tr><th id="movie_gnr">장르</th><td><c:forEach items="${movie.genres}" var="ganre">${ganre},</c:forEach></td></tr>
+	  <tr><th id="movie_gnr">장르</th><td><c:forEach items="${movie.genres}" var="ganre">${ganre} </c:forEach></td></tr>
 	  <tr><th id="movie_run">상영시간</th><td>${movie.runtime}분</td></tr>
 	  <tr><th id="movie_dir">감독</th><td>${movie.directors}</td></tr>
 	  <tr><th id="movie_nat">제작국가</th><td>${movie.nation}</td></tr>
@@ -65,9 +65,9 @@
 
 <div id ="aside">
 	<div id="menu">
-	<a href='active?no=${movie.no}'><img src='../../setting_resource/edit.png' width='30'></a>
-	<a href='delete?no=${movie.no}'><img src='../../setting_resource/trash.png' width='30'></a>
-	<a href='list'><img src='../../setting_resource/x.png' width='28' height="28" ></a><br>
+	<a href='active?no=${movie.no}' ><img src='../../../setting_resource/edit.png' width='30'></a>
+	<a href='delete?no=${movie.no}'><img src='../../../setting_resource/trash.png' width='30'></a>
+	<a href='list'><img src='../../../setting_resource/x.png' width='28' height="28" ></a><br>
 	</div>
 
 	<div id="post">포스터<br>

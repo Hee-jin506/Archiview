@@ -50,7 +50,7 @@
 <body>
 <form action='check' method='post'>
 <input type='hidden' name='no' value='${member.no}'><br>
-<img id='profile-photo' src='../../upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
+<img id='profile-photo' src='../../../upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
 기존 비밀번호 <input type='password' name='oldpassword'><br><br>
 새 비밀번호 <input type='password' name='newpassword'><br><br>
 <button id='submit'>변경</button>
