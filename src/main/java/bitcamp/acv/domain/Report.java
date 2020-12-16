@@ -84,5 +84,7 @@ public class Report {
     return COMMENT;
   }
 
-
+  public static int getTag() {
+    return TAG;
+  }
 }

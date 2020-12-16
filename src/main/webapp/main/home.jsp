@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아카이뷰</title>
 <style>
  body {
    background_color : #000000;
@@ -12,8 +12,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="/main/topbar"/>
-<jsp:include page="/main/sidebar"/>
-
+<jsp:include page="/app/main/topbar"/>
+<jsp:include page="/app/main/sidebar"/>
 </body>
 </html>

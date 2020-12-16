@@ -46,13 +46,15 @@
 <body>
   <div id='menubar'>
     <div id='logo'>
-      <a href="<%=getServletContext().getContextPath()%>"> <img
+      <a href="<%=getServletContext().getContextPath()%>/app/main/"> <img
         src="<%=getServletContext().getContextPath()%>/main_resource/logo.png"
         alt="로고"></a>
     </div>
-<% String keyword = (String) request.getAttribute("keyword"); %>
+<%
+String keyword = request.getParameter("keyword");
+%>
     <div id='search'>
-      <form action='search'>
+      <form action='/app/main/search'>
         <label><img
           src='<%=getServletContext().getContextPath()%>/main_resource/search.png'></label>
         <input type='search' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
@@ -61,18 +63,20 @@
     <div id='icon'>
       <a href='<%=getServletContext().getContextPath()%>'>
       <img src='<%=getServletContext().getContextPath()%>/main_resource/home.png' alt='메인화면'></a> <a
-        href='<%=getServletContext().getContextPath()%>/write/movieSearch'>
+        href='<%=getServletContext().getContextPath()%>/app/write/movieSearch'>
         <img src='<%=getServletContext().getContextPath()%>/main_resource/plus.png' alt='글쓰기'></a> <a
-        href='<%=getServletContext().getContextPath()%>/main/following'>
+        href='<%=getServletContext().getContextPath()%>/app/main/following'>
         <img src='<%=getServletContext().getContextPath()%>/main_resource/heart.png' alt='팔로우한 회원의 피드'></a> <a
-        href='<%=getServletContext().getContextPath()%>/main/newsfeed'>
+        href='<%=getServletContext().getContextPath()%>/app/main/newsfeed'>
         <img src='<%=getServletContext().getContextPath()%>/main_resource/bell.png' alt='알람'></a>
     </div>
 <% Member member = (Member) request.getAttribute("loginUser"); %>
-   <%--  <div id='profile'>
+   <div id='profile'>
       <a href='<%=getServletContext().getContextPath()%>/member/profile'>
-      <img src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'></a>
-    </div> --%>
+      <img src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
+      </a>
+    </div>
+>>>>>>> branch 'main' of https://github.com/Hee-jin506/Archiview
   </div>
 </body>
 </html>

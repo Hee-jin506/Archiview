@@ -5,14 +5,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bitcamp.acv.domain.Movie;
 import bitcamp.acv.service.MovieService;
 
-@WebServlet("/write/chooseStc")
 public class StillcutChooseServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
