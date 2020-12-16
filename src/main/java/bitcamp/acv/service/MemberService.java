@@ -4,7 +4,6 @@ import java.util.List;
 import bitcamp.acv.domain.Member;
 
 public interface MemberService {
-  List<Member> list() throws Exception;
   List<Member> list(String keyword) throws Exception;
 
   void add(Member member) throws Exception;
