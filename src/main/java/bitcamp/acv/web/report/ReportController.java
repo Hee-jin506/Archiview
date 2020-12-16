@@ -2,6 +2,7 @@ package bitcamp.acv.web.report;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -13,13 +14,37 @@ import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Report;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
+import bitcamp.acv.service.CommentService;
+import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.ReportService;
+import bitcamp.acv.service.ReviewService;
+import bitcamp.acv.service.TagService;
 
 @Controller
 @RequestMapping("/report")
 public class ReportController {
 
   @Autowired ReportService reportService;
+  @Autowired MemberService memberService;
+  @Autowired ReviewService reviewService;
+  @Autowired CommentService commentService;
+  @Autowired TagService tagService;
+
+  @RequestMapping("form")
+  public ModelAndView form(int no) throws Exception {
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("target", memberService.get(no));
+    mv.setViewName("/report/form.jsp");
+    return mv;
+  }
+
+  @RequestMapping("add")
+  public String add(Report report, HttpSession session) throws Exception {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    report.setReportingMember(loginUser);
+    reportService.add(report);
+    return "redirect:list";
+  }
 
   @RequestMapping("list")
   protected ModelAndView list(String keyword) throws Exception {

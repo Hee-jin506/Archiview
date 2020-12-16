@@ -13,14 +13,13 @@
 <body>
 <h1>[신고 등록 - JSP]</h1>
 
-<% Report report = (Report) request.getAttribute("report"); %>
-<% Review review = (Review) request.getAttribute("review"); %>
-
 <form action='add' method='post'>
-<input type='hidden' name='no' value='<%=review.getNo()%>'>
+<!--
+<input type='hidden' name='target' value='${member.no}'>
+-->
 
 신고 유형:
-<select name='reportedType'>
+<select name='reportedType' >
   <option value='1'>회원</option>
   <option value='2'>게시물</option>
   <option value='3'>댓글</option>
