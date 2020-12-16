@@ -50,12 +50,12 @@
         src="<%=getServletContext().getContextPath()%>/main_resource/logo.png"
         alt="로고"></a>
     </div>
-
+<% String keyword = (String) request.getAttribute("keyword"); %>
     <div id='search'>
       <form action='search'>
         <label><img
           src='<%=getServletContext().getContextPath()%>/main_resource/search.png'></label>
-        <input type='search' name='keyword' <%-- value='<%=keyword != null ? keyword : ""%> --%>'>
+        <input type='search' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
       </form>
     </div>
     <div id='icon'>
@@ -69,10 +69,10 @@
         <img src='<%=getServletContext().getContextPath()%>/main_resource/bell.png' alt='알람'></a>
     </div>
 <% Member member = (Member) request.getAttribute("loginUser"); %>
-    <div id='profile'>
+   <%--  <div id='profile'>
       <a href='<%=getServletContext().getContextPath()%>/member/profile'>
       <img src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'></a>
-    </div>
+    </div> --%>
   </div>
 </body>
 </html>
