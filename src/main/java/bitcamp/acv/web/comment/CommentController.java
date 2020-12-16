@@ -2,11 +2,14 @@ package bitcamp.acv.web.comment;
 
 import java.util.List;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Comment;
+import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.ReviewService;
@@ -28,7 +31,69 @@ public class CommentController {
     mv.setViewName("/comment/list.jsp");
     return mv;
   }
+
+
+  @RequestMapping("view")
+  protected ModelAndView view(
+      int reviewNo,
+      HttpServletRequest request) throws Exception {
+    List<Comment> view = commentService.getByReviewNo(reviewNo);
+    ModelAndView mv = new ModelAndView();
+
+    HttpSession session = request.getSession();
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    mv.addObject("view", view);
+    mv.addObject("member", loginUser);
+    mv.setViewName("/comment/view.jsp");
+    return mv;
+  }
+
+  @RequestMapping("add")
+  public String add(
+      int reviewNo,
+      int order,
+      int level,
+      int memberNo,
+      String content,
+      HttpServletRequest request
+      ) throws Exception {
+
+    HttpSession session = request.getSession();
+
+
+
+    Comment comment = new Comment();
+
+    int oldOrder = comment.getOrder();
+
+    System.out.println(oldOrder);
+    comment.setReviewNo(Integer.parseInt(request.getParameter("reviewNo")));
+
+    if (Integer.parseInt(request.getParameter("level")) == 0) {
+      comment.setLevel(1);
+    } else {
+      comment.setLevel(1);
+    }
+
+    if (Integer.parseInt(request.getParameter("order")) <= oldOrder) {
+      //      for
+
+      comment.setOrder(oldOrder + 1);
+    }
+
+    comment.setContent(request.getParameter("content"));
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    int loginUserNo = loginUser.getNo();
+    comment.setMemberNo(loginUserNo);
+
+    commentService.add(comment);
+
+    return "redirect:../comment/view";
+  }
 }
+
 //
 //  comment.getReview().getText(),
 //  comment.getMemberNo(),
