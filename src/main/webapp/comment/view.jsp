@@ -37,7 +37,11 @@
 <c:choose>
   <c:when test='${c.level == 0}'>
 <td>${c.member.nickName}  ${c.content}<br>
-<a href='add?reviewNo=${c.reviewNo}'>리뷰 등록</a>
+<!-- 인스타는 코멘트 등록을 눌렀을 때 add.jsp에 댓글을 달
+     대상 코멘트의 유저 이름이 넘어가서 표시되도록
+     되어있다.
+-->
+<a href='add?reviewNo=${c.reviewNo}'>코멘트 등록</a>
  </td>
     </c:when>
   <c:otherwise>

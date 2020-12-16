@@ -22,6 +22,7 @@ String keyword = request.getParameter("keyword");
 <br>
 
 <form action='multipleDelete' method='get'>
+
 <table border="1">
 <thead>
 <tr>
@@ -29,14 +30,13 @@ String keyword = request.getParameter("keyword");
 <th>코멘트 번호</th>
 <th>리뷰 번호</th>
 <th>리뷰 내용</th>
-<th>작성자 번호</th>
+<th>사진</th>
 <th>작성자 닉네임</th>
-<th>내용</th>
+<th>코멘트</th>
 <th>오더</th>
 <th>레벨</th>
 <th>등록일</th>
-<th>사진</th>
-<th>스틸컷 번호</th>
+<th>상태</th>
 </tr></thead>
 
 <tbody>
@@ -45,15 +45,21 @@ String keyword = request.getParameter("keyword");
 <td><input type='checkbox' name='comments' value='${c.no}'></td>
 <td>${c.no}</td>
 <td>${c.reviewNo}</td>
-<td>${c.review.text}</td>
-<td>${c.memberNo}</td>
+<td><a href='view?reviewNo=${c.reviewNo}'>${c.review.text}</a></td>
+<td><img src='../../upload/${c.member.photo}_150x150.jpg'></td>
 <td>${c.member.nickName}</td>
 <td>${c.content}</td>
 <td>${c.order}</td>
 <td>${c.level}</td>
 <td>${c.registeredDate}</td>
-<td>${c.member.photo}</td>
-<td>${c.review.stillCut}</td>
+<c:choose>
+  <c:when test='${c.status == 1}'>
+    <td>게시중</td>
+  </c:when>
+  <c:otherwise>
+    <td>삭제</td>
+  </c:otherwise>
+</c:choose>
 </tr>
 </c:forEach>
 </tbody>
@@ -61,6 +67,7 @@ String keyword = request.getParameter("keyword");
 <br>
 <button>정지</button>
 </form>
+
 
 </body>
 </html>
