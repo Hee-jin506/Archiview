@@ -1,5 +1,6 @@
 package bitcamp.acv.service;
 
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import bitcamp.acv.dao.MemberDao;
@@ -14,14 +15,10 @@ public class DefaultMemberService implements MemberService {
     this.memberDao = memberDao;
   }
 
-  @Override
-  public List<Member> list() throws Exception {
-    return memberDao.findAll();
-  }
 
   @Override
   public void add(Member member) throws Exception {
-    memberDao.add(member);
+    memberDao.insert(member);
   }
 
   @Override
@@ -31,7 +28,10 @@ public class DefaultMemberService implements MemberService {
 
   @Override
   public Member get(String email, String password) throws Exception {
-    return memberDao.findByEmailPassword(email, password);
+    HashMap<String,Object> map = new HashMap<>();
+    map.put("email", email);
+    map.put("password", password);
+    return memberDao.findByEmailPassword(map);
   }
 
   @Override

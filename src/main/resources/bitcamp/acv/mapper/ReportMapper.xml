@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="ReportDao">
+<mapper namespace="bitcamp.acv.dao.ReportDao">
   
   <resultMap type="Report" id="ReportMap">
     <id column="rno"           property="no"/>
@@ -76,7 +76,7 @@
     values(#{reportingMember.no},#{reportedType},#{MEMBER},#{rwno},#{rsno})
   </insert>
   
-    <select id="findByNo" parameterType="Integer" resultMap="ReportMap">
+    <select id="findByNo" parameterType="int" resultMap="ReportMap">
     <include refid="sql1"/>
     where rp.rno = #{reportNo}
   </select>
