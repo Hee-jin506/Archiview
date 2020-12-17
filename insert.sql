@@ -544,51 +544,9 @@ values(7, 5, 4, 4, 4, 3);
 
 /* 댓글 샘플 */
 /* 리뷰1 */
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(1, 1, 1, 0, 1, 're:리뷰1 댓글1');
 
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(2, 1, 2, 1, 9, 're:re:리뷰1 댓글1 대댓글1');
+insert into acv_cmt(rvno,momno,lvl,mno,content) 
+values(1, null, 0, 6, 'test');
+insert into acv_cmt(rvno,momno,lvl,mno,content) 
+values(1, 1, 0, 2, 're:test');
 
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(3, 1, 3, 1, 3, 're:re:리뷰1 댓글1 대댓글2');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(6, 1, 4, 1, 4, 're:re:리뷰1 댓글1 대댓글3');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(8, 1, 5, 1, 2, 're:re:리뷰1 댓글1 대댓글4');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(4, 1, 6, 0, 3, 're:리뷰1 댓글2');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(5, 1, 7, 1, 2, 're:re:리뷰1 댓글2 대댓글1');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(7, 1, 8, 0, 6, 're:리뷰1 댓글3');
-
-/* 리뷰2 */
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(9, 2, 1, 0, 1, 're:리뷰2 댓글1');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(10, 2, 2, 1, 9, 're:re:리뷰2 댓글1 대댓글1');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(11, 2, 3, 1, 3, 're:re:리뷰2 댓글1 대댓글2');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(14, 2, 4, 1, 4, 're:re:리뷰2 댓글1 대댓글3');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(16, 2, 5, 1, 2, 're:re:리뷰2 댓글1 대댓글4');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(12, 2, 6, 0, 3, 're:리뷰2 댓글2');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(13, 2, 7, 1, 2, 're:re:리뷰2 댓글2 대댓글1');
-
-insert into acv_cmt(cno,rvno,odr,lvl,mno,content) 
-values(15, 2, 8, 0, 6, 're:리뷰2 댓글3');
