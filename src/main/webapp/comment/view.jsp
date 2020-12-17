@@ -90,6 +90,7 @@ if (targetNo != null) {
 %>
   코멘트: 
 <input type='text' name='content' value='<%= targetWriter != null ? "@" + targetWriter : ""%>'>
+<input type='hidden' name='groupNo' value='<%= targetNo %>'>
   
 <button>등록</button>
 </form>
