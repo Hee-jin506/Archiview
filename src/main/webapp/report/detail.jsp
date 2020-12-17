@@ -100,7 +100,7 @@
 			<p>처리일 : <input type='date' name='processedDate' value='<%=report.getProcessedDate()%>'></p>
 		</form>
 		</div>
-		
+
       <div id="list">
         <p>여기 리스트</p>
         <p>여기 리스트</p>

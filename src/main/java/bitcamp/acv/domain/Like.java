@@ -7,11 +7,11 @@ public class Like {
   public static final int REVIEW = 1;
   public static final int COMMENT = 2;
 
-  private int no;
-  private Member likingMember;
-  private int likedType;
-  private int likedNo;
-  private Date likedDate;
+  private int no; // 좋아요 이력 번호 lno
+  private Member likingMember; // 좋아요한 회원 mno
+  private int likedType; // 좋아요된 대상 유형 lano
+  private int likedNo; // 좋아요된 대상 target
+  private Date likedDate; // 좋아요 누른 일시 ldt
 
 
   public int getNo() {

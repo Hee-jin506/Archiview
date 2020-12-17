@@ -13,6 +13,7 @@ public class Comment {
   private Date registeredDate; // 등록일
   private int status; // 상태
   private Date modifiedDate; // 수정일
+  private int groupNo; // 그룹 번호
   private String photo;
   private String nickName;
   private Review review;
@@ -96,6 +97,14 @@ public class Comment {
   public void setMember(Member member) {
     this.member = member;
   }
+  public int getGroupNo() {
+    return groupNo;
+  }
+  public void setGroupNo(int groupNo) {
+    this.groupNo = groupNo;
+  }
+
+
 
 
 }

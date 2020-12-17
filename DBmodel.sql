@@ -398,7 +398,8 @@ CREATE TABLE acv_like (
   mno    INTEGER  NOT NULL, -- 좋아요한 회원
   lano   INTEGER  NOT NULL, -- 좋아요된 대상 유형
   target INTEGER  NOT NULL, -- 좋아요된 대상
-  ldt    DATETIME NOT NULL DEFAULT now() -- 좋아요 누른 일시
+  ldt    DATETIME NOT NULL DEFAULT now(), -- 좋아요 누른 일시
+  stat   INTEGER  NOT NULL  -- 상태
 );
 
 -- 좋아요 이력
@@ -425,7 +426,8 @@ CREATE TABLE acv_flw (
   flwing_mbr INTEGER  NOT NULL, -- 팔로우한 회원
   target     INTEGER  NOT NULL, -- 팔로우된 대상
   fdt        DATETIME NOT NULL DEFAULT now(), -- 팔로우한 일시
-  fano       INTEGER  NOT NULL  -- 팔로우된 대상 유형
+  fano       INTEGER  NOT NULL, -- 팔로우된 대상 유형
+  stat       INTEGER  NOT NULL  -- 상태
 );
 
 -- 팔로우 이력
