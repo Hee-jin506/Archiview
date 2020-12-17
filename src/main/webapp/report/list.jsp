@@ -27,7 +27,7 @@
 </head>
 <body>
 	<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
-
+	
   <button class="btn btn-primary">css테스트</button>
   
 <div class="container">
@@ -58,8 +58,8 @@ if (ex != null) {%>
 			</tr>
 			<%
 			  } else {
-			List<Report> list = (List<Report>) request.getAttribute("list");
-			for (Report report : list) {
+			List<Report> reportList = (List<Report>) request.getAttribute("list");
+			for (Report report : reportList) {
 			%>
 
 			<tr>
