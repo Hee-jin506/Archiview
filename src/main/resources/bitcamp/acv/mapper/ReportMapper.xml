@@ -3,12 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="ReportDao">
+<mapper namespace="bitcamp.acv.dao.ReportDao">
   
   <resultMap type="Report" id="ReportMap">
     <id column="rno"           property="no"/>
     <result column="rano"      property="reportedType"/> 
     <result column="target"     property="reportedNo"/>
+    <result column="target_member"     property="MEMBER"/>
     <result column="rdt"       property="reportedDate"/>
     <result column="why_title"      property="why"/> 
     <result column="stat_title"      property="status"/> 
@@ -72,10 +73,10 @@
   
     <insert id="insert" parameterType="report">
     insert into acv_rp(mno,rano,target,rwno,rsno)
-    values(#{reportingMember.no},#{reportedType},#{targer},#{rwno},#{rsno})
+    values(#{reportingMember.no},#{reportedType},#{MEMBER},#{rwno},#{rsno})
   </insert>
   
-    <select id="findByNo" parameterType="Integer" resultMap="ReportMap">
+    <select id="findByNo" parameterType="int" resultMap="ReportMap">
     <include refid="sql1"/>
     where rp.rno = #{reportNo}
   </select>
@@ -83,8 +84,8 @@
   <update id="update" parameterType="report">
   update acv_rp
     <set>
+      <if test='status == "1" or status == "2" or status == "3"'>rsno = #{status},</if>
       <if test="processingContent != null">content = #{processingContent},</if>
-      <if test="status == '1' or status == '2' or status == '3'">status = #{status},</if>
       <if test="processedDate != null">pdt = #{processedDate}</if>
     </set>
   where rno = #{no}

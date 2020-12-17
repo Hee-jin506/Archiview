@@ -8,19 +8,17 @@ import bitcamp.acv.dao.TagDao;
 import bitcamp.acv.domain.Font;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
-import bitcamp.util.SqlSessionFactoryProxy;
 @Service
 public class DefaultReviewService implements ReviewService {
 
   ReviewDao reviewDao;
   TagDao tagDao;
-  SqlSessionFactoryProxy factoryProxy;
 
 
-  public DefaultReviewService(ReviewDao reviewDao, TagDao tagDao, SqlSessionFactoryProxy factoryProxy) {
+  public DefaultReviewService(ReviewDao reviewDao, TagDao tagDao) {
     this.reviewDao = reviewDao;
     this.tagDao = tagDao;
-    this.factoryProxy =factoryProxy;
+
   }
 
   @Override
@@ -31,7 +29,6 @@ public class DefaultReviewService implements ReviewService {
   @Override
   public int add(Review review) throws Exception {
     try {
-      factoryProxy.startTransaction();
 
       int count = reviewDao.insert(review);
       System.out.println(review.getNo());
@@ -43,14 +40,12 @@ public class DefaultReviewService implements ReviewService {
         }
       }
       tagDao.insertByReview(review);
-      factoryProxy.commit();
       return count;
 
     } catch (Exception e) {
-      factoryProxy.rollback();
       throw e;
     } finally {
-      factoryProxy.endTransaction();
+
     }
   }
 

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="MovieDao">
+<mapper namespace="bitcamp.acv.dao.MovieDao">
   
   <resultMap type="movie" id="MovieMap">
     <id column="mvno"           property="no"/>
@@ -113,7 +113,7 @@
      group by mvno
   </select> -->
   
-  <select id="findByNo" resultMap="MovieMap" parameterType="integer">
+  <select id="findByNo" resultMap="MovieMap" parameterType="int">
     <include refid="sql1" />
     where
       m.mvno = #{no}

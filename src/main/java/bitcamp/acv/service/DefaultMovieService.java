@@ -1,6 +1,8 @@
 package bitcamp.acv.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Service;
 import bitcamp.acv.dao.MovieDao;
 import bitcamp.acv.domain.Movie;
@@ -40,7 +42,10 @@ public class DefaultMovieService implements MovieService {
 
   @Override
   public int getStcNo(int movieNo, String url) throws Exception {
-    return movieDao.getStcNo(movieNo, url);
+    Map<String, Object> map = new HashMap<>();
+    map.put("movieNo", movieNo);
+    map.put("url", url);
+    return movieDao.getStcNo(map);
   }
 
   @Override

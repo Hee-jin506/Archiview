@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
 
 <%Review review = (Review) request.getAttribute("review"); %>
 

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
+
 <% Member member = (Member) request.getAttribute("member"); %>
 <%-- <img src="../upload/" + <%=member.getPhoto() + "_35x35.jpg"%>"> --%>
 <img src="<%=member.getPhoto()%>"><br>

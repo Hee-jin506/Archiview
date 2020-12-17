@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="CommentDao">
+<mapper namespace="bitcamp.acv.dao.CommentDao">
   
   <resultMap type="comment" id="CommentMap">
     <id column="cno"           property="no"/>
@@ -62,9 +62,9 @@
   </sql>
        
   <insert id="insert" parameterType="comment">
-    insert into acv_cmt(cno, rvno, odr, lvl, mno, content) 
+    insert into acv_cmt(rvno, odr, lvl, mno, content) 
     <if test="content != ''">
-      values(#{no}, #{reviewNo}, #{order}, #{level}, #{memberNo}, #{content})
+      values(#{reviewNo}, #{order}, #{level}, #{memberNo}, #{content})
     </if>
   </insert>
   
@@ -78,7 +78,7 @@
     where
       mb.nick like concat('%', #{keyword}, '%')
   </if>
-    order by c.odr, r.rvno asc;
+    order by r.rvno, c.odr asc;
   </select>
   
   <select id="findByReviewNo" resultMap="CommentMap" parameterType="int">
@@ -88,7 +88,7 @@
       inner join acv_rv r on r.rvno = c.rvno
       inner join acv_mbr mb on mb.mno = c.mno
     where r.rvno=#{reviewNo}
-  order by c.odr, c.lvl, c.cno asc;
+  order by c.odr, c.lvl asc;
   </select>
   
     <select id="findByMemberNo" resultMap="CommentMap" parameterType="int">
@@ -99,7 +99,7 @@
       inner join acv_mbr mb on mb.mno = c.mno
     where
       c.mno=#{mno}
-    order by r.rvno, c.odr, c.lvl, c.cno asc;
+    order by r.rvno, c.odr, c.lvl asc;
   </select>
   
   <select id="findByNo" resultMap="CommentMap" parameterType="int">

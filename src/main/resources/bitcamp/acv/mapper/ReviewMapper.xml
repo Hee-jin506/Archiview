@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="ReviewDao">
+<mapper namespace="bitcamp.acv.dao.ReviewDao">
   
   <resultMap type="review" id="ReviewMap">
     <id column="rvno"           property="no"/>
@@ -95,13 +95,13 @@
     order by rv.rvno desc
   </select>
   
-  <select id="findAll" resultMap="ReviewMap" parameterType="string">
+  <select id="findAll" resultMap="ReviewMap">
     <include refid="sql1"/>
     order by rv.rvno desc
   </select>
   
   
-  <select id="findByDetailKeyword" resultMap="ReviewMap" parameterType="map">
+  <select id="findByDetailKeyword" resultMap="ReviewMap" parameterType="hashmap">
     <include refid="sql2" />
     <where>
       <if test="number != null">
@@ -157,7 +157,7 @@
   
   
   <!-- 살기 싫어지네 -->
- <select id="findByKeyword" resultMap="ReviewMap" parameterType="map">
+ <select id="findByKeyword" resultMap="ReviewMap" parameterType="hashmap">
     <include refid="sql2" />
     <where>
       <if test="no == null and writer == null and movie==null">
