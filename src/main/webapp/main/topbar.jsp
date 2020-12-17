@@ -81,7 +81,6 @@ String keyword = request.getParameter("keyword");
       <img class='profile' src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
       </a>
     </div>
->>>>>>> branch 'main' of https://github.com/Hee-jin506/Archiview
-  </div>
+    </div>
 </body>
 </html>
