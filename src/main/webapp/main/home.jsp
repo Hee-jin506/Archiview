@@ -7,7 +7,18 @@
 <title>아카이뷰</title>
 <style>
  body {
-   background_color : #000000;
+   background-color : #000000;
+   margin: 0px;
+ }
+ 
+ p {
+   font-size: 18px;
+   font-weight: bold;
+   margin:0px;
+ }
+ 
+ img.profile {
+  border-radius: 100px;
  }
 </style>
 </head>

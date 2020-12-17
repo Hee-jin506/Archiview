@@ -8,10 +8,14 @@
 <title>Insert title here</title>
 <style>
 #menubar {
+  position: fixed;
+  top:0px;
   background-color: #141517;
+  box-sizing: border-box;
   color: white;
-  height: 30px;
-  padding: 10px
+  width: 100%;
+  height: 65px;
+  margin: 0px;
 }
 #menubar #search {
   position: absolute;
@@ -28,19 +32,20 @@
   left: 1350px;
   top: 10px;
 }
-#menubar a:visited {
-  color: white;
-  text-decoration: none;
-}
-#menubar a:hover {
-  text-decoration: underline;
-}
 #menubar #logo img {
   position: absolute;
   width: 205px;
   height: 159px;
   left: 50px;
   top: 10px;
+}
+#menubar #search form {
+  
+}
+
+#menubar #icon img {
+  margin-right: 30px;
+  
 }
 </style>
 <body>
@@ -73,7 +78,7 @@ String keyword = request.getParameter("keyword");
 <% Member member = (Member) request.getAttribute("loginUser"); %>
     <div id='profile'>
       <a href='<%=getServletContext().getContextPath()%>/member/profile'>
-      <img src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
+      <img class='profile' src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
       </a>
     </div>
   </div>
