@@ -17,6 +17,7 @@
 <table border="1">
 <thead>
 <tr>
+<th>cno</th>
 <th>사진</th>
 <th>작성자 닉네임 / 내용</th>
 <th>오더</th>
@@ -31,6 +32,7 @@
 <tr>
 <c:choose>
   <c:when test='${c.status == 1}'>
+<td>${c.no}</td>
 <td><img src='../../upload/${c.member.photo}_150x150.jpg'></td>
 
 <c:set var='level' value='${c.level}'/>
@@ -41,7 +43,7 @@
      대상 코멘트의 유저 이름이 넘어가서 표시되도록
      되어있다.
 -->
-<a href='add?reviewNo=${c.reviewNo}'>코멘트 등록</a>
+<a href='add?No=${c.no}'>코멘트 등록</a>
  </td>
     </c:when>
   <c:otherwise>
@@ -61,10 +63,6 @@
 </c:forEach>
 </tbody>
 </table>
-
-<jsp:include page="/comment/add.jsp"></jsp:include>
-
-
 
 
 <br>
