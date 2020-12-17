@@ -553,7 +553,7 @@ CREATE TABLE acv_cmt (
   rdt     DATETIME   NOT NULL DEFAULT now(), -- 등록일
   stat    INTEGER    NOT NULL DEFAULT 1, -- 상태
   mdt     DATETIME   NULL,     -- 수정일
-  gNo     INTEGER    NOT NULL  -- 그룹 번호
+  gno     INTEGER    NOT NULL  -- 그룹 번호
 );
 
 -- 댓글

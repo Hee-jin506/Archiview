@@ -545,8 +545,33 @@ values(7, 5, 4, 4, 4, 3);
 /* 댓글 샘플 */
 /* 리뷰1 */
 
-insert into acv_cmt(rvno,momno,lvl,mno,content) 
-values(1, null, 0, 6, 'test');
-insert into acv_cmt(rvno,momno,lvl,mno,content) 
-values(1, 1, 0, 2, 're:test');
+insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
+values(1, 1, 1, 1, 1, 'test1');
+
+insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
+values(2, 1, 2, 1, 2, 'test2');
+
+insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
+values(3, 1, 1, 2, 2, 're:test1');
+
+insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
+values(4, 1, 1, 2, 4, 're:test1');
+
+insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
+values(5, 1, 2, 2, 4, 're:test2');
+
+insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
+values(6, 1, 2, 2, 5, 're:test2');
+
+insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
+values(7, 1, 7, 1, 4, 'test3');
+
+insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
+values(8, 1, 2, 2, 8, 're:test2');
+
+insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
+values(9, 1, 1, 2, 6, 're:test1');
+
+insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
+values(10, 1, 7, 2, 5, 're:test3');
 
