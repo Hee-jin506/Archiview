@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
+import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.MemberService;
 import net.coobird.thumbnailator.ThumbnailParameter;
 import net.coobird.thumbnailator.Thumbnails;
@@ -154,6 +155,26 @@ public class MemberController {
     return mv;
   }
 
+  // 프로필 화면(프로필 + 본인이 작성한 리뷰들이 나옴)
+  @RequestMapping("profile")
+  public ModelAndView profile(int no) throws Exception {
+
+    Member member = memberService.get(no);
+
+    if (member == null) {
+      throw new Exception("해당 회원이 없습니다.");
+    }
+
+    ModelAndView mv = new ModelAndView();
+    List<Review> rvs = member.getReviews();
+    for(Review rv : rvs) {
+      System.out.println(rv.getNo());
+    }
+    mv.addObject("member", member);
+    mv.setViewName("/member/profile.jsp");
+    return mv;
+  }
+
   @RequestMapping("inactive")
   public String inactive(int no) throws Exception {
     if (memberService.inactive(no) == 0) {
@@ -187,16 +208,6 @@ public class MemberController {
     } else {
       return "redirect:list";
     }
-  }
-
-  @RequestMapping("search")
-  public ModelAndView search(String keyword) throws Exception {
-    System.out.println("memberController 키워드: " + keyword);
-    List<Member> memberList = memberService.listByKeywordNickName(keyword);
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("memberList", memberList);
-    mv.setViewName("/member/memberSearch.jsp");
-    return mv;
   }
 
   @RequestMapping("update")

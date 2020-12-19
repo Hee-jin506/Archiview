@@ -6,6 +6,7 @@ import java.util.List;
 public class Review {
   private int no;
   private int stillCut;
+  private String stillCutUrl;
   private Member writer;
   private String text;
   private int textX;
@@ -102,6 +103,12 @@ public class Review {
   }
   public void setMovieTitle(String movieTitle) {
     this.movieTitle = movieTitle;
+  }
+  public String getStillCutUrl() {
+    return stillCutUrl;
+  }
+  public void setStillCutUrl(String stillCutUrl) {
+    this.stillCutUrl = stillCutUrl;
   }
 
 }

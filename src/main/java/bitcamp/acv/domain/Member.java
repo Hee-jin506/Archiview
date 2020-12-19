@@ -31,23 +31,11 @@ public class Member {
   private int status; // 회원 상태 번호
   private String statusTitle;
   private Date statusModifiedDate; // 회원 상태 변경일
-  private List<Review> saving;
   private int followers;
   private int likers;
+  private List<Review> reviews; // 본인의 게시물들
+  private List<Review> saved; // 저장한 게시물들
 
-
-  public List<Review> getSaving() {
-    return saving;
-  }
-  public void setSaving(List<Review> saving) {
-    this.saving = saving;
-  }
-  public List<Review> getSave() {
-    return saving;
-  }
-  public void setSave(List<Review> save) {
-    this.saving = save;
-  }
   public int getNo() {
     return no;
   }
@@ -152,5 +140,16 @@ public class Member {
   public void setStatusTitle(String statusTitle) {
     this.statusTitle = statusTitle;
   }
-
+  public List<Review> getReviews() {
+    return reviews;
+  }
+  public void setReviews(List<Review> reviews) {
+    this.reviews = reviews;
+  }
+  public List<Review> getSaved() {
+    return saved;
+  }
+  public void setSaved(List<Review> saved) {
+    this.saved = saved;
+  }
 }

@@ -21,6 +21,12 @@
   <result column="stno"      property="status"/>
   <result column="stat_title"      property="statusTitle"/>
   <result column="stat_mdt" property="statusModifiedDate" />
+  
+    <collection property="reviews"    ofType="review">
+         <result column="rvno"        property="no"/>
+         <result column="txt"        property="text"/>
+         <result column="stc_url"        property="stillCutUrl"/>
+    </collection>
  </resultMap>
 
  <resultMap type="member" id="MemberMap2">
@@ -41,6 +47,9 @@
   <result column="flw_length" property="followers" />
   <result column="lk_length"  property="likers"/>
  </resultMap>
+ 
+ 
+ 
 
  <!-- private int no; // 회원 번호 private int authority; // 권한 private String 
   name; // 이름 private int loginNo; // 로그인 유형 번호 private String email; // 이메일 
@@ -68,10 +77,15 @@
     mb.stno,
     mb.stat_mdt,
     mbs.title stat_title,
-    mb.stat_mdt
+    mb.stat_mdt,
+    rv.rvno,
+    rv.txt,
+    stc.stc_url
     from 
       acv_mbr mb
       inner join acv_mbr_stat mbs on mb.stno = mbs.stno
+      left outer join acv_rv rv on mb.mno = rv.mno
+      inner join acv_stc stc on rv.stcno = stc.stcno
   </sql>
 
 <!-- nickName에 keyword가 포함된 애들을 리턴 -->
@@ -104,7 +118,7 @@
  <select id="findByNo" parameterType="int" resultMap="MemberMap">
   <include refid="sql1" />
   where
-  mno = #{no}
+  mb.mno = #{no}
  </select>
 
  <select id="findByEmailPassword" parameterType="map"
@@ -122,7 +136,7 @@
    <if test="intro != null">intro = #{intro},</if>
    <if test="photo != null">photo = #{photo}</if>
   </set>
-  where mno = #{no}
+  where mb.mno = #{no}
  </update>
 
  <update id="updatePassword" parameterType="member">
@@ -130,7 +144,7 @@
   <set>
    <if test="password != null">pw = password(#{password})</if>
   </set>
-  where mno = #{no}
+  where mb.mno = #{no}
  </update>
 
  <!-- <delete id="delete" parameterType="int"> delete from acv_mbr where 
@@ -141,7 +155,7 @@
   set
   stno = 1,
   stat_mdt = now()
-  where mno=#{no}
+  where mb.mno=#{no}
  </update>
 
  <update id="inactive" parameterType="int">
@@ -149,7 +163,7 @@
   set
   stno = 2,
   stat_mdt = now()
-  where mno=#{no}
+  where mb.mno=#{no}
  </update>
 
  <update id="delete" parameterType="int">
@@ -157,7 +171,7 @@
   set
   stno = 3,
   stat_mdt = now()
-  where mno=#{no}
+  where mb.mno=#{no}
  </update>
 
  <select id="findByPop" parameterType="map" resultMap="MemberMap2">

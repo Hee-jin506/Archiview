@@ -61,7 +61,7 @@ String keyword = request.getParameter("keyword");
       <form action='<%=getServletContext().getContextPath()%>/app/main/search'>
         <label><img
           src='<%=getServletContext().getContextPath()%>/main_resource/search.png'></label>
-        <input type='search' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
+        <input type='search' name='keyword' value='<%=keyword != null ? keyword : "검색"%>'>
       </form>
     </div>
     <div id='icon'>

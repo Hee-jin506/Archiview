@@ -45,7 +45,6 @@ public class AuthController {
     }
 
     HttpSession session = request.getSession();
-
     Cookie emailCookie = new Cookie("email", email);
 
     if (request.getParameter("saveEmail") != null) {
