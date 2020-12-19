@@ -25,7 +25,7 @@
   box-sizing: border-box;
   color: white;
   width: 250px;
-  height: 200px;
+  height: 220px;
   margin: 10px
  }
  
@@ -90,19 +90,3 @@ for (Tag tag : tags) {
 
 </body>
 </html>
-
-<!-- select
-    mb.mno,
-    mb.nick,
-  flw_length,
-  lk_length
-  from acv_mbr mb
-    left outer join 
-    (select target, fano, count(*) flw_length from acv_flw where fano=1 group by target, fano)fw
-    on fw.target=mb.mno
-    left outer join
-    (select target, lano, count(*) lk_length, rv.mno from acv_like 
-    inner join acv_rv rv on target=rvno 
-where lano=1 
-    group by target, lano)lk
-   on lk.mno=mb.mno; -->

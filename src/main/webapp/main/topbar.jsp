@@ -20,17 +20,17 @@
 #menubar #search {
   position: absolute;
   left: 500px;
-  top: 10px;
+  top: 20px;
 }
 #menubar #icon {
   position: absolute;
   left: 1000px;
-  top: 10px;
+  top: 20px;
 }
 #menubar #profile {
   position: absolute;
   left: 1350px;
-  top: 10px;
+  top: 15px;
 }
 #menubar #logo img {
   position: absolute;
@@ -45,8 +45,8 @@
 
 #menubar #icon img {
   margin-right: 30px;
-  
 }
+
 </style>
 <body>
   <div id='menubar'>
@@ -81,7 +81,6 @@ String keyword = request.getParameter("keyword");
       <img class='profile' src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
       </a>
     </div>
->>>>>>> branch 'main' of https://github.com/Hee-jin506/Archiview
   </div>
 </body>
 </html>
