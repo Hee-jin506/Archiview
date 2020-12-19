@@ -14,9 +14,9 @@ String selectedTagTitle = request.getParameter("selectedTagTitle");
 %>
 
 <h3>[태그]</h3>
-<jsp:include page="/tag/search?selectedTagTitle=${selectedTagTitle}"></jsp:include>
+<jsp:include page="/app/tag/search?selectedTagTitle=${selectedTagTitle}"></jsp:include>
 <h3>[게시물]</h3>
-<jsp:include page="/review/searchBest?keyword=${selectedTagTitle}"></jsp:include>
+<jsp:include page="/app/review/searchBest?keyword=${selectedTagTitle}"></jsp:include>
 
 
 

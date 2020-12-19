@@ -58,7 +58,7 @@
 String keyword = request.getParameter("keyword");
 %>
     <div id='search'>
-      <form action='/app/main/search'>
+      <form action='<%=getServletContext().getContextPath()%>/app/main/search'>
         <label><img
           src='<%=getServletContext().getContextPath()%>/main_resource/search.png'></label>
         <input type='search' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
@@ -76,12 +76,16 @@ String keyword = request.getParameter("keyword");
     </div>
 <%--
 <% Member member = (Member) request.getAttribute("loginUser"); %> 
+=======
+<%-- <% Member member = (Member) request.getAttribute("loginUser"); %>
+>>>>>>> aa512a4639d6758f2ae04c50dbe1e9c11e9a4869
    <div id='profile'>
       <a href='<%=getServletContext().getContextPath()%>/member/profile'>
       <img class='profile' src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
       </a>
+<<<<<<< HEAD
     </div>
       --%>
-  </div>
+    </div> 
 </body>
 </html>

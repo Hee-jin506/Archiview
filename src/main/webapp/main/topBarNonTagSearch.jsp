@@ -15,9 +15,11 @@ String keyword = request.getParameter("keyword");
 %>
 
 <h3>[리뷰어]</h3>
-<jsp:include page="app/member/search?keyword=${keyword}"></jsp:include>
+<jsp:include page="/app/member/search?keyword=${keyword}"></jsp:include>
 <h3>[영화]</h3>
-<jsp:include page="app/movie/search?keyword=${keyword}"></jsp:include>
+<jsp:include page="/app/movie/search?keyword=${keyword}"></jsp:include>
+
+<c:out value="${keyword}"></c:out>
 
 
 </body>

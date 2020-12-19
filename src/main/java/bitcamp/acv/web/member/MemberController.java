@@ -102,7 +102,7 @@ public class MemberController {
 
 
   @RequestMapping("delete")
-  protected ModelAndView delete(String password, HttpServletRequest request)
+  public ModelAndView delete(String password, HttpServletRequest request)
       throws Exception {
 
     ModelAndView mv = new ModelAndView();
@@ -140,7 +140,7 @@ public class MemberController {
   }
 
   @RequestMapping("detail")
-  protected ModelAndView detail(int no) throws Exception {
+  public ModelAndView detail(int no) throws Exception {
 
     Member member = memberService.get(no);
 
@@ -155,7 +155,7 @@ public class MemberController {
   }
 
   @RequestMapping("inactive")
-  protected String inactive(int no) throws Exception {
+  public String inactive(int no) throws Exception {
     if (memberService.inactive(no) == 0) {
       throw new Exception("해당 번호의 회원이 없습니다.");
     } else {
@@ -164,7 +164,7 @@ public class MemberController {
   }
 
   @RequestMapping("list")
-  protected ModelAndView list(String keyword) throws Exception {
+  public ModelAndView list(String keyword) throws Exception {
     List<Member> list = memberService.list(keyword);
     ModelAndView mv = new ModelAndView();
     mv.addObject("list", list);
@@ -173,7 +173,7 @@ public class MemberController {
   }
 
   @RequestMapping("multipleDelete")
-  protected String multipleDelete(String[] members, HttpServletResponse response)
+  public String multipleDelete(String[] members, HttpServletResponse response)
       throws Exception {
     int count = 0;
     if (members != null) {
@@ -190,16 +190,17 @@ public class MemberController {
   }
 
   @RequestMapping("search")
-  protected ModelAndView search(String keyword) throws Exception {
+  public ModelAndView search(String keyword) throws Exception {
+    System.out.println("memberController 키워드: " + keyword);
     List<Member> memberList = memberService.listByKeywordNickName(keyword);
     ModelAndView mv = new ModelAndView();
     mv.addObject("memberList", memberList);
-    mv.setViewName("memberSearch.jsp");
+    mv.setViewName("/member/memberSearch.jsp");
     return mv;
   }
 
   @RequestMapping("update")
-  protected String update(Member member) throws Exception {
+  public String update(Member member) throws Exception {
     memberService.update(member);
     return "redirect:list";
   }
