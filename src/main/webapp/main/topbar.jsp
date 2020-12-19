@@ -59,7 +59,7 @@
 String keyword = request.getParameter("keyword");
 %>
     <div id='search'>
-      <form action='/app/main/search'>
+      <form action='<%=getServletContext().getContextPath()%>/app/main/search'>
         <label><img
           src='<%=getServletContext().getContextPath()%>/main_resource/search.png'></label>
         <input type='search' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
