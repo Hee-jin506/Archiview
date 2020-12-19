@@ -183,7 +183,7 @@ public class ReviewController {
 
     // jsp에 넘겨줄 값들
     Map<String,Object> chartSizeMap = new HashMap<>();
-    chartSizeMap.put("all",chartList.size());
+    chartSizeMap.put("all", chartList.size());
 
     // 삭제된 게시물 수
     HashMap<String,Object> keyMap = new HashMap<>();
@@ -229,7 +229,7 @@ public class ReviewController {
     keyMap.remove("registeredDate");
     keyMap.put("registeredDate", today);
     chartList = reviewService.list(keyMap);
-    chartSizeMap.put("today",chartList.size());
+    chartSizeMap.put("today", chartList.size());
 
     // 이번 주에 등록된 게시물 수
     keyMap.remove("registeredDate");

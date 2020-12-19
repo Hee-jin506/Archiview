@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>팝업창테스트</title>
+<style>
+#myModal {
+background-color: black;
+}
+
+.modal-dialog {
+  width: 100%;
+  height: 80%;
+  padding: 0;
+  margin: 10px;
+}
+
+.modal-body {
+background-color: #1d1f1f
+}
+
+.modal-content {
+  height: auto;
+  min-height: 10%;
+  background-color: #1d1f1f
+}
+
+.modal-footer {
+    background-color: #1d1f1f
+}
+
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+</head>
+<body>
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" data-backdrop="static"> <!-- 사용자 지정 부분① : id명 -->
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+            <h1 style="color: white; text-align:center;">리뷰를 작성할 영화를 찾아볼까요?</h1> <!-- 사용자 지정 부분③ : 텍스트 메시지 -->
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">나중에할래요</button>
+          </div>
+      </div>
+    </div>
+  </div>
+<br/><br/>
+
+<!-- 
+<button type="button" onclick="location.href='../../write/test.html'" data-toggle="modal" data-target="#myModal">모달 창 열기</button>
+    
+    아래에서 data-toggle과 data-target 속성에서 data-toggle에는 modal 값을 data-target속성에는 모달 창 전체를 
+감싸는 div의 id 이름을 지정하면 된다. -->
+
+&nbsp;&nbsp;<button type="button" data-toggle="modal" data-target="#myModal">모달 창 열기</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>
