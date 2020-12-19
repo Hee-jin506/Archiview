@@ -1,7 +1,10 @@
 package bitcamp.acv.web.Review;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -201,12 +204,22 @@ public class ReviewController {
     Member loginUser = (Member) session.getAttribute("loginUser");
     Map<String, Object> map = new HashMap<>();
     map.put("userNo", loginUser.getNo());
-    //일단 다섯개만 뽑기
     map.put("row", 0);
+
+    List<Review> list = reviewService.getMainFeed(map);
+    for (Review review : list) {
+      Calendar cal = new GregorianCalendar(Locale.KOREA);
+      long now = cal.getTimeInMillis();
+      long diff = now - review.getRegisteredDate().getTime();
+      long sec = diff / 1000 / 60/ 60;
+      System.out.println(review.getRegisteredDate());
+      System.out.println(sec+"시간 전");
+    }
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("loginUser", loginUser);
-    mv.addObject("list", reviewService.getMainFeed(map));
+    mv.addObject("list", list);
+
     mv.setViewName("/review/mainFeed.jsp");
     return mv;
   }

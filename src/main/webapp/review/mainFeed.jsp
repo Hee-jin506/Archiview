@@ -25,12 +25,14 @@ for (Review review : list) {
 <p><%=review.getText() %></p>
 <% 
 List<Tag> tags = review.getTags();
-if (tags.size() != 0) {%>
-<p>
-<% for (Tag tag : tags) { %>
-#<%=tag.getTitle() %> 
-<%}%></p>
-<%}%>
+for (Tag tag : tags) { 
+if (tag.getTitle() != null) {%>
+<a href='<%=getServletContext().getContextPath()+"/app/main/search?keyword="+tag.getTitle()%>'>
+#<%= tag.getTitle() %></a>
+<%}
+}%>
+<br>
+<%=review.getMovieTitle() %>
 <hr>
 <%}%>
 </body>
