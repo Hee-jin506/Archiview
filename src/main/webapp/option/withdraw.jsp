@@ -79,7 +79,6 @@ border-radius: 3px;
 }
 </style>
 </head>
-<jsp:include page="/app/main/topbar"/>
 <body>
 
 <div id='option'>
@@ -87,16 +86,16 @@ border-radius: 3px;
   <div class="main">
 
   <div class="lnb">
-    <a href='option/profile'>프로필 변경</a><br>
-    <a href='option/password/update'>비밀번호 변경</a><br>
-    <a href='option/password/hint'>비밀번호 힌트 변경</a><br>
-    <a href='option/withdraw'>회원탈퇴</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option'>프로필 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/passwordUpdate'>비밀번호 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/passwordHint'>비밀번호 힌트 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/withdraw'>회원탈퇴</a><br>
   </div>
   <div class="content">
-<form action='../../member/delete' method='post'>
+<form action='<%=getServletContext().getContextPath()%>/app/member/delete' method='post'>
 <input type='hidden' name='no' value='${member.no}'>
 <input type='hidden' name='email' value='${member.email}'>
-<img id='profile-photo' src='../../upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
+<img id='profile-photo' src='<%=getServletContext().getContextPath()%>/upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
 비밀번호 확인 <input type='password' name='password'><br><br>
 <button id='submit'>탈퇴</button>
 </form>
@@ -106,6 +105,5 @@ border-radius: 3px;
 </div>
 
 </body>
-<jsp:include page="/main/footer.jsp"/>
 </html>
 

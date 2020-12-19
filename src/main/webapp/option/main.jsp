@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+ #topbar, main, footer {
+ position: absolute;
+ }
+
+</style>
 <body>
 
 </body>

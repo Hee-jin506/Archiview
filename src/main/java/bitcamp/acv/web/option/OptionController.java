@@ -108,7 +108,7 @@ public class OptionController {
     return "redirect:profile";
   }
 
-  @RequestMapping("password/hint")
+  @RequestMapping("passwordHint")
   protected ModelAndView passwordHint(HttpServletRequest request) throws Exception {
 
     HttpSession session = request.getSession();
@@ -125,7 +125,7 @@ public class OptionController {
     }
   }
 
-  @RequestMapping("password/update")
+  @RequestMapping("passwordUpdate")
   protected ModelAndView passwordUpdate(HttpServletRequest request) throws Exception {
 
     HttpSession session = request.getSession();
@@ -142,7 +142,7 @@ public class OptionController {
     }
   }
 
-  @RequestMapping("password/check")
+  @RequestMapping("passwordCheck")
   protected String passwordCheck(HttpServletRequest request) throws Exception {
 
     HttpSession session = request.getSession();

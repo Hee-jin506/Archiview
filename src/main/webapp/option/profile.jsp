@@ -16,6 +16,8 @@ border-radius: 3px;
  width: 640px;
  height: 540px;
  color: #ffffff;
+ position: fixed;
+ margin: 50px;
  }
  
  #profile-photo {
@@ -84,16 +86,16 @@ border-radius: 3px;
   <div class="main">
 
   <div class="lnb">
-    <a href='option/profile'>프로필 변경</a><br>
-    <a href='option/password/update'>비밀번호 변경</a><br>
-    <a href='option/password/hint'>비밀번호 힌트 변경</a><br>
-    <a href='option/withdraw'>회원탈퇴</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option'>프로필 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/passwordUpdate'>비밀번호 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/passwordHint'>비밀번호 힌트 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/withdraw'>회원탈퇴</a><br>
   </div>
   
     <div class="content">
 <form action='profile/updatePhoto' method='post' enctype='multipart/form-data'>
   <input type='hidden' name='no' value='${member.no}'><br>
-  <img id='profile-photo' src='../../upload/${member.photo}_150x150.jpg' width="60"> <p>${member.email}</p><br><br>
+  <img id='profile-photo' src='<%=getServletContext().getContextPath()%>/upload/${member.photo}_150x150.jpg' width="60"> <p>${member.email}</p><br><br>
   <input type='file' name='photo'>
   <button>변경</button>
 </form>
