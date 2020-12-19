@@ -14,6 +14,7 @@ public class Like {
   private Date likedDate; // 좋아요 누른 일시 ldt
 
 
+
   public int getNo() {
     return no;
   }

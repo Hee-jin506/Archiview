@@ -15,8 +15,14 @@
 
 <form action='add' method='post'>
 <!--
+이걸 해줌으로써 su.userName이런식으로 현재 로그인한 사용자의 정보를 받아올수 있게 된다
+	<sec:authorize access="isAuthenticated()">
+		<sec:authentication property="principal.user" var="su"/>
+	</sec:authorize>
 <input type='hidden' name='target' value='${member.no}'>
 -->
+
+<div id="ReportingMember">신고대상 회원 아이디 : </div>
 
 신고 유형:
 <select name='reportedType' >

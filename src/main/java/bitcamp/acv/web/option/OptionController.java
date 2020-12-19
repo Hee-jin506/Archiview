@@ -78,15 +78,7 @@ public class OptionController {
   }
 
   @RequestMapping("profile/update")
-  protected String update(Member member) throws Exception {
-    memberService.update(member);
-    return "redirect:profile";
-  }
-
-  @RequestMapping("profile/updatePhoto")
-  protected String updatePhoto(HttpServletRequest request, HttpServletRequest response) throws Exception {
-
-    Member member = new Member();
+  protected String update(HttpServletRequest request, HttpServletRequest response, Member member) throws Exception {
     member.setNo(Integer.parseInt(request.getParameter("no")));
 
     Part photoPart = request.getPart("photo");
@@ -99,16 +91,11 @@ public class OptionController {
       // 회원 사진의 썸네일 이미지 파일 생성하기
       generatePhotoThumbnail(saveFilePath);
     }
-
-    if (member.getPhoto() == null) {
-      throw new Exception("사진을 선택하지 않았습니다.");
-    } else {
-      memberService.update(member);
-    }
+    memberService.update(member);
     return "redirect:profile";
   }
 
-  @RequestMapping("password/hint")
+  @RequestMapping("passwordHint")
   protected ModelAndView passwordHint(HttpServletRequest request) throws Exception {
 
     HttpSession session = request.getSession();
@@ -125,7 +112,7 @@ public class OptionController {
     }
   }
 
-  @RequestMapping("password/update")
+  @RequestMapping("passwordUpdate")
   protected ModelAndView passwordUpdate(HttpServletRequest request) throws Exception {
 
     HttpSession session = request.getSession();
@@ -142,7 +129,7 @@ public class OptionController {
     }
   }
 
-  @RequestMapping("password/check")
+  @RequestMapping("passwordCheck")
   protected String passwordCheck(HttpServletRequest request) throws Exception {
 
     HttpSession session = request.getSession();

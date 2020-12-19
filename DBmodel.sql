@@ -406,14 +406,13 @@ ALTER TABLE acv_gnr_mov
 
 -- 좋아요 이력
 CREATE TABLE acv_like (
-  lno    INTEGER  NOT NULL COMMENT '좋아요 이력 번호', -- 좋아요 이력 번호
-  mno    INTEGER  NOT NULL COMMENT '좋아요한 회원', -- 좋아요한 회원
-  lano   INTEGER  NOT NULL COMMENT '좋아요된 대상 유형', -- 좋아요된 대상 유형
-  target INTEGER  NOT NULL COMMENT '좋아요된 대상', -- 좋아요된 대상
-  ldt    DATETIME NOT NULL DEFAULT now() COMMENT '좋아요 누른 일시', -- 좋아요 누른 일시
-  stat   INTEGER  NOT NULL COMMENT '상태' -- 상태
-)
-COMMENT '좋아요 이력';
+  lno    INTEGER  NOT NULL, -- 좋아요 이력 번호
+  mno    INTEGER  NOT NULL, -- 좋아요한 회원
+  lano   INTEGER  NOT NULL, -- 좋아요된 대상 유형
+  target INTEGER  NOT NULL, -- 좋아요된 대상
+  ldt    DATETIME NOT NULL DEFAULT now(), -- 좋아요 누른 일시
+  stat   INTEGER  NOT NULL DEFAULT 1 -- 상태
+);
 
 -- 좋아요 이력
 ALTER TABLE acv_like
@@ -435,14 +434,13 @@ ALTER TABLE acv_like
 
 -- 팔로우 이력
 CREATE TABLE acv_flw (
-  fno        INTEGER  NOT NULL COMMENT '팔로우 이력 번호', -- 팔로우 이력 번호
-  flwing_mbr INTEGER  NOT NULL COMMENT '팔로우한 회원', -- 팔로우한 회원
-  target     INTEGER  NOT NULL COMMENT '팔로우된 대상', -- 팔로우된 대상
-  fdt        DATETIME NOT NULL DEFAULT now() COMMENT '팔로우한 일시', -- 팔로우한 일시
-  fano       INTEGER  NOT NULL COMMENT '팔로우된 대상 유형', -- 팔로우된 대상 유형
-  stat       INTEGER  NOT NULL COMMENT '상태' -- 상태
-)
-COMMENT '팔로우 이력';
+  fno        INTEGER  NOT NULL, -- 팔로우 이력 번호
+  flwing_mbr INTEGER  NOT NULL, -- 팔로우한 회원
+  target     INTEGER  NOT NULL, -- 팔로우된 대상
+  fdt        DATETIME NOT NULL DEFAULT now(), -- 팔로우한 일시
+  fano       INTEGER  NOT NULL, -- 팔로우된 대상 유형
+  stat       INTEGER  NOT NULL DEFAULT 1 -- 상태
+);
 
 -- 팔로우 이력
 ALTER TABLE acv_flw
@@ -586,6 +584,9 @@ ALTER TABLE acv_cmt
 
 ALTER TABLE acv_cmt
   MODIFY COLUMN cno INTEGER NOT NULL AUTO_INCREMENT COMMENT '댓글 번호';
+
+ALTER TABLE acv_cmt
+  AUTO_INCREMENT = 1;
 
 -- 폰트
 CREATE TABLE acv_txt_font (
