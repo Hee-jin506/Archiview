@@ -19,7 +19,7 @@
 }
 #menubar #search {
   position: absolute;
-  left: 500px;
+  left: 600px;
   top: 20px;
 }
 #menubar #icon {
@@ -34,10 +34,9 @@
 }
 #menubar #logo img {
   position: absolute;
-  width: 205px;
-  height: 159px;
-  left: 50px;
-  top: 10px;
+  width: 200px;
+  left: 200px;
+  top: 15px;
 }
 #menubar #search form {
   
