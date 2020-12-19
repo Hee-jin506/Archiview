@@ -160,10 +160,10 @@ public class MemberController {
   public ModelAndView profile(int no) throws Exception {
 
     Member member = memberService.get(no);
-
-    if (member == null) {
-      throw new Exception("해당 회원이 없습니다.");
-    }
+    System.out.println(member.getNo());
+    //    if (member == null) {
+    //      throw new Exception("해당 회원이 없습니다.");
+    //    }
 
     ModelAndView mv = new ModelAndView();
     List<Review> rvs = member.getReviews();

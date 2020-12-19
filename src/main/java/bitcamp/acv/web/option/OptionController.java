@@ -77,7 +77,7 @@ public class OptionController {
     }
   }
 
-  @RequestMapping("profile/update")
+  @RequestMapping("profileUpdate")
   protected String update(HttpServletRequest request, HttpServletRequest response, Member member) throws Exception {
     member.setNo(Integer.parseInt(request.getParameter("no")));
 
