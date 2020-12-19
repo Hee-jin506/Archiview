@@ -1,5 +1,6 @@
 package bitcamp.acv.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import bitcamp.acv.domain.Movie;
@@ -13,4 +14,5 @@ public interface MovieDao {
   int getStcNo(Map<String,Object> params) throws Exception;
   List<Movie> finByPop() throws Exception;
   List<Movie> findByKeywordTitle(String keyword) throws Exception;
+  List<Movie> findByKeyword(HashMap<String, Object> keyMap) throws Exception;
 }

@@ -1,7 +1,9 @@
 package bitcamp.acv.web.setting;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +19,22 @@ public class SettingMovieController {
   @Autowired ServletContext servletContext;
 
   @RequestMapping("list")
-  protected ModelAndView list(String keyword) throws Exception{
-    List<Movie> list = movieService.list(keyword);
+  protected ModelAndView list(String keyword, String no, String title) throws Exception{
+    List<Movie> list = null;
+
+    if (keyword != null) {
+      HashMap<String,Object> keyMap = new HashMap<>();
+      keyMap.put("keyword", keyword);
+      keyMap.put("no", no);
+      keyMap.put("title", title);
+
+
+      list = movieService.list1(keyMap);
+
+    } else {
+      list = movieService.list(null);
+    }
+
     ModelAndView mv = new ModelAndView();
     mv.addObject("list", list);
     mv.setViewName("/setting/movie/list.jsp");
@@ -56,6 +72,36 @@ public class SettingMovieController {
     return "redirect:list";
   }
 
+  @RequestMapping("multipleDelete")
+  protected String multipleDelete(String[] movies, HttpServletResponse response)
+      throws Exception {
+    int count = 0;
+    if (movies != null) {
+      for (String movieNo : movies) {
+        count += movieService.delete(Integer.parseInt(movieNo));
+      }
+    }
+    if (count == 0) {
+      throw new Exception("해당 번호의 영화가 없습니다.");
+    } else {
+      return "redirect:list";
+    }
+  }
 
+  @RequestMapping("multipleActive")
+  protected String multipleActive(String[] movies, HttpServletResponse response)
+      throws Exception {
+    int count = 0;
+    if (movies != null) {
+      for (String movieNo : movies) {
+        count += movieService.active(Integer.parseInt(movieNo));
+      }
+    }
 
+    if (count == 0) {
+      throw new Exception("해당 번호의 영화가 없습니다.");
+    } else {
+      return "redirect:list";
+    }
+  }
 }
