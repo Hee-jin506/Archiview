@@ -51,7 +51,7 @@ public class AdminController {
       // 오늘 등록한 게시물 수
       keyMap.remove("registeredDate");
       keyMap.put("registeredDate", today);
-      chartList = reviewService.list(keyMap);
+      chartList = reviewService.listDetailFilter(keyMap);
       chartSizeMap.put("today", chartList.size());
 
       mv.addObject("chartSizeMap", chartSizeMap);

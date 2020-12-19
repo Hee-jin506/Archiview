@@ -10,54 +10,29 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <title>관리자메인..</title>
+<style>
+  body {
+  background-color : #000000;
+  margin: 0px;
+}
+
+#todayview {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  margin-bottom: 20px;
+  float: left;
+  border: 1px solid #bcbcbc;
+  background-color: white;
+}
+
+</style>
 </head>
 <body>
-	<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
-
-    <div class="todayview">
+  <jsp:include page="/main/admin-topbar.jsp"/>
+  <jsp:include page="/main/footer.jsp"/>
+    <div id="todayview">
 		<span>오늘 등록된 게시물 수 : ${chartSizeMap.today}</span><br>
     </div>
-
-	<div class="container">
-		<canvas id="myChart">
-		</canvas>
-	</div>
-	<script>
-		var ctx = document.getElementById('myChart');
-		var myChart = new Chart(ctx,
-				{
-					type : 'line',
-					data : {
-						labels : [ 'Red', 'Blue', 'Yellow', 'Green', 'Purple',
-								'Orange' ],
-						datasets : [ {
-							label : '# of Votes',
-							data : [ 12, 19, 3, 5, 2, 3 ],
-							backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
-									'rgba(54, 162, 235, 0.2)',
-									'rgba(255, 206, 86, 0.2)',
-									'rgba(75, 192, 192, 0.2)',
-									'rgba(153, 102, 255, 0.2)',
-									'rgba(255, 159, 64, 0.2)' ],
-							borderColor : [ 'rgba(255, 99, 132, 1)',
-									'rgba(54, 162, 235, 1)',
-									'rgba(255, 206, 86, 1)',
-									'rgba(75, 192, 192, 1)',
-									'rgba(153, 102, 255, 1)',
-									'rgba(255, 159, 64, 1)' ],
-							borderWidth : 1
-						} ]
-					},
-					options : {
-						scales : {
-							yAxes : [ {
-								ticks : {
-									beginAtZero : true
-								}
-							} ]
-						}
-					}
-				});
-	</script>
 </body>
 </html>
