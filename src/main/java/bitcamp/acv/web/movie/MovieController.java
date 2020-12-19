@@ -1,4 +1,4 @@
-package bitcamp.acv.web.setting;
+package bitcamp.acv.web.movie;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,8 +12,8 @@ import bitcamp.acv.domain.Movie;
 import bitcamp.acv.service.MovieService;
 
 @Controller
-@RequestMapping("/setting/movie")
-public class SettingMovieController {
+@RequestMapping("/movie")
+public class MovieController {
 
   @Autowired MovieService movieService;
   @Autowired ServletContext servletContext;
@@ -37,7 +37,7 @@ public class SettingMovieController {
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("list", list);
-    mv.setViewName("/setting/movie/list.jsp");
+    mv.setViewName("/movie/list.jsp");
     return mv;
   }
 
@@ -52,7 +52,7 @@ public class SettingMovieController {
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("movie", movie);
-    mv.setViewName("/setting/movie/detail.jsp");
+    mv.setViewName("/movie/detail.jsp");
     return mv;
   }
 
