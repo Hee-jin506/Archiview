@@ -49,9 +49,9 @@
 <body>
   <div id='menubar'>
     <div id='logo'>
-      <a href="<%=getServletContext().getContextPath()%>/app/main/"> <img
-        src="<%=getServletContext().getContextPath()%>/main_resource/logo.png"
-        alt="로고"></a>
+      <a href="<%=getServletContext().getContextPath()%>/app/main/"> 
+        <img src="<%=getServletContext().getContextPath()%>/main_resource/logo.png" alt="로고">
+      </a>
     </div>
 <%
 String keyword = request.getParameter("keyword");

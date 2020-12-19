@@ -31,7 +31,24 @@ ${member.intro}<br>
     <a href='active?no=${member.no}'>[언팔로우]</a>
     </c:when>
 </c:choose> --%>
-리뷰 팔로워 팔로잉 저장<br>
+
+	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" alt="리뷰"><br>
+	    리뷰 
+	</a>
+	<%-- <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" alt="팔로워"><br>
+	    팔로워 
+	</a>
+	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" alt="팔로잉"><br>
+	    팔로잉 
+	</a>
+	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" alt="저장"><br>
+	    저장 
+	</a> --%>
+<br>
 <c:forEach items="${member.reviews}" var="rv"> 
 <input type='hidden' name='no' value='${rv.no}'><br>
   ${rv.no}<br>
