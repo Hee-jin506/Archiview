@@ -1,16 +1,17 @@
-package bitcamp.acv.web.main;
+package bitcamp.acv.web.tag;
 
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.TagService;
 
-//@WebServlet("/tag/search")
+@WebServlet("/tag/search")
 public class TagSearchServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;

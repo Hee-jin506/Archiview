@@ -1,4 +1,4 @@
-package bitcamp.acv.web.main;
+package bitcamp.acv.web.movie;
 
 import java.io.IOException;
 import java.util.List;
@@ -7,11 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bitcamp.acv.domain.Review;
-import bitcamp.acv.service.ReviewService;
+import bitcamp.acv.domain.Movie;
+import bitcamp.acv.service.MovieService;
 
-//@WebServlet("/review/searchBest")
-public class ReviewSearchBestServlet extends HttpServlet {
+//@WebServlet("/movie/search")
+public class MovieSearchServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
@@ -19,15 +19,19 @@ public class ReviewSearchBestServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    ServletContext ctx = request.getServletContext();
-    ReviewService reviewService =  (ReviewService) ctx.getAttribute("reviewService");
     response.setContentType("text/html;charset=UTF-8");
+
+    ServletContext ctx = request.getServletContext();
+    MovieService movieService =  (MovieService) ctx.getAttribute("movieService");
+
+    response.setContentType("text/html;charset=UTF-8");
+
     try {
 
       String keyword = request.getParameter("keyword");
-      List<Review> reviewList = reviewService.listByKeywordTagTitle(keyword);
-      request.setAttribute("reviewList", reviewList);
-      request.getRequestDispatcher("bestReviewSearch.jsp").include(request, response);
+      List<Movie> movieList = movieService.listByKeywordTitle(keyword);
+      request.setAttribute("movieList", movieList);
+      request.getRequestDispatcher("movieSearch.jsp").include(request, response);
 
 
     } catch (Exception e) {

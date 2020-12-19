@@ -38,6 +38,7 @@ public class MainController {
     if (keyword != null) {
       // 키워드 맨 앞글자가 '#'이 아니면 topBarNonTagSearch.jsp를 include
       if(keyword.toCharArray()[0] != '#') {
+        System.out.println(keyword);
         mv.addObject("keyword", keyword);
         mv.setViewName("/main/topBarNonTagSearch.jsp");
       } else {
