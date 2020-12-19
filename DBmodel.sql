@@ -568,6 +568,9 @@ ALTER TABLE acv_cmt
 ALTER TABLE acv_cmt
   MODIFY COLUMN cno INTEGER NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE acv_cmt
+  AUTO_INCREMENT = 1;
+
 -- 폰트
 CREATE TABLE acv_txt_font (
   tfno INTEGER     NOT NULL, -- 폰트 번호

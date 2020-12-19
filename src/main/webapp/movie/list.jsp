@@ -172,7 +172,7 @@ List<Movie> list = (List<Movie>) request.getAttribute("list");
 총 영화 수 : <%=list.size()%>
 </div>
 
-<a href='list' id='refresh' style=""><img src='../../setting_resource/refresh.png' width='15'>  새로고침</a><br>
+<a href='list' id='refresh' style=""><img src='../../admin_resource/refresh.png' width='15'>  새로고침</a><br>
    <form>
   <table id="movielist">
   <thead id="bar1"><tr>
