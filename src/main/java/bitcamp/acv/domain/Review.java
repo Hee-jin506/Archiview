@@ -6,8 +6,7 @@ import java.util.List;
 public class Review {
   private int no;
   private int stillCut;
-  private String stillCutUrl;
-  private Member writer;
+  private String stcUrl;
   private String text;
   private int textX;
   private int textY;
@@ -19,6 +18,11 @@ public class Review {
   private String statusName;
   private List<Tag> tags;
   private String movieTitle;
+  private int writerNo;
+  private String writerPhoto;
+  private String writerNick;
+  private int isFollowing;
+  private int liking;
 
   public List<Tag> getTags() {
     return tags;
@@ -37,12 +41,6 @@ public class Review {
   }
   public void setStillCut(int stillCut) {
     this.stillCut = stillCut;
-  }
-  public Member getWriter() {
-    return writer;
-  }
-  public void setWriter(Member writer) {
-    this.writer = writer;
   }
   public String getText() {
     return text;
@@ -104,11 +102,40 @@ public class Review {
   public void setMovieTitle(String movieTitle) {
     this.movieTitle = movieTitle;
   }
-  public String getStillCutUrl() {
-    return stillCutUrl;
+  public int getWriterNo() {
+    return writerNo;
   }
-  public void setStillCutUrl(String stillCutUrl) {
-    this.stillCutUrl = stillCutUrl;
+  public void setWriterNo(int writerNo) {
+    this.writerNo = writerNo;
   }
-
+  public String getWriterPhoto() {
+    return writerPhoto;
+  }
+  public void setWriterPhoto(String writerPhoto) {
+    this.writerPhoto = writerPhoto;
+  }
+  public String getWriterNick() {
+    return writerNick;
+  }
+  public void setWriterNick(String writerNick) {
+    this.writerNick = writerNick;
+  }
+  public int getIsFollowing() {
+    return isFollowing;
+  }
+  public void setIsFollowing(int isFollowing) {
+    this.isFollowing = isFollowing;
+  }
+  public int getLiking() {
+    return liking;
+  }
+  public void setLiking(int liking) {
+    this.liking = liking;
+  }
+  public String getStcUrl() {
+    return stcUrl;
+  }
+  public void setStcUrl(String stcUrl) {
+    this.stcUrl = stcUrl;
+  }
 }
