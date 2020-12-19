@@ -30,6 +30,18 @@
 	
   <button class="btn btn-primary">css테스트</button>
   
+  <a data-toggle="modal" href="testForm.do" data-target="#modal-testNew" role="button" data-backdrop="static">
+ <span class="btn btn-xs btn-success">테스트 등록</span>
+</a>
+ 
+ 
+<div id="modal-testNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="테스트정보 등록" aria-describedby="테스트 모달">
+    <div class="modal-dialog" style="width:1200px;height:700px">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+  
 <div class="container">
 	<h1 class="text-left">[신고 관리]</h1>
 

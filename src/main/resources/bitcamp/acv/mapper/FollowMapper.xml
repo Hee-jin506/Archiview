@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitcamp.acv.dao.FollowDao">
+
+ <resultMap type="follow" id="FollowMap">
+  <id column="fno"            property="no" />
+  <result column="target"     property="followedType" />
+  <result column="fano_name"  property="followedNo"/>
+  <result column="fdt"        property="followedDate"/>
+  <result column="stat"        property="status"/>
+
+  <association property="followingMember" javaType="Member">
+    <id column="mno" property="no"/>
+    <result column="nick" property="nickName"/>
+  </association>
+ </resultMap>
+ 
+  <insert id="follow" parameterType="follow">
+  insert into
+  acv_flw(auth,name,ltno,email,pw,nick,photo,intro,qno,pw_hint_a,stno,stat_mdt)
+  values(#{authority},#{name},#{loginNo},#{email},password(#{password}),#{nickName},#{photo},#{intro},#{questionsNo},#{questionsAnswer},#{status},#{statusModifiedDate})
+ </insert>
+
+</mapper>
