@@ -42,8 +42,6 @@ public class CommentController {
     List<Comment> view = commentService.getByReviewNo(reviewNo);
     ModelAndView mv = new ModelAndView();
 
-    HttpSession session = request.getSession();
-
     mv.addObject("view", view);
     mv.setViewName("/comment/view.jsp");
     return mv;
@@ -51,10 +49,9 @@ public class CommentController {
 
   @RequestMapping("add")
   public String add(
-      int no,
-      int reviewNo,
+      int targetNo,
       int groupNo,
-      int level,
+      int reviewNo,
       String content,
       HttpServletRequest request
       ) throws Exception {
@@ -65,15 +62,12 @@ public class CommentController {
     // 코멘트 객체를 만든다.
     Comment comment = new Comment();
 
-    // 댓글을 달 대상 댓글의 order를 가져온다.
-
-    // 대상 댓글보다 1이 증가된 것이 댓글의 order = newOrder
-    // newOder과 같거나 더 큰 order 들은 전부 +1을 해준다.
-
     // 만약 level이 1 이라면 2를 넣는다.
     if (Integer.parseInt(request.getParameter("level")) == 1) {
       comment.setLevel(2);
     }
+
+    System.out.println(reviewNo);
 
     comment.setReviewNo(Integer.parseInt(request.getParameter("reviewNo")));
     comment.setContent(request.getParameter("content"));
@@ -84,6 +78,6 @@ public class CommentController {
 
     commentService.add(comment);
 
-    return "redirect:../comment/view";
+    return "redirect:../comment/view?reviewNo=" + request.getParameter("reviewNo");
   }
 }
