@@ -1,7 +1,11 @@
 package bitcamp.acv.service;
 
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import org.springframework.stereotype.Service;
 import bitcamp.acv.dao.TagDao;
@@ -42,7 +46,7 @@ public class DefaultTagService implements TagService {
   }
 
   @Override
-  public List<Tag> list(Map<String, Object> keywords) throws Exception{
+  public List<Tag> listDetailFilter(Map<String, Object> keywords) throws Exception{
     return tagDao.findByDetailKeyword(keywords);
   }
 
@@ -58,7 +62,7 @@ public class DefaultTagService implements TagService {
   }
 
   @Override
-  public List<Tag> list1(HashMap<String, Object> keyMap) throws Exception {
+  public List<Tag> listBasicFilter(HashMap<String, Object> keyMap) throws Exception {
     return tagDao.findByKeyword(keyMap);
   }
 
@@ -91,5 +95,69 @@ public class DefaultTagService implements TagService {
   @Override
   public List<Tag> listByKeywordTitle(String keyword) throws Exception {
     return tagDao.findByKeywordTitle(keyword);
+  }
+
+  @Override
+  public void getSizeInfo(Map<String, Object> resultMap) throws Exception {
+    // jsp에 넘겨줄 값들
+    resultMap.put("all", tagDao.findAll(null).size());
+
+    // 삭제된 태그 수
+    HashMap<String,Object> keyMap = new HashMap<>();
+    keyMap.put("status", 0);
+    resultMap.put("inactive",tagDao.findByDetailKeyword(keyMap).size());
+
+    // 게시중인 태그 수
+    keyMap.put("status", 1);
+    resultMap.put("active", tagDao.findByDetailKeyword(keyMap).size());
+  }
+
+  @Override
+  public void getChartInfo(Map<String, Object> resultMap) throws Exception {
+    HashMap<String,Object> keyMap = new HashMap<>();
+
+    // 오늘날짜 구하기
+    Calendar cal = new GregorianCalendar(Locale.KOREA);
+    Date today = new Date(cal.getTimeInMillis());
+    //      System.out.println("오늘날짜 : " + today);
+
+    // 어제날짜 구하기
+    cal.setTime(today);
+    cal.add(Calendar.DATE, -1);
+    Date yesterday = new Date(cal.getTimeInMillis());
+    //      System.out.println("어제날짜 : " + yesterday);
+
+    // 이번주의 시작(일요일) 날짜 구하기
+    cal.setTime(today);
+    cal.add(Calendar.DATE, 1 - cal.get(Calendar.DAY_OF_WEEK));
+    Date firstWeekDay = new Date(cal.getTimeInMillis());
+    //      System.out.println("이번주의 첫날(일요일) : " + firstWeekDay);
+
+    // 이번달의 시작(1일) 날짜 구하기
+    cal.setTime(today);
+    cal.add(Calendar.DATE, 1-cal.get(Calendar.DAY_OF_MONTH));
+    Date firstMonthDay = new Date(cal.getTimeInMillis());
+    //      System.out.println("이번달의 첫날(1일) : " + firstMonthDay);
+
+    // 어제 등록한 태그 수
+    keyMap.remove("status");
+    keyMap.put("registeredDate", yesterday);
+    resultMap.put("yesterday",tagDao.findByDetailKeyword(keyMap).size());
+
+    // 오늘 등록한 태그 수
+    keyMap.remove("registeredDate");
+    keyMap.put("registeredDate", today);
+    resultMap.put("today",tagDao.findByDetailKeyword(keyMap).size());
+
+    // 이번 주에 등록된 태그 수
+    keyMap.remove("registeredDate");
+    keyMap.put("startDate", firstWeekDay);
+    keyMap.put("endDate", today);
+    resultMap.put("thisWeek",tagDao.findByDetailKeyword(keyMap).size());
+
+    // 이번 달에 등록된 태그 수
+    keyMap.put("startDate", firstMonthDay);
+    keyMap.put("endDate", today);
+    resultMap.put("thisMonth",tagDao.findByDetailKeyword(keyMap).size());
   }
 }

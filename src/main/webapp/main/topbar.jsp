@@ -19,33 +19,32 @@
 }
 #menubar #search {
   position: absolute;
-  left: 500px;
-  top: 10px;
+  left: 600px;
+  top: 20px;
 }
 #menubar #icon {
   position: absolute;
   left: 1000px;
-  top: 10px;
+  top: 20px;
 }
 #menubar #profile {
   position: absolute;
   left: 1350px;
-  top: 10px;
+  top: 15px;
 }
 #menubar #logo img {
   position: absolute;
-  width: 205px;
-  height: 159px;
-  left: 50px;
-  top: 10px;
+  width: 200px;
+  left: 200px;
+  top: 15px;
 }
 #menubar #search form {
   
 }
 #menubar #icon img {
   margin-right: 30px;
-  
 }
+
 </style>
 <body>
   <div id='menubar'>
@@ -58,7 +57,7 @@
 String keyword = request.getParameter("keyword");
 %>
     <div id='search'>
-      <form action='/app/main/search'>
+      <form action='<%=getServletContext().getContextPath()%>/app/main/search'>
         <label><img
           src='<%=getServletContext().getContextPath()%>/main_resource/search.png'></label>
         <input type='search' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
@@ -75,12 +74,12 @@ String keyword = request.getParameter("keyword");
         href='<%=getServletContext().getContextPath()%>/app/main/newsfeed'>
         <img src='<%=getServletContext().getContextPath()%>/main_resource/bell.png' alt='알람'></a>
     </div>
-<% Member member = (Member) request.getAttribute("loginUser"); %>
+<%-- <% Member member = (Member) request.getAttribute("loginUser"); %>
    <div id='profile'>
       <a href='<%=getServletContext().getContextPath()%>/member/profile'>
       <img class='profile' src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
       </a>
-    </div>
+    </div> --%>
   </div>
 </body>
 </html>

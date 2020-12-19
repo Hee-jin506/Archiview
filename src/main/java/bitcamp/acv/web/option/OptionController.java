@@ -51,6 +51,16 @@ public class OptionController {
     }
   }
 
+  @RequestMapping("")
+  public ModelAndView main(HttpSession session) throws Exception {
+
+    Member member = (Member) session.getAttribute("loginUser");
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("loginUser", member);
+    mv.setViewName("/option/main.jsp");
+    return mv;
+  }
+
   @RequestMapping("profile")
   protected ModelAndView profile(HttpServletRequest request) throws Exception {
 

@@ -25,5 +25,6 @@
 <body>
 <jsp:include page="/app/main/topbar"/>
 <jsp:include page="/app/main/sidebar"/>
+<jsp:include page="/main/footer.jsp"/>
 </body>
 </html>
