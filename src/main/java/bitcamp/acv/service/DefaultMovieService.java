@@ -74,4 +74,9 @@ public class DefaultMovieService implements MovieService {
   public List<Movie> listByKeywordTitle(String keyword) throws Exception {
     return movieDao.findByKeywordTitle(keyword);
   }
+
+  @Override
+  public List<Movie> list1(HashMap<String, Object> keyMap) throws Exception {
+    return movieDao.findByKeyword(keyMap);
+  }
 }

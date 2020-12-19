@@ -43,20 +43,18 @@ public class CommentController {
     ModelAndView mv = new ModelAndView();
 
     HttpSession session = request.getSession();
-    Member loginUser = (Member) session.getAttribute("loginUser");
 
     mv.addObject("view", view);
-    mv.addObject("member", loginUser);
     mv.setViewName("/comment/view.jsp");
     return mv;
   }
 
   @RequestMapping("add")
   public String add(
+      int no,
       int reviewNo,
-      int order,
+      int groupNo,
       int level,
-      int memberNo,
       String content,
       HttpServletRequest request
       ) throws Exception {
@@ -72,17 +70,17 @@ public class CommentController {
     // 대상 댓글보다 1이 증가된 것이 댓글의 order = newOrder
     // newOder과 같거나 더 큰 order 들은 전부 +1을 해준다.
 
-    // 만약 level이 0 이라면 1을 증가시킨다.
-    if (Integer.parseInt(request.getParameter("level")) == 0) {
-      comment.setLevel(1);
+    // 만약 level이 1 이라면 2를 넣는다.
+    if (Integer.parseInt(request.getParameter("level")) == 1) {
+      comment.setLevel(2);
     }
 
     comment.setReviewNo(Integer.parseInt(request.getParameter("reviewNo")));
     comment.setContent(request.getParameter("content"));
+    comment.setGroupNo(Integer.parseInt(request.getParameter("groupNo")));
 
     Member loginUser = (Member) session.getAttribute("loginUser");
-    int loginUserNo = loginUser.getNo();
-    comment.setMemberNo(loginUserNo);
+    comment.setMemberNo(loginUser.getNo());
 
     commentService.add(comment);
 

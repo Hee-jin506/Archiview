@@ -8,7 +8,7 @@
   <resultMap type="comment" id="CommentMap">
     <id column="cno"           property="no"/>
     <result column="rvno"    property="reviewNo"/>
-    <result column="odr"    property="order"/>
+    <result column="gno"    property="groupNo"/>
     <result column="lvl"    property="level"/>
     <result column="mno"    property="memberNo"/>
     <result column="content"    property="content"/>
@@ -34,20 +34,20 @@
   <!--
   private int no; // 댓글 번호
   private int reviewNo; // 영화 후기 번호
-  private int order; // 댓글 순서
   private int level; // 댓글 단계
   private int memberNo; // 댓글단 회원
   private String content; // 내용
   private Date registeredDate; // 등록일
   private int status; // 상태
   private Date modifiedDate; // 수정일
+  private int groupNo; // 그룹 번호
   -->
   
   <sql id="sql1">
     select 
     c.cno,
     c.rvno,
-    c.odr,
+    c.gno,
     c.lvl,
     c.mno,
     c.content,
@@ -62,9 +62,9 @@
   </sql>
        
   <insert id="insert" parameterType="comment">
-    insert into acv_cmt(rvno, odr, lvl, mno, content) 
+    insert into acv_cmt(rvno, gno, lvl, mno, content) 
     <if test="content != ''">
-      values(#{reviewNo}, #{order}, #{level}, #{memberNo}, #{content})
+      values(#{reviewNo}, #{groupNo}, #{level}, #{memberNo}, #{content})
     </if>
   </insert>
   
@@ -78,7 +78,7 @@
     where
       mb.nick like concat('%', #{keyword}, '%')
   </if>
-    order by r.rvno, c.odr asc;
+    order by r.rvno asc, c.gno desc, c.lvl asc, c.cno desc;
   </select>
   
   <select id="findByReviewNo" resultMap="CommentMap" parameterType="int">
@@ -88,7 +88,7 @@
       inner join acv_rv r on r.rvno = c.rvno
       inner join acv_mbr mb on mb.mno = c.mno
     where r.rvno=#{reviewNo}
-  order by c.odr, c.lvl asc;
+    order by r.rvno asc, c.gno desc, c.lvl asc, c.cno desc;
   </select>
   
     <select id="findByMemberNo" resultMap="CommentMap" parameterType="int">
@@ -99,7 +99,7 @@
       inner join acv_mbr mb on mb.mno = c.mno
     where
       c.mno=#{mno}
-    order by r.rvno, c.odr, c.lvl asc;
+    order by r.rvno asc, c.gno desc, c.lvl asc, c.cno desc;
   </select>
   
   <select id="findByNo" resultMap="CommentMap" parameterType="int">

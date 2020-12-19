@@ -33,7 +33,7 @@ String keyword = request.getParameter("keyword");
 <th>사진</th>
 <th>작성자 닉네임</th>
 <th>코멘트</th>
-<th>오더</th>
+<th>그룹번호</th>
 <th>레벨</th>
 <th>등록일</th>
 <th>상태</th>
@@ -49,7 +49,7 @@ String keyword = request.getParameter("keyword");
 <td><img src='../../upload/${c.member.photo}_150x150.jpg'></td>
 <td>${c.member.nickName}</td>
 <td>${c.content}</td>
-<td>${c.order}</td>
+<td>${c.groupNo}</td>
 <td>${c.level}</td>
 <td>${c.registeredDate}</td>
 <c:choose>

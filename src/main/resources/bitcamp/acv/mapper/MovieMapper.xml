@@ -74,6 +74,25 @@
       left outer join acv_rv r on s.stcno=r.stcno
   </sql>
   
+  <select id="findByKeyword" resultMap="MovieMap" parameterType="hashmap">
+    <include refid="sql1" />
+    <where>
+      <if test="no == null and title == null">
+        (m.mvno like concat('%', #{keyword}, '%') or m.title like concat('%', #{keyword}, '%'))
+      </if>
+      <if test="no != null and title != null">
+        (m.mvno like concat('%', #{keyword}, '%') or m.title like concat('%', #{keyword}, '%'))
+      </if>
+      <if test="no != null and title == null">
+        m.mvno like concat('%', #{keyword}, '%')
+      </if>
+      <if test="no == null and title != null">
+        m.title like concat('%', #{keyword}, '%')
+      </if>
+     </where>
+     order by m.mvno desc
+  </select>
+  
   <!-- title에 keyword 포함된애들 리턴 -->
   <select id="findByKeywordTitle" resultMap="MovieMap" parameterType="string">
     <include refid="sql1"/>
