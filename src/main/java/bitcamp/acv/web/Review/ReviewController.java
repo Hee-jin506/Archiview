@@ -35,7 +35,7 @@ public class ReviewController {
   }
 
   @RequestMapping("multipleActive")
-  protected String multipleActive(String[] reviews, HttpServletResponse response)
+  public String multipleActive(String[] reviews, HttpServletResponse response)
       throws Exception {
     int count = 0;
     if (reviews != null) {
@@ -52,7 +52,7 @@ public class ReviewController {
   }
 
   @RequestMapping("delete")
-  protected String inactive(int no) throws Exception {
+  public String inactive(int no) throws Exception {
     if (reviewService.delete(no) == 0) {
       throw new Exception("해당 리뷰가 없습니다.");
     } else {
@@ -61,7 +61,7 @@ public class ReviewController {
   }
 
   @RequestMapping("multipleDelete")
-  protected String multipleDelete(String[] reviews, HttpServletResponse response)
+  public String multipleDelete(String[] reviews, HttpServletResponse response)
       throws Exception {
     int count = 0;
     if (reviews != null) {
@@ -80,7 +80,7 @@ public class ReviewController {
 
 
   @RequestMapping("detail")
-  protected ModelAndView detail(int no) throws Exception {
+  public ModelAndView detail(int no) throws Exception {
 
     Review review = reviewService.get(no);
     if (review == null) {
@@ -96,7 +96,7 @@ public class ReviewController {
   }
 
   @RequestMapping("bestReviewSearch")
-  protected ModelAndView detail(String keyword) throws Exception {
+  public ModelAndView detail(String keyword) throws Exception {
     List<Review> reviewList = reviewService.listByKeywordTagTitle(keyword);
 
     ModelAndView mv = new ModelAndView();
@@ -106,7 +106,7 @@ public class ReviewController {
   }
 
   @RequestMapping("list")
-  protected ModelAndView list(
+  public ModelAndView list(
       // 기본 검색 파라미터
       String keyword,
       String no,
