@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.ReviewService;
@@ -191,6 +193,21 @@ public class ReviewController {
 
     mv.addObject("chartSizeMap", chartSizeMap);
     mv.setViewName("/review/list.jsp");
+    return mv;
+  }
+
+  @RequestMapping("mainFeed")
+  public ModelAndView mainFeed(HttpSession session) throws Exception {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    Map<String, Object> map = new HashMap<>();
+    map.put("userNo", loginUser.getNo());
+    //일단 다섯개만 뽑기
+    map.put("row", 0);
+
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("loginUser", loginUser);
+    mv.addObject("list", reviewService.getMainFeed(map));
+    mv.setViewName("/review/mainFeed.jsp");
     return mv;
   }
 }

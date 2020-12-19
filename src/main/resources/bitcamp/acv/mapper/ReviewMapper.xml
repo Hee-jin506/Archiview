@@ -5,9 +5,12 @@
   
 <mapper namespace="bitcamp.acv.dao.ReviewDao">
   
+
   <resultMap type="review" id="ReviewMap">
     <id column="rvno"           property="no"/>
+    <result column="mno"        property="writerNo"/>
     <result column="stcno"    property="stillCut"/>
+    <result column="stc_url"    property="stcUrl"/>
     <result column="txt"      property="text"/>
     <result column="txt_x"      property="textX"/>
     <result column="txt_y"      property="textY"/>
@@ -17,20 +20,20 @@
     <result column="mdt"      property="modifiedDate"/>
     <result column="stat"      property="status"/>
     <result column="mvTitle"      property="movieTitle"/>
-    
-    <association property="writer" javaType="member">
-      <id column="mno"          property="no"/>
-      <result column="nick"    property="nickName"/>
-      <result column="intro"    property="intro"/>
-    </association>
+    <result column="photo"      property="writerPhoto"/>
+    <result column="nick"       property="writerNick"/>
+    <result column="photo"      property="writerPhoto"/>
+    <result column="nick"       property="writerNick"/>
+    <result column="fno"        property="isFollowing"/>
+    <result column="lk_length"  property="liking"/>
     
     <collection property="tags" ofType="tag">
       <id column="tno"          property="no"/>
       <result column="title"    property="title"/>
+      <result column="stat"         property="status"/>
     </collection>
   </resultMap>
-  
-  
+    
   <resultMap type="font" id="FontMap">
     <id column="tfno" property="no"/>
     <result column="name" property="name"/>
@@ -49,7 +52,7 @@
     rv.txt_size,
     rv.rdt,
     rv.mdt,
-    rv.stat
+    rv.stat,
     from 
       acv_rv rv
   </sql>
@@ -74,8 +77,7 @@
       left outer join acv_tag_post tp on rv.rvno=tp.rvno
       left outer join acv_tag t on tp.tno=t.tno
   </sql>
-       
-       
+      
    <!-- 삭제 = stat을 0으로 업데이트 -->
   <update id="delete" parameterType="int">
     update acv_rv
@@ -93,6 +95,40 @@
     <include refid="sql2"/>
     where rv.rvno = #{rvno}
     order by rv.rvno desc
+  </select>
+  
+  <select id="findForMainFeed" resultMap="ReviewMap" parameterType="map">
+    select 
+      rv.rvno,
+      rv.mno,
+      rv.txt,
+      rv.txt_x,
+      rv.txt_y,
+      rv.tfno,
+      rv.txt_size,
+      rv.rdt,
+      rv.stat,      
+      s.stc_url,
+      m.photo,
+      m.nick,
+      mv.title mvTitle,
+      t.title,
+      t.stat,
+      f.fno,
+      lk_length
+    from 
+      (select * from acv_rv order by rdt desc limit #{row}, 5)rv
+      left outer join acv_stc s on rv.stcno=s.stcno
+      inner join acv_mbr m on rv.mno=m.mno
+      left outer join acv_mov mv on s.mvno=mv.mvno
+      left outer join acv_tag_post tp on tp.rvno=rv.rvno
+      left outer join acv_tag t on tp.tno=t.tno
+      left outer join 
+        (select fno, target from acv_flw where flwing_mbr=#{userNo} and fano=1)f
+      on f.target=rv.mno
+      left outer join
+        (select target, lano, count(*) lk_length from acv_like where lano=1 group by lano, target)lk
+      on lk.target=rv.rvno
   </select>
   
   <select id="findAll" resultMap="ReviewMap">
