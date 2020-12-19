@@ -66,7 +66,7 @@ border-radius: 3px;
   font-size: x-small;
   }
   
-      textarea {
+  textarea {
   border-radius: 3px;
   border: 1px solid #6B6B6B;
   color: white;
@@ -89,6 +89,10 @@ border-radius: 3px;
   width: 200px;
   height: 600px;
   background-color: #141517;
+  font-size: large;
+  font: bold;
+  color: white;
+  margin: 10px;
 }
 .ex-layout .main .content{
   float: left;
@@ -96,6 +100,12 @@ border-radius: 3px;
 }
 </style>
 </head>
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <body>
 <div id='option'>
 <div class="ex-layout">
@@ -104,19 +114,26 @@ border-radius: 3px;
   <div class="lnb">
     <a href='<%=getServletContext().getContextPath()%>/app/option'>프로필 변경</a><br>
     <a href='<%=getServletContext().getContextPath()%>/app/option/passwordUpdate'>비밀번호 변경</a><br>
-    <a href='<%=getServletContext().getContextPath()%>/app/option/passwordHint'>비밀번호 힌트 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/passwordHint' style="color: white">비밀번호 힌트 변경</a><br>
     <a href='<%=getServletContext().getContextPath()%>/app/option/withdraw'>회원탈퇴</a><br>
   </div>
   <div class="content">
 <form action='password/hintUpdate' method='post'>
 <input type='hidden' name='no' value='${member.no}'><br>
 <img id='profile-photo' src='<%=getServletContext().getContextPath()%>/upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
-내 질문 <input type='text' name='hint' value='
+내 질문 <select class="form-select" aria-label="Default select example" name='hint' style="background-color: #000000"> <option selected value="${member.questionsNo}">
 <c:if test='${member.questionsNo == 1}'>내가 키우는 애완 동물의 이름은 ?</c:if>
 <c:if test='${member.questionsNo == 2}'>가장 기억에 남는 선생님의 성함은 ?</c:if>
 <c:if test='${member.questionsNo == 3}'>어머니의 고향은 ?</c:if>
 <c:if test='${member.questionsNo == 4}'>아버지의 고향은 ?</c:if>
-<c:if test='${member.questionsNo == 5}'>가장 친한 친구의 이름은 ?</c:if>'><br><br>
+<c:if test='${member.questionsNo == 5}'>가장 친한 친구의 이름은 ?</c:if>
+</option>
+<option value="1">내가 키우는 애완 동물의 이름은 ?</option>
+<option value="2">가장 기억에 남는 선생님의 성함은 ?</option>
+<option value="3">어머니의 고향은 ?</option>
+<option value="4">아버지의 고향은 ?</option>
+<option value="5">가장 친한 친구의 이름은 ?</option>
+</select><br><br>
 답 <input type='text' name='hintAnswer' value='${member.questionsAnswer}'><br><br>
 <button id='submit'>변경</button>
 </form>
