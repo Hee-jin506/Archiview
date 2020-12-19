@@ -69,6 +69,7 @@ public class AuthController {
       mv.addObject("withdrawedMember", withdrawedMember);
       mv.setViewName("/auth/login.jsp");
     } else {
+      session.setAttribute("loginUser", member);
       mv.addObject("loginUser", member);
       mv.setViewName("/");
     }

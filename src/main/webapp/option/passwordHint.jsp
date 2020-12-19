@@ -24,12 +24,14 @@
 <title>비밀번호 힌트변경</title>
 <style>
 
- body {
- position: fix;
- width: 500px;
- border-color: #ffffff;
- border-radius: 3px;
- background-color: #141517;
+#option {
+ background: #141517;
+border: 0.4px solid #6B6B6B;
+box-sizing: border-box;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 3px;
+ width: 640px;
+ height: 540px;
  color: #ffffff;
  }
  
@@ -64,12 +66,51 @@
   font-size: x-small;
   }
   
+      textarea {
+  border-radius: 3px;
+  border: 1px solid #6B6B6B;
+  color: white;
+  background-color: #000000;
+  font-size: x-small;
+  }
+  
+.ex-layout{
+  width: 800px;
+  height: 700px;
+}
+.ex-layout .main{
+  background-color: #141517;
+}
+.ex-layout .main:after{ clear: both; display: block; content: '' }
+
+.ex-layout .main .lnb{
+  border-right: 1px solid #6B6B6B;
+  float: left;
+  width: 200px;
+  height: 600px;
+  background-color: #141517;
+}
+.ex-layout .main .content{
+  float: left;
+  width: 580px;
+}
 </style>
 </head>
 <body>
+<div id='option'>
+<div class="ex-layout">
+  <div class="main">
+
+  <div class="lnb">
+    <a href='<%=getServletContext().getContextPath()%>/app/option'>프로필 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/passwordUpdate'>비밀번호 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/passwordHint'>비밀번호 힌트 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/withdraw'>회원탈퇴</a><br>
+  </div>
+  <div class="content">
 <form action='password/hintUpdate' method='post'>
 <input type='hidden' name='no' value='${member.no}'><br>
-<img id='profile-photo' src='../../../upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
+<img id='profile-photo' src='<%=getServletContext().getContextPath()%>/upload/${member.photo}_150x150.jpg' width="60"> ${member.email}<br><br>
 내 질문 <input type='text' name='hint' value='
 <c:if test='${member.questionsNo == 1}'>내가 키우는 애완 동물의 이름은 ?</c:if>
 <c:if test='${member.questionsNo == 2}'>가장 기억에 남는 선생님의 성함은 ?</c:if>
@@ -79,5 +120,9 @@
 답 <input type='text' name='hintAnswer' value='${member.questionsAnswer}'><br><br>
 <button id='submit'>변경</button>
 </form>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
