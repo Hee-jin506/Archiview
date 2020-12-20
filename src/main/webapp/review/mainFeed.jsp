@@ -31,7 +31,7 @@ for (Review review : list) {
 List<Tag> tags = review.getTags();
 for (Tag tag : tags) { 
 if (tag.getTitle() != null) {%>
-<a href='<%=getServletContext().getContextPath()+"/app/main/search?keyword="+tag.getTitle()%>'>
+<a href='<%=getServletContext().getContextPath()+"/app/main/search?keyword=%23"+tag.getTitle()%>'>
 #<%= tag.getTitle() %></a>
 <%}
 }%>

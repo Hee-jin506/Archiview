@@ -211,10 +211,27 @@ public class ReviewController {
       Calendar cal = new GregorianCalendar(Locale.KOREA);
       long now = cal.getTimeInMillis();
       long diff = now - review.getRegisteredDate().getTime();
-      long sec = diff / 1000 / 60/ 60;
       System.out.println(review.getRegisteredDate());
-      System.out.println(sec+"시간 전");
+      if (diff / 1000 / 60 < 1) {
+        System.out.println("방금 전");
+      } else if (diff / 1000 / 60 / 60 < 1) {
+        System.out.println(diff / 1000 / 60 + "분 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 < 1) {
+        System.out.println(diff/ 1000 / 60 / 60 + "시간 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 / 7 < 1) {
+        System.out.println(diff/ 1000 / 60 / 60 / 24 + "일 전" );
+      } else if (diff/ 1000 / 60 / 60 / 24 / 365 <) {
+
+      }
     }
+    //   방금전
+    //   분 전
+    //   시간 전
+    //   일 전
+    //   주 전
+    //   개월 전
+    //   년 전
+
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("loginUser", loginUser);
