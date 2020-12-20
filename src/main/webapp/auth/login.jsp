@@ -56,7 +56,7 @@ if (((Boolean) request.getAttribute("wrongInput")) == true) {
 <button>로그인</button>
 </form>
 
-<a href="">비밀번호를 잊으셨나요?</a>
+<a href="<%=getServletContext().getContextPath()%>/auth/searchPassword.html">비밀번호를 잊으셨나요?</a>
 
 <h4>계정이 없으신가요? <a href="../../member/form.html">지금 가입하세요.</a> </h4>
 
@@ -72,7 +72,6 @@ if (((Boolean) request.getAttribute("wrongInput")) == true) {
         console.log('Family Name: ' + profile.getFamilyName());
         console.log("Image URL: " + profile.getImageUrl());
         console.log("Email: " + profile.getEmail());
-
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);

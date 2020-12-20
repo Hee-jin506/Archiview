@@ -7,12 +7,19 @@ public class Follow {
   public static final int MEMBER = 1;
   public static final int TAG = 2;
 
-  private int no;
-  private Member followingMember;
-  private int followedType;
-  private int followedNo;
-  private Date followedDate;
+  private int no; // 팔로우 이력 번호 fno
+  private Member followingMember; // 팔로우를 신청한 회원 flwing_mbr
+  private int followedType; // 팔로우한 대상(태그/회원) target
+  private int followedNo; // 팔로우한 대상 유형(태그/회원) fano
+  private Date followedDate; // 팔로우한 날짜 fdt
+  private int status; // 팔로우 상태 번호 stat
 
+  public int getStatus() {
+    return status;
+  }
+  public void setStatus(int status) {
+    this.status = status;
+  }
   public int getNo() {
     return no;
   }

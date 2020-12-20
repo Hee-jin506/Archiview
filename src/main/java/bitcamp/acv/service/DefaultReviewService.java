@@ -151,4 +151,9 @@ public class DefaultReviewService implements ReviewService {
     keyMap.put("endDate", today);
     resultMap.put("thisMonth",reviewDao.findByDetailKeyword(keyMap).size());
   }
+
+  @Override
+  public List<Review> getMainFeed(Map<String, Object> map) throws Exception {
+    return reviewDao.findForMainFeed(map);
+  }
 }

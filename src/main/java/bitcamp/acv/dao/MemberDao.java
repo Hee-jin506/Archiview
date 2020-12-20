@@ -21,4 +21,5 @@ public interface MemberDao {
   //
   List<Member> findByPop() throws Exception;
   List<Member> findByKeywordNickName(String keyword) throws Exception;
+  Member findByEmail(String email) throws Exception;
 }

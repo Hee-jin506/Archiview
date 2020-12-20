@@ -12,9 +12,18 @@
 <%
 String keyword = request.getParameter("keyword");
 %>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <h3>[태그]</h3>
-<jsp:include page="/tag/search?keyword=${keyword}"></jsp:include>
+<c:if test="${empty tagList}">검색결과가 없습니다.</c:if>
+<c:forEach items="${tagList}" var="t">
+#${t.title}<br>
+</c:forEach>
+<%-- <a href='../main/search?selectedTagTitle=${t.title}'> --%>
 
 </body>
 </html>

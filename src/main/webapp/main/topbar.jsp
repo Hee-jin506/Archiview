@@ -41,7 +41,6 @@
 #menubar #search form {
   
 }
-
 #menubar #icon img {
   margin-right: 30px;
 }
@@ -50,9 +49,9 @@
 <body>
   <div id='menubar'>
     <div id='logo'>
-      <a href="<%=getServletContext().getContextPath()%>/app/main/"> <img
-        src="<%=getServletContext().getContextPath()%>/main_resource/logo.png"
-        alt="로고"></a>
+      <a href="<%=getServletContext().getContextPath()%>/app/main/"> 
+        <img src="<%=getServletContext().getContextPath()%>/main_resource/logo.png" alt="로고">
+      </a>
     </div>
 <%
 String keyword = request.getParameter("keyword");
@@ -61,10 +60,11 @@ String keyword = request.getParameter("keyword");
       <form action='<%=getServletContext().getContextPath()%>/app/main/search'>
         <label><img
           src='<%=getServletContext().getContextPath()%>/main_resource/search.png'></label>
-        <input type='search' name='keyword' value='<%=keyword != null ? keyword : ""%>'>
+        <input type='search' name='keyword' value='<%=keyword != null ? keyword : "검색"%>'>
       </form>
     </div>
     <div id='icon'>
+  
       <a href='<%=getServletContext().getContextPath()%>'>
       <img src='<%=getServletContext().getContextPath()%>/main_resource/home.png' alt='메인화면'></a> <a
         href='<%=getServletContext().getContextPath()%>/app/write/movieSearch'>

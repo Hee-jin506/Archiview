@@ -2,6 +2,7 @@ package bitcamp.acv.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import bitcamp.acv.domain.Font;
 import bitcamp.acv.domain.Review;
 
@@ -20,4 +21,5 @@ public interface ReviewDao {
 
   // 태그명으로 리뷰를 찾는다
   List<Review> findByKeywordTagTitle(String keyword) throws Exception;
+  List<Review> findForMainFeed(Map<String, Object> map) throws Exception;
 }

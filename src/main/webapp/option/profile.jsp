@@ -7,108 +7,96 @@
 <title>프로필편집</title>
 <style>
  
- #option {
- background: #141517;
-border: 0.4px solid #6B6B6B;
-box-sizing: border-box;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 3px;
- width: 640px;
- height: 540px;
- color: #ffffff;
- position: fixed;
- margin: 50px;
- }
- 
- #profile-photo {
- border-radius: 50px;
- }
- 
-  #submit {
-  position: absolute;
-  border-radius: 3px;
-  border: 1px solid #6B6B6B;
-  background: #000000;
-  padding: 5px;
-  text-align: center;
-  color: white;
-  width: 100px;
-  height: 40px;
-  }
-  
-  #submit:hover {
-  background: #626473;
-  color: blue;
-  }
-  
-  input {
-  width: 300px;
-  height: 30px;
-  border-radius: 3px;
-  border: 1px solid #6B6B6B;
-  color: white;
-  background-color: #000000;
-  font-size: x-small;
-  }
-  
-  textarea {
-  border-radius: 3px;
-  border: 1px solid #6B6B6B;
-  color: white;
-  background-color: #000000;
-  font-size: x-small;
-  }
-  
 .ex-layout{
-  width: 800px;
-  height: 700px;
+  text-decoration: none; 
+  width: 650px;
+  height: 560px;
+  margin: 30px;
 }
 .ex-layout .main{
   background-color: #141517;
+  border: 1px solid #6B6B6B;
+  border-radius: 30px;
+  width: 680px;
+  height: 560px;
 }
 .ex-layout .main:after{ clear: both; display: block; content: '' }
 
 .ex-layout .main .lnb{
   border-right: 1px solid #6B6B6B;
   float: left;
-  width: 200px;
-  height: 600px;
-  background-color: #141517;
+  font: bold;
+  font-size: medium;
+  margin: 40px 0px 0px 15px;
+  width: 180px;
+  height: 480px;
 }
 .ex-layout .main .content{
   float: left;
-  width: 580px;
+  width: 390px;
+  height: 480px;
+  margin: 30px 0px 0px 20px;
 }
 </style>
 </head>
-<div id='option'>
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <div class="ex-layout">
   <div class="main">
 
   <div class="lnb">
-    <a href='<%=getServletContext().getContextPath()%>/app/option'>프로필 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option' style="color: white">프로필 변경</a><br>
     <a href='<%=getServletContext().getContextPath()%>/app/option/passwordUpdate'>비밀번호 변경</a><br>
     <a href='<%=getServletContext().getContextPath()%>/app/option/passwordHint'>비밀번호 힌트 변경</a><br>
-    <a href='<%=getServletContext().getContextPath()%>/app/option/withdraw'>회원탈퇴</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/withdraw'>회원탈퇴</a>
   </div>
   
-    <div class="content">
-<form action='profile/updatePhoto' method='post' enctype='multipart/form-data'>
-  <input type='hidden' name='no' value='${member.no}'><br>
-  <img id='profile-photo' src='<%=getServletContext().getContextPath()%>/upload/${member.photo}_150x150.jpg' width="60"> <p>${member.email}</p><br><br>
-  <input type='file' name='photo'>
-  <button>변경</button>
-</form>
-<br>
-
-<form action='profile/update' method='post'>
-<input type='hidden' name='no' value='${member.no}'><br>
-이름: <input type='text' name='name' value='${member.name}' readonly="readonly"><br><br>
-닉네임: <input type='text' name='nickName' value='${member.nickName}'><br><br>
-소개: <textarea name='intro'>${member.intro}</textarea><br><br>
-<button id='submit'>제출</button>
+<div class="content">
+<form class='form-horizontal' action='profileUpdate' method='post' enctype='multipart/form-data'>
+  <input type='hidden' name='no' value='${member.no}'>
+   <div class='form-group'>
+      <label for="inputEmail3" class="col-sm-2 control-label">
+      <img id='profile-photo' src='<%=getServletContext().getContextPath()%>/upload/${member.photo}_150x150.jpg' style="border-radius: 50px" width="60">${member.email}</label>
+    </div>
+    <div class="form-group">
+      <div class='col-sm-10'>
+        <input type='file' name='photo'>
+      </div>
+    </div> 
+    <div class='form-group'>
+      <label for="inputText3" class="col-sm-2 control-label">이름</label>
+      <div class='col-sm-10'>
+        <div class="col-xs-9">
+          <input type='text' class='form-control' id="inputEmail3" name='name' value='${member.name}' readonly="readonly">
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label for="inputText3" class="col-sm-2 control-label">닉네임</label>
+      <div class='col-sm-10'>
+        <div class="col-xs-9">
+          <input type='text' class='form-control' name='nickName' value='${member.nickName}'>
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label for="inputText3" class="col-sm-2 control-label">소개</label>
+      <div class='col-sm-10'>
+        <div class="col-xs-9">
+          <textarea class="form-control" name='intro' value="${member.intro}" rows='7'></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-5 col-sm-15">
+        <button class="btn btn-primary">제출</button>
+      </div>
+    </div>
 </form>
     </div>
   </div>
-</div>
 </div>

@@ -74,6 +74,10 @@ border-radius: 3px;
   width: 200px;
   height: 600px;
   background-color: #141517;
+  font-size: large;
+  font: bold;
+  color: white;
+  margin: 10px;
 }
 .ex-layout .main .content{
   float: left;
@@ -81,6 +85,12 @@ border-radius: 3px;
 }
 </style>
 </head>
+
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <body>
 <div id='option'>
 <div class="ex-layout">
@@ -88,7 +98,7 @@ border-radius: 3px;
 
   <div class="lnb">
     <a href='<%=getServletContext().getContextPath()%>/app/option'>프로필 변경</a><br>
-    <a href='<%=getServletContext().getContextPath()%>/app/option/passwordUpdate'>비밀번호 변경</a><br>
+    <a href='<%=getServletContext().getContextPath()%>/app/option/passwordUpdate' style="color: white">비밀번호 변경</a><br>
     <a href='<%=getServletContext().getContextPath()%>/app/option/passwordHint'>비밀번호 힌트 변경</a><br>
     <a href='<%=getServletContext().getContextPath()%>/app/option/withdraw'>회원탈퇴</a><br>
   </div>
