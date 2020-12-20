@@ -174,6 +174,25 @@ public class MemberController {
     return mv;
   }
 
+  // 프로필 화면(프로필 + 본인이 저장한 리뷰들이 나옴)
+  @RequestMapping("profileSavedReviews")
+  public ModelAndView profileSavedReviews(int no) throws Exception {
+
+    Member member = memberService.get(no);
+    if (member == null) {
+      throw new Exception("해당 회원이 없습니다.");
+    }
+
+    ModelAndView mv = new ModelAndView();
+    List<Review> rvs = member.getSaved();
+    for(Review rv : rvs) {
+      System.out.println(rv.getNo());
+    }
+    mv.addObject("member", member);
+    mv.setViewName("/member/profileSavedReviews.jsp");
+    return mv;
+  }
+
   @RequestMapping("inactive")
   public String inactive(int no) throws Exception {
     if (memberService.inactive(no) == 0) {

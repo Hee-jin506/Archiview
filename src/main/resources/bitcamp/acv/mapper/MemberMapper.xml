@@ -30,6 +30,7 @@
     
     <collection property="saved"    ofType="review">
          <result column="sv_rvno"        property="no"/>
+         <result column="stc2_stcUrl"        property="stcUrl"/>
     </collection>
  </resultMap>
 
@@ -66,33 +67,38 @@
  <!-- 여러 SQL 문에서 중복되는 코드가 있다면, 다음과 같이 별도로 분리한다. -->
   <sql id="sql1">
     select 
-    mb.mno,
-    mb.auth,
-    mb.name,
-    mb.ltno,
-    mb.email,
-    mb.pw,
-    mb.nick,
-    mb.photo,
-    mb.intro,
-    mb.qno,
-    mb.pw_hint_a,               
-    mb.rdt,
-    mb.stno,
-    mb.stat_mdt,
-    mbs.title stat_title,
-    mb.stat_mdt,
-    rv.rvno,
-    rv.txt,
-    stc.stc_url,
-    sv.mno,
-    sv.rvno sv_rvno
+	    mb.mno,
+	    mb.auth,
+	    mb.name,
+	    mb.ltno,
+	    mb.email,
+	    mb.pw,
+	    mb.nick,
+	    mb.photo,
+	    mb.intro,
+	    mb.qno,
+	    mb.pw_hint_a,               
+	    mb.rdt,
+	    mb.stno,
+	    mb.stat_mdt,
+	    mbs.title stat_title,
+	    mb.stat_mdt,
+	    rv.rvno,
+	    rv.txt,
+	    stc.stc_url,
+	    sv.mno sv_mno,
+	    sv.rvno sv_rvno,
+	    rv2.rvno rv2_rvno,
+	    stc2.stcno stc2_stcno,
+	    stc2.stc_url stc2_stcUrl
     from 
       acv_mbr mb
       inner join acv_mbr_stat mbs on mb.stno = mbs.stno
       left outer join acv_rv rv on mb.mno = rv.mno
       left outer join acv_stc stc on rv.stcno = stc.stcno
       left outer join acv_save sv on mb.mno = sv.mno
+      left outer join acv_rv rv2 on sv.rvno = rv2.rvno
+      left outer join acv_stc stc2 on rv2.stcno = stc2.stcno
   </sql>
 
 <!-- nickName에 keyword가 포함된 애들을 리턴 -->
