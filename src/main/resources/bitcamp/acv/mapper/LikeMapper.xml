@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="bitcamp.acv.dao.LikeDao">
+    <!--
+  public static final int REVIEW = 1;
+  public static final int COMMENT = 2;
+
+  private int no; // 좋아요 이력 번호 lno
+  private Member likingMember; // 좋아요한 회원 mno // 로그인 한 회원의 번호를 저장
+  private int likedType; // 좋아요된 대상 유형 lano
+  private int likedNo; // 좋아요된 대상 target
+  private Date likedDate; // 좋아요 누른 일시 ldt
+  
+  
+  MariaDB [studydb]> desc acv_like;
+
+| lno    | int(11)  | NO   | PRI | NULL                | auto_increment |
+| mno    | int(11)  | NO   | MUL | NULL                |                |
+| lano   | int(11)  | NO   | MUL | NULL                |                |
+| target | int(11)  | NO   |     | NULL                |                |
+| ldt    | datetime | NO   |     | current_timestamp() |                |
+
+
+MariaDB [studydb]> select * from acv_lk_able;
+
+| lano | name   |
+
+|    2 | 댓글   |
+|    1 | 후기   |
+
+  -->
+  <resultMap type="like" id="LikeMap">
+    <id column="lno"           property="no"/>
+    <result column="lano"    property="likedType"/>
+    <result column="target"    property="likedNo"/>
+    <result column="ldt"    property="likedDate"/>
+    
+  <association property="likingMember" javaType="Member">
+    <id column="mno" property="no"/>
+    <result column="nick" property="nickName"/>
+  </association>
+
+  </resultMap>
+
+  <sql id="sql1">
+    select 
+      l.lno,
+      l.mno,
+      l.lano,
+      l.target,
+      l.ldt
+  </sql>
+       
+
+  
+  <select id="findAll" resultMap="LikeMap">
+  <include refid="sql1" />
+    from
+    acv_like l
+    order by l.ldt desc;
+  </select>
+
+
+    <!-- 
+    
+      <insert id="insert" parameterType="like">
+    insert into acv_like(mno, lano, target) 
+      values(#{likingMember}, #{likedType}, #{likedNo})
+  </insert>
+  
+      <update id="inactive" parameterType="int">
+    update acv_cmt
+    set
+      stat = 0,
+      mdt=now()
+    where cno=#{no} 
+  </update>
+  
+  <update id="active" parameterType="int">
+    update acv_cmt
+    set
+      stat = 1,
+      mdt=now()
+    where cno=#{no} 
+  </update>
+   -->
+
+  
+</mapper>
+
+
+
+
+
