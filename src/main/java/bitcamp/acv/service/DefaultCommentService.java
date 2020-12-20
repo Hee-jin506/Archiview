@@ -37,4 +37,14 @@ public class DefaultCommentService implements CommentService {
   public Comment getByNo(int no) throws Exception {
     return commentDao.findByNo(no);
   }
+
+  @Override
+  public int delete(int no) throws Exception {
+    return commentDao.delete(no);
+  }
+
+  @Override
+  public int update(Comment comment) throws Exception {
+    return commentDao.update(comment);
+  }
 }

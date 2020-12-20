@@ -9,4 +9,6 @@ public interface CommentService {
   List<Comment> getByReviewNo(int no) throws Exception;
   List<Comment> getByMemberNo(int no) throws Exception;
   Comment getByNo(int no) throws Exception;
+  int delete(int no) throws Exception;
+  int update(Comment comment) throws Exception;
 }

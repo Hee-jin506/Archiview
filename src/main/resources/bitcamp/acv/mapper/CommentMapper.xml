@@ -112,6 +112,42 @@
       c.cno=#{cno}
   </select>
   
+   <update id="update" parameterType="comment">
+    update acv_cmt
+    <set>
+      <if test="content != ''">
+      content = #{content},
+      </if>
+      mdt = now()
+    </set>
+      where 
+      cno=#{no} and rvno=#{reviewNo}
+  </update>
+  
+    <update id="delete" parameterType="int">
+    update acv_cmt
+    set
+      stat = 0,
+      mdt=now()
+    where cno=#{no} and rvno=#{reviewNo}
+  </update>
+  
+  <update id="inactive" parameterType="int">
+    update acv_cmt
+    set
+      stat = 0,
+      mdt=now()
+    where cno=#{no} and rvno=#{reviewNo}
+  </update>
+  
+  <update id="active" parameterType="int">
+    update acv_cmt
+    set
+      stat = 1,
+      mdt=now()
+    where cno=#{no} and rvno=#{reviewNo}
+  </update>
+  
 </mapper>
 
 <!-- 
