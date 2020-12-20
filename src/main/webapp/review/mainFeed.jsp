@@ -75,8 +75,10 @@ for (Review review : list) {
 <form>
 <% if (review.getIsFollowing() != 0) { %>
 <button class='follow'>언팔로우</button>
+<button class="btn btn-primary" type="submit" style='background-color: #000000;'>팔로우</button>
 <%} else {%>
 <button class='follow'>팔로우</button>
+<button class="btn btn-primary" type="submit" style='background-color: #000000;'>팔로우</button>
 <%} %>
 </form>
 <%}%>

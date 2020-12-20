@@ -160,10 +160,9 @@ public class MemberController {
   public ModelAndView profile(int no) throws Exception {
 
     Member member = memberService.get(no);
-    System.out.println(member.getNo());
-    //    if (member == null) {
-    //      throw new Exception("해당 회원이 없습니다.");
-    //    }
+    if (member == null) {
+      throw new Exception("해당 회원이 없습니다.");
+    }
 
     ModelAndView mv = new ModelAndView();
     List<Review> rvs = member.getReviews();
@@ -172,6 +171,25 @@ public class MemberController {
     }
     mv.addObject("member", member);
     mv.setViewName("/member/profile.jsp");
+    return mv;
+  }
+
+  // 프로필 화면(프로필 + 본인이 저장한 리뷰들이 나옴)
+  @RequestMapping("profileSavedReviews")
+  public ModelAndView profileSavedReviews(int no) throws Exception {
+
+    Member member = memberService.get(no);
+    if (member == null) {
+      throw new Exception("해당 회원이 없습니다.");
+    }
+
+    ModelAndView mv = new ModelAndView();
+    List<Review> rvs = member.getSaved();
+    for(Review rv : rvs) {
+      System.out.println(rv.getNo());
+    }
+    mv.addObject("member", member);
+    mv.setViewName("/member/profileSavedReviews.jsp");
     return mv;
   }
 

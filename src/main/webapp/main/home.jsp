@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아카이뷰</title>
+
 <style>
  body {
    background-color : #000000;
@@ -22,6 +23,7 @@
   border-radius: 100px;
  }
 </style>
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
 <jsp:include page="/app/main/topbar"/>

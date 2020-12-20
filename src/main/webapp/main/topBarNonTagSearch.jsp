@@ -5,7 +5,23 @@
 <html>
 <head>
 <title>탑바 검색창 검색 결과</title>
-<style>body {background-color: #000000;color: #ffffff;}</style>
+<style>
+ body {
+   background-color : #000000;
+   color: #ffffff;
+   margin: 0px;
+ }
+ 
+ p {
+   font-size: 18px;
+   font-weight: bold;
+   margin:0px;
+ }
+ 
+ img.profile {
+  border-radius: 100px;
+ }
+</style>
 </head>
 <body>
 <jsp:include page="/app/main/topbar"></jsp:include>
@@ -30,5 +46,7 @@ ${mb.nickName}<br>
 ${mv.title}<br>
 </c:forEach>
 
+<jsp:include page="/app/main/sidebar"/>
+<jsp:include page="/main/footer.jsp"/>
 </body>
 </html>

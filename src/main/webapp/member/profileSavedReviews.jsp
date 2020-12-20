@@ -65,7 +65,7 @@ ${member.intro}<br>
 	    저장 
 	</a>
 <br>
-<c:forEach items="${member.reviews}" var="rv"> 
+<c:forEach items="${member.saved}" var="rv"> 
 <input type='hidden' name='no' value='${rv.no}'><br>
   ${rv.no}<br>
    <img src='${rv.stcUrl}'><br>
