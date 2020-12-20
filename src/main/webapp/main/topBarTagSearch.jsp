@@ -19,6 +19,7 @@ String keyword = request.getParameter("keyword");
 <br>
 <br>
 <h3>[태그]</h3>
+<c:if test="${empty tagList}">검색결과가 없습니다.</c:if>
 <c:forEach items="${tagList}" var="t">
 #${t.title}<br>
 </c:forEach>
