@@ -6,7 +6,9 @@ import java.util.List;
 public class Review {
   private int no;
   private int stillCut;
+
   private String stcUrl;
+
   private String text;
   private int textX;
   private int textY;
@@ -18,9 +20,11 @@ public class Review {
   private String statusName;
   private List<Tag> tags;
   private String movieTitle;
+
   private int writerNo;
   private String writerPhoto;
   private String writerNick;
+
   private int isFollowing;
   private int liking;
 

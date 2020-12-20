@@ -52,7 +52,7 @@ ${member.intro}<br>
 <c:forEach items="${member.reviews}" var="rv"> 
 <input type='hidden' name='no' value='${rv.no}'><br>
   ${rv.no}<br>
-   <img src='${rv.stillCutUrl}'><br>
+   <img src='${rv.stcUrl}'><br>
 </c:forEach>
 
 <jsp:include page="/main/footer.jsp"/>

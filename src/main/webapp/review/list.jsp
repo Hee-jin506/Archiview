@@ -100,7 +100,7 @@ String inactive = request.getParameter("inactive");
 <tr>
 	<td><input type='checkbox' name='reviews' value='${r.no}'></td>
 	<td><a href='detail?no=${r.no}'>${r.no}</a></td>
-	<td>${r.writer.nickName}</td>
+	<td>${r.writerNick}</td>
 	<td>${r.movieTitle}</td>
 	<td>${r.registeredDate}</td>
 	<td>${r.statusName}</td>

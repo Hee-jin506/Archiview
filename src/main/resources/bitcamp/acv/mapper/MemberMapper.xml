@@ -25,7 +25,7 @@
     <collection property="reviews"    ofType="review">
          <result column="rvno"        property="no"/>
          <result column="txt"        property="text"/>
-         <result column="stc_url"        property="stillCutUrl"/>
+         <result column="stc_url"        property="stcUrl"/>
     </collection>
  </resultMap>
 
