@@ -114,6 +114,13 @@
   email = #{email}
   and pw = password(#{password})
  </select>
+ 
+ <select id="findByEmail" parameterType="string"
+  resultMap="MemberMap">
+  <include refid="sql1" />
+  where
+  email = #{email}
+ </select>
 
  <update id="update" parameterType="member">
   update acv_mbr

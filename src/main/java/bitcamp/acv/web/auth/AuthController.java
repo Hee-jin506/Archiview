@@ -88,4 +88,17 @@ public class AuthController {
       return "redirect:/app/auth/login";
     }
   }
+
+  @RequestMapping("emailCheck")
+  protected ModelAndView emailCheck(HttpServletRequest request, HttpServletResponse response, String email) throws Exception {
+    ModelAndView mv = new ModelAndView();
+    if (memberService.get(email) == null) {
+      throw new Exception("<p>가입된 이메일이 아닙니다.</p>");
+    } else {
+      Member searchUser = memberService.get(email);
+      mv.addObject("searchUser", searchUser);
+      mv.setViewName("/auth/hint.jsp");
+    }
+    return mv;
+  }
 }
