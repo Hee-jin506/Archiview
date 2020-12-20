@@ -18,7 +18,11 @@ for (Review review : list) {
 <p><%=review.getWriterNick() %></p>
 <% if (!review.getWriterNick().equals(((Member)(request.getAttribute("loginUser"))).getNickName())) {%>
 <form>
+<% if (review.getIsFollowing() != 0) { %>
+<button>언팔로우</button>
+<%} else {%>
 <button>팔로우</button>
+<%} %>
 </form>
 <%}%>
 <img src=<%=review.getStcUrl() %>><br>
@@ -32,7 +36,8 @@ if (tag.getTitle() != null) {%>
 <%}
 }%>
 <br>
-<%=review.getMovieTitle() %>
+<p><%=review.getMovieTitle() %></p>
+<p>좋아요 <%=review.getLiking() %>개</p>
 <hr>
 <%}%>
 </body>

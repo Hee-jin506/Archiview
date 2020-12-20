@@ -88,16 +88,43 @@ public class AuthController {
     }
   }
 
-  @RequestMapping("emailCheck")//commit test
-  protected ModelAndView emailCheck(HttpServletRequest request, HttpServletResponse response, String email) throws Exception {
+  @RequestMapping("emailCheck")
+  protected ModelAndView emailCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String email) throws Exception {
     ModelAndView mv = new ModelAndView();
     if (memberService.get(email) == null) {
       throw new Exception("<p>가입된 이메일이 아닙니다.</p>");
     } else {
       Member searchUser = memberService.get(email);
-      mv.addObject("searchUser", searchUser);
+      session.setAttribute("searchUser", searchUser);
       mv.setViewName("/auth/hint.jsp");
     }
     return mv;
+  }
+
+  @RequestMapping("hintCheck")
+  protected ModelAndView hintCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String hint) throws Exception {
+    ModelAndView mv = new ModelAndView();
+    Member member = (Member) session.getAttribute("searchUser");
+    System.out.println(member.getQuestionsAnswer());
+    System.out.println(hint);
+    if (!member.getQuestionsAnswer().equals(hint)) {
+      throw new Exception("<p>답변이 옳지 않습니다.</p>");
+    } else {
+      mv.setViewName("/auth/updatePassword.jsp");
+    }
+    return mv;
+  }
+
+  @RequestMapping("update")
+  protected String update(HttpSession session, HttpServletRequest request, HttpServletResponse response, String password, String password2) throws Exception {
+    if (!password.equals(password2)) {
+      throw new Exception("<p>비밀번호가 일치하지 않습니다.</p>");
+    } else {
+      Member member = (Member) session.getAttribute("searchUser");
+      member.setPassword(password);
+      memberService.updatePassword(member);
+      session.invalidate();
+    }
+    return "redirect:/app/auth/login";
   }
 }

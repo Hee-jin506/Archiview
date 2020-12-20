@@ -15,7 +15,7 @@
 <body>
 <h5>비밀번호 찾기</h5>
 <p>질문에 대한 답변을 입력하세요.</p>
-<p>Q.<c:if test='${searchUser.questionsNo == 1}'>내가 키우는 애완 동물의 이름은 ?</c:if>
+<p>Q.<c:if test='${sessionScope.searchUser.questionsNo == 1}'>내가 키우는 애완 동물의 이름은 ?</c:if>
 <c:if test='${searchUser.questionsNo == 2}'>가장 기억에 남는 선생님의 성함은 ?</c:if>
 <c:if test='${searchUser.questionsNo == 3}'>어머니의 고향은 ?</c:if>
 <c:if test='${searchUser.questionsNo == 4}'>아버지의 고향은 ?</c:if>

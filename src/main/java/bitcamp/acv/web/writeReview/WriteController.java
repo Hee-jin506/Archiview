@@ -17,7 +17,7 @@ import bitcamp.acv.service.ReviewService;
 
 @Controller
 @RequestMapping("/write")
-public class writeController {
+public class WriteController {
 
   @Autowired MovieService movieService;
   @Autowired ReviewService reviewService;
@@ -67,7 +67,7 @@ public class writeController {
 
     if (loginUser == null) {
     } else {
-      review.setWriter(loginUser);
+      review.setWriterNo(loginUser.getNo());
       review.setStillCut(stcNo);
       review.setText(text);
       review.setTextX(Integer.parseInt(x));

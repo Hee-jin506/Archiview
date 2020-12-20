@@ -1,6 +1,7 @@
 package bitcamp.acv.domain;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Review {
@@ -14,7 +15,7 @@ public class Review {
   private int textY;
   private int textFont;
   private int textSize;
-  private Date registeredDate;
+  private Timestamp registeredDate;
   private Date modifiedDate;
   private boolean status;
   private String statusName;
@@ -76,10 +77,11 @@ public class Review {
   public void setTextSize(int textSize) {
     this.textSize = textSize;
   }
-  public Date getRegisteredDate() {
+
+  public Timestamp getRegisteredDate() {
     return registeredDate;
   }
-  public void setRegisteredDate(Date registeredDate) {
+  public void setRegisteredDate(Timestamp registeredDate) {
     this.registeredDate = registeredDate;
   }
   public Date getModifiedDate() {
