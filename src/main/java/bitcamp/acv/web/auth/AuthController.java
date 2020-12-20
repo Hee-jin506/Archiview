@@ -88,7 +88,7 @@ public class AuthController {
     }
   }
 
-  @RequestMapping("emailCheck")
+  @RequestMapping("emailCheck")//commit test
   protected ModelAndView emailCheck(HttpServletRequest request, HttpServletResponse response, String email) throws Exception {
     ModelAndView mv = new ModelAndView();
     if (memberService.get(email) == null) {
