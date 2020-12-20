@@ -19,7 +19,9 @@
 <tr>
 <th>좋아요 이력 번호</th>
 <th>좋아요 한 회원 번호</th>
+<th>좋아요 한 회원 닉네임</th>
 <th>좋아요 된 대상 유형</th>
+<th>좋아요 된 대상 유형 이름</th>
 <th>좋아요 된 대상 번호</th>
 <th>좋아요 누른 일시</th>
 </tr>
@@ -29,8 +31,10 @@
 <c:forEach items="${list}" var="l"> 
 <tr>
 <td>${l.no}</td>
-<td>${l.likingMember}</td>
+<td>${l.likingMember.no}</td>
+<td>${l.likingMember.nickName}</td>
 <td>${l.likedType}</td>
+<td>${l.likedTypeName}</td>
 <td>${l.likedNo}</td>
 <td>${l.likedDate}</td>
 </tr>

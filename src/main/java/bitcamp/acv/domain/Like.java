@@ -12,6 +12,7 @@ public class Like {
   private int likedType; // 좋아요된 대상 유형 lano
   private int likedNo; // 좋아요된 대상 target
   private Date likedDate; // 좋아요 누른 일시 ldt
+  private String likedTypeName;
 
 
 
@@ -50,6 +51,12 @@ public class Like {
   }
   public static int getComment() {
     return COMMENT;
+  }
+  public String getLikedTypeName() {
+    return likedTypeName;
+  }
+  public void setLikedTypeName(String likedTypeName) {
+    this.likedTypeName = likedTypeName;
   }
 
 }

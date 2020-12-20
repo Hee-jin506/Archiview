@@ -37,7 +37,8 @@ MariaDB [studydb]> select * from acv_lk_able;
     <result column="lano"    property="likedType"/>
     <result column="target"    property="likedNo"/>
     <result column="ldt"    property="likedDate"/>
-    
+    <result column="name"    property="likedTypeName"/>
+   
   <association property="likingMember" javaType="Member">
     <id column="mno" property="no"/>
     <result column="nick" property="nickName"/>
@@ -51,15 +52,17 @@ MariaDB [studydb]> select * from acv_lk_able;
       l.mno,
       l.lano,
       l.target,
-      l.ldt
+      l.ldt,
+      mb.nick,
+      la.name
   </sql>
        
-
-  
   <select id="findAll" resultMap="LikeMap">
   <include refid="sql1" />
     from
     acv_like l
+      inner join acv_mbr mb on mb.mno = l.mno
+      inner join acv_lk_able la on la.lano = l.lano
     order by l.ldt desc;
   </select>
 
