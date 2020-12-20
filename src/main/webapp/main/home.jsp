@@ -9,6 +9,7 @@
  body {
    background-color : #000000;
    margin: 0px;
+   color: white;
  }
  
  p {
@@ -26,5 +27,6 @@
 <jsp:include page="/app/main/topbar"/>
 <jsp:include page="/app/main/sidebar"/>
 <jsp:include page="/main/footer.jsp"/>
+<jsp:include page="/app/review/mainFeed"/>
 </body>
 </html>

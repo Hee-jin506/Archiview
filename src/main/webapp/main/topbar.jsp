@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
 #menubar {
-  position: fixed;
+  position: absolute;
   top:0px;
   background-color: #141517;
   box-sizing: border-box;
