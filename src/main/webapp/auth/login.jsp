@@ -56,7 +56,7 @@ if (((Boolean) request.getAttribute("wrongInput")) == true) {
 <button>로그인</button>
 </form>
 
-<a href="">비밀번호를 잊으셨나요?</a>
+<a href="<%=getServletContext().getContextPath()%>/auth/searchPassword.html">비밀번호를 잊으셨나요?</a>
 
 <h4>계정이 없으신가요? <a href="../../member/form.html">지금 가입하세요.</a> </h4>
 

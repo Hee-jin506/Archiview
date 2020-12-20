@@ -49,7 +49,6 @@ public class CommentController {
 
   @RequestMapping("add")
   public String add(
-      int targetNo,
       int groupNo,
       int reviewNo,
       String content,
@@ -65,9 +64,9 @@ public class CommentController {
     // 만약 level이 1 이라면 2를 넣는다.
     if (Integer.parseInt(request.getParameter("level")) == 1) {
       comment.setLevel(2);
+    } else {
+      comment.setLevel(1);
     }
-
-    System.out.println(reviewNo);
 
     comment.setReviewNo(Integer.parseInt(request.getParameter("reviewNo")));
     comment.setContent(request.getParameter("content"));
@@ -77,6 +76,26 @@ public class CommentController {
     comment.setMemberNo(loginUser.getNo());
 
     commentService.add(comment);
+
+    return "redirect:../comment/view?reviewNo=" + request.getParameter("reviewNo");
+  }
+
+  @RequestMapping("/update")
+  public String update(Comment comment, HttpServletRequest request) throws Exception {
+    if (commentService.update(comment) == 0) {
+
+      throw new Exception("해당 댓글이 없습니다.");
+    }
+
+    return "redirect:../comment/view?reviewNo=" + request.getParameter("reviewNo");
+  }
+
+  @RequestMapping("/delete")
+  public String delete(int no, int reviewNo, HttpServletRequest request) throws Exception {
+    if (commentService.delete(no) == 0) {
+
+      throw new Exception("해당 댓글이 없습니다.");
+    }
 
     return "redirect:../comment/view?reviewNo=" + request.getParameter("reviewNo");
   }

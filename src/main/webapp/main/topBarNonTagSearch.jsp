@@ -14,13 +14,21 @@
 String keyword = request.getParameter("keyword");
 %>
 
-<h3>[리뷰어]</h3>
-<jsp:include page="/app/member/search?keyword=${keyword}"></jsp:include>
-<h3>[영화]</h3>
-<jsp:include page="/app/movie/search?keyword=${keyword}"></jsp:include>
-
-<c:out value="${keyword}"></c:out>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3>리뷰어</h3>
+<c:if test="${empty memberList}">검색결과가 없습니다.</c:if>
+<c:forEach items="${memberList}" var="mb">
+${mb.nickName}<br>
+</c:forEach>
+<h3>영화</h3>
+<c:if test="${empty movieList}">검색결과가 없습니다.</c:if>
+<c:forEach items="${movieList}" var="mv">
+${mv.title}<br>
+</c:forEach>
 
 </body>
 </html>

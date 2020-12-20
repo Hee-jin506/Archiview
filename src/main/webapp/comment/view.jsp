@@ -1,6 +1,9 @@
 <%@page import="java.util.List"%>
+<%@page import="bitcamp.acv.domain.Member"%>
 <%@page import="bitcamp.acv.domain.Comment"%>
 <%@page import="javax.servlet.http.HttpSession"%>
+<%@page import="javax.servlet.ServletContext"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -16,7 +19,6 @@
 <h1>[코멘트] </h1>
 <br>
 
-
 <table border="1">
 <thead>
 <tr>
@@ -30,33 +32,62 @@
 </tr></thead>
 
 
+<%
+List<Comment> comments = (List<Comment>) request.getAttribute("view");
+HttpSession s = request.getSession();
+Member loginUser = (Member) s.getAttribute("loginUser");
+%>
+
+<%
+
+System.out.println(comments.size());
+System.out.println(comments.get(0).getNo());
+System.out.println(comments.get(0).getContent());
+System.out.println(comments.get(0).getGroupNo());
+
+%>
+
 
 <tbody>
-<c:forEach items="${view}" var="c"> 
-<tr>
-<c:choose>
-  <c:when test='${c.status == 1}'>
-<td>${c.no}</td>
-<td><img src='../../upload/${c.member.photo}_150x150.jpg'></td>
+  <c:forEach items="${view}" var="c"> 
+  <tr>
+    <c:choose>
+      <c:when test='${c.status == 1}'>
+        <td>${c.no}</td>
+        <td><img src='../../upload/${c.member.photo}_150x150.jpg'></td>
 
-<c:set var='level' value='${c.level}'/>
-<c:choose>
+            <c:choose>
   <c:when test='${c.level == 1}'>
-<td>${c.member.nickName}</td>
-<td>${c.content}<br>
+  <!-- 대댓글 -->
+    <td>${c.member.nickName}</td>
+    <td>${c.content}
+    <br>
 
-<form method='post'>
-<input type='hidden' name='targetNo' value='${c.no}'>
-<input type='hidden' name='groupNo' value='${c.groupNo}'>
-<input type='hidden' name='level' value='${c.level}'>
-  <button>대댓글 등록</button>
-</form>
-
+      <form method='post'>
+        <input type='hidden' name='targetNo' value='${c.no}'>
+        <input type='hidden' name='groupNo' value='${c.groupNo}'>
+        <input type='hidden' name='level' value='${c.level}'>
+        <button>대댓글 등록</button>
+      </form>
+    <br>
+      <form action="delete" method="post">
+        <input type='hidden' name='no' value='${c.no}'>
+        <input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
+        <button>삭제</button>
+      </form>
  </td>
     </c:when>
   <c:otherwise>
-<td>${c.member.nickName}</td>
-<td>${c.content}</td>
+  <!-- 댓글 -->
+    <td>${c.member.nickName}</td>
+    <td>${c.content}<br>
+      <br>
+      <form action="delete" method="post">
+        <input type='hidden' name='no' value='${c.no}'>
+        <input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
+        <button>삭제</button>
+      </form>
+    </td>
   </c:otherwise>
 </c:choose>
 
@@ -73,6 +104,8 @@
 </tbody>
 </table>
 
+
+
 <br>
 
 
@@ -81,7 +114,7 @@ String targetWriter = null;
 String targetNo = request.getParameter("targetNo");
 
 if (targetNo != null) {
-    for (Comment comment : (List<Comment>) (request.getAttribute("view"))) {
+    for (Comment comment : comments) {
       if (comment.getNo()==Integer.parseInt(targetNo)) {
         targetWriter = comment.getMember().getNickName();
     }
@@ -99,11 +132,15 @@ if (targetNo != null) {
 </form>
 <%
 } else {
+  int rno = comments.get(0).getReviewNo();
+  int gno = comments.size() + 1;
 %>
-
 <form action="../comment/add" method="post">
   코멘트 :  
 <input type='text' name='content' value=''>
+<input type='hidden' name='reviewNo' value=<%=rno%>>
+<input type='hidden' name='groupNo' value=<%=gno%>>
+<input type='hidden' name='level' value=<%=0%>>
 <button>등록</button>
 </form>
 <%

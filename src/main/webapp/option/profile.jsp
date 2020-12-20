@@ -56,9 +56,9 @@
   </div>
   
 <div class="content">
-<form class='form-horizontal' action='profile/update' method='post' enctype='multipart/form-data'>
+<form class='form-horizontal' action='profileUpdate' method='post' enctype='multipart/form-data'>
   <input type='hidden' name='no' value='${member.no}'>
-    <div class='form-group'>
+   <div class='form-group'>
       <label for="inputEmail3" class="col-sm-2 control-label">
       <img id='profile-photo' src='<%=getServletContext().getContextPath()%>/upload/${member.photo}_150x150.jpg' style="border-radius: 50px" width="60">${member.email}</label>
     </div>
@@ -66,7 +66,7 @@
       <div class='col-sm-10'>
         <input type='file' name='photo'>
       </div>
-    </div>
+    </div> 
     <div class='form-group'>
       <label for="inputText3" class="col-sm-2 control-label">이름</label>
       <div class='col-sm-10'>
@@ -79,7 +79,7 @@
       <label for="inputText3" class="col-sm-2 control-label">닉네임</label>
       <div class='col-sm-10'>
         <div class="col-xs-9">
-          <input type='text' class='form-control' name='nickName' placeholder='${member.nickName}'>
+          <input type='text' class='form-control' name='nickName' value='${member.nickName}'>
         </div>
       </div>
     </div>
@@ -87,7 +87,7 @@
       <label for="inputText3" class="col-sm-2 control-label">소개</label>
       <div class='col-sm-10'>
         <div class="col-xs-9">
-          <textarea class="form-control" name='intro' placeholder="${member.intro}" rows='7'></textarea>
+          <textarea class="form-control" name='intro' value="${member.intro}" rows='7'></textarea>
         </div>
       </div>
     </div>
