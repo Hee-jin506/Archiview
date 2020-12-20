@@ -52,8 +52,15 @@
 Member[] members = (Member[])request.getAttribute("topMembers");
 for (Member member : members) {
 %>
-<p><img class='profile' src=<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>><%=member.getNickName()%></p>
+
+<p>
+	<a href='<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=member.getNo() %>'>
+		<img class='profile' src=<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>>
+		<%=member.getNickName()%>
+	</a>
+</p>
 <p class='explanation'><%=member.getIntro() %></p>
+
 <%
 }
 %>

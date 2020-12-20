@@ -12,7 +12,7 @@
 
 <h3>[게시물 상세 조회]</h3>
 게시물 번호: ${review.no}<br>
-작성자: ${review.writer.nickName}<br>
+작성자: ${review.writerNick}<br>
 등록일: ${review.registeredDate}<br>
 <%-- 영화 번호:${review.numOfReviews}<br> --%>
 영화 제목: ${review.movieTitle}<br>
