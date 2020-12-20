@@ -4,7 +4,22 @@
 <!DOCTYPE html>
 <html>
 <head><title>회원 프로필 화면</title>
-<style>body {background-color: #000000;color: #ffffff;}</style>
+<style>
+ body {
+   background-color : #000000;
+   margin: 0px;
+ }
+ 
+ p {
+   font-size: 18px;
+   font-weight: bold;
+   margin:0px;
+ }
+ 
+ img.profile {
+  border-radius: 100px;
+ }
+</style>
 </head>
 <body>
 <jsp:include page="/app/main/topbar"/>
@@ -36,7 +51,7 @@ ${member.intro}<br>
 	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" alt="리뷰"><br>
 	    리뷰 
 	</a>
-	<%-- <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" alt="팔로워"><br>
 	    팔로워 
 	</a>
@@ -47,14 +62,14 @@ ${member.intro}<br>
 	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" alt="저장"><br>
 	    저장 
-	</a> --%>
+	</a>
 <br>
 <c:forEach items="${member.reviews}" var="rv"> 
 <input type='hidden' name='no' value='${rv.no}'><br>
   ${rv.no}<br>
    <img src='${rv.stcUrl}'><br>
 </c:forEach>
-
+<jsp:include page="/app/main/sidebar"/>
 <jsp:include page="/main/footer.jsp"/>
 </body>
 </html>

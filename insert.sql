@@ -575,3 +575,26 @@ values(9, 1, 1, 2, 6, 're:test1');
 insert into acv_cmt(cno,rvno,gno,lvl,mno,content) 
 values(10, 1, 7, 2, 5, 're:test3');
 
+/* 저장 샘플  */
+
+insert into acv_save(mno,rvno) values(1,1);
+insert into acv_save(mno,rvno) values(1,2);
+insert into acv_save(mno,rvno) values(1,3);
+insert into acv_save(mno,rvno) values(1,4);
+insert into acv_save(mno,rvno) values(1,5);
+insert into acv_save(mno,rvno) values(1,6);
+insert into acv_save(mno,rvno) values(1,7);
+insert into acv_save(mno,rvno) values(1,8);
+
+insert into acv_save(mno,rvno) values(2,1);
+insert into acv_save(mno,rvno) values(2,3);
+insert into acv_save(mno,rvno) values(2,6);
+
+insert into acv_save(mno,rvno) values(3,1);
+insert into acv_save(mno,rvno) values(3,3);
+
+insert into acv_save(mno,rvno) values(4,1);
+insert into acv_save(mno,rvno) values(4,2);
+insert into acv_save(mno,rvno) values(4,7);
+insert into acv_save(mno,rvno) values(4,8);
+

@@ -68,8 +68,6 @@ public class CommentController {
       comment.setLevel(1);
     }
 
-    System.out.println(reviewNo);
-
     comment.setReviewNo(Integer.parseInt(request.getParameter("reviewNo")));
     comment.setContent(request.getParameter("content"));
     comment.setGroupNo(Integer.parseInt(request.getParameter("groupNo")));

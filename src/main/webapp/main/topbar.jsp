@@ -74,9 +74,9 @@ String keyword = request.getParameter("keyword");
         href='<%=getServletContext().getContextPath()%>/app/main/newsfeed'>
         <img src='<%=getServletContext().getContextPath()%>/main_resource/bell.png' alt='알람'></a>
     </div>
-<% Member member = (Member) request.getAttribute("loginUser"); %>
+<% Member member = (Member) session.getAttribute("loginUser"); %>
     <div id='profile'>
-      <a href='<%=getServletContext().getContextPath()%>/member/profile'>
+      <a href='<%=getServletContext().getContextPath() + "/app/member/profile?no=" + member.getNo()%>'>
       <img class='profile' src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
       </a>
     </div> 
