@@ -19,12 +19,6 @@
 <h1>[코멘트] </h1>
 <br>
 
-<%
-List<Comment> comments = (List<Comment>) request.getAttribute("view");
-HttpSession s = request.getSession();
-Member loginUser = (Member) s.getAttribute("loginUser");
-%>
-
 <table border="1">
 <thead>
 <tr>
@@ -38,45 +32,62 @@ Member loginUser = (Member) s.getAttribute("loginUser");
 </tr></thead>
 
 
+<%
+List<Comment> comments = (List<Comment>) request.getAttribute("view");
+HttpSession s = request.getSession();
+Member loginUser = (Member) s.getAttribute("loginUser");
+%>
+
+<%
+
+System.out.println(comments.size());
+System.out.println(comments.get(0).getNo());
+System.out.println(comments.get(0).getContent());
+System.out.println(comments.get(0).getGroupNo());
+
+%>
+
 
 <tbody>
-<c:forEach items="${view}" var="c"> 
-<tr>
-<c:choose>
-  <c:when test='${c.status == 1}'>
-<td>${c.no}</td>
-<td><img src='../../upload/${c.member.photo}_150x150.jpg'></td>
+  <c:forEach items="${view}" var="c"> 
+  <tr>
+    <c:choose>
+      <c:when test='${c.status == 1}'>
+        <td>${c.no}</td>
+        <td><img src='../../upload/${c.member.photo}_150x150.jpg'></td>
 
-<c:set var='level' value='${c.level}'/>
-<c:choose>
+            <c:choose>
   <c:when test='${c.level == 1}'>
-<td>${c.member.nickName}</td>
-<td>${c.content}<br>
+  <!-- 대댓글 -->
+    <td>${c.member.nickName}</td>
+    <td>${c.content}
+    <br>
 
-<form method='post'>
-<input type='hidden' name='targetNo' value='${c.no}'>
-<input type='hidden' name='groupNo' value='${c.groupNo}'>
-<input type='hidden' name='level' value='${c.level}'>
-  <button>대댓글 등록</button>
-</form>
-
-<form action='../../app/comment/delete' method='post'>
-<input type='hidden' name='no' value='${c.no}'>
-<input type='hidden' name='reviewNo' value='${c.reviewNo}'>
-<button>삭제</button>
-</form>
-
+      <form method='post'>
+        <input type='hidden' name='targetNo' value='${c.no}'>
+        <input type='hidden' name='groupNo' value='${c.groupNo}'>
+        <input type='hidden' name='level' value='${c.level}'>
+        <button>대댓글 등록</button>
+      </form>
+    <br>
+      <form action="delete" method="post">
+        <input type='hidden' name='no' value='${c.no}'>
+        <input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
+        <button>삭제</button>
+      </form>
  </td>
     </c:when>
   <c:otherwise>
-<td>${c.member.nickName}</td>
-<td>${c.content}<br>
-
-<form action='../../app/comment/delete' method='post'>
-<input type='hidden' name='no' value='${c.no}'>
-<input type='hidden' name='reviewNo' value='${c.reviewNo}'>
-<button>삭제</button>
-</td>
+  <!-- 댓글 -->
+    <td>${c.member.nickName}</td>
+    <td>${c.content}<br>
+      <br>
+      <form action="delete" method="post">
+        <input type='hidden' name='no' value='${c.no}'>
+        <input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
+        <button>삭제</button>
+      </form>
+    </td>
   </c:otherwise>
 </c:choose>
 

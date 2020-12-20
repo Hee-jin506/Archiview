@@ -121,7 +121,7 @@
       mdt = now()
     </set>
       where 
-      cno=#{no} and rvno=#{reviewNo}
+      cno=#{no} 
   </update>
   
     <update id="delete" parameterType="int">
@@ -129,15 +129,7 @@
     set
       stat = 0,
       mdt=now()
-    where cno=#{no} and rvno=#{reviewNo}
-  </update>
-  
-  <update id="inactive" parameterType="int">
-    update acv_cmt
-    set
-      stat = 0,
-      mdt=now()
-    where cno=#{no} and rvno=#{reviewNo}
+    where cno=#{no} 
   </update>
   
   <update id="active" parameterType="int">
@@ -145,12 +137,21 @@
     set
       stat = 1,
       mdt=now()
-    where cno=#{no} and rvno=#{reviewNo}
+    where cno=#{no} 
   </update>
   
 </mapper>
 
 <!-- 
+
+  <update id="inactive" parameterType="int">
+    update acv_cmt
+    set
+      stat = 0,
+      mdt=now()
+    where cno=#{no} 
+  </update>
+
 
   
   select
