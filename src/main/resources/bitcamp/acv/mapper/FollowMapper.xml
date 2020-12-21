@@ -7,8 +7,8 @@
 
  <resultMap type="follow" id="FollowMap">
   <id column="fno"            property="no" />
-  <result column="target"     property="followedType" />
-  <result column="fano_name"  property="followedNo"/>
+  <result column="target"     property="followedNo" />
+  <result column="fano"  property="followedType"/>
   <result column="fdt"        property="followedDate"/>
   <result column="stat"        property="status"/>
 
@@ -18,10 +18,49 @@
   </association>
  </resultMap>
  
+  <sql id="sql1">
+  select
+    f.fno,
+    f.target,
+    f.fdt,
+    f.stat,
+    mb.mno mno,
+    mb.nick nick,
+    fa.fano,
+    fa.name fano_name
+  from
+    acv_flw f
+    inner join acv_mbr mb on f.flwing_mbr=mb.mno
+    inner join acv_flw_able fa on f.fano = fa.fano
+  </sql> 
+ 
+ <!-- 팔로잉 목록 -->
+ <select id="findByNo" resultMap="FollowMap" parameterType="int">
+    <include refid="sql1"/>
+    where
+      f.fno=#{fno}
+  </select>
+ 
+
+ <select id="findAll" resultMap="FollowMap">
+  <include refid="sql1"/>
+  order by
+    f.fno desc
+  </select>
+  
+  <!-- 사용자 팔로잉 목록 -->
+  <select id="findByMemberNo" resultMap="FollowMap">
+  <include refid="sql1"/>
+  where
+    mb.mno=#{followingMember}
+  order by
+    f.fno desc
+  </select>
+ 
+ <!-- 팔로잉 insert -->
   <insert id="follow" parameterType="follow">
-  insert into
-  acv_flw(auth,name,ltno,email,pw,nick,photo,intro,qno,pw_hint_a,stno,stat_mdt)
-  values(#{authority},#{name},#{loginNo},#{email},password(#{password}),#{nickName},#{photo},#{intro},#{questionsNo},#{questionsAnswer},#{status},#{statusModifiedDate})
+  insert into acv_flw(flwing_mbr, target, fano)
+  values(#{followingMember.no},#{followedType},#{followedNo})
  </insert>
 
 </mapper>

@@ -4,13 +4,14 @@ import java.sql.Date;
 
 public class Follow {
 
+  // 좋아요 대상 타입
   public static final int MEMBER = 1;
   public static final int TAG = 2;
 
   private int no; // 팔로우 이력 번호 fno
   private Member followingMember; // 팔로우를 신청한 회원 flwing_mbr
-  private int followedType; // 팔로우한 대상(태그/회원) target
-  private int followedNo; // 팔로우한 대상 유형(태그/회원) fano
+  private int followedType; // 팔로우한 유형(태그/회원/코맨트) fano
+  private int followedNo; // 팔로우한 대상 대상(태그/회원/코맨트) target
   private Date followedDate; // 팔로우한 날짜 fdt
   private int status; // 팔로우 상태 번호 stat
 
