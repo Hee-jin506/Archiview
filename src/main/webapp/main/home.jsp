@@ -23,7 +23,7 @@
   border-radius: 100px;
  }
 </style>
-<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css?ver=1">
 </head>
 <body>
 <jsp:include page="/app/main/topbar"/>

@@ -24,12 +24,6 @@
 회원 상태 변경일 : ${member.statusModifiedDate}<br>
 <br>
 
-<form action='addUser' method='post'>
-<button id='addUser' >팔로우</button><br><br>
-</form>
-<br>
-
-<button id='deleteUser' >언팔로우</button><br><br>
 <c:set var='status' value='${member.status}'/>
 <c:choose>
   <c:when test='${member.status == 1}'>
@@ -42,6 +36,5 @@
   탈퇴
   </c:otherwise>
 </c:choose>
-
 </body>
 </html>

@@ -39,6 +39,7 @@
 ${member.nickName}<br>
 ${member.email}<br>
 ${member.intro}<br>
+
 <a href='../../board/form.html'>팔로우</a><br>
 
 <!--

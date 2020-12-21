@@ -10,8 +10,9 @@
 
 <% Member member = (Member) request.getAttribute("member"); %>
 
-<p>닉네임 : <%=member.getNickName() %></p>
-<p>소개글 : <%=member.getIntro()%>
+<p>회원 번호 : <%=member.getNo() %></p>
+<p>닉네임    : <%=member.getNickName() %></p>
+<p>소개글    : <%=member.getIntro()%></p>
 
 </body>
 </html>

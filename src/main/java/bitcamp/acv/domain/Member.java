@@ -31,12 +31,12 @@ public class Member {
   private int status; // 회원 상태 번호
   private String statusTitle;
   private Date statusModifiedDate; // 회원 상태 변경일
+
   private int followers;
   private int likers;
+
   private List<Review> reviews; // 본인의 게시물들
   private List<Review> saved; // 저장한 게시물들
-  private List<Follow> following; // 내가 팔로우 하는 사람들
-  private List<Follow> follower; // 나를 팔로우하는 사람들
 
   public int getNo() {
     return no;
@@ -153,17 +153,5 @@ public class Member {
   }
   public void setSaved(List<Review> saved) {
     this.saved = saved;
-  }
-  public List<Follow> getFollowing() {
-    return following;
-  }
-  public List<Follow> getFollower() {
-    return follower;
-  }
-  public void setFollowing(List<Follow> following) {
-    this.following = following;
-  }
-  public void setFollower(List<Follow> follower) {
-    this.follower = follower;
   }
 }
