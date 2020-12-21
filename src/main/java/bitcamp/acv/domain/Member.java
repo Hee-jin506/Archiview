@@ -31,8 +31,10 @@ public class Member {
   private int status; // 회원 상태 번호
   private String statusTitle;
   private Date statusModifiedDate; // 회원 상태 변경일
+
   private int followers;
   private int likers;
+
   private List<Review> reviews; // 본인의 게시물들
   private List<Review> saved; // 저장한 게시물들
 

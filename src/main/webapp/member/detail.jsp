@@ -22,8 +22,8 @@
 회원 가입일 : ${member.registeredDate}<br>
 회원 상태 : ${member.statusTitle}<br>
 회원 상태 변경일 : ${member.statusModifiedDate}<br>
-
 <br>
+
 <c:set var='status' value='${member.status}'/>
 <c:choose>
   <c:when test='${member.status == 1}'>
@@ -36,6 +36,5 @@
   탈퇴
   </c:otherwise>
 </c:choose>
-
 </body>
 </html>
