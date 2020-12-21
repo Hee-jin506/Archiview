@@ -207,16 +207,32 @@ public class ReviewController {
     map.put("row", 0);
 
     List<Review> list = reviewService.getMainFeed(map);
+    Map<Integer, String> times = new HashMap<>();
     for (Review review : list) {
+
       Calendar cal = new GregorianCalendar(Locale.KOREA);
       long now = cal.getTimeInMillis();
       long diff = now - review.getRegisteredDate().getTime();
-      long sec = diff / 1000 / 60/ 60;
       System.out.println(review.getRegisteredDate());
-      System.out.println(sec+"시간 전");
+      if (diff / 1000 / 60 < 1) {
+        times.put(review.getNo(), "방금 전");
+      } else if (diff / 1000 / 60 / 60 < 1) {
+        times.put(review.getNo(), diff / 1000 / 60 + "분 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 < 1) {
+        times.put(review.getNo(), diff/ 1000 / 60 / 60 + "시간 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 / 7 < 1) {
+        times.put(review.getNo(), diff/ 1000 / 60 / 60 / 24 + "일 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 / 7 / 30 < 1) {
+        times.put(review.getNo(), diff/ 1000 / 60 / 60 / 24 / 7 + "주 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 / 365 < 1) {
+        times.put(review.getNo(), Calendar.MONTH - review.getRegisteredDate().getMonth() + "달 전");
+      } else {
+        times.put(review.getNo(), Calendar.YEAR - review.getRegisteredDate().getYear() + "년 전");
+      }
     }
 
     ModelAndView mv = new ModelAndView();
+    mv.addObject("times", times);
     mv.addObject("loginUser", loginUser);
     mv.addObject("list", list);
 

@@ -11,7 +11,7 @@
 <style>
 
  #sidebar {
-   position: fixed;
+   position: absolute;
    right:250px;
    top:70px;
    box-sizing: content-box;
