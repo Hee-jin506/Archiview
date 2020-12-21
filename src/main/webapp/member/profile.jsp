@@ -18,67 +18,102 @@
    margin:0px;
  }
  
+ #container {
+      width:960px; /* 컨테이너 너비 */
+      padding:20px; /* 패딩 */      
+      margin:0 auto;  /* 화면 중앙에 배치 */
+      margin-top: 60px;
+    }
+    
+    #contents {
+      border-radius: 10px;
+      background-color: #141517;
+      width: 620px;  /* 너비 */
+      padding: 20px;  /* 패딩 */
+      float: left;  /* 왼쪽으로 플로팅 */
+    }
+ 
  img.profile {
-  border-radius: 1px;
+  border-radius: 100px;
  }
-
+ 
+ #member img {
+ margin-left : 20px;
+ margin-right : 30px;
+ float: left;
+ }
+ #member p {
+ float: left;
+ }
+ 
+ #icon1 {
+ clear: both;
+ margin-bottom : 50px;
+ }
+ #icon1 a {
+ margin-top : 50px;
+ margin-left : 95px;
+ float: left;
+ }
+ #reviews {
+ clear: both;
+ }
+ 
+ #reviews img{
+ float:left;
+ margin-right : 10px;
+ }
 </style>
 </head>
 <body>
 <jsp:include page="/app/main/topbar"/>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<input type='hidden' name='no' value='${member.no}'><br>
-<img src='../../upload/${member.photo}_150x150.jpg'><br>
-${member.nickName}<br>
-${member.email}<br>
-${member.intro}<br>
+<div id="container">
+  <div id="contents">
+		<div id="member">
+			<input type='hidden' name='no' value='${member.no}'><br>
+			<img class="profile" src='../../upload/${member.photo}_150x150.jpg'><br>
+			<p>${member.nickName}<br>
+			   ${member.email}<br><br>
+         ${member.intro}</p>
+		</div>
+		
+    <a href='../../board/form.html'>팔로우</a><br>
 
-<a href='../../board/form.html'>팔로우</a><br>
-
-<!--
-<<c:set var='status' value='${follow.status}'/>
-<c:choose>
-  <c:when test='${follow.status == 1}'>
-    <a href='inactive?no=${follow.no}'>[팔로우]</a>
-    </c:when>
-  <c:when test='${follow.status == 2}'>
-    <a href='active?no=${follow.no}'>[언팔로우]</a>
-    </c:when>
-</c:choose>
--->
-
-
-
-	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" alt="리뷰"><br>
-	    리뷰 
-	</a>
-	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" alt="팔로워"><br>
-	    팔로워 
-	</a>
-	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" alt="팔로잉"><br>
-	    팔로잉 
-	</a>
-	<a href="<%=getServletContext().getContextPath()%>/app/member/profileSavedReviews?no=${member.no}"> 
-	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" alt="저장"><br>
-	    저장 
-	</a>
-<br>
-<c:forEach items="${member.reviews}" var="rv"> 
-<input type='hidden' name='no' value='${rv.no}'><br>
-  ${rv.no}<br>
-   <img src='${rv.stcUrl}'><br>
-</c:forEach>
-<jsp:include page="/app/main/sidebar"/>
-<jsp:include page="/main/footer.jsp"/>
+		<div id="icon1">
+		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" width=30px alt="리뷰"><br>
+		      리뷰 
+		  </a>
+		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" width=30px alt="팔로워"><br>
+		      팔로워 
+		  </a>
+		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" width=30px alt="팔로잉"><br>
+		      팔로잉 
+		  </a>
+		  <a href="<%=getServletContext().getContextPath()%>/app/member/profileSavedReviews?no=${member.no}"> 
+		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" width=30px alt="저장"><br>
+		      저장 
+		  </a>
+		</div>
+		
+			<div id = "reviews">
+			<c:forEach items="${member.reviews}" var="rv"> 
+			<input type='hidden' name='no' value='${rv.no}'>
+			  <c:choose>
+				  <c:when test="${empty rv.stcUrl}">
+				    <img width="280px" src="<%=getServletContext().getContextPath()%>/main_resource/null.png">
+				  </c:when>
+				  <c:otherwise>
+				   <img width="280px" src='${rv.stcUrl}'><br>
+				  </c:otherwise>
+			  </c:choose>
+			</c:forEach>
+			</div>
+    </div>
+  <jsp:include page="/app/main/sidebar"/>
+</div>
 </body>
 </html>
