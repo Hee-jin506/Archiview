@@ -66,12 +66,12 @@ String keyword = request.getParameter("keyword");
     <div id='icon'>
   
       <a href='<%=getServletContext().getContextPath()%>'>
-      <img src='<%=getServletContext().getContextPath()%>/main_resource/home.png' alt='메인화면'></a> <a
-        href='<%=getServletContext().getContextPath()%>/app/write/movieSearch'>
-        <img src='<%=getServletContext().getContextPath()%>/main_resource/plus.png' alt='글쓰기'></a> <a
-        href='<%=getServletContext().getContextPath()%>/app/main/following'>
-        <img src='<%=getServletContext().getContextPath()%>/main_resource/heart.png' alt='팔로우한 회원의 피드'></a> <a
-        href='<%=getServletContext().getContextPath()%>/app/main/newsfeed'>
+      <img src='<%=getServletContext().getContextPath()%>/main_resource/home.png' alt='메인화면'></a>
+      <a href='<%=getServletContext().getContextPath()%>/app/write/movieSearch'>
+      <img src='<%=getServletContext().getContextPath()%>/main_resource/plus.png' alt='글쓰기'></a>
+      <a href='<%=getServletContext().getContextPath()%>/app/main/following'>
+      <img src='<%=getServletContext().getContextPath()%>/main_resource/heart.png' alt='팔로우한 회원의 피드'></a>
+      <a href='<%=getServletContext().getContextPath()%>/app/main/newsfeed'>
         <img src='<%=getServletContext().getContextPath()%>/main_resource/bell.png' alt='알람'></a>
     </div>
 <% Member member = (Member) session.getAttribute("loginUser"); %>

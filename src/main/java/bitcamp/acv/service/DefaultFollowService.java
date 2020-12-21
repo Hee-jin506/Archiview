@@ -22,6 +22,27 @@ public class DefaultFollowService implements FollowService {
   }
 
   @Override
+  public int deleteUser(Follow follow) throws Exception {
+    return followDao.deleteUser(follow);
+  }
+
+  @Override
+  public int addUser(Follow follow) throws Exception {
+   if (follow.getFollowedType() == Follow.MEMBER) {
+     followDao.insertUser(follow);
+   }
+   return -1;
+  }
+
+  @Override
+  public int addTag(Follow follow) throws Exception {
+    if (follow.getFollowedType() == Follow.TAG) {
+      return followDao.insertTag(follow);
+    }
+    return -1;
+  }
+
+  @Override
   public List<Follow> getByMemberNo() throws Exception {
     return followDao.findByMemberNo();
   }
@@ -36,12 +57,8 @@ public class DefaultFollowService implements FollowService {
     return followDao.findByNo(no);
   }
 
-  @Override
-  public int addFollow(Follow follow) throws Exception {
-    return followDao.follow(follow);
-  }
 
-
+  // target을 찾는다.
   @Override
   public Object getTarget(Follow follow) throws Exception {
     if (follow.getFollowedType() == Follow.MEMBER) {

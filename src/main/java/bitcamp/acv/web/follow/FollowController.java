@@ -3,9 +3,11 @@ package bitcamp.acv.web.follow;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,6 +26,38 @@ public class FollowController {
   @Autowired MemberService memberService;
   @Autowired FollowService followService;
   @Autowired TagService tagService;
+
+  // 유저 팔로우
+  @RequestMapping("addUser/{email}")
+  public String addUser(@PathVariable String email,
+      int followedType,
+      HttpSession session,
+      HttpServletRequest request)
+      throws Exception {
+
+    // 새로운 팔로우 객체 생성
+    Follow follow = new Follow();
+
+    // 현재 유저
+    follow.setFollowingMember(((Member)session.getAttribute("loginUser")));
+
+    follow.setFollowedType(Integer.parseInt(request.getParameter("followedType")));
+    follow.setFollowedNo((Member)request.setAttribute("name", email);;
+
+    followService.addUser(follow);
+    return "redirect:../member/detail?" + request.getHeader("Referer");
+  }
+
+  // 유저 언팔로우
+  @RequestMapping("deleteUser")
+  public String delete(Follow follow, HttpSession session, HttpServletRequest request)
+      throws Exception {
+
+    follow.setFollowingMember(((Member)session.getAttribute("loginUser")));
+
+    followService.deleteUser(follow);
+    return "redirect:" + request.getHeader("Referer");
+  }
 
   // 팔로우 리스트
   @RequestMapping("list")
@@ -56,6 +90,7 @@ public class FollowController {
 
     // targer .jsp 불러오기
     Object target = followService.getTarget(follow);
+
     System.out.println(target instanceof Member);
     System.out.println(target instanceof Tag);
 

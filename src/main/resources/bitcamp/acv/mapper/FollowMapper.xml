@@ -58,9 +58,21 @@
   </select>
  
  <!-- 팔로잉 insert -->
-  <insert id="follow" parameterType="follow">
+  <insert id="insertUser" parameterType="follow">
   insert into acv_flw(flwing_mbr, target, fano)
-  values(#{followingMember.no},#{followedType},#{followedNo})
+  values(#{followingMember.no},#{followedNo},#{followedType})
  </insert>
+ 
+  <!-- 팔로잉 insert -->
+  <insert id="insertTag" parameterType="follow">
+  insert into acv_flw(flwing_mbr, target, fano)
+  values(#{followingMember.no},#{followedNo},#{followedType})
+ </insert>
+ 
+ <!-- 언팔로우 -->
+  <update id="deleteUser" parameterType="follow">
+   delete from acv_flw
+    where flwing_mbr=#{mno} and target=#{followedNo}
+  </update>
 
 </mapper>

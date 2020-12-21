@@ -8,5 +8,8 @@ public interface FollowDao {
   List<Follow> findByMemberNo() throws Exception;
 
   Follow findByNo(int no) throws Exception; // 팔로우 상세
-  int follow(Follow follow) throws Exception; // 팔로우 등록
+
+  int insertUser(Follow follow) throws Exception; // 유저 팔로우
+  int insertTag(Follow follow) throws Exception; // 태그 팔로우
+  int deleteUser(Follow follow) throws Exception; // 유저 언팔로우
 }

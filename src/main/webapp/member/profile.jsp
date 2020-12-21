@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head><title>회원 프로필 화면</title>
@@ -18,8 +19,9 @@
  }
  
  img.profile {
-  border-radius: 100px;
+  border-radius: 1px;
  }
+
 </style>
 </head>
 <body>
@@ -37,16 +39,21 @@
 ${member.nickName}<br>
 ${member.email}<br>
 ${member.intro}<br>
+<a href='../../board/form.html'>팔로우</a><br>
 
-<%-- <c:set var='status' value='${member.status}'/>
+<!--
+<<c:set var='status' value='${follow.status}'/>
 <c:choose>
-  <c:when test='${member.status == 1}'>
-    <a href='inactive?no=${member.no}'>[팔로우]</a>
+  <c:when test='${follow.status == 1}'>
+    <a href='inactive?no=${follow.no}'>[팔로우]</a>
     </c:when>
-  <c:when test='${member.status == 2}'>
-    <a href='active?no=${member.no}'>[언팔로우]</a>
+  <c:when test='${follow.status == 2}'>
+    <a href='active?no=${follow.no}'>[언팔로우]</a>
     </c:when>
-</c:choose> --%>
+</c:choose>
+-->
+
+
 
 	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" alt="리뷰"><br>

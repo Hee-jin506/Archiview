@@ -1,6 +1,6 @@
 package bitcamp.acv.domain;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Like {
 
@@ -11,9 +11,8 @@ public class Like {
   private Member likingMember; // 좋아요한 회원 mno
   private int likedType; // 좋아요된 대상 유형 lano
   private int likedNo; // 좋아요된 대상 target
-  private Date likedDate; // 좋아요 누른 일시 ldt
+  private Timestamp likedDate; // 좋아요 누른 일시 ldt
   private String likedTypeName;
-
 
 
   public int getNo() {
@@ -40,24 +39,20 @@ public class Like {
   public void setLikedNo(int likedNo) {
     this.likedNo = likedNo;
   }
-  public Date getLikedDate() {
-    return likedDate;
-  }
-  public void setLikedDate(Date likedDate) {
-    this.likedDate = likedDate;
-  }
-  public static int getReview() {
-    return REVIEW;
-  }
-  public static int getComment() {
-    return COMMENT;
-  }
+
   public String getLikedTypeName() {
     return likedTypeName;
   }
   public void setLikedTypeName(String likedTypeName) {
     this.likedTypeName = likedTypeName;
   }
+  public Timestamp getLikedDate() {
+    return likedDate;
+  }
+  public void setLikedDate(Timestamp likedDate) {
+    this.likedDate = likedDate;
+  }
+
 
 }
 
