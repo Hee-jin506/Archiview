@@ -49,14 +49,12 @@ Member loginUser = (Member) session1.getAttribute("loginUser");
 <%
 for (Like like : likes) {
   if (like.getLikingMember().getNo() != loginUser.getNo()) {
-    
-    String[] url = like.getLikingMember().getPhoto().split(".");
-    int ul = url.toString().length();
-    System.out.println(ul);
+
+    String[] url = like.getLikingMember().getPhoto().split("\\.");
 %>
 
 <tr>
-<td><img src=<%=getServletContext().getContextPath()+"/upload/" + like.getLikingMember().getPhoto() +"_35x35.jpg"%>></td>
+<td><img src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
 
 
 <td><%=like.getLikingMember().getNickName()%> 님이 회원님의</td>
@@ -64,12 +62,13 @@ for (Like like : likes) {
 <%
   if (like.getLikedType() == 1) {
 %>
-    <a href="<%=getServletContext().getContextPath()%>/app/review/detail?no=${like.likedNo}">
+    <a href="<%=getServletContext().getContextPath()%>/app/review/detail?no=<%=like.getLikedNo()%>">
     <td><%=like.getLikedTypeName()%></a> 를 좋아합니다. </td>
 <%
   } else {
 %>
-    <td><%=like.getLikedTypeName()%> 을 좋아합니다.</td>
+  <a href="<%=getServletContext().getContextPath()%>/app/comment/view?reviewNo=<%=like.getLikedNo()%>">
+    <td><%=like.getLikedTypeName()%></a> 을 좋아합니다.</td>
 <%
   }
 %>
