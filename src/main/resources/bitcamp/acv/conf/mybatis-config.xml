@@ -41,7 +41,9 @@
     <mapper resource="bitcamp/acv/mapper/ReviewMapper.xml"/>
     <mapper resource="bitcamp/acv/mapper/ReportMapper.xml"/>
     <mapper resource="bitcamp/acv/mapper/CommentMapper.xml"/>
+    <mapper resource="bitcamp/acv/mapper/FollowMapper.xml"/>
     <mapper resource="bitcamp/acv/mapper/LikeMapper.xml"/>
+
   </mappers>
 
 </configuration>

@@ -9,7 +9,7 @@
   public static final int COMMENT = 2;
 
   private int no; // 좋아요 이력 번호 lno
-  private Member likingMember; // 좋아요한 회원 mno // 로그인 한 회원의 번호를 저장
+  private Member likingMember; // 좋아요한 회원 mno 
   private int likedType; // 좋아요된 대상 유형 lano
   private int likedNo; // 좋아요된 대상 target
   private Date likedDate; // 좋아요 누른 일시 ldt
@@ -42,6 +42,7 @@ MariaDB [studydb]> select * from acv_lk_able;
   <association property="likingMember" javaType="Member">
     <id column="mno" property="no"/>
     <result column="nick" property="nickName"/>
+    <result column="photo" property="photo"/>
   </association>
 
   </resultMap>
@@ -54,6 +55,7 @@ MariaDB [studydb]> select * from acv_lk_able;
       l.target,
       l.ldt,
       mb.nick,
+      mb.photo,
       la.name
   </sql>
        
@@ -64,6 +66,15 @@ MariaDB [studydb]> select * from acv_lk_able;
       inner join acv_mbr mb on mb.mno = l.mno
       inner join acv_lk_able la on la.lano = l.lano
     order by l.ldt desc;
+  </select>
+  
+  <select id="getTime" resultMap="LikeMap" parameterType="map">
+    select
+    lno,
+    ldt
+    from
+    acv_like
+    order by ldt desc;
   </select>
 
 
