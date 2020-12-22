@@ -5,7 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head><title>회원 프로필 화면</title>
+<link rel="stylesheet" 
+      href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/bootstrap.min.css?after">
 <style>
+
  body {
    background-color : #000000;
    color: #ffffff;
@@ -64,6 +67,7 @@
  margin-right : 10px;
  }
 </style>
+
 </head>
 <body>
 <jsp:include page="/app/main/topbar"/>
@@ -77,9 +81,7 @@
 			   ${member.email}<br><br>
          ${member.intro}</p>
 		</div>
-		
     <a href='../../board/form.html'>팔로우</a><br>
-
 		<div id="icon1">
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" width=30px alt="리뷰"><br>
@@ -115,5 +117,6 @@
     </div>
   <jsp:include page="/app/main/sidebar"/>
 </div>
+<script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
