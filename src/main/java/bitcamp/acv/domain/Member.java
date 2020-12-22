@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Member {
 
+
   public static final int GENERAL = 1;
   public static final int MANAGER = 0;
 
@@ -32,11 +33,14 @@ public class Member {
   private String statusTitle;
   private Date statusModifiedDate; // 회원 상태 변경일
 
+  private int following;
   private int followers;
   private int likers;
 
   private List<Review> reviews; // 본인의 게시물들
   private List<Review> saved; // 저장한 게시물들
+
+  private boolean followed;
 
   public int getNo() {
     return no;
@@ -153,5 +157,17 @@ public class Member {
   }
   public void setSaved(List<Review> saved) {
     this.saved = saved;
+  }
+  public int getFollowing() {
+    return following;
+  }
+  public void setFollowing(int following) {
+    this.following = following;
+  }
+  public boolean isFollowed() {
+    return followed;
+  }
+  public void setFollowed(boolean followed) {
+    this.followed = followed;
   }
 }

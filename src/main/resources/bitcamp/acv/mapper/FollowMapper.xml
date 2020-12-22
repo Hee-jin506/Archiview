@@ -16,12 +16,6 @@
     <id column="mno" property="no"/>
     <result column="nick" property="nickName"/>
   </association>
-  
-  <collection property="members" ofType="Member">
-    <id column="mno"          property="no"/>
-     <result column="nick"    property="nickName"/>
-    <result column="email"   property="email"/>
-    </collection>
  </resultMap>
  
   <sql id="sql1">
@@ -40,65 +34,65 @@
     inner join acv_flw_able fa on f.fano = fa.fano
   </sql> 
  
- <!-- 로그인 멤버의 팔로우 타겟 상세 -->
+ <!-- 팔로우 타겟 상세 -->
  <select id="findByNo" resultMap="FollowMap" parameterType="int">
     <include refid="sql1"/>
     where
-      f.fno=#{fno}
+      f.fno=#{fno} 
   </select>
  
- <!-- 로그인 멤버의 팔로우 리스트 -->
+ <!-- 팔로우 리스트 -->
  <select id="findAll" resultMap="FollowMap">
   <include refid="sql1"/>
   order by
     mb.nick desc
   </select>
-  
-  <!-- 사용자 팔로잉 목록 -->
-  <select id="findByMemberNo" resultMap="FollowMap" parameterType="int">
-  <include refid="sql1"/>
-  where
-    mb.mno=#{followingMember}
-  order by
-    f.fno desc
-  </select>
- 
+   
  <!-- 팔로잉 유저 insert -->
   <insert id="insertUser" parameterType="follow">
   insert into acv_flw(flwing_mbr, target, fano)
-  values(#{followingMember.no},#{members.mno},#{followedType})
+  values(#{followingMember.no},#{followedNo}, 1)
  </insert>
  
   <!-- 팔로잉 태그 insert -->
   <insert id="insertTag" parameterType="follow">
   insert into acv_flw(flwing_mbr, target, fano)
-  values(#{followingMember.no},#{followedNo},#{followedType})
+  values(#{followingMember.no},#{followedNo}, 2)
  </insert>
  
+  <update id="deleteUser" parameterType="follow">
+   delete from acv_flw
+    where flwing_mbr=#{followingMember.no} and fano=1 and target=#{followedNo}
+  </update>
+  
   <!-- 팔로우 상태 변경 -->
   <!-- 1. 팔로우 상태 -->
    <update id="active" parameterType="int">
     update acv_flw set
      stat = 1
-    where fno=#{no}
+    where flwing_mbr=#{followingMember.no} and target=#{followedNo}
   </update>
   
     <!-- 2. 언팔로우 상태 -->
   <update id="inactive" parameterType="int">
   update acv_flw set
     stat = 2
-  where fno=#{no}
+  where flwing_mbr=#{followingMember.no} and target=#{followedNo}
   </update>
   
    <!-- 언팔로우(delete) 태그, 언팔로우(delete) 유저
+   사용자 팔로잉 목록
+  <select id="findByFollowList" resultMap="FollowMap2" parameterType="int">
+  <include refid="sql1"/>
+  where
+    mb.mno=#{followingMember} and stat={status}
+  order by
+    f.fno desc
+  </select>
+  
   <update id="deleteTag" parameterType="follow">
    delete from acv_flw
     where flwing_mbr=#{mno} and fano=#{followedType} and target=#{followedNo}
-  </update>
-  
-  <update id="deleteUser" parameterType="follow">
-   delete from acv_flw
-    where flwing_mbr=#{followingMember.no} and fano=#{followedType} and target=#{followedNo}
   </update>
    -->
 

@@ -1,7 +1,6 @@
 package bitcamp.acv.web.follow;
 
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,27 +22,36 @@ public class FollowController {
   @Autowired FollowService followService;
   @Autowired TagService tagService;
 
-  // 유저 팔로우
+  // 멤버 팔로우
   @RequestMapping("addUser")
-  public String addUser(
-      HttpSession session,
-      HttpServletRequest request)
-          throws Exception {
-
-    // 새로운 팔로우 객체 생성
-    Follow follow = new Follow();
-
+  public String addUser(Follow follow, HttpSession session) throws Exception {
     // 현재 로그인 멤버
-    follow.setFollowingMember(((Member)session.getAttribute("loginUser")));
-
-    // 타입에 MEMBER = 1 일경우
-    // 현재 전체 멤버 리스트를 가져온다.
-    List<Member> memberList = memberService.list(null);
-    if (follow.getFollowedType() == Follow.MEMBER) {
-      System.out.println(memberList);
-    }
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    follow.setFollowingMember(loginUser);
 
     followService.addUser(follow);
+    return "redirect:../main";
+  }
+
+  @RequestMapping("deleteUser")
+  public String deleteUser(Follow follow, HttpSession session) throws Exception {
+    // 현재 로그인 멤버
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    follow.setFollowingMember(loginUser);
+
+    followService.deleteUser(follow);
+    return "redirect:../main";
+  }
+
+  // 태그 팔로우
+  @RequestMapping("addTag")
+  public String addTag(Follow follow, HttpSession session) throws Exception {
+
+    // 현재 로그인 멤버
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    follow.setFollowingMember(loginUser);
+
+    followService.addTag(follow);
     return "redirect:list";
   }
 
@@ -58,13 +66,13 @@ public class FollowController {
   @RequestMapping("inactive")
   public String inactive(int no) throws Exception {
     if (followService.inactive(no) == 0) {
-      throw new Exception("해당 번호의 회원이 없습니다.");
+      throw new Exception("해당 회원이 존재하지 않습니다.");
     } else {
       return "redirect:list";
     }
   }
 
-  // 팔로우 리스트
+  // 전체 리스트
   @RequestMapping("list")
   protected ModelAndView list() throws Exception {
     List<Follow> list = followService.list();
@@ -74,7 +82,7 @@ public class FollowController {
     return mv;
   }
 
-  // 팔로우 상세
+  // 전체 리스트 상세
   @RequestMapping("detail")
   protected ModelAndView view(int no,
       Member member,
