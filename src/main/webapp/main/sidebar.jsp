@@ -11,9 +11,10 @@
 <style>
 
  #sidebar {
-   position: fixed;
-   right:250px;
-   top:70px;
+   float:right;
+   xposition: absolute;
+   xright:250px;
+   xtop:70px;
    box-sizing: content-box;
    width: 300px;
  }
@@ -26,7 +27,9 @@
   color: white;
   width: 250px;
   height: 220px;
-  margin: 10px
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
  }
  
  .sidebar hr {

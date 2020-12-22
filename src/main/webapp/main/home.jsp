@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>아카이뷰</title>
+<link rel="stylesheet" href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/custom.css">
 <style>
  body {
    background-color : #000000;
    margin: 0px;
+   color: white;
  }
  
  p {
@@ -26,5 +28,6 @@
 <jsp:include page="/app/main/topbar"/>
 <jsp:include page="/app/main/sidebar"/>
 <jsp:include page="/main/footer.jsp"/>
+<jsp:include page="/app/review/mainFeed"/>
 </body>
 </html>

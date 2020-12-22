@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
+import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import net.coobird.thumbnailator.ThumbnailParameter;
 import net.coobird.thumbnailator.Thumbnails;
@@ -25,6 +27,7 @@ public class MemberController {
 
   @Autowired MemberService memberService;
   @Autowired ServletContext servletContext;
+  @Autowired FollowService followService;
 
   @RequestMapping("active")
   public String active(int no) throws Exception {
@@ -204,8 +207,17 @@ public class MemberController {
 
   @RequestMapping("list")
   public ModelAndView list(String keyword) throws Exception {
+    System.out.println("memberList 실행!");
     List<Member> list = memberService.list(keyword);
+    List<Follow> follows = followService.list();
     ModelAndView mv = new ModelAndView();
+
+    Follow[] myFollow = new Follow[follows.size()];
+    for (int i = 0; i < myFollow.length; i++) {
+      myFollow[i] = follows.get(i);
+    }
+
+    mv.addObject("follows", follows);
     mv.addObject("list", list);
     mv.setViewName("/member/list.jsp");
     return mv;

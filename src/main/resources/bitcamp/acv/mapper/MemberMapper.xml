@@ -49,8 +49,9 @@
   <result column="rdt" property="registeredDate" />
   <result column="stno" property="status" />
   <result column="stat_mdt" property="statusModifiedDate" />
-  <result column="flw_length" property="followers" />
+  <result column="flw_length" property="followers"/>
   <result column="lk_length"  property="likers"/>
+
  </resultMap>
  
  

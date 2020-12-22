@@ -23,6 +23,9 @@
 <head>
 <title>[신고 상세 정보]</title>
 <style>
+  body {
+    background-color:  #000000 !important;
+  }
   #container {
     width: 1024px;
     margin: 0px auto;

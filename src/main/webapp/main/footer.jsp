@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
   #footer {
-  position: fixed;
+  position: absolute;
   bottom:0px;
   color: #B9B9BA;
   height: 50px;
