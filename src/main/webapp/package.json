@@ -11,5 +11,10 @@
     "bootstrap": "^5.0.0-beta1",
     "sweetalert2": "^10.12.5"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.1.0",
+    "node-sass": "^5.0.0"
+  }
 }
