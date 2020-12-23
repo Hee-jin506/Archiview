@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아카이뷰</title>
-<link rel="stylesheet" href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/custom.css">
+<link rel="stylesheet" href="<%=getServletContext().getContextPath()%>/css/bootstrap/dist/css/custom.css">
 <style>
  body {
    background-color : #000000;
@@ -25,10 +25,9 @@
 </style>
 </head>
 <body>
-1
-<%-- <jsp:include page="/app/main/topbar"/>
+<jsp:include page="/app/main/topbar"/>
 <jsp:include page="/app/main/sidebar"/>
 <jsp:include page="/main/footer.jsp"/>
-<jsp:include page="/app/review/mainFeed"/> --%>
+<jsp:include page="/app/review/mainFeed"/>
 </body>
 </html>

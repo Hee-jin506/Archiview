@@ -1,127 +1,131 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="appRoot" value="${pageContext.servletContext.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=ege"/>
-<meta nmae="viewport" 
-content="user-scalable=no,inital-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,width=device-width">
-
-<!-- 구글 로그인 api -->
-<meta name="google-signin-scope" content="profile email">
-<meta name="google-signin-client_id" 
-  content="744106584862-nh6rv1la56329v9iu9t2oo8lo3j7c5b3.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-<title>로그인</title>
-
+<title>Insert title here</title>
 <style>
-  #header img{
-    position: absolute;
-    width: 527px;
-    left: 456px;
-    top: 80px;
-  }
+.box {
+position: relative;
+margin-top: 50px;
+left: 50%;
+margin-left: -200px;
+width: 400px;
+height: 600px;
+color: white;
+}
+
+#logo {
+display: block;
+margin: 0px auto;
+}
+
+#intro {
+text-align: center;
+font-size: 30px; font-weight: bold;
+}
+
+#put {
+position: relative;
+display: block;
+margin: 40px auto;
+}
+
+#next {
+border-radius: 3px;
+border: 1px solid #6B6B6B;
+background: #000000;
+padding: 5px;
+text-align: center;
+color: white;
+width: 60px; height: 35px;
+margin-left: 170px;
+}
   
-  body {
-  background-color: #000000;color: #ffffff;
-  }
-  
+#next:hover {
+background: #626473;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 255, 255, 0.6);
+  outline: 0 none;
+color: #F21BC9;
+}
+
+#search, #add {
+display: block;
+margin-top: 20px;
+border-top: 1px solid #6B6B6B;
+text-align: center;
+text-decoration: none;
+margin: 0 auto;
+padding-top: 12px;
+width: 300px;
+height: 50px;
+}
 </style>
 </head>
-<body>
 
-<div class="header">
-       <img src="../logo.svg" alt="로고">
-</div>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-<h2>당신의 감성을 담은</h2>
-<h2>영화 후기를 만들어 보세요.</h2>
-<form method="post">
-<label>이메일 주소<input type="email" name="email" value=<%=request.getAttribute("email")%> autofocus required></label><br>
-<label>비밀번호<input type="password" name="password" autofocus required></label><br>
-<label>이메일 저장<input type="checkbox" name="saveEmail" checked></label><br>
-<%
-if (((Boolean) request.getAttribute("wrongInput")) == true) {
-%>
-<p>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</p>
-<%
-} else if (((Boolean) request.getAttribute("withdrawedMember")) == true) {
-%>
-<p>이미 탈퇴한 회원입니다. 새로 가입해주세요.</p>
-<%
-}
-%>
-<button>로그인</button>
-</form>
-
-<a href="<%=getServletContext().getContextPath()%>/auth/searchPassword.html">비밀번호를 잊으셨나요?</a>
-
-<h4>계정이 없으신가요? <a href="../../member/form.html">지금 가입하세요.</a> </h4>
-
-<!-- 구글계정으로 로그인 -->
-<div class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></div>
-    <script>
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
+<body style='background-color: black'>
+<div class='box'>
+    <img id='logo' src="<%=getServletContext().getContextPath()%>/Archiview_logo.png" alt="로고">
+  <div id='intro'>
+    당신의 감성을 담은<br>
+    영화 후기를 만들어 보세요.
+  </div>
+  
+  <div id="put">
+    <form class="form-horizontal" method="post">
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label">이메일 </label>
+        <div class="col-sm-8">
+          <input type="email" class="form-control" name="email" value=<%=request.getAttribute("email")%> autofocus required
+          style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">비밀번호</label>
+        <div class="col-sm-8">
+          <input type="password" class="form-control" name="password" autofocus required
+          style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-10">
+          <div class="checkbox">
+          <label>
+            <input type="checkbox" name="saveEmail" checked> 이메일 저장
+          </label>
+          </div>
+        </div>
+      </div>
+      <%
+      if (((Boolean) request.getAttribute("wrongInput")) == true) {
+      %>
+      <p>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</p>
+      <%
+      } else if (((Boolean) request.getAttribute("withdrawedMember")) == true) {
+      %>
+      <p>이미 탈퇴한 회원입니다. 새로 가입해주세요.</p>
+      <%
       }
-    </script>
-<br>
-    
-<!-- 구글계정 로그아웃 -->
-<a href="#" onclick="signOut();">구글 로그아웃</a>
-<script>
-    function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
-    }
-</script>
-
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-<a id="kakao-login-btn"></a>
-
-<a href="http://developers.kakao.com/logout"></a>
- 
-<!-- Kakao Login -->
-<script type="text/javascript">
-      // 사용할 앱의 JavaScript 키를 설정해 주세요.
-      Kakao.init('45ebe784a7682a8bfb5d12af670b792c');
-      // 카카오 로그인 버튼을 생성합니다.
-      Kakao.Auth.createLoginButton({
-        container: '#kakao-login-btn',
-        success: function(authObj) {
-          // 로그인 성공시, API를 호출합니다.
-          Kakao.API.request({
-            url: '/v1/user/me',
-            success: function(res) {
-              console.log(JSON.stringify(res.kaccount_email));
-              console.log(JSON.stringify(res.id));
-              console.log(JSON.stringify(res.properties.profile_image));
-              console.log(JSON.stringify(res.properties.nickname));
-            },
-            fail: function(error) {
-              alert(JSON.stringify(error));
-            }
-          });
-        },
-        fail: function(err) {
-          alert(JSON.stringify(err));
-        }
-      });
-</script>
+      %>
+      <button id='next'>로그인</button>
+    </form>
+  </div>
+  
+  <div id='search'>
+    <a href="<%=getServletContext().getContextPath()%>/app/auth/searchPassword.html">비밀번호를 잊으셨나요?</a>
+  </div>
+  
+  <div id='add'>
+    계정이 없으신가요? <a href="<%=getServletContext().getContextPath()%>/member/form.html">지금 가입하세요.</a>
+  </div>
+</div>
 </body>
 </html>

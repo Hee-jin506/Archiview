@@ -9,13 +9,13 @@
 <style>
 
 #box {
-position: absolute;
-width: 600px;
+position: relative;
+width: 620px;
 height: 500px;
 border: 1px solid #6B6B6B; border-radius: 5px;
 background-color: #141517;
-top: 50%; left: 50%;
-margin-top: -250px; margin-left: -300px;
+left: 50%;
+margin-top: 100px; margin-left: -300px;
 }
 
 .menus {
@@ -112,7 +112,7 @@ color: #F21BC9;
       <div class="form-group">
         <label for="inputIntro" class="col-sm-3 control-label">소개</label>
         <div class="col-sm-8">
-          <textarea class='form-control' id='inputIntro' name='intro' rows='5' style="border:1px solid #6B6B6B; background-color: #000000; color: white;">${member.intro}</textarea>
+          <textarea class='form-control' id='inputIntro' name='intro' rows='5' style="border:1px solid #6B6B6B; resize: none; background-color: #000000; color: white;">${member.intro}</textarea>
         </div> 
       </div> 
       <button id='next'>변경</button>

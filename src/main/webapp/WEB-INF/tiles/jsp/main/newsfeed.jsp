@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
-<head><title>좋아요 화면</title>
+<head><title>알람 화면</title>
 <style>
  body {
    background-color : #000000;
@@ -32,14 +32,11 @@
 
 <jsp:include page="/app/main/topbar"/>
 
-<h1>좋아요</h1>
+<h1>뉴스피드</h1>
 
 <br>
 <br>
 <br>
-<br>
-<br>
-
 
 <%
 List<Like> likes = (List<Like>) request.getAttribute("list");
@@ -52,64 +49,43 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 <%
 for (Like like : likes) {
   if (like.getLikingMember().getNo() != loginUser.getNo()) {
-
     String[] url = like.getLikingMember().getPhoto().split("\\.");
     
     if (like.getLikedType() == 1) {
       for (Review review : reviews) {
-        
-      int lno = like.getLikedNo();
-      System.out.println(lno);
-      System.out.println("----");
-      
-      System.out.println(review.getNo());
-        
+        if (review.getNo() == like.getLikedNo()) {
+
+        %>
+        <tr>
+          <td><img src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
+          <td><%=like.getLikingMember().getNickName()%> 님이 회원님의</td>
+          <a href="<%=getServletContext().getContextPath()%>/app/review/detail?no=<%=like.getLikedNo()%>">
+          <td><%=like.getLikedTypeName()%></a> 를 좋아합니다. </td>
+          <td><%=((Map<Integer, String>)request.getAttribute("times")).get(like.getNo())%></td>
+        </tr>
+        <br>
+<%
+        }
       }
-      
-      
-      
-      
+    } else {
+      for (Comment comment : comments) {
+        if (comment.getNo() == like.getLikedNo()) {
         
+
 %>
         <tr>
-        <td><img src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
-
-
-        <td><%=like.getLikingMember().getNickName()%> 님이 회원님의</td>
-        <a href="<%=getServletContext().getContextPath()%>/app/review/detail?no=<%=like.getLikedNo()%>">
-    <td><%=like.getLikedTypeName()%></a> 를 좋아합니다. </td>
-        
+          <td><img src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
+          <td><%=like.getLikingMember().getNickName()%> 님이 회원님의</td>
+          <a href="<%=getServletContext().getContextPath()%>/app/comment/view?reviewNo=<%=like.getLikedNo()%>">
+          <td><%=like.getLikedTypeName()%></a> 을 좋아합니다.</td>
+          <td><%=((Map<Integer, String>)request.getAttribute("times")).get(like.getNo())%></td>
+        </tr>
+        <br>
 <%
-    
+       }
+      }
     }
-%>
-
-<tr>
-<td><img src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
-
-
-<td><%=like.getLikingMember().getNickName()%> 님이 회원님의</td>
-
-<%
-  if (like.getLikedType() == 1) {
-%>
-    <a href="<%=getServletContext().getContextPath()%>/app/review/detail?no=<%=like.getLikedNo()%>">
-    <td><%=like.getLikedTypeName()%></a> 를 좋아합니다. </td>
-<%
-  } else {
-%>
-  <a href="<%=getServletContext().getContextPath()%>/app/comment/view?reviewNo=<%=like.getLikedNo()%>">
-    <td><%=like.getLikedTypeName()%></a> 을 좋아합니다.</td>
-<%
   }
-%>
-<td><%=((Map<Integer, String>)request.getAttribute("times")).get(like.getNo())%></td>
-</tr>
-<br>
-<% 
-  }
-%>
-<%
 }
 %>
 

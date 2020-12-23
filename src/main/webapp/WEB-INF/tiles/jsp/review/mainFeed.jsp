@@ -74,11 +74,9 @@ for (Review review : list) {
 <% if (!review.getWriterNick().equals(((Member)(request.getAttribute("loginUser"))).getNickName())) {%>
 <form>
 <% if (review.getIsFollowing() != 0) { %>
-<button class='follow'>언팔로우</button>
-<button class="btn btn-primary" type="submit" style='background-color: #000000;'>팔로우</button>
+<button class="btn btn-twitter">팔로우</button>
 <%} else {%>
-<button class='follow' >팔로우</button>
-<button class="btn btn-primary" type="submit" style='background-color: #000000;'>팔로우</button>
+<button class="btn btn-archiview">팔로우</button>
 <%} %>
 </form>
 <%}%>

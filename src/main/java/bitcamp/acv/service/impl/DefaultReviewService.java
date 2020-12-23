@@ -76,6 +76,11 @@ public class DefaultReviewService implements ReviewService {
   }
 
   @Override
+  public List<Review> getByMemberNo(int no) throws Exception {
+    return reviewDao.findByMemberNo(no);
+  }
+
+  @Override
   public int delete(int no) throws Exception {
     return reviewDao.delete(no);
   }
