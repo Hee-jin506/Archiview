@@ -64,7 +64,7 @@
 </c:forEach>
 </div>
 
-<%-- <div id='topMovies' class='sidebar'>
+<div id='topMovies' class='sidebar'>
 <p>인기 영화 목록</p>
 <hr>
 <% Movie[] movies = (Movie[])request.getAttribute("topMovies");
@@ -91,7 +91,7 @@ for (Tag tag : tags) {
 }
 %>
 </div>
-</div> --%>
+</div>
 
 </body>
 </html>

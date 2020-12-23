@@ -17,17 +17,18 @@
                  - body   : /WEB-INF/tiles/jsp/{1}/{2}.jsp
                  - footer : /WEB-INF/tiles/template/app_footer.jsp
   -->
-  <definition name="*/*.app" template="/WEB-INF/tiles/template/app_template.jsp">
+  <definition name="member/profile.app" template="/WEB-INF/tiles/template/memberProfile_template.jsp">
     <put-attribute name="header" value="/WEB-INF/tiles/app/header.jsp" />
     <put-attribute name="footer" value="/WEB-INF/tiles/app/footer.jsp" />
-    <put-attribute name="sidebar" value="/WEB-INF/tiles/app/sidebar.jsp" />
-    <put-attribute name="body" value="/WEB-INF/tiles/jsp/review/mainFeed.jsp" />
-  </definition>
-  <definition name=".app" template="/WEB-INF/tiles/template/app_template.jsp">
-    <put-attribute name="header" value="/WEB-INF/tiles/app/header.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/tiles/app/footer.jsp" />
-    <put-attribute name="sidebar" value="/WEB-INF/tiles/app/sidebar.jsp" />
     <put-attribute name="body" value="/WEB-INF/tiles/jsp/review/mainFeed.jsp" />
   </definition>
   
+  <definition name="auth/*.app" template="/WEB-INF/tiles/template/auth_template.jsp">
+    <put-attribute name="body" value="/WEB-INF/tiles/jsp/auth/{1}.jsp" />
+  </definition>
+  <definition name="option/*.app" template="/WEB-INF/tiles/template/option_template.jsp">
+    <put-attribute name="header" value="/WEB-INF/tiles/app/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/tiles/app/footer.jsp" />
+    <put-attribute name="body" value="/WEB-INF/tiles/jsp/option/{1}.jsp" />
+  </definition>
 </tiles-definitions>

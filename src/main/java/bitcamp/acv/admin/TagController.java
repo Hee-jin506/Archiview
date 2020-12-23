@@ -1,4 +1,4 @@
-package bitcamp.acv.web.tag;
+package bitcamp.acv.admin;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class TagController {
   }
 
   @RequestMapping("multipleActive")
-  protected String multipleActive(String[] tags, HttpServletResponse response)
+  public String multipleActive(String[] tags, HttpServletResponse response)
       throws Exception {
     int count = 0;
     if (tags != null) {
@@ -46,7 +46,7 @@ public class TagController {
   }
 
   @RequestMapping("delete")
-  protected String inactive(int no) throws Exception {
+  public String inactive(int no) throws Exception {
     if (tagService.delete(no) == 0) {
       throw new Exception("해당 태그가 없습니다.");
     } else {
@@ -55,7 +55,7 @@ public class TagController {
   }
 
   @RequestMapping("multipleDelete")
-  protected String multipleDelete(String[] tags, HttpServletResponse response)
+  public String multipleDelete(String[] tags, HttpServletResponse response)
       throws Exception {
     int count = 0;
     if (tags != null) {
@@ -74,7 +74,7 @@ public class TagController {
 
 
   @RequestMapping("detail")
-  protected ModelAndView detail(int no) throws Exception {
+  public ModelAndView detail(int no) throws Exception {
 
     Tag tag = tagService.get(no);
 
@@ -89,7 +89,7 @@ public class TagController {
   }
 
   @GetMapping("list")
-  protected ModelAndView list(
+  public ModelAndView list(
       // 기본 검색 파라미터
       String keyword,
       String no,
@@ -118,7 +118,7 @@ public class TagController {
   }
 
   @PostMapping("list")
-  protected ModelAndView list(
+  public ModelAndView list(
       // 상세 검색 파라미터
       String keywordNumber,
       String keywordTitle,

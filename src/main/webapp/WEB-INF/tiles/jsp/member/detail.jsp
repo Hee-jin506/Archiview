@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
+<jsp:include page="../../admin/header.jsp"/>
 
 <h1>[회원 상세 조회]</h1>
 <br>

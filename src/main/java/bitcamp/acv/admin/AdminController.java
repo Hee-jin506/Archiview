@@ -1,4 +1,4 @@
-package bitcamp.acv.web.admin;
+package bitcamp.acv.admin;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -20,7 +20,7 @@ import bitcamp.acv.service.ReviewService;
 import bitcamp.acv.service.TagService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("main")
 public class AdminController {
 
   @Autowired ReportService reportService;
@@ -55,7 +55,7 @@ public class AdminController {
       chartSizeMap.put("today", chartList.size());
 
       mv.addObject("chartSizeMap", chartSizeMap);
-      mv.setViewName("/admin/adminMain.jsp");
+      mv.setViewName("admin/adminMain");
       return mv;
   }
 }

@@ -73,10 +73,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 </head>
+<jsp:include page="../../admin/header.jsp"/>
 <body>
     <div id="container">
       <div id="header">
-        <jsp:include page="/main/admin-topbar.jsp"></jsp:include>
       </div>
 
 <div id="content">

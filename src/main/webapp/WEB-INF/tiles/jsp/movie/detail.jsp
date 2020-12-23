@@ -44,7 +44,7 @@
  }
 </style>
 </head>
-
+<jsp:include page="../../admin/header.jsp"/>
 <body id='detail_body'>
 <table id="movie_info" border="0">
 	 <tbody id="movie_body">

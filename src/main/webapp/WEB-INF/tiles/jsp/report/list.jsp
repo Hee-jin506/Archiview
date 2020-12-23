@@ -25,8 +25,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 </head>
 <body>
-	<jsp:include page="/main/admin-topbar.jsp"></jsp:include>
-	
+	<jsp:include page="../../admin/header.jsp"/>
   <button class="btn btn-primary">css테스트</button>
   
   <a data-toggle="modal" href="testForm.do" data-target="#modal-testNew" role="button" data-backdrop="static">

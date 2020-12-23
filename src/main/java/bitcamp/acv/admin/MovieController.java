@@ -1,4 +1,4 @@
-package bitcamp.acv.web.movie;
+package bitcamp.acv.admin;
 
 import java.util.HashMap;
 import java.util.List;
