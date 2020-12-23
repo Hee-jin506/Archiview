@@ -34,7 +34,7 @@ public class ReportController {
   public ModelAndView form(int no) throws Exception {
     ModelAndView mv = new ModelAndView();
     mv.addObject("target", memberService.get(no));
-    mv.setViewName("/report/form.jsp");
+    mv.setViewName("report/form");
     return mv;
   }
 
@@ -51,7 +51,7 @@ public class ReportController {
     List<Report> list = reportService.list(keyword);
     ModelAndView mv = new ModelAndView();
     mv.addObject("list", list);
-    mv.setViewName("/report/list.jsp");
+    mv.setViewName("report/list");
     return mv;
   }
 
@@ -88,7 +88,7 @@ public class ReportController {
       }
 
       mv.addObject("report", report);
-      mv.setViewName("/report/detail.jsp");
+      mv.setViewName("report/detail");
       return mv;
     }
   }

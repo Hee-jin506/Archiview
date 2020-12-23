@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+ #sidebar {
+   float:right;
+   xposition: absolute;
+   xright:250px;
+   xtop:70px;
+   box-sizing: content-box;
+   width: 300px;
+ }
+
+ .sidebar {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #141517;
+  box-sizing: border-box;
+  color: white;
+  width: 250px;
+  height: 220px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+ }
+ 
+ .sidebar hr {
+   border:0;
+   height: 1px;
+   background-color: #626473;
+ }
+ 
+ .sidebar .explanation {
+   font-size: 14px;
+   color: #626473;
+   font-weight: normal;
+ }

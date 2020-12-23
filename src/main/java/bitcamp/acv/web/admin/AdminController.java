@@ -9,9 +9,9 @@ import java.util.Locale;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.MemberService;
@@ -29,33 +29,29 @@ public class AdminController {
   @Autowired CommentService commentService;
   @Autowired TagService tagService;
 
-
-  @RequestMapping(value = "", method = RequestMethod.GET)
-  protected ModelAndView adminMain(String registeredDate) throws Exception {
+  @RequestMapping(value = "main", method = RequestMethod.GET)
+  protected void adminMain(String registeredDate, Model model) throws Exception {
     System.out.println("admin.main 실행!");
-      ModelAndView mv = new ModelAndView();
-      HashMap<String,Object> keyMap = new HashMap<>();
+    HashMap<String,Object> keyMap = new HashMap<>();
 
-      // 총 리뷰 수
-      List<Review> chartList = reviewService.list();
+    // 총 리뷰 수
+    List<Review> chartList = reviewService.list();
 
-      // jsp에 넘겨줄 값들
-      Map<String,Object> chartSizeMap = new HashMap<>();
-      chartSizeMap.put("all", chartList.size());
+    // jsp에 넘겨줄 값들
+    Map<String,Object> chartSizeMap = new HashMap<>();
+    chartSizeMap.put("all", chartList.size());
 
-      // 오늘날짜 구하기
-      Calendar cal = new GregorianCalendar(Locale.KOREA);
-      Date today = new Date(cal.getTimeInMillis());
-      // System.out.println("오늘날짜 : " + today);
+    // 오늘날짜 구하기
+    Calendar cal = new GregorianCalendar(Locale.KOREA);
+    Date today = new Date(cal.getTimeInMillis());
+    // System.out.println("오늘날짜 : " + today);
 
-      // 오늘 등록한 게시물 수
-      keyMap.remove("registeredDate");
-      keyMap.put("registeredDate", today);
-      chartList = reviewService.listDetailFilter(keyMap);
-      chartSizeMap.put("today", chartList.size());
+    // 오늘 등록한 게시물 수
+    keyMap.remove("registeredDate");
+    keyMap.put("registeredDate", today);
+    chartList = reviewService.listDetailFilter(keyMap);
+    chartSizeMap.put("today", chartList.size());
 
-      mv.addObject("chartSizeMap", chartSizeMap);
-      mv.setViewName("/admin/adminMain.jsp");
-      return mv;
+    model.addAttribute("chartSizeMap", chartSizeMap);
   }
 }

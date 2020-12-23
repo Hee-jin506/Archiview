@@ -17,6 +17,7 @@ public interface TagService {
   int active(int no) throws Exception;
   List<Tag> listBasicFilter(HashMap<String, Object> keyMap) throws Exception;
   List<Tag> listByPop() throws Exception;
+  Tag[] listByPop3() throws Exception;
   List<Tag> listByKeywordTitle(String keyword) throws Exception;
   Tag get(String title) throws Exception;
   void getSizeInfo(Map<String, Object> resultMap) throws Exception;

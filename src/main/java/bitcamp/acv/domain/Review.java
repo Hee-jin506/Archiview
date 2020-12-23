@@ -21,7 +21,14 @@ public class Review {
   private String statusName;
   private List<Tag> tags;
   private String movieTitle;
+  private String rdtFromNow;
 
+  public String getRdtFromNow() {
+    return rdtFromNow;
+  }
+  public void setRdtFromNow(String rdtFromNow) {
+    this.rdtFromNow = rdtFromNow;
+  }
   private int writerNo;
   private String writerPhoto;
   private String writerNick;

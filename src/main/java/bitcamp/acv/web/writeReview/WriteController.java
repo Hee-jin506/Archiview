@@ -27,7 +27,7 @@ public class WriteController {
     ModelAndView mv = new ModelAndView();
     List<Movie> movies = movieService.list(keyword);
     mv.addObject("movies", movies);
-    mv.setViewName("/write/movieSearch.jsp");
+    mv.setViewName("write/movieSearch");
     return mv;
   }
 
@@ -36,7 +36,7 @@ public class WriteController {
     Movie movie = movieService.findByNo(movieNo);
     ModelAndView mv = new ModelAndView();
     mv.addObject("stillcuts", movie.getStillcuts());
-    mv.setViewName("/write/stillcutChoose.jsp");
+    mv.setViewName("write/stillcutChoose");
     return mv;
   }
 
@@ -45,7 +45,7 @@ public class WriteController {
     List<Font> fonts = reviewService.listFont();
     ModelAndView mv = new ModelAndView();
     mv.addObject("fonts", fonts);
-    mv.setViewName("/write/reviewEdit.jsp");
+    mv.setViewName("write/reviewEdit");
     return mv;
   }
 
@@ -94,7 +94,7 @@ public class WriteController {
     }
     reviewService.add(review);
 
-    return "redirect:/app/main/";
+    return "redirect:app/main/";
   }
 }
 

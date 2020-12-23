@@ -70,7 +70,7 @@ public class likeController {
     mv.addObject("reviews", reviews);
     mv.addObject("comments", comments);
 
-    mv.setViewName("/like/list.jsp");
+    mv.setViewName("like/list");
     return mv;
   }
 

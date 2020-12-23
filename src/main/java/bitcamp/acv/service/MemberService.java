@@ -17,7 +17,7 @@ public interface MemberService {
   int updatePassword(Member member) throws Exception;
   List<Member> listByPop() throws Exception;
   List<Member> listByKeywordNickName(String keyword) throws Exception;
-
+  Member[] listByPop3() throws Exception;
   List<Member> listFollowing(Member member) throws Exception;
   List<Member> listFollower(Member member) throws Exception;
 
