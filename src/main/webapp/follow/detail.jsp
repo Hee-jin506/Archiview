@@ -91,18 +91,7 @@
     <p>팔로우한 날짜 : <%=follow.getFollowedDate() %>
     <p>
     </form>
-    <c:set var='status' value='${follow.status}'/>
-    <c:choose>
-    <c:when test='${follow.status == 1}'>
-    <a href='inactive?no=${follow.no}'>[언팔로우]</a>
-    </c:when>
-  <c:when test='${follow.status == 2}'>
-    <a href='active?no=${follow.no}'>[팔로우]</a>
-    </c:when>
-  <c:otherwise>
-  기타
-  </c:otherwise>
-</c:choose>
+    
     </div>
     <br>
    <div id="list">

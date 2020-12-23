@@ -23,18 +23,17 @@ public class DefaultFollowService implements FollowService {
 
   @Override
   public int addUser(Follow follow) throws Exception {
-   if (follow.getFollowedType() == Follow.MEMBER) {
-     followDao.insertUser(follow);
-   }
-   return -1;
+    return followDao.insertUser(follow);
+  }
+
+  @Override
+  public int deleteUser(Follow follow) throws Exception {
+    return followDao.deleteUser(follow);
   }
 
   @Override
   public int addTag(Follow follow) throws Exception {
-    if (follow.getFollowedType() == Follow.TAG) {
       return followDao.insertTag(follow);
-    }
-    return -1;
   }
 
   @Override
