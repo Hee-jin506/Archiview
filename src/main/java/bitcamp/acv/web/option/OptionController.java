@@ -51,15 +51,6 @@ public class OptionController {
     }
   }
 
-  @RequestMapping("")
-  public ModelAndView main(HttpSession session) throws Exception {
-
-    Member member = (Member) session.getAttribute("loginUser");
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("loginUser", member);
-    mv.setViewName("/option/main.jsp");
-    return mv;
-  }
 
   @RequestMapping("profile")
   protected ModelAndView profile(HttpServletRequest request) throws Exception {
@@ -140,9 +131,8 @@ public class OptionController {
 
     Member m = memberService.get(email, oldPassword);
 
-    if (m != null) {
-      String newPassword = request.getParameter("newpassword");
-      m.setPassword(newPassword);
+    if (m != null && request.getParameter("newpassword1").equals(request.getParameter("newpassword2"))) {
+      m.setPassword(request.getParameter("newpassword1"));
       memberService.updatePassword(m);
     } else {
     }

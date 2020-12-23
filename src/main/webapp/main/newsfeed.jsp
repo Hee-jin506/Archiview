@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
-<head><title>좋아요 화면</title>
+<head><title>알람 화면</title>
 <style>
  body {
    background-color : #000000;

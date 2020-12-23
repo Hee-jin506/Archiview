@@ -1,3 +1,4 @@
+<%@page import="bitcamp.acv.domain.Follow"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -78,8 +79,9 @@
          ${member.intro}</p>
 		</div>
 		
-    <a href='../../board/form.html'>팔로우</a><br>
-
+  <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
+  <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
+          
 		<div id="icon1">
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" width=30px alt="리뷰"><br>
@@ -89,7 +91,7 @@
 		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" width=30px alt="팔로워"><br>
 		      팔로워 
 		  </a>
-		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+		  <a href="<%=getServletContext().getContextPath()%>/app/follow/list"> 
 		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" width=30px alt="팔로잉"><br>
 		      팔로잉 
 		  </a>

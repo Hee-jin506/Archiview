@@ -95,4 +95,16 @@ public class DefaultMemberService implements MemberService {
     members.set(a, members.get(b));
     members.set(b, temp);
   }
+
+  @Override
+  public List<Member> listFollower(Member member) throws Exception {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<Member> listFollowing(Member member) throws Exception {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }
