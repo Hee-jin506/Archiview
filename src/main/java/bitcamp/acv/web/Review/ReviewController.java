@@ -94,7 +94,7 @@ public class ReviewController {
     ModelAndView mv = new ModelAndView();
     mv.addObject("review", review);
     mv.addObject("tags", tags);
-    mv.setViewName("/review/detail.jsp");
+    mv.setViewName("review/detail");
     return mv;
   }
 
@@ -104,7 +104,7 @@ public class ReviewController {
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("reviewList", reviewList);
-    mv.setViewName("/review/bestReviewSearch.jsp");
+    mv.setViewName("review/bestReviewSearch");
     return mv;
   }
 
@@ -135,7 +135,7 @@ public class ReviewController {
     reviewService.getChartInfo(chartSizeMap);
 
     mv.addObject("chartSizeMap", chartSizeMap);
-    mv.setViewName("/review/list.jsp");
+    mv.setViewName("review/list");
     return mv;
   }
 
@@ -195,7 +195,7 @@ public class ReviewController {
     reviewService.getChartInfo(chartSizeMap);
 
     mv.addObject("chartSizeMap", chartSizeMap);
-    mv.setViewName("/review/list.jsp");
+    mv.setViewName("review/list");
     return mv;
   }
 
@@ -236,7 +236,7 @@ public class ReviewController {
     mv.addObject("loginUser", loginUser);
     mv.addObject("list", list);
 
-    mv.setViewName("/review/mainFeed.jsp");
+    mv.setViewName("review/mainFeed");
     return mv;
   }
 }

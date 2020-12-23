@@ -37,7 +37,7 @@ public class MovieController {
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("list", list);
-    mv.setViewName("/movie/list.jsp");
+    mv.setViewName("movie/list");
     return mv;
   }
 
@@ -52,7 +52,7 @@ public class MovieController {
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("movie", movie);
-    mv.setViewName("/movie/detail.jsp");
+    mv.setViewName("movie/detail");
     return mv;
   }
 

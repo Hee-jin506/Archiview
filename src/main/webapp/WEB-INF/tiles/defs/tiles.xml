@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+  <!--기존의 base 템플릿 정의에 새 JSP를 추가한다.
+      템플릿 동작원리:
+        - request handler가 리턴한 JSP의 경로를 리턴한다.
+          예) "board/list"
+        - UrlBasedViewResolver는 request handler가 리턴한 URL에 .app을 붙인다.
+          예) "board/list.app"
+          그런 후 TilesView를 실행한다.
+        - TilesView 템플릿 엔진은 다음 규칙에 따라 JSP를 실행한다.
+          예) /WEB-INF/tiles/template/app_template.jsp
+                 - header : /WEB-INF/tiles/template/app_header.jsp
+                 - body   : /WEB-INF/tiles/jsp/{1}/{2}.jsp
+                 - footer : /WEB-INF/tiles/template/app_footer.jsp
+  -->
+  <definition name="*/*.app" template="/WEB-INF/tiles/template/app_template.jsp">
+    <put-attribute name="header" value="/WEB-INF/tiles/app/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/tiles/app/footer.jsp" />
+    <put-attribute name="sidebar" value="/WEB-INF/tiles/app/sidebar.jsp" />
+    <put-attribute name="body" value="/WEB-INF/tiles/jsp/review/mainFeed.jsp" />
+  </definition>
+  <definition name=".app" template="/WEB-INF/tiles/template/app_template.jsp">
+    <put-attribute name="header" value="/WEB-INF/tiles/app/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/tiles/app/footer.jsp" />
+    <put-attribute name="sidebar" value="/WEB-INF/tiles/app/sidebar.jsp" />
+    <put-attribute name="body" value="/WEB-INF/tiles/jsp/review/mainFeed.jsp" />
+  </definition>
+  
+</tiles-definitions>

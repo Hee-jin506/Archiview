@@ -84,7 +84,7 @@ public class TagController {
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("tag", tag);
-    mv.setViewName("/tag/detail.jsp");
+    mv.setViewName("tag/detail");
     return mv;
   }
 
@@ -113,7 +113,7 @@ public class TagController {
     tagService.getChartInfo(chartSizeMap);
 
     mv.addObject("chartSizeMap", chartSizeMap);
-    mv.setViewName("/tag/list.jsp");
+    mv.setViewName("tag/list");
     return mv;
   }
 
@@ -169,7 +169,7 @@ public class TagController {
     tagService.getChartInfo(chartSizeMap);
 
     mv.addObject("chartSizeMap", chartSizeMap);
-    mv.setViewName("/tag/list.jsp");
+    mv.setViewName("tag/list");
     return mv;
 
   }

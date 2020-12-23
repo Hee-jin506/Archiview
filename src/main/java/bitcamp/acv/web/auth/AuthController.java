@@ -40,7 +40,7 @@ public class AuthController {
       mv.addObject("wrongInput", wrongInput);
       mv.addObject("withdrawedMember", withdrawedMember);
       mv.addObject("email", cookieEmail);
-      mv.setViewName("/auth/login.jsp");
+      mv.setViewName("auth/login");
       return mv;
     }
 
@@ -61,12 +61,12 @@ public class AuthController {
       wrongInput = true;
       mv.addObject("wrongInput", wrongInput);
       mv.addObject("withdrawedMember", withdrawedMember);
-      mv.setViewName("/auth/login.jsp");
+      mv.setViewName("auth/login");
     } else if (member.getStatus() == 3) {
       withdrawedMember = true;
       mv.addObject("wrongInput", wrongInput);
       mv.addObject("withdrawedMember", withdrawedMember);
-      mv.setViewName("/auth/login.jsp");
+      mv.setViewName("auth/login");
     } else {
       session.setAttribute("loginUser", member);
       mv.addObject("loginUser", member);
@@ -96,7 +96,7 @@ public class AuthController {
     } else {
       Member searchUser = memberService.get(email);
       session.setAttribute("searchUser", searchUser);
-      mv.setViewName("/auth/hint.jsp");
+      mv.setViewName("auth/hint");
     }
     return mv;
   }
@@ -110,7 +110,7 @@ public class AuthController {
     if (!member.getQuestionsAnswer().equals(hint)) {
       throw new Exception("<p>답변이 옳지 않습니다.</p>");
     } else {
-      mv.setViewName("/auth/updatePassword.jsp");
+      mv.setViewName("auth/updatePassword");
     }
     return mv;
   }
@@ -125,6 +125,6 @@ public class AuthController {
       memberService.updatePassword(member);
       session.invalidate();
     }
-    return "redirect:/app/auth/login";
+    return "redirect:app/auth/login";
   }
 }

@@ -59,7 +59,7 @@ public class likeController {
     mv.addObject("times", times);
     mv.addObject("list", list);
 
-    mv.setViewName("/like/list.jsp");
+    mv.setViewName("like/list");
     return mv;
   }
 

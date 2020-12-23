@@ -78,7 +78,7 @@ public class FollowController {
     List<Follow> list = followService.list();
     ModelAndView mv = new ModelAndView();
     mv.addObject("list", list);
-    mv.setViewName("/follow/list.jsp");
+    mv.setViewName("follow/list");
     return mv;
   }
 

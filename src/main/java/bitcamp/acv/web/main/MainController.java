@@ -23,11 +23,32 @@ public class MainController {
 
   @RequestMapping("")
   public ModelAndView main(HttpSession session) throws Exception {
-
-    Member member = (Member) session.getAttribute("loginUser");
+    List<Member> members = memberService.listByPop();
+    List<Movie> movies = movieService.listByPop();
+    List<Tag> tags = tagService.listByPop();
     ModelAndView mv = new ModelAndView();
+
+    Member[] topMembers = new Member[3];
+    for (int i = 0; i < 3; i++) {
+      topMembers[i] = members.get(i);
+    }
+
+    Movie[] topMovies = new Movie[3];
+    for (int i = 0; i < 3; i++) {
+      topMovies[i] = movies.get(i);
+    }
+
+    Tag[] topTags = new Tag[3];
+    for (int i = 0; i < 3; i++) {
+      topTags[i] = tags.get(i);
+    }
+
+    mv.addObject("topMembers", topMembers);
+    mv.addObject("topMovies", topMovies);
+    mv.addObject("topTags", topTags);
+    Member member = (Member) session.getAttribute("loginUser");
     mv.addObject("loginUser", member);
-    mv.setViewName("/main/home.jsp");
+    mv.setViewName("main/home");
     return mv;
   }
 
@@ -37,7 +58,7 @@ public class MainController {
     ModelAndView mv = new ModelAndView();
     // 검색창에 아무것도 입력안하고 그냥 엔터하면 메인화면으롤 redirect
     if (keyword == "") {
-      mv.setViewName("redirect:/app/main");
+      mv.setViewName("redirect:app/main");
       return mv;
     }
     if (keyword != null) {
@@ -49,19 +70,19 @@ public class MainController {
         mv.addObject("movieList", movieList);
         mv.addObject("memberList", memberList);
         mv.addObject("keyword", keyword);
-        mv.setViewName("/main/topBarNonTagSearch.jsp");
+        mv.setViewName("main/topBarNonTagSearch");
       } else {
         // 맨 앞글자가 '#'이면 topBarTagSearch.jsp를 include
         // #을 뗀다
         mv.addObject("keyword", keyword.substring(1));
         List<Tag> tagList = tagService.listByKeywordTitle(keyword.substring(1));
         mv.addObject("tagList", tagList);
-        mv.setViewName("/main/topBarTagSearch.jsp");
+        mv.setViewName("main/topBarTagSearch");
       }
     } else {
       // 태그를 선택한 후(keyword는 null임)
       mv.addObject("selectedTagTitle", selectedTagTitle);
-      mv.setViewName("/main/topBarBestReviewSearch.jsp");
+      mv.setViewName("main/topBarBestReviewSearch");
     }
     return mv;
   }
@@ -92,7 +113,7 @@ public class MainController {
     mv.addObject("topMembers", topMembers);
     mv.addObject("topMovies", topMovies);
     mv.addObject("topTags", topTags);
-    mv.setViewName("/main/sidebar.jsp");
+    mv.setViewName("main/sidebar");
     return mv;
   }
 
@@ -103,7 +124,7 @@ public class MainController {
     if (loginUser == null) {
       mv.addObject("loginUser", session.getAttribute("loginUser"));
     }
-    mv.setViewName("/main/topbar.jsp");
+    mv.setViewName("main/topbar");
     return mv;
   }
 }
