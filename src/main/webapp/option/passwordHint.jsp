@@ -25,13 +25,13 @@
 <style>
 
 #box {
-position: absolute;
-width: 600px;
+position: relative;
+width: 620px;
 height: 500px;
 border: 1px solid #6B6B6B; border-radius: 5px;
 background-color: #141517;
-top: 50%; left: 50%;
-margin-top: -250px; margin-left: -300px;
+left: 50%;
+margin-top: 100px; margin-left: -300px;
 }
 
 .menus {
