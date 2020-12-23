@@ -29,6 +29,7 @@
   }
   
   .card {
+  position: absolute;
   padding: 10px;
   border-radius: 10px;
   background-color: #141517;
