@@ -32,14 +32,11 @@
 
 <jsp:include page="/app/main/topbar"/>
 
-<h1>알람</h1>
+<h1>뉴스피드</h1>
 
 <br>
 <br>
 <br>
-<br>
-<br>
-
 
 <%
 List<Like> likes = (List<Like>) request.getAttribute("list");
