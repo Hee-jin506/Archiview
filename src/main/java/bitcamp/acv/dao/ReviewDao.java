@@ -15,6 +15,7 @@ public interface ReviewDao {
   List<Review> findByKeyword(HashMap<String, Object> keyMap) throws Exception;
   List<Review> findAllByKeyword(String keyword) throws Exception;
   List<Review> findByDetailKeyword(HashMap<String, Object> keywords) throws Exception;
+  List<Review> findByMemberNo(int no) throws Exception;
   int delete(int no) throws Exception;
   int active(int no) throws Exception;
   Review findByNo(int no) throws Exception;

@@ -97,6 +97,12 @@
     order by rv.rvno desc
   </select>
   
+  <select id="findByMemberNo" resultMap="ReviewMap" parameterType="int">
+    <include refid="sql2"/>
+    where rv.mno = #{mno}
+    order by rv.rvno desc
+  </select>
+  
   <select id="findForMainFeed" resultMap="ReviewMap" parameterType="map">
     select 
       rv.rvno,
@@ -132,7 +138,7 @@
   </select>
   
   <select id="findAll" resultMap="ReviewMap">
-    <include refid="sql1"/>
+    <include refid="sql2"/>
     order by rv.rvno desc
   </select>
   
