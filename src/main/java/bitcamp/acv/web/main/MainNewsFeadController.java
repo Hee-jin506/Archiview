@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Comment;
 import bitcamp.acv.domain.Like;
+import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.LikeService;
+import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.ReviewService;
 
 @Controller
@@ -26,6 +28,7 @@ public class MainNewsFeadController {
   @Autowired LikeService likeService;
   @Autowired ReviewService reviewService;
   @Autowired CommentService commentService;
+  @Autowired MemberService memberService;
 
   // 사용자 화면
   @RequestMapping("newsfeed")
@@ -34,6 +37,9 @@ public class MainNewsFeadController {
       HttpSession session,
       String keyword
       ) throws Exception {
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    ModelAndView mv = new ModelAndView();
 
     Map<String, Object> map = new HashMap<>();
     List<Like> likes = likeService.getTime(map);
@@ -61,14 +67,22 @@ public class MainNewsFeadController {
     }
 
     List<Like> list = likeService.list();
-    List<Review> reviews = reviewService.list();
-    List<Comment> comments = commentService.list(keyword);
+    List<Review> reviews = reviewService.getByMemberNo(loginUser.getNo());
+    for (Review review : reviews) {
+      if (review.isStatus() == true) {
+        mv.addObject("reviews", reviews);
+      }
+    }
 
-    ModelAndView mv = new ModelAndView();
+    List<Comment> comments = commentService.getByMemberNo(loginUser.getNo());
+    for (Comment comment : comments) {
+      if (comment.getStatus() == 1) {
+        mv.addObject("comments", comments);
+      }
+    }
+
     mv.addObject("times", times);
     mv.addObject("list", list);
-    mv.addObject("reviews", reviews);
-    mv.addObject("comments", comments);
 
     mv.setViewName("/main/newsfeed.jsp");
     return mv;

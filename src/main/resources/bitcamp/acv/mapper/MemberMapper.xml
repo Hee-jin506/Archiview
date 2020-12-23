@@ -53,28 +53,6 @@
   <result column="lk_length"  property="likers"/>
   </resultMap>
    
-   <resultMap type="member" id="MemberMap3">
-  <id column="mno" property="no" />
-  <result column="auth" property="authority" />
-  <result column="name" property="name" />
-  <result column="ltno" property="loginNo" />
-  <result column="email" property="email" />
-  <result column="nick" property="nickName" />
-  <result column="photo" property="photo" />
-  <result column="intro" property="intro" />
-  <result column="rdt" property="registeredDate" />
-  <result column="stno"      property="status"/>
-  <result column="stat_title"      property="statusTitle"/>
-  <result column="stat_mdt" property="statusModifiedDate" />
-  
-    <collection property="follow_users"    ofType="follow">
-      <result column="target_user"      property="followedNo"/>
-      <result column="fano"        property="followedType"/>
-      <result column="stat"        property="status"/>
-      <result column="fdt"        property="followedDate"/>
-    </collection>
- </resultMap>
-
  <!-- private int no; // 회원 번호 private int authority; // 권한 private String 
   name; // 이름 private int loginNo; // 로그인 유형 번호 private String email; // 이메일 
   private String password; // 암호 private String nickName; // 별명 private String 
@@ -118,24 +96,6 @@
       left outer join acv_save sv on mb.mno = sv.mno
       left outer join acv_rv rv2 on sv.rvno = rv2.rvno
       left outer join acv_stc stc2 on rv2.stcno = stc2.stcno
-  </sql>
-  
-  <sql id="sql2">
-    select
-     mb.mno,
-     mb.nick,
-     mb.photo,
-     f.target target_userNo,
-     mb2.nick,
-     mb2.photo,
-     f.fano,
-     fa.name fano_name,
-     f.stat,
-     f.fdt
-    from acv_mbr mb
-     inner join acv_flw f on f.flwing_mbr= mb.mno
-     inner join acv_flw_able fa on f.fano = fa.fano
-     right join acv_mbr mb2 on f.target=mb2.mno
   </sql>
 
 <!-- nickName에 keyword가 포함된 애들을 리턴 -->
@@ -260,15 +220,4 @@
     group by target, lano)lk
     on lk.mno=mb.mno; 
  </select>
- 
- <!-- 내가 팔로우하는 멤버 카운트 -->
- <select id="findByFollowMembers" parameterType="map" resultMap="MemberMap3">
-   select
-    count(*)
-    from acv_mbr mb
-     inner join acv_flw f on f.flwing_mbr= mb.mno
-     inner join acv_flw_able fa on f.fano = fa.fano
-     right join acv_mbr mb2 on f.target=mb2.mno
-    where f.flwing_mbr=#{mno} and f.fano = 1 and f.target={followedNo}
-  </select>
 </mapper>

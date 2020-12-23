@@ -6,6 +6,7 @@ import bitcamp.acv.dao.FollowDao;
 import bitcamp.acv.dao.MemberDao;
 import bitcamp.acv.dao.TagDao;
 import bitcamp.acv.domain.Follow;
+import bitcamp.acv.domain.Member;
 @Service
 public class DefaultFollowService implements FollowService {
 
@@ -64,5 +65,10 @@ public class DefaultFollowService implements FollowService {
   @Override
   public int inactive(int no) throws Exception {
     return followDao.inactive(no);
+  }
+
+  @Override
+  public List<Member> findByFollowingUsers() throws Exception {
+    return followDao.findByFollowingUsers();
   }
 }

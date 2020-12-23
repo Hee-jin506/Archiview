@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class Like {
 
+  // likedType
   public static final int REVIEW = 1;
   public static final int COMMENT = 2;
 

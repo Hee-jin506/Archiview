@@ -25,7 +25,4 @@ public interface MemberDao {
 
   List<Member> findByFollower(Member member) throws Exception;
   List<Member> findFollower(Member member) throws Exception;
-
-  // 내가 팔로우하는 멤버 카운트
-  List<Member> findByFollowMembers(Member member) throws Exception;
 }
