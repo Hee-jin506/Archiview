@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아카이뷰</title>
-<link rel="stylesheet" href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/custom.css">
+<link rel="stylesheet" href="<%=getServletContext().getContextPath()%>/css/bootstrap/dist/css/custom.css">
 <style>
  body {
    background-color : #000000;
