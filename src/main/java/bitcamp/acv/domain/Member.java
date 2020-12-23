@@ -40,8 +40,14 @@ public class Member {
   private List<Review> reviews; // 본인의 게시물들
   private List<Review> saved; // 저장한 게시물들
 
-  private boolean followed;
+  private List<Follow> follow_users; // 내가 팔로우하는 사람들
 
+  public List<Follow> getFollow_users() {
+    return follow_users;
+  }
+  public void setFollow_users(List<Follow> follow_users) {
+    this.follow_users = follow_users;
+  }
   public int getNo() {
     return no;
   }
@@ -163,11 +169,5 @@ public class Member {
   }
   public void setFollowing(int following) {
     this.following = following;
-  }
-  public boolean isFollowed() {
-    return followed;
-  }
-  public void setFollowed(boolean followed) {
-    this.followed = followed;
   }
 }

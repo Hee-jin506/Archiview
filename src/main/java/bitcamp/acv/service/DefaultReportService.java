@@ -39,8 +39,8 @@ public class DefaultReportService implements ReportService {
   }
 
   @Override
-  public void add(Report report) throws Exception {
-    reportDao.insert(report);
+  public int reportUser(Report report) throws Exception {
+    return reportDao.insertUser(report);
   }
 
   @Override
