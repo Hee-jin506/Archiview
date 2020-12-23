@@ -1,4 +1,4 @@
-package bitcamp.acv.web.like;
+package bitcamp.acv.web.main;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -20,15 +20,15 @@ import bitcamp.acv.service.LikeService;
 import bitcamp.acv.service.ReviewService;
 
 @Controller
-@RequestMapping("/like")
-public class likeController {
+@RequestMapping("/main")
+public class MainNewsFeadController {
 
   @Autowired LikeService likeService;
   @Autowired ReviewService reviewService;
   @Autowired CommentService commentService;
 
   // 사용자 화면
-  @RequestMapping("list")
+  @RequestMapping("newsfeed")
   protected ModelAndView view(
       HttpServletRequest request,
       HttpSession session,
@@ -70,7 +70,7 @@ public class likeController {
     mv.addObject("reviews", reviews);
     mv.addObject("comments", comments);
 
-    mv.setViewName("/like/list.jsp");
+    mv.setViewName("/main/newsfeed.jsp");
     return mv;
   }
 
