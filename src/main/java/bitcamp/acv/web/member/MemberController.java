@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Follow;
@@ -120,7 +121,7 @@ public class MemberController {
         throw new Exception("로그인 되어있지 않습니다.");
       } else {
         mv.addObject("wrongInput", wrongInput);
-        mv.setViewName("/member/withdrawForm.jsp");
+        mv.setViewName("member/withdrawForm");
         return mv;
       }
     }
@@ -135,10 +136,10 @@ public class MemberController {
     if (m == null) {
       wrongInput = true;
       mv.addObject("wrongInput", wrongInput);
-      mv.setViewName("/member/withdrawForm.jsp");
+      mv.setViewName("member/withdrawForm");
     } else {
       memberService.delete(m.getNo());
-      mv.setViewName("redirect:/auth/login.jsp");
+      mv.setViewName("redirect:/auth/login");
     }
     return mv;
   }
@@ -154,7 +155,7 @@ public class MemberController {
 
     ModelAndView mv = new ModelAndView();
     mv.addObject("member", member);
-    mv.setViewName("/member/detail.jsp");
+    mv.setViewName("member/detail");
     return mv;
   }
 
@@ -173,7 +174,7 @@ public class MemberController {
       System.out.println(rv.getNo());
     }
     mv.addObject("member", member);
-    mv.setViewName("/member/profile.jsp");
+    mv.setViewName("member/profile");
     return mv;
   }
 
@@ -192,7 +193,7 @@ public class MemberController {
       System.out.println(rv.getNo());
     }
     mv.addObject("member", member);
-    mv.setViewName("/member/profileSavedReviews.jsp");
+    mv.setViewName("member/profileSavedReviews");
     return mv;
   }
 
@@ -219,7 +220,7 @@ public class MemberController {
 
     mv.addObject("follows", follows);
     mv.addObject("list", list);
-    mv.setViewName("/member/list.jsp");
+    mv.setViewName("member/list");
     return mv;
   }
 
@@ -263,7 +264,7 @@ public class MemberController {
     List<Member> memberList = memberService.listByKeywordNickName(keyword);
     ModelAndView mv = new ModelAndView();
     mv.addObject("memberList", memberList);
-    mv.setViewName("/member/memberSearch.jsp");
+    mv.setViewName("member/memberSearch");
     return mv;
   }
 

@@ -63,7 +63,7 @@ public class OptionController {
       throw new Exception("로그인 되어있지 않습니다.");
     } else {
       mv.addObject("member", member);
-      mv.setViewName("/option/profile.jsp");
+      mv.setViewName("option/profile");
       return mv;
     }
   }
@@ -98,7 +98,7 @@ public class OptionController {
       throw new Exception("로그인 되어있지 않습니다.");
     } else {
       mv.addObject("member", member);
-      mv.setViewName("/option/passwordHint.jsp");
+      mv.setViewName("option/passwordHint");
       return mv;
     }
   }
@@ -115,7 +115,7 @@ public class OptionController {
       throw new Exception("로그인 되어있지 않습니다.");
     } else {
       mv.addObject("member", member);
-      mv.setViewName("/option/passwordUpdate.jsp");
+      mv.setViewName("option/passwordUpdate");
       return mv;
     }
   }
@@ -151,7 +151,7 @@ public class OptionController {
       throw new Exception("로그인 되어있지 않습니다.");
     } else {
       mv.addObject("member", member);
-      mv.setViewName("/option/withdraw.jsp");
+      mv.setViewName("option/withdraw");
       return mv;
     }
   }

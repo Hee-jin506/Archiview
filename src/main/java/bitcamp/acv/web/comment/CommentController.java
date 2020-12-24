@@ -29,7 +29,7 @@ public class CommentController {
     List<Comment> list = commentService.list(keyword);
     ModelAndView mv = new ModelAndView();
     mv.addObject("list", list);
-    mv.setViewName("/comment/list.jsp");
+    mv.setViewName("comment/list");
     return mv;
   }
 
@@ -43,7 +43,7 @@ public class CommentController {
     ModelAndView mv = new ModelAndView();
 
     mv.addObject("view", view);
-    mv.setViewName("/comment/view.jsp");
+    mv.setViewName("comment/view");
     return mv;
   }
 

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +31,18 @@ public class ReportController {
   @Autowired CommentService commentService;
   @Autowired TagService tagService;
 
-  @RequestMapping(value="reportUser", method=RequestMethod.GET)
-  public void reportForm(Model model) throws Exception {
-    model.addAttribute("/report/form.jsp");
+
+  //  @RequestMapping(value="reportUser", method=RequestMethod.GET)
+  //  public void reportForm(Model model) throws Exception {
+  //    model.addAttribute("/report/form.jsp");
+  //  }
+
+  @RequestMapping("form")
+  public ModelAndView form(int no) throws Exception {
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("target", memberService.get(no));
+    mv.setViewName("report/form");
+    return mv;
   }
 
   // 멤버 신고
@@ -52,7 +60,7 @@ public class ReportController {
     List<Report> list = reportService.list(keyword);
     ModelAndView mv = new ModelAndView();
     mv.addObject("list", list);
-    mv.setViewName("/report/list.jsp");
+    mv.setViewName("report/list");
     return mv;
   }
 
@@ -89,7 +97,7 @@ public class ReportController {
       }
 
       mv.addObject("report", report);
-      mv.setViewName("/report/detail.jsp");
+      mv.setViewName("report/detail");
       return mv;
     }
   }
