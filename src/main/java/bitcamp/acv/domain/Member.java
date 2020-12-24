@@ -33,7 +33,7 @@ public class Member {
   private String statusTitle;
   private Date statusModifiedDate; // 회원 상태 변경일
 
-  private int following;
+  private int following; // 내가 팔로잉하는 사람들
   private int followers;
   private int likers;
 

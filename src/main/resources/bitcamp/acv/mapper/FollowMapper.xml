@@ -18,29 +18,7 @@
     <result column="email" property="email"/>
   </association>
  </resultMap>
- 
- <resultMap type="follow" id="FollowMap2">
-  <id column="fno"            property="no" />
-  <result column="target"     property="followedNo" />
-  <result column="fano"  property="followedType"/>
-  <result column="fdt"        property="followedDate"/>
-  <result column="stat"        property="status"/>
 
-  <collection property="followingTags"    ofType="review">
-    <result column="rvno"        property="no"/>
-    <result column="txt"        property="text"/>
-    <result column="stc_url"        property="stcUrl"/>
-    </collection>
-    
-    <collection property="followingUsers" ofType="member">
-    <result column="mno"        property="no"/>
-    <result column="nick"        property="nickName"/>
-    <result column="stno"      property="status"/>
-    <result column="stat_title"      property="statusTitle"/>
-    <result column="fdt"        property="followedDate"/>
-    </collection>
-  </resultMap>
-  
   <sql id="sql1">
   select
     f.fno,
@@ -56,33 +34,7 @@
     inner join acv_mbr mb on f.flwing_mbr=mb.mno
     inner join acv_flw_able fa on f.fano = fa.fano
   </sql> 
-  
-  <sql id="sql2">
-   select
-    f.fno,
-    mb.mno mno,
-    mb.nick nick,
-    mb.email email,
-    f.fdt,
-    f.stat,
-    fa.fano,
-    fa.name fano_name,
-    f.target followingUsers,
-    mb2.nick,
-    mb2.photo,
-    f.fano,
-    fa.name fano_name,
-    f.stat,
-    f.fdt
-  from
-    acv_flw f
-    inner join acv_mbr mb on f.flwing_mbr=mb.mno
-    inner join acv_flw_able fa on f.fano = fa.fano
-    right join acv_mbr mb2 on f.target=mb2.mno
-  order by
-    mb.nick desc
-  </sql>
- 
+
  <!-- 팔로우 타겟 상세 -->
  <select id="findByNo" resultMap="FollowMap" parameterType="int">
     <include refid="sql1"/>
@@ -90,13 +42,14 @@
       f.fno=#{fno} 
   </select>
   
-   <!-- 멤버 팔로우 리스트 -->
+   <!-- 멤버 팔로우 리스트
  <select id="findByFollowingUsers" resultMap="FollowMap2">
   <include refid="sql2"/>
   where f.flwing_mbr=#{mno} and f.fano = 1 and f.stat = 1
   order by
     mb.nick desc
   </select>
+   -->
  
  <!-- 팔로우 리스트 -->
  <select id="findAll" resultMap="FollowMap">
