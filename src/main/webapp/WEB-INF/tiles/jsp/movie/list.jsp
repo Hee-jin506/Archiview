@@ -147,7 +147,7 @@
 </style>
 </head>
 <body>
-
+<jsp:include page="../../admin/header.jsp"/>
 <img src='../../movie_resource/movie.png' width='18'> 영화 관리<br>
 
   <%String keyword = request.getParameter("keyword");

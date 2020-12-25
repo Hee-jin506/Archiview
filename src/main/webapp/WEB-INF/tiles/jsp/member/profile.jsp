@@ -71,7 +71,6 @@
 
 </head>
 <body>
-<jsp:include page="/app/main/topbar"/>
 
 <div id="container">
   <div id="contents">
@@ -119,7 +118,7 @@
 			</c:forEach>
 			</div>
     </div>
-  <jsp:include page="/app/main/sidebar"/>
+  
 </div>
 <script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>

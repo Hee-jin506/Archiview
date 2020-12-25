@@ -1,4 +1,4 @@
-package bitcamp.acv.web.admin;
+package bitcamp.acv.admin;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -20,7 +20,7 @@ import bitcamp.acv.service.ReviewService;
 import bitcamp.acv.service.TagService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("main")
 public class AdminController {
 
   @Autowired ReportService reportService;
@@ -32,6 +32,7 @@ public class AdminController {
   @RequestMapping(value = "main", method = RequestMethod.GET)
   protected void adminMain(String registeredDate, Model model) throws Exception {
     System.out.println("admin.main 실행!");
+<<<<<<< HEAD:src/main/java/bitcamp/acv/web/admin/AdminController.java
     HashMap<String,Object> keyMap = new HashMap<>();
 
     // 총 리뷰 수
@@ -53,5 +54,31 @@ public class AdminController {
     chartSizeMap.put("today", chartList.size());
 
     model.addAttribute("chartSizeMap", chartSizeMap);
+=======
+      ModelAndView mv = new ModelAndView();
+      HashMap<String,Object> keyMap = new HashMap<>();
+
+      // 총 리뷰 수
+      List<Review> chartList = reviewService.list();
+
+      // jsp에 넘겨줄 값들
+      Map<String,Object> chartSizeMap = new HashMap<>();
+      chartSizeMap.put("all", chartList.size());
+
+      // 오늘날짜 구하기
+      Calendar cal = new GregorianCalendar(Locale.KOREA);
+      Date today = new Date(cal.getTimeInMillis());
+      // System.out.println("오늘날짜 : " + today);
+
+      // 오늘 등록한 게시물 수
+      keyMap.remove("registeredDate");
+      keyMap.put("registeredDate", today);
+      chartList = reviewService.listDetailFilter(keyMap);
+      chartSizeMap.put("today", chartList.size());
+
+      mv.addObject("chartSizeMap", chartSizeMap);
+      mv.setViewName("admin/adminMain");
+      return mv;
+>>>>>>> fc5ed69c990d7c25b9cb3c6e63b7c8651ce787a0:src/main/java/bitcamp/acv/admin/AdminController.java
   }
 }

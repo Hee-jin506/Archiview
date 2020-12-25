@@ -146,7 +146,7 @@
 </style>
 </head>
 <body>
-
+<jsp:include page="../../admin/header.jsp"/>
 
 <img src='../../admin_resource/movie.png' width='18'> 회원 관리<br>
 <%

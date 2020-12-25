@@ -71,7 +71,6 @@ color: #F21BC9;
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-<jsp:include page="/app/main/topbar"/>
 
 <body style="background-color: #000000">
 
@@ -119,6 +118,5 @@ color: #F21BC9;
     </form>
   </div>
 </div>
-<jsp:include page="/main/footer.jsp"/>
 </body>
 </html>

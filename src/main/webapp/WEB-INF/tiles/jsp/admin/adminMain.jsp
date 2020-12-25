@@ -29,8 +29,8 @@
 </style>
 </head>
 <body>
-  <jsp:include page="/main/admin-topbar.jsp"/>
-  <jsp:include page="/main/footer.jsp"/>
+  <jsp:include page="../../admin/header.jsp"/>
+  <jsp:include page="../../admin/footer.jsp"/>
     <div id="todayview">
 		<span>오늘 등록된 게시물 수 : ${chartSizeMap.today}</span><br>
     </div>
