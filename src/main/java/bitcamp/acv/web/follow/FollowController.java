@@ -58,15 +58,6 @@ public class FollowController {
     return "redirect:list";
   }
 
-  @RequestMapping("followerList")
-  public void listFollower(Model model,
-      @ModelAttribute("loginUser") Member loginUser, Follow follow) throws Exception {
-    List<Follow> followList = followService.getFollowingUsers(loginUser.getNo());
-    Object target = followService.getTarget(follow);
-    System.out.println(target instanceof Member);
-    model.addAttribute("followList", followList);
-  }
-
   @PostMapping("active")
   public String active(int no) throws Exception {
     if (followService.active(no) == 0) {

@@ -13,6 +13,4 @@ public interface FollowDao {
 
   int active(int no) throws Exception; // 1. 팔로우상태로 변경
   int inactive(int no) throws Exception; // 2. 언팔로우상태로 변경
-
-  List<Follow> findByFollowingUsers(int no) throws Exception; // 내가 팔로잉하는 사람들
 }
