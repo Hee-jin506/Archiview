@@ -3,9 +3,9 @@
 #cards {
 	overflow: hidden;
 	overflow-y: scroll;
-	position: absolute;
-	left: 230px;
-	top: 70px;
+	xposition: absolute;
+	xleft: 230px;
+	xtop: 70px;
 	box-sizing: content-box;
 	width: 700px;
 	height: 700px;

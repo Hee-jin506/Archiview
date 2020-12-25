@@ -22,17 +22,10 @@
    margin:0px;
  }
  
- #container {
-      width:960px; /* 컨테이너 너비 */
-      padding:20px; /* 패딩 */      
-      margin:0 auto;  /* 화면 중앙에 배치 */
-      margin-top: 60px;
-    }
-    
     #contents {
       border-radius: 10px;
       background-color: #141517;
-      width: 620px;  /* 너비 */
+      width: 699px;  /* 너비 */
       padding: 20px;  /* 패딩 */
       float: left;  /* 왼쪽으로 플로팅 */
     }
@@ -72,7 +65,6 @@
 </head>
 <body>
 
-<div id="container">
   <div id="contents">
 		<div id="member">
 			<input type='hidden' name='no' value='${member.no}'><br>
@@ -118,8 +110,6 @@
 			</c:forEach>
 			</div>
     </div>
-  
-</div>
 <script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

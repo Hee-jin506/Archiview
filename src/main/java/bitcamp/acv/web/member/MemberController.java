@@ -17,6 +17,8 @@ import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
+import bitcamp.acv.service.MovieService;
+import bitcamp.acv.service.TagService;
 import net.coobird.thumbnailator.ThumbnailParameter;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
@@ -26,9 +28,12 @@ import net.coobird.thumbnailator.name.Rename;
 @RequestMapping("/member")
 public class MemberController {
 
+  
   @Autowired MemberService memberService;
-  @Autowired ServletContext servletContext;
+  @Autowired TagService tagService;
+  @Autowired MovieService movieService;
   @Autowired FollowService followService;
+  @Autowired ServletContext servletContext;
 
   @RequestMapping("active")
   public String active(int no) throws Exception {
@@ -161,21 +166,23 @@ public class MemberController {
 
   // 프로필 화면(프로필 + 본인이 작성한 리뷰들이 나옴)
   @RequestMapping("profile")
-  public ModelAndView profile(int no) throws Exception {
+  public void profile(int no, HttpSession session, Model model) throws Exception {
 
+    // 탑바
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
+
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
+    
+    // 바디
     Member member = memberService.get(no);
     if (member == null) {
       throw new Exception("해당 회원이 없습니다.");
     }
-
-    ModelAndView mv = new ModelAndView();
-    List<Review> rvs = member.getReviews();
-    for(Review rv : rvs) {
-      System.out.println(rv.getNo());
-    }
-    mv.addObject("member", member);
-    mv.setViewName("member/profile");
-    return mv;
+    model.addAttribute("member", member);
   }
 
   // 프로필 화면(프로필 + 본인이 저장한 리뷰들이 나옴)
