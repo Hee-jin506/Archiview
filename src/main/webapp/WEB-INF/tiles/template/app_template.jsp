@@ -16,14 +16,16 @@
   <link rel="stylesheet" href="${appRoot}/css/footer.css">
 </head>
 <body>
-
+<div class="container">
 <tiles:insertAttribute name="header"/>
 
 <tiles:insertAttribute name="sidebar"/>
 
+<div id="main">
 <tiles:insertAttribute name="body"/>
+</div>
 
 <tiles:insertAttribute name="footer"/>
-
+</div>
 </body>
 </html>

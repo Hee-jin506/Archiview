@@ -15,6 +15,7 @@ import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
+import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.TagService;
 
 
@@ -23,6 +24,7 @@ import bitcamp.acv.service.TagService;
 @SessionAttributes("loginUser")
 public class FollowController {
 
+  @Autowired MovieService movieService;
   @Autowired MemberService memberService;
   @Autowired FollowService followService;
   @Autowired TagService tagService;
@@ -84,12 +86,16 @@ public class FollowController {
 
   // 전체 리스트
   @GetMapping("list")
-  protected ModelAndView list(@ModelAttribute("loginUser") Member loginUser) throws Exception {
+  protected void list(@ModelAttribute("loginUser") Member loginUser,
+      Model model) throws Exception {
     List<Follow> list = followService.list();
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("list", list);
-    mv.setViewName("follow/list");
-    return mv;
+
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
+
+    model.addAttribute("list", list);
   }
 
   // 전체 리스트 상세

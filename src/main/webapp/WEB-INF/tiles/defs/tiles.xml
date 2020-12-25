@@ -47,15 +47,4 @@
     <put-attribute name="body" value="/WEB-INF/tiles/jsp/option/{1}.jsp" />
   </definition>
   
-    <definition name="follow/*.app" template="/WEB-INF/tiles/template/option_template.jsp">
-    <put-attribute name="header" value="/WEB-INF/tiles/app/header.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/tiles/app/footer.jsp" />
-    <put-attribute name="body" value="/WEB-INF/tiles/jsp/follow/{1}.jsp" />
-  </definition>
-  
-      <definition name="like/*.app" template="/WEB-INF/tiles/template/option_template.jsp">
-    <put-attribute name="header" value="/WEB-INF/tiles/app/header.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/tiles/app/footer.jsp" />
-    <put-attribute name="body" value="/WEB-INF/tiles/jsp/like/{1}.jsp" />
-  </definition>
 </tiles-definitions>
