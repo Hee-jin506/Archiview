@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+#cards {
+	overflow: hidden;
+	overflow-y: scroll;
+	position: absolute;
+	left: 230px;
+	top: 70px;
+	box-sizing: content-box;
+	width: 700px;
+	height: 700px;
+	padding: 0px;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+#cards::-webkit-scrollbar {
+	display: none;
+}
+
+.card {
+	position: relative; 
+	border-radius: 10px;
+	background-color: #141517;
+	box-sizing: border-box;
+	color: white;
+	width: 650px;
+	height: 500px;
+	margin: 10px;
+	padding: 0px;
+}
+
+.card .member {
+	position: absolute;
+	width: 600px;
+	margin: 10px;
+}
+
+.card img.profile {
+	width: 50px;
+}
+
+.card .member p {
+	position: absolute;
+	left: 57px;
+	top: 15px;
+}
+
+.card .stillcut {
+	margin: 0px;
+	position: absolute;
+	top: 80px;
+	height: 400px;
+}

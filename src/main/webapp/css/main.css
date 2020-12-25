@@ -1,0 +1,16 @@
+@charset "UTF-8";
+   body {
+   background-color : #000000;
+   margin: 0px;
+   color: white;
+ }
+ 
+ p {
+   font-size: 18px;
+   font-weight: bold;
+   margin:0px;
+ }
+ 
+ img.profile {
+  border-radius: 100px;
+ }

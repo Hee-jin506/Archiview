@@ -1,9 +1,12 @@
 package bitcamp.acv.web.main;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
@@ -11,6 +14,7 @@ import bitcamp.acv.domain.Movie;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
+import bitcamp.acv.service.ReviewService;
 import bitcamp.acv.service.TagService;
 
 @Controller
@@ -20,36 +24,24 @@ public class MainController {
   @Autowired MemberService memberService;
   @Autowired TagService tagService;
   @Autowired MovieService movieService;
+  @Autowired ReviewService reviewService;
 
   @RequestMapping("")
-  public ModelAndView main(HttpSession session) throws Exception {
-    List<Member> members = memberService.listByPop();
-    List<Movie> movies = movieService.listByPop();
-    List<Tag> tags = tagService.listByPop();
-    ModelAndView mv = new ModelAndView();
+  public void main(HttpSession session, Model model) throws Exception {
+    // 탑바
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
 
-    Member[] topMembers = new Member[3];
-    for (int i = 0; i < 3; i++) {
-      topMembers[i] = members.get(i);
-    }
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
 
-    Movie[] topMovies = new Movie[3];
-    for (int i = 0; i < 3; i++) {
-      topMovies[i] = movies.get(i);
-    }
-
-    Tag[] topTags = new Tag[3];
-    for (int i = 0; i < 3; i++) {
-      topTags[i] = tags.get(i);
-    }
-
-    mv.addObject("topMembers", topMembers);
-    mv.addObject("topMovies", topMovies);
-    mv.addObject("topTags", topTags);
-    Member member = (Member) session.getAttribute("loginUser");
-    mv.addObject("loginUser", member);
-    mv.setViewName("main/home");
-    return mv;
+    // 메인피드
+    Map<String, Object> map = new HashMap<>();
+    map.put("userNo", loginUser.getNo());
+    map.put("row", 0);
+    model.addAttribute("list", reviewService.getMainFeed(map));
   }
 
   @RequestMapping("search")
@@ -84,47 +76,6 @@ public class MainController {
       mv.addObject("selectedTagTitle", selectedTagTitle);
       mv.setViewName("main/topBarBestReviewSearch");
     }
-    return mv;
-  }
-
-  @RequestMapping("sidebar")
-  public ModelAndView sidebar() throws Exception {
-    System.out.println("sidebar 실행!");
-    List<Member> members = memberService.listByPop();
-    List<Movie> movies = movieService.listByPop();
-    List<Tag> tags = tagService.listByPop();
-    ModelAndView mv = new ModelAndView();
-
-    Member[] topMembers = new Member[3];
-    for (int i = 0; i < 3; i++) {
-      topMembers[i] = members.get(i);
-    }
-
-    Movie[] topMovies = new Movie[3];
-    for (int i = 0; i < 3; i++) {
-      topMovies[i] = movies.get(i);
-    }
-
-    Tag[] topTags = new Tag[3];
-    for (int i = 0; i < 3; i++) {
-      topTags[i] = tags.get(i);
-    }
-
-    mv.addObject("topMembers", topMembers);
-    mv.addObject("topMovies", topMovies);
-    mv.addObject("topTags", topTags);
-    mv.setViewName("main/sidebar");
-    return mv;
-  }
-
-  @RequestMapping("topbar")
-  public ModelAndView topbar(Member loginUser, HttpSession session) throws Exception {
-    System.out.println("topbar 실행!");
-    ModelAndView mv = new ModelAndView();
-    if (loginUser == null) {
-      mv.addObject("loginUser", session.getAttribute("loginUser"));
-    }
-    mv.setViewName("main/topbar");
     return mv;
   }
 }

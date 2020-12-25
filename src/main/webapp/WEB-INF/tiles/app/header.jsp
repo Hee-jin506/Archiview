@@ -1,66 +1,6 @@
 <%@page import="bitcamp.acv.domain.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-
-	#menubar {
-	  position: absolute;
-	  left:0px;
-	  top:0px;
-	  width: 100%;
-	  background-color: #141517;
-	  color: white;
-	  height: 65px;
-	}
-	#menubar #inner {
-     width:960px;
-     margin:0 auto;
-	}
-	#menubar #search {
-	  xposition: absolute;
-	  xleft: 600px;
-	  xtop: 20px;
-	      margin:0 auto;
-	}
-	#menubar #profile {
-	  xposition: absolute;
-	  xleft: 1350px;
-	  xtop: 15px;
-	  margin-left:12px;
-	  margin-top:12px;
-	  float: right;
-	}
-	#menubar #icon {
-	  xposition: absolute;
-	  xleft: 1000px;
-	  xtop: 20px;
-	  margin-top:17px;
-	  float: right;
-	}
-	#menubar #logo img {
-		float:left;
-		margin-top:10px;
-		margin-right:150px;
-	  xposition: absolute;
-	  width: 200px;
-	  xleft: 200px;
-	  xtop: 15px;
-	}
-	#menubar #search form {
-	margin-top:20px;
-	float:left;
-	  
-	}
-	#menubar #icon img {
-	  margin-right: 15px;
-	}
-</style>
-<body>
   <div id='menubar'>
 	  <div id='inner'>
 	    <div id='logo'>
@@ -96,5 +36,3 @@
 	    </div>
 	    </div>
    </div> 
-</body>
-</html>

@@ -8,7 +8,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-
 @MapperScan("bitcamp.acv.dao")
 public class MybatisConfig {
 

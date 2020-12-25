@@ -98,7 +98,21 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
-  public List<Member> listFollower(Member member) throws Exception {
-    return memberDao.findByFollower(member);
+  public Member[] listByPop3() throws Exception {
+    List<Member> members = memberDao.findByPop();
+    for (int i = 0; i < members.size(); i++) {
+      for (int j =  members.size() -1; j > i; j--) {
+        int frontPop = members.get(j - 1).getFollowers() * 2 + members.get(j - 1).getLikers();
+        int backPop = members.get(j).getFollowers() * 2 + members.get(j).getLikers();
+        if (frontPop < backPop) {
+          swap(members, j-1, j);
+        }
+      }
+    }
+    Member[] topMembers = new Member[3];
+    for (int i = 0; i < 3; i++) {
+      topMembers[i] = members.get(i);
+    }
+    return topMembers;
   }
 }

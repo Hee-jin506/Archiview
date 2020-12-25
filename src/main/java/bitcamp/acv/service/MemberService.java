@@ -18,5 +18,6 @@ public interface MemberService {
   List<Member> listByPop() throws Exception;
   List<Member> listByKeywordNickName(String keyword) throws Exception;
 
-  List<Member> listFollower(Member member) throws Exception;
+  Member[] listByPop3() throws Exception;
+
 }

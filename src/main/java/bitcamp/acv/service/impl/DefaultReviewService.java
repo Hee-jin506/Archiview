@@ -160,6 +160,29 @@ public class DefaultReviewService implements ReviewService {
 
   @Override
   public List<Review> getMainFeed(Map<String, Object> map) throws Exception {
-    return reviewDao.findForMainFeed(map);
+    List<Review> list = reviewDao.findForMainFeed(map);
+    for (Review review : list) {
+
+      Calendar cal = new GregorianCalendar(Locale.KOREA);
+      long now = cal.getTimeInMillis();
+      long diff = now - review.getRegisteredDate().getTime();
+      System.out.println(review.getRegisteredDate());
+      if (diff / 1000 / 60 < 1) {
+        review.setRdtFromNow("방금 전");
+      } else if (diff / 1000 / 60 / 60 < 1) {
+        review.setRdtFromNow(diff / 1000 / 60 + "분 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 < 1) {
+        review.setRdtFromNow(diff/ 1000 / 60 / 60 + "시간 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 / 7 < 1) {
+        review.setRdtFromNow(diff/ 1000 / 60 / 60 / 24 + "일 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 / 7 / 30 < 1) {
+        review.setRdtFromNow(diff/ 1000 / 60 / 60 / 24 / 7 + "주 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 / 365 < 1) {
+        review.setRdtFromNow(Calendar.MONTH - review.getRegisteredDate().getMonth() + "달 전");
+      } else {
+        review.setRdtFromNow(Calendar.YEAR - review.getRegisteredDate().getYear() + "년 전");
+      }
+    }
+    return list;
   }
 }

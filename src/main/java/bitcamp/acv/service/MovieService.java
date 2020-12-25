@@ -12,6 +12,7 @@ public interface MovieService {
   int active(int no) throws Exception;
   int getStcNo(int movieNo, String url) throws Exception;
   List<Movie> listByPop() throws Exception;
+  Movie[] listByPop3() throws Exception;
   List<Movie> listByKeywordTitle(String keyword) throws Exception;
   List<Movie> list1(HashMap<String, Object> keyMap) throws Exception;
 }

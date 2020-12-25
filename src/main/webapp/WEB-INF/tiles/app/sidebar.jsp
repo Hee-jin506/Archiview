@@ -4,50 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>사이드바</title>
-<style>
-
- #sidebar {
-   float:right;
-   xposition: absolute;
-   xright:250px;
-   xtop:70px;
-   box-sizing: content-box;
-   width: 300px;
- }
-
- .sidebar {
-  padding: 10px;
-  border-radius: 10px;
-  background-color: #141517;
-  box-sizing: border-box;
-  color: white;
-  width: 250px;
-  height: 220px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
- }
- 
- .sidebar hr {
-   border:0;
-   height: 1px;
-   background-color: #626473;
- }
- 
- .sidebar .explanation {
-   font-size: 14px;
-   color: #626473;
-   font-weight: normal;
- }
- 
-</style>
-</head>
-<body>
 <div id='sidebar'>
 <div id='topMembers' class='sidebar'>
 <p>추천 리뷰어 목록</p>
@@ -92,6 +48,3 @@ for (Tag tag : tags) {
 %>
 </div>
 </div>
-
-</body>
-</html>

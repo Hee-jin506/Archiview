@@ -80,4 +80,23 @@ public class DefaultMovieService implements MovieService {
   public List<Movie> list1(HashMap<String, Object> keyMap) throws Exception {
     return movieDao.findByKeyword(keyMap);
   }
+
+  @Override
+  public Movie[] listByPop3() throws Exception {
+    List<Movie> movies = movieDao.findAll(null);
+    for (int i = 0; i < movies.size(); i++) {
+      for (int j =  movies.size() -1; j > i; j--) {
+        int frontPop = movies.get(j - 1).getReviews().size();
+        int backPop = movies.get(j).getReviews().size();
+        if (frontPop < backPop) {
+          swap(movies, j-1, j);
+        }
+      }
+    }
+    Movie[] topMovies = new Movie[3];
+    for (int i = 0; i < 3; i++) {
+      topMovies[i] = movies.get(i);
+    }
+    return topMovies;
+  }
 }
