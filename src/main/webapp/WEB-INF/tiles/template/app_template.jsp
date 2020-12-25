@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="${appRoot}/css/main.css">
   <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
   <style>
+  
   #container {
       width:960px;
       margin:0 auto;
@@ -31,9 +32,9 @@
 	  <div id="container">
 		  <tiles:insertAttribute name="sidebar"/>
 		  <tiles:insertAttribute name="body"/>
-	  </div>
 	  
 	  <tiles:insertAttribute name="footer"/>
 
+	  </div>
   </body>
 </html>

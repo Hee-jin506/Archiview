@@ -7,6 +7,7 @@
 <link rel="stylesheet" 
       href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/bootstrap.min.css?after">
 <style>
+a { text-decoration: none; }
 
  body {
    background-color : #000000;

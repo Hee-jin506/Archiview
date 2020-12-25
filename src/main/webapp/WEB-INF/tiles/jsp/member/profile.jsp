@@ -8,10 +8,13 @@
       href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/bootstrap.min.css?after">
 <style>
 
+a { text-decoration: none; }
+
  body {
    background-color : #000000;
    color: #ffffff;
    margin: 0px;
+    
  }
  
  p {
@@ -84,15 +87,15 @@
 
   <div id="contents">
 		<div id="member">
-			<input type='hidden' name='no' value='${member.no}'>
-			<img class="profile" src='../../upload/${member.photo}_150x150.jpg'><br>
-			<p>${member.nickName}<br>
-			   ${member.email}<br><br>
+      <input type='hidden' name='no' value='${member.no}'>
+      <img class="profile" src='../../upload/${member.photo}_150x150.jpg'><br>
+      <p>${member.nickName}<br>
+         ${member.email}<br><br>
          ${member.intro}</p>
-  <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
-  <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
-  <a href="../report/form?reportedNo=${member.no}">신고</a> 
-		</div>
+      <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
+      <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
+      <a href="../report/form?reportedNo=${member.no}">신고</a> 
+    </div>
 		
 		<div id="profile-icon">
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
