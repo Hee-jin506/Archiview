@@ -98,7 +98,7 @@ public class FollowController {
     Follow follow = followService.get(no);
     ModelAndView mv = new ModelAndView();
 
-    // targer .jsp 불러오기
+    // targer .jsp 불러오기.
     Object target = followService.getTarget(follow);
     System.out.println(target instanceof Member);
     System.out.println(target instanceof Tag);
