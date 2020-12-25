@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Follow;
@@ -11,6 +12,7 @@ import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
+import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.TagService;
 
 
@@ -19,6 +21,7 @@ import bitcamp.acv.service.TagService;
 public class FollowController {
 
   @Autowired MemberService memberService;
+  @Autowired MovieService movieService;
   @Autowired FollowService followService;
   @Autowired TagService tagService;
 
@@ -74,12 +77,15 @@ public class FollowController {
 
   // 전체 리스트
   @RequestMapping("list")
-  protected ModelAndView list() throws Exception {
+  protected void list(Model model) throws Exception {
+    
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
+    
     List<Follow> list = followService.list();
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("list", list);
-    mv.setViewName("follow/list");
-    return mv;
+    model.addAttribute("list", list);
   }
 
   // 전체 리스트 상세

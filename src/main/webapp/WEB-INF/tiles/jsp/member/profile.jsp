@@ -26,16 +26,18 @@
       border-radius: 10px;
       background-color: #141517;
       width: 699px;  /* 너비 */
-      padding: 20px;  /* 패딩 */
+      padding: 40px;  /* 패딩 */
       float: left;  /* 왼쪽으로 플로팅 */
     }
+    
+ .profile-icon { display: block; margin: 0px auto; }
  
  img.profile {
   border-radius: 100px;
  }
  
+ 
  #member img {
- margin-left : 20px;
  margin-right : 30px;
  float: left;
  }
@@ -43,13 +45,13 @@
  float: left;
  }
  
- #icon1 {
+ #profile-icon {
  clear: both;
  margin-bottom : 50px;
  }
- #icon1 a {
+ #profile-icon a {
  margin-top : 50px;
- margin-left : 95px;
+ margin-left : 99.8px;
  float: left;
  }
  #reviews {
@@ -67,7 +69,7 @@
 
   <div id="contents">
 		<div id="member">
-			<input type='hidden' name='no' value='${member.no}'><br>
+			<input type='hidden' name='no' value='${member.no}'>
 			<img class="profile" src='../../upload/${member.photo}_150x150.jpg'><br>
 			<p>${member.nickName}<br>
 			   ${member.email}<br><br>
@@ -76,22 +78,22 @@
 		
   <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
   <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
-          
-		<div id="icon1">
+		<div id="profile-icon">
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" width=30px alt="리뷰"><br>
-		      리뷰 
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" height=30px class="center" alt="리뷰">
+		      리뷰<br>
+		      <c:out value="${member.numOfReviews}"></c:out>
 		  </a>
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" width=30px alt="팔로워"><br>
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" height=30px class="center" alt="팔로워">
 		      팔로워 
 		  </a>
 		  <a href="<%=getServletContext().getContextPath()%>/app/follow/list"> 
-		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" width=30px alt="팔로잉"><br>
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" height=30px class="center" alt="팔로잉">
 		      팔로잉 
 		  </a>
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profileSavedReviews?no=${member.no}"> 
-		    <img src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" width=30px alt="저장"><br>
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" height=30px class="center" alt="저장">
 		      저장 
 		  </a>
 		</div>
