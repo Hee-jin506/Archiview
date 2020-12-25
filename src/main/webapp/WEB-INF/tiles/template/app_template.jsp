@@ -8,20 +8,14 @@
 <head>
   <meta charset="UTF-8">
   <title>아카이뷰</title>
-  <link rel="stylesheet" 
-        href="${appRoot}/css/bootstrap/dist/css/custom.css">
-  <link rel="stylesheet" 
-        href="${appRoot}/css/header.css">
-  <link rel="stylesheet" 
-        href="${appRoot}/css/sidebar.css">
-  <link rel="stylesheet" 
-        href="${appRoot}/css/mainFeed.css">
-  <link rel="stylesheet" 
-        href="${appRoot}/css/main.css">
+  <link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/custom.css">
+  <link rel="stylesheet" href="${appRoot}/css/main.css">
+  <link rel="stylesheet" href="${appRoot}/css/header.css">
+  <link rel="stylesheet" href="${appRoot}/css/sidebar.css">
+  <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
+  <link rel="stylesheet" href="${appRoot}/css/footer.css">
 </head>
 <body>
-
-<div class="container">
 
 <tiles:insertAttribute name="header"/>
 
@@ -30,8 +24,6 @@
 <tiles:insertAttribute name="body"/>
 
 <tiles:insertAttribute name="footer"/>
-
-</div>
 
 </body>
 </html>

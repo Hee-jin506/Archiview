@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<!DOCTYPE html>
 <div id='sidebar'>
 <div id='topMembers' class='sidebar'>
 <p>추천 리뷰어 목록</p>

@@ -1,7 +1,6 @@
 <%@page import="bitcamp.acv.domain.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
-<!DOCTYPE html>
   <div id='menubar'>
 	  <div id='inner'>
 	    <div id='logo'>
