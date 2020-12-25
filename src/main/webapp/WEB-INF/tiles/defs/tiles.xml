@@ -36,6 +36,7 @@
   </definition> 
   
   
+    
   <definition name="option/*.app" template="/WEB-INF/tiles/template/option_template.jsp">
     <put-attribute name="header" value="/WEB-INF/tiles/app/header.jsp" />
     <put-attribute name="footer" value="/WEB-INF/tiles/app/footer.jsp" />
