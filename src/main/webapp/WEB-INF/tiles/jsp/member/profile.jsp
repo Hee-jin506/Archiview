@@ -1,8 +1,6 @@
-<%@page import="bitcamp.acv.domain.Follow"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head><title>회원 프로필 화면</title>
@@ -18,7 +16,7 @@
  
  p {
    font-size: 18px;
-   font-weight: bold;
+   xfont-weight: bold;
    margin:0px;
  }
  
@@ -103,15 +101,15 @@
 		      <%-- <c:out value="${member.numOfReviews}" ></c:out></span> --%>
 		  </a>
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" height=30px class="center" alt="팔로워">
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
 		      팔로워 
 		  </a>
 		  <a href="<%=getServletContext().getContextPath()%>/app/follow/followingList?no=${member.no}"> 
-		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" height=30px class="center" alt="팔로잉">
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
 		      팔로잉 
 		  </a>
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/savedReviews?no=${member.no}"> 
-		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" height=30px class="center" alt="저장">
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved-border.png" height=30px class="center" alt="저장">
 		      저장 
 		  </a>
 		</div>

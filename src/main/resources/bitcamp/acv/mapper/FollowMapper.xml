@@ -30,6 +30,10 @@
     <association property="targetTag">
       <result column="targetTag_no"        property="no"/>
       <result column="targetTag_title"        property="title"/>
+      
+      <collection property="reviews"    ofType="integer">
+         <result column="rvno"        property="yongseobatjimothal-code"/>
+      </collection>
     </association>
    </resultMap>
 
@@ -60,13 +64,19 @@
     f.stat,
     mb2.mno targetMember_no,
     mb2.nick targetMember_nick,
+    mb2.photo targetMember_photo,
+    mb2.intro targetMember_intro,
     t.tno targetTag_no,
-    t.title targetTag_title
+    t.title targetTag_title,
+    tp.tpno,
+    tp.rvno
+      
   from
     acv_mbr mb
 	    left outer join acv_flw f on mb.mno=f.flwing_mbr
 	    left outer join acv_mbr mb2 on f.target=mb2.mno
 	    left outer join acv_tag t on f.target=t.tno
+	    left outer join acv_tag_post tp on t.tno=tp.tno
   </sql> 
 
  <!-- 팔로우 리스트 -->

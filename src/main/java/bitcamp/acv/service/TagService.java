@@ -22,4 +22,5 @@ public interface TagService {
   Tag get(String title) throws Exception;
   void getSizeInfo(Map<String, Object> resultMap) throws Exception;
   void getChartInfo(Map<String, Object> resultMap) throws Exception;
+  List<Tag> getThumbnailStillCut(List<Tag> tags) throws Exception;
 }

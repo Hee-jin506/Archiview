@@ -100,26 +100,26 @@ public class FollowController {
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
     
+    // 바디(프로필..)
+    Member member = memberService.get(no);
+    model.addAttribute("member", member);
+    
     // 바디(내가 팔로우한 리스트)
     List<Follow> followList = followService.list2(no);
     List<Member> targetMemberlist = new ArrayList<>();
     List<Tag> targetTaglist = new ArrayList<>();
     
+    
     for (Follow follow : followList) {
-      System.out.println(follow.getNo());
-      System.out.println(follow.getFollowedType());
       if(follow.getFollowedType() == 1) {
         targetMemberlist.add(follow.getTargetMember());
       } else {
         targetTaglist.add(follow.getTargetTag());
       }
     }
-    for (Tag t : targetTaglist) {
-      System.out.println(t.getNo());
-    }
     
     model.addAttribute("targetMemberlist", targetMemberlist);
-    model.addAttribute("targetTaglist", targetTaglist);
+    model.addAttribute("targetTaglist", tagService.getThumbnailStillCut(targetTaglist));
   }
 
   // 전체 리스트 상세
