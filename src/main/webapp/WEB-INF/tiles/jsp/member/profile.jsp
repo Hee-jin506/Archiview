@@ -65,7 +65,7 @@
  }
  #profile-icon a {
  margin-top : 50px;
- margin-left : 99.8px;
+ margin-left : 91.8px;
  float: left;
  }
  #reviews {
