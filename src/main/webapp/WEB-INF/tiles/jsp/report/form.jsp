@@ -13,12 +13,11 @@
 </head>
 
 <body>
-<h1>[신고 등록 - JSP]</h1>
+<h1>[신고 등록]</h1>
 
-<% Member member = (Member) session.getAttribute("loginUser"); %>
-
-<form action='reportUser' method='post'>
-
+<form action='reportUser' method='post' enctype="multipart/form-data">
+신고 대상:
+<input type='text' name='reportedNo'><br>
 신고 유형:
 <select name='reportedType' >
   <option value='1'>회원</option>
@@ -27,7 +26,7 @@
   <option value='4'>태그</option>
 </select><br>
 신고 사유:
-<select name='status'>
+<select name='why'>
   <option value='1'>음란성/선정성</option>
   <option value='2'>폭력성</option>
   <option value='3'>혐오/인신공격</option>
@@ -35,8 +34,7 @@
   <option value='5'>개인정보 노출</option>
   <option value='6'>도배</option>
 </select><br>
-<a href="../reportUser?reportedNo=${member.no}">신고</a> 
-<button>등록</button> 
+<button>등록</button>
 </form>
 </body>
 </html>

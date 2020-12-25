@@ -74,8 +74,8 @@
   
     <!-- 유저 신고 -->
     <insert id="insertUser" parameterType="report">
-    insert into acv_rp(mno,rano,target,rwno)
-    values(#{reportingMember.no}, 1, #{reportedNo},#{rwno})
+    insert into acv_rp(rno, mno, rano, target, rwno)
+    values(#{no}, #{reportingMember.no}, #{reportedType}, #{reportedNo}, #{why})
     </insert>
   
     <!-- 신고 상세 목록 -->

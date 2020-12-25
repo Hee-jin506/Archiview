@@ -14,7 +14,7 @@
         return "기타";
     }
   }%>
-<h1>팔로우 리스트</h1>
+<h1>팔로잉 리스트</h1>
 
 <table class="table">
 	<thead>
@@ -25,28 +25,28 @@
 	</thead>
 
 	<tbody>
-<%
+		<%
 Exception ex = (Exception) request.getAttribute("exception");
 if (ex != null) {%>
-      <tr>
-        <td colspan="6">작업 목록을 가져오는 중 오류 발생!</td>
-      </tr>
-      <%
+		<tr>
+			<td colspan="6">작업 목록을 가져오는 중 오류 발생!</td>
+		</tr>
+		<%
         } else {
       List<Follow> followList = (List<Follow>) request.getAttribute("list");
       Member loginUser = (Member) session.getAttribute("loginUser");
       for (Follow follow : followList) {
         if (follow.getFollowingMember().getNo() == loginUser.getNo()) {
       %>
-      <tr>
-        <td style="width: 10%" class="text-center">
-        <a class="text-reset" href='detail?no=<%=follow.getNo()%>'><%=getType(follow.getFollowedType())%></a></td>
-        <td style="width: 10%" class="text-center"><%=follow.getFollowedNo()%></td>
-      </tr>
-      <%
+		<tr>
+			<td style="width: 10%" class="text-center"><a class="text-reset"
+				href='detail?no=<%=follow.getNo()%>'><%=getType(follow.getFollowedType())%></a></td>
+			<td style="width: 10%" class="text-center"><%=follow.getFollowedNo()%></td>
+		</tr>
+		<%
          }
         }
       }
       %>
-    </tbody>
-  </table>
+	</tbody>
+</table>

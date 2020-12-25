@@ -30,7 +30,7 @@ public class FollowController {
   @Autowired TagService tagService;
 
   // 멤버 팔로우
-  @PostMapping("addUser")
+  @GetMapping("addUser")
   public String addUser(Follow follow,
       @ModelAttribute("loginUser") Member loginUser) throws Exception {
     follow.setFollowingMember(loginUser);
@@ -75,7 +75,7 @@ public class FollowController {
     }
   }
 
-  // 전체 리스트
+  // 팔로잉 리스트
   @GetMapping("list")
   protected void list(@ModelAttribute("loginUser") Member loginUser,
       Model model) throws Exception {
