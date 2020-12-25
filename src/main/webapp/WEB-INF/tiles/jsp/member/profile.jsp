@@ -78,6 +78,7 @@
 		
   <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
   <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
+  <a href='../report/form'>신고</a><br>
 		<div id="profile-icon">
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" height=30px class="center" alt="리뷰">

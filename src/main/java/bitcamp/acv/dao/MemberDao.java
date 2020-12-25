@@ -9,7 +9,6 @@ public interface MemberDao {
   int insert(Member member) throws Exception;
 
   Member findByNo(int no) throws Exception;
-
   //
   Member findByEmailPassword(Map<String,Object> params) throws Exception;
 
@@ -24,5 +23,4 @@ public interface MemberDao {
   Member findByEmail(String email) throws Exception;
 
   List<Member> findByFollower(Member member) throws Exception;
-  List<Member> findFollower(Member member) throws Exception;
 }

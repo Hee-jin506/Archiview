@@ -41,4 +41,5 @@
     <put-attribute name="footer" value="/WEB-INF/tiles/app/footer.jsp" />
     <put-attribute name="body" value="/WEB-INF/tiles/jsp/option/{1}.jsp" />
   </definition>
+  
 </tiles-definitions>

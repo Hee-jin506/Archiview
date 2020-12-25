@@ -42,7 +42,7 @@ public class ReportController {
   public String add(Report report, HttpSession session) throws Exception {
     Member loginUser = (Member) session.getAttribute("loginUser");
     report.setReportingMember(loginUser);
-    reportService.add(report);
+    reportService.reportUser(report);
     return "redirect:list";
   }
 

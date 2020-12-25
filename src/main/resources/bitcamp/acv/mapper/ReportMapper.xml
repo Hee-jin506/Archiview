@@ -43,6 +43,8 @@
       inner join acv_rp_stat rps on rp.rsno = rps.rsno
   </sql> 
 
+
+ <!-- 신고 리스트 -->
   <select id="findAll" resultMap="ReportMap" parameterType="string">
     select
       rp.rno,
@@ -70,16 +72,19 @@
       rp.rno desc
   </select>
   
-    <insert id="insert" parameterType="report">
-    insert into acv_rp(mno,rano,target,rwno,rsno)
-    values(#{reportingMember.no},#{reportedType},#{reportedNo},#{rwno},#{rsno})
-  </insert>
+    <!-- 유저 신고 -->
+    <insert id="insertUser" parameterType="report">
+    insert into acv_rp(mno,rano,target,rwno)
+    values(#{reportingMember.no}, 1, #{reportedNo},#{rwno})
+    </insert>
   
+    <!-- 신고 상세 목록 -->
     <select id="findByNo" parameterType="int" resultMap="ReportMap">
     <include refid="sql1"/>
     where rp.rno = #{reportNo}
   </select>
   
+  <!-- 신고 처리 -->
   <update id="update" parameterType="report">
   update acv_rp
     <set>

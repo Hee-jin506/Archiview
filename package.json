@@ -1,0 +1,38 @@
+{
+<<<<<<< HEAD
+  "name": "archiview",
+=======
+  "name": "Archiview",
+>>>>>>> 92fec11a5ccb181024a601f4bc0cca2a023c49a4
+  "version": "1.0.0",
+  "description": "![](https://github.com/Hee-jin506/Archiview/blob/main/Archiview_jpg/1.%EB%A1%9C%EA%B7%B8%EC%95%84%EC%9B%83%20%EC%83%81%ED%83%9C%ED%99%94%EB%A9%B4%20%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83%203.jpg?raw=true )",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hee-jin506/Archiview.git"
+  },
+<<<<<<< HEAD
+=======
+  "keywords": [],
+>>>>>>> 92fec11a5ccb181024a601f4bc0cca2a023c49a4
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hee-jin506/Archiview/issues"
+  },
+<<<<<<< HEAD
+  "homepage": "https://github.com/Hee-jin506/Archiview#readme"
+=======
+  "homepage": "https://github.com/Hee-jin506/Archiview#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "node-sass": "^5.0.0"
+  }
+>>>>>>> 92fec11a5ccb181024a601f4bc0cca2a023c49a4
+}

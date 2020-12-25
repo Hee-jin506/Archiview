@@ -25,11 +25,11 @@
 </head>
 <body>
 
-<tiles:insertAttribute name="header"/>
-<div id="container">
-	<tiles:insertAttribute name="sidebar"/>
-	
-	<tiles:insertAttribute name="body"/>
+  <tiles:insertAttribute name="header"/>
+  <div id="container">
+  <tiles:insertAttribute name="sidebar"/>
+  
+  <tiles:insertAttribute name="body"/>
 </div>
 <tiles:insertAttribute name="footer"/>
 

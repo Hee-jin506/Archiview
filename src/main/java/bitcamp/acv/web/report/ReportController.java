@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,20 +31,27 @@ public class ReportController {
   @Autowired CommentService commentService;
   @Autowired TagService tagService;
 
-  @RequestMapping("form")
-  public ModelAndView form(int no) throws Exception {
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("target", memberService.get(no));
-    mv.setViewName("report/form");
-    return mv;
+
+  @GetMapping("form")
+  public void form() throws Exception {
   }
 
-  @RequestMapping("add")
-  public String add(Report report, HttpSession session) throws Exception {
+  //  @RequestMapping("form")
+  //  public ModelAndView form(int no) throws Exception {
+  //    ModelAndView mv = new ModelAndView();
+  //    mv.addObject("target", memberService.get(no));
+  //    mv.setViewName("report/form");
+  //    return mv;
+  //  }
+
+  // 멤버 신고
+  @GetMapping("reportUser")
+  public String reportUser(Report report, HttpSession session) throws Exception {
+    // 현재 로그인 멤버
     Member loginUser = (Member) session.getAttribute("loginUser");
     report.setReportingMember(loginUser);
-    reportService.add(report);
-    return "redirect:list";
+    reportService.reportUser(report);
+    return "redirect:../main";
   }
 
   @RequestMapping("list")

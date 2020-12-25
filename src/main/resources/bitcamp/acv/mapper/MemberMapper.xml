@@ -51,12 +51,8 @@
   <result column="stat_mdt" property="statusModifiedDate" />
   <result column="flw_length" property="followers"/>
   <result column="lk_length"  property="likers"/>
-
- </resultMap>
- 
- 
- 
-
+  </resultMap>
+   
  <!-- private int no; // 회원 번호 private int authority; // 권한 private String 
   name; // 이름 private int loginNo; // 로그인 유형 번호 private String email; // 이메일 
   private String password; // 암호 private String nickName; // 별명 private String 
