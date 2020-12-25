@@ -19,12 +19,12 @@ public class AuthController {
   @Autowired MemberService memberService;
 
   @RequestMapping("login")
-  protected ModelAndView login(HttpServletRequest request, HttpServletResponse response, String email, String password) throws Exception {
+  public ModelAndView login(HttpServletRequest request, HttpServletResponse response, String email, String password) throws Exception {
     ModelAndView mv = new ModelAndView();
     boolean wrongInput = false;
     boolean withdrawedMember = false;
 
-    if (request.getMethod().equals("GET")) {
+    if (request.getMethod().equals("GET")) { 
       String cookieEmail = "";
 
       Cookie[] cookies = request.getCookies();
@@ -76,7 +76,7 @@ public class AuthController {
   }
 
   @RequestMapping("logout")
-  protected String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+  public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response)
       throws Exception {
 
     Member loginUser = (Member) session.getAttribute("loginUser");
@@ -89,7 +89,7 @@ public class AuthController {
   }
 
   @RequestMapping("emailCheck")
-  protected ModelAndView emailCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String email) throws Exception {
+  public ModelAndView emailCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String email) throws Exception {
     ModelAndView mv = new ModelAndView();
     if (memberService.get(email) == null) {
       throw new Exception("<p>가입된 이메일이 아닙니다.</p>");
@@ -102,7 +102,7 @@ public class AuthController {
   }
 
   @RequestMapping("hintCheck")
-  protected ModelAndView hintCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String hint) throws Exception {
+  public ModelAndView hintCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String hint) throws Exception {
     ModelAndView mv = new ModelAndView();
     Member member = (Member) session.getAttribute("searchUser");
     System.out.println(member.getQuestionsAnswer());
@@ -116,7 +116,7 @@ public class AuthController {
   }
 
   @RequestMapping("update")
-  protected String update(HttpSession session, HttpServletRequest request, HttpServletResponse response, String password, String password2) throws Exception {
+  public String update(HttpSession session, HttpServletRequest request, HttpServletResponse response, String password, String password2) throws Exception {
     if (!password.equals(password2)) {
       throw new Exception("<p>비밀번호가 일치하지 않습니다.</p>");
     } else {

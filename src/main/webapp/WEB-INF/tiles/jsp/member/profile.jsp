@@ -22,13 +22,22 @@
    margin:0px;
  }
  
-    #contents {
-      border-radius: 10px;
-      background-color: #141517;
-      width: 699px;  /* 너비 */
-      padding: 40px;  /* 패딩 */
-      float: left;  /* 왼쪽으로 플로팅 */
-    }
+ #contents {
+   border-radius: 10px;
+   background-color: #141517;
+   width: 699px;  /* 너비 */
+   padding: 40px;  /* 패딩 */
+   float: left;  /* 왼쪽으로 플로팅 */
+   height: 700px;
+    overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+ }
+ 
+ #contents::-webkit-scrollbar {
+  display: none;
+}
     
  .profile-icon { display: block; margin: 0px auto; }
  
@@ -36,7 +45,12 @@
   border-radius: 100px;
  }
  
- 
+ #member{
+ width : 599px;
+ margin-left : 10px;
+ margin-right : 10px;
+ float: left;
+ }
  #member img {
  margin-right : 30px;
  float: left;
@@ -47,7 +61,7 @@
  
  #profile-icon {
  clear: both;
- margin-bottom : 50px;
+ margin-bottom : 130px;
  }
  #profile-icon a {
  margin-top : 50px;
@@ -55,12 +69,15 @@
  float: left;
  }
  #reviews {
+ margin-top : 50px;
  clear: both;
  }
  
  #reviews img{
  float:left;
+ margin-top : 20px;
  margin-right : 10px;
+ margin-left : 10px;
  }
 </style>
 
@@ -74,16 +91,16 @@
 			<p>${member.nickName}<br>
 			   ${member.email}<br><br>
          ${member.intro}</p>
-		</div>
-		
   <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
   <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
   <a href="../report/form?reportedNo=${member.no}">신고</a> 
+		</div>
+		
 		<div id="profile-icon">
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" height=30px class="center" alt="리뷰">
-		      리뷰<br>
-		      <c:out value="${member.numOfReviews}"></c:out>
+		      리뷰
+		      <%-- <c:out value="${member.numOfReviews}" ></c:out></span> --%>
 		  </a>
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" height=30px class="center" alt="팔로워">
@@ -100,17 +117,17 @@
 		</div>
 		
 			<div id = "reviews">
-			<c:forEach items="${member.reviews}" var="rv"> 
-			<input type='hidden' name='no' value='${rv.no}'>
-			  <c:choose>
-				  <c:when test="${empty rv.stcUrl}">
-				    <img width="280px" src="<%=getServletContext().getContextPath()%>/main_resource/null.png">
-				  </c:when>
-				  <c:otherwise>
-				   <img width="280px" src='${rv.stcUrl}'><br>
-				  </c:otherwise>
-			  </c:choose>
-			</c:forEach>
+				<c:forEach items="${member.reviews}" var="rv"> 
+				<input type='hidden' name='no' value='${rv.text}'>
+				  <c:choose>
+					  <c:when test="${empty rv.stcUrl}">
+					    <img width="289.5x" height="160px" src="<%=getServletContext().getContextPath()%>/main_resource/null.png">
+					  </c:when>
+					  <c:otherwise>
+					   <img width="289.5px" height="160px" src='${rv.stcUrl}'><br>
+					  </c:otherwise>
+				  </c:choose>
+				</c:forEach>
 			</div>
     </div>
 <script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

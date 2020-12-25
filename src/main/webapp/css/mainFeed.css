@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
 #cards {
-	overflow: hidden;
-	overflow-y: scroll;
 	xposition: absolute;
 	xleft: 230px;
 	xtop: 70px;
@@ -10,6 +8,8 @@
 	width: 700px;
 	height: 700px;
 	padding: 0px;
+	overflow: hidden;
+	overflow-y: scroll;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 }
