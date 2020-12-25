@@ -1,15 +1,13 @@
 package bitcamp.acv.web.follow;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
->>>>>>> branch 'main' of https://github.com/Hee-jin506/Archiview
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,7 +25,6 @@ import bitcamp.acv.service.TagService;
 @SessionAttributes("loginUser")
 public class FollowController {
 
-  @Autowired MovieService movieService;
   @Autowired MemberService memberService;
   @Autowired MovieService movieService;
   @Autowired FollowService followService;
@@ -81,8 +78,9 @@ public class FollowController {
 
   // 전체 리스트
   @GetMapping("list")
-  protected void list(@ModelAttribute("loginUser") Member loginUser,
+  public void list(@ModelAttribute("loginUser") Member loginUser,
       Model model) throws Exception {
+    
     List<Follow> list = followService.list();
 
     // 사이드바
@@ -91,10 +89,42 @@ public class FollowController {
     model.addAttribute("topTags", tagService.listByPop3());
     model.addAttribute("list", list);
   }
+  
+  // 특정멤버의 팔로우 리스트
+  @GetMapping("followingList")
+  public void followingList(@ModelAttribute("loginUser") Member loginUser, int no,
+      Model model) throws Exception {
+    
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
+    
+    // 바디(내가 팔로우한 리스트)
+    List<Follow> followList = followService.list2(no);
+    List<Member> targetMemberlist = new ArrayList<>();
+    List<Tag> targetTaglist = new ArrayList<>();
+    
+    for (Follow follow : followList) {
+      System.out.println(follow.getNo());
+      System.out.println(follow.getFollowedType());
+      if(follow.getFollowedType() == 1) {
+        targetMemberlist.add(follow.getTargetMember());
+      } else {
+        targetTaglist.add(follow.getTargetTag());
+      }
+    }
+    for (Tag t : targetTaglist) {
+      System.out.println(t.getNo());
+    }
+    
+    model.addAttribute("targetMemberlist", targetMemberlist);
+    model.addAttribute("targetTaglist", targetTaglist);
+  }
 
   // 전체 리스트 상세
   @GetMapping("detail")
-  protected ModelAndView view(int no,
+  public ModelAndView view(int no,
       Member member,
       Tag tag) throws Exception {
 

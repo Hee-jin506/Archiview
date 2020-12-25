@@ -23,7 +23,6 @@
 </style>
 </head>
 <body>
-<jsp:include page="/app/main/topbar"/>
 
 <br>
 <br>
@@ -70,7 +69,5 @@ ${member.intro}<br>
   ${rv.no}<br>
    <img src='${rv.stcUrl}'><br>
 </c:forEach>
-<jsp:include page="/app/main/sidebar"/>
-<jsp:include page="/main/footer.jsp"/>
 </body>
 </html>

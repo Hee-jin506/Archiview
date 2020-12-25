@@ -89,11 +89,11 @@
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" height=30px class="center" alt="팔로워">
 		      팔로워 
 		  </a>
-		  <a href="<%=getServletContext().getContextPath()%>/app/follow/list"> 
+		  <a href="<%=getServletContext().getContextPath()%>/app/follow/followingList?no=${member.no}"> 
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" height=30px class="center" alt="팔로잉">
 		      팔로잉 
 		  </a>
-		  <a href="<%=getServletContext().getContextPath()%>/app/member/profileSavedReviews?no=${member.no}"> 
+		  <a href="<%=getServletContext().getContextPath()%>/app/member/savedReviews?no=${member.no}"> 
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" height=30px class="center" alt="저장">
 		      저장 
 		  </a>

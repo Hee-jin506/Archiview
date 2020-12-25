@@ -12,15 +12,20 @@ public class Follow {
 
   private int no; // 팔로우 이력 번호 fno
   private Member followingMember; // 팔로우를 신청한 회원 flwing_mbr
-  private int followedType; // 팔로우한 유형(태그/회원) fano
-  private int followedNo; // 팔로우한 대상 대상(태그/회원) target
-  private String followed;
+  private int followedType; // 팔로우한 대상의 유형(1=회원,2=태그) fano
+  private int followedNo; // 팔로우한 대상의 번호 target
   private Date followedDate; // 팔로우한 날짜 fdt
   private int status; // 팔로우 상태 번호 stat 1=팔로우 2=언팔로우
   private String nickName;
+  private Member targetMember; // 팔로우한 회원
+  private Tag targetTag; // 팔로우한 태그
 
-  private List<Member> targetList;
-
+  public int getFollowedType() {
+    return followedType;
+  }
+  public void setFollowedType(int followedType) {
+    this.followedType = followedType;
+  }
   public int getStatus() {
     return status;
   }
@@ -38,12 +43,6 @@ public class Follow {
   }
   public void setFollowingMember(Member followingMember) {
     this.followingMember = followingMember;
-  }
-  public int getFollowedType() {
-    return followedType;
-  }
-  public void setFollowedType(int followedType) {
-    this.followedType = followedType;
   }
   public int getFollowedNo() {
     return followedNo;
@@ -69,16 +68,16 @@ public class Follow {
   public void setNickName(String nickName) {
     this.nickName = nickName;
   }
-  public String getFollowed() {
-    return followed;
+  public Member getTargetMember() {
+    return targetMember;
   }
-  public void setFollowed(String followed) {
-    this.followed = followed;
+  public void setTargetMember(Member targetMember) {
+    this.targetMember = targetMember;
   }
-  public List<Member> getTargetList() {
-    return targetList;
+  public Tag getTargetTag() {
+    return targetTag;
   }
-  public void setTargetList(List<Member> targetList) {
-    this.targetList = targetList;
+  public void setTargetTag(Tag targetTag) {
+    this.targetTag = targetTag;
   }
 }

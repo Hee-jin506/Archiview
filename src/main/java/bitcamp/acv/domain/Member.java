@@ -40,12 +40,9 @@ public class Member {
   private List<Review> reviews; // 본인의 게시물들
   private int numOfReviews; // 본인의 게시물들 숫자
   private List<Review> saved; // 저장한 게시물들
-<<<<<<< HEAD
   private int numOfSaved; // 저장한 게시물들 숫자
   
   private boolean followed;
-=======
->>>>>>> branch 'main' of https://github.com/Hee-jin506/Archiview
 
   public int getNo() {
     return no;

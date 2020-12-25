@@ -186,22 +186,24 @@ public class MemberController {
   }
 
   // 프로필 화면(프로필 + 본인이 저장한 리뷰들이 나옴)
-  @RequestMapping("profileSavedReviews")
-  public ModelAndView profileSavedReviews(int no) throws Exception {
+  @RequestMapping("savedReviews")
+  public void savedReviews(Model model, int no) throws Exception {
 
     Member member = memberService.get(no);
     if (member == null) {
       throw new Exception("해당 회원이 없습니다.");
     }
+    
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
 
-    ModelAndView mv = new ModelAndView();
     List<Review> rvs = member.getSaved();
     for(Review rv : rvs) {
       System.out.println(rv.getNo());
     }
-    mv.addObject("member", member);
-    mv.setViewName("member/profileSavedReviews");
-    return mv;
+    model.addAttribute("member", member);
   }
 
   @RequestMapping("inactive")
@@ -214,21 +216,23 @@ public class MemberController {
   }
 
   @RequestMapping("list")
-  public ModelAndView list(String keyword) throws Exception {
+  public void list(Model model, String keyword) throws Exception {
     System.out.println("memberList 실행!");
     List<Member> list = memberService.list(keyword);
     List<Follow> follows = followService.list();
-    ModelAndView mv = new ModelAndView();
 
     Follow[] myFollow = new Follow[follows.size()];
     for (int i = 0; i < myFollow.length; i++) {
       myFollow[i] = follows.get(i);
     }
+    
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
 
-    mv.addObject("follows", follows);
-    mv.addObject("list", list);
-    mv.setViewName("member/list");
-    return mv;
+    model.addAttribute("follows", follows);
+    model.addAttribute("list", list);
   }
 
   @RequestMapping("multipleDelete")

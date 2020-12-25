@@ -20,12 +20,17 @@
     <result column="photo" property="photo"/>
   </association>
   
-    <collection property="targetList"    ofType="member">
-      <result column="target_no"        property="no"/>
-      <result column="target_nickName"        property="nickName"/>
-      <result column="target_photo"        property="photo"/>
-      <result column="target_intro"        property="intro"/>
-    </collection>
+    <association property="targetMember">
+      <result column="targetMember_no"        property="no"/>
+      <result column="targetMember_nick"        property="nickName"/>
+      <result column="targetMember_photo"        property="photo"/>
+      <result column="targetMember_intro"        property="intro"/>
+    </association>
+    
+    <association property="targetTag">
+      <result column="targetTag_no"        property="no"/>
+      <result column="targetTag_title"        property="title"/>
+    </association>
    </resultMap>
 
   <sql id="sql1">
@@ -43,12 +48,38 @@
     inner join acv_mbr mb on f.flwing_mbr=mb.mno
     inner join acv_flw_able fa on f.fano = fa.fano
   </sql> 
+  
+  <sql id="sql2">
+  select
+    mb.mno,
+    mb.nick,
+    f.fno,
+    f.fano,
+    f.target,
+    f.fdt,
+    f.stat,
+    mb2.mno targetMember_no,
+    mb2.nick targetMember_nick,
+    t.tno targetTag_no,
+    t.title targetTag_title
+  from
+    acv_mbr mb
+	    left outer join acv_flw f on mb.mno=f.flwing_mbr
+	    left outer join acv_mbr mb2 on f.target=mb2.mno
+	    left outer join acv_tag t on f.target=t.tno
+  </sql> 
 
  <!-- 팔로우 리스트 -->
  <select id="findAll" resultMap="FollowMap">
-  <include refid="sql1"/>
+  <include refid="sql2"/>
   order by
     mb.mno desc
+  </select>
+  
+ <select id="findAll2" resultMap="FollowMap" parameterType="int">
+  <include refid="sql2"/>
+    where
+      mb.mno=#{mno}
   </select>
    
  <!-- 팔로우 타겟 상세 -->
