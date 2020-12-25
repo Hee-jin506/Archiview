@@ -2,7 +2,6 @@ package bitcamp.acv.dao;
 
 import java.util.List;
 import bitcamp.acv.domain.Follow;
-import bitcamp.acv.domain.Member;
 
 public interface FollowDao {
   Follow findByNo(int no) throws Exception; // 멤버의 팔로우 상세(전체)
@@ -15,5 +14,5 @@ public interface FollowDao {
   int active(int no) throws Exception; // 1. 팔로우상태로 변경
   int inactive(int no) throws Exception; // 2. 언팔로우상태로 변경
 
-  List<Member> findByFollowingUsers() throws Exception; // 내가 팔로잉하는 사람들
+  List<Follow> findByFollowingUsers(int no) throws Exception; // 내가 팔로잉하는 사람들
 }

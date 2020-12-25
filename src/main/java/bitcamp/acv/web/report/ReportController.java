@@ -6,9 +6,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Comment;
 import bitcamp.acv.domain.Member;
@@ -32,21 +32,20 @@ public class ReportController {
   @Autowired TagService tagService;
 
 
-  //  @RequestMapping(value="reportUser", method=RequestMethod.GET)
-  //  public void reportForm(Model model) throws Exception {
-  //    model.addAttribute("/report/form.jsp");
-  //  }
-
-  @RequestMapping("form")
-  public ModelAndView form(int no) throws Exception {
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("target", memberService.get(no));
-    mv.setViewName("report/form");
-    return mv;
+  @GetMapping("form")
+  public void form() throws Exception {
   }
 
+  //  @RequestMapping("form")
+  //  public ModelAndView form(int no) throws Exception {
+  //    ModelAndView mv = new ModelAndView();
+  //    mv.addObject("target", memberService.get(no));
+  //    mv.setViewName("report/form");
+  //    return mv;
+  //  }
+
   // 멤버 신고
-  @RequestMapping(value="reportUser", method=RequestMethod.POST)
+  @GetMapping("reportUser")
   public String reportUser(Report report, HttpSession session) throws Exception {
     // 현재 로그인 멤버
     Member loginUser = (Member) session.getAttribute("loginUser");

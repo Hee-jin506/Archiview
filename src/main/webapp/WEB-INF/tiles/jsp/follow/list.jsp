@@ -1,3 +1,4 @@
+<%@page import="bitcamp.acv.domain.Member"%>
 <%@page import="bitcamp.acv.domain.Follow"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -28,16 +29,15 @@
 <body>
 <div class="container">
 <h1>팔로우 리스트</h1>
-<p> 로그인한 유저의 팔로우 상태가 1이면 팔로우중</p>
 
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" class="text-center">팔로우번호</th>
-        <th scope="col" class="text-center">팔로우 회원</th>
+        
+        <th scope="col" class="text-center">로그인 회원</th>
         <th scope="col" class="text-center">팔로우한 타입 번호</th>
+        <th scope="col" class="text-center">팔로우한 타겟 번호</th>
         <th scope="col" class="text-center">팔로우한 일자</th>
-        <th scope="col" class="text-center">팔로우 상태</th>
       </tr>
     </thead>
     
@@ -53,17 +53,20 @@ if (ex != null) {%>
       <%
         } else {
       List<Follow> followList = (List<Follow>) request.getAttribute("list");
+      Member loginUser = (Member) session.getAttribute("loginUser");
       for (Follow follow : followList) {
+        if (follow.getFollowingMember().getNo() == loginUser.getNo()) {
       %>
       <tr>
-        <td style="width: 10%" class="text-center"><%=follow.getNo()%></td>
+        
         <td style="width: 10%" class="text-center"><%=follow.getFollowingMember().getNickName() %></td>
         <td style="width: 10%" class="text-center">
         <a class="text-reset" href='detail?no=<%=follow.getNo()%>'><%=getType(follow.getFollowedType())%></a></td>
+        <td style="width: 10%" class="text-center"><%=follow.getFollowedNo()%></td>
         <td style="width: 10%" class="text-center"><%=follow.getFollowedDate()%></td>
-        <td style="width: 10%" class="text-center"><%=follow.getStatus()%></td>
       </tr>
       <%
+         }
         }
       }
       %>

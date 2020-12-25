@@ -16,8 +16,17 @@
     <id column="mno" property="no"/>
     <result column="nick" property="nickName"/>
     <result column="email" property="email"/>
+    <result column="intro" property="intro"/>
+    <result column="photo" property="photo"/>
   </association>
- </resultMap>
+  
+    <collection property="targetList"    ofType="member">
+      <result column="target_no"        property="no"/>
+      <result column="target_nickName"        property="nickName"/>
+      <result column="target_photo"        property="photo"/>
+      <result column="target_intro"        property="intro"/>
+    </collection>
+   </resultMap>
 
   <sql id="sql1">
   select
@@ -26,7 +35,7 @@
     f.fdt,
     f.stat,
     mb.mno mno,
-    mb.nick nick,
+    mb.nick,
     fa.fano,
     fa.name fano_name
   from
@@ -35,11 +44,41 @@
     inner join acv_flw_able fa on f.fano = fa.fano
   </sql> 
 
+ <!-- 팔로우 리스트 -->
+ <select id="findAll" resultMap="FollowMap">
+  <include refid="sql1"/>
+  order by
+    mb.mno desc
+  </select>
+   
  <!-- 팔로우 타겟 상세 -->
  <select id="findByNo" resultMap="FollowMap" parameterType="int">
     <include refid="sql1"/>
     where
-      f.fno=#{fno} 
+      f.fno=#{fno}
+  </select>
+  
+   <!-- 팔로우 타겟 상세 -->
+ <select id="findByFollowingUsers" resultMap="FollowMap" parameterType="int">
+    select
+     f.fno,
+     mb.mno,
+     mb.nick,
+     mb.photo,
+     f.target followingUsers,
+     mb2.nick,
+     mb2.photo,
+     f.fdt,
+     f.stat,
+     fa.fano,
+     fa.name fano_name
+    from
+     acv_flw f
+     inner join acv_mbr mb on f.flwing_mbr=mb.mno
+     inner join acv_flw_able fa on f.fano = fa.fano
+     right join acv_mbr mb2 on f.target=mb2.mno
+    where
+     mb.mno=#{followingMember.no} and fa.fano = 1
   </select>
   
    <!-- 멤버 팔로우 리스트
@@ -51,13 +90,6 @@
   </select>
    -->
  
- <!-- 팔로우 리스트 -->
- <select id="findAll" resultMap="FollowMap">
-  <include refid="sql1"/>
-  order by
-    mb.nick desc
-  </select>
-   
  <!-- 팔로잉 유저 insert -->
   <insert id="insertUser" parameterType="follow">
   insert into acv_flw(flwing_mbr, target, fano)
