@@ -33,7 +33,7 @@
   </div>
   
   <div class="contents">
-    <form class="form-horizontal" action='check' method='post'>
+    <form class="form-horizontal" action='passwordCheck' method='post'>
         <input type='hidden' name='no' value='${member.no}'>
         <img id='profile-photo' src='<%=getServletContext().getContextPath()%>/upload/${member.photo}_150x150.jpg' style="border-radius: 50px" width="60">
         <span id='email' style="font-size: 20px;">${member.email}</span>
