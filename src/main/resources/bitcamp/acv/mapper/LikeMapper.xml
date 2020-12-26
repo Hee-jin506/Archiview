@@ -77,30 +77,41 @@ MariaDB [studydb]> select * from acv_lk_able;
     order by ldt desc;
   </select>
 
-
-    <!-- 
-    
-      <insert id="insert" parameterType="like">
+<!-- 좋아요 -->
+  <insert id="insertReview" parameterType="like">
     insert into acv_like(mno, lano, target) 
-      values(#{likingMember}, #{likedType}, #{likedNo})
+      values(#{likingMember.no}, 1, #{likedNo})
   </insert>
   
-      <update id="inactive" parameterType="int">
-    update acv_cmt
-    set
-      stat = 0,
-      mdt=now()
-    where cno=#{no} 
+  <insert id="insertComment" parameterType="like">
+    insert into acv_like(mno, lano, target) 
+      values(#{likingMember.no}, 2, #{likedNo})
+  </insert>
+  
+  <update id="deleteReview" parameterType="int">
+    delete acv_cmt
+    where mno=#{likingMember.no} and lano=2 and target=#{likedNo}
   </update>
   
-  <update id="active" parameterType="int">
-    update acv_cmt
-    set
-      stat = 1,
-      mdt=now()
-    where cno=#{no} 
+  <update id="deleteComment" parameterType="int">
+   delete acv_cmt
+    where mno=#{likingMember.no} and lano=1 and target=#{likedNo}
   </update>
-   -->
+
+  <!-- 좋아요 상태 변경 -->
+  <!-- 1. 좋아요 상태 -->
+   <update id="active" parameterType="int">
+    update acv_like set
+     stat = 1
+    where mno=#{likingMember.no} and target=#{likedNo}
+  </update>
+  
+    <!-- 2. 좋아요 해제 상태 -->
+  <update id="inactive" parameterType="int">
+  update acv_like set
+    stat = 2
+  where mno=#{likingMember.no} and target=#{likedNo}
+  </update>
 
   
 </mapper>

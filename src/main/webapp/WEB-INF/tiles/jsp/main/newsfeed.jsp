@@ -10,7 +10,12 @@
 <!DOCTYPE html>
 <html>
 <head><title>알람 화면</title>
+<link rel="stylesheet" 
+      href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/bootstrap.min.css?after">
 <style>
+
+a { text-decoration: none; }
+
  body {
    background-color : #000000;
    color: #ffffff;
@@ -23,16 +28,29 @@
    margin:0px;
  }
  
+  #contents {
+   border-radius: 10px;
+   background-color: #141517;
+   width: 600px;  /* 너비 */
+   padding: 40px;  /* 패딩 */
+   float: left;  /* 왼쪽으로 플로팅 */
+   height: 700px;
+    overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+ }
+ 
+  #contents::-webkit-scrollbar {
+  display: none;
+}
+
  img.profile {
   border-radius: 100px;
  }
 </style>
 </head>
 <body>
-
-<jsp:include page="/app/main/topbar"/>
-
-<h1>뉴스피드</h1>
 
 <br>
 <br>
@@ -45,7 +63,7 @@ List<Comment> comments = (List<Comment>) request.getAttribute("comments");
 Member loginUser = (Member) session.getAttribute("loginUser");
 %>
 
-<tbody>
+<div id = "contents">
 <%
 for (Like like : likes) {
   if (like.getLikingMember().getNo() != loginUser.getNo()) {
@@ -88,8 +106,7 @@ for (Like like : likes) {
   }
 }
 %>
-
-<jsp:include page="/app/main/sidebar"/>
-<jsp:include page="/main/footer.jsp"/>
+</div>
+<script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
