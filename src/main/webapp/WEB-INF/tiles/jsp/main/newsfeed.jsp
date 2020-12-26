@@ -4,6 +4,7 @@
 <%@page import="bitcamp.acv.domain.Review"%>
 <%@page import="bitcamp.acv.domain.Comment"%>
 <%@page import="bitcamp.acv.domain.Like"%>
+<%@page import="bitcamp.acv.domain.Follow"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -52,13 +53,13 @@ a {
   #contents::-webkit-scrollbar {
   display: none;
 }
- #title p {
+ #title {
+  font: inherit;
   height: 28px;
+  vertical-align: middle;
  }
  
  #title hr {
-  font-size: 100%;
-  font: inherit;
   color: white;
   border: 0;
   height: 1px;
@@ -75,13 +76,6 @@ a {
  vertical-align:middle;
  }
  
- img.list-href {
- margin-bottom : 100px;
- }
- 
- text {
- margin-bottom : 100px;
- }
  
 </style>
 </head>
@@ -91,12 +85,13 @@ a {
 List<Like> likes = (List<Like>) request.getAttribute("list");
 List<Review> reviews = (List<Review>) request.getAttribute("reviews");
 List<Comment> comments = (List<Comment>) request.getAttribute("comments");
+List<Follow> follows = (List<Commnet>) request.getAttribute("follows");
 Member loginUser = (Member) session.getAttribute("loginUser");
 %>
 
 <div id = "contents">
 <div id = "title">
-<p> 뉴스피드</p>
+뉴스피드
 <hr>
 </div>
 <%

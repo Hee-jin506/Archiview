@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Comment;
+import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Like;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.CommentService;
+import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.LikeService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
@@ -36,6 +38,7 @@ public class MainNewsFeadController {
   @Autowired MemberService memberService;
   @Autowired MovieService movieService;
   @Autowired TagService tagService;
+  @Autowired FollowService followService;
 
   // 사용자 화면
   @RequestMapping("newsfeed")
@@ -99,6 +102,8 @@ public class MainNewsFeadController {
         mv.addObject("comments", comments);
       }
     }
+
+    List<Follow> follows = followService.list3(no);
 
     mv.addObject("times", times);
     mv.addObject("list", list);
