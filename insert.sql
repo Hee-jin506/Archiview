@@ -211,6 +211,41 @@ values(3, 1, 'https://movie-phinf.pstatic.net/20170816_246/1502850756536szMwe_JP
 insert into acv_stc(stcno, mvno, stc_url)
 values(4, 1, 'https://movie-phinf.pstatic.net/20170807_170/1502069264980Amq9T_JPEG/movie_image.jpg?type=m427_320_2');
 
+insert into acv_stc(mvno)
+values(2);
+
+insert into acv_stc(mvno, stc_url)
+values(2, 'https://movie-phinf.pstatic.net/20161005_293/1475628867935FG8GR_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(2, 'https://movie-phinf.pstatic.net/20161012_48/14762359440663t467_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(2, 'https://movie-phinf.pstatic.net/20161012_58/14762359442496JxCB_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno)
+values(3);
+
+insert into acv_stc(mvno, stc_url)
+values(3, 'https://movie-phinf.pstatic.net/20161024_208/1477276440225QuosM_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(3, 'https://movie-phinf.pstatic.net/20161024_105/1477276440617SoOFq_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(3, 'https://movie-phinf.pstatic.net/20161024_265/1477276440726EDpbS_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno)
+values(4);
+
+insert into acv_stc(mvno, stc_url)
+values(4, 'https://movie-phinf.pstatic.net/20161020_136/14769419489932Nqtl_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(4, 'https://movie-phinf.pstatic.net/20161020_220/1476941949335BE550_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(4, 'https://movie-phinf.pstatic.net/20161024_162/1477288349850Cn1w2_JPEG/movie_image.jpg?type=m665_443_2');
 /*포스터 샘플*/
 insert into acv_pstr(psno, mvno, ps_url, main_ps)
 values(1, 1, 'https://movie-phinf.pstatic.net/20170814_17/1502675963099mSfot_JPEG/movie_image.jpg?type=m665_443_2', 1);
@@ -235,19 +270,6 @@ values(2, '순종', '김동민,이주훈', 'Obedience', 88, '2016-11-17',
 상처받은 난민친구들과 함께 모여 살던 알리는 한국의 김영화 선교사를 만나고, 변화를 겪기 시작하는데...
 과연 이들의 상처는 치유될 것인가!', 
 '한국', 1, 154347);
-
-/*스틸컷 샘플*/
-insert into acv_stc(mvno)
-values(2);
-
-insert into acv_stc(mvno, stc_url)
-values(2, 'https://movie-phinf.pstatic.net/20161005_293/1475628867935FG8GR_JPEG/movie_image.jpg?type=m665_443_2');
-
-insert into acv_stc(mvno, stc_url)
-values(2, 'https://movie-phinf.pstatic.net/20161012_48/14762359440663t467_JPEG/movie_image.jpg?type=m665_443_2');
-
-insert into acv_stc(mvno, stc_url)
-values(2, 'https://movie-phinf.pstatic.net/20161012_58/14762359442496JxCB_JPEG/movie_image.jpg?type=m665_443_2');
 
 /*포스터 샘플*/
 insert into acv_pstr(mvno, ps_url, main_ps)
@@ -274,18 +296,7 @@ values(3, '연애담', '이현주', 'Our Love Story', 99, '2016-11-17',
 두 사람의 마음이 이어진 가장 행복하고 따뜻했던 이 순간은 정말 영원할 수 있을까…',
 '한국', 1, 149481);
 
-/*스틸컷 샘플*/
-insert into acv_stc(mvno)
-values(3);
 
-insert into acv_stc(mvno, stc_url)
-values(3, 'https://movie-phinf.pstatic.net/20161024_208/1477276440225QuosM_JPEG/movie_image.jpg?type=m665_443_2');
-
-insert into acv_stc(mvno, stc_url)
-values(3, 'https://movie-phinf.pstatic.net/20161024_105/1477276440617SoOFq_JPEG/movie_image.jpg?type=m665_443_2');
-
-insert into acv_stc(mvno, stc_url)
-values(3, 'https://movie-phinf.pstatic.net/20161024_265/1477276440726EDpbS_JPEG/movie_image.jpg?type=m665_443_2');
 
 /*포스터 샘플*/
 insert into acv_pstr(mvno, ps_url, main_ps)
@@ -314,18 +325,7 @@ values(4, '형', '권수경', 'MY ANNOYING BROTHER', 110, '2016-11-23',
 남보다 못한 형제의 예측불허 동거가 시작된다!', 
 '한국', 1, 142803);
 
-/*스틸컷 샘플*/
-insert into acv_stc(mvno)
-values(4);
 
-insert into acv_stc(mvno, stc_url)
-values(4, 'https://movie-phinf.pstatic.net/20161020_136/14769419489932Nqtl_JPEG/movie_image.jpg?type=m665_443_2');
-
-insert into acv_stc(mvno, stc_url)
-values(4, 'https://movie-phinf.pstatic.net/20161020_220/1476941949335BE550_JPEG/movie_image.jpg?type=m665_443_2');
-
-insert into acv_stc(mvno, stc_url)
-values(4, 'https://movie-phinf.pstatic.net/20161024_162/1477288349850Cn1w2_JPEG/movie_image.jpg?type=m665_443_2');
 
 /*포스터 샘플*/
 insert into acv_pstr(mvno, ps_url, main_ps)
@@ -436,29 +436,55 @@ values(11, '더 플랜', '최진성', 'The Host, 2006', 102, '2017-04-20',
 '한국', 1, 162471);
 
 /* 리뷰 샘플*/
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(1, 1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11);
 
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(2, 2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(10, 1, '돈 아깝다', 506, 350, 8, 11);
 
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(3, 3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(1, 1, '테스트1', 506, 350, 8, 11);
 
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(4, 5, 7, '무슨 영화임?', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(2, 1, '테스트2', 506, 350, 8, 11);
 
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(5, 5, 2, '재미없어', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(3, 1, '테스트3', 506, 350, 8, 11);
 
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(6, 9, 4, '와 재밌다', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(4, 1, '테스트4', 506, 350, 8, 11);
 
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(7, 10, 7, '또 보고싶다', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(5, 1, '테스트5', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(6, 1, '테스트6', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(7, 1, '테스트7', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(8, 1, '테스트8', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(9, 1, '테스트9', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(10, 1, '테스트10', 506, 350, 8, 11);
 
-insert into acv_rv(rvno, stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(8, 10, 1, '돈 아깝다', 506, 350, 8, 11);
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(5, 7, '무슨 영화임?', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(5, 2, '재미없어', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(9, 4, '와 재밌다', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(10, 7, '또 보고싶다', 506, 350, 8, 11);
+
 
 /* 좋아요 이력 샘플 */
 insert into acv_like(lno, mno, lano, target) values(1, 2, 1, 1);

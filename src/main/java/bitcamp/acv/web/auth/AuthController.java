@@ -1,6 +1,8 @@
 
 package bitcamp.acv.web.auth;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,16 +13,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
+import bitcamp.acv.service.MovieService;
+import bitcamp.acv.service.ReviewService;
+import bitcamp.acv.service.TagService;
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
 
   @Autowired MemberService memberService;
+  @Autowired MovieService movieService;
+  @Autowired TagService tagService;
+  @Autowired ReviewService reviewService;
 
   @RequestMapping("login")
-  protected ModelAndView login(HttpServletRequest request, HttpServletResponse response, String email, String password) throws Exception {
+  public ModelAndView login(HttpServletRequest request, HttpServletResponse response, String email, String password) throws Exception {
     ModelAndView mv = new ModelAndView();
+    mv.addObject("topMembers", memberService.listByPop3());
+    mv.addObject("topMovies", movieService.listByPop3());
+    mv.addObject("topTags", tagService.listByPop3());
+
+
+
     boolean wrongInput = false;
     boolean withdrawedMember = false;
 
@@ -69,14 +83,18 @@ public class AuthController {
       mv.setViewName("auth/login");
     } else {
       session.setAttribute("loginUser", member);
+      Map<String, Object> map = new HashMap<>();
+      map.put("userNo", member.getNo());
+      map.put("row", 0);
+      mv.addObject("list", reviewService.getMainFeed(map));
       mv.addObject("loginUser", member);
-      mv.setViewName("/");
+      mv.setViewName("main");
     }
     return mv;
   }
 
   @RequestMapping("logout")
-  protected String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response)
+  public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response)
       throws Exception {
 
     Member loginUser = (Member) session.getAttribute("loginUser");
@@ -89,7 +107,7 @@ public class AuthController {
   }
 
   @RequestMapping("emailCheck")
-  protected ModelAndView emailCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String email) throws Exception {
+  public ModelAndView emailCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String email) throws Exception {
     ModelAndView mv = new ModelAndView();
     if (memberService.get(email) == null) {
       throw new Exception("<p>가입된 이메일이 아닙니다.</p>");
@@ -102,7 +120,7 @@ public class AuthController {
   }
 
   @RequestMapping("hintCheck")
-  protected ModelAndView hintCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String hint) throws Exception {
+  public ModelAndView hintCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String hint) throws Exception {
     ModelAndView mv = new ModelAndView();
     Member member = (Member) session.getAttribute("searchUser");
     System.out.println(member.getQuestionsAnswer());
@@ -116,7 +134,7 @@ public class AuthController {
   }
 
   @RequestMapping("update")
-  protected String update(HttpSession session, HttpServletRequest request, HttpServletResponse response, String password, String password2) throws Exception {
+  public String update(HttpSession session, HttpServletRequest request, HttpServletResponse response, String password, String password2) throws Exception {
     if (!password.equals(password2)) {
       throw new Exception("<p>비밀번호가 일치하지 않습니다.</p>");
     } else {
@@ -125,6 +143,11 @@ public class AuthController {
       memberService.updatePassword(member);
       session.invalidate();
     }
-    return "redirect:app/auth/login";
+    return "redirect:/app/auth/login";
+  }
+
+  @RequestMapping("searchPassword")
+  public String searchPassword() {
+    return "auth/searchPassword";
   }
 }

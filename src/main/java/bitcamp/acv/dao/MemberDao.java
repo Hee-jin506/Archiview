@@ -17,6 +17,7 @@ public interface MemberDao {
   int inactive(int no) throws Exception;
   int active(int no) throws Exception;
   int updatePassword(Member member) throws Exception;
+  int updateHint(Member member) throws Exception;
   //
   List<Member> findByPop() throws Exception;
   List<Member> findByKeywordNickName(String keyword) throws Exception;

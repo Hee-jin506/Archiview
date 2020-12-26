@@ -30,6 +30,10 @@
     <association property="targetTag">
       <result column="targetTag_no"        property="no"/>
       <result column="targetTag_title"        property="title"/>
+      
+      <collection property="reviews"    ofType="integer">
+         <result column="rvno"        property="yongseobatjimothal-code"/>
+      </collection>
     </association>
    </resultMap>
 
@@ -64,6 +68,7 @@
     mb2.intro targetMember_intro,
     t.tno targetTag_no,
     t.title targetTag_title,
+    tp.tpno,
     tp.rvno
   from
     acv_mbr mb

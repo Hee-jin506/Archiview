@@ -1,37 +1,39 @@
 @charset "UTF-8";
+
   #footer {
-  position: absolute;
-  bottom:0px;
+  clear : both;
+  float : left;
+  margin-top : 50px;
   color: #B9B9BA;
   height: 50px;
   width: 100%;
 }
 
   #footer p {
+  font-size: 15px;
     font-weight: normal;
   } 
-  
-  #footer img {
-   position: absolute;
-   bottom: 10px;
-   right: 400px;
- }
- 
   #footer #teamName {
+  padding:5px;
+  float: left;
+  margin-right:18px;
    font-weight: bold;
-   position: absolute;
-   bottom: 17px;
-   left: 70px;
  }
  
   #footer #members {
-   position: absolute;
-   bottom: 17px;
-   left: 300px;
+  padding:5px;
+  float: left;
  }
- 
    #footer #url {
-   position: absolute;
-   bottom: 17px;
-   right: 40px;
+   padding:4px;
+  margin-right:18px;
+   float: right;
+  color: #B9B9BA;
+    text-decoration:none;
  }
+  #footer img {
+   float: right;
+ }
+  
+ 
+ 

@@ -86,6 +86,7 @@ String inactive = request.getParameter("inactive");
 	<th>게시물 수</th>
 	<th>등록일</th>
 	<th>상태</th>
+	<th>썸네일</th>
 </tr>
 </thead>
 
@@ -98,6 +99,7 @@ String inactive = request.getParameter("inactive");
 	<td>${t.numOfReviews}</td>
 	<td>${t.registeredDate}</td>
 	<td>${t.statusName}</td>
+	<td><img src='${t.thumbnailstillCutUrl}'></td>
 </tr>
 </c:forEach>
 </tbody>
