@@ -80,7 +80,7 @@ public class FollowController {
   @GetMapping("list")
   public void list(@ModelAttribute("loginUser") Member loginUser,
       Model model) throws Exception {
-    
+
     List<Follow> list = followService.list();
 
     // 사이드바
@@ -89,27 +89,27 @@ public class FollowController {
     model.addAttribute("topTags", tagService.listByPop3());
     model.addAttribute("list", list);
   }
-  
+
   // 특정멤버의 팔로우 리스트
   @GetMapping("followingList")
   public void followingList(@ModelAttribute("loginUser") Member loginUser, int no,
       Model model) throws Exception {
-    
+
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
-    
+
     // 바디(프로필..)
     Member member = memberService.get(no);
     model.addAttribute("member", member);
-    
+
     // 바디(내가 팔로우한 리스트)
     List<Follow> followList = followService.list2(no);
     List<Member> targetMemberlist = new ArrayList<>();
     List<Tag> targetTaglist = new ArrayList<>();
-    
-    
+
+
     for (Follow follow : followList) {
       if(follow.getFollowedType() == 1) {
         targetMemberlist.add(follow.getTargetMember());
@@ -117,7 +117,7 @@ public class FollowController {
         targetTaglist.add(follow.getTargetTag());
       }
     }
-    
+
     model.addAttribute("targetMemberlist", targetMemberlist);
     model.addAttribute("targetTaglist", tagService.getThumbnailStillCut(targetTaglist));
   }

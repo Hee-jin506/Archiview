@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Comment;
 import bitcamp.acv.domain.Like;
@@ -26,6 +27,7 @@ import bitcamp.acv.service.TagService;
 
 @Controller
 @RequestMapping("/main")
+@SessionAttributes("loginUser")
 public class MainNewsFeadController {
 
   @Autowired LikeService likeService;
@@ -104,32 +106,4 @@ public class MainNewsFeadController {
     mv.setViewName("main/newsfeed");
     return mv;
   }
-
-
-  //  @PostMapping("active")
-  //  public String active(int no) throws Exception {
-  //    if (likeService.active(no) == 0) {
-  //      throw new Exception("해당 회원이 존재하지 않습니다.");
-  //    }
-  //    return "redirect:newsfeed";
-  //  }
-  //
-  //  @PostMapping("inactive")
-  //  public String inactive(int no) throws Exception {
-  //    if (likeService.inactive(no) == 0) {
-  //      throw new Exception("해당 회원이 존재하지 않습니다.");
-  //    } else {
-  //      return "redirect:newsfeed";
-  //    }
-  //  }
-  //
-  //  @GetMapping("addReview")
-  //  public String addReview(Like like,
-  //      @ModelAttribute("loginUser") Member loginUser) throws Exception {
-  //    like.setFollowingMember(loginUser);
-  //
-  //    likeService.addReview(like);
-  //    return "redirect:../main";
-  //  }
-
 }
