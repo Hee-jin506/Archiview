@@ -5,6 +5,8 @@
 <html>
 <head><title>회원 프로필 화면</title>
 <style>
+a { text-decoration: none; }
+
  body {
    background-color : #000000;
    color: #ffffff;
@@ -13,52 +15,125 @@
  
  p {
    font-size: 18px;
-   font-weight: bold;
+   xfont-weight: bold;
    margin:0px;
  }
+ 
+ #contents {
+   border-radius: 10px;
+   background-color: #141517;
+   width: 699px;  /* 너비 */
+   padding: 40px;  /* 패딩 */
+   float: left;  /* 왼쪽으로 플로팅 */
+   height: 700px;
+    overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+ }
+ 
+ #contents::-webkit-scrollbar {
+  display: none;
+}
+    
+ .profile-icon { display: block; margin: 0px auto; }
+ 
+ 
  
  img.profile {
   border-radius: 100px;
  }
+ 
+ #member{
+ width : 599px;
+ margin-left : 9px;
+ margin-right : 9px;
+ float: left;
+ }
+ #member img {
+ margin-right : 30px;
+ float: left;
+ }
+ #member p {
+ float: left;
+ }
+ 
+ #profile-icon {
+ clear: both;
+ margin-bottom : 130px;
+ }
+ 
+ #profile-icon .profile-icon-text {
+ display : block;
+ padding-top : 3px;
+ }
+ 
+ #profile-icon a {
+ margin-top : 50px;
+ margin-left : 91.8px;
+ float: left;
+ }
+ #reviews {
+ margin-top : 50px;
+ clear: both;
+ }
+ 
+ #reviews img{
+ float:left;
+ margin-top : 18px;
+ margin-right : 9px;
+ margin-left : 9px;
+ }
 </style>
+
 </head>
 <body>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<input type='hidden' name='no' value='${member.no}'><br>
-<img src='../../upload/${member.photo}_150x150.jpg'><br>
-${member.nickName}<br>
-${member.email}<br>
-${member.intro}<br>
-
-
-	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" alt="리뷰"><br>
-	    리뷰 
-	</a>
-	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" alt="팔로워"><br>
-	    팔로워 
-	</a>
-	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" alt="팔로잉"><br>
-	    팔로잉 
-	</a>
-	<a href="<%=getServletContext().getContextPath()%>/app/member/profileSavedReviews?no=${member.no}"> 
-	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" alt="저장"><br>
-	    저장 
-	</a>
-<br>
-<c:forEach items="${member.saved}" var="rv"> 
-<input type='hidden' name='no' value='${rv.no}'><br>
-  ${rv.no}<br>
-   <img src='${rv.stcUrl}'><br>
-</c:forEach>
+  <div id="contents">
+    <div id="member">
+      <input type='hidden' name='no' value='${member.no}'>
+      <img class="profile" src='../../upload/${member.photo}_150x150.jpg'><br>
+      <p>${member.nickName}<br>
+         ${member.email}<br><br>
+         ${member.intro}</p>
+  <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
+  <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
+  <a href="../report/form?reportedNo=${member.no}">신고</a> 
+    </div>
+    
+    <div id="profile-icon">
+      <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review-border.png" height=30px class="center" alt="리뷰">
+<span class="profile-icon-text">리뷰</span>
+          <%-- <c:out value="${member.numOfReviews}" ></c:out></span> --%>
+      </a>
+      <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
+          <span class="profile-icon-text">팔로워</span>
+      </a>
+      <a href="<%=getServletContext().getContextPath()%>/app/follow/followingList?no=${member.no}"> 
+        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
+          <span class="profile-icon-text">팔로잉</span> 
+      </a>
+      <a href="<%=getServletContext().getContextPath()%>/app/member/savedReviews?no=${member.no}"> 
+        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" height=30px class="center" alt="저장">
+          <span class="profile-icon-text">저장</span> 
+      </a>
+    </div>
+    
+      <div id = "reviews">
+        <c:forEach items="${member.saved}" var="rv"> 
+        <input type='hidden' name='no' value='${rv.text}'>
+          <c:choose>
+            <c:when test="${empty rv.stcUrl}">
+              <img width="289.5x" height="160px" src="<%=getServletContext().getContextPath()%>/main_resource/null.png">
+            </c:when>
+            <c:otherwise>
+             <img width="289.5px" height="160px" src='${rv.stcUrl}'><br>
+            </c:otherwise>
+          </c:choose>
+        </c:forEach>
+      </div>
+    </div>
 </body>
 </html>
