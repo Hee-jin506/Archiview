@@ -10,11 +10,14 @@
 		<result column="title"  property="title" />
 		<result column="stat"   property="status" />
 		<result column="rdt"    property="registeredDate" />
+		<result column="stc_url"    property="ThumbnailStillCutUrl" />
 		
 		<collection property="reviews"    ofType="integer">
-         <result column="rvno"        property="ohora"/>
+         <result column="rvno"        property="yongseobatjimothal-code"/>
     </collection>
+    
 	</resultMap>
+
 
   <resultMap type="tag" id="TagMap2">
         <id column="tno"    property="no" />
@@ -30,7 +33,7 @@
          <result column="flwing_mbr"        property="ohora"/>
     </collection>
   </resultMap>
-
+  
 	<sql id="sql1">
 			select
 			t.tno,
@@ -38,11 +41,44 @@
 			t.stat,
 			t.rdt,
 			tp.tpno,
-			tp.rvno
+			tp.rvno,
+			s.stc_url
 		from acv_tag t
 			left outer join acv_tag_post tp on t.tno=tp.tno
+			left outer join acv_rv rv on tp.rvno = rv.rvno 
+			left outer join acv_stc s on rv.stcno = s.stcno
 	</sql>
 	
+	<!-- 태그가 달린 게시물들 중 stat=1인 애들중에서 rvno가 최소값인 애의 스틸컷을 가져옴
+	max, min함수는 조회하는 과정에서 상당히 부하를 일으킨다고하여 안씀 
+	대신 row_number()을 씀 -->
+  <select id="findByNotNullThumbnailStillCut" resultMap="TagMap">
+  select * 
+    from (
+	    select 
+	      row_number() over(partition by test.tno order by test.rvno asc) as rnum, 
+	      test.tno, 
+	      test.rvno, 
+	      test.stc_url 
+	        from (
+		        select
+				      t.tno,
+				      t.title,
+				      t.stat,
+				      t.rdt,
+				      tp.tpno,
+				      tp.rvno,
+				      s.stc_url
+				    from acv_tag t
+				      left outer join acv_tag_post tp on t.tno=tp.tno
+				      left outer join acv_rv rv on tp.rvno = rv.rvno 
+				      left outer join acv_stc s on rv.stcno = s.stcno
+				    where rv.stat=1
+				      ) test
+		    ) a 
+	  where a.rnum=1;
+  </select>
+  
   <select id="findAll" resultMap="TagMap" parameterType="string">
     <include refid="sql1" />
     <if test="keyword != null">
@@ -73,6 +109,7 @@
 		update acv_tag
 		set stat = 0
 		where tno = #{tno}
+		
 	</update>
 	
 	<update id="active" parameterType="int">

@@ -8,24 +8,11 @@
 <head>
   <meta charset="UTF-8">
   <title>아카이뷰</title>
-  <link rel="stylesheet" 
-        href="${appRoot}/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${appRoot}/css/header.css">
   <style>
   </style>
 </head>
 <body>
-
-<div class="container">
-
-<tiles:insertAttribute name="header"/>
-
-<tiles:insertAttribute name="sidebar"/>
-
-<tiles:insertAttribute name="body"/>
-
-<tiles:insertAttribute name="footer"/>
-
-</div>
-
+  <tiles:insertAttribute name="header"/>
 </body>
 </html>

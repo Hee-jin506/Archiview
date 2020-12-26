@@ -23,7 +23,6 @@
 </style>
 </head>
 <body>
-<jsp:include page="/app/main/topbar"/>
 
 <br>
 <br>
@@ -38,15 +37,6 @@ ${member.nickName}<br>
 ${member.email}<br>
 ${member.intro}<br>
 
-<%-- <c:set var='status' value='${member.status}'/>
-<c:choose>
-  <c:when test='${member.status == 1}'>
-    <a href='inactive?no=${member.no}'>[팔로우]</a>
-    </c:when>
-  <c:when test='${member.status == 2}'>
-    <a href='active?no=${member.no}'>[언팔로우]</a>
-    </c:when>
-</c:choose> --%>
 
 	<a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 	  <img src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" alt="리뷰"><br>
@@ -70,7 +60,5 @@ ${member.intro}<br>
   ${rv.no}<br>
    <img src='${rv.stcUrl}'><br>
 </c:forEach>
-<jsp:include page="/app/main/sidebar"/>
-<jsp:include page="/main/footer.jsp"/>
 </body>
 </html>

@@ -134,11 +134,32 @@ public class OptionController {
     if (m != null && request.getParameter("newpassword1").equals(request.getParameter("newpassword2"))) {
       m.setPassword(request.getParameter("newpassword1"));
       memberService.updatePassword(m);
+      session.setAttribute("loginUser", m);
     } else {
     }
-    return "redirect:update";
+    return "redirect:/app/option/passwordUpdate";
   }
 
+  @RequestMapping("updateHint")
+  protected String updateHint(HttpServletRequest request) throws Exception {
+    HttpSession session = request.getSession();
+
+    Member member = (Member) session.getAttribute("loginUser");
+    int qno = Integer.parseInt(request.getParameter("hint"));
+    System.out.println("qno"+qno);
+    String answer = request.getParameter("hintAnswer");
+    System.out.println("qa"+answer);
+
+    if (answer.equals("")) {
+      throw new Exception("답을 입력하지 않았습니다.");
+    } else {
+      member.setQuestionsNo(qno);
+      member.setQuestionsAnswer(answer);
+      memberService.updateHint(member);
+    }
+    return "redirect:passwordHint";
+
+  }
   @RequestMapping("withdraw")
   protected ModelAndView withdraw(HttpServletRequest request) throws Exception {
 

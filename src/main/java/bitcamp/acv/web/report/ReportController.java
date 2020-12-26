@@ -2,12 +2,18 @@ package bitcamp.acv.web.report;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Comment;
 import bitcamp.acv.domain.Member;
@@ -16,34 +22,48 @@ import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.MemberService;
+import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReportService;
 import bitcamp.acv.service.ReviewService;
 import bitcamp.acv.service.TagService;
 
 @Controller
 @RequestMapping("/report")
+@SessionAttributes("loginUser")
 public class ReportController {
 
+  @Autowired MovieService movieService;
   @Autowired ReportService reportService;
   @Autowired MemberService memberService;
   @Autowired ReviewService reviewService;
   @Autowired CommentService commentService;
   @Autowired TagService tagService;
 
-  @RequestMapping("form")
-  public ModelAndView form(int no) throws Exception {
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("target", memberService.get(no));
-    mv.setViewName("report/form");
-    return mv;
+
+  @GetMapping("form")
+  public void form(Model model) throws Exception {
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
   }
 
-  @RequestMapping("add")
-  public String add(Report report, HttpSession session) throws Exception {
-    Member loginUser = (Member) session.getAttribute("loginUser");
+  // 멤버 신고
+  @PostMapping("reportUser")
+  public String reportUser(Report report,
+      int reportedNo,
+      int reportedType,
+      String why,
+      @ModelAttribute("loginUser") Member loginUser,
+      HttpSession session,
+      HttpServletRequest request) throws Exception {
+
     report.setReportingMember(loginUser);
-    reportService.add(report);
-    return "redirect:list";
+    report.setReportedNo(reportedNo);
+    report.setReportedType(reportedType);
+    report.setWhy(why);
+    reportService.reportUser(report);
+    return "redirect:../main";
   }
 
   @RequestMapping("list")

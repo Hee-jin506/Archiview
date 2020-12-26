@@ -1,15 +1,15 @@
 @charset "UTF-8";
 
 #cards {
-	overflow: hidden;
-	overflow-y: scroll;
-	position: absolute;
-	left: 230px;
-	top: 70px;
+	xposition: absolute;
+	xleft: 230px;
+	xtop: 70px;
 	box-sizing: content-box;
 	width: 700px;
 	height: 700px;
 	padding: 0px;
+	overflow: hidden;
+	overflow-y: scroll;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 }
@@ -92,6 +92,22 @@
 }
 
 .card .cardFooter {
-	
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	width: 625px;
+}
+
+.card .cardFooter .movie {
+	float: left;
+	margin: 10px;
+}
+.card .cardFooter .rdt {
+  float: left;
+  margin: 10px;
+}
+
+.card .cardFooter .like {
+	float: right;
 	
 }

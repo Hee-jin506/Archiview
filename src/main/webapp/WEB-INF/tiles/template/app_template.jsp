@@ -8,22 +8,33 @@
 <head>
   <meta charset="UTF-8">
   <title>아카이뷰</title>
-  <link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/custom.css">
-  <link rel="stylesheet" href="${appRoot}/css/main.css">
+  <link rel="stylesheet" href="${appRoot}/css/reset.css">
   <link rel="stylesheet" href="${appRoot}/css/header.css">
   <link rel="stylesheet" href="${appRoot}/css/sidebar.css">
-  <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
   <link rel="stylesheet" href="${appRoot}/css/footer.css">
+  <link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/custom.css">
+  <link rel="stylesheet" href="${appRoot}/css/main.css">
+  <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
+  <style>
+  
+  #container {
+      width:960px;
+      margin:0 auto;
+      margin-top: 75px;
+    }
+    
+  </style>
 </head>
-<body>
+  <body>
 
-<tiles:insertAttribute name="header"/>
+	  <tiles:insertAttribute name="header"/>
+	  
+	  <div id="container">
+		  <tiles:insertAttribute name="sidebar"/>
+		  <tiles:insertAttribute name="body"/>
+	  
+	  <tiles:insertAttribute name="footer"/>
 
-<tiles:insertAttribute name="sidebar"/>
-
-<tiles:insertAttribute name="body"/>
-
-<tiles:insertAttribute name="footer"/>
-
-</body>
+	  </div>
+  </body>
 </html>

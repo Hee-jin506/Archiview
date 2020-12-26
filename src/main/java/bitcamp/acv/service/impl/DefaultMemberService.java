@@ -98,19 +98,6 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
-  public List<Member> listFollower(Member member) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public List<Member> listFollowing(Member member) throws Exception {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-
-  @Override
   public Member[] listByPop3() throws Exception {
     List<Member> members = memberDao.findByPop();
     for (int i = 0; i < members.size(); i++) {
@@ -127,5 +114,11 @@ public class DefaultMemberService implements MemberService {
       topMembers[i] = members.get(i);
     }
     return topMembers;
+  }
+
+
+  @Override
+  public int updateHint(Member member) throws Exception {
+    return memberDao.updateHint(member);
   }
 }

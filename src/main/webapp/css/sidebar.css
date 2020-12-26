@@ -2,11 +2,7 @@
 
  #sidebar {
    float:right;
-   xposition: absolute;
-   xright:250px;
-   xtop:70px;
    box-sizing: content-box;
-   width: 300px;
  }
 
  .sidebar {
@@ -19,7 +15,6 @@
   height: 220px;
   margin-bottom: 10px;
   margin-left: 10px;
-  margin-right: 10px;
  }
  
  .sidebar hr {

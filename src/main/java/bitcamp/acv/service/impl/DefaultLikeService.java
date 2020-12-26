@@ -26,8 +26,8 @@ public class DefaultLikeService implements LikeService {
     likeDao.insert(like);
   }
   @Override
-  public List<Like> getTime(Map<String, Object> map) throws Exception {
-    return likeDao.getTime(map);
+  public List<Like> getTime(Map<String, Object> likeMap) throws Exception {
+    return likeDao.getTime(likeMap);
   }
 
 }

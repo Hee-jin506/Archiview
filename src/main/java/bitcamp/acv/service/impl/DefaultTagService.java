@@ -1,6 +1,7 @@
 package bitcamp.acv.service.impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -23,12 +24,12 @@ public class DefaultTagService implements TagService {
 
   @Override
   public List<Tag> list() throws Exception {
-    return tagDao.findAll(null);
+    return getThumbnailStillCut(tagDao.findAll(null));
   }
 
   @Override
   public List<Tag> list(String keyword) throws Exception {
-    return tagDao.findAll(keyword);
+    return getThumbnailStillCut(tagDao.findAll(keyword));
   }
 
   @Override
@@ -48,7 +49,7 @@ public class DefaultTagService implements TagService {
 
   @Override
   public List<Tag> listDetailFilter(Map<String, Object> keywords) throws Exception{
-    return tagDao.findByDetailKeyword(keywords);
+    return getThumbnailStillCut(tagDao.findByDetailKeyword(keywords));
   }
 
   @Override
@@ -64,12 +65,12 @@ public class DefaultTagService implements TagService {
 
   @Override
   public List<Tag> listBasicFilter(HashMap<String, Object> keyMap) throws Exception {
-    return tagDao.findByKeyword(keyMap);
+    return getThumbnailStillCut(tagDao.findByKeyword(keyMap));
   }
 
   @Override
   public List<Tag> listByReview(int reviewNo) throws Exception {
-    return tagDao.findByReviewNo(reviewNo);
+    return getThumbnailStillCut(tagDao.findByReviewNo(reviewNo));
   }
 
   @Override
@@ -95,7 +96,7 @@ public class DefaultTagService implements TagService {
 
   @Override
   public List<Tag> listByKeywordTitle(String keyword) throws Exception {
-    return tagDao.findByKeywordTitle(keyword);
+    return getThumbnailStillCut(tagDao.findByKeywordTitle(keyword));
   }
 
   @Override
@@ -179,5 +180,29 @@ public class DefaultTagService implements TagService {
       topTags[i] = tags.get(i);
     }
     return topTags;
+  }
+
+  @Override
+  public List<Tag> getThumbnailStillCut(List<Tag> tags) throws Exception {
+    List<Integer> tagsNo = new ArrayList<>();
+    for(Tag t : tags) {
+      tagsNo.add(t.getNo());
+    }
+    List<Tag> NotNullThumbnailTags = tagDao.findByNotNullThumbnailStillCut();
+    List<Integer> NotNullThumbnailTagsNo = new ArrayList<>();
+    for(Tag t : NotNullThumbnailTags) {
+      NotNullThumbnailTagsNo.add(t.getNo());
+    }
+    for (Tag t : tags) {
+      if(NotNullThumbnailTagsNo.contains(t.getNo())) {
+        for(Tag t2 : NotNullThumbnailTags) {
+          if(t2.getNo() == t.getNo()) {
+            t.setThumbnailstillCut(t2.getThumbnailstillCutUrl());
+            break;
+          }
+        }
+      }
+    }
+    return tags;
   }
 }

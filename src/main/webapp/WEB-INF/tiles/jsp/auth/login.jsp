@@ -120,7 +120,7 @@ height: 50px;
   </div>
   
   <div id='search'>
-    <a href="<%=getServletContext().getContextPath()%>/app/auth/searchPassword.html">비밀번호를 잊으셨나요?</a>
+    <a href="<%=getServletContext().getContextPath()%>/app/auth/searchPassword">비밀번호를 잊으셨나요?</a>
   </div>
   
   <div id='add'>

@@ -66,4 +66,10 @@ public class DefaultFollowService implements FollowService {
   public int inactive(int no) throws Exception {
     return followDao.inactive(no);
   }
+
+  @Override
+  public List<Follow> list2(int no) throws Exception {
+    
+    return followDao.findAll2(no);
+  }
 }

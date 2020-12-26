@@ -33,13 +33,15 @@ public class Member {
   private String statusTitle;
   private Date statusModifiedDate; // 회원 상태 변경일
 
-  private int following;
+  private int following; // 내가 팔로잉하는 사람들
   private int followers;
   private int likers;
 
   private List<Review> reviews; // 본인의 게시물들
+  private int numOfReviews; // 본인의 게시물들 숫자
   private List<Review> saved; // 저장한 게시물들
-
+  private int numOfSaved; // 저장한 게시물들 숫자
+  
   private boolean followed;
 
   public int getNo() {
@@ -169,5 +171,11 @@ public class Member {
   }
   public void setFollowed(boolean followed) {
     this.followed = followed;
+  }
+  public int getNumOfReviews() {
+    return this.reviews.size();
+  }
+  public int getNumOfSaved() {
+    return this.saved.size();
   }
 }

@@ -30,8 +30,6 @@
 </head>
 <body>
 
-<jsp:include page="/app/main/topbar"/>
-
 <h1>좋아요</h1>
 
 <br>
@@ -65,11 +63,6 @@ for (Like like : likes) {
       System.out.println(review.getNo());
         
       }
-      
-      
-      
-      
-        
 %>
         <tr>
         <td><img src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
@@ -80,7 +73,6 @@ for (Like like : likes) {
     <td><%=like.getLikedTypeName()%></a> 를 좋아합니다. </td>
         
 <%
-    
     }
 %>
 
@@ -113,7 +105,5 @@ for (Like like : likes) {
 }
 %>
 
-<jsp:include page="/app/main/sidebar"/>
-<jsp:include page="/main/footer.jsp"/>
 </body>
 </html>

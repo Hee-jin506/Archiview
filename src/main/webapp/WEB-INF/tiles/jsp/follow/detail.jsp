@@ -73,10 +73,6 @@
 
   <div id="container">
   
-      <div id="header">
-        <jsp:include page="/main/admin-topbar.jsp"></jsp:include>
-      </div>
-
 <div id="content">
 <jsp:include page="${follower}"></jsp:include>
   </div>
@@ -102,11 +98,6 @@
     <p>여기 리스트</p>
     <p>여기 리스트</p>
   </div>
-    
-    <div id="footer">
-        <p>비트캠프 팀 아카이뷰 최희진 이건목 류승희 김찬구 정지은</p> 
-    </div>
-    
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>

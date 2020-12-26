@@ -73,5 +73,6 @@
 				<%=review.getLiking()%>개
 			</div>
 		</div>
+		</div>
 		<%}%>
 	</div>

@@ -20,6 +20,6 @@ public class TopbarServlet extends HttpServlet {
       HttpSession session = request.getSession();
       request.setAttribute("loginUser", session.getAttribute("loginUser"));
     }
-    request.getRequestDispatcher("/main/topbar.jsp").include(request, response);
+    request.getRequestDispatcher("/WEB-INF/tiles/app/header.jsp").include(request, response);
   }
 }

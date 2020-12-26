@@ -15,9 +15,28 @@
   <association property="followingMember" javaType="Member">
     <id column="mno" property="no"/>
     <result column="nick" property="nickName"/>
+    <result column="email" property="email"/>
+    <result column="intro" property="intro"/>
+    <result column="photo" property="photo"/>
   </association>
- </resultMap>
- 
+  
+    <association property="targetMember">
+      <result column="targetMember_no"        property="no"/>
+      <result column="targetMember_nick"        property="nickName"/>
+      <result column="targetMember_photo"        property="photo"/>
+      <result column="targetMember_intro"        property="intro"/>
+    </association>
+    
+    <association property="targetTag">
+      <result column="targetTag_no"        property="no"/>
+      <result column="targetTag_title"        property="title"/>
+      
+      <collection property="reviews"    ofType="integer">
+         <result column="rvno"        property="yongseobatjimothal-code"/>
+      </collection>
+    </association>
+   </resultMap>
+
   <sql id="sql1">
   select
     f.fno,
@@ -25,7 +44,7 @@
     f.fdt,
     f.stat,
     mb.mno mno,
-    mb.nick nick,
+    mb.nick,
     fa.fano,
     fa.name fano_name
   from
@@ -33,21 +52,62 @@
     inner join acv_mbr mb on f.flwing_mbr=mb.mno
     inner join acv_flw_able fa on f.fano = fa.fano
   </sql> 
- 
+  
+  <sql id="sql2">
+  select
+    mb.mno,
+    mb.nick,
+    f.fno,
+    f.fano,
+    f.target,
+    f.fdt,
+    f.stat,
+    mb2.mno targetMember_no,
+    mb2.nick targetMember_nick,
+    mb2.photo targetMember_photo,
+    mb2.intro targetMember_intro,
+    t.tno targetTag_no,
+    t.title targetTag_title,
+    tp.tpno,
+    tp.rvno
+      
+  from
+    acv_mbr mb
+	    left outer join acv_flw f on mb.mno=f.flwing_mbr
+	    left outer join acv_mbr mb2 on f.target=mb2.mno
+	    left outer join acv_tag t on f.target=t.tno
+	    left outer join acv_tag_post tp on t.tno=tp.tno
+  </sql> 
+
+ <!-- 팔로우 리스트 -->
+ <select id="findAll" resultMap="FollowMap">
+  <include refid="sql2"/>
+  order by
+    mb.mno desc
+  </select>
+  
+ <select id="findAll2" resultMap="FollowMap" parameterType="int">
+  <include refid="sql2"/>
+    where
+      mb.mno=#{mno}
+  </select>
+   
  <!-- 팔로우 타겟 상세 -->
  <select id="findByNo" resultMap="FollowMap" parameterType="int">
     <include refid="sql1"/>
     where
-      f.fno=#{fno} 
+      f.fno=#{fno}
   </select>
- 
- <!-- 팔로우 리스트 -->
- <select id="findAll" resultMap="FollowMap">
-  <include refid="sql1"/>
+  
+   <!-- 멤버 팔로우 리스트
+ <select id="findByFollowingUsers" resultMap="FollowMap2">
+  <include refid="sql2"/>
+  where f.flwing_mbr=#{mno} and f.fano = 1 and f.stat = 1
   order by
     mb.nick desc
   </select>
-   
+   -->
+ 
  <!-- 팔로잉 유저 insert -->
   <insert id="insertUser" parameterType="follow">
   insert into acv_flw(flwing_mbr, target, fano)
@@ -65,6 +125,11 @@
     where flwing_mbr=#{followingMember.no} and fano=1 and target=#{followedNo}
   </update>
   
+  <update id="deleteTag" parameterType="follow">
+   delete from acv_flw
+    where flwing_mbr=#{followingMember.no} and fano=2 and target=#{followedNo}
+    </update>
+    
   <!-- 팔로우 상태 변경 -->
   <!-- 1. 팔로우 상태 -->
    <update id="active" parameterType="int">
@@ -81,7 +146,6 @@
   </update>
   
    <!-- 언팔로우(delete) 태그, 언팔로우(delete) 유저
-   사용자 팔로잉 목록
   <select id="findByFollowList" resultMap="FollowMap2" parameterType="int">
   <include refid="sql1"/>
   where
@@ -89,11 +153,17 @@
   order by
     f.fno desc
   </select>
-  
-  <update id="deleteTag" parameterType="follow">
-   delete from acv_flw
-    where flwing_mbr=#{mno} and fano=#{followedType} and target=#{followedNo}
-  </update>
+ 
+ <select id="findByFollowMembers" parameterType="map" resultMap="MemberMap3">
+   select
+    count(*)
+    from acv_mbr mb
+     inner join acv_flw f on f.flwing_mbr= mb.mno
+     inner join acv_flw_able fa on f.fano = fa.fano
+     right join acv_mbr mb2 on f.target=mb2.mno
+    where f.flwing_mbr=#{mno} and f.fano = 1 and f.target={followedNo}
+  </select>
+
    -->
 
 </mapper>

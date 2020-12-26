@@ -2,21 +2,22 @@ package bitcamp.acv.domain;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 public class Tag {
 
   private String INACTIVE = "삭제";
   private String ACTIVE = "게시중";
 
-  private int no;
-  private String title;
-  private boolean status;
-  private Date registeredDate;
-  private List<Integer> reviews;
-  private List<Integer> followers;
-  private String statusName;
-  private int numOfReviews;
-
+  private int no; // 태그 번호
+  private String title; // 태그명
+  private boolean status; // 태그 상태
+  private String statusName; // 태그 상태명
+  private Date registeredDate; // 태그 등록일
+  private int numOfReviews; // 태그가 달린 리뷰의 개수
+  private List<Integer> reviews; // 태그가 달린 리뷰 번호 목록
+  private List<Integer> followers; // 태그를 팔로우하는 멤버 번호 목록
+  private String ThumbnailStillCutUrl; // 태그의 대표 스틸컷 url
   public int getNo() {
     return no;
   }
@@ -66,5 +67,11 @@ public class Tag {
   }
   public void setNumOfReviews(int numOfReviews) {
     this.numOfReviews = numOfReviews;
+  }
+  public String getThumbnailstillCutUrl() {
+    return ThumbnailStillCutUrl;
+  }
+  public void setThumbnailstillCut(String thumbnailStillCutUrl) {
+    ThumbnailStillCutUrl = thumbnailStillCutUrl;
   }
 }
