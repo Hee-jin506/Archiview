@@ -22,12 +22,39 @@ public class DefaultLikeService implements LikeService {
   }
 
   @Override
-  public void add(Like like) throws Exception {
-    likeDao.insert(like);
-  }
-  @Override
   public List<Like> getTime(Map<String, Object> likeMap) throws Exception {
     return likeDao.getTime(likeMap);
+  }
+
+  @Override
+  public int addReview(Like like) throws Exception {
+    return likeDao.insertReview(like);
+  }
+
+  @Override
+  public int addComment(Like like) throws Exception {
+    return likeDao.insertComment(like);
+  }
+
+  @Override
+  public int deleteReview(Like like) throws Exception {
+    return likeDao.deleteReview(like);
+
+  }
+
+  @Override
+  public int deleteComment(Like like) throws Exception {
+    return likeDao.deleteComment(like);
+  }
+
+  @Override
+  public int active(int no) throws Exception {
+    return likeDao.active(no);
+  }
+
+  @Override
+  public int inactive(int no) throws Exception {
+    return likeDao.inactive(no);
   }
 
 }
