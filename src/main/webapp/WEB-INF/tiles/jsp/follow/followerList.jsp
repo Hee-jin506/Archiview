@@ -91,7 +91,7 @@ a { text-decoration: none; }
  .follower-target-text {
  float: left;
  }
- .followerg-target {
+ .follower-target {
   float:left;
  }
  

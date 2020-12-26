@@ -143,7 +143,7 @@ a { text-decoration: none; }
               <a class="following-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${t.no}">
                 <input type='hidden' name='no' value='${t.no}'>
                     <img class="following-target-img" src='${t.thumbnailstillCutUrl}' width=35px, height=35px>
-                    <span class="following-target-text">${t.title}<br>
+                    <span class="following-target-text"># ${t.title}<br>
                        리뷰 ${t.numOfReviews}개
                        </span>
               </a>

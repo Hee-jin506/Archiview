@@ -136,6 +136,20 @@ public class FollowController {
     model.addAttribute("targetMemberlist", targetMemberlist);
   }
 
+ // 리스트
+ @GetMapping("list")
+ public void list(@ModelAttribute("loginUser") Member loginUser,
+     Model model) throws Exception {
+
+   List<Follow> list = followService.list();
+
+   // 사이드바
+   model.addAttribute("topMembers", memberService.listByPop3());
+   model.addAttribute("topMovies", movieService.listByPop3());
+   model.addAttribute("topTags", tagService.listByPop3());
+   model.addAttribute("list", list);
+ }
+
   // 전체 리스트 상세
   @GetMapping("detail")
   public ModelAndView view(int no,
