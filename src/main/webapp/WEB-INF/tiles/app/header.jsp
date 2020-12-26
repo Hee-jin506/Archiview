@@ -20,9 +20,17 @@
 	    </div>
 	    <% Member member = (Member) session.getAttribute("loginUser"); %>
 	    <div id='profile'>
-	      <a href='<%=getServletContext().getContextPath() + "/app/member/profile?no=" + member.getNo()%>'>
+	    <div class='dropdown'>
+	       <button class='dropbtn'>
 	      <img class='profile' src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
-	      </a>
+	      </button>
+	       <div class='dropdown-content'>
+	           <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=member.getNo()%>"><img id='btn-icon' src='<%=getServletContext().getContextPath()+"/option_resource/profile.png"%>' alt='프로필'>프로필</a>
+		         <a href="<%=getServletContext().getContextPath()%>/app/option/profile"><img id='btn-icon' src='<%=getServletContext().getContextPath()+"/option_resource/option.png"%>' alt='설정'>설정</a>
+	           <hr>
+	           <a href="<%=getServletContext().getContextPath()%>/app/auth/logout">로그아웃</a>
+	       </div>
+	    </div>
 	    </div> 
 	    <div id='icon'>
 	      <a href='<%=getServletContext().getContextPath()%>'>
