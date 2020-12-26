@@ -76,19 +76,37 @@ public class FollowController {
     }
   }
 
-  // 팔로잉 리스트
-  @GetMapping("list")
-  public void list(@ModelAttribute("loginUser") Member loginUser,
-      Model model) throws Exception {
+// 특정멤버의 팔로잉 리스트
+ @GetMapping("followingList")
+ public void followingList(@ModelAttribute("loginUser") Member loginUser, int no,
+     Model model) throws Exception {
 
-    List<Follow> list = followService.list();
+   // 사이드바
+   model.addAttribute("topMembers", memberService.listByPop3());
+   model.addAttribute("topMovies", movieService.listByPop3());
+   model.addAttribute("topTags", tagService.listByPop3());
 
-    // 사이드바
-    model.addAttribute("topMembers", memberService.listByPop3());
-    model.addAttribute("topMovies", movieService.listByPop3());
-    model.addAttribute("topTags", tagService.listByPop3());
-    model.addAttribute("list", list);
-  }
+   // 바디(프로필..)
+   Member member = memberService.get(no);
+   model.addAttribute("member", member);
+
+   // 바디(내가 팔로우한 리스트)
+   List<Follow> followList = followService.list2(no);
+   List<Member> targetMemberlist = new ArrayList<>();
+   List<Tag> targetTaglist = new ArrayList<>();
+
+
+   for (Follow follow : followList) {
+     if(follow.getFollowedType() == 1) {
+       targetMemberlist.add(follow.getTargetMember());
+     } else {
+       targetTaglist.add(follow.getTargetTag());
+     }
+   }
+
+   model.addAttribute("targetMemberlist", targetMemberlist);
+   model.addAttribute("targetTaglist", tagService.getThumbnailStillCut(targetTaglist));
+ }
 
   // 특정멤버의 팔로워 리스트
   @GetMapping("followerList")
@@ -101,27 +119,21 @@ public class FollowController {
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
 
+    // 바디(프로필)
+    Member member = memberService.get(no);
+    model.addAttribute("member", member);
+
     // 바디(나를 팔로워하는 리스트)
     List<Follow> followList = followService.list3(no);
     List<Member> targetMemberlist = new ArrayList<>();
-    List<Tag> targetTaglist = new ArrayList<>();
 
     for (Follow follow : followList) {
-      System.out.println(follow.getNo());
-      System.out.println(follow.getFollowedType());
-
       if(follow.getFollowedType() == 1) {
         targetMemberlist.add(follow.getTargetMember());
-      } else {
-        targetTaglist.add(follow.getTargetTag());
       }
-    }
-    for (Tag t : targetTaglist) {
-      System.out.println(t.getNo());
     }
 
     model.addAttribute("targetMemberlist", targetMemberlist);
-    model.addAttribute("targetTaglist", tagService.getThumbnailStillCut(targetTaglist));
   }
 
   // 전체 리스트 상세

@@ -36,6 +36,29 @@
       </collection>
     </association>
    </resultMap>
+   
+    <resultMap type="follow" id="FollowMap2">
+  <id column="fno"            property="no" />
+  <result column="target"     property="followedNo" />
+  <result column="fano"  property="followedType"/>
+  <result column="fdt"        property="followedDate"/>
+  <result column="stat"        property="status"/>
+
+  <association property="followingMember" javaType="Member">
+    <id column="mno" property="no"/>
+    <result column="nick" property="nickName"/>
+    <result column="email" property="email"/>
+    <result column="intro" property="intro"/>
+    <result column="photo" property="photo"/>
+  </association>
+  
+    <association property="targetMember">
+      <result column="targetMember_no"        property="no"/>
+      <result column="targetMember_nick"        property="nickName"/>
+      <result column="targetMember_photo"        property="photo"/>
+      <result column="targetMember_intro"        property="intro"/>
+    </association>
+   </resultMap>
 
   <sql id="sql1">
   select
@@ -92,26 +115,28 @@
   </select>
   
   <!-- 나를 팔로우하는 리스트 --> 
-  <select id="findAll3" resultMap="FollowMap" parameterType="int">
+  <select id="findAll3" resultMap="FollowMap2" parameterType="int">
   select
+    f.fno,
+    mb.mno,
+    mb.nick,
     mb2.mno targetMember_no,
     mb2.nick targetMember_nick,
     mb2.photo targetMember_photo,
     mb2.intro targetMember_intro,
-    mb.mno,
-    mb.nick,
-    f.fno,
     f.fano,
     f.target,
     f.fdt,
     f.stat
   from
     acv_mbr mb
-      left outer join acv_flw f on mb.mno=f.flwing_mbr
-      left outer join acv_mbr mb2 on f.target=mb2.mno
+      left outer join acv_flw f on mb.mno=f.target
+      left outer join acv_mbr mb2 on f.flwing_mbr=mb2.mno
     where
-      mb.mno=#{mno}
-  </select>
+     mb.mno=#{mno}
+    order by
+     mb.mno desc
+    </select>
   
  <!-- 팔로우 타겟 상세 -->
  <select id="findByNo" resultMap="FollowMap" parameterType="int">

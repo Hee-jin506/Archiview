@@ -1,4 +1,3 @@
-
 <%@page import="bitcamp.acv.domain.Follow"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,9 +9,7 @@
 <link rel="stylesheet" 
       href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/bootstrap.min.css?after">
 <style>
-
 a { text-decoration: none; }
-
  body {
    background-color : #000000;
    color: #ffffff;
@@ -116,9 +113,9 @@ a { text-decoration: none; }
       <p>${member.nickName}<br>
          ${member.email}<br><br>
          ${member.intro}</p>
-		  <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
-		  <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
-		  <a href="../report/form?reportedNo=${member.no}">신고</a> 
+      <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
+      <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
+      <a href="../report/form?reportedNo=${member.no}">신고</a> 
     </div>
     
     <div id="profile-icon">
@@ -127,7 +124,7 @@ a { text-decoration: none; }
           리뷰
           <%-- <c:out value="${member.numOfReviews}" ></c:out></span> --%>
       </a>
-      <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+      <a href="<%=getServletContext().getContextPath()%>/app/follow/followerList?no=${member.no}"> 
         <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
           팔로워 
       </a>
@@ -141,37 +138,37 @@ a { text-decoration: none; }
       </a>
     </div>
     
+       <c:forEach items="${targetTaglist}" var="t"> 
+          <div class="following-target-row">
+              <a class="following-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${t.no}">
+                <input type='hidden' name='no' value='${t.no}'>
+                    <img class="following-target-img" src='${t.thumbnailstillCutUrl}' width=35px, height=35px>
+                    <span class="following-target-text">${t.title}<br>
+                       리뷰 ${t.numOfReviews}개
+                       </span>
+              </a>
+              <a class="following-target-button" href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>
+              <a class="following-target-button" href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
+          </div>
+       </c:forEach>
+       
     <div id="following-target-container">
-			 <c:forEach items="${targetMemberlist}" var="m"> 
-					<div class="following-target-row">
-							<a class="following-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${m.no}">
-							  <input type='hidden' name='no' value='${m.no}'>
-							      <img class="following-target-img" src='../../upload/${m.photo}_35x35.jpg'>
-							      <span class="following-target-text">${m.nickName}<br>
-							         ${m.intro}
-							         </span>
-				      </a>
-				      <a class="following-target-button" href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>
-				      <a class="following-target-button" href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
-					</div>
-			 </c:forEach>
-	
-			 <c:forEach items="${targetTaglist}" var="t"> 
-		      <div class="following-target-row">
-		          <a class="following-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${t.no}">
-		            <input type='hidden' name='no' value='${t.no}'>
-		                <img class="following-target-img" src='${t.thumbnailstillCutUrl}' width=35px, height=35px>
-		                <span class="following-target-text">${t.title}<br>
-		                   리뷰 ${t.numOfReviews}개
-		                   </span>
-		          </a>
-		          <a class="following-target-button" href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>
-		          <a class="following-target-button" href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
-		      </div>
-			 </c:forEach>
-		</div>
+       <c:forEach items="${targetMemberlist}" var="m"> 
+          <div class="following-target-row">
+              <a class="following-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${m.no}">
+                <input type='hidden' name='no' value='${m.no}'>
+                    <img class="following-target-img" src='../../upload/${m.photo}_35x35.jpg'>
+                    <span class="following-target-text">${m.nickName}<br>
+                       ${m.intro}
+                       </span>
+              </a>
+              <a class="following-target-button" href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>
+              <a class="following-target-button" href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
+          </div>
+       </c:forEach>
+  
+    </div>
    </div>
 <script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
