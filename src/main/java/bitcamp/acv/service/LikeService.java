@@ -6,7 +6,13 @@ import bitcamp.acv.domain.Like;
 
 public interface LikeService {
   List<Like> list() throws Exception;
-  void add(Like like) throws Exception;
   List<Like> getTime(Map<String, Object> likeMap) throws Exception;
+  int addReview(Like like) throws Exception;
+  int addComment(Like like) throws Exception;
+  int deleteReview(Like like) throws Exception;
+  int deleteComment(Like like) throws Exception;
+
+  int active(int no) throws Exception;
+  int inactive(int no) throws Exception;
 
 }

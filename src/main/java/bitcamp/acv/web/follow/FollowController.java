@@ -76,7 +76,7 @@ public class FollowController {
     }
   }
 
-// 특정멤버의 팔로잉 리스트
+  // 특정멤버의 팔로잉 리스트
  @GetMapping("followingList")
  public void followingList(@ModelAttribute("loginUser") Member loginUser, int no,
      Model model) throws Exception {
