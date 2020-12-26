@@ -85,7 +85,7 @@
 		      리뷰<br>
 		      <c:out value="${member.numOfReviews}"></c:out>
 		  </a>
-		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+		  <a href="<%=getServletContext().getContextPath()%>/app/follow/followerList?no=${member.no}"> 
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" height=30px class="center" alt="팔로워">
 		      팔로워 
 		  </a>

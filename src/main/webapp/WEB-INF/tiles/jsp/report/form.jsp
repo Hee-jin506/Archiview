@@ -19,7 +19,7 @@
 신고 대상:
 <input type='text' name='reportedNo'><br>
 신고 유형:
-<select name='reportedType' >
+<select name='reportedType'>
   <option value='1'>회원</option>
   <option value='2'>게시물</option>
   <option value='3'>댓글</option>
