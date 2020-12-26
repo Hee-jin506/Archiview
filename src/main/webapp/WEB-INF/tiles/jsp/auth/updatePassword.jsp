@@ -49,7 +49,7 @@ color: #F21BC9;
 <div id='box'>
 <h3 style="color: white; margin: 40px 0px 30px 40px;">비밀번호 변경</h3>
 
-<form class="form-horizontal" action="../../app/auth/update" method="post">
+<form class="form-horizontal" action="../auth/update" method="post">
   <div class="form-group">
     <label for="exampleInputPassword1" class="col-sm-4 control-label" style="color: white;">새 비밀번호</label>
     <div class="col-sm-6">
