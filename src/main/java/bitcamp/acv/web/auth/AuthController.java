@@ -1,6 +1,8 @@
 
 package bitcamp.acv.web.auth;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,20 +13,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.MemberService;
+import bitcamp.acv.service.MovieService;
+import bitcamp.acv.service.ReviewService;
+import bitcamp.acv.service.TagService;
 
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
 
   @Autowired MemberService memberService;
+  @Autowired MovieService movieService;
+  @Autowired TagService tagService;
+  @Autowired ReviewService reviewService;
 
   @RequestMapping("login")
   public ModelAndView login(HttpServletRequest request, HttpServletResponse response, String email, String password) throws Exception {
     ModelAndView mv = new ModelAndView();
+    mv.addObject("topMembers", memberService.listByPop3());
+    mv.addObject("topMovies", movieService.listByPop3());
+    mv.addObject("topTags", tagService.listByPop3());
+
+
+
     boolean wrongInput = false;
     boolean withdrawedMember = false;
 
-    if (request.getMethod().equals("GET")) { 
+    if (request.getMethod().equals("GET")) {
       String cookieEmail = "";
 
       Cookie[] cookies = request.getCookies();
@@ -69,8 +83,12 @@ public class AuthController {
       mv.setViewName("auth/login");
     } else {
       session.setAttribute("loginUser", member);
+      Map<String, Object> map = new HashMap<>();
+      map.put("userNo", member.getNo());
+      map.put("row", 0);
+      mv.addObject("list", reviewService.getMainFeed(map));
       mv.addObject("loginUser", member);
-      mv.setViewName("/");
+      mv.setViewName("main");
     }
     return mv;
   }
@@ -125,6 +143,11 @@ public class AuthController {
       memberService.updatePassword(member);
       session.invalidate();
     }
-    return "redirect:app/auth/login";
+    return "redirect:/app/auth/login";
+  }
+
+  @RequestMapping("searchPassword")
+  public String searchPassword() {
+    return "auth/searchPassword";
   }
 }
