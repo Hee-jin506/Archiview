@@ -10,7 +10,6 @@
 </style>
 </head>
 
-
 <body style="background-color: #000000">
 
 <div id='box'>
