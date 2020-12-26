@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head><title>회원 프로필 화면</title>
-<link rel="stylesheet" 
-      href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/bootstrap.min.css?after">
 <style>
 a { text-decoration: none; }
 
@@ -40,6 +38,8 @@ a { text-decoration: none; }
     
  .profile-icon { display: block; margin: 0px auto; }
  
+ 
+ 
  img.profile {
   border-radius: 100px;
  }
@@ -62,6 +62,12 @@ a { text-decoration: none; }
  clear: both;
  margin-bottom : 130px;
  }
+ 
+ #profile-icon .profile-icon-text {
+ display : block;
+ padding-top : 3px;
+ }
+ 
  #profile-icon a {
  margin-top : 50px;
  margin-left : 91.8px;
@@ -98,20 +104,20 @@ a { text-decoration: none; }
     <div id="profile-icon">
       <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
         <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review-border.png" height=30px class="center" alt="리뷰">
-          리뷰
+<span class="profile-icon-text">리뷰</span>
           <%-- <c:out value="${member.numOfReviews}" ></c:out></span> --%>
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
         <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
-          팔로워 
+          <span class="profile-icon-text">팔로워</span>
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/follow/followingList?no=${member.no}"> 
         <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
-          팔로잉 
+          <span class="profile-icon-text">팔로잉</span> 
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/member/savedReviews?no=${member.no}"> 
         <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved.png" height=30px class="center" alt="저장">
-          저장 
+          <span class="profile-icon-text">저장</span> 
       </a>
     </div>
     
@@ -129,6 +135,5 @@ a { text-decoration: none; }
         </c:forEach>
       </div>
     </div>
-<script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
