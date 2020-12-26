@@ -48,8 +48,8 @@ a { text-decoration: none; }
  
  #member{
  width : 599px;
- margin-left : 10px;
- margin-right : 10px;
+ margin-left : 9px;
+ margin-right : 9px;
  float: left;
  }
  #member img {
@@ -69,6 +69,13 @@ a { text-decoration: none; }
  margin-left : 91.8px;
  float: left;
  }
+ #profile-icon .profile-icon-text {
+ display : block;
+ padding-top : 3px;
+ }
+ #profile-icon .profile-icon-number {
+ display: block;
+ }
  #reviews {
  margin-top : 50px;
  clear: both;
@@ -76,9 +83,9 @@ a { text-decoration: none; }
  
  #reviews img{
  float:left;
- margin-top : 20px;
- margin-right : 10px;
- margin-left : 10px;
+ margin-top : 18px;
+ margin-right : 9px;
+ margin-left : 9px;
  }
 </style>
 
@@ -100,8 +107,8 @@ a { text-decoration: none; }
 		<div id="profile-icon">
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" height=30px class="center" alt="리뷰">
-		      리뷰
-		      <%-- <c:out value="${member.numOfReviews}" ></c:out></span> --%>
+		      <span class="profile-icon-text">리뷰</span>
+		      <span class="profile-icon-number"><span></span><c:out value="${member.numOfReviews}" ></c:out></span></span>
 		  </a>
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">

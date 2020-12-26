@@ -46,8 +46,8 @@ a { text-decoration: none; }
  
  #member{
  width : 599px;
- margin-left : 10px;
- margin-right : 10px;
+ margin-left : 9px;
+ margin-right : 9px;
  float: left;
  }
  #member img {
@@ -74,9 +74,9 @@ a { text-decoration: none; }
  
  #reviews img{
  float:left;
- margin-top : 20px;
- margin-right : 10px;
- margin-left : 10px;
+ margin-top : 18px;
+ margin-right : 9px;
+ margin-left : 9px;
  }
 </style>
 

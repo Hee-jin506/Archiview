@@ -50,8 +50,8 @@ a { text-decoration: none; }
  
  #member{
  width : 599px;
- margin-left : 10px;
- margin-right : 10px;
+ margin-left : 9px;
+ margin-right : 9px;
  float: left;
  }
  #member img {
@@ -75,8 +75,8 @@ a { text-decoration: none; }
  /* 내가 팔로우한 멤버 목록*/
  #following-target-container {
  clear: both;
-  margin-right : 10px;
-  margin-left : 10px;  
+  margin-right : 9px;
+  margin-left : 9px;  
  }
  
  .following-target-row {
