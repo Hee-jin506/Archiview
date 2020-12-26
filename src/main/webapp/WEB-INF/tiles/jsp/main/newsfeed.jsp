@@ -14,7 +14,9 @@
       href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/bootstrap.min.css?after">
 <style>
 
-a { text-decoration: none; }
+a { 
+   text-decoration: none; color: #ffffff;
+ }
 
  body {
    background-color : #000000;
@@ -28,10 +30,14 @@ a { text-decoration: none; }
    margin:0px;
  }
  
+ hr {
+ hegit: 1px;
+ }
+ 
   #contents {
    border-radius: 10px;
    background-color: #141517;
-   width: 600px;  /* 너비 */
+   width: 619px;  /* 너비 */
    padding: 40px;  /* 패딩 */
    float: left;  /* 왼쪽으로 플로팅 */
    height: 700px;
@@ -39,22 +45,33 @@ a { text-decoration: none; }
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  line-height: 80px;
+  margin-top: 0px;
  }
  
   #contents::-webkit-scrollbar {
   display: none;
 }
 
- img.profile {
+ #list img {
   border-radius: 100px;
  }
+
+ img.list-icon {
+ vertical-align:middle;
+ }
+ 
+ img.list-href {
+ margin-bottom : 100px;
+ }
+ 
+ text {
+ margin-bottom : 100px;
+ }
+ 
 </style>
 </head>
 <body>
-
-<br>
-<br>
-<br>
 
 <%
 List<Like> likes = (List<Like>) request.getAttribute("list");
@@ -64,6 +81,10 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 %>
 
 <div id = "contents">
+<div id = "title">
+<p> 뉴스피드</p>
+<hr>
+</div>
 <%
 for (Like like : likes) {
   if (like.getLikingMember().getNo() != loginUser.getNo()) {
@@ -74,14 +95,17 @@ for (Like like : likes) {
         if (review.getNo() == like.getLikedNo()) {
 
         %>
+        <div id="list">
         <tr>
-          <td><img src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
-          <td><%=like.getLikingMember().getNickName()%> 님이 회원님의</td>
-          <a href="<%=getServletContext().getContextPath()%>/app/review/detail?no=<%=like.getLikedNo()%>">
-          <td><%=like.getLikedTypeName()%></a> 를 좋아합니다. </td>
+          <td><a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=like.getLikingMember().getNo()%>"><img class="list-icon" src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
+          <td><%=like.getLikingMember().getNickName()%></a> 님이 회원님의</td>
+          <a class="list-href" href="<%=getServletContext().getContextPath()%>/app/review/detail?no=<%=like.getLikedNo()%>">
+          <td><%=like.getLikedTypeName()%></a>를 좋아합니다. </td>
           <td><%=((Map<Integer, String>)request.getAttribute("times")).get(like.getNo())%></td>
         </tr>
-        <br>
+        </div>
+
+
 <%
         }
       }
@@ -91,14 +115,16 @@ for (Like like : likes) {
         
 
 %>
+        <div id="list">
         <tr>
-          <td><img src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
-          <td><%=like.getLikingMember().getNickName()%> 님이 회원님의</td>
-          <a href="<%=getServletContext().getContextPath()%>/app/comment/view?reviewNo=<%=like.getLikedNo()%>">
+          <td><a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=like.getLikingMember().getNo()%>"><img class="list-icon" src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
+          <td><%=like.getLikingMember().getNickName()%></a> 님이 회원님의</td>
+          <a class="list-href" href="<%=getServletContext().getContextPath()%>/app/comment/view?reviewNo=<%=like.getLikedNo()%>">
           <td><%=like.getLikedTypeName()%></a> 을 좋아합니다.</td>
           <td><%=((Map<Integer, String>)request.getAttribute("times")).get(like.getNo())%></td>
         </tr>
-        <br>
+        </div>
+
 <%
        }
       }
@@ -106,7 +132,9 @@ for (Like like : likes) {
   }
 }
 %>
-</div>
+      </div>
+
+
 <script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

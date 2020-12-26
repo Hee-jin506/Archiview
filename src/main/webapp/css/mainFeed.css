@@ -37,18 +37,77 @@
 }
 
 .card img.profile {
+	float: left;
 	width: 50px;
 }
 
-.card .member p {
-	position: absolute;
+ .card .member .nickname {
+  float: left;
+  margin: 10px;
+	/* position: absolute;
 	left: 57px;
-	top: 15px;
+	top: 15px; */
+}
+
+.card .member .follow {
+	float: left;
+	margin: 10px;
+	/* position: absolute;
+	left: 150px;
+	top: 15px; */
 }
 
 .card .stillcut {
+	position: relative;
 	margin: 0px;
 	position: absolute;
 	top: 80px;
-	height: 400px;
+	height: 350px;
+	width: 650px;
+	overflow: hidden;
+	background-color: #000;
+}
+
+.card .stillcut img {
+	height: 350px;
+	display: block; 
+	margin: 0px 
+	auto;
+}
+
+.card .stillcut .reviewText {
+	position: absolute;
+	top: 50%;
+	left: 325px;
+	text-align: center;
+	transform: translate( -50%, -50% );
+	background-color: rgba( 0, 0, 0, 0.5 );
+}
+
+.card .stillcut .tags {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	background-color: rgba( 0, 0, 0, 0.5 );
+}
+
+.card .cardFooter {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	width: 625px;
+}
+
+.card .cardFooter .movie {
+	float: left;
+	margin: 10px;
+}
+.card .cardFooter .rdt {
+  float: left;
+  margin: 10px;
+}
+
+.card .cardFooter .like {
+	float: right;
+	
 }
