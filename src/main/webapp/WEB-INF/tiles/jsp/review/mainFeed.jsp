@@ -8,57 +8,70 @@
 <div id='cards'>
 	<%
 	  List<Review> list = (List<Review>) request.getAttribute("list");
-	  for (Review review : list) {
+	for (Review review : list) {
 	%>
 	<div class='card'>
 
 		<div class='member'>
-			<img class='profile'
+			<a
+				href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
+				<img class='profile'
 				src=<%=getServletContext().getContextPath() + "/upload/" + review.getWriterPhoto() + "_35x35.jpg"%>>
-			<p><%=review.getWriterNick()%></p>
+			</a> <a class='nickname'
+				href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
+				<%=review.getWriterNick()%></a>
 			<%
 			  if (!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())) {
 			%>
-				<%
-				  if (review.getIsFollowing() != 0) {
-				%>
-			<form>
-				<button class="btn btn-twitter">팔로우</button>
-			</form>
-				<%} else {%>
+			<%
+			  if (review.getIsFollowing() != 0) {
+			%>
+			<div class='follow'>
 				<form>
-				<button class="btn btn-archiview">팔로우</button>
+					<button class="btn btn-twitter">팔로우</button>
 				</form>
-				<%
-				  }
+			</div>
+			<%} else {%>
+			<div class='follow'>
+				<form>
+					<button class="btn btn-archiview">팔로우</button>
+				</form>
+			</div>
+			<%
 			  }
-				%>
+			}
+			%>
 		</div>
 		<div class='stillcut'>
-			<img src=<%=review.getStcUrl()%>><br>
-			<p><%=review.getText()%></p>
+			<img src=<%=review.getStcUrl()%>>
+			<div class='reviewText'>
+				<p><%=review.getText()%>
+				<p>
+			</div>
 
-			<%
+			<div class='tags'>
+				<%
 				  List<Tag> tags = review.getTags();
 				for (Tag tag : tags) {
 				  if (tag.getTitle() != null) {
 				%>
-			<a
-				href='<%=getServletContext().getContextPath() + "/app/main/search?keyword=%23" + tag.getTitle()%>'>
-				#<%=tag.getTitle()%></a>
-			<%}
+				<a class='tag'
+					href='<%=getServletContext().getContextPath() + "/app/main/search?keyword=%23" + tag.getTitle()%>'>
+					#<%=tag.getTitle()%></a>
+				<%}
 }%>
+			</div>
 		</div>
 
-		<div class='movie'>
-			<br>
-			<p><%=review.getMovieTitle()%></p>
-			<p><%=(review.getRdtFromNow())%></p>
-			<p>
-				좋아요
+		<div class='cardFooter'>
+			<a class='movie'><%=review.getMovieTitle()%></a>
+			<p class='rdt'><%=(review.getRdtFromNow())%></p>
+			<div class='like'>
+				<img
+					src='<%=getServletContext().getContextPath()%>/main_resource/like.png'
+					alt='좋아요'>
 				<%=review.getLiking()%>개
-			</p>
+			</div>
 		</div>
-	</div>
 		<%}%>
-</div>
+	</div>
