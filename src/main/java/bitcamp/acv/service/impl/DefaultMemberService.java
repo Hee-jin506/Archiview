@@ -115,4 +115,10 @@ public class DefaultMemberService implements MemberService {
     }
     return topMembers;
   }
+
+
+  @Override
+  public int updateHint(Member member) throws Exception {
+    return memberDao.updateHint(member);
+  }
 }
