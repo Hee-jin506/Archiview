@@ -159,7 +159,7 @@
  <update id='updateHint' parameterType='member'>
  update acv_mbr
  <set>
-   <if test="questionsNo != null">qno = #{questionsNo}</if>
+   <if test="questionsNo != null">qno = #{questionsNo},</if>
    <if test="questionsAnswer != null">pw_hint_a = #{questionsAnswer}</if>
   </set>
   where mno = #{no}
