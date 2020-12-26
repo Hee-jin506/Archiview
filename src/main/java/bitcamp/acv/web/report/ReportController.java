@@ -48,7 +48,7 @@ public class ReportController {
     model.addAttribute("topTags", tagService.listByPop3());
   }
 
-  // 멤버 신고
+  // 신고
   @PostMapping("reportUser")
   public String reportUser(Report report,
       int reportedNo,

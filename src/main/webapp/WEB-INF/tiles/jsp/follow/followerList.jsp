@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head><title>회원 프로필 화면</title>
+<link rel="stylesheet" 
+      href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/bootstrap.min.css?after">
 <style>
 a { text-decoration: none; }
  body {
@@ -62,49 +64,40 @@ a { text-decoration: none; }
  clear: both;
  margin-bottom : 130px;
  }
- 
- #profile-icon .profile-icon-text {
- display : block;
- padding-top : 3px;
- }
- 
  #profile-icon a {
  margin-top : 50px;
  margin-left : 91.8px;
  float: left;
  }
  
- /* 내가 팔로우한 멤버 목록*/
- #following-target-container {
+ /* 나를 팔로한 멤버 목록*/
+ #follower-target-container {
  clear: both;
   margin-right : 9px;
   margin-left : 9px;  
  }
  
- .following-target-row {
+ .follower-target-row {
  clear: both;
   margin-bottom : 10px;  
   height : 50px;
  }
  
- .following-target-img {
+ .follower-target-img {
   margin-right : 10px;
   float:left;
   border-radius: 100px;
  }
- .following-target-text {
+ .follower-target-text {
  float: left;
  }
- .following-target {
+ .followerg-target {
   float:left;
  }
  
- .following-target-button {
+ .follower-target-button {
   float:right;
  }
- 
- 
- 
 </style>
 
 </head>
@@ -125,53 +118,40 @@ a { text-decoration: none; }
     <div id="profile-icon">
       <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
         <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review-border.png" height=30px class="center" alt="리뷰">
-          <span class="profile-icon-text">리뷰</span>
+          리뷰
           <%-- <c:out value="${member.numOfReviews}" ></c:out></span> --%>
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/follow/followerList?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
-          <span class="profile-icon-text">팔로워</span> 
+        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" height=30px class="center" alt="팔로워">
+          팔로워 
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/follow/followingList?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" height=30px class="center" alt="팔로잉">
-          <span class="profile-icon-text">팔로잉</span> 
+        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
+          팔로잉 
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/member/savedReviews?no=${member.no}"> 
         <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved-border.png" height=30px class="center" alt="저장">
           저장 
       </a>
     </div>
-    
-       <c:forEach items="${targetTaglist}" var="t"> 
-          <div class="following-target-row">
-              <a class="following-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${t.no}">
-                <input type='hidden' name='no' value='${t.no}'>
-                    <img class="following-target-img" src='${t.thumbnailstillCutUrl}' width=35px, height=35px>
-                    <span class="following-target-text">${t.title}<br>
-                       리뷰 ${t.numOfReviews}개
-                       </span>
-              </a>
-              <a class="following-target-button" href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>
-              <a class="following-target-button" href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
-          </div>
-       </c:forEach>
        
-    <div id="following-target-container">
+    <div id="follower-target-container">
        <c:forEach items="${targetMemberlist}" var="m"> 
-          <div class="following-target-row">
-              <a class="following-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${m.no}">
+          <div class="follower-target-row">
+              <a class="follower-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${m.no}">
                 <input type='hidden' name='no' value='${m.no}'>
-                    <img class="following-target-img" src='../../upload/${m.photo}_35x35.jpg'>
-                    <span class="following-target-text">${m.nickName}<br>
+                    <img class="follower-target-img" src='../../upload/${m.photo}_35x35.jpg'>
+                    <span class="follower-target-text">${m.nickName}<br>
                        ${m.intro}
                        </span>
               </a>
-              <a class="following-target-button" href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>
-              <a class="following-target-button" href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
+              <a class="follower-target-button" href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>
+              <a class="follower-target-button" href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
           </div>
        </c:forEach>
   
     </div>
    </div>
+<script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

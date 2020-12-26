@@ -108,7 +108,7 @@ a { text-decoration: none; }
 		      <span class="profile-icon-text">리뷰</span>
 		      <%-- <span class="profile-icon-number"><span></span><c:out value="${member.numOfReviews}" ></c:out></span></span> --%>
 		  </a>
-		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+		  <a href="<%=getServletContext().getContextPath()%>/app/follow/followerList?no=${member.no}"> 
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
 		      <span class="profile-icon-text">팔로워</span> 
 		  </a>
