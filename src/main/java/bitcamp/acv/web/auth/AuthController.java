@@ -184,6 +184,8 @@ public class AuthController {
     Member newMember = (Member) session.getAttribute("newMember");
     newMember.setQuestionsNo(questionsNo);
     newMember.setQuestionsAnswer(questionsAnswer);
+    newMember.setPhoto("user");
+    newMember.setIntro("소개글을 입력하세요");
     memberService.add(newMember);
     return "auth/add3";
   }
