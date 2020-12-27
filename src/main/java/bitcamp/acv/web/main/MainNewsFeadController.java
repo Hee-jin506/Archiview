@@ -2,6 +2,8 @@ package bitcamp.acv.web.main;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -15,12 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-import bitcamp.acv.domain.Comment;
 import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Like;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.NewsFeed;
-import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.LikeService;
@@ -64,81 +64,102 @@ public class MainNewsFeadController {
     map.put("userNo", loginUser.getNo());
     map.put("row", 0);
     model.addAttribute("list", reviewService.getMainFeed(map));
-    
+
     List<Like> newsFeedLikeList = likeService.list2(loginUser.getNo());
     List<Follow> newsFeedFollowList = followService.list3(loginUser.getNo());
     List<NewsFeed> newsFeedList = new ArrayList<>();
-    
+
     for(Like l : newsFeedLikeList) {
       NewsFeed n = new NewsFeed();
       if (l.getLikedType() ==1 && l.getRvmno() ==loginUser.getNo() ) {
+        n.setNo(l.getLikingMember().getNo());
         n.setNick(l.getLikingMember().getNickName());
         n.setPhoto(l.getLikingMember().getPhoto());
         n.setDate(l.getLikedDate());
+        n.setTargetNo(l.getLikedNo());
         n.setTargetType(1); // 게시물
         newsFeedList.add(n);
       } else if (l.getLikedType() == 2 && l.getCmno() == loginUser.getNo()) {
+        n.setNo(l.getLikingMember().getNo());
         n.setNick(l.getLikingMember().getNickName());
         n.setPhoto(l.getLikingMember().getPhoto());
         n.setDate(l.getLikedDate());
+        n.setTargetNo(l.getLikedNo());
         n.setTargetType(2); // 댓글
         newsFeedList.add(n);
       }
     }
-    
+
     for(Follow f : newsFeedFollowList) {
       NewsFeed n = new NewsFeed();
       if(f.getFollowedType() == 1) {
-        n.setNick(f.getFollowingMember().getNickName());
-        n.setPhoto(f.getFollowingMember().getPhoto());
+
+        n.setNo(f.getTargetMember().getNo());
+
+
+        n.setNick(f.getTargetMember().getNickName());
+        n.setPhoto(f.getTargetMember().getPhoto());
         n.setDate(f.getFollowedDate());
+        n.setTargetNo(f.getTargetMember().getNo());
         n.setTargetType(3); // 멤버
         newsFeedList.add(n);
       }
     }
 
-    Map<String, Object> likeMap = new HashMap<>();
-    List<Like> likes = likeService.getTime(likeMap);
-    Map<Integer, String> times = new HashMap<>();
-    for (Like like : likes) {
 
-      Calendar cal = new GregorianCalendar(Locale.KOREA);
-      long now = cal.getTimeInMillis();
-      long diff = now - like.getLikedDate().getTime();
-      if (diff / 1000 / 60 < 1) {
-        times.put(like.getNo(), "방금 전");
-      } else if (diff / 1000 / 60 / 60 < 1) {
-        times.put(like.getNo(), diff / 1000 / 60 + "분 전");
-      } else if (diff/ 1000 / 60 / 60 / 24 < 1) {
-        times.put(like.getNo(), diff/ 1000 / 60 / 60 + "시간 전");
-      } else if (diff/ 1000 / 60 / 60 / 24 / 7 < 1) {
-        times.put(like.getNo(), diff/ 1000 / 60 / 60 / 24 + "일 전");
-      } else if (diff/ 1000 / 60 / 60 / 24 / 7 / 30 < 1) {
-        times.put(like.getNo(), diff/ 1000 / 60 / 60 / 24 / 7 + "주 전");
-      } else if (diff/ 1000 / 60 / 60 / 24 / 365 < 1) {
-        times.put(like.getNo(), Calendar.MONTH - like.getLikedDate().getMonth() + "달 전");
-      } else {
-        times.put(like.getNo(), Calendar.YEAR - like.getLikedDate().getYear() + "년 전");
+
+    class DateCompare implements Comparator<NewsFeed> {
+
+      @Override
+      public int compare(NewsFeed arg0, NewsFeed arg1) {
+        return arg1.getDate().compareTo(arg0.getDate());
       }
     }
 
-    List<Like> list = likeService.list();
+    Collections.sort(newsFeedList, new DateCompare());
+    System.out.printf("\n\n===== 정렬 =====\n");
+    for (NewsFeed newsfeed : newsFeedList) {
+      System.out.println(newsfeed.getNick());
+      System.out.println(newsfeed.getPhoto());
+      System.out.println(newsfeed.getTargetType());
+      System.out.println(newsfeed.getDate());
+    }
 
-    List<Review> reviews = reviewService.getByMemberNo(loginUser.getNo());
-    mv.addObject("reviews", reviews);
+    mv.addObject(newsFeedList);
 
+    //    List<Like> likes = likeService.getTime(likeMap);
 
-    List<Comment> comments = commentService.getByMemberNo(loginUser.getNo());
+    for(NewsFeed n : newsFeedList) {
+      System.out.println(n.getNick());
+      System.out.println(n.getTargetType());
+      System.out.println(n.getDate());
+    }
 
-    mv.addObject("comments", comments);
+    Map<String, Object> likeMap = new HashMap<>();
+    List<Like> likes = likeService.getTime(likeMap);
 
+    Map<Integer, String> times = new HashMap<>();
+    for (NewsFeed newsFeed : newsFeedList) {
 
-    List<Follow> follows = followService.list3(loginUser.getNo());
+      Calendar cal = new GregorianCalendar(Locale.KOREA);
+      long now = cal.getTimeInMillis();
+      long diff = now - newsFeed.getDate().getTime();
+      if (diff / 1000 / 60 < 1) {
+        times.put(newsFeed.getNo(), "방금 전");
+      } else if (diff / 1000 / 60 / 60 < 1) {
+        times.put(newsFeed.getNo(), diff / 1000 / 60 + "분 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 < 1) {
+        times.put(newsFeed.getNo(), diff/ 1000 / 60 / 60 + "시간 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 / 7 < 1) {
+        times.put(newsFeed.getNo(), diff/ 1000 / 60 / 60 / 24 + "일 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 / 7 / 30 < 1) {
+        times.put(newsFeed.getNo(), diff/ 1000 / 60 / 60 / 24 / 7 + "주 전");
+      } else if (diff/ 1000 / 60 / 60 / 24 / 365 < 1) {
+        times.put(newsFeed.getNo(), Calendar.MONTH - newsFeed.getDate().getMonth() + "달 전");
+      }
+    }
 
     mv.addObject("times", times);
-    mv.addObject("list", list);
-    mv.addObject("follows", follows);
-
     mv.setViewName("main/newsfeed");
     return mv;
   }

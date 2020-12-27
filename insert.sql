@@ -535,6 +535,12 @@ insert into acv_tag_post(rvno, tno) value(3, 4);
 insert into acv_tag_post(rvno, tno) value(3, 5);
 insert into acv_tag_post(rvno, tno) value(3, 6);
 
+insert into acv_tag_post(rvno, tno) value(14, 1);
+insert into acv_tag_post(rvno, tno) value(14, 2);
+insert into acv_tag_post(rvno, tno) value(14, 3);
+insert into acv_tag_post(rvno, tno) value(14, 4);
+insert into acv_tag_post(rvno, tno) value(14, 5);
+
 
 /* 신고 사유 샘플*/
 insert into acv_rp_why(rwno, title)

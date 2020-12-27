@@ -17,6 +17,7 @@ import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
+import bitcamp.acv.service.ReviewService;
 import bitcamp.acv.service.TagService;
 
 
@@ -25,6 +26,7 @@ import bitcamp.acv.service.TagService;
 @SessionAttributes("loginUser")
 public class FollowController {
 
+  @Autowired ReviewService reviewService;
   @Autowired MemberService memberService;
   @Autowired MovieService movieService;
   @Autowired FollowService followService;
@@ -186,13 +188,16 @@ public class FollowController {
   @GetMapping("followingFeed")
   public void mainFeed(
     @ModelAttribute("loginUser") Member loginUser,
-    Model model) throws Exception {
+    Model model,
+    int no) throws Exception {
 
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
 
+    List<Follow> followList = followService.getFollowingFeed(no);
 
+    model.addAttribute("followList", followList);
   }
 }
