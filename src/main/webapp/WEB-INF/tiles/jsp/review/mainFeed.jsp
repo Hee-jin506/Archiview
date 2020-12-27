@@ -12,7 +12,7 @@
 	%>
 	<div class='card'>
 
-		<div class='member'>
+		<div class='cardHeader'>
 			<a
 				href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
 				<img class='profile'
@@ -70,7 +70,7 @@
 				<img
 					src='<%=getServletContext().getContextPath()%>/main_resource/like.png'
 					alt='좋아요'>
-				<%=review.getLiking()%>개
+				<span class='pop'><%=review.getLiking()%>개</span>
 			</div>
 		</div>
 		</div>
