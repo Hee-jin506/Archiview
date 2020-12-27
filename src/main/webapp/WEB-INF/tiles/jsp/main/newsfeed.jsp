@@ -97,7 +97,6 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 </div>
 <%
 for (Like like : likes) {
-  for (Follow follow : follows) {
   if (like.getLikingMember().getNo() != loginUser.getNo()) {
     String[] url = like.getLikingMember().getPhoto().split("\\.");
     
@@ -119,41 +118,11 @@ for (Like like : likes) {
 
 <%
         }
-      }
-    } else if (like.getLikedType() == 2) {
-      for (Comment comment : comments) {
-        if (comment.getNo() == like.getLikedNo()) {
-        
-
-%>  
-        <div id="list">
-        <tr>
-          <td><a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=like.getLikingMember().getNo()%>"><img class="list-icon" src=<%=getServletContext().getContextPath()+"/upload/" + url[0] +"_35x35.jpg"%>></td>
-          <td><%=like.getLikingMember().getNickName()%></a> 님이 회원님의</td>
-          <a class="list-href" href="<%=getServletContext().getContextPath()%>/app/comment/view?reviewNo=<%=like.getLikedNo()%>">
-          <td><%=like.getLikedTypeName()%></a>을 좋아합니다.</td>
-          <td><%=((Map<Integer, String>)request.getAttribute("times")).get(like.getNo())%></td>
-        </tr>
-        </div>
-
-<%
-        }
        }
       }
-    } else if (follow.getFollowedNo() == loginUser.getNo()) {
-      String[] url2 = follow.getFollowingMember().getPhoto().split("\\.");;
-      %>
-      <div id="list">
-      <tr>
-        <td><a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=follow.getFollowedNo()%>"><img class="list-icon" src=<%=getServletContext().getContextPath()+"/upload/" + url2[0] +"_35x35.jpg"%>></td>
-        <td><%=like.getLikingMember().getNickName()%></a> 님이 회원님을 팔로우 했습니다..</td>
-        <td><%=((Map<Integer, String>)request.getAttribute("times")).get(like.getNo())%></td>
-      </tr>
-      </div>
-      <%
    } 
   }
-}
+
 %>
       </div>
 
