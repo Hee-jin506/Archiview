@@ -68,7 +68,7 @@
 			<p class='rdt'><%=(review.getRdtFromNow())%></p>
 			<div class='like'>
 				<a
-					href='<%=getServletContext().getContextPath()%>/app/like/addReview?likingMember=${loginUser.getNo()}'>
+					href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
 					<img
 					src='<%=getServletContext().getContextPath()%>/main_resource/like.png'
 					alt='좋아요'>

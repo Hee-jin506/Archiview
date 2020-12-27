@@ -38,12 +38,15 @@ MariaDB [studydb]> select * from acv_lk_able;
     <result column="target"    property="likedNo"/>
     <result column="ldt"    property="likedDate"/>
     <result column="name"    property="likedTypeName"/>
+    <result column="rvmno"  property="rvmno"/>
+    <result column="cmno"  property="cmno"/>
    
   <association property="likingMember" javaType="Member">
     <id column="mno" property="no"/>
     <result column="nick" property="nickName"/>
     <result column="photo" property="photo"/>
   </association>
+
 
   </resultMap>
 
@@ -57,8 +60,35 @@ MariaDB [studydb]> select * from acv_lk_able;
       mb.nick,
       mb.photo,
       la.name
+      
   </sql>
        
+  <select id="findAll2" resultMap="LikeMap" parameterType="int">
+    select 
+      l.lno,
+      l.mno,
+      l.lano,
+      l.target,
+      l.ldt,
+      mb.nick,
+      mb.photo,
+      la.name,
+      r.rvno,
+      mb2.mno rvmno,
+      c.cno,
+      mb3.mno cmno
+    from
+	    acv_like l
+	      left outer join acv_mbr mb on mb.mno = l.mno
+	      left outer join acv_lk_able la on la.lano = l.lano
+	      left outer join acv_rv r on l.target = r.rvno
+	      left outer join acv_cmt c on l.target = c.cno
+	      left outer join acv_mbr mb2 on r.mno=mb2.mno
+	      left outer join acv_mbr mb3 on c.mno=mb3.mno
+    where mb2.mno = #{mno} or mb3.mno =#{mno} 
+    order by l.lno desc
+  </select>
+  
   <select id="findAll" resultMap="LikeMap">
   <include refid="sql1" />
     from
@@ -88,6 +118,7 @@ MariaDB [studydb]> select * from acv_lk_able;
       values(#{likingMember.no}, 2, #{likedNo})
   </insert>
   
+  <!--  
   <update id="deleteReview" parameterType="int">
     delete acv_cmt
     where mno=#{likingMember.no} and lano=2 and target=#{likedNo}
@@ -98,19 +129,18 @@ MariaDB [studydb]> select * from acv_lk_able;
     where mno=#{likingMember.no} and lano=1 and target=#{likedNo}
   </update>
 
-  <!-- 좋아요 -->
    <update id="active" parameterType="int">
     update acv_like set
      stat = 1
     where mno=#{likingMember.no} and target=#{likedNo}
   </update>
-  
-  <!-- 좋아요 해제 상태 -->
+
   <update id="inactive" parameterType="int">
   update acv_like set
     stat = 2
   where mno=#{likingMember.no} and target=#{likedNo}
   </update>
+  -->
 
   
 </mapper>

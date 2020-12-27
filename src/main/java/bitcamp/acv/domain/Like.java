@@ -14,6 +14,8 @@ public class Like {
   private int likedNo; // 좋아요된 대상 target
   private Timestamp likedDate; // 좋아요 누른 일시 ldt
   private String likedTypeName;
+  private int rvmno;
+  private int cmno;
 
 
   public int getNo() {
@@ -52,6 +54,18 @@ public class Like {
   }
   public void setLikedDate(Timestamp likedDate) {
     this.likedDate = likedDate;
+  }
+  public int getRvmno() {
+    return rvmno;
+  }
+  public void setRvmno(int rvmno) {
+    this.rvmno = rvmno;
+  }
+  public int getCmno() {
+    return cmno;
+  }
+  public void setCmno(int cmno) {
+    this.cmno = cmno;
   }
 
 

@@ -1,7 +1,6 @@
 package bitcamp.acv.domain;
 
-import java.sql.Date;
-import java.util.List;
+import java.sql.Timestamp;
 
 public class Follow {
 
@@ -14,7 +13,7 @@ public class Follow {
   private Member followingMember; // 팔로우를 신청한 회원 flwing_mbr
   private int followedType; // 팔로우한 대상의 유형(1=회원,2=태그) fano
   private int followedNo; // 팔로우한 대상의 번호 target
-  private Date followedDate; // 팔로우한 날짜 fdt
+  private Timestamp followedDate; // 팔로우한 날짜 fdt
   private int status; // 팔로우 상태 번호 stat 1=팔로우 2=언팔로우
   private String nickName;
   private Member targetMember; // 팔로우한 회원
@@ -50,12 +49,6 @@ public class Follow {
   public void setFollowedNo(int followedNo) {
     this.followedNo = followedNo;
   }
-  public Date getFollowedDate() {
-    return followedDate;
-  }
-  public void setFollowedDate(Date followedDate) {
-    this.followedDate = followedDate;
-  }
   public static int getMember() {
     return MEMBER;
   }
@@ -79,5 +72,11 @@ public class Follow {
   }
   public void setTargetTag(Tag targetTag) {
     this.targetTag = targetTag;
+  }
+  public Timestamp getFollowedDate() {
+    return followedDate;
+  }
+  public void setFollowedDate(Timestamp followedDate) {
+    this.followedDate = followedDate;
   }
 }
