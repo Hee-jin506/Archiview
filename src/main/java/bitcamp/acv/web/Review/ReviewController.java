@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
@@ -38,7 +39,7 @@ public class ReviewController {
     return mv;
   }
 
-  @RequestMapping("followingFeed")
+  @GetMapping("followingFeed")
   public void followingFeed(HttpSession session, Model model) throws Exception {
     // 탑바
     Member loginUser = (Member) session.getAttribute("loginUser");
@@ -54,5 +55,11 @@ public class ReviewController {
     map.put("userNo", loginUser.getNo());
     map.put("row", 0);
     model.addAttribute("list", reviewService.getFollowingFeed(map));
+  }
+
+  @GetMapping("detailForUser")
+  public void detailForUser(int reviewNo, HttpSession session, Model model) throws Exception {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("review", reviewService.get(reviewNo, loginUser.getNo()));
   }
 }

@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.writeReview {
+	position: relative; 
+	width : 720px;
+	height: 1020px;
+	margin: 0 auto;
+	margin-top: 75px;
+	background: #1B1B1B;
+}
+
+.writeReview h1 {
+	font-size: 29px;
+	font-weight: bold;
+	position: absolute;
+	top: 10%;
+  text-align: center;
+  left: 50%; 
+  transform: translateX(-50%);
+  width: 400px;
+}

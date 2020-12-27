@@ -14,6 +14,7 @@ public interface ReviewService {
   List<Review> list() throws Exception;
   List<Review> listDetailFilter(HashMap<String, Object> keyMap) throws Exception;
   Review get(int no) throws Exception;
+  Review get(int reviewNo, int userNo) throws Exception;
   List<Review> getByMemberNo(int no) throws Exception;
   int delete(int no) throws Exception;
   int active(int no) throws Exception;

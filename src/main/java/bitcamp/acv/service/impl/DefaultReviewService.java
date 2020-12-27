@@ -194,7 +194,6 @@ public class DefaultReviewService implements ReviewService {
       Calendar cal = new GregorianCalendar(Locale.KOREA);
       long now = cal.getTimeInMillis();
       long diff = now - review.getRegisteredDate().getTime();
-      System.out.println(review.getRegisteredDate());
       if (diff / 1000 / 60 < 1) {
         review.setRdtFromNow("방금 전");
       } else if (diff / 1000 / 60 / 60 < 1) {
@@ -212,5 +211,33 @@ public class DefaultReviewService implements ReviewService {
       }
     }
     return list;
+  }
+
+  @Override
+  public Review get(int reviewNo, int userNo) throws Exception {
+    Map<String, Object> map = new HashMap<>();
+    map.put("reviewNo", reviewNo);
+    map.put("userNo", userNo);
+    Review review = reviewDao.findReviewDetail(map);
+
+    Calendar cal = new GregorianCalendar(Locale.KOREA);
+    long now = cal.getTimeInMillis();
+    long diff = now - review.getRegisteredDate().getTime();
+    if (diff / 1000 / 60 < 1) {
+      review.setRdtFromNow("방금 전");
+    } else if (diff / 1000 / 60 / 60 < 1) {
+      review.setRdtFromNow(diff / 1000 / 60 + "분 전");
+    } else if (diff/ 1000 / 60 / 60 / 24 < 1) {
+      review.setRdtFromNow(diff/ 1000 / 60 / 60 + "시간 전");
+    } else if (diff/ 1000 / 60 / 60 / 24 / 7 < 1) {
+      review.setRdtFromNow(diff/ 1000 / 60 / 60 / 24 + "일 전");
+    } else if (diff/ 1000 / 60 / 60 / 24 / 7 / 30 < 1) {
+      review.setRdtFromNow(diff/ 1000 / 60 / 60 / 24 / 7 + "주 전");
+    } else if (diff/ 1000 / 60 / 60 / 24 / 365 < 1) {
+      review.setRdtFromNow(Calendar.MONTH - review.getRegisteredDate().getMonth() + "달 전");
+    } else {
+      review.setRdtFromNow(Calendar.YEAR - review.getRegisteredDate().getYear() + "년 전");
+    }
+    return review;
   }
 }
