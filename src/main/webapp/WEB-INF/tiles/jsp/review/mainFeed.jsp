@@ -41,7 +41,9 @@
 			%>
 </div>
 <div class='stillcut'>
+<%if (review.getStcUrl() != null) {%>
 	<img src=<%=review.getStcUrl()%>>
+<% }%>
 	<div class='reviewText'>
 		<p><%=review.getText()%>
 		</p>
