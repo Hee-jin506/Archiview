@@ -139,6 +139,40 @@
       on lk.target=rv.rvno
   </select>
   
+  <select id="findForFollowingFeed" resultMap="ReviewMap" parameterType="map">
+    select 
+      rv.rvno,
+      rv.mno,
+      rv.txt,
+      rv.txt_x,
+      rv.txt_y,
+      rv.tfno,
+      rv.txt_size,
+      rv.rdt,
+      rv.stat,      
+      s.stc_url,
+      m.photo,
+      m.nick,
+      mv.title mvTitle,
+      t.title,
+      t.stat,
+      f.fno,
+      lk_length
+    from 
+      (select * from acv_rv order by rdt desc limit #{row}, 5)rv
+      left outer join acv_stc s on rv.stcno=s.stcno
+      inner join acv_mbr m on rv.mno=m.mno
+      left outer join acv_mov mv on s.mvno=mv.mvno
+      left outer join acv_tag_post tp on tp.rvno=rv.rvno
+      left outer join acv_tag t on tp.tno=t.tno
+      inner join 
+        (select fno, target from acv_flw where flwing_mbr=#{userNo} and fano=1)f
+      on f.target=rv.mno
+      left outer join
+        (select target, lano, count(*) lk_length from acv_like where lano=1 group by lano, target)lk
+      on lk.target=rv.rvno
+ </select>
+  
   <select id="findAll" resultMap="ReviewMap">
     <include refid="sql2"/>
     order by rv.rvno desc

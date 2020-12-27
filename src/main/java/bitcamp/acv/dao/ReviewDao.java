@@ -23,4 +23,5 @@ public interface ReviewDao {
   // 태그명으로 리뷰를 찾는다
   List<Review> findByKeywordTagTitle(String keyword) throws Exception;
   List<Review> findForMainFeed(Map<String, Object> map) throws Exception;
+  List<Review> findForFollowingFeed(Map<String, Object> map) throws Exception;
 }

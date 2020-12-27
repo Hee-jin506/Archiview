@@ -21,4 +21,5 @@ public interface ReviewService {
   void getSizeInfo(Map<String, Object> resultMap) throws Exception;
   void getChartInfo(Map<String, Object> resultMap) throws Exception;
   List<Review> getMainFeed(Map<String, Object> map) throws Exception;
+  List<Review> getFollowingFeed(Map<String, Object> map) throws Exception;
 }

@@ -9,15 +9,19 @@
 <p>추천 리뷰어 목록</p>
 <hr>
 
-<c:forEach items="${applicationScope.topMembers}" var="tm">
+<% Member[] members = (Member[])request.getAttribute("topMembers");
+for (Member member : members) {
+%>
 <p>
-  <a href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
-    <img class='profile' src='<%=getServletContext().getContextPath()%>/upload/${tm.photo}_35x35.jpg'>
-    ${tm.nickName}
+  <a href='<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=member.getNo()%>'>
+    <img class='profile' src='<%=getServletContext().getContextPath()%>/upload/<%= member.getPhoto()%>_35x35.jpg'>
+    <%=member.getNickName()%>
   </a>
 </p>
-<p class='explanation'>${tm.intro}</p>
-</c:forEach>
+<p class='explanation'><%= member.getIntro()%></p>
+<%
+}
+%>
 </div>
 
 <div id='topMovies' class='sidebar'>

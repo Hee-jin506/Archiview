@@ -129,3 +129,12 @@
 	top: -7px;
 	left: 5px;
 }
+.card .reviewDetail button {
+	position: absolute;
+	top: 80px;
+  height: 350px;
+  width: 650px;
+  background-color: rgba( 0, 0, 0, 0 );
+  border: none;
+  display: none;
+}

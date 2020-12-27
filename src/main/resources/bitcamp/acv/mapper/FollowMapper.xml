@@ -225,39 +225,5 @@
     stat = 2
   where flwing_mbr=#{followingMember.no} and target=#{followedNo}
   </update>
-  
-  <select id="findByFollowingFeed" resultMap="FollowMap3" parameterType="int">
-  select
-    mb.mno,
-    f.fno,
-    f.fano,
-    f.target,
-    f.fdt,
-    f.stat,
-    mb2.mno targetMember_no,
-    mb2.nick targetMember_nick,
-    rv.rvno,
-    rv.txt targetMember_rv_text,
-    rv.rdt,
-    s.stc_url,
-    mv.mvno,
-    mv.title,
-    tp.tno,
-    t.title,
-    l.lno,
-    l.lano
-    
-  from acv_mbr mb
-   left outer join acv_flw f on mb.mno=f.flwing_mbr
-   left outer join acv_mbr mb2 on f.target=mb2.mno
-   left outer join acv_rv rv on mb2.mno=rv.mno
-   left outer join acv_stc s on rv.stcno=s.stcno
-   left outer join acv_mov mv on mv.mvno=s.mvno
-   left outer join acv_tag_post tp on rv.rvno = tp.rvno
-   left outer join acv_tag t on tp.tno = t.tno
-   left outer join acv_like l on l.target = rv.rvno
-  where
-   mb.mno=#{mno} and f.fano=1
- </select>
- 
+
 </mapper>
