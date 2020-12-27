@@ -30,10 +30,10 @@
 	padding: 0px;
 }
 
-.card .member {
+.card .cardHeader {
 	position: absolute;
 	width: 600px;
-	margin: 10px;
+	margin: 15px;
 }
 
 .card img.profile {
@@ -41,20 +41,19 @@
 	width: 50px;
 }
 
- .card .member .nickname {
+ .card .cardHeader .nickname {
   float: left;
-  margin: 10px;
-	/* position: absolute;
-	left: 57px;
-	top: 15px; */
+  margin: 13px;
+	position: relative;
+	left: 0px;
+	top: 5px;
 }
 
-.card .member .follow {
+.card .cardHeader .follow {
 	float: left;
 	margin: 10px;
-	/* position: absolute;
-	left: 150px;
-	top: 15px; */
+	position: relative;
+	top: -2px;
 }
 
 .card .stillcut {
@@ -82,6 +81,7 @@
 	text-align: center;
 	transform: translate( -50%, -50% );
 	background-color: rgba( 0, 0, 0, 0.5 );
+	padding: 4px;
 }
 
 .card .stillcut .tags {
@@ -89,6 +89,7 @@
 	bottom: 10px;
 	left: 10px;
 	background-color: rgba( 0, 0, 0, 0.5 );
+	padding: 4px;
 }
 
 .card .cardFooter {
@@ -100,14 +101,31 @@
 
 .card .cardFooter .movie {
 	float: left;
-	margin: 10px;
+  margin: 15px;
 }
 .card .cardFooter .rdt {
   float: left;
-  margin: 10px;
+  margin: 15px;
+  font-size: 80%;
+  font-weight: normal;
+  position: relative;
+  top: 3px;
+  color: #B9B9BA;
 }
 
 .card .cardFooter .like {
 	float: right;
-	
+	position: relative;
+	left: -20px;
+	top:8px;
+}
+
+.card .cardFooter .like img {
+	width: 50%;
+}
+
+.card .cardFooter .like .pop {
+	position: relative;
+	top: -7px;
+	left: 5px;
 }

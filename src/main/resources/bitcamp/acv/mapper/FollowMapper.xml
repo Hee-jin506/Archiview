@@ -30,9 +30,10 @@
     <association property="targetTag">
       <result column="targetTag_no"        property="no"/>
       <result column="targetTag_title"        property="title"/>
+      <result column="targetTag_stat"         property="status"/>
       
       <collection property="reviews"    ofType="integer">
-         <result column="rvno"        property="yongseobatjimothal-code"/>
+      <result column="rvno"        property="yongseobatjimothal-code"/>
       </collection>
     </association>
    </resultMap>
@@ -57,6 +58,50 @@
       <result column="targetMember_nick"        property="nickName"/>
       <result column="targetMember_photo"        property="photo"/>
       <result column="targetMember_intro"        property="intro"/>
+    </association>
+   </resultMap>
+   
+    <resultMap type="follow" id="FollowMap3">
+  <id column="fno"            property="no" />
+  <result column="target"     property="followedNo" />
+  <result column="fano"  property="followedType"/>
+  <result column="fdt"        property="followedDate"/>
+  <result column="stat"        property="status"/>
+
+  <association property="followingMember" javaType="Member">
+    <id column="mno" property="no"/>
+    <result column="nick" property="nickName"/>
+    <result column="email" property="email"/>
+    <result column="intro" property="intro"/>
+    <result column="photo" property="photo"/>
+  </association>
+  
+    <association property="targetMember">
+      <result column="targetMember_no"        property="no"/>
+      <result column="targetMember_nick"        property="nickName"/>
+      <result column="targetMember_photo"        property="photo"/>
+      <result column="targetMember_intro"        property="intro"/>
+    </association>
+    
+    <association property="targetTag">
+      <result column="targetTag_no"        property="no"/>
+      <result column="targetTag_title"        property="title"/>
+      <result column="targetTag_stat"         property="status"/>
+      
+      <collection property="reviews"    ofType="integer">
+         <result column="mno"        property="writerNo"/>
+          <result column="stcno"    property="stillCut"/>
+          <result column="stc_url"    property="stcUrl"/>
+          <result column="txt"      property="text"/>
+          <result column="txt_x"      property="textX"/>
+          <result column="txt_y"      property="textY"/>
+          <result column="tfno"      property="textFont"/>
+          <result column="txt_size"      property="textSize"/>
+          <result column="rdt"      property="registeredDate"/>
+          <result column="mdt"      property="modifiedDate"/>
+          <result column="stat"      property="status"/>
+          <result column="mvTitle"      property="movieTitle"/>
+      </collection>
     </association>
    </resultMap>
 
@@ -108,12 +153,13 @@
     mb.mno desc
   </select>
   
+  <!-- 내가 팔로우하는 리스트 -->
  <select id="findAll2" resultMap="FollowMap" parameterType="int">
   <include refid="sql2"/>
     where
       mb.mno=#{mno}
   </select>
-  
+   
   <!-- 나를 팔로우하는 리스트 --> 
   <select id="findAll3" resultMap="FollowMap2" parameterType="int">
   select
@@ -134,8 +180,6 @@
       left outer join acv_mbr mb2 on f.flwing_mbr=mb2.mno
     where
      mb.mno=#{mno}
-    order by
-     mb.mno desc
     </select>
   
  <!-- 팔로우 타겟 상세 -->
@@ -144,15 +188,6 @@
     where
       f.fno=#{fno}
   </select>
-  
-   <!-- 멤버 팔로우 리스트
- <select id="findByFollowingUsers" resultMap="FollowMap2">
-  <include refid="sql2"/>
-  where f.flwing_mbr=#{mno} and f.fano = 1 and f.stat = 1
-  order by
-    mb.nick desc
-  </select>
-   -->
  
  <!-- 팔로잉 유저 insert -->
   <insert id="insertUser" parameterType="follow">
@@ -191,25 +226,38 @@
   where flwing_mbr=#{followingMember.no} and target=#{followedNo}
   </update>
   
-   <!-- 언팔로우(delete) 태그, 언팔로우(delete) 유저
-  <select id="findByFollowList" resultMap="FollowMap2" parameterType="int">
-  <include refid="sql1"/>
+  <select id="findByFollowingFeed" resultMap="FollowMap3" parameterType="int">
+  select
+    mb.mno,
+    f.fno,
+    f.fano,
+    f.target,
+    f.fdt,
+    f.stat,
+    mb2.mno targetMember_no,
+    mb2.nick targetMember_nick,
+    rv.rvno,
+    rv.txt targetMember_rv_text,
+    rv.rdt,
+    s.stc_url,
+    mv.mvno,
+    mv.title,
+    tp.tno,
+    t.title,
+    l.lno,
+    l.lano
+    
+  from acv_mbr mb
+   left outer join acv_flw f on mb.mno=f.flwing_mbr
+   left outer join acv_mbr mb2 on f.target=mb2.mno
+   left outer join acv_rv rv on mb2.mno=rv.mno
+   left outer join acv_stc s on rv.stcno=s.stcno
+   left outer join acv_mov mv on mv.mvno=s.mvno
+   left outer join acv_tag_post tp on rv.rvno = tp.rvno
+   left outer join acv_tag t on tp.tno = t.tno
+   left outer join acv_like l on l.target = rv.rvno
   where
-    mb.mno=#{followingMember} and stat={status}
-  order by
-    f.fno desc
-  </select>
+   mb.mno=#{mno} and f.fano=1
+ </select>
  
- <select id="findByFollowMembers" parameterType="map" resultMap="MemberMap3">
-   select
-    count(*)
-    from acv_mbr mb
-     inner join acv_flw f on f.flwing_mbr= mb.mno
-     inner join acv_flw_able fa on f.fano = fa.fano
-     right join acv_mbr mb2 on f.target=mb2.mno
-    where f.flwing_mbr=#{mno} and f.fano = 1 and f.target={followedNo}
-  </select>
-
-   -->
-
 </mapper>

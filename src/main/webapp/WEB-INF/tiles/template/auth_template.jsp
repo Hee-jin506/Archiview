@@ -8,8 +8,6 @@
 <head>
   <meta charset="UTF-8">
   <title>아카이뷰</title>
-  <link rel="stylesheet" 
-        href="${appRoot}/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <style>
   </style>
 </head>

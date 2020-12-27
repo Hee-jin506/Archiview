@@ -6,8 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head><title>회원 프로필 화면</title>
-<link rel="stylesheet" 
-      href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/bootstrap.min.css?after">
 <style>
 a { text-decoration: none; }
  body {
@@ -91,7 +89,7 @@ a { text-decoration: none; }
  .follower-target-text {
  float: left;
  }
- .followerg-target {
+ .follower-target {
   float:left;
  }
  

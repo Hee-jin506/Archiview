@@ -29,6 +29,8 @@ public class likeController {
       @ModelAttribute("loginUser") Member loginUser
       ) throws Exception {
     like.setLikingMember(loginUser);
+    like.setLikedNo(like.getLikedNo());
+
 
     likeService.addReview(like);
     return "redirect:../main";

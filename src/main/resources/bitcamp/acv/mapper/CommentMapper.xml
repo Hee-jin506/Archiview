@@ -99,6 +99,7 @@
       inner join acv_mbr mb on mb.mno = c.mno
     where
       c.mno=#{mno}
+      and c.stat = 1
     order by r.rvno asc, c.gno desc, c.lvl asc, c.cno desc;
   </select>
   
