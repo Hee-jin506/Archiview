@@ -13,11 +13,12 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 List<NewsFeed> newsFeeds = (List<NewsFeed>) request.getAttribute("newsFeedList");
 
 %>
-<div id = "lists">
+<div id = "contents">
 <div id = "title">
-<p>뉴스피드</p>
-<hr>
+	<div id = "title-text">뉴스피드</div>
+	<hr>
 </div>
+<div id = "lists">
 <%
 
 for (NewsFeed newsFeed : newsFeeds) {
@@ -52,5 +53,6 @@ for (NewsFeed newsFeed : newsFeeds) {
     </tr>
     </div>
     <%}%>
+  </div>
   </div>
 </body>

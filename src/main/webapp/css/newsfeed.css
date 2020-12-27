@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
-
-  #lists {
+  #contents {
    box-sizing: border-box;
    border-radius: 10px;
    background-color: #141517;
@@ -15,16 +14,23 @@
    overflow-y: scroll;
    -ms-overflow-style: none;
    scrollbar-width: none;
-   line-height: 80px;
    margin-top: 10px;
    margin-left: 10px;
  }
+  #lists {
+
+   line-height: 80px;
+ }
+
  
-  #lists::-webkit-scrollbar {
+  #contents::-webkit-scrollbar {
   display: none;
 }
- #title p {
+ #title  {
  height: 45px;
+ }
+ #title text{
+ height: 15px;
  }
  
  #title hr {
