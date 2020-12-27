@@ -17,7 +17,7 @@
 
 <form action='reportUser' method='post' enctype="multipart/form-data">
 신고 대상:
-<input type='text' name='reportedNo'><br>
+<input type='text' name='reportedNo' value="${report.reportedNo}"><br>
 신고 유형:
 <select name='reportedType'>
   <option value='1'>회원</option>
