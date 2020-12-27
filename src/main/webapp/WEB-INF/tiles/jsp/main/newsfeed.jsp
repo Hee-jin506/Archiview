@@ -33,11 +33,11 @@ a {
  }
  
   #contents {
+  box-sizing: border-box;
    border-radius: 10px;
    background-color: #141517;
    
-   width: 600px;  /* 너비 */
-   min-width: 650px;
+   width: 650px;
    padding-left: 20px;  /* 패딩 */
    padding-right: 20px;  /* 패딩 */
    padding-bottom: 20px;  /* 패딩 */
