@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/custom.css">
   <link rel="stylesheet" href="${appRoot}/css/main.css">
   <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
+  <link rel="stylesheet" href="${appRoot}/css/newsfeed.css">
   <style>
   
   #container {

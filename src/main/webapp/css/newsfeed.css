@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+
+  #lists {
+   box-sizing: border-box;
+   border-radius: 10px;
+   background-color: #141517;
+   width: 650px; /* 너비 */
+   padding-left: 20px;  /* 패딩 */
+   padding-right: 20px;  /* 패딩 */
+   padding-bottom: 20px;  /* 패딩 */
+   float: left;  /* 왼쪽으로 플로팅 */
+   height: 670px;
+   overflow: hidden;
+   overflow-y: scroll;
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+   line-height: 80px;
+   margin-top: 10px;
+   margin-left: 10px;
+ }
+ 
+  #lists::-webkit-scrollbar {
+  display: none;
+}
+ #title p {
+ height: 45px;
+ }
+ 
+ #title hr {
+  color: white;
+  border: 0;
+  height: 1px;
+  background-color: #626473;
+  margin-left: -20px;
+  margin-right: -20px;
+ }
+
+ #list img {
+  border-radius: 100px;
+ }
+
+ img.list-icon {
+ vertical-align:middle;
+ }
