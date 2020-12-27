@@ -73,10 +73,18 @@ public class Follow {
   public void setTargetTag(Tag targetTag) {
     this.targetTag = targetTag;
   }
+<<<<<<< HEAD
+  public List<Review> getReviews() {
+    return reviews;
+  }
+  public void setReviews(List<Review> reviews) {
+    this.reviews = reviews;
+=======
   public Timestamp getFollowedDate() {
     return followedDate;
   }
   public void setFollowedDate(Timestamp followedDate) {
     this.followedDate = followedDate;
+>>>>>>> 02f52214fd6cd55a942476fea019eb47a2cab910
   }
 }
