@@ -20,6 +20,11 @@ public class DefaultLikeService implements LikeService {
   public List<Like> list() throws Exception {
     return likeDao.findAll();
   }
+  
+  @Override
+  public List<Like> list2(int no) throws Exception {
+    return likeDao.findAll2(no);
+  }
 
   @Override
   public List<Like> getTime(Map<String, Object> likeMap) throws Exception {

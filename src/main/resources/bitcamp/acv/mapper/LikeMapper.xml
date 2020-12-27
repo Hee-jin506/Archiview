@@ -38,6 +38,8 @@ MariaDB [studydb]> select * from acv_lk_able;
     <result column="target"    property="likedNo"/>
     <result column="ldt"    property="likedDate"/>
     <result column="name"    property="likedTypeName"/>
+    <result column="rvmno"  property="rvmno"/>
+    <result column="cmno"  property="cmno"/>
    
   <association property="likingMember" javaType="Member">
     <id column="mno" property="no"/>
@@ -57,8 +59,35 @@ MariaDB [studydb]> select * from acv_lk_able;
       mb.nick,
       mb.photo,
       la.name
+      
   </sql>
        
+  <select id="findAll2" resultMap="LikeMap" parameterType="int">
+    select 
+      l.lno,
+      l.mno,
+      l.lano,
+      l.target,
+      l.ldt,
+      mb.nick,
+      mb.photo,
+      la.name,
+      r.rvno,
+      mb2.mno rvmno,
+      c.cno,
+      mb3.mno cmno
+    from
+	    acv_like l
+	      left outer join acv_mbr mb on mb.mno = l.mno
+	      left outer join acv_lk_able la on la.lano = l.lano
+	      left outer join acv_rv r on l.target = r.rvno
+	      left outer join acv_cmt c on l.target = c.cno
+	      left outer join acv_mbr mb2 on r.mno=mb2.mno
+	      left outer join acv_mbr mb3 on c.mno=mb3.mno
+    where mb2.mno = #{mno} or mb3.mno =#{mno} 
+    order by l.lno desc
+  </select>
+  
   <select id="findAll" resultMap="LikeMap">
   <include refid="sql1" />
     from
