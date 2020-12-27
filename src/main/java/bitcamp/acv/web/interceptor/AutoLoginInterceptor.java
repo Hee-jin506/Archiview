@@ -18,7 +18,6 @@ public class AutoLoginInterceptor implements HandlerInterceptor {
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
       throws Exception {
     System.out.println("AutoLoginInterceptor 실행!");
-    System.out.println(memberService);
 
     if (request.getSession().getAttribute("loginUser") == null) {
       // 개발하는 동안 로그인을 자동으로 처리하기 위해
