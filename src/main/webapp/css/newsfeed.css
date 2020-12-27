@@ -15,22 +15,21 @@
    -ms-overflow-style: none;
    scrollbar-width: none;
    margin-top: 10px;
-   margin-left: 10px;
- }
-  #lists {
-
-   line-height: 80px;
  }
 
- 
   #contents::-webkit-scrollbar {
   display: none;
-}
+ }
+ 
  #title  {
+ margin-top: 20px;
  height: 45px;
  }
- #title text{
- height: 15px;
+ 
+ #title title-text{
+ color: white;
+ font: inherit;
+ vertical-align: middle;
  }
  
  #title hr {
@@ -42,6 +41,10 @@
   margin-right: -20px;
  }
 
+ #lists {
+   line-height: 80px;
+ }
+ 
  #list img {
   border-radius: 100px;
  }
