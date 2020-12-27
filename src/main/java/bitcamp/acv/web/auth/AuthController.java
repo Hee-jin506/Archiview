@@ -150,4 +150,42 @@ public class AuthController {
   public String searchPassword() {
     return "auth/searchPassword";
   }
+
+  @RequestMapping("add")
+  public String add() {
+    return "auth/add1";
+  }
+
+  @RequestMapping("add1")
+  public String add1(
+      int loginNo,
+      String name,
+      String email,
+      String password,
+      String nickName,
+      HttpSession session) throws Exception {
+
+    Member newMember = new Member();
+    newMember.setAuthority(1);
+    newMember.setStatus(1);
+    newMember.setLoginNo(loginNo);
+    newMember.setName(name);
+    newMember.setEmail(email);
+    newMember.setPassword(password);
+    newMember.setNickName(nickName);
+    session.setAttribute("newMember", newMember);
+
+    return "auth/add2";
+  }
+
+  @RequestMapping("add2")
+  public String add2(int questionsNo, String questionsAnswer, HttpSession session) throws Exception {
+
+    Member newMember = (Member) session.getAttribute("newMember");
+    newMember.setQuestionsNo(questionsNo);
+    newMember.setQuestionsAnswer(questionsAnswer);
+    memberService.add(newMember);
+    return "auth/add3";
+  }
+
 }
