@@ -176,4 +176,72 @@ public class OptionController {
       return mv;
     }
   }
+
+  /* 멤버 add 가져옴
+  @RequestMapping(value="add")
+  public String add(
+      int loginNo,
+      String name,
+      String email,
+      String password,
+      String nickName,
+      Part photoFile,
+      String intro,
+      int questionsNo,
+      String questionsAnswer) throws Exception {
+
+    Member member = new Member();
+    member.setAuthority(1);
+    member.setStatus(1);
+    member.setLoginNo(loginNo);
+    member.setName(name);
+    member.setEmail(email);
+    member.setPassword(password);
+    member.setNickName(nickName);
+    member.setIntro(intro);
+    member.setQuestionsNo(questionsNo);
+    member.setQuestionsAnswer(questionsAnswer);
+
+
+    String filename = UUID.randomUUID().toString();
+    System.out.println(filename);
+    String saveFilePath = servletContext.getRealPath("/upload/" + filename);
+    System.out.println(saveFilePath);
+    System.out.println(photoFile);
+    photoFile.write(saveFilePath);
+    member.setPhoto(filename);
+
+    generatePhotoThumbnail(saveFilePath);
+
+    memberService.add(member);
+    return "redirect:../auth/login";
+  }
+  private void generatePhotoThumbnail(String saveFilePath) {
+    try {
+      Thumbnails.of(saveFilePath)
+      .size(35, 35)
+      .outputFormat("jpg")
+      .crop(Positions.CENTER)
+      .toFiles(new Rename() {
+        @Override
+        public String apply(String name, ThumbnailParameter param) {
+          return name + "_35x35";
+        }
+      });
+
+      Thumbnails.of(saveFilePath)
+      .size(150, 150)
+      .outputFormat("jpg")
+      .crop(Positions.CENTER)
+      .toFiles(new Rename() {
+        @Override
+        public String apply(String name, ThumbnailParameter param) {
+          return name + "_150x150";
+        }
+      });
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+   */
 }

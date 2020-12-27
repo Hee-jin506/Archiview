@@ -1,12 +1,10 @@
 package bitcamp.acv.web.member;
 
 import java.util.List;
-import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,16 +17,12 @@ import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.TagService;
-import net.coobird.thumbnailator.ThumbnailParameter;
-import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.geometry.Positions;
-import net.coobird.thumbnailator.name.Rename;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 
-  
+
   @Autowired MemberService memberService;
   @Autowired TagService tagService;
   @Autowired MovieService movieService;
@@ -42,74 +36,6 @@ public class MemberController {
     }
     return "redirect:list";
   }
-
-  @RequestMapping(value="add")
-  public String add(
-      int loginNo,
-      String name,
-      String email,
-      String password,
-      String nickName,
-      Part photoFile,
-      String intro,
-      int questionsNo,
-      String questionsAnswer) throws Exception {
-
-    Member member = new Member();
-    member.setAuthority(1);
-    member.setStatus(1);
-    member.setLoginNo(loginNo);
-    member.setName(name);
-    member.setEmail(email);
-    member.setPassword(password);
-    member.setNickName(nickName);
-    member.setIntro(intro);
-    member.setQuestionsNo(questionsNo);
-    member.setQuestionsAnswer(questionsAnswer);
-
-
-    String filename = UUID.randomUUID().toString();
-    System.out.println(filename);
-    String saveFilePath = servletContext.getRealPath("/upload/" + filename);
-    System.out.println(saveFilePath);
-    System.out.println(photoFile);
-    photoFile.write(saveFilePath);
-    member.setPhoto(filename);
-
-    generatePhotoThumbnail(saveFilePath);
-
-    memberService.add(member);
-    return "redirect:../auth/login";
-  }
-
-  private void generatePhotoThumbnail(String saveFilePath) {
-    try {
-      Thumbnails.of(saveFilePath)
-      .size(35, 35)
-      .outputFormat("jpg")
-      .crop(Positions.CENTER)
-      .toFiles(new Rename() {
-        @Override
-        public String apply(String name, ThumbnailParameter param) {
-          return name + "_35x35";
-        }
-      });
-
-      Thumbnails.of(saveFilePath)
-      .size(150, 150)
-      .outputFormat("jpg")
-      .crop(Positions.CENTER)
-      .toFiles(new Rename() {
-        @Override
-        public String apply(String name, ThumbnailParameter param) {
-          return name + "_150x150";
-        }
-      });
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
 
   @RequestMapping("delete")
   public ModelAndView delete(String password, HttpServletRequest request)
@@ -176,7 +102,7 @@ public class MemberController {
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
-    
+
     // 바디
     Member member = memberService.get(no);
     if (member == null) {
@@ -193,7 +119,7 @@ public class MemberController {
     if (member == null) {
       throw new Exception("해당 회원이 없습니다.");
     }
-    
+
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
@@ -225,7 +151,7 @@ public class MemberController {
     for (int i = 0; i < myFollow.length; i++) {
       myFollow[i] = follows.get(i);
     }
-    
+
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
