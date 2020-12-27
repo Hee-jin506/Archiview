@@ -93,7 +93,10 @@ public class MainNewsFeadController {
     for(Follow f : newsFeedFollowList) {
       NewsFeed n = new NewsFeed();
       if(f.getFollowedType() == 1) {
+<<<<<<< HEAD
         n.setNo(f.getTargetMember().getNo());
+=======
+>>>>>>> 00dc265ad36267bcb4c042e42c53be0d5abd50a6
         n.setNick(f.getTargetMember().getNickName());
         n.setPhoto(f.getTargetMember().getPhoto());
         n.setDate(f.getFollowedDate());
@@ -103,6 +106,7 @@ public class MainNewsFeadController {
       }
     }
 
+<<<<<<< HEAD
 
     class DateCompare implements Comparator<NewsFeed> {
 
@@ -124,6 +128,16 @@ public class MainNewsFeadController {
     mv.addObject(newsFeedList);
 
     //    List<Like> likes = likeService.getTime(likeMap);
+=======
+    for(NewsFeed n : newsFeedList) {
+      System.out.println(n.getNick());
+      System.out.println(n.getTargetType());
+      System.out.println(n.getDate());
+    }
+    
+    Map<String, Object> likeMap = new HashMap<>();
+    List<Like> likes = likeService.getTime(likeMap);
+>>>>>>> 00dc265ad36267bcb4c042e42c53be0d5abd50a6
     Map<Integer, String> times = new HashMap<>();
     for (NewsFeed newsFeed : newsFeedList) {
 

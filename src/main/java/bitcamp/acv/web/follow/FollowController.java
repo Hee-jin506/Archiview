@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Member;
+import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
@@ -136,6 +137,20 @@ public class FollowController {
     model.addAttribute("targetMemberlist", targetMemberlist);
   }
 
+ // 리스트
+ @GetMapping("list")
+ public void list(@ModelAttribute("loginUser") Member loginUser,
+     Model model) throws Exception {
+
+   List<Follow> list = followService.list();
+
+   // 사이드바
+   model.addAttribute("topMembers", memberService.listByPop3());
+   model.addAttribute("topMovies", movieService.listByPop3());
+   model.addAttribute("topTags", tagService.listByPop3());
+   model.addAttribute("list", list);
+ }
+
   // 전체 리스트 상세
   @GetMapping("detail")
   public ModelAndView view(int no,
@@ -167,5 +182,29 @@ public class FollowController {
       mv.setViewName("/follow/detail.jsp");
       return mv;
     }
+  }
+
+  @GetMapping("followingFeed")
+  public void mainFeed(
+    @ModelAttribute("loginUser") Member loginUser,
+    Model model) throws Exception {
+
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
+
+    List<Review> reviewList = new ArrayList<>();
+    List<Follow> list = followService.getFollowingFeed(loginUser.getNo());
+    List<Member> targetMemberlist = new ArrayList<>();
+
+    for (Follow follow : list) {
+      if (follow.getFollowedType() == 1) {
+        targetMemberlist.add(follow.getTargetMember());
+      }
+    }
+
+    model.addAttribute("targetMemberlist", targetMemberlist);
+
   }
 }
