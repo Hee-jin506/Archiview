@@ -41,11 +41,14 @@ public class ReportController {
 
 
   @GetMapping("form")
-  public void form(Model model) throws Exception {
+  public void form(Model model, int reportedNo, HttpServletRequest request) throws Exception {
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
+    Report report = new Report();
+    report.setReportedNo(reportedNo);
+    request.setAttribute("report", report);
   }
 
   // 신고
