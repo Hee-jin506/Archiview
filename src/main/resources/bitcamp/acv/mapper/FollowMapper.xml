@@ -244,6 +244,7 @@
     rv.txt_size,
     rv.rdt,
     s.stc_url,
+    s.
     f.fdt,
     f.stat
   from acv_mbr mb

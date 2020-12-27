@@ -13,17 +13,14 @@
 </head>
 
 <body>
-<h1>[신고 등록]</h1>
 
-<form action='reportUser' method='post' enctype="multipart/form-data">
-신고 대상:
-<input type='text' name='reportedNo'><br>
+<h1>[신고 등록]</h1>
+<form action='reportUser' method='post'>
+
+신고 대상: <input type='text' name='reportedNo' value='${member.no}'><br>
 신고 유형:
 <select name='reportedType'>
   <option value='1'>회원</option>
-  <option value='2'>게시물</option>
-  <option value='3'>댓글</option>
-  <option value='4'>태그</option>
 </select><br>
 신고 사유:
 <select name='why'>
