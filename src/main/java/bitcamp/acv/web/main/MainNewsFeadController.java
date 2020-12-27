@@ -123,6 +123,7 @@ public class MainNewsFeadController {
     }
 
     List<Like> list = likeService.list();
+
     List<Review> reviews = reviewService.getByMemberNo(loginUser.getNo());
     mv.addObject("reviews", reviews);
 

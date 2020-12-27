@@ -47,6 +47,7 @@ MariaDB [studydb]> select * from acv_lk_able;
     <result column="photo" property="photo"/>
   </association>
 
+
   </resultMap>
 
   <sql id="sql1">
@@ -117,6 +118,7 @@ MariaDB [studydb]> select * from acv_lk_able;
       values(#{likingMember.no}, 2, #{likedNo})
   </insert>
   
+  <!--  
   <update id="deleteReview" parameterType="int">
     delete acv_cmt
     where mno=#{likingMember.no} and lano=2 and target=#{likedNo}
@@ -127,19 +129,18 @@ MariaDB [studydb]> select * from acv_lk_able;
     where mno=#{likingMember.no} and lano=1 and target=#{likedNo}
   </update>
 
-  <!-- 좋아요 -->
    <update id="active" parameterType="int">
     update acv_like set
      stat = 1
     where mno=#{likingMember.no} and target=#{likedNo}
   </update>
-  
-  <!-- 좋아요 해제 상태 -->
+
   <update id="inactive" parameterType="int">
   update acv_like set
     stat = 2
   where mno=#{likingMember.no} and target=#{likedNo}
   </update>
+  -->
 
   
 </mapper>

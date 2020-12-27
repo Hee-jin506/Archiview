@@ -12,7 +12,9 @@ import bitcamp.acv.domain.Comment;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.MemberService;
+import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
+import bitcamp.acv.service.TagService;
 
 @Controller
 @RequestMapping("/comment")
@@ -22,6 +24,8 @@ public class CommentController {
   @Autowired ReviewService reviewService;
   @Autowired MemberService memberService;
   @Autowired ServletContext servletContext;
+  @Autowired MovieService movieService;
+  @Autowired TagService tagService;
 
   // 관리자 화면
   @RequestMapping("list")
@@ -39,6 +43,7 @@ public class CommentController {
   protected ModelAndView view(
       int reviewNo,
       HttpServletRequest request) throws Exception {
+
     List<Comment> view = commentService.getByReviewNo(reviewNo);
     ModelAndView mv = new ModelAndView();
 
