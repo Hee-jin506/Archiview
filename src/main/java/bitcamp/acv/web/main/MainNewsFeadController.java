@@ -89,14 +89,20 @@ public class MainNewsFeadController {
     for(Follow f : newsFeedFollowList) {
       NewsFeed n = new NewsFeed();
       if(f.getFollowedType() == 1) {
-        n.setNick(f.getFollowingMember().getNickName());
-        n.setPhoto(f.getFollowingMember().getPhoto());
+        n.setNick(f.getTargetMember().getNickName());
+        n.setPhoto(f.getTargetMember().getPhoto());
         n.setDate(f.getFollowedDate());
         n.setTargetType(3); // 멤버
         newsFeedList.add(n);
       }
     }
 
+    for(NewsFeed n : newsFeedList) {
+      System.out.println(n.getNick());
+      System.out.println(n.getTargetType());
+      System.out.println(n.getDate());
+    }
+    
     Map<String, Object> likeMap = new HashMap<>();
     List<Like> likes = likeService.getTime(likeMap);
     Map<Integer, String> times = new HashMap<>();
