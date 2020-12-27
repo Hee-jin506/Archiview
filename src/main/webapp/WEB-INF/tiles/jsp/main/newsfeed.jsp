@@ -87,6 +87,7 @@ List<Review> reviews = (List<Review>) request.getAttribute("reviews");
 List<Comment> comments = (List<Comment>) request.getAttribute("comments");
 List<Follow> follows = (List<Follow>) request.getAttribute("follows");
 Member loginUser = (Member) session.getAttribute("loginUser");
+
 %>
 
 <div id = "contents">
@@ -138,14 +139,19 @@ for (Like like : likes) {
 <%
         }
        }
-      } else {
-        %>
-        
-        
-        
-        <%
       }
-    }
+    } else if (follow.getFollowedNo() == loginUser.getNo()) {
+      String[] url2 = follow.getFollowingMember().getPhoto().split("\\.");;
+      %>
+      <div id="list">
+      <tr>
+        <td><a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=follow.getFollowedNo()%>"><img class="list-icon" src=<%=getServletContext().getContextPath()+"/upload/" + url2[0] +"_35x35.jpg"%>></td>
+        <td><%=like.getLikingMember().getNickName()%></a> 님이 회원님을 팔로우 했습니다..</td>
+        <td><%=((Map<Integer, String>)request.getAttribute("times")).get(like.getNo())%></td>
+      </tr>
+      </div>
+      <%
+   } 
   }
 }
 %>
