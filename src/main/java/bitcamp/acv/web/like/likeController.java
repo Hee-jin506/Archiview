@@ -1,77 +1,86 @@
 package bitcamp.acv.web.like;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-import bitcamp.acv.domain.Comment;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import bitcamp.acv.domain.Like;
-import bitcamp.acv.domain.Review;
+import bitcamp.acv.domain.Member;
 import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.LikeService;
+import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.ReviewService;
 
 @Controller
 @RequestMapping("/like")
+@SessionAttributes("loginUser")
 public class likeController {
 
   @Autowired LikeService likeService;
   @Autowired ReviewService reviewService;
   @Autowired CommentService commentService;
+  @Autowired MemberService memberService;
 
-  // 사용자 화면
-  @RequestMapping("list")
-  protected ModelAndView view(
-      HttpServletRequest request,
-      HttpSession session,
-      String keyword
+  // 리뷰 좋아요
+  @GetMapping("likeReview")
+  public String likeReview(Like like,
+      @ModelAttribute("loginUser") Member loginUser
       ) throws Exception {
+    like.setLikingMember(loginUser);
 
-    Map<String, Object> map = new HashMap<>();
-    List<Like> likes = likeService.getTime(map);
-    Map<Integer, String> times = new HashMap<>();
-    for (Like like : likes) {
-
-      Calendar cal = new GregorianCalendar(Locale.KOREA);
-      long now = cal.getTimeInMillis();
-      long diff = now - like.getLikedDate().getTime();
-      if (diff / 1000 / 60 < 1) {
-        times.put(like.getNo(), "방금 전");
-      } else if (diff / 1000 / 60 / 60 < 1) {
-        times.put(like.getNo(), diff / 1000 / 60 + "분 전");
-      } else if (diff/ 1000 / 60 / 60 / 24 < 1) {
-        times.put(like.getNo(), diff/ 1000 / 60 / 60 + "시간 전");
-      } else if (diff/ 1000 / 60 / 60 / 24 / 7 < 1) {
-        times.put(like.getNo(), diff/ 1000 / 60 / 60 / 24 + "일 전");
-      } else if (diff/ 1000 / 60 / 60 / 24 / 7 / 30 < 1) {
-        times.put(like.getNo(), diff/ 1000 / 60 / 60 / 24 / 7 + "주 전");
-      } else if (diff/ 1000 / 60 / 60 / 24 / 365 < 1) {
-        times.put(like.getNo(), Calendar.MONTH - like.getLikedDate().getMonth() + "달 전");
-      } else {
-        times.put(like.getNo(), Calendar.YEAR - like.getLikedDate().getYear() + "년 전");
-      }
-    }
-
-    List<Like> list = likeService.list();
-    List<Review> reviews = reviewService.list();
-    List<Comment> comments = commentService.list(keyword);
-
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("times", times);
-    mv.addObject("list", list);
-    mv.addObject("reviews", reviews);
-    mv.addObject("comments", comments);
-
-    mv.setViewName("like/list");
-    return mv;
+    likeService.addReview(like);
+    return "redirect:../main";
   }
+
+  @GetMapping("dislikeReview")
+  public String dislikeReview(Like like,
+      @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    like.setLikingMember(loginUser);
+
+    likeService.deleteReview(like);
+    return "redirect:../main";
+  }
+
+  // 코멘트 좋아요
+
+  @GetMapping("addComment")
+  public String addComment(Like like,
+      @ModelAttribute("loginUser") Member loginUser
+      ) throws Exception {
+    like.setLikingMember(loginUser);
+
+    likeService.addComment(like);
+    return "redirect:../main";
+  }
+
+  @GetMapping("deleteComment")
+  public String deleteComment(Like like,
+      @ModelAttribute("loginUser") Member loginUser) throws Exception {
+    like.setLikingMember(loginUser);
+
+    likeService.deleteComment(like);
+    return "redirect:../main";
+  }
+
+  //  @PostMapping("active")
+  //  public String active(int no) throws Exception {
+  //    if (likeService.active(no) == 0) {
+  //      throw new Exception("해당 글이 존재하지 않습니다.");
+  //    }
+  //    return "redirect:newsfeed";
+  //  }
+  //
+  //  @PostMapping("inactive")
+  //  public String inactive(int no) throws Exception {
+  //    if (likeService.inactive(no) == 0) {
+  //      throw new Exception("해당 글이 존재하지 않습니다.");
+  //    } else {
+  //      return "redirect:newsfeed";
+  //    }
+  //  }
+
+
 
 }

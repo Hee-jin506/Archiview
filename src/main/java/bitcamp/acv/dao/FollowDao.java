@@ -7,6 +7,7 @@ public interface FollowDao {
   Follow findByNo(int no) throws Exception; // 멤버의 팔로우 상세(전체)
   List<Follow> findAll() throws Exception; // 멤버의 팔로우 리스트(전체)
   List<Follow> findAll2(int no) throws Exception; // 특정 멤버의 팔로우 리스트
+  List<Follow> findAll3(int no) throws Exception; // 특정 멤버의 팔로워 리스트
 
   int insertUser(Follow follow) throws Exception; // 유저 팔로우
   int deleteUser(Follow follow) throws Exception; // 유저 언팔로우

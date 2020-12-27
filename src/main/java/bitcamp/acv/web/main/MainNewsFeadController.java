@@ -12,12 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Comment;
+import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Like;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.CommentService;
+import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.LikeService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
@@ -26,6 +29,7 @@ import bitcamp.acv.service.TagService;
 
 @Controller
 @RequestMapping("/main")
+@SessionAttributes("loginUser")
 public class MainNewsFeadController {
 
   @Autowired LikeService likeService;
@@ -34,6 +38,7 @@ public class MainNewsFeadController {
   @Autowired MemberService memberService;
   @Autowired MovieService movieService;
   @Autowired TagService tagService;
+  @Autowired FollowService followService;
 
   // 사용자 화면
   @RequestMapping("newsfeed")
@@ -98,38 +103,12 @@ public class MainNewsFeadController {
       }
     }
 
+    List<Follow> follows = followService.list3(no);
+
     mv.addObject("times", times);
     mv.addObject("list", list);
 
     mv.setViewName("main/newsfeed");
     return mv;
   }
-
-
-  //  @PostMapping("active")
-  //  public String active(int no) throws Exception {
-  //    if (likeService.active(no) == 0) {
-  //      throw new Exception("해당 회원이 존재하지 않습니다.");
-  //    }
-  //    return "redirect:newsfeed";
-  //  }
-  //
-  //  @PostMapping("inactive")
-  //  public String inactive(int no) throws Exception {
-  //    if (likeService.inactive(no) == 0) {
-  //      throw new Exception("해당 회원이 존재하지 않습니다.");
-  //    } else {
-  //      return "redirect:newsfeed";
-  //    }
-  //  }
-  //
-  //  @GetMapping("addReview")
-  //  public String addReview(Like like,
-  //      @ModelAttribute("loginUser") Member loginUser) throws Exception {
-  //    like.setFollowingMember(loginUser);
-  //
-  //    likeService.addReview(like);
-  //    return "redirect:../main";
-  //  }
-
 }

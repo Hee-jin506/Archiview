@@ -72,4 +72,9 @@ public class DefaultFollowService implements FollowService {
     
     return followDao.findAll2(no);
   }
+
+  @Override
+  public List<Follow> list3(int no) throws Exception {
+    return followDao.findAll3(no);
+  }
 }
