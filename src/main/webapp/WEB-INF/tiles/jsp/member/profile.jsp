@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head><title>회원 프로필 화면</title>
-<link rel="stylesheet" 
-      href="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/css/bootstrap.min.css?after">
 <style>
 
 a { text-decoration: none; }
@@ -104,25 +102,25 @@ a { text-decoration: none; }
       <a href="../report/form?reportedNo=${member.no}">신고</a> 
     </div>
 		
-<div id="profile-icon">
-      <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" height=30px class="center" alt="리뷰">
-          <span class="profile-icon-text">리뷰</span>
-          <span class="profile-icon-number"><span></span><c:out value="${member.numOfReviews}" ></c:out></span></span>
-      </a>
-      <a href="<%=getServletContext().getContextPath()%>/app/follow/followerList?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
-          팔로워 
-      </a>
-      <a href="<%=getServletContext().getContextPath()%>/app/follow/followingList?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
-          팔로잉 
-      </a>
-      <a href="<%=getServletContext().getContextPath()%>/app/member/savedReviews?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved-border.png" height=30px class="center" alt="저장">
-          저장 
-      </a>
-    </div>
+		<div id="profile-icon">
+		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" height=30px class="center" alt="리뷰">
+		      <span class="profile-icon-text">리뷰</span>
+		      <%-- <span class="profile-icon-number"><span></span><c:out value="${member.numOfReviews}" ></c:out></span></span> --%>
+		  </a>
+		  <a href="<%=getServletContext().getContextPath()%>/app/follow/followerList?no=${member.no}"> 
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
+		      <span class="profile-icon-text">팔로워</span> 
+		  </a>
+		  <a href="<%=getServletContext().getContextPath()%>/app/follow/followingList?no=${member.no}"> 
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
+		      <span class="profile-icon-text">팔로잉</span> 
+		  </a>
+		  <a href="<%=getServletContext().getContextPath()%>/app/member/savedReviews?no=${member.no}"> 
+		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved-border.png" height=30px class="center" alt="저장">
+		      <span class="profile-icon-text">저장</span> 
+		  </a>
+		</div>
 		
 			<div id = "reviews">
 				<c:forEach items="${member.reviews}" var="rv"> 
@@ -138,6 +136,5 @@ a { text-decoration: none; }
 				</c:forEach>
 			</div>
     </div>
-<script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
