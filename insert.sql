@@ -515,6 +515,15 @@ insert into acv_like(lno, mno, lano, target, stat) values(11, 1, 1, 3, 2);
 
 insert into acv_like(lno, mno, lano, target) values(12, 2, 1, 3);
 
+insert into acv_like(mno, lano, target) values(2, 1, 3);
+insert into acv_like(mno, lano, target) values(2, 2, 4);
+insert into acv_like(mno, lano, target) values(2, 2, 3);
+insert into acv_like(mno, lano, target) values(2, 2, 6);
+insert into acv_like(mno, lano, target) values(2, 2, 7);
+insert into acv_like(mno, lano, target) values(2, 2, 8);
+insert into acv_like(mno, lano, target) values(2, 2, 13);
+insert into acv_like(mno, lano, target) values(2, 2, 14);
+
 /* 태그-게시물 샘플*/
 insert into acv_tag_post(rvno, tno) value(1, 1);
 insert into acv_tag_post(rvno, tno) value(1, 2);

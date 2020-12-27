@@ -1,5 +1,6 @@
 package bitcamp.acv.web.main;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import bitcamp.acv.domain.Comment;
 import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Like;
 import bitcamp.acv.domain.Member;
+import bitcamp.acv.domain.NewsFeed;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.FollowService;
@@ -62,6 +64,38 @@ public class MainNewsFeadController {
     map.put("userNo", loginUser.getNo());
     map.put("row", 0);
     model.addAttribute("list", reviewService.getMainFeed(map));
+    
+    List<Like> newsFeedLikeList = likeService.list2(loginUser.getNo());
+    List<Follow> newsFeedFollowList = followService.list3(loginUser.getNo());
+    List<NewsFeed> newsFeedList = new ArrayList<>();
+    
+    for(Like l : newsFeedLikeList) {
+      NewsFeed n = new NewsFeed();
+      if (l.getLikedType() ==1 && l.getRvmno() ==loginUser.getNo() ) {
+        n.setNick(l.getLikingMember().getNickName());
+        n.setPhoto(l.getLikingMember().getPhoto());
+        n.setDate(l.getLikedDate());
+        n.setTargetType(1); // 게시물
+        newsFeedList.add(n);
+      } else if (l.getLikedType() == 2 && l.getCmno() == loginUser.getNo()) {
+        n.setNick(l.getLikingMember().getNickName());
+        n.setPhoto(l.getLikingMember().getPhoto());
+        n.setDate(l.getLikedDate());
+        n.setTargetType(2); // 댓글
+        newsFeedList.add(n);
+      }
+    }
+    
+    for(Follow f : newsFeedFollowList) {
+      NewsFeed n = new NewsFeed();
+      if(f.getFollowedType() == 1) {
+        n.setNick(f.getFollowingMember().getNickName());
+        n.setPhoto(f.getFollowingMember().getPhoto());
+        n.setDate(f.getFollowedDate());
+        n.setTargetType(3); // 멤버
+        newsFeedList.add(n);
+      }
+    }
 
     Map<String, Object> likeMap = new HashMap<>();
     List<Like> likes = likeService.getTime(likeMap);
@@ -89,6 +123,7 @@ public class MainNewsFeadController {
     }
 
     List<Like> list = likeService.list();
+
     List<Review> reviews = reviewService.getByMemberNo(loginUser.getNo());
     mv.addObject("reviews", reviews);
 

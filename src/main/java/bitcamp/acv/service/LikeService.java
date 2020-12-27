@@ -14,5 +14,6 @@ public interface LikeService {
 
   int active(int no) throws Exception;
   int inactive(int no) throws Exception;
+  List<Like> list2(int no) throws Exception;
 
 }
