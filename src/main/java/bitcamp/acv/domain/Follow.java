@@ -19,6 +19,7 @@ public class Follow {
   private String nickName;
   private Member targetMember; // 팔로우한 회원
   private Tag targetTag; // 팔로우한 태그
+  private List<Review> reviews;
 
   public int getFollowedType() {
     return followedType;
@@ -79,5 +80,11 @@ public class Follow {
   }
   public void setTargetTag(Tag targetTag) {
     this.targetTag = targetTag;
+  }
+  public List<Review> getReviews() {
+    return reviews;
+  }
+  public void setReviews(List<Review> reviews) {
+    this.reviews = reviews;
   }
 }

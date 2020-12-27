@@ -90,23 +90,19 @@ public class MainNewsFeadController {
 
     List<Like> list = likeService.list();
     List<Review> reviews = reviewService.getByMemberNo(loginUser.getNo());
-    for (Review review : reviews) {
-      if (review.isStatus() == true) {
-        mv.addObject("reviews", reviews);
-      }
-    }
+    mv.addObject("reviews", reviews);
+
 
     List<Comment> comments = commentService.getByMemberNo(loginUser.getNo());
-    for (Comment comment : comments) {
-      if (comment.getStatus() == 1) {
-        mv.addObject("comments", comments);
-      }
-    }
 
-    List<Follow> follows = followService.list3(no);
+    mv.addObject("comments", comments);
+
+
+    List<Follow> follows = followService.list3(loginUser.getNo());
 
     mv.addObject("times", times);
     mv.addObject("list", list);
+    mv.addObject("follows", follows);
 
     mv.setViewName("main/newsfeed");
     return mv;

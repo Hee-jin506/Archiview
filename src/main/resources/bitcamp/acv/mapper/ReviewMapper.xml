@@ -99,7 +99,9 @@
   
   <select id="findByMemberNo" resultMap="ReviewMap" parameterType="int">
     <include refid="sql2"/>
-    where rv.mno = #{mno}
+    where
+    rv.mno = #{mno}
+    and rv.stat = 1
     order by rv.rvno desc
   </select>
   
