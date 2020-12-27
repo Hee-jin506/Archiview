@@ -89,8 +89,8 @@ List<NewsFeed> newsFeeds = (List<NewsFeed>) request.getAttribute("newsFeedList")
 %>
 
 <div id = "contents">
-<div id = "title">
-<p>뉴스피드</p>
+<div id = "titlet">
+뉴스피드
 <hr>
 </div>
 <%
