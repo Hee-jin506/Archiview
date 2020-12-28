@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+#cards {
+  xposition: absolute;
+  xleft: 230px;
+  xtop: 70px;
+  box-sizing: content-box;
+  width: 700px;
+  height: 700px;
+  padding: 0px;
+  overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#cards::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  position: relative; 
+  border-radius: 10px;
+  background-color: #141517;
+  box-sizing: border-box;
+  color: white;
+  width: 650px;
+  height: 500px;
+  margin-top: 10px;
+  padding: 0px;
+}
+
+.card .cardHeader {
+  position: absolute;
+  width: 600px;
+  margin: 15px;
+}
+
+.card img.profile {
+  float: left;
+  width: 50px;
+}
+
+ .card .cardHeader .nickname {
+  float: left;
+  margin: 13px;
+  position: relative;
+  left: 0px;
+  top: 5px;
+}
+
+.card .cardHeader .follow {
+  float: left;
+  margin: 10px;
+  position: relative;
+  top: -2px;
+}
+
+.card .stillcut {
+  position: relative;
+  margin: 0px;
+  position: absolute;
+  top: 80px;
+  height: 350px;
+  width: 650px;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.card .stillcut img {
+  width: 650px;
+  display: block; 
+  margin: 0px 
+  auto;
+}
+
+.card .stillcut .reviewText {
+  position: absolute;
+  top: 50%;
+  left: 325px;
+  text-align: center;
+  transform: translate( -50%, -50% );
+  background-color: rgba( 0, 0, 0, 0.5 );
+  padding: 4px;
+}
+
+.card .stillcut .tags {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba( 0, 0, 0, 0.5 );
+  padding: 4px;
+}
+
+.card .cardFooter {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 625px;
+}
+
+.card .cardFooter .movie {
+  float: left;
+  margin: 15px;
+}
+.card .cardFooter .rdt {
+  float: left;
+  margin: 15px;
+  font-size: 80%;
+  font-weight: normal;
+  position: relative;
+  top: 3px;
+  color: #B9B9BA;
+}
+
+.card .cardFooter .like {
+  float: right;
+  position: relative;
+  left: -20px;
+  top:8px;
+}
+
+.card .cardFooter .like img {
+  width: 50%;
+}
+
+.card .cardFooter .like .pop {
+  position: relative;
+  top: -7px;
+  left: 5px;
+}
+.card .reviewDetail button {
+  position: absolute;
+  top: 80px;
+  height: 350px;
+  width: 650px;
+  background-color: rgba( 0, 0, 0, 0 );
+  border: none;
+  display: none;
+}
