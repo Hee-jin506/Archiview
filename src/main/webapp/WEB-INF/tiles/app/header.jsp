@@ -15,7 +15,7 @@
 	      <form action='<%=getServletContext().getContextPath()%>/app/main/search'>
 	        <label><img
 	          src='<%=getServletContext().getContextPath()%>/main_resource/search-outline.png' width="12"></label>
-	        <input type='search' name='keyword' value='<%=keyword != null ? keyword : "검색"%>'>
+	        <input type='search' name='keyword' placeholder='검색' value='<%=keyword != null ? keyword : ""%>'>
 	      </form>
 	    </div>
 	    <% Member member = (Member) session.getAttribute("loginUser"); %>
