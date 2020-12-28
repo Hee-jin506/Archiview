@@ -11,9 +11,6 @@ public interface LikeService {
   int addComment(Like like) throws Exception;
   int deleteReview(Like like) throws Exception;
   int deleteComment(Like like) throws Exception;
-
-  int active(int no) throws Exception;
-  int inactive(int no) throws Exception;
   List<Like> list2(int no) throws Exception;
 
 }
