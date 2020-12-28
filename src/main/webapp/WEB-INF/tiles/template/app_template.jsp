@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="${appRoot}/css/main.css">
   <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
   <link rel="stylesheet" href="${appRoot}/css/newsfeed.css">
+  <link rel="stylesheet" href="${appRoot}/css/profile.css">
   <style>
   
   #container {
