@@ -35,6 +35,7 @@ public class Review {
 
   private int isFollowing;
   private int liking;
+  private int isLiking;
 
   public List<Tag> getTags() {
     return tags;
@@ -150,5 +151,11 @@ public class Review {
   }
   public void setStcUrl(String stcUrl) {
     this.stcUrl = stcUrl;
+  }
+  public int getIsLiking() {
+    return isLiking;
+  }
+  public void setIsLiking(int isLiking) {
+    this.isLiking = isLiking;
   }
 }

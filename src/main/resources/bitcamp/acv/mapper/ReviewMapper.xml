@@ -25,6 +25,7 @@
     <result column="photo"      property="writerPhoto"/>
     <result column="nick"       property="writerNick"/>
     <result column="fno"        property="isFollowing"/>
+    <result column="lno"        property="isLiking"/>
     <result column="lk_length"  property="liking"/>
     
     <collection property="tags" ofType="tag">
@@ -123,6 +124,7 @@
       t.title,
       t.stat,
       f.fno,
+      l.lno,
       lk_length
     from 
       (select * from acv_rv order by rdt desc limit #{row}, 5)rv
@@ -134,10 +136,82 @@
       left outer join 
         (select fno, target from acv_flw where flwing_mbr=#{userNo} and fano=1)f
       on f.target=rv.mno
+      left outer join 
+        (select lno, target from acv_like where mno=#{userNo} and lano=1)l
+      on l.target=rv.rvno
       left outer join
         (select target, lano, count(*) lk_length from acv_like where lano=1 group by lano, target)lk
       on lk.target=rv.rvno
   </select>
+  
+  <select id="findForFollowingFeed" resultMap="ReviewMap" parameterType="map">
+    select 
+      rv.rvno,
+      rv.mno,
+      rv.txt,
+      rv.txt_x,
+      rv.txt_y,
+      rv.tfno,
+      rv.txt_size,
+      rv.rdt,
+      rv.stat,      
+      s.stc_url,
+      m.photo,
+      m.nick,
+      mv.title mvTitle,
+      t.title,
+      t.stat,
+      f.fno,
+      lk_length
+    from 
+      (select * from acv_rv order by rdt desc limit #{row}, 5)rv
+      left outer join acv_stc s on rv.stcno=s.stcno
+      inner join acv_mbr m on rv.mno=m.mno
+      left outer join acv_mov mv on s.mvno=mv.mvno
+      left outer join acv_tag_post tp on tp.rvno=rv.rvno
+      left outer join acv_tag t on tp.tno=t.tno
+      inner join 
+        (select fno, target from acv_flw where flwing_mbr=#{userNo} and fano=1)f
+      on f.target=rv.mno
+      left outer join
+        (select target, lano, count(*) lk_length from acv_like where lano=1 group by lano, target)lk
+      on lk.target=rv.rvno
+ </select>
+ 
+ <select id="findReviewDetail" resultMap="ReviewMap" parameterType="map">
+    select 
+      rv.rvno,
+      rv.mno,
+      rv.txt,
+      rv.txt_x,
+      rv.txt_y,
+      rv.tfno,
+      rv.txt_size,
+      rv.rdt,
+      rv.stat,      
+      s.stc_url,
+      m.photo,
+      m.nick,
+      mv.title mvTitle,
+      t.title,
+      t.stat,
+      f.fno,
+      lk_length
+    from 
+      acv_rv rv
+      left outer join acv_stc s on rv.stcno=s.stcno
+      inner join acv_mbr m on rv.mno=m.mno
+      left outer join acv_mov mv on s.mvno=mv.mvno
+      left outer join acv_tag_post tp on tp.rvno=rv.rvno
+      left outer join acv_tag t on tp.tno=t.tno
+      inner join 
+        (select fno, target from acv_flw where flwing_mbr=#{userNo} and fano=1)f
+      on f.target=rv.mno
+      left outer join
+        (select target, lano, count(*) lk_length from acv_like where lano=1 group by lano, target)lk
+      on lk.target=rv.rvno
+    where rv.rvno=#{reviewNo}
+ </select>
   
   <select id="findAll" resultMap="ReviewMap">
     <include refid="sql2"/>
@@ -249,7 +323,6 @@
     values(#{stillCut}, #{writerNo}, #{text}, #{textX}, #{textY}, #{textFont}, #{textSize})
   </insert>
 </mapper>
-
 
 
 

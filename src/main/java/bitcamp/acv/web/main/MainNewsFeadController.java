@@ -79,6 +79,7 @@ public class MainNewsFeadController {
         n.setTargetNo(l.getLikedNo());
         n.setTargetType(1); // 게시물
         newsFeedList.add(n);
+
       } else if (l.getLikedType() == 2 && l.getCmno() == loginUser.getNo()) {
         n.setNo(l.getLikingMember().getNo());
         n.setNick(l.getLikingMember().getNickName());

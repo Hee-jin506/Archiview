@@ -105,45 +105,56 @@ public class MemberController {
     model.addAttribute("topTags", tagService.listByPop3());
 
     // 바디
-    
     Member member = memberService.get(no);
+    model.addAttribute("member", member);
+    
+    // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
     List<Follow> followings = followService.list2(loginUser.getNo());
     List<Integer> followingNoList = new ArrayList<>();
     for (Follow f : followings) {
+      if (f.getFollowedType() == 1) {
       followingNoList.add(f.getTargetMember().getNo());
+      }
     }
-    // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
     boolean following = false;
     if (followingNoList.contains(member.getNo())) {
       following = true;
     } 
     
-    for (int i : followingNoList) {
-      System.out.println(i);
-    }
     model.addAttribute("following", following);
-    model.addAttribute("member", member);
   }
 
   // 프로필 화면(프로필 + 본인이 저장한! 리뷰들이 나옴)
   @RequestMapping("savedReviews")
-  public void savedReviews(Model model, int no) throws Exception {
-
-    Member member = memberService.get(no);
-    if (member == null) {
-      throw new Exception("해당 회원이 없습니다.");
-    }
+  public void savedReviews(Model model, HttpSession session, int no) throws Exception {
+ // 탑바
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
+    
 
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
-
-    List<Review> rvs = member.getSaved();
-    for(Review rv : rvs) {
-      System.out.println(rv.getNo());
-    }
+    
+ // 바디
+    Member member = memberService.get(no);
     model.addAttribute("member", member);
+
+ // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
+    List<Follow> followings = followService.list2(loginUser.getNo());
+    List<Integer> followingNoList = new ArrayList<>();
+    for (Follow f : followings) {
+      if (f.getFollowedType() == 1) {
+      followingNoList.add(f.getTargetMember().getNo());
+      }
+    }
+    boolean following = false;
+    if (followingNoList.contains(member.getNo())) {
+      following = true;
+    } 
+    
+    model.addAttribute("following", following);
   }
 
   @RequestMapping("inactive")

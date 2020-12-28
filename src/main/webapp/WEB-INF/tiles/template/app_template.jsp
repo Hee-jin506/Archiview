@@ -23,20 +23,20 @@
       margin:0 auto;
       margin-top: 75px;
     }
-  #headerLine {
+  /* #headerLine {
       width:100%;
       height:65px;
       position:absolute;
       xtop:65px;
       background-color:white;
       z-index:-1;
-    }
+    } */
     
   </style>
 </head>
   <body>
 
-	  <div id="headerLine"></div>
+	  <!-- <div id="headerLine"></div> -->
 	  <div id="container">
 	  <tiles:insertAttribute name="header"/>
 		  <tiles:insertAttribute name="sidebar"/>

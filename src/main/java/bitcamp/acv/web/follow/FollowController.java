@@ -124,17 +124,34 @@ public class FollowController {
     Member member = memberService.get(no);
     model.addAttribute("member", member);
 
-    // 바디(나를 팔로워하는 리스트)
+    // 나를 팔로워하는 리스트
     List<Follow> followList = followService.list3(no);
     List<Member> targetMemberlist = new ArrayList<>();
-
-    for (Follow follow : followList) {
-      if(follow.getFollowedType() == 1) {
-        targetMemberlist.add(follow.getTargetMember());
+    
+    // 나를 팔로잉하는지 여부 검사 : 팔로우버튼 색깔 바꾸기위해
+    List<Follow> followings = followService.list2(no);
+    List<Integer> followingNoList = new ArrayList<>();
+    for (Follow f : followings) {
+      if (f.getFollowedType() == 1) {
+        followingNoList.add(f.getTargetMember().getNo());
       }
     }
 
+    for (Follow follow : followList) {
+      // followedType : 1 = 멤버, 2 = 태그
+      if(follow.getFollowedType() == 1) {
+        if(followingNoList.contains(follow.getTargetMember().getNo())) {
+          // true면 버튼 색깔 회색
+          follow.getTargetMember().setFollowingState(true);
+        }
+        targetMemberlist.add(follow.getTargetMember());
+      }
+    }
     model.addAttribute("targetMemberlist", targetMemberlist);
+    for (Member m : targetMemberlist) {
+      System.out.println(m.getNo());
+      System.out.println(m.isFollowingState());
+    }
   }
 
  // 리스트

@@ -14,22 +14,17 @@ public class Follow {
   private int followedType; // 팔로우한 대상의 유형(1=회원,2=태그) fano
   private int followedNo; // 팔로우한 대상의 번호 target
   private Timestamp followedDate; // 팔로우한 날짜 fdt
-  private int status; // 팔로우 상태 번호 stat 1=팔로우 2=언팔로우
   private String nickName;
   private Member targetMember; // 팔로우한 회원
   private Tag targetTag; // 팔로우한 태그
+  
+  
 
   public int getFollowedType() {
     return followedType;
   }
   public void setFollowedType(int followedType) {
     this.followedType = followedType;
-  }
-  public int getStatus() {
-    return status;
-  }
-  public void setStatus(int status) {
-    this.status = status;
   }
   public int getNo() {
     return no;

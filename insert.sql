@@ -128,14 +128,14 @@ values(2, 3, 1, 1);
 insert into acv_flw(fno, flwing_mbr, target, fano) 
 values(3, 4, 1, 1);
 
-insert into acv_flw(fno, flwing_mbr, target, fano, stat) 
-values(4, 5, 1, 1, 2);
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(4, 5, 1, 1);
 
-insert into acv_flw(fno, flwing_mbr, target, fano, stat) 
-values(5, 6, 1, 1, 2);
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(5, 6, 1, 1);
 
-insert into acv_flw(fno, flwing_mbr, target, fano, stat) 
-values(6, 7, 1, 1, 2);
+insert into acv_flw(fno, flwing_mbr, target, fano) 
+values(6, 7, 1, 1);
 
 insert into acv_flw(fno, flwing_mbr, target, fano) 
 values(7, 8, 1, 1);
@@ -164,14 +164,14 @@ values(14, 8, 2, 1);
 insert into acv_flw(fno, flwing_mbr, target, fano)
 values(15, 4, 3, 1);
 
-insert into acv_flw(fno, flwing_mbr, target, fano, stat)
-values(16, 5, 3, 1, 2);
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(16, 5, 3, 1);
 
-insert into acv_flw(fno, flwing_mbr, target, fano, stat)
-values(17, 6, 3, 1, 2);
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(17, 6, 3, 1);
 
-insert into acv_flw(fno, flwing_mbr, target, fano, stat)
-values(18, 6, 3, 2, 2);
+insert into acv_flw(fno, flwing_mbr, target, fano)
+values(18, 6, 3, 2);
 
 insert into acv_flw(fno, flwing_mbr, target, fano)
 values(19, 1, 9, 1);
@@ -211,6 +211,29 @@ values(3, 1, 'https://movie-phinf.pstatic.net/20170816_246/1502850756536szMwe_JP
 insert into acv_stc(stcno, mvno, stc_url)
 values(4, 1, 'https://movie-phinf.pstatic.net/20170807_170/1502069264980Amq9T_JPEG/movie_image.jpg?type=m427_320_2');
 
+/*포스터 샘플*/
+insert into acv_pstr(psno, mvno, ps_url, main_ps)
+values(1, 1, 'https://movie-phinf.pstatic.net/20170814_17/1502675963099mSfot_JPEG/movie_image.jpg?type=m665_443_2', 1);
+
+insert into acv_pstr(psno, mvno, ps_url, main_ps)
+values(2, 1, 'https://movie-phinf.pstatic.net/20161026_271/1477463580542wovM2_JPEG/movie_image.jpg?type=m665_443_2', 0);
+
+/*영화 샘플*/
+insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
+values(2, '순종', '김동민,이주훈', 'Obedience', 88, '2016-11-17', 
+'김영화,김은혜,한성국,최강희,최수종',
+'우간다 내전으로 상처받은 사람들이 모여 사는 딩기디 마을.
+반군에게 부모가 잔인하게 살해당하는 모습을 목격했던 아이들은 트라우마로 심한 발작을 일으키는데...
+이들을 사랑으로 보살피는 김은혜 선교사. 
+하지만 김 선교사는 살아생전 가족들을 가난의 굴레에 던져놓은 채, 
+딩기디 마을 사람들을 보살폈던 아버지에 대한 원망을 지우지 못한다.
+한편, 중동 테러단체 IS의 주민학살 등 온갖 만행에 견디다 못해
+레바논으로 탈출한 알리는 세상과의 문을 닫고 헤어진 엄마를 그리워하며 힘겨운 하루하루를 지샌다. 
+상처받은 난민친구들과 함께 모여 살던 알리는 한국의 김영화 선교사를 만나고, 변화를 겪기 시작하는데...
+과연 이들의 상처는 치유될 것인가!', 
+'한국', 1, 154347);
+
+/*스틸컷 샘플*/
 insert into acv_stc(mvno)
 values(2);
 
@@ -223,6 +246,64 @@ values(2, 'https://movie-phinf.pstatic.net/20161012_48/14762359440663t467_JPEG/m
 insert into acv_stc(mvno, stc_url)
 values(2, 'https://movie-phinf.pstatic.net/20161012_58/14762359442496JxCB_JPEG/movie_image.jpg?type=m665_443_2');
 
+/*포스터 샘플*/
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(2, 'https://movie-phinf.pstatic.net/20161024_276/1477272601802XgGy1_JPEG/movie_image.jpg?type=m665_443_2', 1);
+
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(2, 'https://movie-phinf.pstatic.net/20161014_145/1476432490724174nM_JPEG/movie_image.jpg?type=m665_443_2', 0);
+
+/*영화 샘플*/
+insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
+values(3, '연애담', '이현주', 'Our Love Story', 99, '2016-11-17', 
+'이상희,류아벨,박근록,임성미,김종수', 
+'더할 나위 없이 따뜻했던 우리의 연애담을 들려드립니다.
+미술을 공부하는 윤주(이상희). 졸업 전시를 준비하던 중 자꾸 눈길이 가는 한 사람을 만나게 된다. 
+살짝 마주친 눈빛에서 느껴진 따뜻함에 윤주는 점점 마음이 이끌리기 시작한다.  
+아르바이트를 하며 꿈을 찾아가는 지수(류선영). 추운 겨울 어느 날, 나를 따뜻하게 바라봐주는 한 사람을 만나게 된다.
+얼마 후, 그 사람을 다시 만난 지수는  그 사람에게 마음을 이어나가려 손을 내밀어 본다.  
+두 사람의 마음이 이어진 가장 행복하고 따뜻했던 이 순간은 정말 영원할 수 있을까…',
+'한국', 1, 149481);
+
+/*포스터 샘플*/
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(3, 'https://movie-phinf.pstatic.net/20161028_162/1477618609681NUghJ_JPEG/movie_image.jpg?type=m665_443_2', 1);
+
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(3, 'https://movie-phinf.pstatic.net/20161024_152/1477284828563SyUai_JPEG/movie_image.jpg?type=m665_443_2', 0);
+
+
+/* 영화 장르 샘플*/
+insert into acv_gnr_mov(gmno, gno, mvno) 
+values(1, 10, 1);
+
+insert into acv_gnr_mov(gmno, gno, mvno) 
+values(2, 1, 2);
+
+insert into acv_gnr_mov(gmno, gno, mvno) 
+values(3, 10, 2);
+
+insert into acv_gnr_mov(gno, mvno) 
+values(1, 3);
+
+insert into acv_gnr_mov(gno, mvno) 
+values(5, 3);
+
+/*영화 샘플*/
+insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
+values(4, '형', '권수경', 'MY ANNOYING BROTHER', 110, '2016-11-23', 
+'조정석,디오,박신혜,김강현,지대한', 
+'“살다 보니까 니가 내 인생에 도움이 되는 날이 온다?” 
+뻔뻔한 사기꾼, 동생 핑계로 가석방의 기회를 물었다!
+유도 국가대표 고두영(도경수)은 경기 도중 불의의 사고를 당하게 되고 
+이 소식을 들은 사기전과 10범의 형 고두식(조정석)은 눈물의 석방 사기극을 펼친다! 
+“형은 개뿔, 제발 내 인생에서 꺼져!”  형이 돌아오고 인생이 더 깜깜해졌다!   
+하루 아침에 앞이 깜깜해진 동생을 핑계로 1년간 보호자 자격으로 가석방 된 두식! 
+15년동안 단 한번도 연락이 없던 뻔뻔한 형이 집으로 돌아오고  보호자 노릇은커녕 ‘두영’의 삶을 더 엉망진창으로 만드는데…. 
+남보다 못한 형제의 예측불허 동거가 시작된다!', 
+'한국', 1, 142803);
+
+/*스틸컷 샘플*/
 insert into acv_stc(mvno)
 values(3);
 
@@ -246,85 +327,6 @@ values(4, 'https://movie-phinf.pstatic.net/20161020_220/1476941949335BE550_JPEG/
 
 insert into acv_stc(mvno, stc_url)
 values(4, 'https://movie-phinf.pstatic.net/20161024_162/1477288349850Cn1w2_JPEG/movie_image.jpg?type=m665_443_2');
-/*포스터 샘플*/
-insert into acv_pstr(psno, mvno, ps_url, main_ps)
-values(1, 1, 'https://movie-phinf.pstatic.net/20170814_17/1502675963099mSfot_JPEG/movie_image.jpg?type=m665_443_2', 1);
-
-insert into acv_pstr(psno, mvno, ps_url, main_ps)
-values(2, 1, 'https://movie-phinf.pstatic.net/20161026_271/1477463580542wovM2_JPEG/movie_image.jpg?type=m665_443_2', 0);
-
-/* 영화 장르 샘플*/
-insert into acv_gnr_mov(gmno, gno, mvno) 
-values(1, 10, 1);
-
-insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
-values(2, '순종', '김동민,이주훈', 'Obedience', 88, '2016-11-17', 
-'김영화,김은혜,한성국,최강희,최수종',
-'우간다 내전으로 상처받은 사람들이 모여 사는 딩기디 마을.
-반군에게 부모가 잔인하게 살해당하는 모습을 목격했던 아이들은 트라우마로 심한 발작을 일으키는데...
-이들을 사랑으로 보살피는 김은혜 선교사. 
-하지만 김 선교사는 살아생전 가족들을 가난의 굴레에 던져놓은 채, 
-딩기디 마을 사람들을 보살폈던 아버지에 대한 원망을 지우지 못한다.
-한편, 중동 테러단체 IS의 주민학살 등 온갖 만행에 견디다 못해
-레바논으로 탈출한 알리는 세상과의 문을 닫고 헤어진 엄마를 그리워하며 힘겨운 하루하루를 지샌다. 
-상처받은 난민친구들과 함께 모여 살던 알리는 한국의 김영화 선교사를 만나고, 변화를 겪기 시작하는데...
-과연 이들의 상처는 치유될 것인가!', 
-'한국', 1, 154347);
-
-/*포스터 샘플*/
-insert into acv_pstr(mvno, ps_url, main_ps)
-values(2, 'https://movie-phinf.pstatic.net/20161024_276/1477272601802XgGy1_JPEG/movie_image.jpg?type=m665_443_2', 1);
-
-insert into acv_pstr(mvno, ps_url, main_ps)
-values(2, 'https://movie-phinf.pstatic.net/20161014_145/1476432490724174nM_JPEG/movie_image.jpg?type=m665_443_2', 0);
-
-/* 영화 장르 샘플*/
-insert into acv_gnr_mov(gmno, gno, mvno) 
-values(2, 1, 2);
-
-insert into acv_gnr_mov(gmno, gno, mvno) 
-values(3, 10, 2);
-
-insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
-values(3, '연애담', '이현주', 'Our Love Story', 99, '2016-11-17', 
-'이상희,류아벨,박근록,임성미,김종수', 
-'더할 나위 없이 따뜻했던 우리의 연애담을 들려드립니다.
-미술을 공부하는 윤주(이상희). 졸업 전시를 준비하던 중 자꾸 눈길이 가는 한 사람을 만나게 된다. 
-살짝 마주친 눈빛에서 느껴진 따뜻함에 윤주는 점점 마음이 이끌리기 시작한다.  
-아르바이트를 하며 꿈을 찾아가는 지수(류선영). 추운 겨울 어느 날, 나를 따뜻하게 바라봐주는 한 사람을 만나게 된다.
-얼마 후, 그 사람을 다시 만난 지수는  그 사람에게 마음을 이어나가려 손을 내밀어 본다.  
-두 사람의 마음이 이어진 가장 행복하고 따뜻했던 이 순간은 정말 영원할 수 있을까…',
-'한국', 1, 149481);
-
-
-
-/*포스터 샘플*/
-insert into acv_pstr(mvno, ps_url, main_ps)
-values(3, 'https://movie-phinf.pstatic.net/20161028_162/1477618609681NUghJ_JPEG/movie_image.jpg?type=m665_443_2', 1);
-
-insert into acv_pstr(mvno, ps_url, main_ps)
-values(3, 'https://movie-phinf.pstatic.net/20161024_152/1477284828563SyUai_JPEG/movie_image.jpg?type=m665_443_2', 0);
-
-/* 영화 장르 샘플*/
-insert into acv_gnr_mov(gno, mvno) 
-values(1, 3);
-
-insert into acv_gnr_mov(gno, mvno) 
-values(5, 3);
-
-insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
-values(4, '형', '권수경', 'MY ANNOYING BROTHER', 110, '2016-11-23', 
-'조정석,디오,박신혜,김강현,지대한', 
-'“살다 보니까 니가 내 인생에 도움이 되는 날이 온다?” 
-뻔뻔한 사기꾼, 동생 핑계로 가석방의 기회를 물었다!
-유도 국가대표 고두영(도경수)은 경기 도중 불의의 사고를 당하게 되고 
-이 소식을 들은 사기전과 10범의 형 고두식(조정석)은 눈물의 석방 사기극을 펼친다! 
-“형은 개뿔, 제발 내 인생에서 꺼져!”  형이 돌아오고 인생이 더 깜깜해졌다!   
-하루 아침에 앞이 깜깜해진 동생을 핑계로 1년간 보호자 자격으로 가석방 된 두식! 
-15년동안 단 한번도 연락이 없던 뻔뻔한 형이 집으로 돌아오고  보호자 노릇은커녕 ‘두영’의 삶을 더 엉망진창으로 만드는데…. 
-남보다 못한 형제의 예측불허 동거가 시작된다!', 
-'한국', 1, 142803);
-
 
 
 /*포스터 샘플*/
@@ -341,7 +343,7 @@ values(1, 4);
 insert into acv_gnr_mov(gno, mvno) 
 values(11, 4);
 
-
+/*영화 샘플*/
 insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
 values(5, '나의 살던 고향은', '류종헌', 'OGURYEO', 95, '2016-11-24', 
 '김용옥', 
@@ -501,21 +503,16 @@ insert into acv_like(lno, mno, lano, target) values(6, 7, 1, 1);
 
 insert into acv_like(lno, mno, lano, target) values(7, 8, 2, 1);
 
-insert into acv_like(lno, mno, lano, target, stat) values(6, 1, 1, 2, 2);
-
-insert into acv_like(lno, mno, lano, target, stat) values(7, 2, 1, 2, 2);
-
 insert into acv_like(lno, mno, lano, target) values(8, 3, 1, 2);
 
-insert into acv_like(lno, mno, lano, target, stat) values(9, 4, 1, 2, 2);
+insert into acv_like(lno, mno, lano, target) values(9, 4, 1, 2);
 
 insert into acv_like(lno, mno, lano, target) values(10, 5, 1, 2);
 
-insert into acv_like(lno, mno, lano, target, stat) values(11, 1, 1, 3, 2);
+insert into acv_like(lno, mno, lano, target) values(11, 1, 1, 3);
 
 insert into acv_like(lno, mno, lano, target) values(12, 2, 1, 3);
 
-insert into acv_like(mno, lano, target) values(2, 1, 3);
 insert into acv_like(mno, lano, target) values(2, 2, 4);
 insert into acv_like(mno, lano, target) values(2, 2, 3);
 insert into acv_like(mno, lano, target) values(2, 2, 6);
@@ -635,8 +632,8 @@ insert into acv_save(mno,rvno) values(1,3);
 insert into acv_save(mno,rvno) values(1,4);
 insert into acv_save(mno,rvno) values(1,5);
 insert into acv_save(mno,rvno) values(1,6);
-insert into acv_save(mno,rvno) values(1,7);
-insert into acv_save(mno,rvno) values(1,8);
+insert into acv_save(mno,rvno) values(1,13);
+insert into acv_save(mno,rvno) values(1,14);
 
 insert into acv_save(mno,rvno) values(2,1);
 insert into acv_save(mno,rvno) values(2,3);

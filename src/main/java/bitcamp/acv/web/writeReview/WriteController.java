@@ -5,8 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Font;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
@@ -23,30 +23,33 @@ public class WriteController {
   @Autowired ReviewService reviewService;
 
   @RequestMapping("movieSearch")
-  public ModelAndView movieSearch(String keyword) throws Exception {
-    ModelAndView mv = new ModelAndView();
+  public void movieSearch(HttpSession session, String keyword, Model model) throws Exception {
+    // 탑바
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
+
     List<Movie> movies = movieService.list(keyword);
-    mv.addObject("movies", movies);
-    mv.setViewName("write/movieSearch");
-    return mv;
+    model.addAttribute("movies", movies);
   }
 
   @RequestMapping("chooseStc")
-  public ModelAndView chooseStc(int movieNo) throws Exception {
+  public void chooseStc(HttpSession session, int movieNo, Model model) throws Exception {
+    // 탑바
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
+
     Movie movie = movieService.findByNo(movieNo);
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("stillcuts", movie.getStillcuts());
-    mv.setViewName("write/stillcutChoose");
-    return mv;
+    model.addAttribute("stillcuts", movie.getStillcuts());
   }
 
   @RequestMapping("editCard")
-  public ModelAndView editCard() throws Exception {
+  public void editCard(HttpSession session, Model model) throws Exception {
+    // 탑바
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
+
     List<Font> fonts = reviewService.listFont();
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("fonts", fonts);
-    mv.setViewName("write/reviewEdit");
-    return mv;
+    model.addAttribute("fonts", fonts);
   }
 
   @RequestMapping("add")
@@ -94,7 +97,7 @@ public class WriteController {
     }
     reviewService.add(review);
 
-    return "redirect:app/main/";
+    return "redirect:../main";
   }
 }
 

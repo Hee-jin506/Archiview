@@ -8,6 +8,7 @@
 <head><title>회원 프로필 화면</title>
 <style>
 a { text-decoration: none; }
+
  body {
    background-color : #000000;
    color: #ffffff;
@@ -15,141 +16,214 @@ a { text-decoration: none; }
     
  }
  
- p {
-   font-size: 18px;
-   xfont-weight: bold;
-   margin:0px;
- }
- 
  #contents {
-   border-radius: 10px;
    background-color: #141517;
-   width: 699px;  /* 너비 */
-   padding: 40px;  /* 패딩 */
-   float: left;  /* 왼쪽으로 플로팅 */
+   border-radius: 10px;
+   
+   float: left;
+   
+   box-sizing: border-box;
+   width: 650px;  
+   padding: 40px; 
+   
    height: 700px;
-    overflow: hidden;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+   overflow: hidden;
+   overflow-y: scroll;
+   -ms-overflow-style: none;
+   scrollbar-width: none;
  }
  
  #contents::-webkit-scrollbar {
   display: none;
-}
-    
- .profile-icon { display: block; margin: 0px auto; }
+ }
+
+ /* 프로필 상단 */
+ #profile_top{
+ width : 550px;
+ height : 150px;
+ margin-right : 10px;
+ margin-left : 10px;
+ }
+ #profile_top img {
+ margin-right : 30px;
+ float: left;
+ }
+ #profile_top_text {
+ margin-top : 22px;
+ float: left;
+ }
+ #profile_top_text_nickName {
+ margin-bottom : 5px;
+ font-size : 24px;
+ font-weight : bold;
+ }
+ #profile_top_text_email {
+ margin-bottom : 30px;
+ font-size : 18px;
+ }
+ #profile_top_text_intro {
+ font-size : 18px;
+ }
+ 
+ /* 아이콘 덩어리*/
+ #profile_icon {
+ width : 550px;
+ margin-right : 10px;
+ margin-left : 10px;
+ height : 100.8px;
+ clear: both;
+ }
+ #profile_icon a {
+ margin-top : 48px;
+ margin-left : 80px;
+ float: left;
+ }
+ #profile_icon .profile_icon_text {
+ font-size :15px;
+ font-weight : normal;
+ display : block;
+ padding-top : 8px;
+ }
+ #profile_icon .profile_icon_number {
+ display: block;
+ }
+ 
+ .profile_icon { 
+   display: block; 
+   margin: 0px auto; 
+ }
  
  img.profile {
   border-radius: 100px;
  }
  
- #member{
- width : 599px;
- margin-left : 9px;
- margin-right : 9px;
- float: left;
+ 
+ /* 밑부분 */
+ 
+ #profile_bottom {
+ margin-top : 66px;
+ clear: both;
  }
- #member img {
- margin-right : 30px;
- float: left;
- }
- #member p {
- float: left;
+ #profile_bottom button{
+ float : right;
  }
  
- #profile-icon {
- clear: both;
- margin-bottom : 130px;
- }
- #profile-icon a {
- margin-top : 50px;
- margin-left : 91.8px;
- float: left;
- }
- 
- /* 나를 팔로한 멤버 목록*/
- #follower-target-container {
- clear: both;
-  margin-right : 9px;
-  margin-left : 9px;  
- }
- 
- .follower-target-row {
- clear: both;
-  margin-bottom : 10px;  
+ .profile_bottom_row{
+  clear: both;
+  margin-bottom : 25px;  
   height : 50px;
  }
  
- .follower-target-img {
-  margin-right : 10px;
+ 
+ .profile_bottom_object_image {
   float:left;
+  margin-right : 15px;
   border-radius: 100px;
  }
- .follower-target-text {
+ .profile_bottom_object_text {
  float: left;
  }
- .follower-target {
-  float:left;
+ .profile_bottom_object_text_nick {
+ font-weight: bold;
+ margin-bottom : 10px;
+ }
+ .profile_bottom_object_text_intro {
+ font-weight: normal;
+ font-size: 14px;
+ color: #626473;
  }
  
- .follower-target-button {
-  float:right;
- }
+ 
 </style>
 
 </head>
 <body>
 
   <div id="contents">
-    <div id="member">
+    <div id="profile_top">
       <input type='hidden' name='no' value='${member.no}'>
-      <img class="profile" src='../../upload/${member.photo}_150x150.jpg'><br>
-      <p>${member.nickName}<br>
-         ${member.email}<br><br>
-         ${member.intro}</p>
-      <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
-      <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
-      <a href="../report/form?reportedNo=${member.no}">신고</a> 
+      <img class="profile" src='../../upload/${member.photo}_150x150.jpg'>
+        <div id="profile_top_text">
+           <div id="profile_top_text_nickName">${member.nickName}</div>
+           <div id="profile_top_text_email">${member.email}</div>
+           <div id="profile_top_text_intro">${member.intro}</div>
+        </div>
+        
+        <form method="get">
+          <c:choose>
+           <c:when test="${member.no==sessionScope.loginUser.no}">
+           </c:when>
+           <c:when test="${following==true}">
+             <button type="submit" formaction="../follow/deleteUser?followedNo=${member.no}" class="btn btn-twitter">팔로우
+             </button>
+           </c:when>
+           <c:when test="${following==false}">
+             <button type="submit" formaction="../follow/addUser?followedNo=${member.no}" class="btn btn-archiview">팔로우
+             </button>
+           </c:when>
+          </c:choose>
+        </form>
+        
+      <%-- <a href="../report/form?reportedNo=${member.no}">신고</a>  --%>
     </div>
     
-    <div id="profile-icon">
+    <div id="profile_icon">
       <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review-border.png" height=30px class="center" alt="리뷰">
-          리뷰
-          <%-- <c:out value="${member.numOfReviews}" ></c:out></span> --%>
+        <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review-border.png" height=30px class="center" alt="리뷰">
+          <span class="profile_icon_text">리뷰</span>
+          <%-- <span class="profile-icon-number"><span></span><c:out value="${member.numOfReviews}" ></c:out></span></span> --%>
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/follow/followerList?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" height=30px class="center" alt="팔로워">
-          팔로워 
+        <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" height=30px class="center" alt="팔로워">
+          <span class="profile_icon_text">팔로워</span> 
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/follow/followingList?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
-          팔로잉 
+        <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
+          <span class="profile_icon_text">팔로잉</span> 
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/member/savedReviews?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved-border.png" height=30px class="center" alt="저장">
-          저장 
+        <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved-border.png" height=30px class="center" alt="저장">
+          <span class="profile_icon_text">저장</span> 
       </a>
     </div>
        
-    <div id="follower-target-container">
+    <div id="profile_bottom">
        <c:forEach items="${targetMemberlist}" var="m"> 
-          <div class="follower-target-row">
-              <a class="follower-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${m.no}">
-                <input type='hidden' name='no' value='${m.no}'>
-                    <img class="follower-target-img" src='../../upload/${m.photo}_35x35.jpg'>
-                    <span class="follower-target-text">${m.nickName}<br>
-                       ${m.intro}
-                       </span>
+          <div class="profile_bottom_row">
+	          <div class="profile_bottom_object_image">
+              <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${m.no}">
+                <img class = "profile" src='../../upload/${m.photo}_35x35.jpg'>
               </a>
-              <a class="follower-target-button" href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>
-              <a class="follower-target-button" href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
+            </div>
+	          <div class="profile_bottom_object_text">
+		          <div class="profile_bottom_object_text_nick">
+              <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${m.no}">
+                ${m.nickName}
+              </a>
+	            </div>
+		          <div class="profile_bottom_object_text_intro">
+		            ${m.intro}
+	            </div>
+            </div>
+            
+			      <form method="get">
+		          <c:choose>
+		           <c:when test="${m.no==sessionScope.loginUser.no}">
+		           </c:when>
+		           <c:when test="${m.followingState==true}">
+		             <button type="submit" formaction="../follow/deleteUser?followedNo=${m.no}" class="btn btn-twitter">팔로우
+		             </button>
+		           </c:when>
+		           <c:when test="${m.followingState==false}">
+		             <button type="submit" formaction="../follow/addUser?followedNo=${m.no}" class="btn btn-archiview">팔로우
+		             </button>
+		           </c:when>
+		          </c:choose>
+		        </form>
+		        
           </div>
        </c:forEach>
-  
     </div>
    </div>
-<script src="<%=getServletContext().getContextPath()%>/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

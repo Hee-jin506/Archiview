@@ -226,7 +226,7 @@
     (select target, lano, count(*) lk_length, rv.mno from acv_like 
     inner join acv_rv rv on target=rvno 
     where lano=1 
-    group by target, lano)lk
+    group by rv.mno)lk
     on lk.mno=mb.mno; 
  </select>
 </mapper>

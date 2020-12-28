@@ -3,12 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>후기 등록 : 영화 검색 결과</title>
-</head>
-<body>
+<div class='writeReview'>
 	<h1>리뷰를 작성할 영화를 찾아볼까요?</h1>
 	<%
 	  String keyword = request.getParameter("keyword");
@@ -35,5 +30,4 @@
 	  }
 	}
 	%>
-</body>
-</html>
+</div>
