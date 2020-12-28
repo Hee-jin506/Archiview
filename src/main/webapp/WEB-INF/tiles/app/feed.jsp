@@ -72,7 +72,7 @@
 			<%
         if (review.getIsLiking() != 0) {
           System.out.println("좋아요 누른 거" + review.getIsLiking());
-          System.out.println("좋아요 숫자" + review.getLiking());
+          System.out.println("유)리뷰 번호" + review.getNo());
       %>
 			<div class='like'>
 				<a
@@ -84,7 +84,7 @@
 			</div>
 			<%} else {
 	           System.out.println("좋아요 안 누른 거" + review.getIsLiking());
-	           System.out.println("좋아요 숫자" + review.getLiking());
+	           System.out.println("무)리뷰 번호" + review.getNo());
 		  %>
 		  <div class='like'>
 		    <a
