@@ -138,7 +138,7 @@
       on f.target=rv.mno
       left outer join 
         (select lno, target from acv_like where mno=#{userNo} and lano=1)l
-      on l.target=rv.mno
+      on l.target=rv.rvno
       left outer join
         (select target, lano, count(*) lk_length from acv_like where lano=1 group by lano, target)lk
       on lk.target=rv.rvno

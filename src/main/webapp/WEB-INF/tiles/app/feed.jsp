@@ -72,7 +72,7 @@
 			<%
         if (review.getIsLiking() != 0) {
           System.out.println("좋아요 누른 거" + review.getIsLiking());
-          System.out.println("좋아요 숫자" + review.getLiking());
+          System.out.println("유)리뷰 번호" + review.getNo());
       %>
 			<div class='like'>
 				<a
@@ -84,7 +84,7 @@
 			</div>
 			<%} else {
 	           System.out.println("좋아요 안 누른 거" + review.getIsLiking());
-	           System.out.println("좋아요 숫자" + review.getLiking());
+	           System.out.println("무)리뷰 번호" + review.getNo());
 		  %>
 		  <div class='like'>
 		    <a
@@ -94,6 +94,27 @@
 		      alt='좋아요'>
 		    </a> <span class='pop'><%=review.getLiking()%>개</span>
 		  </div>
+		  <script>
+		  "use strict"
+
+		  var el = document.querySelectorAll(".like a img")
+		  
+		  for (var e of el) {
+			  e.addEventListener("mouseover", function(e) {
+			        console.log(this);
+			        // 이벤트가 발생한 객체의 속성 값 알아내기
+			        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
+			      });
+		  }
+		  
+		  for (var e of el) {
+			  e.addEventListener("mouseout", function(e) {
+	              console.log(this);
+	              // 이벤트가 발생한 객체의 속성 값 알아내기
+	              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");  // undefined
+	            });
+	      }
+		  </script>
 		  <%
 		  }%>
 		</div>
