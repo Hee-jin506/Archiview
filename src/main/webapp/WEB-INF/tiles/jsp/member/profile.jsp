@@ -38,12 +38,10 @@ a { text-decoration: none; }
 
  /* 프로필 상단 */
  #member{
- box-sizing: border-box;
- width : 570px;
+ width : 550px;
  height : 150px;
- margin-left : 10px;
  margin-right : 10px;
- xfloat: left;
+ margin-left : 10px;
  }
  #member img {
  margin-right : 30px;
@@ -66,6 +64,29 @@ a { text-decoration: none; }
  font-size : 18px;
  }
  
+ /* 아이콘 덩어리*/
+ #profile-icon {
+ width : 550px;
+ margin-right : 10px;
+ margin-left : 10px;
+ height : 100.8px;
+ clear: both;
+ }
+ #profile-icon a {
+ margin-top : 48px;
+ margin-left : 80px;
+ float: left;
+ }
+ #profile-icon .profile-icon-text {
+ font-size :15px;
+ font-weight : normal;
+ display : block;
+ padding-top : 8px;
+ }
+ #profile-icon .profile-icon-number {
+ display: block;
+ }
+ 
  .profile-icon { 
 	 display: block; 
 	 margin: 0px auto; 
@@ -77,24 +98,9 @@ a { text-decoration: none; }
  
  
  
- #profile-icon {
- clear: both;
- margin-bottom : 130px;
- }
- #profile-icon a {
- margin-top : 50px;
- margin-left : 91.8px;
- float: left;
- }
- #profile-icon .profile-icon-text {
- display : block;
- padding-top : 3px;
- }
- #profile-icon .profile-icon-number {
- display: block;
- }
+ 
  #reviews {
- margin-top : 50px;
+ margin-top : 48px;
  clear: both;
  }
  
@@ -103,6 +109,8 @@ a { text-decoration: none; }
  margin-top : 18px;
  margin-right : 10px;
  margin-left : 10px;
+ width : 265px;
+ height : 160px;
  }
 </style>
 
@@ -118,17 +126,23 @@ a { text-decoration: none; }
 	         <div id="member-text-email">${member.email}</div>
 	         <div id="member-text-intro">${member.intro}</div>
 	      </div>
-	      <c:choose>
-	       <c:when test="${member.no==sessionScope.loginUser.no}">
-	         <button class="btn btn-archiview">팔로우</button>
-	       </c:when>
-	       <c:when test=""></c:when>
-	       <c:when test=""></c:when>
-	      </c:choose>
-	      <button class="btn btn-twitter">팔로우</button>
-      <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
-      <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
-      <a href="../report/form?reportedNo=${member.no}">신고</a> 
+	      
+	      <form method="get">
+		      <c:choose>
+		       <c:when test="${member.no==sessionScope.loginUser.no}">
+		       </c:when>
+		       <c:when test="${following==true}">
+			       <button type="submit" formaction="../follow/deleteUser?followedNo=${member.no}" class="btn btn-twitter">팔로우
+			       </button>
+		       </c:when>
+		       <c:when test="${following==false}">
+		         <button type="submit" formaction="../follow/addUser?followedNo=${member.no}" class="btn btn-archiview">팔로우
+		         </button>
+		       </c:when>
+		      </c:choose>
+	      </form>
+	      
+      <%-- <a href="../report/form?reportedNo=${member.no}">신고</a>  --%>
     </div>
 		
 		<div id="profile-icon">
@@ -156,10 +170,10 @@ a { text-decoration: none; }
 				<input type='hidden' name='no' value='${rv.text}'>
 				  <c:choose>
 					  <c:when test="${empty rv.stcUrl}">
-					    <img width="289.5x" height="160px" src="<%=getServletContext().getContextPath()%>/main_resource/null.png">
+					    <img  src="<%=getServletContext().getContextPath()%>/main_resource/null.png">
 					  </c:when>
 					  <c:otherwise>
-					   <img width="289.5px" height="160px" src='${rv.stcUrl}'><br>
+					   <img src='${rv.stcUrl}'><br>
 					  </c:otherwise>
 				  </c:choose>
 				</c:forEach>

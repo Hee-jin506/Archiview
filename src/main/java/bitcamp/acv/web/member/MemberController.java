@@ -1,5 +1,6 @@
 package bitcamp.acv.web.member;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -104,14 +105,27 @@ public class MemberController {
     model.addAttribute("topTags", tagService.listByPop3());
 
     // 바디
+    
     Member member = memberService.get(no);
-    if (member == null) {
-      throw new Exception("해당 회원이 없습니다.");
+    List<Follow> followings = followService.list2(loginUser.getNo());
+    List<Integer> followingNoList = new ArrayList<>();
+    for (Follow f : followings) {
+      followingNoList.add(f.getTargetMember().getNo());
     }
+    // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
+    boolean following = false;
+    if (followingNoList.contains(member.getNo())) {
+      following = true;
+    } 
+    
+    for (int i : followingNoList) {
+      System.out.println(i);
+    }
+    model.addAttribute("following", following);
     model.addAttribute("member", member);
   }
 
-  // 프로필 화면(프로필 + 본인이 저장한 리뷰들이 나옴)
+  // 프로필 화면(프로필 + 본인이 저장한! 리뷰들이 나옴)
   @RequestMapping("savedReviews")
   public void savedReviews(Model model, int no) throws Exception {
 
