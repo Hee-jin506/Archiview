@@ -31,8 +31,8 @@
   border: 0;
   height: 1px;
   background-color: #626473;
-  margin-left: -20px;
-  margin-right: -20px;
+  margin-left: -10px;
+  margin-right: -10px;
  }
 
  #lists {
@@ -46,3 +46,7 @@
  img.list-icon {
  vertical-align:middle;
  }
+ 
+ h.time {
+    font-size: x-small;
+}

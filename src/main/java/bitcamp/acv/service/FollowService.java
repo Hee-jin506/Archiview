@@ -1,7 +1,6 @@
 package bitcamp.acv.service;
 
 import java.util.List;
-import java.util.Map;
 import bitcamp.acv.domain.Follow;
 
 public interface FollowService {
