@@ -1,7 +1,6 @@
 <%@page import="java.util.Map"%>
 <%@page import="bitcamp.acv.domain.Tag"%>
 <%@page import="bitcamp.acv.domain.Member"%>
-<%@page import="bitcamp.acv.domain.Like"%>
 <%@page import="java.util.List"%>
 <%@page import="bitcamp.acv.domain.Review"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -71,22 +70,23 @@
 			<a class='movie'><%=review.getMovieTitle()%></a>
 			<p class='rdt'><%=(review.getRdtFromNow())%></p>
 			<%
-
         if (review.getIsLiking() != 0) {
+          System.out.println("좋아요 누른 거" + review.getIsLiking());
       %>
 			<div class='like'>
 				<a
-					href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
+					href='<%=getServletContext().getContextPath()%>/app/like/dislikeReview?likedNo=<%=review.getNo()%>'>
 					<img
 					src='<%=getServletContext().getContextPath()%>/main_resource/like2.png'
 					alt='좋아요'>
 				</a> <span class='pop'><%=review.getLiking()%>개</span>
 			</div>
 			<%} else {
+	           System.out.println("좋아요 안 누른 거" + review.getIsLiking());
 		  %>
 		  <div class='like'>
 		    <a
-		      href='<%=getServletContext().getContextPath()%>/app/like/dislikeReview?likedNo=<%=review.getNo()%>'>
+		      href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
 		      <img
 		      src='<%=getServletContext().getContextPath()%>/main_resource/like.png'
 		      alt='좋아요'>

@@ -125,10 +125,11 @@ MariaDB [studydb]> select * from acv_lk_able;
     where mno=#{likingMember.no} and lano=1 and target=#{likedNo}
   </delete>
   
-  <update id="deleteComment" parameterType="int">
-    update from acv_like
+  <delete id="deleteComment" parameterType="int">
+    delete from
+     acv_like
     where mno=#{likingMember.no} and lano=2 and target=#{likedNo}
-  </update>
+  </delete>
   
   
   <!--  

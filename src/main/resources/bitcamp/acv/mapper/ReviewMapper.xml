@@ -124,6 +124,7 @@
       t.title,
       t.stat,
       f.fno,
+      l.lno,
       lk_length
     from 
       (select * from acv_rv order by rdt desc limit #{row}, 5)rv
