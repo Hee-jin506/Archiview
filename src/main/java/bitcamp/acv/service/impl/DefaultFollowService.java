@@ -4,22 +4,26 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import bitcamp.acv.dao.FollowDao;
 import bitcamp.acv.dao.MemberDao;
+import bitcamp.acv.dao.ReviewDao;
 import bitcamp.acv.dao.TagDao;
 import bitcamp.acv.domain.Follow;
 import bitcamp.acv.service.FollowService;
 @Service
 public class DefaultFollowService implements FollowService {
 
+  ReviewDao reviewDao;
   FollowDao followDao;
   MemberDao memberDao;
   TagDao tagDao;
 
   public DefaultFollowService(FollowDao followDao,
       MemberDao memberDao,
-      TagDao tagDao) {
+      TagDao tagDao,
+      ReviewDao reviewDao) {
     this.followDao = followDao;
     this.memberDao = memberDao;
     this.tagDao = tagDao;
+    this.reviewDao = reviewDao;
   }
 
   @Override
@@ -80,6 +84,7 @@ public class DefaultFollowService implements FollowService {
 
   @Override
   public List<Follow> getFollowingFeed(int no) throws Exception {
+
     return followDao.findByFollowingFeed(no);
   }
 }

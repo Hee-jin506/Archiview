@@ -1,6 +1,7 @@
 package bitcamp.acv.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Follow {
 
@@ -18,6 +19,8 @@ public class Follow {
   private String nickName;
   private Member targetMember; // 팔로우한 회원
   private Tag targetTag; // 팔로우한 태그
+
+  private List<Integer> reviews;
 
   public int getFollowedType() {
     return followedType;
@@ -79,5 +82,11 @@ public class Follow {
   }
   public void setFollowedDate(Timestamp followedDate) {
     this.followedDate = followedDate;
+  }
+  public List<Integer> getReviews() {
+    return reviews;
+  }
+  public void setReviews(List<Integer> reviews) {
+    this.reviews = reviews;
   }
 }

@@ -17,7 +17,8 @@
 <h1>[신고 등록]</h1>
 <form action='reportUser' method='post'>
 
-신고 대상: <input type='text' name='reportedNo' value='${member.no}'><br>
+신고 대상:
+<input type='text' name='reportedNo' value='${report.reportedNo}' readonly><br>
 신고 유형:
 <select name='reportedType'>
   <option value='1'>회원</option>

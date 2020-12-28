@@ -37,7 +37,7 @@
 	      <img src='<%=getServletContext().getContextPath()%>/main_resource/home-outline.png' width="20" alt='메인화면'></a> <a
 	        href='<%=getServletContext().getContextPath()%>/app/write/movieSearch'>
 	        <img src='<%=getServletContext().getContextPath()%>/main_resource/plus-outline.png' width="20"  alt='글쓰기'></a> <a
-	        href='<%=getServletContext().getContextPath()%>/app/main/following'>
+	        href='<%=getServletContext().getContextPath()%>/app/main/followingFeed'>
 	        <img src='<%=getServletContext().getContextPath()%>/main_resource/heart-outline.png' width="20"  alt='팔로우한 회원의 피드'></a> <a
 	        href='<%=getServletContext().getContextPath()%>/app/main/newsfeed'>
 	        <img src='<%=getServletContext().getContextPath()%>/main_resource/bell-outline.png' width="20"  alt='알람'></a>

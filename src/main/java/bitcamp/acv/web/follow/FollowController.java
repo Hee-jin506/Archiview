@@ -184,20 +184,4 @@ public class FollowController {
       return mv;
     }
   }
-
-  @GetMapping("followingFeed")
-  public void mainFeed(
-    @ModelAttribute("loginUser") Member loginUser,
-    Model model,
-    int no) throws Exception {
-
-    // 사이드바
-    model.addAttribute("topMembers", memberService.listByPop3());
-    model.addAttribute("topMovies", movieService.listByPop3());
-    model.addAttribute("topTags", tagService.listByPop3());
-
-    List<Follow> followList = followService.getFollowingFeed(no);
-
-    model.addAttribute("followList", followList);
-  }
 }

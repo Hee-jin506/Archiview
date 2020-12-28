@@ -98,7 +98,8 @@ a { text-decoration: none; }
          ${member.email}<br><br>
          ${member.intro}</p>
       <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
-      <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
+      <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>   
+       
       <a href="../report/form?reportedNo=${member.no}">신고</a> 
     </div>
 		

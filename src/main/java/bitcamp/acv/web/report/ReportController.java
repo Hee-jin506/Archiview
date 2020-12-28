@@ -2,8 +2,6 @@ package bitcamp.acv.web.report;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,23 +38,23 @@ public class ReportController {
 
 
   @GetMapping("form")
-  public void form(Model model) throws Exception {
+  public void form(Model model, Report report, Member member) throws Exception {
 
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
+    report.setReportedNo(member.getNo());
   }
 
   // 신고
   @RequestMapping("reportUser")
   public String reportUser(Report report,
-      int reportedNo,
+      Member member,
       int reportedType,
+      int reportedNo,
       String why,
       @ModelAttribute("loginUser") Member loginUser,
-      HttpSession session,
-      HttpServletRequest request,
       Model model) throws Exception {
 
     // 사이드바
@@ -64,10 +62,12 @@ public class ReportController {
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
 
+    report.getReportedNo();
     report.setReportingMember(loginUser);
     report.setReportedType(reportedType);
     report.setWhy(why);
-    reportService.reportUser(report);
+
+   reportService.reportUser(report);
     return "redirect:../main";
   }
 
