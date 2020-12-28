@@ -26,12 +26,6 @@
  height: 45px;
  }
  
- #title title-text{
- color: white;
- font: inherit;
- vertical-align: middle;
- }
- 
  #title hr {
   color: white;
   border: 0;

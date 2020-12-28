@@ -69,18 +69,59 @@
 		<div class='cardFooter'>
 			<a class='movie'><%=review.getMovieTitle()%></a>
 			<p class='rdt'><%=(review.getRdtFromNow())%></p>
+			<%
+        if (review.getIsLiking() != 0) {
+          System.out.println("좋아요 누른 거" + review.getIsLiking());
+          System.out.println("유)리뷰 번호" + review.getNo());
+      %>
 			<div class='like'>
 				<a
-					href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
+					href='<%=getServletContext().getContextPath()%>/app/like/dislikeReview?likedNo=<%=review.getNo()%>'>
 					<img
-					src='<%=getServletContext().getContextPath()%>/main_resource/like.png'
+					src='<%=getServletContext().getContextPath()%>/main_resource/like2.png'
 					alt='좋아요'>
 				</a> <span class='pop'><%=review.getLiking()%>개</span>
 			</div>
+			<%} else {
+	           System.out.println("좋아요 안 누른 거" + review.getIsLiking());
+	           System.out.println("무)리뷰 번호" + review.getNo());
+		  %>
+		  <div class='like'>
+		    <a
+		      href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
+		      <img
+		      src='<%=getServletContext().getContextPath()%>/main_resource/like.png'
+		      alt='좋아요'>
+		    </a> <span class='pop'><%=review.getLiking()%>개</span>
+		  </div>
+		  <script>
+		  "use strict"
+
+		  var el = document.querySelectorAll(".like a img")
+		  
+		  for (var e of el) {
+			  e.addEventListener("mouseover", function(e) {
+			        console.log(this);
+			        // 이벤트가 발생한 객체의 속성 값 알아내기
+			        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
+			      });
+		  }
+		  
+		  for (var e of el) {
+			  e.addEventListener("mouseout", function(e) {
+	              console.log(this);
+	              // 이벤트가 발생한 객체의 속성 값 알아내기
+	              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");  // undefined
+	            });
+	      }
+		  </script>
+		  <%
+		  }%>
 		</div>
 	<div class='reviewDetail'>
 	<button></button>
 	</div>
 	</div>
-	<%}%>
+	<%
+	}%>
 </div>

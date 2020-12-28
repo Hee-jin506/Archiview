@@ -20,7 +20,7 @@ public class DefaultLikeService implements LikeService {
   public List<Like> list() throws Exception {
     return likeDao.findAll();
   }
-  
+
   @Override
   public List<Like> list2(int no) throws Exception {
     return likeDao.findAll2(no);
@@ -52,14 +52,5 @@ public class DefaultLikeService implements LikeService {
     return likeDao.deleteComment(like);
   }
 
-  @Override
-  public int active(int no) throws Exception {
-    return likeDao.active(no);
-  }
-
-  @Override
-  public int inactive(int no) throws Exception {
-    return likeDao.inactive(no);
-  }
 
 }
