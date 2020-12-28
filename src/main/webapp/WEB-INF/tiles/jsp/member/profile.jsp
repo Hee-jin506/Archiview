@@ -128,10 +128,9 @@ a { text-decoration: none; }
 	      <button class="btn btn-twitter">팔로우</button>
       <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
       <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>   
-       
-      <a href="../report/form?reportedNo=${member.no}">신고</a> 
-    </div>
-		
+    
+      <a href="../report/form?reportedNo=${member.no}">신고</a></div>
+    
 		<div id="profile-icon">
 		  <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
 		    <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" height=30px class="center" alt="리뷰">
@@ -167,4 +166,7 @@ a { text-decoration: none; }
 			</div>
     </div>
 </body>
+
+  <!-- Call form.jsp Script -->
+
 </html>
