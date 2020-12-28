@@ -65,6 +65,13 @@ a { text-decoration: none; }
  font-size : 18px;
  }
  
+ #profile_top button {
+ margin-top : 14px;
+ margin-right : 10px;
+ float : right;
+ 
+ }
+ 
  /* 아이콘 덩어리*/
  #profile_icon {
  width : 550px;

@@ -83,8 +83,11 @@ public class FollowController {
 
   // 특정멤버의 팔로잉 리스트
   @GetMapping("followingList")
-  public void followingList(@ModelAttribute("loginUser") Member loginUser, int no,
+  public void followingList(HttpSession session, int no,
       Model model) throws Exception {
+    // 탑바
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
 
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
@@ -111,14 +114,32 @@ public class FollowController {
 
     model.addAttribute("targetMemberlist", targetMemberlist);
     model.addAttribute("targetTaglist", tagService.getThumbnailStillCut(targetTaglist));
+    
+ // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
+    List<Follow> followings = followService.list2(loginUser.getNo());
+    List<Integer> followingNoList = new ArrayList<>();
+    for (Follow f : followings) {
+      if (f.getFollowedType() == 1) {
+      followingNoList.add(f.getTargetMember().getNo());
+      }
+    }
+    boolean following = false;
+    if (followingNoList.contains(member.getNo())) {
+      following = true;
+    } 
+    model.addAttribute("following", following);
   }
 
   // 특정멤버의 팔로워 리스트
   @GetMapping("followerList")
-  public void followerList(@ModelAttribute("loginUser") Member loginUser,
+  public void followerList(HttpSession session,
       int no,
       Model model) throws Exception {
 
+ // 탑바
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
+    
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
@@ -152,10 +173,20 @@ public class FollowController {
       }
     }
     model.addAttribute("targetMemberlist", targetMemberlist);
-    for (Member m : targetMemberlist) {
-      System.out.println(m.getNo());
-      System.out.println(m.isFollowingState());
+    
+ // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
+    List<Follow> followings2 = followService.list2(loginUser.getNo());
+    List<Integer> followingNoList2 = new ArrayList<>();
+    for (Follow f : followings2) {
+      if (f.getFollowedType() == 1) {
+      followingNoList2.add(f.getTargetMember().getNo());
+      }
     }
+    boolean following = false;
+    if (followingNoList2.contains(member.getNo())) {
+      following = true;
+    } 
+    model.addAttribute("following", following);
   }
 
   // 리스트

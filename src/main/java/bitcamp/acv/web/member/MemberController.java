@@ -120,7 +120,6 @@ public class MemberController {
     if (followingNoList.contains(member.getNo())) {
       following = true;
     } 
-    
     model.addAttribute("following", following);
   }
 
