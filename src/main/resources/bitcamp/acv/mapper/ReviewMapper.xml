@@ -25,6 +25,7 @@
     <result column="photo"      property="writerPhoto"/>
     <result column="nick"       property="writerNick"/>
     <result column="fno"        property="isFollowing"/>
+    <result column="lno"        property="isLiking"/>
     <result column="lk_length"  property="liking"/>
     
     <collection property="tags" ofType="tag">
@@ -134,6 +135,9 @@
       left outer join 
         (select fno, target from acv_flw where flwing_mbr=#{userNo} and fano=1)f
       on f.target=rv.mno
+      left outer join 
+        (select lno, target from acv_like where mno=#{userNo} and lano=1)l
+      on l.target=rv.mno
       left outer join
         (select target, lano, count(*) lk_length from acv_like where lano=1 group by lano, target)lk
       on lk.target=rv.rvno

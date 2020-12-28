@@ -31,15 +31,16 @@ public class likeController {
     like.setLikingMember(loginUser);
     like.setLikedNo(like.getLikedNo());
 
-
     likeService.addReview(like);
     return "redirect:../main";
   }
 
   @GetMapping("dislikeReview")
   public String dislikeReview(Like like,
-      @ModelAttribute("loginUser") Member loginUser) throws Exception {
+      @ModelAttribute("loginUser") Member loginUser
+      ) throws Exception {
     like.setLikingMember(loginUser);
+    like.setLikedNo(like.getLikedNo());
 
     likeService.deleteReview(like);
     return "redirect:../main";
@@ -47,42 +48,25 @@ public class likeController {
 
   // 코멘트 좋아요
 
-  @GetMapping("addComment")
+  @GetMapping("likeComment")
   public String addComment(Like like,
       @ModelAttribute("loginUser") Member loginUser
       ) throws Exception {
     like.setLikingMember(loginUser);
+    like.setLikedNo(like.getLikedNo());
 
     likeService.addComment(like);
     return "redirect:../main";
   }
 
-  @GetMapping("deleteComment")
+  @GetMapping("dislikeComment")
   public String deleteComment(Like like,
       @ModelAttribute("loginUser") Member loginUser) throws Exception {
     like.setLikingMember(loginUser);
+    like.setLikedNo(like.getLikedNo());
 
     likeService.deleteComment(like);
     return "redirect:../main";
   }
-
-  //  @PostMapping("active")
-  //  public String active(int no) throws Exception {
-  //    if (likeService.active(no) == 0) {
-  //      throw new Exception("해당 글이 존재하지 않습니다.");
-  //    }
-  //    return "redirect:newsfeed";
-  //  }
-  //
-  //  @PostMapping("inactive")
-  //  public String inactive(int no) throws Exception {
-  //    if (likeService.inactive(no) == 0) {
-  //      throw new Exception("해당 글이 존재하지 않습니다.");
-  //    } else {
-  //      return "redirect:newsfeed";
-  //    }
-  //  }
-
-
 
 }

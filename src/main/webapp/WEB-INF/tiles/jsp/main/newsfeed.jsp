@@ -22,6 +22,7 @@ List<NewsFeed> newsFeeds = (List<NewsFeed>) request.getAttribute("newsFeedList")
 <%
 
 for (NewsFeed newsFeed : newsFeeds) {
+  if (!newsFeed.getNick().equalsIgnoreCase(loginUser.getNickName())) {
   %>
   <div id="list">
   <tr>
@@ -52,7 +53,8 @@ for (NewsFeed newsFeed : newsFeeds) {
       <%}%>
     </tr>
     </div>
-    <%}%>
+    <%}
+    }%>
   </div>
   </div>
 </body>

@@ -13,6 +13,7 @@
   private int likedType; // 좋아요된 대상 유형 lano
   private int likedNo; // 좋아요된 대상 target
   private Date likedDate; // 좋아요 누른 일시 ldt
+  private int stat; // 좋아요 상태 stat = 1 활성화 stat = 2 비활성
   
   
   MariaDB [studydb]> desc acv_like;
@@ -21,8 +22,7 @@
 | mno    | int(11)  | NO   | MUL | NULL                |                |
 | lano   | int(11)  | NO   | MUL | NULL                |                |
 | target | int(11)  | NO   |     | NULL                |                |
-| ldt    | datetime | NO   |     | current_timestamp() |                |
-
+| ldt    | datetime | NO   |     | current_timestamp() |                |   
 
 MariaDB [studydb]> select * from acv_lk_able;
 
@@ -38,6 +38,7 @@ MariaDB [studydb]> select * from acv_lk_able;
     <result column="target"    property="likedNo"/>
     <result column="ldt"    property="likedDate"/>
     <result column="name"    property="likedTypeName"/>
+    <result column="stat"    property="stat"/>
     <result column="rvmno"  property="rvmno"/>
     <result column="cmno"  property="cmno"/>
    
@@ -118,10 +119,17 @@ MariaDB [studydb]> select * from acv_lk_able;
       values(#{likingMember.no}, 2, #{likedNo})
   </insert>
   
-  <update id="deleteReview" parameterType="int">
-    delete from acv_cmt
+  <delete id="deleteReview" parameterType="int">
+    delete from
+     acv_like
     where mno=#{likingMember.no} and lano=1 and target=#{likedNo}
+  </delete>
+  
+  <update id="deleteComment" parameterType="int">
+    update from acv_like
+    where mno=#{likingMember.no} and lano=2 and target=#{likedNo}
   </update>
+  
   
   <!--  
   
