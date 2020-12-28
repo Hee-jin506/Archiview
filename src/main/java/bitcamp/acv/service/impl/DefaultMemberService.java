@@ -109,6 +109,10 @@ public class DefaultMemberService implements MemberService {
         }
       }
     }
+
+    for (int i = 0; i < members.size(); i++) {
+      System.out.println(members.get(i).getName());
+    }
     Member[] topMembers = new Member[3];
     for (int i = 0; i < 3; i++) {
       topMembers[i] = members.get(i);

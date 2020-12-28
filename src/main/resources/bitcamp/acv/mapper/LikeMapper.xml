@@ -118,15 +118,16 @@ MariaDB [studydb]> select * from acv_lk_able;
       values(#{likingMember.no}, 2, #{likedNo})
   </insert>
   
-  <!--  
   <update id="deleteReview" parameterType="int">
-    delete acv_cmt
-    where mno=#{likingMember.no} and lano=2 and target=#{likedNo}
+    delete from acv_cmt
+    where mno=#{likingMember.no} and lano=1 and target=#{likedNo}
   </update>
   
+  <!--  
+  
   <update id="deleteComment" parameterType="int">
-   delete acv_cmt
-    where mno=#{likingMember.no} and lano=1 and target=#{likedNo}
+   delete from acv_cmt
+    where mno=#{likingMember.no} and lano=2 and target=#{likedNo}
   </update>
 
    <update id="active" parameterType="int">

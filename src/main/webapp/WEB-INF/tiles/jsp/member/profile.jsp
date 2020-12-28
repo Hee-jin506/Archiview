@@ -15,48 +15,67 @@ a { text-decoration: none; }
     
  }
  
- p {
-   font-size: 18px;
-   xfont-weight: bold;
-   margin:0px;
- }
- 
  #contents {
-   border-radius: 10px;
    background-color: #141517;
-   width: 699px;  /* 너비 */
-   padding: 40px;  /* 패딩 */
-   float: left;  /* 왼쪽으로 플로팅 */
+   border-radius: 10px;
+   
+   float: left;
+   
+   box-sizing: border-box;
+   width: 650px;  
+   padding: 40px; 
+   
    height: 700px;
-    overflow: hidden;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+   overflow: hidden;
+   overflow-y: scroll;
+   -ms-overflow-style: none;
+   scrollbar-width: none;
  }
  
  #contents::-webkit-scrollbar {
   display: none;
-}
-    
- .profile-icon { display: block; margin: 0px auto; }
- 
- img.profile {
-  border-radius: 100px;
  }
- 
+
+ /* 프로필 상단 */
  #member{
- width : 599px;
- margin-left : 9px;
- margin-right : 9px;
- float: left;
+ box-sizing: border-box;
+ width : 570px;
+ height : 150px;
+ margin-left : 10px;
+ margin-right : 10px;
+ xfloat: left;
  }
  #member img {
  margin-right : 30px;
  float: left;
  }
- #member p {
+ #member-text {
+ margin-top : 22px;
  float: left;
  }
+ #member-text-nickName {
+ margin-bottom : 5px;
+ font-size : 24px;
+ font-weight : bold;
+ }
+ #member-text-email {
+ margin-bottom : 30px;
+ font-size : 18px;
+ }
+ #member-text-intro {
+ font-size : 18px;
+ }
+ 
+ .profile-icon { 
+	 display: block; 
+	 margin: 0px auto; 
+ }
+ 
+ img.profile {
+  border-radius: 100px;
+ }
+ 
+ 
  
  #profile-icon {
  clear: both;
@@ -82,8 +101,8 @@ a { text-decoration: none; }
  #reviews img{
  float:left;
  margin-top : 18px;
- margin-right : 9px;
- margin-left : 9px;
+ margin-right : 10px;
+ margin-left : 10px;
  }
 </style>
 
@@ -93,10 +112,20 @@ a { text-decoration: none; }
   <div id="contents">
 		<div id="member">
       <input type='hidden' name='no' value='${member.no}'>
-      <img class="profile" src='../../upload/${member.photo}_150x150.jpg'><br>
-      <p>${member.nickName}<br>
-         ${member.email}<br><br>
-         ${member.intro}</p>
+      <img class="profile" src='../../upload/${member.photo}_150x150.jpg'>
+	      <div id="member-text">
+	         <div id="member-text-nickName">${member.nickName}</div>
+	         <div id="member-text-email">${member.email}</div>
+	         <div id="member-text-intro">${member.intro}</div>
+	      </div>
+	      <c:choose>
+	       <c:when test="${member.no==sessionScope.loginUser.no}">
+	         <button class="btn btn-archiview">팔로우</button>
+	       </c:when>
+	       <c:when test=""></c:when>
+	       <c:when test=""></c:when>
+	      </c:choose>
+	      <button class="btn btn-twitter">팔로우</button>
       <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
       <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>   
        

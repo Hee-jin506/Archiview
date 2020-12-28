@@ -124,7 +124,7 @@ height: 50px;
   </div>
   
   <div id='add'>
-    계정이 없으신가요? <a href="<%=getServletContext().getContextPath()%>/member/form.html">지금 가입하세요.</a>
+    계정이 없으신가요? <a href="<%=getServletContext().getContextPath()%>/app/auth/add">지금 가입하세요.</a>
   </div>
 </div>
 </body>
