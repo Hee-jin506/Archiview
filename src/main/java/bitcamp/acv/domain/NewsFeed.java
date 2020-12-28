@@ -9,6 +9,8 @@ public class NewsFeed {
   private int targetType;
   private Timestamp date;
   private int targetNo;
+  private int stat;
+
   //  member 1
   //  review 1 comment 2
   public String getNick() {
@@ -46,6 +48,12 @@ public class NewsFeed {
   }
   public void setTargetNo(int targetNo) {
     this.targetNo = targetNo;
+  }
+  public int getStat() {
+    return stat;
+  }
+  public void setStat(int stat) {
+    this.stat = stat;
   }
 
 }

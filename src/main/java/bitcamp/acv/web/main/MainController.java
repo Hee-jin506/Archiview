@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
 import bitcamp.acv.domain.Tag;
+import bitcamp.acv.service.LikeService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
@@ -25,6 +26,7 @@ public class MainController {
   @Autowired TagService tagService;
   @Autowired MovieService movieService;
   @Autowired ReviewService reviewService;
+  @Autowired LikeService likeService;
 
   @RequestMapping("")
   public void main(HttpSession session, Model model) throws Exception {
@@ -42,6 +44,7 @@ public class MainController {
     map.put("userNo", loginUser.getNo());
     map.put("row", 0);
     model.addAttribute("list", reviewService.getMainFeed(map));
+    model.addAttribute("like", likeService.list2(loginUser.getNo()));
   }
 
   @RequestMapping("search")
