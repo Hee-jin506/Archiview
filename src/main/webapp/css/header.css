@@ -134,3 +134,8 @@
 hr {
 	border: 1px solid #6B6B6B;
 }
+
+.ui-autocomplete { 
+overflow-y: scroll; 
+overflow-x: hidden;
+}
