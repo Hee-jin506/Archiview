@@ -17,6 +17,8 @@ public class Follow {
   private String nickName;
   private Member targetMember; // 팔로우한 회원
   private Tag targetTag; // 팔로우한 태그
+  
+  
 
   public int getFollowedType() {
     return followedType;

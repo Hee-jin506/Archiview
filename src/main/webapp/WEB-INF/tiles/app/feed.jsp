@@ -15,7 +15,7 @@
 			<a
 				href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
 				<img class='profile'
-				src=<%=getServletContext().getContextPath() + "/upload/" + review.getWriterPhoto() + "_35x35.jpg"%>>
+				src='<%=getServletContext().getContextPath() + "/upload/" + review.getWriterPhoto() + "_35x35.jpg"%>'>
 			</a> <a class='nickname'
 				href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
 				<%=review.getWriterNick()%></a>
@@ -40,7 +40,9 @@
 			  }
 			}
 			%>
+			<img class='more' src='<%=getServletContext().getContextPath()%>/main_resource/more.png'>
 		</div>
+		
 		<div class='stillcut'>
 			<%if (review.getStcUrl() != null) {%>
 			<img src=<%=review.getStcUrl()%>>
@@ -71,8 +73,6 @@
 			<p class='rdt'><%=(review.getRdtFromNow())%></p>
 			<%
         if (review.getIsLiking() != 0) {
-          System.out.println("좋아요 누른 거" + review.getIsLiking());
-          System.out.println("유)리뷰 번호" + review.getNo());
       %>
 			<div class='like'>
 				<a
@@ -83,8 +83,6 @@
 				</a> <span class='pop'><%=review.getLiking()%>개</span>
 			</div>
 			<%} else {
-	           System.out.println("좋아요 안 누른 거" + review.getIsLiking());
-	           System.out.println("무)리뷰 번호" + review.getNo());
 		  %>
 		  <div class='like'>
 		    <a
@@ -94,27 +92,6 @@
 		      alt='좋아요'>
 		    </a> <span class='pop'><%=review.getLiking()%>개</span>
 		  </div>
-		  <script>
-		  "use strict"
-
-		  var el = document.querySelectorAll(".like a img")
-		  
-		  for (var e of el) {
-			  e.addEventListener("mouseover", function(e) {
-			        console.log(this);
-			        // 이벤트가 발생한 객체의 속성 값 알아내기
-			        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
-			      });
-		  }
-		  
-		  for (var e of el) {
-			  e.addEventListener("mouseout", function(e) {
-	              console.log(this);
-	              // 이벤트가 발생한 객체의 속성 값 알아내기
-	              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");  // undefined
-	            });
-	      }
-		  </script>
 		  <%
 		  }%>
 		</div>
@@ -124,4 +101,38 @@
 	</div>
 	<%
 	}%>
+	
+	<script>
+	</script>
+	<script>
+      "use strict"
+
+      var el = document.querySelectorAll(".like a img")
+      
+      for (var e of el) {
+        e.addEventListener("mouseover", function(e) {
+              console.log(this);
+              // 이벤트가 발생한 객체의 속성 값 알아내기
+              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
+            });
+      }
+      
+      for (var e of el) {
+        e.addEventListener("mouseout", function(e) {
+                console.log(this);
+                // 이벤트가 발생한 객체의 속성 값 알아내기
+                this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");  // undefined
+              });
+        }
+      
+      var el = document.querySelectorAll(".card .cardHeader img.more")
+      
+      for (var e of el) {
+        e.addEventListener("click", function(e) {
+              console.log(this);
+              // 이벤트가 발생한 객체의 속성 값 알아내기
+              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
+            });
+      }
+      </script>
 </div>

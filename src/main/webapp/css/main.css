@@ -24,3 +24,8 @@ img.profile {
 	border-radius: 100px;
 }
 
+div#title-text {
+    font: inherit;
+    font-size: x-large;
+}
+

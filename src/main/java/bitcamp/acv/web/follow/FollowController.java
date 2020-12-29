@@ -1,7 +1,10 @@
 package bitcamp.acv.web.follow;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +16,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Member;
-import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
+import bitcamp.acv.service.ReviewService;
 import bitcamp.acv.service.TagService;
 
 
@@ -30,6 +33,7 @@ public class FollowController {
   @Autowired MovieService movieService;
   @Autowired FollowService followService;
   @Autowired TagService tagService;
+  @Autowired ReviewService reviewService;
 
   // 멤버 팔로우
   @GetMapping("addUser")
@@ -78,43 +82,64 @@ public class FollowController {
   }
 
   // 특정멤버의 팔로잉 리스트
- @GetMapping("followingList")
- public void followingList(@ModelAttribute("loginUser") Member loginUser, int no,
-     Model model) throws Exception {
+  @GetMapping("followingList")
+  public void followingList(HttpSession session, int no,
+      Model model) throws Exception {
+    // 탑바
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
 
-   // 사이드바
-   model.addAttribute("topMembers", memberService.listByPop3());
-   model.addAttribute("topMovies", movieService.listByPop3());
-   model.addAttribute("topTags", tagService.listByPop3());
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
 
-   // 바디(프로필..)
-   Member member = memberService.get(no);
-   model.addAttribute("member", member);
+    // 바디(프로필..)
+    Member member = memberService.get(no);
+    model.addAttribute("member", member);
 
-   // 바디(내가 팔로우한 리스트)
-   List<Follow> followList = followService.list2(no);
-   List<Member> targetMemberlist = new ArrayList<>();
-   List<Tag> targetTaglist = new ArrayList<>();
+    // 바디(내가 팔로우한 리스트)
+    List<Follow> followList = followService.list2(no);
+    List<Member> targetMemberlist = new ArrayList<>();
+    List<Tag> targetTaglist = new ArrayList<>();
 
 
-   for (Follow follow : followList) {
-     if(follow.getFollowedType() == 1) {
-       targetMemberlist.add(follow.getTargetMember());
-     } else {
-       targetTaglist.add(follow.getTargetTag());
-     }
-   }
+    for (Follow follow : followList) {
+      if(follow.getFollowedType() == 1) {
+        targetMemberlist.add(follow.getTargetMember());
+      } else {
+        targetTaglist.add(follow.getTargetTag());
+      }
+    }
 
-   model.addAttribute("targetMemberlist", targetMemberlist);
-   model.addAttribute("targetTaglist", tagService.getThumbnailStillCut(targetTaglist));
- }
+    model.addAttribute("targetMemberlist", targetMemberlist);
+    model.addAttribute("targetTaglist", tagService.getThumbnailStillCut(targetTaglist));
+    
+ // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
+    List<Follow> followings = followService.list2(loginUser.getNo());
+    List<Integer> followingNoList = new ArrayList<>();
+    for (Follow f : followings) {
+      if (f.getFollowedType() == 1) {
+      followingNoList.add(f.getTargetMember().getNo());
+      }
+    }
+    boolean following = false;
+    if (followingNoList.contains(member.getNo())) {
+      following = true;
+    } 
+    model.addAttribute("following", following);
+  }
 
   // 특정멤버의 팔로워 리스트
   @GetMapping("followerList")
-  public void followerList(@ModelAttribute("loginUser") Member loginUser,
+  public void followerList(HttpSession session,
       int no,
       Model model) throws Exception {
 
+ // 탑바
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
+    
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
@@ -124,32 +149,59 @@ public class FollowController {
     Member member = memberService.get(no);
     model.addAttribute("member", member);
 
-    // 바디(나를 팔로워하는 리스트)
+    // 나를 팔로워하는 리스트
     List<Follow> followList = followService.list3(no);
     List<Member> targetMemberlist = new ArrayList<>();
-
-    for (Follow follow : followList) {
-      if(follow.getFollowedType() == 1) {
-        targetMemberlist.add(follow.getTargetMember());
+    
+    // 나를 팔로잉하는지 여부 검사 : 팔로우버튼 색깔 바꾸기위해
+    List<Follow> followings = followService.list2(no);
+    List<Integer> followingNoList = new ArrayList<>();
+    for (Follow f : followings) {
+      if (f.getFollowedType() == 1) {
+        followingNoList.add(f.getTargetMember().getNo());
       }
     }
 
+    for (Follow follow : followList) {
+      // followedType : 1 = 멤버, 2 = 태그
+      if(follow.getFollowedType() == 1) {
+        if(followingNoList.contains(follow.getTargetMember().getNo())) {
+          // true면 버튼 색깔 회색
+          follow.getTargetMember().setFollowingState(true);
+        }
+        targetMemberlist.add(follow.getTargetMember());
+      }
+    }
     model.addAttribute("targetMemberlist", targetMemberlist);
+    
+ // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
+    List<Follow> followings2 = followService.list2(loginUser.getNo());
+    List<Integer> followingNoList2 = new ArrayList<>();
+    for (Follow f : followings2) {
+      if (f.getFollowedType() == 1) {
+      followingNoList2.add(f.getTargetMember().getNo());
+      }
+    }
+    boolean following = false;
+    if (followingNoList2.contains(member.getNo())) {
+      following = true;
+    } 
+    model.addAttribute("following", following);
   }
 
- // 리스트
- @GetMapping("list")
- public void list(@ModelAttribute("loginUser") Member loginUser,
-     Model model) throws Exception {
+  // 리스트
+  @GetMapping("list")
+  public void list(@ModelAttribute("loginUser") Member loginUser,
+      Model model) throws Exception {
 
-   List<Follow> list = followService.list();
+    List<Follow> list = followService.list();
 
-   // 사이드바
-   model.addAttribute("topMembers", memberService.listByPop3());
-   model.addAttribute("topMovies", movieService.listByPop3());
-   model.addAttribute("topTags", tagService.listByPop3());
-   model.addAttribute("list", list);
- }
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
+    model.addAttribute("list", list);
+  }
 
   // 전체 리스트 상세
   @GetMapping("detail")
@@ -185,26 +237,40 @@ public class FollowController {
   }
 
   @GetMapping("followingFeed")
-  public void mainFeed(
-    @ModelAttribute("loginUser") Member loginUser,
-    Model model) throws Exception {
+  public void mainFeed(HttpSession session,
+      @ModelAttribute("loginUser") Member loginUser,
+      Model model) throws Exception {
+
+    // 탑바
+    model.addAttribute("loginUser", loginUser);
 
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
 
-    List<Review> reviewList = new ArrayList<>();
-    List<Follow> list = followService.getFollowingFeed(loginUser.getNo());
-    List<Member> targetMemberlist = new ArrayList<>();
-
-    for (Follow follow : list) {
-      if (follow.getFollowedType() == 1) {
-        targetMemberlist.add(follow.getTargetMember());
-      }
-    }
-
-    model.addAttribute("targetMemberlist", targetMemberlist);
+    // 메인피드
+    Map<String, Object> map = new HashMap<>();
+    map.put("userNo", loginUser.getNo());
+    map.put("row", 0);
+    model.addAttribute("list", reviewService.getFollowingFeed(map));
+    //
+    //    // 사이드바
+    //    model.addAttribute("topMembers", memberService.listByPop3());
+    //    model.addAttribute("topMovies", movieService.listByPop3());
+    //    model.addAttribute("topTags", tagService.listByPop3());
+    //
+    //    List<Review> reviewList = new ArrayList<>();
+    //    List<Follow> list = followService.getFollowingFeed(loginUser.getNo());
+    //    List<Member> targetMemberlist = new ArrayList<>();
+    //
+    //    for (Follow follow : list) {
+    //      if (follow.getFollowedType() == 1) {
+    //        targetMemberlist.add(follow.getTargetMember());
+    //      }
+    //    }
+    //
+    //    model.addAttribute("targetMemberlist", targetMemberlist);
 
   }
 }
