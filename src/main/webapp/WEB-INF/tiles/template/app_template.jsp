@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="${appRoot}/css/main.css">
   <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
   <link rel="stylesheet" href="${appRoot}/css/newsfeed.css">
+  <link rel="stylesheet" href="${appRoot}/css/profile.css">
   <style>
   
   #container {
@@ -23,14 +24,22 @@
       margin:0 auto;
       margin-top: 75px;
     }
+  /* #headerLine {
+      width:100%;
+      height:65px;
+      position:absolute;
+      xtop:65px;
+      background-color:white;
+      z-index:-1;
+    } */
     
   </style>
 </head>
   <body>
 
-	  <tiles:insertAttribute name="header"/>
-	  
+	  <!-- <div id="headerLine"></div> -->
 	  <div id="container">
+	  <tiles:insertAttribute name="header"/>
 		  <tiles:insertAttribute name="sidebar"/>
 		  <tiles:insertAttribute name="body"/>
 	  

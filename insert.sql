@@ -632,8 +632,8 @@ insert into acv_save(mno,rvno) values(1,3);
 insert into acv_save(mno,rvno) values(1,4);
 insert into acv_save(mno,rvno) values(1,5);
 insert into acv_save(mno,rvno) values(1,6);
-insert into acv_save(mno,rvno) values(1,7);
-insert into acv_save(mno,rvno) values(1,8);
+insert into acv_save(mno,rvno) values(1,13);
+insert into acv_save(mno,rvno) values(1,14);
 
 insert into acv_save(mno,rvno) values(2,1);
 insert into acv_save(mno,rvno) values(2,3);

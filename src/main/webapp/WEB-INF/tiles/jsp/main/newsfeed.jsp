@@ -35,20 +35,20 @@ for (NewsFeed newsFeed : newsFeeds) {
       회원님의
       <a class="list-href" href="<%=getServletContext().getContextPath()%>/app/review/detail?no=<%=newsFeed.getTargetNo()%>">
       <td>리뷰</a>를 좋아합니다. </td>
-      <td><%=((Map<Integer, String>)request.getAttribute("times")).get(newsFeed.getNo())%></td>
+      <td><h class="time"><%=((Map<Integer, String>)request.getAttribute("times")).get(newsFeed.getNo())%></h></td>
 
       <% 
     } else if (newsFeed.getTargetType() == 2) {
       %>
       <a class="list-href" href="<%=getServletContext().getContextPath()%>/app/comment/view?no=<%=newsFeed.getTargetNo()%>">
       <td>코멘트</a>를 좋아합니다. </td>
-      <td><%=((Map<Integer, String>)request.getAttribute("times")).get(newsFeed.getNo())%></td>
+      <td><h class ="time"><%=((Map<Integer, String>)request.getAttribute("times")).get(newsFeed.getNo())%></h></td>
  
       <% 
     } else if (newsFeed.getTargetType() == 3) {
       %>
       <td>회원님을 팔로우 합니다.</td>
-      <td><%=((Map<Integer, String>)request.getAttribute("times")).get(newsFeed.getNo())%></td>
+      <td><h class ="time"><%=((Map<Integer, String>)request.getAttribute("times")).get(newsFeed.getNo())%></h></td>
 
       <%}%>
     </tr>
