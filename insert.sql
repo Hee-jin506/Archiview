@@ -199,17 +199,32 @@ values(1, '무현, 두 도시 이야기', '전인환', 'Moo-hyun, Tale of Two Ci
 '한국', 1, 152183);
 
 /*스틸컷 샘플*/
-insert into acv_stc(stcno, mvno)
-values(1, 1);
+insert into acv_stc(mvno)
+values(1);
 
-insert into acv_stc(stcno, mvno, stc_url)
-values(2, 1, 'https://movie-phinf.pstatic.net/20170816_237/15028507560937wWpL_JPEG/movie_image.jpg?type=m427_320_2');
+insert into acv_stc(mvno, stc_url)
+values(1, 'https://movie-phinf.pstatic.net/20170816_237/15028507560937wWpL_JPEG/movie_image.jpg?type=m427_320_2');
 
-insert into acv_stc(stcno, mvno, stc_url)
-values(3, 1, 'https://movie-phinf.pstatic.net/20170816_246/1502850756536szMwe_JPEG/movie_image.jpg?type=m427_320_2');
+insert into acv_stc(mvno, stc_url)
+values(1, 'https://movie-phinf.pstatic.net/20170816_246/1502850756536szMwe_JPEG/movie_image.jpg?type=m427_320_2');
 
-insert into acv_stc(stcno, mvno, stc_url)
-values(4, 1, 'https://movie-phinf.pstatic.net/20170807_170/1502069264980Amq9T_JPEG/movie_image.jpg?type=m427_320_2');
+insert into acv_stc(mvno, stc_url)
+values(1, 'https://movie-phinf.pstatic.net/20170807_170/1502069264980Amq9T_JPEG/movie_image.jpg?type=m427_320_2');
+
+insert into acv_stc(mvno, stc_url)
+values(1, 'https://movie-phinf.pstatic.net/20170807_298/1502069265264lPHv3_JPEG/movie_image.jpg?type=m427_320_2');
+
+insert into acv_stc(mvno, stc_url)
+values(1, 'https://movie-phinf.pstatic.net/20170807_196/1502069265369T7hcS_JPEG/movie_image.jpg?type=m427_320_2');
+
+insert into acv_stc(mvno, stc_url)
+values(1, 'https://movie-phinf.pstatic.net/20170807_31/15020692655762aL9i_JPEG/movie_image.jpg?type=m427_320_2');
+
+insert into acv_stc(mvno, stc_url)
+values(1, 'https://movie-phinf.pstatic.net/20170807_268/150206926577953hp4_JPEG/movie_image.jpg?type=m427_320_2');
+
+insert into acv_stc(mvno, stc_url)
+values(1, 'https://movie-phinf.pstatic.net/20170807_193/15020692659935l53K_JPEG/movie_image.jpg?type=m427_320_2');
 
 /*포스터 샘플*/
 insert into acv_pstr(psno, mvno, ps_url, main_ps)
