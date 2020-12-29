@@ -15,7 +15,6 @@
 	href="${appRoot}/css/bootstrap/dist/css/custom.css">
 <link rel="stylesheet" href="${appRoot}/css/main.css">
 <link rel="stylesheet" href="${appRoot}/css/newsfeed.css">
-<link rel="stylesheet" href="${appRoot}/css/writeReview.css">
 <style>
 #container {
 	width: 960px;

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,11 +44,10 @@ public class MainNewsFeadController {
   @Autowired FollowService followService;
 
   // 사용자 화면
-  @RequestMapping("newsfeed")
+  @GetMapping("newsfeed")
   protected ModelAndView view(
       HttpServletRequest request,
       HttpSession session,
-      String keyword,
       Model model
       ) throws Exception {
 
@@ -127,17 +127,6 @@ public class MainNewsFeadController {
     }
 
     mv.addObject(newsFeedList);
-
-    //    List<Like> likes = likeService.getTime(likeMap);
-
-    for(NewsFeed n : newsFeedList) {
-      System.out.println(n.getNick());
-      System.out.println(n.getTargetType());
-      System.out.println(n.getDate());
-    }
-
-    Map<String, Object> likeMap = new HashMap<>();
-    List<Like> likes = likeService.getTime(likeMap);
 
     Map<Integer, String> times = new HashMap<>();
     for (NewsFeed newsFeed : newsFeedList) {

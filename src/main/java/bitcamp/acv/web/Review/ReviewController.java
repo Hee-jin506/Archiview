@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
+import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
@@ -25,6 +26,7 @@ public class ReviewController {
   @Autowired MemberService memberService;
   @Autowired TagService tagService;
   @Autowired ServletContext servletContext;
+  @Autowired CommentService commentService;
 
 
   @RequestMapping("bestReviewSearch")
@@ -56,5 +58,6 @@ public class ReviewController {
   public void detailForUser(int reviewNo, HttpSession session, Model model) throws Exception {
     Member loginUser = (Member) session.getAttribute("loginUser");
     model.addAttribute("review", reviewService.get(reviewNo, loginUser.getNo()));
+    model.addAttribute("view", commentService.getByReviewNo(reviewNo));
   }
 }

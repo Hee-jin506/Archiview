@@ -43,6 +43,9 @@ public class Member {
   private int numOfSaved; // 저장한 게시물들 숫자
   
   private boolean followed;
+  
+  // 팔로잉 여부 검사(팔로우 버튼 색깔 바꿀려고)
+  private boolean followingState = false;
 
   public int getNo() {
     return no;
@@ -177,5 +180,11 @@ public class Member {
   }
   public int getNumOfSaved() {
     return this.saved.size();
+  }
+  public boolean isFollowingState() {
+    return followingState;
+  }
+  public void setFollowingState(boolean followingState) {
+    this.followingState = followingState;
   }
 }

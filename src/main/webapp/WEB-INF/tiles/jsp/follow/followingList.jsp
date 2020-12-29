@@ -1,177 +1,110 @@
-<%@page import="bitcamp.acv.domain.Follow"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html>
-<html>
-<head><title>회원 프로필 화면</title>
-<style>
-a { text-decoration: none; }
- body {
-   background-color : #000000;
-   color: #ffffff;
-   margin: 0px;
-    
- }
- 
- p {
-   font-size: 18px;
-   xfont-weight: bold;
-   margin:0px;
- }
- 
- #contents {
-   border-radius: 10px;
-   background-color: #141517;
-   width: 699px;  /* 너비 */
-   padding: 40px;  /* 패딩 */
-   float: left;  /* 왼쪽으로 플로팅 */
-   height: 700px;
-    overflow: hidden;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
- }
- 
- #contents::-webkit-scrollbar {
-  display: none;
-}
-    
- .profile-icon { display: block; margin: 0px auto; }
- 
- img.profile {
-  border-radius: 100px;
- }
- 
- #member{
- width : 599px;
- margin-left : 9px;
- margin-right : 9px;
- float: left;
- }
- #member img {
- margin-right : 30px;
- float: left;
- }
- #member p {
- float: left;
- }
- 
- #profile-icon {
- clear: both;
- margin-bottom : 130px;
- }
- 
- #profile-icon .profile-icon-text {
- display : block;
- padding-top : 3px;
- }
- 
- #profile-icon a {
- margin-top : 50px;
- margin-left : 91.8px;
- float: left;
- }
- 
- /* 내가 팔로우한 멤버 목록*/
- #following-target-container {
- clear: both;
-  margin-right : 9px;
-  margin-left : 9px;  
- }
- 
- .following-target-row {
- clear: both;
-  margin-bottom : 10px;  
-  height : 50px;
- }
- 
- .following-target-img {
-  margin-right : 10px;
-  float:left;
-  border-radius: 100px;
- }
- .following-target-text {
- float: left;
- }
- .following-target {
-  float:left;
- }
- 
- .following-target-button {
-  float:right;
- }
- 
- 
- 
-</style>
-
-</head>
-<body>
-
-  <div id="contents">
-    <div id="member">
+   <div id="contents">
+    <div id="profile_top">
       <input type='hidden' name='no' value='${member.no}'>
-      <img class="profile" src='../../upload/${member.photo}_150x150.jpg'><br>
-      <p>${member.nickName}<br>
-         ${member.email}<br><br>
-         ${member.intro}</p>
-      <a href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
-      <a href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>    
-      <a href="../report/form?reportedNo=${member.no}">신고</a> 
+      <img class="profile" src='../../upload/${member.photo}_150x150.jpg'>
+        <div id="profile_top_text">
+           <div id="profile_top_text_nickName">${member.nickName}</div>
+           <div id="profile_top_text_email">${member.email}</div>
+           <div id="profile_top_text_intro">${member.intro}</div>
+        </div>
+        
+        <form method="get">
+          <c:choose>
+           <c:when test="${member.no==sessionScope.loginUser.no}">
+           </c:when>
+           <c:when test="${following==true}">
+             <button type="submit" formaction="../follow/deleteUser?followedNo=${member.no}" class="btn btn-twitter">팔로우
+             </button>
+           </c:when>
+           <c:when test="${following==false}">
+             <button type="submit" formaction="../follow/addUser?followedNo=${member.no}" class="btn btn-archiview">팔로우
+             </button>
+           </c:when>
+          </c:choose>
+        </form>
+        
+      <%-- <a href="../report/form?reportedNo=${member.no}">신고</a>  --%>
     </div>
     
-    <div id="profile-icon">
+    <div id="profile_icon">
       <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review-border.png" height=30px class="center" alt="리뷰">
-          <span class="profile-icon-text">리뷰</span>
-          <%-- <c:out value="${member.numOfReviews}" ></c:out></span> --%>
+        <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review-border.png" height=30px class="center" alt="리뷰">
+          <span class="profile_icon_text">리뷰</span>
+          <%-- <span class="profile-icon-number"><span></span><c:out value="${member.numOfReviews}" ></c:out></span></span> --%>
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/follow/followerList?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
-          <span class="profile-icon-text">팔로워</span> 
+        <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
+          <span class="profile_icon_text">팔로워</span> 
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/follow/followingList?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" height=30px class="center" alt="팔로잉">
-          <span class="profile-icon-text">팔로잉</span> 
+        <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following.png" height=30px class="center" alt="팔로잉">
+          <span class="profile_icon_text">팔로잉</span> 
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/member/savedReviews?no=${member.no}"> 
-        <img class=profile-icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved-border.png" height=30px class="center" alt="저장">
-          저장 
+        <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved-border.png" height=30px class="center" alt="저장">
+          <span class="profile_icon_text">저장</span> 
       </a>
     </div>
     
-       <c:forEach items="${targetTaglist}" var="t"> 
-          <div class="following-target-row">
-              <a class="following-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${t.no}">
-                <input type='hidden' name='no' value='${t.no}'>
-                    <img class="following-target-img" src='${t.thumbnailstillCutUrl}' width=35px, height=35px>
-                    <span class="following-target-text"># ${t.title}<br>
-                       리뷰 ${t.numOfReviews}개
-                       </span>
+    
+      <div id="profile_bottom">
+        <c:forEach items="${targetTaglist}" var="t"> 
+          <div class="profile_bottom_row">
+            <div class="profile_bottom_object_image">
+              <a href="">
+	              <c:if test="${t.thumbnailstillCutUrl==null}">
+	                <img class = "profile" src='<%=getServletContext().getContextPath()%>/main_resource/null.png' width = 35px, height = 35px>
+	              </c:if>
+	              <c:if test="${t.thumbnailstillCutUrl!=null}">
+	                <img class = "profile" src='${t.thumbnailstillCutUrl}' width = 35px, height = 35px>
+	              </c:if>
               </a>
-              <a class="following-target-button" href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>
-              <a class="following-target-button" href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
+            </div>
+            <div class="profile_bottom_object_text">
+              <div class="profile_bottom_object_text_nick">
+              <a href="">
+                #${t.title}
+              </a>
+              </div>
+              <div class="profile_bottom_object_text_intro">
+                리뷰 ${t.numOfReviews}개
+              </div>
+            </div>
+            
+            <form method="get">
+                 <button type="submit" formaction="../follow/deleteUser?followedNo=${m.no}" class="btn btn-twitter">팔로우
+                 </button>
+            </form>
+            
           </div>
        </c:forEach>
-       
-    <div id="following-target-container">
        <c:forEach items="${targetMemberlist}" var="m"> 
-          <div class="following-target-row">
-              <a class="following-target" href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${m.no}">
-                <input type='hidden' name='no' value='${m.no}'>
-                    <img class="following-target-img" src='../../upload/${m.photo}_35x35.jpg'>
-                    <span class="following-target-text">${m.nickName}<br>
-                       ${m.intro}
-                       </span>
+          <div class="profile_bottom_row">
+            <div class="profile_bottom_object_image">
+              <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${m.no}">
+                <img class = "profile" src='../../upload/${m.photo}_35x35.jpg'>
               </a>
-              <a class="following-target-button" href="../follow/deleteUser?followedNo=${member.no}">언팔로우</a>
-              <a class="following-target-button" href="../follow/addUser?followedNo=${member.no}">팔로우</a>   
+            </div>
+            <div class="profile_bottom_object_text">
+              <div class="profile_bottom_object_text_nick">
+              <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${m.no}">
+                ${m.nickName}
+              </a>
+              </div>
+              <div class="profile_bottom_object_text_intro">
+                ${m.intro}
+              </div>
+            </div>
+            
+            <form method="get">
+                 <button type="submit" formaction="../follow/deleteUser?followedNo=${m.no}" class="btn btn-twitter">팔로우
+                 </button>
+            </form>
+            
           </div>
        </c:forEach>
-  
     </div>
    </div>
-</body>
-</html>
