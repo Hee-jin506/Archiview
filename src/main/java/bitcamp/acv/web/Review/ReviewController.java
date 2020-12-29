@@ -1,8 +1,6 @@
 package bitcamp.acv.web.Review;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,10 +49,7 @@ public class ReviewController {
     model.addAttribute("topTags", tagService.listByPop3());
 
     // 메인피드
-    Map<String, Object> map = new HashMap<>();
-    map.put("userNo", loginUser.getNo());
-    map.put("row", 0);
-    model.addAttribute("list", reviewService.getFollowingFeed(map));
+    model.addAttribute("list", reviewService.getFollowingFeed(loginUser.getNo(), 1));
   }
 
   @GetMapping("detailForUser")

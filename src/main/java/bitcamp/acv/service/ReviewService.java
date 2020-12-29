@@ -21,6 +21,6 @@ public interface ReviewService {
   List<Review> listByKeywordTagTitle(String keyword) throws Exception;
   void getSizeInfo(Map<String, Object> resultMap) throws Exception;
   void getChartInfo(Map<String, Object> resultMap) throws Exception;
-  List<Review> getMainFeed(Map<String, Object> map) throws Exception;
-  List<Review> getFollowingFeed(Map<String, Object> map) throws Exception;
+  Object getMainFeed(int userNo, int pageNo) throws Exception;
+  List<Review> getFollowingFeed(int userNo, int pageNo) throws Exception;
 }

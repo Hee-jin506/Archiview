@@ -56,6 +56,16 @@
 	top: -2px;
 }
 
+.card .cardHeader img.more {
+  float: right;
+  margin: 0px;
+  position: relative;
+  width: 23px;
+  top: 11px;
+  left: 5px;
+  padding: 10px;
+}
+
 .card .stillcut {
 	position: relative;
 	margin: 0px;
