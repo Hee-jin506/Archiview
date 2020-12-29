@@ -9,6 +9,8 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.0.0-beta1",
+    "handlebars": "^4.7.6",
+    "jquery": "^3.5.1",
     "sweetalert2": "^10.12.5"
   },
   "description": "",

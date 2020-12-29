@@ -208,7 +208,7 @@
       left outer join acv_mov mv on s.mvno=mv.mvno
       left outer join acv_tag_post tp on tp.rvno=rv.rvno
       left outer join acv_tag t on tp.tno=t.tno
-      inner join 
+      left outer join
         (select fno, target from acv_flw where flwing_mbr=#{userNo} and fano=1)f
       on f.target=rv.mno
       left outer join
