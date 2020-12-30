@@ -98,7 +98,7 @@ System.out.println(review.getText());%>
           <img
           src='<%=getServletContext().getContextPath()%>/main_resource/like.png'
           alt='좋아요'>
-        </a> <span class='pop'><%=review.getLiking()%>개</span>
+        </a> <%-- <span class='pop'><%=review.getLiking()%>개</span> --%>
         
         <a
           href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
@@ -198,6 +198,8 @@ System.out.println(review.getText());%>
 										  </c:choose>
 									  </div>
 								  </div>
+										  <img class='commentRow_more' src='<%=getServletContext().getContextPath()%>/main_resource/more.png' alt='more'>
+										  <img class='commentRow_like' src='<%=getServletContext().getContextPath()%>/main_resource/like.png' alt='좋아요'>
 							  </c:when>
 							<c:otherwise>
 						   	 삭제된 코멘트입니다.
