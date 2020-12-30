@@ -1,7 +1,5 @@
 package bitcamp.acv.web.main;
 
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,9 +41,6 @@ public class MainFollowingFeedController {
     model.addAttribute("topTags", tagService.listByPop3());
 
     // 팔로잉피드
-    Map<String, Object> map = new HashMap<>();
-    map.put("userNo", loginUser.getNo());
-    map.put("row", 0);
     model.addAttribute("list", reviewService.getFollowingFeed(loginUser.getNo(), 1));
   }
 }

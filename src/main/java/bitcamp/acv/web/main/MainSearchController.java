@@ -8,9 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
-import bitcamp.acv.domain.Review;
+import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
@@ -26,11 +27,14 @@ public class MainSearchController {
   @Autowired MovieService movieService;
   @Autowired TagService tagService;
 
+
   @GetMapping("search")
-  public void search(
+  public ModelAndView search(
       String keyword,
       HttpSession session,
-      Model model) throws Exception {
+      Model model)
+          throws Exception {
+    ModelAndView mv = new ModelAndView();
 
     // 탑바
     Member loginUser = (Member) session.getAttribute("loginUser");
@@ -41,25 +45,34 @@ public class MainSearchController {
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
 
+    // 메인피드
+
+    if (keyword == "") {
+      mv.setViewName("redirect:../../app/main");
+      return mv;
+    }
 
     if (keyword.length() != 0) {
+
       if(keyword.toCharArray()[0] != '#') {
-        System.out.println("일반 검색");
 
         List<Movie> movies = movieService.listByKeywordTitle(keyword);
-        model.addAttribute("movies");
-
         List<Member> members = memberService.listByKeywordNickName(keyword);
-        model.addAttribute("members");
 
+        mv.addObject("movies", movies);
+        mv.addObject("members", members);
 
       } else {
-        System.out.println("태그 검색");
-        List<Review> reviews = reviewService.listByKeywordTagTitle(keyword);
-        model.addAttribute("reviews");
+
+        List<Tag> tags = tagService.listByKeywordTitle(keyword.substring(1));
+
+        mv.addObject("tags", tags);
 
       }
     }
+
+    mv.setViewName("main/search");
+    return mv;
   }
 }
 
