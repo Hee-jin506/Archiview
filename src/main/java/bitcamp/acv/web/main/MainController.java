@@ -33,6 +33,7 @@ public class MainController {
   @RequestMapping("")
   public void main(HttpSession session,
       Model model) throws Exception {
+    System.out.println("메인화면 실행");
     // 탑바
     Member loginUser = (Member) session.getAttribute("loginUser");
     model.addAttribute("loginUser", loginUser);

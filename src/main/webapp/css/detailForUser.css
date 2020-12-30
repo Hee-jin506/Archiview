@@ -15,11 +15,12 @@
    box-sizing: border-box;
    width: 748px;
    margin: 0px;
-   height: 450px;
+   height: 440px;
    border-bottom: 1px solid #6b6b6b;
  }
  
  #cardPart .cardHeader {
+  position: relative;
   box-sizing: border-box;
   width: 748px;
   height: 40px;
@@ -34,13 +35,12 @@
 }
 
 #cardPart .cardHeader img.more {
-  float: right;
-  margin: 0px;
   width: 23px;
   left: 5px;
   padding: 10px;
   position: absolute;
-  top: 10px;
+  top: 8px;
+  left: 700px;
 }
 
 #cardPart .stillcut {
@@ -82,7 +82,7 @@
 
 #cardPart img.profile {
   float: left;
-  width: 40px;
+  width: 35px;
 }
 
 #cardPart .cardFooter {
@@ -96,9 +96,6 @@
  #cardPart .cardFooter .nickname {
   float: left;
   margin: 13px;
-  position: relative;
-  left: 0px;
-  top: 5px;
 }
 
 #cardPart .cardFooter .follow {

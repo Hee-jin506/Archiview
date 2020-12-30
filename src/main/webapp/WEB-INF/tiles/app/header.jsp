@@ -45,9 +45,8 @@ $(document).ready(function() {
 	%>
 	    <div id='search'>
 	      <form action='<%=getServletContext().getContextPath()%>/app/main/search'>
-	        <label><img
-	          src='<%=getServletContext().getContextPath()%>/main_resource/search-outline.png' width="12"></label>
 	        <input type='text' id='search-data' name='keyword' placeholder='검색' value='<%=keyword != null ? keyword : ""%>'>
+	        <button id='search-btn'><img src='<%=getServletContext().getContextPath()%>/main_resource/search-outline.png' width="12"></button>
 	      </form>
 	    </div>
 	    <% Member member = (Member) session.getAttribute("loginUser"); %>

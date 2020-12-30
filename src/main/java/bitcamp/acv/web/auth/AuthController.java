@@ -81,11 +81,7 @@ public class AuthController {
       mv.setViewName("auth/login");
     } else {
       session.setAttribute("loginUser", member);
-      mv.addObject("userNo", member.getNo());
-      mv.addObject("row", 0);
-      mv.addObject("list", reviewService.getMainFeed(member.getNo(), 0));
-      mv.addObject("loginUser", member);
-      mv.setViewName("main");
+      mv.setViewName("redirect:/app/main");
     }
     return mv;
   }
