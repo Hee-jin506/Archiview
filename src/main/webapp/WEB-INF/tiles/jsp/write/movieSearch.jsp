@@ -69,11 +69,12 @@ xmargin: 0 auto;
 margin-top: 34px;
 }
 #movieSearchResultPosters img{
-float:left;
-width:185px;
-height:264.36px;
-xmargin-left:20px;
-margin-right:15px;
+    float: left;
+    width: 176px;
+    height: 251px;
+    xmargin-left: 20px;
+    margin-right: 12px;
+    margin-left: 12px;
 }
 
 </style>
