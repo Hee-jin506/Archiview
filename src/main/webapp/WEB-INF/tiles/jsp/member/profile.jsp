@@ -102,10 +102,6 @@ exampleModal.addEventListener('shown.bs.modal', function (event) {
 
 exampleModal.addEventListener('hidden.bs.modal', function (event) {
   console.log("hidden.bs.modal 종료")
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "../ajax/report/form?reportedNo=" + memberNo, false);
-  xhr.send();
-  exampleModalBody.innerHTML = xhr.responseText;
 });
 
 for (var e of el) {

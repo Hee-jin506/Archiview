@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 .box {
 position: relative;
 margin-top: 50px;
@@ -64,12 +65,8 @@ width: 300px;
 height: 50px;
 }
 </style>
+<link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/custom.css">
 </head>
-
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
 <body style='background-color: black'>
 <div class='box'>
@@ -80,27 +77,24 @@ height: 50px;
   </div>
   
   <div id="put">
-    <form class="form-horizontal" method="post">
-      <div class="form-group">
-        <label for="email" class="col-sm-3 control-label">이메일 </label>
-        <div class="col-sm-8">
-          <input type="email" class="form-control" name="email" value=<%=request.getAttribute("email")%> autofocus required
-          style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
+    <form method="post">
+      <div class="mb-2 row">
+        <label for="email" class="col-sm-2 col-form-label">이메일 </label>
+        <div class="col-sm-7">
+          <input type="email" class="form-control form-control-sm" name="email" value=<%=request.getAttribute("email")%> autofocus required>
         </div>
       </div>
-      <div class="form-group">
-        <label for="password" class="col-sm-3 control-label">비밀번호</label>
-        <div class="col-sm-8">
-          <input type="password" class="form-control" name="password" autofocus required
-          style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
+      <div class="mb-2 row">
+        <label for="password" class="col-sm-2 col-form-label">비밀번호</label>
+        <div class="col-sm-7">
+          <input type="password" class="form-control form-control-sm" name="password" autofocus required>
         </div>
       </div>
-      <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-10">
-          <div class="checkbox">
-          <label>
-            <input type="checkbox" name="saveEmail" checked> 이메일 저장
-          </label>
+      <div class="mb-3 row">
+        <div class="col-sm-10 offset-sm-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="saveEmail" id='saveEmail' checked>
+            <label class="form-check-label" for="saveEmail">이메일 저장</label>
           </div>
         </div>
       </div>
@@ -120,11 +114,11 @@ height: 50px;
   </div>
   
   <div id='search'>
-    <a href="<%=getServletContext().getContextPath()%>/app/auth/searchPassword">비밀번호를 잊으셨나요?</a>
+    <a href="<%=getServletContext().getContextPath()%>/app/auth/searchPassword" style="color: white;">비밀번호를 잊으셨나요?</a>
   </div>
   
   <div id='add'>
-    계정이 없으신가요? <a href="<%=getServletContext().getContextPath()%>/app/auth/add">지금 가입하세요.</a>
+    계정이 없으신가요? <a href="<%=getServletContext().getContextPath()%>/app/auth/add" style="color: white;">지금 가입하세요.</a>
   </div>
 </div>
 </body>

@@ -25,5 +25,5 @@
 </select>
 </div><br>
 
-<button>신고</button>
+<button type="submit">신고</button>
 </form>

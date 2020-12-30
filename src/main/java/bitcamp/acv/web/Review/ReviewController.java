@@ -1,8 +1,6 @@
 package bitcamp.acv.web.Review;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Review;
+import bitcamp.acv.service.CommentService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
@@ -27,6 +26,7 @@ public class ReviewController {
   @Autowired MemberService memberService;
   @Autowired TagService tagService;
   @Autowired ServletContext servletContext;
+  @Autowired CommentService commentService;
 
 
   @RequestMapping("bestReviewSearch")
@@ -51,15 +51,13 @@ public class ReviewController {
     model.addAttribute("topTags", tagService.listByPop3());
 
     // 메인피드
-    Map<String, Object> map = new HashMap<>();
-    map.put("userNo", loginUser.getNo());
-    map.put("row", 0);
-    model.addAttribute("list", reviewService.getFollowingFeed(map));
+    model.addAttribute("list", reviewService.getFollowingFeed(loginUser.getNo(), 1));
   }
 
   @GetMapping("detailForUser")
   public void detailForUser(int reviewNo, HttpSession session, Model model) throws Exception {
     Member loginUser = (Member) session.getAttribute("loginUser");
     model.addAttribute("review", reviewService.get(reviewNo, loginUser.getNo()));
+    model.addAttribute("view", commentService.getByReviewNo(reviewNo));
   }
 }
