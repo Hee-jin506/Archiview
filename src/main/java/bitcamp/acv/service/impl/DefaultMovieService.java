@@ -36,6 +36,7 @@ public class DefaultMovieService implements MovieService {
     return movieDao.delete(no);
   }
 
+
   @Override
   public int active(int no) throws Exception {
     return movieDao.active(no);

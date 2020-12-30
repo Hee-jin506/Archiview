@@ -40,7 +40,13 @@ public class WriteController {
     model.addAttribute("loginUser", loginUser);
 
     Movie movie = movieService.findByNo(movieNo);
+    //image-picker때문에(page 숫자 적어야함)
+    List<Integer> numOfStillcuts = new ArrayList<>();
+    for (int i=1 ; i <= movie.getStillcuts().size(); i++) {
+      numOfStillcuts.add(i);
+    }
     model.addAttribute("stillcuts", movie.getStillcuts());
+    model.addAttribute("numOfStillcuts", numOfStillcuts);
   }
 
   @RequestMapping("editCard")

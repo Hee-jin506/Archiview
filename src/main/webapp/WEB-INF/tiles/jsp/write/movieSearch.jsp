@@ -42,6 +42,7 @@ display : block;
 margin: 0 auto;
 margin-top: 34px;
 font-size: 14px;
+font-weight:bold;
 }
 
 /* 영화 검색결과 포스터 목록*/
@@ -76,6 +77,7 @@ margin-right:15px;
 }
 
 </style>
+<link rel="stylesheet" type="text/css" href="../../../../css/image-picker.css"/>
 </head>
 <body>
 	<div id='writeReview'>
@@ -90,7 +92,7 @@ margin-right:15px;
 				</form>
 			  <div id='notNow'>
 				<form action = "../../app/main">
-			    <button class="btn btn-primary btn-sm btn-dark" formaction='../../app/main'>나중에 할래요</button>
+			    <button class="btn btn-primary btn-sm btn-dark">나중에 할래요</button>
 				</form>
 				</div>
 			</div>
