@@ -27,7 +27,8 @@
           </c:choose>
         </form>
         
-      <%-- <a href="../report/form?reportedNo=${member.no}">신고</a>  --%>
+      <a class="report-form" href='../report/form?reportedNo=${member.no}' data-no='${member.no}'>신고</a> 
+
     </div>
     
     <div id="profile_icon">
@@ -64,3 +65,80 @@
         </c:forEach>
       </div>
     </div>
+    
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <!-- 모달 화면 -->
+      </div>
+      <div class="modal-footer">
+      <button type="button" id="report-add" class="btn btn-secondary" onclick="reportUser()">신고</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary">신고</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<script>
+var el = document.querySelectorAll(".report-form");
+var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+var exampleModal = document.querySelector("#exampleModal");
+var exampleModalBody = exampleModal.querySelector(".modal-body");
+var memberNo;
+
+exampleModal.addEventListener('show.bs.modal', function (event) {
+  console.log("show.bs.modal")
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../ajax/report/form?reportedNo=" + memberNo, false);
+  xhr.send();
+  exampleModalBody.innerHTML = xhr.responseText;
+});
+
+exampleModal.addEventListener('shown.bs.modal', function (event) {
+  console.log("shown.bs.modal")
+});
+
+exampleModal.addEventListener('hidden.bs.modal', function (event) {
+  console.log("hidden.bs.modal 종료")
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "../ajax/report/form?reportedNo=" + memberNo, false);
+  xhr.send();
+  exampleModalBody.innerHTML = xhr.responseText;
+});
+
+for (var e of el) {
+  e.onclick = function(e) {
+    e.preventDefault();
+    memberNo = e.target.getAttribute("data-no");
+    console.log("click");
+    myModal.show();
+  };
+}
+
+/*
+$('#report-add').click(function() {
+  // 화면으로부터 입력 받은 값 처리
+  var reply_text = $("#newReplyText");
+  var reply_writer = $("#newReplyWriter");
+
+  var reply_textVal = reply_text.val();
+  var reply_writerrVal = reply_writer.val();
+
+  // AJAX 통신 : POST
+  $.ajax({
+    type: "POST",
+    url: "ajax/report/reportUser",
+    data: { "reportedNo" : $('#reportedNo').val(),
+            "reportedType" : $('#reportedType').val(),
+            "why" : $('#why').val()},
+            success: function() {
+              alert('신고 되었습니다.');
+              location.reload();
+            }, error: function() {
+              alert('신고 처리 중 오류 발생!')
+            }
+  });
+}); */
+</script>

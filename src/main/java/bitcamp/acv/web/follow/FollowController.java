@@ -1,9 +1,7 @@
 package bitcamp.acv.web.follow;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -234,43 +232,5 @@ public class FollowController {
       mv.setViewName("/follow/detail.jsp");
       return mv;
     }
-  }
-
-  @GetMapping("followingFeed")
-  public void mainFeed(HttpSession session,
-      @ModelAttribute("loginUser") Member loginUser,
-      Model model) throws Exception {
-
-    // 탑바
-    model.addAttribute("loginUser", loginUser);
-
-    // 사이드바
-    model.addAttribute("topMembers", memberService.listByPop3());
-    model.addAttribute("topMovies", movieService.listByPop3());
-    model.addAttribute("topTags", tagService.listByPop3());
-
-    // 메인피드
-    Map<String, Object> map = new HashMap<>();
-    map.put("userNo", loginUser.getNo());
-    map.put("row", 0);
-    model.addAttribute("list", reviewService.getFollowingFeed(map));
-    //
-    //    // 사이드바
-    //    model.addAttribute("topMembers", memberService.listByPop3());
-    //    model.addAttribute("topMovies", movieService.listByPop3());
-    //    model.addAttribute("topTags", tagService.listByPop3());
-    //
-    //    List<Review> reviewList = new ArrayList<>();
-    //    List<Follow> list = followService.getFollowingFeed(loginUser.getNo());
-    //    List<Member> targetMemberlist = new ArrayList<>();
-    //
-    //    for (Follow follow : list) {
-    //      if (follow.getFollowedType() == 1) {
-    //        targetMemberlist.add(follow.getTargetMember());
-    //      }
-    //    }
-    //
-    //    model.addAttribute("targetMemberlist", targetMemberlist);
-
   }
 }
