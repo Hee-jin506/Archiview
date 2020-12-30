@@ -77,22 +77,3 @@ $(document).ready(function() {
 	    </div>
 	    </div>
    </div> 
-<script>
-
-  $(document).ready(fuction(){
-	  
-	   $('#search_data').autocomplete({
-		   source: "fetch.php",
-		   minLenght: 1,
-		   select: funcion(event, ui)
-		   {
-			   $('#search_data').val(ui.item.value);
-		   }
-	   }).data('ui-autocomplete')._renerItem = function(ul. item)
-	   {
-		   return $)
-	   };
-	   
-  });
-
-</script>
