@@ -222,6 +222,12 @@ if (reviews.size() == 0) {
   %>
   <br>
   <div id = "movie-list">
+  <% 
+    if (movie.getPosters().size() != 0) {
+      %>
+    <div id = "movie=poster"><%=movie.getPosters().get(0).toString()%></div>
+    <%}
+    %>
     <div id = "movie-title"><%=movie.getTitle()%></div>
     <div id = "movie-Etitle"><%=movie.getEnglishTitle()%></div>
     <div id = "movie-opendate"><%=movie.getOpenDate()%></div>
