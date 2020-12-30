@@ -89,7 +89,7 @@
 			<%
         if (review.getIsLiking() != 0) {
       %>
-			<div class='like'>
+			<div class='like' id='liking'>
 				<a
 					href='<%=getServletContext().getContextPath()%>/app/like/dislikeReview?likedNo=<%=review.getNo()%>'>
 					<img
@@ -99,7 +99,7 @@
 			</div>
 			<%} else {
 		  %>
-		  <div class='like'>
+		  <div class='like' id='notLiking'>
 		    <a
 		      href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
 		      <img
@@ -122,7 +122,7 @@
 	<script>
       "use strict"
 
-      var el = document.querySelectorAll(".like a img")
+      var el = document.querySelectorAll("#notLiking a img")
       
       for (var e of el) {
         e.addEventListener("mouseover", function(e) {
