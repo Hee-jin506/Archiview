@@ -11,4 +11,5 @@ public interface CommentDao {
   public Comment findByNo(int no) throws Exception;
   public int delete(int no) throws Exception;
   public int update(Comment comment) throws Exception;
+  public int updateGroupNo(Comment comment) throws Exception;
 }

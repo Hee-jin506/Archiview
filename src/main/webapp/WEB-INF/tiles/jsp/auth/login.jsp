@@ -65,7 +65,7 @@ width: 300px;
 height: 50px;
 }
 </style>
-<link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/custom.css">
+<link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/formcustom.css">
 </head>
 
 <body style='background-color: black'>

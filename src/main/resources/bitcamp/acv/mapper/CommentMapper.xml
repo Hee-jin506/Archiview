@@ -61,7 +61,7 @@
     mb.photo
   </sql>
        
-  <insert id="insert" parameterType="comment">
+  <insert id="insert" parameterType="comment" useGeneratedKeys="true" keyProperty="no">
     insert into acv_cmt(rvno, gno, lvl, mno, content) 
     <if test="content != ''">
       values(#{reviewNo}, #{groupNo}, #{level}, #{memberNo}, #{content})
@@ -112,6 +112,13 @@
     where
       c.cno=#{cno}
   </select>
+  
+   <update id="updateGroupNo" parameterType="comment">
+    update acv_cmt set
+      gno = #{no}
+      where 
+      cno=#{no} 
+  </update>
   
    <update id="update" parameterType="comment">
     update acv_cmt

@@ -26,4 +26,6 @@ public class ReviewController {
     model.addAttribute("review", reviewService.get(reviewNo, loginUser.getNo()));
     model.addAttribute("view", commentService.getByReviewNo(reviewNo));
   }
+
+
 }

@@ -50,7 +50,7 @@
         <span id='email' style="font-size: 20px;">${member.email}</span>
       <div class="mb-3" style="margin-top: 30px">
         <label for="hint" class="col-sm-2 control-label">질문</label>
-        <div class="col-xs-7">
+        <div class="col-sm-10">
 	        <select class="form-control" aria-label="Default select example" name='hint' style="border:1px solid #6B6B6B; background-color: #000000; color: white;"> <option selected value="${member.questionsNo}">
 	          <c:if test='${member.questionsNo == 1}'>내가 키우는 애완 동물의 이름은 ?</c:if>
 	          <c:if test='${member.questionsNo == 2}'>가장 기억에 남는 선생님의 성함은 ?</c:if>
@@ -66,9 +66,9 @@
 	        </select>
 	      </div>
 	    </div>
-      <div class="form-group">
+      <div class="mb-3">
         <label for="hintAnswer" class="col-sm-2 control-label">답</label>
-        <div class="col-xs-7">
+        <div class="col-sm-9">
           <input type='text' class='form-control' name='hintAnswer' value='${member.questionsAnswer}' style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
         </div>
       </div>

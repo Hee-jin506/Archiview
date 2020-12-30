@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="${appRoot}/css/header.css">
   <link rel="stylesheet" href="${appRoot}/css/sidebar.css">
   <link rel="stylesheet" href="${appRoot}/css/footer.css">
-  <link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/custom.css">
+  <link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/formcustom.css">
   <link rel="stylesheet" href="${appRoot}/css/main.css">
   <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
   <link rel="stylesheet" href="${appRoot}/css/option.css">
