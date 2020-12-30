@@ -37,10 +37,25 @@
     #editCardFormStillcut {
     margin: 0 auto;
     margin-top : 40px;
+   position: relative;
     }
+    
     #editCardFormStillcut img{
    width : 720px;
     }
+    
+    #editCardFormStillcut #text {
+      position: absolute;
+  top: 50%;
+  left: 360px;
+  transform: translate( -50%, -50% );
+    }
+     #editCardFormStillcut #text p {
+     text-align: center;
+     background-color: rgba( 0, 0, 0, 0.5 );
+     margin: 3px;
+     }
+    
     
     .mb-3 {
     width : 500px;
@@ -60,6 +75,7 @@
     margin-top:45px;
     }
     
+    
 </style>
 </head>
 <body>
@@ -69,11 +85,40 @@
 	<%
     if (!request.getParameter("stc").equals("default")) {
     %>
-    <div id='editCardFormStillcut'>
+    <div id='editCardFormStillcut' ondragover='onDragOver(event);'>
 	<img src='<%=request.getParameter("stc")%>' alt='<%= request.getParameter("stc")%>'>
 	<%
     }
 	   %>
+	   <div id='text' id='dragdiv'></div>
+	   <script>
+	   var dragzone = document.querySelector("#editCardFormContainer");
+	   function dragElement(elmnt) {
+		   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0; elmnt.onmousedown = dragMouseDown;
+	   function dragMouseDown(e) {
+		   e = e || window.event; e.preventDefault();
+		   pos3 = e.clientX; pos4 = e.clientY;
+		   document.onmouseup = closeDragElement;
+		   document.onmousemove = elementDrag;
+		   } 
+	   function elementDrag(e) {
+		   e = e || window.event; e.preventDefault();
+		   pos1 = pos3 - e.clientX;
+		   pos2 = pos4 - e.clientY;
+		   pos3 = e.clientX; pos4 = e.clientY;
+		   elmnt.style.top = (elmnt.offsetTop - pos2) + "px"; elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+		   }
+	   function closeDragElement() {
+		   document.onmouseup = null;
+		   document.onmousemove = null;
+		   console.log("현재 요소의 위치 y는 " + elmnt.top +", x는" + elmnt.left + "입니다.");
+		   } 
+	   }
+
+	   // $( "#dragdiv" ).draggable();
+	   
+	   
+	   </script>
 	  </div>
 	<form action='add' method='post'>
 		<label>폰트<select name='font'>
@@ -107,5 +152,22 @@
 		  <button class="btn btn-primary btn-sm btn-dark" onclick="goBack()">뒤로</button>
 	</div>
 </div>
+<script>
+"use strict"
+
+// 태그 객체를 만들지 않고 텍스트를 사용하여 자식 태그를 추가할 수 있다.
+
+
+var textInput = document.querySelector("#editCardForm textarea");
+var text = document.querySelector("#editCardFormStillcut #text")
+var originContent = text.innerHTML;
+console.log(textInput);
+console.log(text);
+textInput.addEventListener("input", function(e) {
+    var str = this.value;
+    text.innerHTML = "<p>" + str.replace(/\n/g, "</p><p>") + "</p>";
+    
+  });
+</script>
 </body>
 </html>
