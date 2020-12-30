@@ -34,6 +34,7 @@
     } */
     
   </style>
+  <script src="${appRoot}/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </head>
   <body>
 

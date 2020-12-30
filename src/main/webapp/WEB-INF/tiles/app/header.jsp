@@ -67,6 +67,7 @@ $(document).ready(function() {
 	       </div>
 	    </div>
 	    </div> 
+
 	    <div id='icon'>
 	      <a href='<%=getServletContext().getContextPath()%>'>
 	      <img src='<%=getServletContext().getContextPath()%>/main_resource/home-outline.png' width="20" alt='메인화면'></a> <a
@@ -79,4 +80,3 @@ $(document).ready(function() {
 	    </div>
 	    </div>
    </div> 
-   
