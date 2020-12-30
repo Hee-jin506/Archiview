@@ -65,10 +65,7 @@ public class WriteController {
       String movieNo,
       String stc,
       String text,
-      String x,
-      String y,
-      String font,
-      String size,
+      String x, String y, String font, String size,
       String tag)
           throws Exception {
 
