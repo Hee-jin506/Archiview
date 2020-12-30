@@ -64,7 +64,7 @@
 #cardPart .stillcut .reviewText {
   position: absolute;
   top: 50%;
-  left: 325px;
+  left: 374px;
   text-align: center;
   transform: translate( -50%, -50% );
   background-color: rgba( 0, 0, 0, 0.5 );
@@ -95,22 +95,19 @@
 
  #cardPart .cardFooter .nickname {
   float: left;
-  margin: 13px;
+  margin: 11px;
 }
 
 #cardPart .cardFooter .follow {
   float: left;
-  margin: 10px;
+  margin: 5px;
   position: relative;
-  top: -2px;
+  top: -5px;
 }
-
-
-
 
 #cardPart .cardFooter .rdt {
   float: left;
-  margin: 15px;
+  margin: 12px;
   font-size: 80%;
   font-weight: normal;
   position: relative;
@@ -126,7 +123,7 @@
 }
 
 #cardPart .cardFooter .like img {
-  width: 50%;
+  width: 30px;
 }
 
 #cardPart .cardFooter .like .pop {

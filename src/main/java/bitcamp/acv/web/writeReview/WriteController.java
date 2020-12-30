@@ -39,6 +39,7 @@ public class WriteController {
     Member loginUser = (Member) session.getAttribute("loginUser");
     model.addAttribute("loginUser", loginUser);
 
+    session.setAttribute("movieNo", movieNo);
     Movie movie = movieService.findByNo(movieNo);
     //image-picker때문에(page 숫자 적어야함)
     List<Integer> numOfStillcuts = new ArrayList<>();
@@ -64,10 +65,7 @@ public class WriteController {
       String movieNo,
       String stc,
       String text,
-      String x,
-      String y,
-      String font,
-      String size,
+      String x, String y, String font, String size,
       String tag)
           throws Exception {
 

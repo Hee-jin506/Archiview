@@ -1,17 +1,15 @@
 package bitcamp.acv.web.follow;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Follow;
@@ -29,56 +27,67 @@ import bitcamp.acv.service.TagService;
 @SessionAttributes("loginUser")
 public class FollowController {
 
+  @Autowired ReviewService reviewService;
   @Autowired MemberService memberService;
   @Autowired MovieService movieService;
   @Autowired FollowService followService;
   @Autowired TagService tagService;
-  @Autowired ReviewService reviewService;
 
   // 멤버 팔로우
-  @GetMapping("addUser")
-  public String addUser(Follow follow,
-      @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    follow.setFollowingMember(loginUser);
+  @RequestMapping("addUser")
+  public String addUser(Model model,
+      HttpSession session,
+      Follow follow,
+      int followedNo,
+      @RequestParam(defaultValue="1") int followedType) throws Exception {
 
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    follow.setFollowingMember(loginUser);
+    follow.setFollowedType(followedType);
+    follow.setFollowedNo(followedNo);
     followService.addUser(follow);
     return "redirect:../main";
   }
 
-  @GetMapping("deleteUser")
+  @RequestMapping("deleteUser")
   public String deleteUser(Follow follow,
-      @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    follow.setFollowingMember(loginUser);
+      HttpSession session,
+      Model model) throws Exception {
 
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    follow.setFollowingMember(loginUser);
     followService.deleteUser(follow);
     return "redirect:../main";
   }
 
   // 태그 팔로우
-  @GetMapping("addTag")
-  public String addTag(Follow follow,
-      @ModelAttribute("loginUser") Member loginUser) throws Exception {
+  @RequestMapping("addTag")
+  public String addTag(Model model,
+      HttpSession session,
+      Follow follow,
+      int followedNo,
+      @RequestParam(defaultValue="2") int followedType) throws Exception {
+
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
     follow.setFollowingMember(loginUser);
 
-    followService.addTag(follow);
-    return "redirect:list";
-  }
-
-  @PostMapping("active")
-  public String active(int no) throws Exception {
-    if (followService.active(no) == 0) {
-      throw new Exception("해당 회원이 존재하지 않습니다.");
-    }
-    return "redirect:list";
-  }
-
-  @PostMapping("inactive")
-  public String inactive(int no) throws Exception {
-    if (followService.inactive(no) == 0) {
-      throw new Exception("해당 회원이 존재하지 않습니다.");
-    } else {
-      return "redirect:list";
-    }
+    follow.setFollowedType(followedType);
+    follow.setFollowedNo(followedNo);
+    followService.addUser(follow);
+    return "redirect:../main";
   }
 
   // 특정멤버의 팔로잉 리스트
@@ -114,19 +123,19 @@ public class FollowController {
 
     model.addAttribute("targetMemberlist", targetMemberlist);
     model.addAttribute("targetTaglist", tagService.getThumbnailStillCut(targetTaglist));
-    
- // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
+
+    // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
     List<Follow> followings = followService.list2(loginUser.getNo());
     List<Integer> followingNoList = new ArrayList<>();
     for (Follow f : followings) {
       if (f.getFollowedType() == 1) {
-      followingNoList.add(f.getTargetMember().getNo());
+        followingNoList.add(f.getTargetMember().getNo());
       }
     }
     boolean following = false;
     if (followingNoList.contains(member.getNo())) {
       following = true;
-    } 
+    }
     model.addAttribute("following", following);
   }
 
@@ -136,10 +145,10 @@ public class FollowController {
       int no,
       Model model) throws Exception {
 
- // 탑바
+    // 탑바
     Member loginUser = (Member) session.getAttribute("loginUser");
     model.addAttribute("loginUser", loginUser);
-    
+
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
@@ -152,7 +161,7 @@ public class FollowController {
     // 나를 팔로워하는 리스트
     List<Follow> followList = followService.list3(no);
     List<Member> targetMemberlist = new ArrayList<>();
-    
+
     // 나를 팔로잉하는지 여부 검사 : 팔로우버튼 색깔 바꾸기위해
     List<Follow> followings = followService.list2(no);
     List<Integer> followingNoList = new ArrayList<>();
@@ -173,19 +182,19 @@ public class FollowController {
       }
     }
     model.addAttribute("targetMemberlist", targetMemberlist);
-    
- // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
+
+    // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
     List<Follow> followings2 = followService.list2(loginUser.getNo());
     List<Integer> followingNoList2 = new ArrayList<>();
     for (Follow f : followings2) {
       if (f.getFollowedType() == 1) {
-      followingNoList2.add(f.getTargetMember().getNo());
+        followingNoList2.add(f.getTargetMember().getNo());
       }
     }
     boolean following = false;
     if (followingNoList2.contains(member.getNo())) {
       following = true;
-    } 
+    }
     model.addAttribute("following", following);
   }
 
@@ -234,43 +243,5 @@ public class FollowController {
       mv.setViewName("/follow/detail.jsp");
       return mv;
     }
-  }
-
-  @GetMapping("followingFeed")
-  public void mainFeed(HttpSession session,
-      @ModelAttribute("loginUser") Member loginUser,
-      Model model) throws Exception {
-
-    // 탑바
-    model.addAttribute("loginUser", loginUser);
-
-    // 사이드바
-    model.addAttribute("topMembers", memberService.listByPop3());
-    model.addAttribute("topMovies", movieService.listByPop3());
-    model.addAttribute("topTags", tagService.listByPop3());
-
-    // 메인피드
-    Map<String, Object> map = new HashMap<>();
-    map.put("userNo", loginUser.getNo());
-    map.put("row", 0);
-    model.addAttribute("list", reviewService.getFollowingFeed(map));
-    //
-    //    // 사이드바
-    //    model.addAttribute("topMembers", memberService.listByPop3());
-    //    model.addAttribute("topMovies", movieService.listByPop3());
-    //    model.addAttribute("topTags", tagService.listByPop3());
-    //
-    //    List<Review> reviewList = new ArrayList<>();
-    //    List<Follow> list = followService.getFollowingFeed(loginUser.getNo());
-    //    List<Member> targetMemberlist = new ArrayList<>();
-    //
-    //    for (Follow follow : list) {
-    //      if (follow.getFollowedType() == 1) {
-    //        targetMemberlist.add(follow.getTargetMember());
-    //      }
-    //    }
-    //
-    //    model.addAttribute("targetMemberlist", targetMemberlist);
-
   }
 }

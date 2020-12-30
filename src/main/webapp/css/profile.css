@@ -97,6 +97,11 @@ a { text-decoration: none; }
   border-radius: 100px;
  }
  
+ #profile_icon_report {
+ float: right;
+ padding-top: 20px;
+ }
+ 
  
  /* 밑부분 */
  
@@ -140,4 +145,23 @@ a { text-decoration: none; }
  margin-left : 10px;
  width : 265px;
  height : 160px;
+ }
+
+ .modal-content {
+  border-radius: 10px;
+  background-color: #141517;
+  box-sizing: border-box;
+  width: 800px;
+  margin-top: 10px;
+  padding: 50px;
+ }
+ 
+  .modal-body {
+    margin: 50px;
+ }
+ 
+ .modal-reportForm {
+    width: 450px;
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
  }

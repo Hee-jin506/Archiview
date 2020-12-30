@@ -108,8 +108,6 @@
     <bind name="pattern" value="'%' + _parameter + '%'" />
     where 
       m.title like #{pattern}
-      or m.dir like #{pattern}
-      or m.actors like #{pattern} 
     </if>
     order by m.mvno desc
   </select>

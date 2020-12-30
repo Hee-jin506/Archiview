@@ -76,10 +76,9 @@
 
 .card .stillcut .reviewText {
 	position: absolute;
+	width: 650px;
 	top: 50%;
-	left: 325px;
 	text-align: center;
-	transform: translate( -50%, -50% );
 	background-color: rgba( 0, 0, 0, 0.5 );
 	padding: 4px;
 }
