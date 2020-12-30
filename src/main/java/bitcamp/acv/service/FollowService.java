@@ -17,7 +17,7 @@ public interface FollowService {
   // 특정 멤버의 팔로우 리스트
   List<Follow> list2(int no) throws Exception;
   List<Follow> list3(int no) throws Exception;
-  List<Follow> getFollowingFeed(int np) throws Exception;
+  List<Follow> getFollowingFeed(int no) throws Exception;
   Follow get(int no) throws Exception;
   Object getTarget(Follow follow) throws Exception;
 }

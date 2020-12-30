@@ -86,12 +86,34 @@ System.out.println(review.getText());%>
       <%} else {
       %>
       <div class='like'>
+         <a
+          href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
+          <img
+          src='<%=getServletContext().getContextPath()%>/main_resource/comment.png'
+          alt='댓글 보기'>
+        </a>
+
         <a
           href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
           <img
           src='<%=getServletContext().getContextPath()%>/main_resource/like.png'
           alt='좋아요'>
         </a> <span class='pop'><%=review.getLiking()%>개</span>
+        
+        <a
+          href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
+          <img
+          src='<%=getServletContext().getContextPath()%>/main_resource/save.png'
+          alt='저장'>
+        </a>
+        
+        <a
+          href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
+          <img
+          src='<%=getServletContext().getContextPath()%>/main_resource/info-circle.png'
+          alt='영화 상세'>
+        </a>
+
       </div>
       <%
       }%>
@@ -164,7 +186,7 @@ var count= 0;
         count++;
         </script>
     <br>
-      <form action="delete" method="post">
+      <form action="../../comment/delete" method="post">
         <input type='hidden' name='no' value='${c.no}'>
         <input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
         <button>삭제</button>
@@ -176,7 +198,7 @@ var count= 0;
     <td>${c.member.nickName}</td>
     <td>${c.content}<br>
       <br>
-      <form action="delete" method="post">
+      <form action="../../delete" method="post">
         <input type='hidden' name='no' value='${c.no}'>
         <input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
         <button>삭제</button>

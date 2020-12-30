@@ -19,8 +19,7 @@
 		<id column="mno" property="no"/>
 		<result column="nick" property="nickName"/>
 	</association>
-		
-  </resultMap>
+	</resultMap>
 
   <sql id="sql1">
     select

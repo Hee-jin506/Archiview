@@ -207,23 +207,4 @@
    delete from acv_flw
     where flwing_mbr=#{followingMember.no} and fano=2 and target=#{followedNo}
     </update>
- 
-  <!-- 팔로우 상태 변경 -->
-  <!-- 1. 팔로우 상태 -->
-     <!-- 
-   <update id="active" parameterType="int">
-    update acv_flw set
-     stat = 1
-    where flwing_mbr=#{followingMember.no} and target=#{followedNo}
-  </update>
-  -->
-  
-    <!-- 2. 언팔로우 상태 -->
-       <!-- 
-  <update id="inactive" parameterType="int">
-  update acv_flw set
-    stat = 2
-  where flwing_mbr=#{followingMember.no} and target=#{followedNo}
-  </update>
---> 
 </mapper>

@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.report-button {
+	display: block;
+  margin: 0 auto;
+  margin-top: 34px;
+  font-size: 14px;
+  font-weight: bold;
+}
