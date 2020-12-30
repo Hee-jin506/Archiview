@@ -56,6 +56,7 @@ font-size : 21px;
 font-weight:bold;
 }
 #movieSearchResult #movieSearchResult_keyword{
+margin-left:12px;
 color:white;
 }
 #movieSearchResult #movieSearchResult_affix{

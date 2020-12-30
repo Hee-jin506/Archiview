@@ -24,11 +24,11 @@
         display: none;
     }
     
-    #editCardForm {
+    #editCardFormContainer {
     padding-top : 58px;
     margin: 0 auto;
     }
-    #editCardForm h1 {
+    #editCardFormContainer h1 {
       font-size: 25px;
       font-weight: bold;
       text-align: center;
@@ -41,11 +41,30 @@
     #editCardFormStillcut img{
    width : 720px;
     }
+    
+    .mb-3 {
+    width : 500px;
+    }
+    
+    #editCardFormContainer #hiddenSpace {
+    width:190px;
+    float:right;
+    margin:20px;
+    }
+    
+    #editCardFormContainer button {
+    font-weight : bold;
+    width:100px;
+    float:right;
+    margin:20px;
+    margin-top:45px;
+    }
+    
 </style>
 </head>
 <body>
 <div id='writeReview'>
-<div id='editCardForm'>
+<div id='editCardFormContainer'>
 	<h1>자기만의 감성으로 카드를 꾸며주세요!</h1>
 	<%
     if (!request.getParameter("stc").equals("default")) {
@@ -71,15 +90,21 @@
 		</select></label> <input type='hidden' name='movieNo'
 			value='${sessionScope.movieNo}'> <input
 			type='hidden' name='stc' value='<%=request.getParameter("stc")%>'>
-		<label>폰트크기<input type='range' name='size' min='10' max='50'
-			value='30'></label><br> <label>내용<textarea rows='10'
-				cols='70' name='text'></textarea></label><br> <label>태그<input
-			type='text' name='tag'></label><br> <label>x좌표<input
-			type='range' name='x' min='0' max='665' value='332'></label><br>
-		<label>y좌표<input type='range' name='y' min='0' max='443'
-			value='221'></label><br> <a href='chooseStc'>뒤로</a>
-		<button>리뷰 등록</button>
+			
+			<label for="fontSize" class="form-label">폰트크기</label>
+			<input type="range" class="form-range" min="10" max="50" step="1" value='30' id="fontSize">
+			
+			<div class="mb-3" id="editCardForm">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" cols='70' name='text'></textarea>
+      </div> 
+			<label>태그<input type='text' name='tag'></label>
+			<label>x좌표<input type='range' name='x' min='0' max='665' value='332'></label>
+		  <label>y좌표<input type='range' name='y' min='0' max='443' value='221'></label>
+		  <div id="hiddenSpace">
+              </div>
+		  <button class="btn btn-primary btn-sm btn-dark" >리뷰 등록</button>
 	</form>
+		  <button class="btn btn-primary btn-sm btn-dark" onclick="goBack()">뒤로</button>
 	</div>
 </div>
 </body>
