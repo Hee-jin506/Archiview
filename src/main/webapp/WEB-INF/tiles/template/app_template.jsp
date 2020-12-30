@@ -24,14 +24,24 @@
       margin:0 auto;
       margin-top: 75px;
     }
-  /* #headerLine {
-      width:100%;
-      height:65px;
-      position:absolute;
-      xtop:65px;
-      background-color:white;
-      z-index:-1;
-    } */
+
+#body {
+  xposition: absolute;
+  xleft: 230px;
+  xtop: 70px;
+  box-sizing: content-box;
+  width: 700px;
+  height: 700px;
+  padding: 0px;
+  overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#body::-webkit-scrollbar {
+  display: none;
+}
     
   </style>
   <script src="${appRoot}/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -42,10 +52,30 @@
 	  <div id="container">
 	  <tiles:insertAttribute name="header"/>
 		  <tiles:insertAttribute name="sidebar"/>
+		  <div id="body">
 		  <tiles:insertAttribute name="body"/>
-	  
+	  </div>
 	  <tiles:insertAttribute name="footer"/>
 
 	  </div>
+	  
+<script>
+"use strict" 
+var count = 1;
+var body = document.querySelector("#body");
+body.onscroll = function(e) {
+    console.log(body.scrollTop)
+    if(body.scrollTop >= 1850) {
+        count++;
+        console.log("스크롤 끝 감지")
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "app/ajax/review/moreFeed?pageNo=" + count, false);
+        xhr.send();
+        var originContent = body.innerHTML;
+        body.innerHTML = originContent + xhr.responseText;
+    }
+}; 
+
+</script>
   </body>
 </html>

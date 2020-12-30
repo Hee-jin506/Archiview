@@ -27,5 +27,10 @@ public class ReviewController {
     model.addAttribute("view", commentService.getByReviewNo(reviewNo));
   }
 
-
+  @RequestMapping("moreFeed")
+  public void moreFeed(int pageNo, HttpSession session, Model model) throws Exception {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
+    model.addAttribute("list", reviewService.getMainFeed(loginUser.getNo(), pageNo));
+  }
 }
