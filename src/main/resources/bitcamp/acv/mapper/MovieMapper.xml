@@ -48,22 +48,22 @@
        다음과 같이 별도로 분리한다. -->
   <sql id="sql1">
     select 
-	    m.mvno,
-	    m.title,
-	    m.dir,
-	    m.eng_title,
-	    m.runtime,
-	    m.odt,
-	    m.actors,
-	    m.syn,
-	    m.nation,
-	    m.stat,
-	    m.rdt,
-	    m.nav_cd,
-	    p.ps_url,
-	    s.stcno,
-	    s.stc_url,
-	    g.title g_title,
+      m.mvno,
+      m.title,
+      m.dir,
+      m.eng_title,
+      m.runtime,
+      m.odt,
+      m.actors,
+      m.syn,
+      m.nation,
+      m.stat,
+      m.rdt,
+      m.nav_cd,
+      p.ps_url,
+      s.stcno,
+      s.stc_url,
+      g.title g_title,
       r.rvno
     from 
       acv_mov m

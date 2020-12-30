@@ -43,7 +43,7 @@
 	</div>
 	
     <script src="${appRoot}/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="${appRoot}/js/image-picker.min.js"></script>
+    <script src="${appRoot}/js/image-picker.min.js"></script>
     <script>
        $("select").imagepicker()
     </script>

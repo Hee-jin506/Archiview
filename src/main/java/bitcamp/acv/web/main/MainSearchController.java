@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
-import bitcamp.acv.domain.Tag;
+import bitcamp.acv.domain.Review;
+import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
@@ -26,7 +28,7 @@ public class MainSearchController {
   @Autowired MemberService memberService;
   @Autowired MovieService movieService;
   @Autowired TagService tagService;
-
+  @Autowired FollowService followService;
 
   @GetMapping("search")
   public ModelAndView search(
@@ -62,11 +64,11 @@ public class MainSearchController {
         mv.addObject("movies", movies);
         mv.addObject("members", members);
 
-      } else {
+        List<Follow> follows = followService.list2(loginUser.getNo());
+        mv.addObject("follows", follows);
 
-        List<Tag> tags = tagService.listByKeywordTitle(keyword.substring(1));
-
-        mv.addObject("tags", tags);
+        List<Review> reviews = reviewService.listByKeywordTagTitle(keyword);
+        mv.addObject("reviews", reviews);
 
       }
     }

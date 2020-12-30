@@ -5,18 +5,18 @@
 
 <mapper namespace="bitcamp.acv.dao.TagDao">
 
-	<resultMap type="tag" id="TagMap">
-		    <id column="tno"    property="no" />
-		<result column="title"  property="title" />
-		<result column="stat"   property="status" />
-		<result column="rdt"    property="registeredDate" />
-		<result column="stc_url"    property="ThumbnailStillCutUrl" />
-		
-		<collection property="reviews"    ofType="integer">
+  <resultMap type="tag" id="TagMap">
+        <id column="tno"    property="no" />
+    <result column="title"  property="title" />
+    <result column="stat"   property="status" />
+    <result column="rdt"    property="registeredDate" />
+    <result column="stc_url"    property="ThumbnailStillCutUrl" />
+    
+    <collection property="reviews"    ofType="integer">
          <result column="rvno"        property="yongseobatjimothal-code"/>
     </collection>
     
-	</resultMap>
+  </resultMap>
 
 
   <resultMap type="tag" id="TagMap2">
@@ -34,49 +34,49 @@
     </collection>
   </resultMap>
   
-	<sql id="sql1">
-			select
-			t.tno,
-			t.title,
-			t.stat,
-			t.rdt,
-			tp.tpno,
-			tp.rvno,
-			s.stc_url
-		from acv_tag t
-			left outer join acv_tag_post tp on t.tno=tp.tno
-			left outer join acv_rv rv on tp.rvno = rv.rvno 
-			left outer join acv_stc s on rv.stcno = s.stcno
-	</sql>
-	
-	<!-- 태그가 달린 게시물들 중 stat=1인 애들중에서 rvno가 최소값인 애의 스틸컷을 가져옴
-	max, min함수는 조회하는 과정에서 상당히 부하를 일으킨다고하여 안씀 
-	대신 row_number()을 씀 -->
+  <sql id="sql1">
+      select
+      t.tno,
+      t.title,
+      t.stat,
+      t.rdt,
+      tp.tpno,
+      tp.rvno,
+      s.stc_url
+    from acv_tag t
+      left outer join acv_tag_post tp on t.tno=tp.tno
+      left outer join acv_rv rv on tp.rvno = rv.rvno 
+      left outer join acv_stc s on rv.stcno = s.stcno
+  </sql>
+  
+  <!-- 태그가 달린 게시물들 중 stat=1인 애들중에서 rvno가 최소값인 애의 스틸컷을 가져옴
+  max, min함수는 조회하는 과정에서 상당히 부하를 일으킨다고하여 안씀 
+  대신 row_number()을 씀 -->
   <select id="findByNotNullThumbnailStillCut" resultMap="TagMap">
   select * 
     from (
-	    select 
-	      row_number() over(partition by test.tno order by test.rvno asc) as rnum, 
-	      test.tno, 
-	      test.rvno, 
-	      test.stc_url 
-	        from (
-		        select
-				      t.tno,
-				      t.title,
-				      t.stat,
-				      t.rdt,
-				      tp.tpno,
-				      tp.rvno,
-				      s.stc_url
-				    from acv_tag t
-				      left outer join acv_tag_post tp on t.tno=tp.tno
-				      left outer join acv_rv rv on tp.rvno = rv.rvno 
-				      left outer join acv_stc s on rv.stcno = s.stcno
-				    where rv.stat=1
-				      ) test
-		    ) a 
-	  where a.rnum=1;
+      select 
+        row_number() over(partition by test.tno order by test.rvno asc) as rnum, 
+        test.tno, 
+        test.rvno, 
+        test.stc_url 
+          from (
+            select
+              t.tno,
+              t.title,
+              t.stat,
+              t.rdt,
+              tp.tpno,
+              tp.rvno,
+              s.stc_url
+            from acv_tag t
+              left outer join acv_tag_post tp on t.tno=tp.tno
+              left outer join acv_rv rv on tp.rvno = rv.rvno 
+              left outer join acv_stc s on rv.stcno = s.stcno
+            where rv.stat=1
+              ) test
+        ) a 
+    where a.rnum=1;
   </select>
   
   <select id="findAll" resultMap="TagMap" parameterType="string">
@@ -95,30 +95,30 @@
     where 
       t.tno = #{tno}
   </select>
-	
-	<select id="findByTitle" resultMap="TagMap" parameterType="string">
+  
+  <select id="findByTitle" resultMap="TagMap" parameterType="string">
     <include refid="sql1"/>
     where t.title=#{title}
   </select>
 
 
-	
+  
 
-	<!-- 삭제 = stat을 0으로 업데이트 -->
-	<update id="delete" parameterType="int">
-		update acv_tag
-		set stat = 0
-		where tno = #{tno}
-		
-	</update>
-	
-	<update id="active" parameterType="int">
-		update acv_tag
-		set stat = 1
-		where tno = #{tno}
-	</update>
-	
-	<insert id="insert" parameterType="tag" useGeneratedKeys="true" keyProperty="no">
+  <!-- 삭제 = stat을 0으로 업데이트 -->
+  <update id="delete" parameterType="int">
+    update acv_tag
+    set stat = 0
+    where tno = #{tno}
+    
+  </update>
+  
+  <update id="active" parameterType="int">
+    update acv_tag
+    set stat = 1
+    where tno = #{tno}
+  </update>
+  
+  <insert id="insert" parameterType="tag" useGeneratedKeys="true" keyProperty="no">
     insert ignore into acv_tag(title)
     values(#{title})
   </insert>
@@ -150,38 +150,38 @@
      order by t.tno desc
   </select>
 
-	<select id="findByDetailKeyword" resultMap="TagMap" parameterType="map">
-		<include refid="sql1" />
-		<where>
-			<if test="number != null">
-				and t.tno like concat('%', #{number}, '%') 
-			</if>
-			<if test="title != null">
-				and t.title like concat('%', #{title}, '%') 
-			</if> 
-			<if test="status != null">
-				and t.stat like concat('%', #{status}, '%') 
-			</if>
-			<if test="registeredDate != null">
-				and t.rdt like concat('%', #{registeredDate}, '%') 
-			</if>
-			<if test="startDate != null and endDate != null">
-			  and t.rdt between date(#{startDate}) and date(#{endDate})+1 
-			</if>
-			<if test="startNumber != '' and endNumber != '' and startNumber != null and endNumber != null">
-				and t.tno >= #{startNumber} and t.tno<![CDATA[<]]> #{endNumber}+1 
-			</if>
-			<if test="inactive == null and active != null">
+  <select id="findByDetailKeyword" resultMap="TagMap" parameterType="map">
+    <include refid="sql1" />
+    <where>
+      <if test="number != null">
+        and t.tno like concat('%', #{number}, '%') 
+      </if>
+      <if test="title != null">
+        and t.title like concat('%', #{title}, '%') 
+      </if> 
+      <if test="status != null">
+        and t.stat like concat('%', #{status}, '%') 
+      </if>
+      <if test="registeredDate != null">
+        and t.rdt like concat('%', #{registeredDate}, '%') 
+      </if>
+      <if test="startDate != null and endDate != null">
+        and t.rdt between date(#{startDate}) and date(#{endDate})+1 
+      </if>
+      <if test="startNumber != '' and endNumber != '' and startNumber != null and endNumber != null">
+        and t.tno >= #{startNumber} and t.tno<![CDATA[<]]> #{endNumber}+1 
+      </if>
+      <if test="inactive == null and active != null">
         and t.stat = 1
       </if>
       <if test="inactive != null and active == null">
         and t.stat = 0
       </if>
-		</where>
-		order by t.tno desc
-	</select>
-	
-	<select id="findByReviewNo" parameterType="int" resultMap="TagMap">
+    </where>
+    order by t.tno desc
+  </select>
+  
+  <select id="findByReviewNo" parameterType="int" resultMap="TagMap">
   select
       t.tno,
       t.title,
@@ -214,12 +214,12 @@
     <include refid="sql1"/>
     where t.title like concat('%', #{keyword}, '%')
   </select>
-	
+  
   
 
-	<!-- INSERT INTO test VALUES (now(), now()); -->
-	<!-- select t1, t2 from test where t1 like concat('%', '2020-12-03', '%') 
-		and t2 like concat('%', '2020-12-03', '%'); -->
+  <!-- INSERT INTO test VALUES (now(), now()); -->
+  <!-- select t1, t2 from test where t1 like concat('%', '2020-12-03', '%') 
+    and t2 like concat('%', '2020-12-03', '%'); -->
 
 
 <!-- select
