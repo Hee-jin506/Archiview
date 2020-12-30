@@ -1,8 +1,6 @@
 
 package bitcamp.acv.web.auth;
 
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -83,10 +81,9 @@ public class AuthController {
       mv.setViewName("auth/login");
     } else {
       session.setAttribute("loginUser", member);
-      Map<String, Object> map = new HashMap<>();
-      map.put("userNo", member.getNo());
-      map.put("row", 0);
-      mv.addObject("list", reviewService.getMainFeed(map));
+      mv.addObject("userNo", member.getNo());
+      mv.addObject("row", 0);
+      mv.addObject("list", reviewService.getMainFeed(member.getNo(), 0));
       mv.addObject("loginUser", member);
       mv.setViewName("main");
     }

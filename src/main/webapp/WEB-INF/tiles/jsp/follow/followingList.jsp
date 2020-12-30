@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-   <div id="contents">
+   <div id="profile_contents">
     <div id="profile_top">
       <input type='hidden' name='no' value='${member.no}'>
       <img class="profile" src='../../upload/${member.photo}_150x150.jpg'>

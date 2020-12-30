@@ -21,6 +21,7 @@ public class Movie {
   private List<String> posters;
   private List<String> genres;
   private int naverCd;
+  
   private List<Integer> reviews;
 
   public int getNaverCd() {

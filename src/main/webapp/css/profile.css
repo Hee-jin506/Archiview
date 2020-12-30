@@ -9,7 +9,7 @@ a { text-decoration: none; }
     
  }
  
- #contents {
+ #profile_contents {
    background-color: #141517;
    border-radius: 10px;
    
@@ -26,7 +26,7 @@ a { text-decoration: none; }
    scrollbar-width: none;
  }
  
- #contents::-webkit-scrollbar {
+ #profile_contents::-webkit-scrollbar {
   display: none;
  }
 

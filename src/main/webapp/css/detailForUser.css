@@ -4,8 +4,8 @@
   box-sizing: border-box;
   border: 1px solid #6b6b6b;
   color: white;
-  width: 700px;
-  height: 800px;
+  width: 750px;
+  height: 750px;
   padding: 0px;
   margin: 50px;
  }
@@ -13,21 +13,22 @@
  #cardDetail #cardPart {
    position: relative;
    box-sizing: border-box;
-   width: 698px;
+   width: 748px;
    margin: 0px;
-   height: 500px;
+   height: 450px;
+   border-bottom: 1px solid #6b6b6b;
  }
  
  #cardPart .cardHeader {
   box-sizing: border-box;
-  width: 698px;
-  height: 18px;
+  width: 748px;
+  height: 40px;
   margin: 0px;
-  padding: 13px 15px;
+  padding: 11px 15px;
 }
 
 #cardPart .cardHeader .movie {
-	width: 668px;
+	width: 718px;
 	margin: 0px;
 	text-align: center;
 }
@@ -38,22 +39,23 @@
   width: 23px;
   left: 5px;
   padding: 10px;
-  position: relative;
-  top: -20px;
+  position: absolute;
+  top: 10px;
 }
 
 #cardPart .stillcut {
   position: relative;
-  top: -10px;
+  border-top: 1px solid #6b6b6b;
+  border-bottom: 1px solid #6b6b6b;
   margin: 0px;
   height: 350px;
-  width: 698px;
+  width: 748px;
   overflow: hidden;
   background-color: #000;
 }
 
 #cardPart .stillcut img {
-  width: 698px;
+  width: 748px;
   display: block; 
   margin: 0px 
   auto;
@@ -80,10 +82,18 @@
 
 #cardPart img.profile {
   float: left;
-  width: 50px;
+  width: 40px;
 }
 
- #cardPart .cardHeader .nickname {
+#cardPart .cardFooter {
+  box-sizing: border-box;
+  width: 698px;
+  height: 40px;
+  margin: 0px;
+  padding: 5px 15px;
+}
+
+ #cardPart .cardFooter .nickname {
   float: left;
   margin: 13px;
   position: relative;
@@ -91,7 +101,7 @@
   top: 5px;
 }
 
-#cardPart .cardHeader .follow {
+#cardPart .cardFooter .follow {
   float: left;
   margin: 10px;
   position: relative;
@@ -100,13 +110,6 @@
 
 
 
-
-#cardPart .cardFooter {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  width: 625px;
-}
 
 #cardPart .cardFooter .rdt {
   float: left;

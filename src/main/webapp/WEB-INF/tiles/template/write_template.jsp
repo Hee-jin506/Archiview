@@ -9,6 +9,9 @@
 <meta charset="UTF-8">
 <title>아카이뷰</title>
 <link rel="stylesheet" href="${appRoot}/css/reset.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="${appRoot}/js/image-picker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${appRoot}/css/custom-image-picker.css">
 <link rel="stylesheet" href="${appRoot}/css/header.css">
 <link rel="stylesheet" href="${appRoot}/css/footer.css">
 <link rel="stylesheet"
@@ -38,5 +41,8 @@
 		<tiles:insertAttribute name="footer" />
 
 	</div>
+<script>
+       $("select").imagepicker()
+    </script>
 </body>
 </html>
