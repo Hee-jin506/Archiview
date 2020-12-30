@@ -63,8 +63,9 @@
    
    #movie-etitle {
     padding-left: 375px;
-    padding-top: 10px;
+    padding-top: 20px;
     font-size: x-small;
+    padding-bottom: 20px;
    }
    
    #movie-opendate {
@@ -72,24 +73,36 @@
    }
    
    #movie-runtime {
-    padding-left: 0px;
+    padding-left: 460px;
+    margin-top: -16px;
+    padding-bottom: 10px;
    }
    
-   #movie-directors{
-    padding-left: 0px;
+   #movie-directors {
+    padding-left: 460px;
+    margin-top: -16px;
+    padding-bottom: 10px;
    }
    
-   #movie-actors{
-    padding-left: 0px;
+   #movie-actors {
+    padding-left: 460px;
+    margin-top: -16px;
+    padding-bottom: 20px;
    }
    
-   #movie-link{
+   #movie-synop {
+   padding-left: 370px;
+   padding-bottom: 40px;
+   }
+   
+   #movie-link {
     padding-left: 370px;
    }
    
-   #movie-text{
+   #movie-text {
     padding-left: 370px;
     padding-top: 20px;
+    color: #626473;
    }
  
    #member-contents {
@@ -212,10 +225,13 @@ if (reviews.size() == 0) {
     %>
     <div id = "movie-title"><%=movie.getTitle()%></div>
     <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
-    <div id  = "movie-text">상영 시간
-    <div id = "movie-runtime"><%=movie.getRuntime()%></div></div>
-    <div id  = "movie-text">감독<div id = "movie-directors"><%=movie.getDirectors()%></div></div>
-    <div id  = "movie-text">출연<div id = "movie-actors"><%=movie.getActors()%></div></div>
+    <div id  = "movie-text">상영 시간</div>
+    <div id = "movie-runtime"><%=movie.getRuntime()%></div>
+    <div id  = "movie-text">감독</div>
+    <div id = "movie-directors"><%=movie.getDirectors()%></div>
+    <div id  = "movie-text">출연</div>
+    <div id = "movie-actors"><%=movie.getActors()%></div>
+    <div id = "movie-synop"><%=movie.getSynopsis()%></div>
   </div>
   <br>
   <div id = "movie-link">더보기</div>
