@@ -45,6 +45,10 @@
 	top: -2px;
 }
 
+.card cardHeader .dropdown1 {
+	float: right;
+}
+
 .card .stillcut {
 	position: relative;
 	margin: 0px;
