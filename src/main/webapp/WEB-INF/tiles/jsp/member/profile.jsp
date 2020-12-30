@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
    
+   <script type="text/javascript">
+   var isReported = ${isReported};
+   
+   </script>
    <div id="contents">
     <div id="profile_top">
       <input type='hidden' name='no' value='${member.no}'>
@@ -73,7 +77,6 @@
         <!-- 모달 화면 -->
       </div>
       <div class="modal-footer">
-      <button type="button" id="report-add" class="btn btn-secondary" onclick="reportUser()">신고</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
         <button type="button" class="btn btn-primary">신고</button>
       </div>
@@ -102,7 +105,7 @@ exampleModal.addEventListener('shown.bs.modal', function (event) {
 
 exampleModal.addEventListener('hidden.bs.modal', function (event) {
   console.log("hidden.bs.modal 종료")
-});
+});  
 
 for (var e of el) {
   e.onclick = function(e) {
@@ -112,29 +115,5 @@ for (var e of el) {
     myModal.show();
   };
 }
-
-/*
-$('#report-add').click(function() {
-  // 화면으로부터 입력 받은 값 처리
-  var reply_text = $("#newReplyText");
-  var reply_writer = $("#newReplyWriter");
-
-  var reply_textVal = reply_text.val();
-  var reply_writerrVal = reply_writer.val();
-
-  // AJAX 통신 : POST
-  $.ajax({
-    type: "POST",
-    url: "ajax/report/reportUser",
-    data: { "reportedNo" : $('#reportedNo').val(),
-            "reportedType" : $('#reportedType').val(),
-            "why" : $('#why').val()},
-            success: function() {
-              alert('신고 되었습니다.');
-              location.reload();
-            }, error: function() {
-              alert('신고 처리 중 오류 발생!')
-            }
-  });
-}); */
 </script>
+

@@ -77,8 +77,8 @@ $(document).ready(function() {
 	    </div>
 	    </div>
    </div> 
-   
 <script>
+
   $(document).ready(fuction(){
 	  
 	   $('#search_data').autocomplete({
@@ -94,4 +94,5 @@ $(document).ready(function() {
 	   };
 	   
   });
+
 </script>

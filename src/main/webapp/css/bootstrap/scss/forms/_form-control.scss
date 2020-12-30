@@ -2,8 +2,6 @@
 // General form controls (plus a few specific high-level interventions)
 //
 
-<<<<<<< HEAD
-=======
 .archiview-movieSearch-form-control {
   display: block;
   width: 370px;
@@ -116,7 +114,6 @@
   }
 }
 
->>>>>>> 289dba248451d0ecdfcd8c37a9b91b92e495c060
 .form-control {
   display: block;
   width: 100%;
@@ -303,13 +300,11 @@
 // https://github.com/twbs/bootstrap/pull/29124
 // stylelint-disable selector-no-qualifying-type
 textarea {
-<<<<<<< HEAD
-=======
+
   &.archiview-movieSearch-form-control {
     min-height: $input-height;
   }
-  
->>>>>>> 289dba248451d0ecdfcd8c37a9b91b92e495c060
+
   &.form-control {
     min-height: $input-height;
   }
