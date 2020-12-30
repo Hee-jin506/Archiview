@@ -96,6 +96,6 @@ public class CommentController {
       throw new Exception("해당 댓글이 없습니다.");
     }
 
-    return "redirect:../comment/view?reviewNo=" + request.getParameter("reviewNo");
+    return "redirect:../ajax/review/detailForUser?reviewNo=" + request.getParameter("reviewNo");
   }
 }

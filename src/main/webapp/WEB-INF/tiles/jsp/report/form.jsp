@@ -25,8 +25,15 @@
 </div><br>
 
 <div id="report-button">
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-<button type="submit" class="btn btn-primary">신고</button>
+<button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+<button type="submit" id="next" class="btn btn-secondary btn-sm">신고</button>
 </div>
-
 </form>
+
+<script>
+  $("#next").click(function() {
+  
+  alert("버튼1을 누르셨습니다.");
+  });
+  
+  </script>

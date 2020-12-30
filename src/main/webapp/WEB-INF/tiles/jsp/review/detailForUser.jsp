@@ -186,7 +186,7 @@ var count= 0;
         count++;
         </script>
     <br>
-      <form action="delete" method="post">
+      <form action="../../comment/delete" method="post">
         <input type='hidden' name='no' value='${c.no}'>
         <input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
         <button>삭제</button>
@@ -198,7 +198,7 @@ var count= 0;
     <td>${c.member.nickName}</td>
     <td>${c.content}<br>
       <br>
-      <form action="delete" method="post">
+      <form action="../../delete" method="post">
         <input type='hidden' name='no' value='${c.no}'>
         <input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
         <button>삭제</button>
