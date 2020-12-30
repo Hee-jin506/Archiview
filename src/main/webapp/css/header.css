@@ -52,6 +52,14 @@
 text-align: center;
 }
 
+.ui-widget-content {
+	background-color: black;
+}
+
+.ui-menu .ui-menu-item a {
+	font-size: 5px;
+	font-weight: normal;
+}
 #menubar #search input:focus {
 color: #fff;
 background-color: black;
@@ -112,6 +120,7 @@ box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 255, 255, 0.
 #menubar #search form {
 	margin-top: 20px;
 	float: left;
+	width: 240px;
 }
 
 #menubar #icon img {
