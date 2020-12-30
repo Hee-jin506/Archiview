@@ -84,13 +84,23 @@
 	auto;
 }
 
-.card .stillcut .reviewText {
+.card .stillcut .reviewText_box {
 	position: absolute;
 	width: 650px;
 	top: 50%;
 	text-align: center;
+	xbackground-color: rgba( 0, 0, 0, 0.5 );
+	padding: 4px;
+}
+.card .stillcut .reviewText_box .reviewText{
+	xposition: absolute;
+	xwidth: 650px;
+	xtop: 50%;
+	text-align: center;
 	background-color: rgba( 0, 0, 0, 0.5 );
 	padding: 4px;
+	font-weight: bold;
+	font-size: 18px;
 }
 
 .card .stillcut .tags {

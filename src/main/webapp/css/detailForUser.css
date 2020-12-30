@@ -5,7 +5,7 @@
   border: 1px solid #6b6b6b;
   color: white;
   width: 750px;
-  height: 750px;
+  height: 793px;
   padding: 0px;
   margin: 50px;
  }
@@ -87,9 +87,8 @@
 
 #cardPart .cardFooter {
   box-sizing: border-box;
-  width: 698px;
-  height: 40px;
-  margin: 0px;
+  xwidth: 698px;
+  height: 48px;
   padding: 5px 15px;
 }
 
@@ -117,13 +116,16 @@
 
 #cardPart .cardFooter .like {
   float: right;
-  position: relative;
-  left: -20px;
-  top:8px;
+  xposition: relative;
+  xleft: -20px;
+  xtop:8px;
 }
 
 #cardPart .cardFooter .like img {
+	
+  height: 30px;
   width: 30px;
+  margin-left: 5px;
 }
 
 #cardPart .cardFooter .like .pop {
@@ -140,4 +142,69 @@
   border: none;
   display: none;
 }
- 
+
+/* 댓글 부분 */
+.commentsBody {
+	 box-sizing: content-box;
+  width: 748px;
+  height: 310px;
+  padding: 0px;
+  overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.commentsBody::-webkit-scrollbar {
+  display: none;
+}
+
+.commentsFooter form{
+  width: 731px;
+}
+
+.commentRow_1, .commentRow_2 {
+	height :80px;
+	padding: 10px 60px;
+	margin-top: 10px;
+}
+
+.commentRow_2 {
+	margin-left: 35px;
+}
+
+.commentRow_1 form, .commentRow_2 form {
+	display: inline;
+}
+
+.commentRow_profileImage {
+	float: left;
+	margin-right : 13px;
+}
+
+.commentRow_body {
+	float: left;
+	padding-bottom:20px;
+}
+
+.commentRow_nickName {
+	font-weight: bold;
+	margin-top: 3px;
+}
+
+.commentRow_content {
+	font-size: 14px;
+	margin-top: 20px;
+}
+
+.commentRow_bottom {
+	font-size: 13px;
+	color: gray;
+	margin-top: 8px;
+}
+
+.commentRow_bottom button {
+	height : 27px;
+	font-size: 10px;
+}
+

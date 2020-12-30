@@ -122,13 +122,6 @@ public class MainNewsFeadController {
     }
 
     Collections.sort(newsFeedList, new DateCompare());
-    System.out.printf("\n\n===== 정렬 =====\n");
-    for (NewsFeed newsfeed : newsFeedList) {
-      System.out.println(newsfeed.getNick());
-      System.out.println(newsfeed.getPhoto());
-      System.out.println(newsfeed.getTargetType());
-      System.out.println(newsfeed.getDate());
-    }
 
     mv.addObject(newsFeedList);
 
