@@ -16,6 +16,11 @@ public class DefaultCommentService implements CommentService {
 
   @Override
   public int add(Comment comment) throws Exception {
+    if (comment.getGroupNo() == 0) {
+      int count = commentDao.insert(comment);
+      commentDao.updateGroupNo(comment);
+      return count;
+    }
     return commentDao.insert(comment);
   }
 
