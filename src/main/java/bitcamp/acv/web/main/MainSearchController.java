@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
-import bitcamp.acv.domain.Tag;
+import bitcamp.acv.domain.Review;
+import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
@@ -26,7 +27,7 @@ public class MainSearchController {
   @Autowired MemberService memberService;
   @Autowired MovieService movieService;
   @Autowired TagService tagService;
-
+  @Autowired FollowService followService;
 
   @GetMapping("search")
   public ModelAndView search(
@@ -62,11 +63,31 @@ public class MainSearchController {
         mv.addObject("movies", movies);
         mv.addObject("members", members);
 
+        //        for (Member m : members) {
+        //
+        //          // 바디
+        //          Member member = memberService.get(m.getNo());
+        //          System.out.println(m.getFollowing());
+        //          // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
+        //          List<Follow> followings = followService.list2(loginUser.getNo());
+        //          List<Integer> followingNoList = new ArrayList<>();
+        //          for (Follow f : followings) {
+        //            if (f.getFollowedType() == 1) {
+        //              followingNoList.add(f.getTargetMember().getNo());
+        //            }
+        //          }
+        //          boolean following = false;
+        //          if (followingNoList.contains(member.getNo())) {
+        //            following = true;
+        //          }
+        //          mv.addObject("following", following);
+        //
+        //        }
+
       } else {
 
-        List<Tag> tags = tagService.listByKeywordTitle(keyword.substring(1));
-
-        mv.addObject("tags", tags);
+        List<Review> reviews = reviewService.listByKeywordTagTitle(keyword);
+        mv.addObject("reviews", reviews);
 
       }
     }
