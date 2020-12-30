@@ -225,7 +225,7 @@ if (reviews.size() == 0) {
   <% 
     if (movie.getPosters().size() != 0) {
       %>
-    <div id = "movie=poster"><%=movie.getPosters().get(0).toString()%></div>
+    <div id = "movie=poster"><img src=<%=movie.getPosters().get(0).toString()%>></div>
     <%}
     %>
     <div id = "movie-title"><%=movie.getTitle()%></div>
