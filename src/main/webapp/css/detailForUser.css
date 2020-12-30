@@ -15,7 +15,7 @@
    box-sizing: border-box;
    width: 748px;
    margin: 0px;
-   height: 433px;
+   height: 450px;
    border-bottom: 1px solid #141517;
  }
  
@@ -94,8 +94,8 @@
 #cardPart .cardFooter {
   box-sizing: border-box;
   xwidth: 698px;
-  height: 40px;
-  padding: 8px 15px;
+ height: 58px;
+    padding: 11px 15px;
 }
 
  #cardPart .cardFooter .nickname {
