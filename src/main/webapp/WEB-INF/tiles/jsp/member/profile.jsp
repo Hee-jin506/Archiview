@@ -14,7 +14,7 @@
         </div>
         
      <div id="profile_icon_report">
-        <a class="report-form" href='<%=getServletContext().getContextPath()%>ajax/report/form?reportedNo=${member.no}'> 
+        <a class="report-form" href='<%=getServletContext().getContextPath()%>/ajax/report/form?reportedNo=${member.no}'> 
         <img class=profile_icon_report  src="<%=getServletContext().getContextPath()%>/profile_resource/report.png" height=20px class="center" data-no='${member.no}'></a>
     </div>
     

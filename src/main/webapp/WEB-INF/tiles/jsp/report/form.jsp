@@ -5,7 +5,6 @@
 
 
 <form action='../report/reportUser' method='post'>
-
 <input type="hidden" id="reportTarget" name='reportedNo' value="${report.reportedNo}"><br>
 <div class="col-sm-20">
 <select class="form-select" aria-label="Default select example" id="reportedType" name='reportedType'>

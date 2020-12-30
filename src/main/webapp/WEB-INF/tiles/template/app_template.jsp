@@ -67,9 +67,9 @@ body.onscroll = function(e) {
     console.log(body.scrollTop)
     if(body.scrollTop >= 1850) {
         count++;
-        console.log("스크롤 끝 감지")
+        console.log("스크롤 끝 감지") 
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "app/ajax/review/moreFeed?pageNo=" + count, false);
+        xhr.open("GET", "../../app/ajax/review/moreFeed?pageNo=" + count, false);
         xhr.send();
         var originContent = body.innerHTML;
         body.innerHTML = originContent + xhr.responseText;
