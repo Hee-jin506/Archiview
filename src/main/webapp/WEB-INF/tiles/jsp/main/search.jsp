@@ -190,7 +190,7 @@ if (reviews.size() == 0) {
     %>
     <div id ="member-contents">
       <div id = "member">
-        <p>리뷰어 있음</p>
+        <p>리뷰어</p>
         <hr>
       </div>
       <%
@@ -213,7 +213,7 @@ if (reviews.size() == 0) {
     
     <div id = "movie-contents">
       <div id = "movie">
-        <p>영화 있음</p>
+        <p>영화</p>
         <hr>
       </div>
       <%
@@ -233,7 +233,7 @@ if (reviews.size() == 0) {
 %>
 <div id ="member-contents">
   <div id = "member">
-    <p>리뷰어 있음</p>
+    <p>리뷰어</p>
     <hr>
   </div>
   <%   for (Member member : members) {
@@ -257,7 +257,7 @@ if (reviews.size() == 0) {
   
 <div id = "movie-contents">
   <div id = "movie">
-    <p>영화 없음</p>
+    <p>영화</p>
     <hr>
     <p>영화가 없습니다.</p>
   </div>
@@ -268,7 +268,7 @@ if (reviews.size() == 0) {
 %>
 <div id ="member-contents">
   <div id = "member">
-    <p>리뷰어 없음</p>
+    <p>리뷰어</p>
     <hr>
     <p>리뷰어가 없습니다.</p>
   </div>
@@ -277,7 +277,7 @@ if (reviews.size() == 0) {
     
 <div id = "movie-contents">
   <div id = "movie">
-    <p>영화 있음</p>
+    <p>영화</p>
     <hr>
   </div>
   <%
@@ -297,7 +297,7 @@ if (reviews.size() == 0) {
   %>
   <div id ="member-contents">
     <div id = "member">
-      <p>리뷰어 없음</p>
+      <p>리뷰어</p>
       <hr>
       <p>리뷰어가 없습니다.</p>
     </div>
@@ -306,7 +306,7 @@ if (reviews.size() == 0) {
     
   <div id = "movie-contents">
     <div id = "movie">
-      <p>영화 없음</p>
+      <p>영화</p>
       <hr>
       <p>영화가 없습니다.</p>
     </div>
@@ -314,6 +314,7 @@ if (reviews.size() == 0) {
   <%
   } 
 }else {
+  System.out.println("왜안돼");
   for (Review review : reviews) {
     %>
     태그검색
