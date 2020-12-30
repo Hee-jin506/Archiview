@@ -48,61 +48,69 @@
    margin-right: -10px;
    }
    
+   #movie-list {
+   margin-bottom: 40px;
+   }
+   
    #movie-list img {
    float: left;
-   margin-left: 20px;
+   margin-left: 5px;
    margin-top: 20px;
    margin-bottom: 20px;
    }
    
    #movie-title {
-    padding-left: 370px;
+    padding-left: 360px;
     font-size: x-large;
     padding-top: 20px;
    }
    
    #movie-etitle {
-    padding-left: 375px;
+    padding-left: 365px;
     padding-top: 20px;
     font-size: x-small;
     padding-bottom: 20px;
    }
    
    #movie-opendate {
-    padding-left: 370px;
+    padding-left: 360px;
    }
    
    #movie-runtime {
-    padding-left: 460px;
-    margin-top: -16px;
+    padding-left: 450px;
+    margin-top: -26px;
     padding-bottom: 10px;
    }
    
    #movie-directors {
-    padding-left: 460px;
-    margin-top: -16px;
+    padding-left: 450px;
+    margin-top: -26px;
     padding-bottom: 10px;
+    padding-right: 5px;
    }
    
    #movie-actors {
-    padding-left: 460px;
-    margin-top: -16px;
+    padding-left: 450px;
+    margin-top: -26px;
     padding-bottom: 20px;
+    padding-right: 5px;
    }
    
    #movie-synop {
-   padding-left: 370px;
-   padding-bottom: 40px;
+   padding-left: 360px;
+   padding-bottom: 30px;
+   padding-right: 5px;
    }
    
    #movie-link {
-    padding-left: 370px;
+    padding-left: 360px;
    }
    
    #movie-text {
-    padding-left: 370px;
+    padding-left: 360px;
     padding-top: 20px;
     color: #626473;
+    padding-bottom: 10px;
    }
  
    #member-contents {
@@ -232,10 +240,9 @@ if (reviews.size() == 0) {
     <div id  = "movie-text">출연</div>
     <div id = "movie-actors"><%=movie.getActors()%></div>
     <div id = "movie-synop"><%=movie.getSynopsis()%></div>
+    <div id = "movie-link">더보기</div>
   </div>
-  <br>
-  <div id = "movie-link">더보기</div>
-  <br>
+
   <%
   }
   %>
