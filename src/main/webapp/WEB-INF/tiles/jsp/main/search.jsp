@@ -47,6 +47,50 @@
    margin-left: -10px;
    margin-right: -10px;
    }
+   
+   #movie-list img {
+   float: left;
+   margin-left: 20px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   }
+   
+   #movie-title {
+    padding-left: 370px;
+    font-size: x-large;
+    padding-top: 20px;
+   }
+   
+   #movie-etitle {
+    padding-left: 375px;
+    padding-top: 10px;
+    font-size: x-small;
+   }
+   
+   #movie-opendate {
+    padding-left: 370px;
+   }
+   
+   #movie-runtime {
+    padding-left: 0px;
+   }
+   
+   #movie-directors{
+    padding-left: 0px;
+   }
+   
+   #movie-actors{
+    padding-left: 0px;
+   }
+   
+   #movie-link{
+    padding-left: 370px;
+   }
+   
+   #movie-text{
+    padding-left: 370px;
+    padding-top: 20px;
+   }
  
    #member-contents {
    box-sizing: border-box;
@@ -93,58 +137,7 @@
    margin-left: -10px;
    margin-right: -10px;
    }
-   
-   
- 
-   #tag-contents {
-   box-sizing: border-box;
-   border-radius: 10px;
-   background-color: #141517;
-   width: 650px; /* 너비 */
-   padding-left: 20px;  /* 패딩 */
-   padding-right: 20px;  /* 패딩 */
-   padding-bottom: 20px;  /* 패딩 */
-   float: left;  /* 왼쪽으로 플로팅 */
-   height: 100px;
-   overflow: hidden;
-   overflow-y: scroll;
-   -ms-overflow-style: none;
-   scrollbar-width: none;
-   margin-top: 10px;
- }
- 
-   #review-contents {
-   box-sizing: border-box;
-   border-radius: 10px;
-   background-color: #141517;
-   width: 650px; /* 너비 */
-   padding-left: 20px;  /* 패딩 */
-   padding-right: 20px;  /* 패딩 */
-   padding-bottom: 20px;  /* 패딩 */
-   float: left;  /* 왼쪽으로 플로팅 */
-   height: 100px;
-   overflow: hidden;
-   overflow-y: scroll;
-   -ms-overflow-style: none;
-   scrollbar-width: none;
-   margin-top: 10px;
- }
- 
 
- 
-   #tag-contents img {
-   padding-left: 50px;
-   margin-top: 40px;
-   border-radius: 100px;
- }
-  
-   #tag-contents p {
-   padding-left: 150px;
-    margin-top: -40px;
-   }
-   
-   
- 
    #movie-contents::-webkit-scrollbar {
   display: none;
  }
@@ -152,17 +145,6 @@
   #member-contents::-webkit-scrollbar {
   display: none;
  }
- 
-  #tag-profile::-webkit-scrollbar {
-  display: none;
-  }
-  
-  #review-detail::-webkit-scrollbar {
-  display: none;
-  }
- 
- 
- 
  
  .p {
   font-size: x-large;
@@ -229,14 +211,14 @@ if (reviews.size() == 0) {
     <%}
     %>
     <div id = "movie-title"><%=movie.getTitle()%></div>
-    <div id = "movie-Etitle"><%=movie.getEnglishTitle()%></div>
-    <div id = "movie-opendate"><%=movie.getOpenDate()%></div>
-    <div id = "movie-runtime"><%=movie.getRuntime()%></div>
-    <div id = "movie-directors"><%=movie.getDirectors()%></div>
-    <div id = "movie-actors"><%=movie.getActors()%></div>
+    <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
+    <div id  = "movie-text">상영 시간
+    <div id = "movie-runtime"><%=movie.getRuntime()%></div></div>
+    <div id  = "movie-text">감독<div id = "movie-directors"><%=movie.getDirectors()%></div></div>
+    <div id  = "movie-text">출연<div id = "movie-actors"><%=movie.getActors()%></div></div>
   </div>
   <br>
-  더보기
+  <div id = "movie-link">더보기</div>
   <br>
   <%
   }
@@ -297,16 +279,23 @@ if (reviews.size() == 0) {
   <%
   for (Movie movie : movies) {
   %>
-  <div id = "movie-list">
-    <div id = "movie-poster"><%=movie.getPosters().get(1)%></div>
+ <div id = "movie-list">
+  <% 
+    if (movie.getPosters().size() != 0) {
+      %>
+    <div id = "movie=poster"><img src=<%=movie.getPosters().get(0).toString()%>></div>
+    <%}
+    %>
     <div id = "movie-title"><%=movie.getTitle()%></div>
-    <div id = "movie-Etitle"><%=movie.getEnglishTitle()%></div>
+    <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
     <div id = "movie-opendate"><%=movie.getOpenDate()%></div>
-
     <div id = "movie-runtime"><%=movie.getRuntime()%></div>
     <div id = "movie-directors"><%=movie.getDirectors()%></div>
     <div id = "movie-actors"><%=movie.getActors()%></div>
   </div>
+  <br>
+  <div id = "movie-link">더보기</div>
+  <br>
   <%
   }
   %>
