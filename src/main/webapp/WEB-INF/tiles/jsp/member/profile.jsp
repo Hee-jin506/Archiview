@@ -37,8 +37,6 @@
         </form>    
     </div>
     
-        
-
     <div id="profile_icon">
       <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
         <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" height=30px class="center" alt="리뷰">

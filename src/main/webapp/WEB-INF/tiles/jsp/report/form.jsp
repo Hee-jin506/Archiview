@@ -7,12 +7,12 @@
 <form action='../report/reportUser' method='post'>
 
 <input type="hidden" id="reportTarget" name='reportedNo' value="${report.reportedNo}"><br>
-<div class="col-sm-10">
+<div class="col-sm-20">
 <select class="form-select" aria-label="Default select example" id="reportedType" name='reportedType'>
   <option value='1'>회원</option>
 </select>
 </div><br>
-<div class="col-sm-10">
+<div class="col-sm-20">
 <select class="form-select" aria-label="Default select example" id="reportWhy" name='why'>
   <option selected>신고 사유를 선택해주세요.</option>
   <option value='1'>음란성/선정성</option>
@@ -23,7 +23,10 @@
   <option value='6'>도배</option>
 </select>
 </div><br>
+
+<div id="report-button">
 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 <button type="submit" class="btn btn-primary">신고</button>
+</div>
 
 </form>

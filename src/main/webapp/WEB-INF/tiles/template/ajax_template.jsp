@@ -8,7 +8,6 @@
 <head>
   <meta charset="UTF-8">
   <title>아카이뷰</title>
-<<<<<<< HEAD
   <style>
   /*
   #container {
@@ -26,7 +25,7 @@
     } */
     
   </style>
-=======
+
   <link rel="stylesheet" href="${appRoot}/css/reset.css">
   <link rel="stylesheet" href="${appRoot}/css/header.css">
   <link rel="stylesheet" href="${appRoot}/css/sidebar.css">
@@ -37,7 +36,8 @@
   <link rel="stylesheet" href="${appRoot}/css/newsfeed.css">
   <link rel="stylesheet" href="${appRoot}/css/profile.css">
   <link rel="stylesheet" href="${appRoot}/css/detailForUser.css">
->>>>>>> dd5692b61677995da43c2d597bca4d525f33ea67
+  <link rel="stylesheet" href="${appRoot}/css/reportForm.css">
+
 </head>
 		  <tiles:insertAttribute name="body"/>
 </html>

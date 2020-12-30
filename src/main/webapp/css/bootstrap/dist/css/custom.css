@@ -4062,9 +4062,7 @@ textarea.form-control-lg {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem; }
-
-<<<<<<< HEAD
-=======
+  
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -4864,7 +4862,7 @@ textarea.form-control-lg {
   .g-xxl-5,
   .gy-xxl-5 {
     --bs-gutter-y: 3rem; } }
->>>>>>> dd5692b61677995da43c2d597bca4d525f33ea67
+
 .form-label {
   margin-bottom: 0.5rem; }
 
@@ -5522,7 +5520,6 @@ textarea.form-control-lg {
 
 .form-check-inline .form-check-input ~ .invalid-feedback {
   margin-left: .5em; }
-<<<<<<< HEAD
 
 .modal-open {
   overflow: hidden; }
