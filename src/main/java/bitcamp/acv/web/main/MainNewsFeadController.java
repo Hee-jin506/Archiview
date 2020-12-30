@@ -45,7 +45,7 @@ public class MainNewsFeadController {
 
   // 사용자 화면
   @GetMapping("newsfeed")
-  protected ModelAndView view(
+  public ModelAndView newsfeed(
       HttpServletRequest request,
       HttpSession session,
       Model model
@@ -60,51 +60,55 @@ public class MainNewsFeadController {
     model.addAttribute("topTags", tagService.listByPop3());
 
     // 메인피드
-    Map<String, Object> map = new HashMap<>();
-    map.put("userNo", loginUser.getNo());
-    map.put("row", 0);
-    model.addAttribute("list", reviewService.getMainFeed(map));
+    model.addAttribute("list", reviewService.getMainFeed(loginUser.getNo(), 1));
+
 
     List<Like> newsFeedLikeList = likeService.list2(loginUser.getNo());
     List<Follow> newsFeedFollowList = followService.list3(loginUser.getNo());
     List<NewsFeed> newsFeedList = new ArrayList<>();
 
-    for(Like l : newsFeedLikeList) {
-      NewsFeed n = new NewsFeed();
-      if (l.getLikedType() ==1 && l.getRvmno() ==loginUser.getNo() ) {
-        n.setNo(l.getLikingMember().getNo());
-        n.setNick(l.getLikingMember().getNickName());
-        n.setPhoto(l.getLikingMember().getPhoto());
-        n.setDate(l.getLikedDate());
-        n.setTargetNo(l.getLikedNo());
-        n.setTargetType(1); // 게시물
-        newsFeedList.add(n);
 
-      } else if (l.getLikedType() == 2 && l.getCmno() == loginUser.getNo()) {
-        n.setNo(l.getLikingMember().getNo());
-        n.setNick(l.getLikingMember().getNickName());
-        n.setPhoto(l.getLikingMember().getPhoto());
-        n.setDate(l.getLikedDate());
-        n.setTargetNo(l.getLikedNo());
-        n.setTargetType(2); // 댓글
-        newsFeedList.add(n);
+    if (newsFeedLikeList != null || newsFeedFollowList != null) {
+
+      for(Like l : newsFeedLikeList) {
+        NewsFeed n = new NewsFeed();
+        if (l.getLikedType() ==1 && l.getRvmno() ==loginUser.getNo() ) {
+          n.setNo(l.getLikingMember().getNo());
+          n.setNick(l.getLikingMember().getNickName());
+          n.setPhoto(l.getLikingMember().getPhoto());
+          n.setDate(l.getLikedDate());
+          n.setTargetNo(l.getLikedNo());
+          n.setTargetType(1); // 게시물
+          newsFeedList.add(n);
+
+        } else if (l.getLikedType() == 2 && l.getCmno() == loginUser.getNo()) {
+          n.setNo(l.getLikingMember().getNo());
+          n.setNick(l.getLikingMember().getNickName());
+          n.setPhoto(l.getLikingMember().getPhoto());
+          n.setDate(l.getLikedDate());
+          n.setTargetNo(l.getLikedNo());
+          n.setTargetType(2); // 댓글
+          newsFeedList.add(n);
+        }
       }
-    }
 
-    for(Follow f : newsFeedFollowList) {
-      NewsFeed n = new NewsFeed();
-      if(f.getFollowedType() == 1) {
+      for(Follow f : newsFeedFollowList) {
+        NewsFeed n = new NewsFeed();
+        if(f.getFollowedType() == 1) {
 
-        n.setNo(f.getTargetMember().getNo());
+          n.setNo(f.getTargetMember().getNo());
 
 
-        n.setNick(f.getTargetMember().getNickName());
-        n.setPhoto(f.getTargetMember().getPhoto());
-        n.setDate(f.getFollowedDate());
-        n.setTargetNo(f.getTargetMember().getNo());
-        n.setTargetType(3); // 멤버
-        newsFeedList.add(n);
+          n.setNick(f.getTargetMember().getNickName());
+          n.setPhoto(f.getTargetMember().getPhoto());
+          n.setDate(f.getFollowedDate());
+          n.setTargetNo(f.getTargetMember().getNo());
+          n.setTargetType(3); // 멤버
+          newsFeedList.add(n);
+        }
       }
+    } else {
+      mv.setViewName("redirect:../../app/main");
     }
 
 

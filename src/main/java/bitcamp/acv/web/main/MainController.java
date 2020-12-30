@@ -1,11 +1,17 @@
 package bitcamp.acv.web.main;
 
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
@@ -73,5 +79,36 @@ public class MainController {
       mv.setViewName("main/topBarBestReviewSearch");
     }
     return mv;
+  }
+
+  @SuppressWarnings("unchecked")
+  @RequestMapping(value = "autocomplete", method = RequestMethod.POST)
+  public void autocomplete(
+      Locale locale,
+      Model modle,
+      HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+    String result = request.getParameter("term");
+
+    System.out.println("호출됨");
+    List<Member> list1 = memberService.listByKeywordNickName(result);
+    //    List<Movie> list2 = movieService.listByKeywordTitle(result);
+    //    List<Tag> list3 = tagService.listByKeywordTitle(result);
+
+    JSONArray ja = new JSONArray();
+    for (int i = 0; i < list1.size(); i++) {
+      ja.add(list1.get(i).getNickName());
+    }
+
+    response.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
+    PrintWriter out = response.getWriter();
+
+    if (ja.toString().equals("[]")) {
+      out.print("[\"검색결과 없음\"]");
+    } else {
+      out.print(ja.toString());
+    }
   }
 }
