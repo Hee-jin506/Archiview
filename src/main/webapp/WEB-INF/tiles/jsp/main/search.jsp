@@ -23,6 +23,7 @@
    padding-bottom: 20px;  /* 패딩 */
    float: left;  /* 왼쪽으로 플로팅 */
    min-height: 200px;
+   max-height: 450px;
    overflow: hidden;
    overflow-y: scroll;
    -ms-overflow-style: none;
@@ -216,19 +217,26 @@ if (reviews.size() == 0) {
         <p>영화</p>
         <hr>
       </div>
-      <%
-      for (Movie movie : movies) {
-      %>
-      <div id = "movie-list">
-      <tr>
-        <td><%=movie.getTitle()%></td>
-      </tr>
-      </div>
-      <%
-      }
-      %>
-    </div> 
-      <%
+        <%
+  for (Movie movie : movies) {
+  %>
+  <br>
+  <div id = "movie-list">
+    <div id = "movie-title"><%=movie.getTitle()%></div>
+    <div id = "movie-Etitle"><%=movie.getEnglishTitle()%></div>
+    <div id = "movie-opendate"><%=movie.getOpenDate()%></div>
+    <div id = "movie-runtime"><%=movie.getRuntime()%></div>
+    <div id = "movie-directors"><%=movie.getDirectors()%></div>
+    <div id = "movie-actors"><%=movie.getActors()%></div>
+  </div>
+  <br>
+  더보기
+  <br>
+  <%
+  }
+  %>
+</div> 
+<%
 } else if (members.size() != 0 && movies.size() == 0) {
 %>
 <div id ="member-contents">
@@ -284,9 +292,14 @@ if (reviews.size() == 0) {
   for (Movie movie : movies) {
   %>
   <div id = "movie-list">
-  <tr>
-    <td><%=movie.getTitle()%></td>
-  </tr>
+    <div id = "movie-poster"><%=movie.getPosters().get(1)%></div>
+    <div id = "movie-title"><%=movie.getTitle()%></div>
+    <div id = "movie-Etitle"><%=movie.getEnglishTitle()%></div>
+    <div id = "movie-opendate"><%=movie.getOpenDate()%></div>
+
+    <div id = "movie-runtime"><%=movie.getRuntime()%></div>
+    <div id = "movie-directors"><%=movie.getDirectors()%></div>
+    <div id = "movie-actors"><%=movie.getActors()%></div>
   </div>
   <%
   }
