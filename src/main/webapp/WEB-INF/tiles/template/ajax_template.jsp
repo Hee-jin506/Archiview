@@ -9,13 +9,13 @@
   <meta charset="UTF-8">
   <title>아카이뷰</title>
   <style>
-  
+  /*
   #container {
       width:960px;
       margin:0 auto;
       margin-top: 75px;
     }
-  /* #headerLine {
+  #headerLine {
       width:100%;
       height:65px;
       position:absolute;

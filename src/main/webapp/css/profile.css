@@ -97,6 +97,10 @@ a { text-decoration: none; }
   border-radius: 100px;
  }
  
+ #profile_icon_report {
+ float: right;
+ }
+ 
  
  /* 밑부분 */
  
@@ -153,7 +157,6 @@ a { text-decoration: none; }
  
   .modal-body {
     margin: auto;
-    margin-top: 50px;
  }
  
  .modal-reportForm {

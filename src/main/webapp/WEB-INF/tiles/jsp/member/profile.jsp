@@ -16,6 +16,11 @@
            <div id="profile_top_text_intro">${member.intro}</div>
         </div>
         
+     <div id="profile_icon_report">
+        <a class="report-form" href='<%=getServletContext().getContextPath()%>ajax/report/form?reportedNo=${member.no}'> 
+        <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/report.png" height=25px class="center" data-no='${member.no}'></a>
+    </div>
+    
         <form method="get">
           <c:choose>
            <c:when test="${member.no==sessionScope.loginUser.no}">
@@ -29,12 +34,11 @@
              </button>
            </c:when>
           </c:choose>
-        </form>
-        
-      <a class="report-form" href='../report/form?reportedNo=${member.no}' data-no='${member.no}'>신고</a> 
-
+        </form>    
     </div>
     
+        
+
     <div id="profile_icon">
       <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
         <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review.png" height=30px class="center" alt="리뷰">
@@ -75,10 +79,6 @@
     <div class="modal-content">
       <div class="modal-body">
         <!-- 모달 화면 -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary">신고</button>
       </div>
     </div>
   </div>
