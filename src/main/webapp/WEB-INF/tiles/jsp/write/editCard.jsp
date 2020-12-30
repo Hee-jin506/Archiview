@@ -2,6 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="appRoot" value="${pageContext.servletContext.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,11 +60,13 @@
     
     
     .mb-3 {
-    width : 500px;
+    margin-top: 0px;
+    width: 500px;
+    margin-right: 120px;
     }
     
     #editCardFormContainer #hiddenSpace {
-    width:190px;
+    width:180px;
     float:right;
     margin:20px;
     }
@@ -75,6 +79,23 @@
     margin-top:45px;
     }
     
+    #editCardFormTextArea .mb-3{
+    float:right;
+    }
+    #editCardFormTextArea .mb-3 textarea{
+    background-color:black;
+    color : white;
+    border : 0px;
+    }
+    
+    #editCardFormTextArea_tag input {
+    width: 509px;
+    margin-right: 95px;
+    float:right;
+    background-color:black;
+    color : white;
+    border : 0px;
+    }
     
 </style>
 </head>
@@ -117,38 +138,39 @@
 
 	   // $( "#dragdiv" ).draggable();
 	   
-	   
 	   </script>
 	  </div>
-	<form action='add' method='post'>
-		<label>폰트<select name='font'>
+			<form action='add' method='post'>
+			<select name='font'>
 
-				<%
-				  List<Font> fonts = (List<Font>) request.getAttribute("fonts");
-				for (Font font : fonts) {
-				%>
-				<option value='<%=font.getNo()%>'><%=font.getName()%></option>
-				<%
+        <%
+          List<Font> fonts = (List<Font>) request.getAttribute("fonts");
+        for (Font font : fonts) {
+        %>
+        <option value='<%=font.getNo()%>'><%=font.getName()%></option>
+        <%
 }
 %>
-
-		</select></label> <input type='hidden' name='movieNo'
-			value='${sessionScope.movieNo}'> <input
-			type='hidden' name='stc' value='<%=request.getParameter("stc")%>'>
-			
-			<label for="fontSize" class="form-label">폰트크기</label>
-			<input type="range" class="form-range" min="10" max="50" step="1" value='30' id="fontSize">
-			
-			<div class="mb-3" id="editCardForm">
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" cols='70' name='text'></textarea>
-      </div> 
-			<label>태그<input type='text' name='tag'></label>
-			<label>x좌표<input type='range' name='x' min='0' max='665' value='332'></label>
-		  <label>y좌표<input type='range' name='y' min='0' max='443' value='221'></label>
-		  <div id="hiddenSpace">
-              </div>
-		  <button class="btn btn-primary btn-sm btn-dark" >리뷰 등록</button>
-	</form>
+    </select>
+					<div id="editCardFormTextArea">
+			      <div class="mb-3">
+		          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name='text' placeholder=""></textarea>
+		        </div>
+			      
+						<div id="editCardFormTextArea_tag">
+			       <input class="form-control form-control-sm" type="text" name='tag' placeholder="#">
+			      </div> 
+		      </div> 
+		      <input type='hidden' name='movieNo' value='${sessionScope.movieNo}'> 
+		      <input type='hidden' name='stc' value='<%=request.getParameter("stc")%>'>
+		      
+		      <input type="hidden" name="fontSize" value='11'>
+					<input type='hidden' name='x' value='332'>
+				  <input type='hidden' name='y' value='221'>
+				  <div id="hiddenSpace">
+		              </div>
+				  <button class="btn btn-primary btn-sm btn-dark" >리뷰 등록</button>
+			</form>
 		  <button class="btn btn-primary btn-sm btn-dark" onclick="goBack()">뒤로</button>
 	</div>
 </div>

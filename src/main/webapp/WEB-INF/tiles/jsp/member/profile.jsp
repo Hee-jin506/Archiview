@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
    
-   <script type="text/javascript">
-   var isReported = ${isReported};
-   
-   </script>
    <div id="profile_contents">
     <div id="profile_top">
       <input type='hidden' name='no' value='${member.no}'>
@@ -18,19 +14,19 @@
         
      <div id="profile_icon_report">
         <a class="report-form" href='<%=getServletContext().getContextPath()%>ajax/report/form?reportedNo=${member.no}'> 
-        <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/report.png" height=25px class="center" data-no='${member.no}'></a>
+        <img class=profile_icon_report  src="<%=getServletContext().getContextPath()%>/profile_resource/report.png" height=20px class="center" data-no='${member.no}'></a>
     </div>
     
-        <form method="get">
+        <form method="post">
           <c:choose>
            <c:when test="${member.no==sessionScope.loginUser.no}">
            </c:when>
            <c:when test="${following==true}">
-             <button type="submit" formaction="../follow/deleteUser?followedNo=${member.no}" class="btn btn-twitter">팔로우
+             <button type="submit" formaction='../follow/deleteUser?followedNo=${member.no}' class="btn btn-twitter">팔로우
              </button>
            </c:when>
            <c:when test="${following==false}">
-             <button type="submit" formaction="../follow/addUser?followedNo=${member.no}" class="btn btn-archiview">팔로우
+             <button type="submit" formaction='../follow/addUser?followedNo=${member.no}' class="btn btn-archiview">팔로우
              </button>
            </c:when>
           </c:choose>
