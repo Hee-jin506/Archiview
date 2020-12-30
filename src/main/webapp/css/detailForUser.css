@@ -1,0 +1,146 @@
+@charset "UTF-8";
+ #cardDetail {
+  background-color: #101010;
+  box-sizing: border-box;
+  border: 1px solid #6b6b6b;
+  color: white;
+  width: 700px;
+  height: 800px;
+  padding: 0px;
+  margin: 50px;
+ }
+ 
+ #cardDetail #cardPart {
+   position: relative;
+   box-sizing: border-box;
+   width: 698px;
+   margin: 0px;
+   height: 500px;
+ }
+ 
+ #cardPart .cardHeader {
+  box-sizing: border-box;
+  width: 698px;
+  height: 18px;
+  margin: 0px;
+  padding: 13px 15px;
+}
+
+#cardPart .cardHeader .movie {
+	width: 668px;
+	margin: 0px;
+	text-align: center;
+}
+
+#cardPart .cardHeader img.more {
+  float: right;
+  margin: 0px;
+  width: 23px;
+  left: 5px;
+  padding: 10px;
+  position: relative;
+  top: -20px;
+}
+
+#cardPart .stillcut {
+  position: relative;
+  top: -10px;
+  margin: 0px;
+  height: 350px;
+  width: 698px;
+  overflow: hidden;
+  background-color: #000;
+}
+
+#cardPart .stillcut img {
+  width: 698px;
+  display: block; 
+  margin: 0px 
+  auto;
+}
+
+#cardPart .stillcut .reviewText {
+  position: absolute;
+  top: 50%;
+  left: 325px;
+  text-align: center;
+  transform: translate( -50%, -50% );
+  background-color: rgba( 0, 0, 0, 0.5 );
+  padding: 4px;
+}
+
+#cardPart .stillcut .tags {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba( 0, 0, 0, 0.5 );
+  padding: 4px;
+}
+
+
+#cardPart img.profile {
+  float: left;
+  width: 50px;
+}
+
+ #cardPart .cardHeader .nickname {
+  float: left;
+  margin: 13px;
+  position: relative;
+  left: 0px;
+  top: 5px;
+}
+
+#cardPart .cardHeader .follow {
+  float: left;
+  margin: 10px;
+  position: relative;
+  top: -2px;
+}
+
+
+
+
+#cardPart .cardFooter {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 625px;
+}
+
+#cardPart .cardFooter .rdt {
+  float: left;
+  margin: 15px;
+  font-size: 80%;
+  font-weight: normal;
+  position: relative;
+  top: 3px;
+  color: #B9B9BA;
+}
+
+#cardPart .cardFooter .like {
+  float: right;
+  position: relative;
+  left: -20px;
+  top:8px;
+}
+
+#cardPart .cardFooter .like img {
+  width: 50%;
+}
+
+#cardPart .cardFooter .like .pop {
+  position: relative;
+  top: -7px;
+  left: 5px;
+}
+#cardPart .reviewDetail button {
+  position: absolute;
+  top: 80px;
+  height: 350px;
+  width: 650px;
+  background-color: rgba( 0, 0, 0, 0 );
+  border: none;
+  display: none;
+}
+ 

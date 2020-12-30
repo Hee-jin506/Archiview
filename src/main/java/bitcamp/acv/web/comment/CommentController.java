@@ -54,35 +54,29 @@ public class CommentController {
 
   @RequestMapping("add")
   public String add(
-      int groupNo,
+      String targetNo,
       int reviewNo,
       String content,
-      HttpServletRequest request
+      HttpServletRequest request,
+      HttpSession session
       ) throws Exception {
 
-    // 리퀘스트에 저장된 정보를  가져온다.
-    HttpSession session = request.getSession();
 
     // 코멘트 객체를 만든다.
     Comment comment = new Comment();
-
-    // 만약 level이 1 이라면 2를 넣는다.
-    if (Integer.parseInt(request.getParameter("level")) == 1) {
-      comment.setLevel(2);
-    } else {
-      comment.setLevel(1);
-    }
-
     comment.setReviewNo(Integer.parseInt(request.getParameter("reviewNo")));
+    comment.setLevel(Integer.parseInt(request.getParameter("level")));
     comment.setContent(request.getParameter("content"));
-    comment.setGroupNo(Integer.parseInt(request.getParameter("groupNo")));
-
     Member loginUser = (Member) session.getAttribute("loginUser");
     comment.setMemberNo(loginUser.getNo());
 
+    if (targetNo != null) {
+      comment.setGroupNo(Integer.parseInt(targetNo));
+    } else {
+      comment.setGroupNo(0);
+    }
     commentService.add(comment);
-
-    return "redirect:../comment/view?reviewNo=" + request.getParameter("reviewNo");
+    return "redirect:../ajax/review/detailForUser?reviewNo=" + request.getParameter("reviewNo");
   }
 
   @RequestMapping("/update")
