@@ -60,10 +60,7 @@ public class MainNewsFeadController {
     model.addAttribute("topTags", tagService.listByPop3());
 
     // 메인피드
-    Map<String, Object> map = new HashMap<>();
-    map.put("userNo", loginUser.getNo());
-    map.put("row", 0);
-    model.addAttribute("list", reviewService.getMainFeed(map));
+    model.addAttribute("list", reviewService.getMainFeed(loginUser.getNo(), 1));
 
     List<Like> newsFeedLikeList = likeService.list2(loginUser.getNo());
     List<Follow> newsFeedFollowList = followService.list3(loginUser.getNo());
