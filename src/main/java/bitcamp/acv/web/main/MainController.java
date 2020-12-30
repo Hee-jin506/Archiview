@@ -91,24 +91,31 @@ public class MainController {
 
     String result = request.getParameter("term");
 
-    System.out.println("호출됨");
-    List<Member> list1 = memberService.listByKeywordNickName(result);
-    //    List<Movie> list2 = movieService.listByKeywordTitle(result);
-    //    List<Tag> list3 = tagService.listByKeywordTitle(result);
+    List<Member> memberList = memberService.listByKeywordNickName(result);
+    List<Movie> movieList = movieService.listByKeywordTitle(result);
+    List<Tag> tagList = tagService.listByKeywordTitle(result);
+    //        Map<String, Object> item = new HashMap<>();
 
-    JSONArray ja = new JSONArray();
-    for (int i = 0; i < list1.size(); i++) {
-      ja.add(list1.get(i).getNickName());
+    JSONArray jList = new JSONArray();
+    for (int i = 0; i < memberList.size(); i++) {
+      //      new Gson().toJson(memberList.get(i));
+      jList.add(memberList.get(i).getNickName());
+    }
+    for (int i = 0; i < movieList.size(); i++) {
+      jList.add(movieList.get(i).getTitle());
+    }
+    for (int i = 0; i < tagList.size(); i++) {
+      jList.add("#"+ tagList.get(i).getTitle());
     }
 
     response.setCharacterEncoding("UTF-8");
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
 
-    if (ja.toString().equals("[]")) {
+    if (jList.toString().equals("[]")) {
       out.print("[\"검색결과 없음\"]");
     } else {
-      out.print(ja.toString());
+      out.print(jList);
     }
   }
 }
