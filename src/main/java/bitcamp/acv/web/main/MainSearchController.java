@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
 import bitcamp.acv.domain.Review;
@@ -63,28 +64,8 @@ public class MainSearchController {
         mv.addObject("movies", movies);
         mv.addObject("members", members);
 
-        //        for (Member m : members) {
-        //
-        //          // 바디
-        //          Member member = memberService.get(m.getNo());
-        //          System.out.println(m.getFollowing());
-        //          // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
-        //          List<Follow> followings = followService.list2(loginUser.getNo());
-        //          List<Integer> followingNoList = new ArrayList<>();
-        //          for (Follow f : followings) {
-        //            if (f.getFollowedType() == 1) {
-        //              followingNoList.add(f.getTargetMember().getNo());
-        //            }
-        //          }
-        //          boolean following = false;
-        //          if (followingNoList.contains(member.getNo())) {
-        //            following = true;
-        //          }
-        //          mv.addObject("following", following);
-        //
-        //        }
-
-      } else {
+        List<Follow> follows = followService.list2(loginUser.getNo());
+        mv.addObject("follows", follows);
 
         List<Review> reviews = reviewService.listByKeywordTagTitle(keyword);
         mv.addObject("reviews", reviews);

@@ -42,10 +42,10 @@
 			}
 			%>
 			<div class="dropdown1">
-			<button class='more'>
-				<img src='<%=getServletContext().getContextPath()%>/main_resource/more.png'>
+			<button class='more' data-no='<%=review.getNo()%>'>
+				<img src='<%=getServletContext().getContextPath()%>/main_resource/more.png' >
 			</button>
-				<div class="dropdown-content1">
+				<div class="dropdown-content1" data-no='<%=review.getNo()%>'>
 				<c:if test='<%=review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
 				  <a herf="#">수정</a>
 				  <hr style="margin: 0px;">
@@ -152,14 +152,24 @@
       </script>
 <script>
 var el = document.querySelectorAll('.more');
-var menuContent = document.querySelector('.dropdown-content1');
-for (var e of el) {
-    e.addEventListener("click", function(e) {
-   if(menuContent.style.display===""){
-      menuContent.style.display="block";
-   } else {
-      menuContent.style.display="";
-   }
+var menuContents = document.querySelectorAll('.dropdown-content1');
+
+for (var element of el) {
+	element.addEventListener("click", function(e) {
+        	var no = this.getAttribute("data-no");
+        for (var menu of menuContents) {
+        	console.log(menu.getAttribute("data-no"));
+            if (menu.getAttribute("data-no") == no) {
+        	console.log(menu.getAttribute("data-no"), this.getAttribute("data-no")); 
+            	   if(menu.style.display===""){
+            		   menu.style.display="block";
+            		   } else {
+            			   menu.style.display="";
+            		   }
+              
+            }
+          }
+
 });
 }
 </script>

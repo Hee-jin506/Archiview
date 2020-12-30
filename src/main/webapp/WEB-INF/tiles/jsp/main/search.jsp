@@ -180,11 +180,12 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 List<Movie> movies = (List<Movie>) request.getAttribute("movies");
 List<Member> members = (List<Member>) request.getAttribute("members");
 List<Review> reviews = (List<Review>) request.getAttribute("reviews");
+List<Follow> follows = (List<Follow>) request.getAttribute("follows");
 %>
 
 
 <%
-if (reviews == null) {
+if (reviews.size() == 0) {
   if (members.size() != 0 && movies.size() != 0) {
     %>
     <div id ="member-contents">
@@ -203,19 +204,13 @@ if (reviews == null) {
         <div id = "member-list2">  
           <div id="nickName"><%=member.getNickName()%></div>
           <div id="intro"><%=member.getIntro()%></div>
-          <div id="follow"><%=loginUser.getFollowers()%></div>
         </div>
-        <%
-        int f = loginUser.getFollowers();
-        System.out.println(f);
-        %>
         <br>
       <%
       }
       %>
     </div>
-          
-        
+    
     <div id = "movie-contents">
       <div id = "movie">
         <p>영화 있음</p>
@@ -241,21 +236,19 @@ if (reviews == null) {
     <p>리뷰어 있음</p>
     <hr>
   </div>
-  <%
-  for (Member member : members) {
+  <%   for (Member member : members) {
   %>
       <br>
     <div id = "member-list">
       <input type='hidden' name='no' value='{member.no}'>
-      <img class="profile" src='../../upload/<%=member.getPhoto()%>_35x35.jpg'>
-    </div>
-    <div id = "member-list2">  
+      <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=member.getNo()%>">
+      <img class="profile" src='../../upload/<%=member.getPhoto()%>_35x35.jpg'> 
+      </a>
       <div id="nickName"><%=member.getNickName()%></div>
       <div id="intro"><%=member.getIntro()%></div>
-      <div id="follow"><%=loginUser.getFollowers()%></div>
+
     </div>
     <br>
-
   <%
   }
   %>
