@@ -9,36 +9,10 @@
 
 <%Review review = (Review)request.getAttribute("review"); 
 System.out.println(review.getText());%>
-  <div class='cardDetail'>
+  <div id='cardDetail'>
+  <div id='cardPart'>
     <div class='cardHeader'>
-      <a
-        href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
-        <img class='profile'
-        src='<%=getServletContext().getContextPath() + "/upload/" + review.getWriterPhoto() + "_35x35.jpg"%>'>
-      </a> <a class='nickname'
-        href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
-        <%=review.getWriterNick()%></a>
-      <%
-        if (!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())) {
-      %>
-      <%
-        if (review.getIsFollowing() != 0) {
-      %>
-      <div class='follow'>
-        <form>
-          <button class="btn btn-twitter">팔로우</button>
-        </form>
-      </div>
-      <%} else {%>
-      <div class='follow'>
-        <form>
-          <button class="btn btn-archiview">팔로우</button>
-        </form>
-      </div>
-      <%
-        }
-      }
-      %>
+      <p class='movie'><%=review.getMovieTitle()%>.archiview</p>
       <img class='more' src='<%=getServletContext().getContextPath()%>/main_resource/more.png'>
     </div>
     
@@ -68,7 +42,35 @@ System.out.println(review.getText());%>
     </div>
 
     <div class='cardFooter'>
-      <a class='movie'><%=review.getMovieTitle()%></a>
+    <a
+        href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
+        <img class='profile'
+        src='<%=getServletContext().getContextPath() + "/upload/" + review.getWriterPhoto() + "_35x35.jpg"%>'>
+      </a> <a class='nickname'
+        href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
+        <%=review.getWriterNick()%></a>
+      <%
+        if (!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())) {
+      %>
+      <%
+        if (review.getIsFollowing() != 0) {
+      %>
+      <div class='follow'>
+        <form>
+          <button class="btn btn-twitter">팔로우</button>
+        </form>
+      </div>
+      <%} else {%>
+      <div class='follow'>
+        <form>
+          <button class="btn btn-archiview">팔로우</button>
+        </form>
+      </div>
+      <%
+        }
+      }
+      %>
+
       <p class='rdt'><%=(review.getRdtFromNow())%></p>
       <%
         if (review.getIsLiking() != 0) {
@@ -84,17 +86,40 @@ System.out.println(review.getText());%>
       <%} else {
       %>
       <div class='like'>
+         <a
+          href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
+          <img
+          src='<%=getServletContext().getContextPath()%>/main_resource/comment.png'
+          alt='댓글 보기'>
+        </a>
+
         <a
           href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
           <img
           src='<%=getServletContext().getContextPath()%>/main_resource/like.png'
           alt='좋아요'>
         </a> <span class='pop'><%=review.getLiking()%>개</span>
+        
+        <a
+          href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
+          <img
+          src='<%=getServletContext().getContextPath()%>/main_resource/save.png'
+          alt='저장'>
+        </a>
+        
+        <a
+          href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
+          <img
+          src='<%=getServletContext().getContextPath()%>/main_resource/info-circle.png'
+          alt='영화 상세'>
+        </a>
+
       </div>
       <%
       }%>
     </div>
-  </div>
+    </div>
+
 
 <div class='comments'>
 <h1>[코멘트] </h1>
@@ -126,9 +151,12 @@ Member loginUser = (Member) s.getAttribute("loginUser");
 <%
 
 System.out.println(comments.size());
-
+int count = 0;
 %>
-
+<script>
+var comments = new Array();
+var count= 0;
+</script>
 
 <tbody>
   <c:forEach items="${view}" var="c"> 
@@ -147,14 +175,18 @@ System.out.println(comments.size());
         <input type='hidden' name='targetNo' value='${c.no}'>
         <input type='hidden' name='groupNo' value='${c.groupNo}'>
         <input type='hidden' name='level' value='${c.level}'>
-        <button class='level-2' data-no='${c.no}'>대댓글 등록</button>
+        <button class='level-2' data-no='<%=count%>'>대댓글 등록</button>
+        <%count++; %>
 
         <script>
-        var ${c.no}Group = ${c.groupNo};
-        var ${c.no}Level = ${c.level};
+        comments[count] = {
+        		targetNo: ${c.no},
+        		writer: "${c.member.nickName}"
+        };
+        count++;
         </script>
     <br>
-      <form action="delete" method="post">
+      <form action="../../comment/delete" method="post">
         <input type='hidden' name='no' value='${c.no}'>
         <input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
         <button>삭제</button>
@@ -166,7 +198,7 @@ System.out.println(comments.size());
     <td>${c.member.nickName}</td>
     <td>${c.content}<br>
       <br>
-      <form action="delete" method="post">
+      <form action="../../delete" method="post">
         <input type='hidden' name='no' value='${c.no}'>
         <input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
         <button>삭제</button>
@@ -191,11 +223,9 @@ System.out.println(comments.size());
 
 
 <br>
-<form action="../comment/add" method="post" class="register">
-<input type='hidden' name='targetNo' value=<%=request.getParameter("targetNo") %>>
-<input type='hidden' name='reviewNo' value=<%=request.getParameter("reviewNo")%>>
-<input type='hidden' name='groupNo' value=<%=request.getParameter("groupNo")%>>
-<input type='hidden' name='level' value=<%=request.getParameter("level")%>>
+<form action="../../comment/add" method="post" class="register">
+<input type='hidden' name='reviewNo' value='<%=request.getParameter("reviewNo")%>'>
+<input type='hidden' name='level' value='1'>
 코멘트 :
 <input type='text' name='content'>
 <button>등록</button>
@@ -209,14 +239,18 @@ var targetNo, groupNo, level;
 
 for (var e of level2btn) {
   e.onclick = function(e) {
-      e.target.getAttribute("data-no");
-      groupNo = 
-      level = ${c.level};
-      console.log(boardNo, groupNo, level)
-      console.log("click");
+      dataNo = e.target.getAttribute("data-no");
+      var comment = comments[dataNo];
+      var originContent = register.innerHTML;
+      register.innerHTML = originContent + 
+         "<input type='hidden' name='targetNo' value='"+ comment.targetNo +"'>";
+      document.querySelector(".register input[name='level']").setAttribute("value", 2);
+      document.querySelector(".register input[name='reviewNo']").setAttribute("value", ${param.reviewNo});
+      document.querySelector(".register input[name='content']").setAttribute("value", "@" + comment.writer +" ");
+      console.log(register.innerHTML)
     };
   }
 
 </script>
-
+  </div>
   

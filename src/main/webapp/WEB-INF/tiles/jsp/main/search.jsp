@@ -252,6 +252,7 @@ if (reviews == null) {
     <div id = "member-list2">  
       <div id="nickName"><%=member.getNickName()%></div>
       <div id="intro"><%=member.getIntro()%></div>
+      <div id="follow"><%=loginUser.getFollowers()%></div>
     </div>
     <br>
 

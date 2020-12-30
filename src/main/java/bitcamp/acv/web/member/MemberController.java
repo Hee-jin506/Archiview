@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Member;
-import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
@@ -107,52 +106,52 @@ public class MemberController {
     // 바디
     Member member = memberService.get(no);
     model.addAttribute("member", member);
-    
+
     // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
     List<Follow> followings = followService.list2(loginUser.getNo());
     List<Integer> followingNoList = new ArrayList<>();
     for (Follow f : followings) {
       if (f.getFollowedType() == 1) {
-      followingNoList.add(f.getTargetMember().getNo());
+        followingNoList.add(f.getTargetMember().getNo());
       }
     }
     boolean following = false;
     if (followingNoList.contains(member.getNo())) {
       following = true;
-    } 
+    }
     model.addAttribute("following", following);
   }
 
   // 프로필 화면(프로필 + 본인이 저장한! 리뷰들이 나옴)
   @RequestMapping("savedReviews")
   public void savedReviews(Model model, HttpSession session, int no) throws Exception {
- // 탑바
+    // 탑바
     Member loginUser = (Member) session.getAttribute("loginUser");
     model.addAttribute("loginUser", loginUser);
-    
+
 
     // 사이드바
     model.addAttribute("topMembers", memberService.listByPop3());
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
-    
- // 바디
+
+    // 바디
     Member member = memberService.get(no);
     model.addAttribute("member", member);
 
- // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
+    // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
     List<Follow> followings = followService.list2(loginUser.getNo());
     List<Integer> followingNoList = new ArrayList<>();
     for (Follow f : followings) {
       if (f.getFollowedType() == 1) {
-      followingNoList.add(f.getTargetMember().getNo());
+        followingNoList.add(f.getTargetMember().getNo());
       }
     }
     boolean following = false;
     if (followingNoList.contains(member.getNo())) {
       following = true;
-    } 
-    
+    }
+
     model.addAttribute("following", following);
   }
 

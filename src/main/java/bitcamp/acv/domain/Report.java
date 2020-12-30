@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Report {
 
+
   // 신고 대상 타입
   public static final int MEMBER = 1;
   public static final int REVIEW = 2;

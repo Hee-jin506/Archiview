@@ -59,7 +59,7 @@ $(document).ready(function() {
 	       <div class='dropdown-content'>
 	           <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=member.getNo()%>"><img class='btn-icon' src='<%=getServletContext().getContextPath()+"/option_resource/profile.png"%>' alt='프로필'>프로필</a>
 		         <a href="<%=getServletContext().getContextPath()%>/app/option/profile"><img class='btn-icon' src='<%=getServletContext().getContextPath()+"/option_resource/option.png"%>' alt='설정'>설정</a>
-		         <c:if test='${member.authority == 0}'>
+		         <c:if test='<%=member.getAuthority() == 0%>'>
 		         <a href="<%=getServletContext().getContextPath()%>/admin/"><img class='btn-icon' src='<%=getServletContext().getContextPath()+"/option_resource/Shape.png"%>' alt='관리자 페이지'>관리자 페이지</a>
 		         </c:if>
 	           <hr>
@@ -67,6 +67,7 @@ $(document).ready(function() {
 	       </div>
 	    </div>
 	    </div> 
+
 	    <div id='icon'>
 	      <a href='<%=getServletContext().getContextPath()%>'>
 	      <img src='<%=getServletContext().getContextPath()%>/main_resource/home-outline.png' width="20" alt='메인화면'></a> <a
@@ -79,4 +80,3 @@ $(document).ready(function() {
 	    </div>
 	    </div>
    </div> 
-   

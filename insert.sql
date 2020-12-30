@@ -198,6 +198,7 @@ values(1, '무현, 두 도시 이야기', '전인환', 'Moo-hyun, Tale of Two Ci
 더 나은 세상을 향한 그들의 치열했던 도전을 미공개 영상으로 만난다!', 
 '한국', 1, 152183);
 
+
 /*스틸컷 샘플*/
 insert into acv_stc(mvno)
 values(1);
@@ -232,6 +233,7 @@ values(1, 1, 'https://movie-phinf.pstatic.net/20170814_17/1502675963099mSfot_JPE
 
 insert into acv_pstr(psno, mvno, ps_url, main_ps)
 values(2, 1, 'https://movie-phinf.pstatic.net/20161026_271/1477463580542wovM2_JPEG/movie_image.jpg?type=m665_443_2', 0);
+
 
 /*영화 샘플*/
 insert into acv_mov(mvno, title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
@@ -451,6 +453,76 @@ values(11, '더 플랜', '최진성', 'The Host, 2006', 102, '2017-04-20',
 과학자, 수학자, 통계학자, 국내외 해커들이 모두 뭉쳐  이 수상한 숫자의 비밀을 파헤치기 시작했다.  
 추적 결과, 그들은 소름 끼치도록 놀랍고 충격적인 사실을 발견하는데…',
 '한국', 1, 162471);
+
+insert into acv_mov(title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
+values('인터스텔라', '크리스토퍼 놀란', 'Interstellar, 2014', 169, '2014-11-06 ',
+'매튜 매커너히,앤 해서웨이,마이클 케인,제시카 차스테인,케이시 애플렉',
+'“우린 답을 찾을 거야, 늘 그랬듯이”
+세계 각국의 정부와 경제가 완전히 붕괴된 미래가 다가온다.
+지난 20세기에 범한 잘못이 전 세계적인 식량 부족을 불러왔고, NASA도 해체되었다.
+이때 시공간에 불가사의한 틈이 열리고, 이를 탐험해 인류를 구해야 할 남은 자들에게 지워진다.
+사랑하는 가족들을 뒤로 한 채 인류라는 더 큰 가족을 위해, 그들은 이제 희망을 찾아 우주로 간다.
+그리고 우린 답을 찾을 것이다. 늘 그랬듯이…',
+'미국,영국', 1, 45290);
+
+insert into acv_mov(title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
+values('인터스텔라: 우주 전쟁', '마를린 맥코헨', 'Interstellar Wars, 2015', 83, '2016-06-09 ',
+'마를린 맥코헨,브라이언 랠리',
+'어느 날 달 이면에서 발생한 웜홀을 통해 지구 상공에 거대 UFO가 등장한다.
+ UFO가 발사한 빛을 맞은 사람들은 좀비처럼 변하는 이상 증세를 보이며 서로를 공격하게 된다.
+ 무자비한 살육의 현장을 이대로 지켜만 볼 수 없단 것을 깨달은 정부에서는 미 공군 특수 부대를 출격, 
+거대 UFO와 맞서는 인류 최후의 전쟁이 시작된다.',
+'미국', 1, 149545);
+
+insert into acv_mov(title, dir, eng_title, runtime, odt, actors, syn, nation, stat, nav_cd) 
+values('인터스텔라 5555', '마츠모토 레이지,타케노우치 카즈히사', 'Interstella 5555, 2003', 97, '2003-01-01',
+'마를린 맥코헨,브라이언 랠리',
+'대사가 전혀 없는 락 뮤직 애니메이션. 
+악의 무리에 의해 납치되어 온 다른 은하계의 4명은 지구에서 최고의 밴드가 된다. 
+다프 펑크의 음악과 레이지 마츠모토의 디자인이 만나 만들어진 뮤지컬 애니메이션.',
+'일본', 1, 37618);
+
+/* 포스터 샘플 */
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(12, 'https://movie-phinf.pstatic.net/20160106_138/1452044846608eaFcJ_JPEG/movie_image.jpg?type=m665_443_2', 1);
+
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(12, 'https://movie-phinf.pstatic.net/20141021_288/1413854090045j0hQc_JPEG/movie_image.jpg?type=m665_443_2', 0);
+
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(13, 'https://movie-phinf.pstatic.net/20160530_58/146459304576821oqi_JPEG/movie_image.jpg?type=m665_443_2', 1);
+
+insert into acv_pstr(mvno, ps_url, main_ps)
+values(14, 'https://movie-phinf.pstatic.net/20111222_145/1324484030109JsAGX_JPEG/movie_image.jpg?type=m665_443_2', 1);
+/* 스틸컷 샘플 */
+
+insert into acv_stc(mvno, stc_url)
+values(12, 'https://movie-phinf.pstatic.net/20150204_283/14230153651826EYoJ_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(12, 'https://movie-phinf.pstatic.net/20150203_267/1422954366520nmAor_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(12, 'https://movie-phinf.pstatic.net/20150204_214/1423015367349YxGqW_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(12, 'https://movie-phinf.pstatic.net/20150204_229/1423015363653TL7dP_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(12, 'https://movie-phinf.pstatic.net/20150204_114/1423015776120wimFt_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(12, 'https://movie-phinf.pstatic.net/20150204_195/1423015361772wlnW8_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(12, 'https://movie-phinf.pstatic.net/20141112_121/14157769076189OLFt_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(12, 'https://movie-phinf.pstatic.net/20150203_54/1422954366878dz9PT_JPEG/movie_image.jpg?type=m665_443_2');
+
+insert into acv_stc(mvno, stc_url)
+values(12, 'https://movie-phinf.pstatic.net/20150203_32/142295436722802MHL_JPEG/movie_image.jpg?type=m665_443_2');
+
 
 /* 리뷰 샘플*/
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
