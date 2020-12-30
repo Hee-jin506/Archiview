@@ -1,8 +1,8 @@
 @charset "UTF-8";
  #cardDetail {
-  background-color: #101010;
+  background-color: #141517;
   box-sizing: border-box;
-  border: 1px solid #6b6b6b;
+  border: 1px solid #141517;
   color: white;
   width: 750px;
   height: 793px;
@@ -15,8 +15,8 @@
    box-sizing: border-box;
    width: 748px;
    margin: 0px;
-   height: 440px;
-   border-bottom: 1px solid #6b6b6b;
+   height: 433px;
+   border-bottom: 1px solid #141517;
  }
  
  #cardPart .cardHeader {
@@ -25,17 +25,18 @@
   width: 748px;
   height: 40px;
   margin: 0px;
-  padding: 11px 15px;
+  padding: 12px 15px 11px 15px;
 }
 
 #cardPart .cardHeader .movie {
 	width: 718px;
 	margin: 0px;
 	text-align: center;
+	font-size: 14px;
 }
 
-#cardPart .cardHeader img.more {
-  width: 23px;
+#cardPart .cardHeader img.cardHeader_more {
+  width: 20px;
   left: 5px;
   padding: 10px;
   position: absolute;
@@ -45,8 +46,8 @@
 
 #cardPart .stillcut {
   position: relative;
-  border-top: 1px solid #6b6b6b;
-  border-bottom: 1px solid #6b6b6b;
+  border-top: 1px solid #141517;
+  border-bottom: 1px solid #141517;
   margin: 0px;
   height: 350px;
   width: 748px;
@@ -78,23 +79,29 @@
   background-color: rgba( 0, 0, 0, 0.5 );
   padding: 4px;
 }
+#cardPart .tag{
+  font-weight : normal;
+  font-size : 15px;
+}
 
 
 #cardPart img.profile {
   float: left;
-  width: 35px;
+  width: 30px;
+  margin-left: 9px;
 }
 
 #cardPart .cardFooter {
   box-sizing: border-box;
   xwidth: 698px;
-  height: 48px;
-  padding: 5px 15px;
+  height: 40px;
+  padding: 8px 15px;
 }
 
  #cardPart .cardFooter .nickname {
   float: left;
-  margin: 11px;
+ margin: 5px;
+    margin-left: 14px;
 }
 
 #cardPart .cardFooter .follow {
@@ -106,7 +113,8 @@
 
 #cardPart .cardFooter .rdt {
   float: left;
-  margin: 12px;
+  margin-top: 5px;
+    margin-left: 8px;
   font-size: 80%;
   font-weight: normal;
   position: relative;
@@ -143,6 +151,8 @@
   display: none;
 }
 
+
+
 /* 댓글 부분 */
 .commentsBody {
 	 box-sizing: content-box;
@@ -153,6 +163,7 @@
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+      background: black;
 }
 
 .commentsBody::-webkit-scrollbar {

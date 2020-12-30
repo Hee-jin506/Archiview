@@ -12,8 +12,8 @@ System.out.println(review.getText());%>
 <div id='cardDetail'>
   <div id='cardPart'>
     <div class='cardHeader'>
-      <p class='movie'><%=review.getMovieTitle()%>.archiview</p>
-      <img class='more' src='<%=getServletContext().getContextPath()%>/main_resource/more.png'>
+      <div class='movie'><%=review.getMovieTitle()%>.archiview</div>
+      <img class='cardHeader_more' src='<%=getServletContext().getContextPath()%>/main_resource/more.png'>
     </div>
     
     <div class='stillcut'>
