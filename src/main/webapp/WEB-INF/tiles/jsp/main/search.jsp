@@ -22,8 +22,7 @@
    padding-right: 20px;  /* 패딩 */
    padding-bottom: 20px;  /* 패딩 */
    float: left;  /* 왼쪽으로 플로팅 */
-   min-height: 200px;
-   max-height: 450px;
+   height: 460px;
    overflow: hidden;
    overflow-y: scroll;
    -ms-overflow-style: none;
@@ -122,7 +121,7 @@
    padding-right: 20px;  /* 패딩 */
    padding-bottom: 20px;  /* 패딩 */
    float: left;  /* 왼쪽으로 플로팅 */
-   min-height: 100px;
+   height: 200px;
    overflow: hidden;
    overflow-y: scroll;
    -ms-overflow-style: none;
@@ -301,29 +300,32 @@ if (reviews.size() == 0) {
   </div>
   <%
   for (Movie movie : movies) {
-  %>
- <div id = "movie-list">
-  <% 
-    if (movie.getPosters().size() != 0) {
-      %>
-    <div id = "movie=poster"><img src=<%=movie.getPosters().get(0).toString()%>></div>
-    <%}
     %>
-    <div id = "movie-title"><%=movie.getTitle()%></div>
-    <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
-    <div id = "movie-opendate"><%=movie.getOpenDate()%></div>
-    <div id = "movie-runtime"><%=movie.getRuntime()%></div>
-    <div id = "movie-directors"><%=movie.getDirectors()%></div>
-    <div id = "movie-actors"><%=movie.getActors()%></div>
-  </div>
-  <br>
-  <div id = "movie-link">더보기</div>
-  <br>
-  <%
-  }
-  %>
-</div> 
-<%
+    <br>
+    <div id = "movie-list">
+    <% 
+      if (movie.getPosters().size() != 0) {
+        %>
+      <div id = "movie=poster"><img src=<%=movie.getPosters().get(0).toString()%>></div>
+      <%}
+      %>
+      <div id = "movie-title"><%=movie.getTitle()%></div>
+      <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
+      <div id  = "movie-text">상영 시간</div>
+      <div id = "movie-runtime"><%=movie.getRuntime()%></div>
+      <div id  = "movie-text">감독</div>
+      <div id = "movie-directors"><%=movie.getDirectors()%></div>
+      <div id  = "movie-text">출연</div>
+      <div id = "movie-actors"><%=movie.getActors()%></div>
+      <div id = "movie-synop"><%=movie.getSynopsis()%></div>
+      <div id = "movie-link">더보기</div>
+    </div>
+
+    <%
+    }
+    %>
+  </div> 
+  <% 
 } else {
   %>
   <div id ="member-contents">
