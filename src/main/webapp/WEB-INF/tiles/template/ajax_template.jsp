@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="${appRoot}/css/newsfeed.css">
   <link rel="stylesheet" href="${appRoot}/css/profile.css">
   <link rel="stylesheet" href="${appRoot}/css/detailForUser.css">
-  <link rel="stylesheet" href="${appRoot}/css/reportForm.css">
+ 
 
 </head>
 		  <tiles:insertAttribute name="body"/>

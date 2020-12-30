@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Follow;
@@ -34,49 +34,60 @@ public class FollowController {
   @Autowired TagService tagService;
 
   // 멤버 팔로우
-  @GetMapping("addUser")
-  public String addUser(Follow follow,
-      @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    follow.setFollowingMember(loginUser);
+  @RequestMapping("addUser")
+  public String addUser(Model model,
+      HttpSession session,
+      Follow follow,
+      int followedNo,
+      @RequestParam(defaultValue="1") int followedType) throws Exception {
 
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    follow.setFollowingMember(loginUser);
+    follow.setFollowedType(followedType);
+    follow.setFollowedNo(followedNo);
     followService.addUser(follow);
     return "redirect:../main";
   }
 
-  @GetMapping("deleteUser")
+  @RequestMapping("deleteUser")
   public String deleteUser(Follow follow,
-      @ModelAttribute("loginUser") Member loginUser) throws Exception {
-    follow.setFollowingMember(loginUser);
+      HttpSession session,
+      Model model) throws Exception {
 
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    follow.setFollowingMember(loginUser);
     followService.deleteUser(follow);
     return "redirect:../main";
   }
 
   // 태그 팔로우
-  @GetMapping("addTag")
-  public String addTag(Follow follow,
-      @ModelAttribute("loginUser") Member loginUser) throws Exception {
+  @RequestMapping("addTag")
+  public String addTag(Model model,
+      HttpSession session,
+      Follow follow,
+      int followedNo,
+      @RequestParam(defaultValue="2") int followedType) throws Exception {
+
+    // 사이드바
+    model.addAttribute("topMembers", memberService.listByPop3());
+    model.addAttribute("topMovies", movieService.listByPop3());
+    model.addAttribute("topTags", tagService.listByPop3());
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
     follow.setFollowingMember(loginUser);
 
-    followService.addTag(follow);
-    return "redirect:list";
-  }
-
-  @PostMapping("active")
-  public String active(int no) throws Exception {
-    if (followService.active(no) == 0) {
-      throw new Exception("해당 회원이 존재하지 않습니다.");
-    }
-    return "redirect:list";
-  }
-
-  @PostMapping("inactive")
-  public String inactive(int no) throws Exception {
-    if (followService.inactive(no) == 0) {
-      throw new Exception("해당 회원이 존재하지 않습니다.");
-    } else {
-      return "redirect:list";
-    }
+    follow.setFollowedType(followedType);
+    follow.setFollowedNo(followedNo);
+    followService.addUser(follow);
+    return "redirect:../main";
   }
 
   // 특정멤버의 팔로잉 리스트
