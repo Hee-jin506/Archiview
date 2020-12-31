@@ -44,14 +44,14 @@
   </div>
   
   <div class="contents">
-    <form class="form-horizontal" action='updateHint' method='post'>
+    <form action='updateHint' method='post'>
         <input type='hidden' name='no' value='${member.no}'>
         <img id='profile-photo' src='<%=getServletContext().getContextPath()%>/upload/${member.photo}_150x150.jpg' style="border-radius: 50px" width="60">
-        <span id='email' style="font-size: 20px;">${member.email}</span>
+        <span id='email'>${member.email}</span>
       <div class="mb-3" style="margin-top: 30px">
-        <label for="hint" class="col-sm-2 control-label">질문</label>
-        <div class="col-sm-10">
-	        <select class="form-control" aria-label="Default select example" name='hint' style="border:1px solid #6B6B6B; background-color: #000000; color: white;"> <option selected value="${member.questionsNo}">
+        <label for="hint" class="form-label"  style="margin: 20px; font-size: small;">질문</label>
+        <div class="col-sm-11">
+	        <select class="form-control" aria-label="Default select example" name='hint'> <option selected value="${member.questionsNo}">
 	          <c:if test='${member.questionsNo == 1}'>내가 키우는 애완 동물의 이름은 ?</c:if>
 	          <c:if test='${member.questionsNo == 2}'>가장 기억에 남는 선생님의 성함은 ?</c:if>
 	          <c:if test='${member.questionsNo == 3}'>어머니의 고향은 ?</c:if>
@@ -67,9 +67,9 @@
 	      </div>
 	    </div>
       <div class="mb-3">
-        <label for="hintAnswer" class="col-sm-2 control-label">답</label>
-        <div class="col-sm-9">
-          <input type='text' class='form-control' name='hintAnswer' value='${member.questionsAnswer}' style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
+        <label for="hintAnswer" class="form-label"  style="margin: 20px; font-size: small;">답</label>
+        <div class="col-sm-10">
+          <input type='text' class="form-control" name='hintAnswer' value='${member.questionsAnswer}'>
         </div>
       </div>
       <button id='next'>변경</button>

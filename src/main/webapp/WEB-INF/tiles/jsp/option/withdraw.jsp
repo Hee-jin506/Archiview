@@ -27,13 +27,13 @@
   </div>
   
   <div class="contents">
-	  <form class="form-horizontal" action='<%=getServletContext().getContextPath()%>/app/member/delete' method='post'>
+	  <form action='<%=getServletContext().getContextPath()%>/app/member/delete' method='post'>
 		  <input type='hidden' name='no' value='${member.no}'>
 		  <input type='hidden' name='email' value='${member.email}'>
 		  <img id='profile-photo' src='<%=getServletContext().getContextPath()%>/upload/${member.photo}_150x150.jpg' style="border-radius: 50px" width="60">
-		  <span id='email' style="font-size: 20px;">${member.email}</span>
+		  <span id='email'>${member.email}</span>
 		  <div class="form-group" style="margin-top: 30px">
-		    <label for="password" class="col-sm-4 control-label">비밀번호 확인</label>
+		    <label for="password" class="col-sm-4 control-label" style="margin: 20px; font-size: small;">비밀번호 확인</label>
 		    <div class="col-sm-7">
 		      <input type='password' class='form-control' name='password' style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
 				</div>
