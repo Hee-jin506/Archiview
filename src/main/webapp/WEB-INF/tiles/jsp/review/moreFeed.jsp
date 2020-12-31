@@ -27,14 +27,16 @@
 			  if (review.getIsFollowing() == 0) {
 			%>
 			<div class='follow'>
-				<form>
-					<button type="submit" formaction='../follow/addUser?followedNo<%review.getWriterNo();%>' class="btn btn-archiview">팔로우</button>
+				<form action='<%=getServletContext().getContextPath()%>/app/follow/deleteUser'>
+        <input type='hidden' name='followedNo' value=<%=review.getWriterNo() %>>
+					<button class="btn btn-twitter">팔로우</button>
 				</form>
 			</div>
 			<%} else {%>
 			<div class='follow'>
-				<form>
-					<button type="submit" formaction='../follow/deleteUser?followedNo=<%review.getWriterNo();%>' class="btn btn-twitter">팔로우</button>
+				<form action='<%=getServletContext().getContextPath()%>/app/follow/addUser'>
+        <input type='hidden' name='followedNo' value=<%=review.getWriterNo() %>>
+					<button class="btn btn-archiview">팔로우</button>
 				</form>
 			</div>
 			<%

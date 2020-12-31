@@ -14,11 +14,11 @@
 	<div class='card'>
 		<div class='cardHeader'>
 			<a
-				href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
+				href='<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=review.getWriterNo()%>'>
 				<img class='profile'
 				src='<%=getServletContext().getContextPath() + "/upload/" + review.getWriterPhoto() + "_35x35.jpg"%>'>
 			</a> <a class='nickname'
-				href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${tm.no}'>
+				href='<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=review.getWriterNo()%>'>
 				<%=review.getWriterNick()%></a>
 			<%
 			  if (!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())) {
@@ -27,13 +27,15 @@
 			  if (review.getIsFollowing() != 0) {
 			%>
 			<div class='follow'>
-				<form>
+				<form action='<%=getServletContext().getContextPath()%>/app/follow/deleteUser'>
+				<input type='hidden' name='followedNo' value=<%=review.getWriterNo() %>>
 					<button class="btn btn-twitter">팔로우</button>
 				</form>
 			</div>
 			<%} else {%>
 			<div class='follow'>
-				<form>
+				<form action='<%=getServletContext().getContextPath()%>/app/follow/addUser'>
+				<input type='hidden' name='followedNo' value=<%=review.getWriterNo() %>>
 					<button class="btn btn-archiview">팔로우</button>
 				</form>
 			</div>
