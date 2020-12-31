@@ -68,6 +68,9 @@ public class WriteController {
       String x, String y, String font, String size,
       String tag)
           throws Exception {
+    
+    System.out.println(x);
+    System.out.println(y);
 
     Member loginUser = (Member) session.getAttribute("loginUser");
     Review review = new Review();
