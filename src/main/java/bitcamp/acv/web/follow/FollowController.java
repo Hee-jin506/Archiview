@@ -58,7 +58,7 @@ public class FollowController {
 
     String[] r = referer.split("app");
 
-    return "redirect:.." + r[1];
+    return "redirect:../main";
   }
 
   @RequestMapping("deleteUser")
@@ -75,7 +75,7 @@ public class FollowController {
 
     String[] r = referer.split("app");
 
-    return "redirect:.." + r[1];
+    return "redirect:../main";
   }
 
   // 태그 팔로우
