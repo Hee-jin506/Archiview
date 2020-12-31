@@ -2,6 +2,7 @@ package bitcamp.acv.web.follow;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,7 @@ public class FollowController {
       HttpSession session,
       Follow follow,
       int followedNo,
+      HttpServletRequest request,
       @RequestParam(defaultValue="1") int followedType) throws Exception {
 
     // 사이드바
@@ -52,19 +54,28 @@ public class FollowController {
     follow.setFollowedType(followedType);
     follow.setFollowedNo(followedNo);
     followService.addUser(follow);
-    return "redirect:../main";
+    String referer = request.getHeader("REFERER");
+
+    String[] r = referer.split("app");
+
+    return "redirect:.." + r[1];
   }
 
   @RequestMapping("deleteUser")
   public String deleteUser(Follow follow,
       HttpSession session,
+      HttpServletRequest request,
       Model model) throws Exception {
 
     Member loginUser = (Member) session.getAttribute("loginUser");
 
     follow.setFollowingMember(loginUser);
     followService.deleteUser(follow);
-    return "redirect:../main";
+    String referer = request.getHeader("REFERER");
+
+    String[] r = referer.split("app");
+
+    return "redirect:.." + r[1];
   }
 
   // 태그 팔로우
@@ -73,6 +84,7 @@ public class FollowController {
       HttpSession session,
       Follow follow,
       int followedNo,
+      HttpServletRequest request,
       @RequestParam(defaultValue="2") int followedType) throws Exception {
 
     // 사이드바
@@ -87,7 +99,12 @@ public class FollowController {
     follow.setFollowedType(followedType);
     follow.setFollowedNo(followedNo);
     followService.addUser(follow);
-    return "redirect:../main";
+
+    String referer = request.getHeader("REFERER");
+
+    String[] r = referer.split("app");
+
+    return "redirect:.." + r[1];
   }
 
   // 특정멤버의 팔로잉 리스트
