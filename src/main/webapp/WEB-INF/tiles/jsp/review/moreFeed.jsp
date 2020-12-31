@@ -24,7 +24,7 @@
 			  if (!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())) {
 			%>
 			<%
-			  if (review.getIsFollowing() == 0) {
+			  if (review.getIsFollowing() != 0) {
 			%>
 			<div class='follow'>
 				<form action='<%=getServletContext().getContextPath()%>/app/follow/deleteUser'>
