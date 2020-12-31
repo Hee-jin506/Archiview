@@ -53,14 +53,14 @@ public class CommentController {
   }
 
   @RequestMapping("add")
-  public String add(
+  public ModelAndView add(
       String targetNo,
       int reviewNo,
       String content,
       HttpServletRequest request,
       HttpSession session
       ) throws Exception {
-
+    ModelAndView mv = new ModelAndView();
 
     // 코멘트 객체를 만든다.
     Comment comment = new Comment();
@@ -76,7 +76,8 @@ public class CommentController {
       comment.setGroupNo(0);
     }
     commentService.add(comment);
-    return "redirect:../ajax/review/detailForUser?reviewNo=" + request.getParameter("reviewNo");
+    mv.setViewName("redirect:../main");
+    return mv;
   }
 
   @RequestMapping("/update")
@@ -90,12 +91,15 @@ public class CommentController {
   }
 
   @RequestMapping("/delete")
-  public String delete(int no, int reviewNo, HttpServletRequest request) throws Exception {
+  public ModelAndView delete(int no, int reviewNo, HttpServletRequest request) throws Exception {
     if (commentService.delete(no) == 0) {
 
       throw new Exception("해당 댓글이 없습니다.");
     }
 
-    return "redirect:../ajax/review/detailForUser?reviewNo=" + request.getParameter("reviewNo");
+    ModelAndView mv = new ModelAndView();
+    mv.addObject("reviewNo", reviewNo);
+    mv.setViewName("redirect:Archiview/app/main");
+    return mv;
   }
 }

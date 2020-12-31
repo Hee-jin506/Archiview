@@ -22,8 +22,7 @@
    padding-right: 20px;  /* 패딩 */
    padding-bottom: 20px;  /* 패딩 */
    float: left;  /* 왼쪽으로 플로팅 */
-   min-height: 200px;
-   max-height: 450px;
+   height: 460px;
    overflow: hidden;
    overflow-y: scroll;
    -ms-overflow-style: none;
@@ -47,6 +46,70 @@
    margin-left: -10px;
    margin-right: -10px;
    }
+   
+   #movie-list {
+   margin-bottom: 40px;
+   }
+   
+   #movie-list img {
+   float: left;
+   margin-left: 5px;
+   margin-top: 20px;
+   }
+   
+   #movie-title {
+    padding-left: 360px;
+    font-size: x-large;
+    padding-top: 20px;
+   }
+   
+   #movie-etitle {
+    padding-left: 365px;
+    padding-top: 20px;
+    font-size: x-small;
+    padding-bottom: 20px;
+   }
+   
+   #movie-opendate {
+    padding-left: 360px;
+   }
+   
+   #movie-runtime {
+    padding-left: 450px;
+    margin-top: -26px;
+    padding-bottom: 10px;
+   }
+   
+   #movie-directors {
+    padding-left: 450px;
+    margin-top: -26px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+   }
+   
+   #movie-actors {
+    padding-left: 450px;
+    margin-top: -26px;
+    padding-bottom: 20px;
+    padding-right: 5px;
+   }
+   
+   #movie-synop {
+   padding-left: 360px;
+   padding-bottom: 30px;
+   padding-right: 5px;
+   }
+   
+   #movie-link {
+    padding-left: 360px;
+   }
+   
+   #movie-text {
+    padding-left: 360px;
+    padding-top: 20px;
+    color: #626473;
+    padding-bottom: 10px;
+   }
  
    #member-contents {
    box-sizing: border-box;
@@ -57,7 +120,7 @@
    padding-right: 20px;  /* 패딩 */
    padding-bottom: 20px;  /* 패딩 */
    float: left;  /* 왼쪽으로 플로팅 */
-   min-height: 100px;
+   height: 200px;
    overflow: hidden;
    overflow-y: scroll;
    -ms-overflow-style: none;
@@ -93,58 +156,7 @@
    margin-left: -10px;
    margin-right: -10px;
    }
-   
-   
- 
-   #tag-contents {
-   box-sizing: border-box;
-   border-radius: 10px;
-   background-color: #141517;
-   width: 650px; /* 너비 */
-   padding-left: 20px;  /* 패딩 */
-   padding-right: 20px;  /* 패딩 */
-   padding-bottom: 20px;  /* 패딩 */
-   float: left;  /* 왼쪽으로 플로팅 */
-   height: 100px;
-   overflow: hidden;
-   overflow-y: scroll;
-   -ms-overflow-style: none;
-   scrollbar-width: none;
-   margin-top: 10px;
- }
- 
-   #review-contents {
-   box-sizing: border-box;
-   border-radius: 10px;
-   background-color: #141517;
-   width: 650px; /* 너비 */
-   padding-left: 20px;  /* 패딩 */
-   padding-right: 20px;  /* 패딩 */
-   padding-bottom: 20px;  /* 패딩 */
-   float: left;  /* 왼쪽으로 플로팅 */
-   height: 100px;
-   overflow: hidden;
-   overflow-y: scroll;
-   -ms-overflow-style: none;
-   scrollbar-width: none;
-   margin-top: 10px;
- }
- 
 
- 
-   #tag-contents img {
-   padding-left: 50px;
-   margin-top: 40px;
-   border-radius: 100px;
- }
-  
-   #tag-contents p {
-   padding-left: 150px;
-    margin-top: -40px;
-   }
-   
-   
- 
    #movie-contents::-webkit-scrollbar {
   display: none;
  }
@@ -152,17 +164,6 @@
   #member-contents::-webkit-scrollbar {
   display: none;
  }
- 
-  #tag-profile::-webkit-scrollbar {
-  display: none;
-  }
-  
-  #review-detail::-webkit-scrollbar {
-  display: none;
-  }
- 
- 
- 
  
  .p {
   font-size: x-large;
@@ -182,6 +183,7 @@ List<Movie> movies = (List<Movie>) request.getAttribute("movies");
 List<Member> members = (List<Member>) request.getAttribute("members");
 List<Review> reviews = (List<Review>) request.getAttribute("reviews");
 List<Follow> follows = (List<Follow>) request.getAttribute("follows");
+List<Tag> tags = (List<Tag>) request.getAttribute("tag");
 %>
 
 
@@ -222,16 +224,24 @@ if (reviews.size() == 0) {
   %>
   <br>
   <div id = "movie-list">
+  <% 
+    if (movie.getPosters().size() != 0) {
+      %>
+    <div id = "movie=poster"><img src=<%=movie.getPosters().get(0).toString()%>></div>
+    <%}
+    %>
     <div id = "movie-title"><%=movie.getTitle()%></div>
-    <div id = "movie-Etitle"><%=movie.getEnglishTitle()%></div>
-    <div id = "movie-opendate"><%=movie.getOpenDate()%></div>
+    <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
+    <div id  = "movie-text">상영 시간</div>
     <div id = "movie-runtime"><%=movie.getRuntime()%></div>
+    <div id  = "movie-text">감독</div>
     <div id = "movie-directors"><%=movie.getDirectors()%></div>
+    <div id  = "movie-text">출연</div>
     <div id = "movie-actors"><%=movie.getActors()%></div>
+    <div id = "movie-synop"><%=movie.getSynopsis()%></div>
   </div>
-  <br>
-  더보기
-  <br>
+    <div id = "movie-link">더보기</div>
+
   <%
   }
   %>
@@ -290,22 +300,32 @@ if (reviews.size() == 0) {
   </div>
   <%
   for (Movie movie : movies) {
-  %>
-  <div id = "movie-list">
-    <div id = "movie-poster"><%=movie.getPosters().get(1)%></div>
-    <div id = "movie-title"><%=movie.getTitle()%></div>
-    <div id = "movie-Etitle"><%=movie.getEnglishTitle()%></div>
-    <div id = "movie-opendate"><%=movie.getOpenDate()%></div>
+    %>
+    <br>
+    <div id = "movie-list">
+    <% 
+      if (movie.getPosters().size() != 0) {
+        %>
+      <div id = "movie=poster"><img src=<%=movie.getPosters().get(0).toString()%>></div>
+      <%}
+      %>
+      <div id = "movie-title"><%=movie.getTitle()%></div>
+      <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
+      <div id  = "movie-text">상영 시간</div>
+      <div id = "movie-runtime"><%=movie.getRuntime()%></div>
+      <div id  = "movie-text">감독</div>
+      <div id = "movie-directors"><%=movie.getDirectors()%></div>
+      <div id  = "movie-text">출연</div>
+      <div id = "movie-actors"><%=movie.getActors()%></div>
+      <div id = "movie-synop"><%=movie.getSynopsis()%></div>
+      <div id = "movie-link">더보기</div>
+    </div>
 
-    <div id = "movie-runtime"><%=movie.getRuntime()%></div>
-    <div id = "movie-directors"><%=movie.getDirectors()%></div>
-    <div id = "movie-actors"><%=movie.getActors()%></div>
-  </div>
-  <%
-  }
-  %>
-</div> 
-<%
+    <%
+    }
+    %>
+  </div> 
+  <% 
 } else {
   %>
   <div id ="member-contents">
@@ -326,20 +346,14 @@ if (reviews.size() == 0) {
   </div>
   <%
   } 
-}else {
-  System.out.println("왜안돼");
-  for (Review review : reviews) {
-    %>
-    태그검색
-    <td><%=review.getMovieTitle()%></div>
-    <%
-    List<Tag> tags = review.getTags();
+} else {
+
     for (Tag tag : tags) {
       %>
       태그검색
-      <td><%=review.getTags()%></div>
+      <td><%=tag.getTitle()%></div>
       <%
-    }
+    
   }
 }
 %>

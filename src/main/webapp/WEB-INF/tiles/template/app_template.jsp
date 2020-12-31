@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
   <link rel="stylesheet" href="${appRoot}/css/newsfeed.css">
   <link rel="stylesheet" href="${appRoot}/css/profile.css">
+  <link rel="stylesheet" href="${appRoot}/css/detailForUser.css">
   <style>
   
   #container {
@@ -42,6 +43,13 @@
 #body::-webkit-scrollbar {
   display: none;
 }
+
+#reveiwDetail img[data-bs-dismiss="modal"] {
+  width: 20px;
+  position: absolute;
+  top: -25px;
+  right: 0px;
+}
     
   </style>
   <script src="${appRoot}/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -59,6 +67,17 @@
 
 	  </div>
 	  
+	 <div class="modal fade" id="reveiwDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+   <div class="modal-content">
+      <div class="modal-body">
+        <!-- 모달 화면 -->
+      </div>
+        <img src='<%=getServletContext().getContextPath()%>/main_resource/x.png' data-bs-dismiss="modal">
+        </div>
+  </div>
+</div>
+	  
 <script>
 "use strict" 
 var count = 1;
@@ -73,8 +92,59 @@ body.onscroll = function(e) {
         xhr.send();
         var originContent = body.innerHTML;
         body.innerHTML = originContent + xhr.responseText;
+        var cards = document.querySelectorAll(".stillcut");
+        for (var card of cards) {
+        	  console.log(card.getAttribute("data-no"))
+        	  card.onclick = function(card) {
+        	    console.log("클릭")
+        	    console.log(this.getAttribute("data-no"));
+        	    reviewNo=this.getAttribute("data-no");
+        	    myModal.show();
+        	  };
+        	}
     }
 }; 
+
+
+var cards = document.querySelectorAll(".stillcut");
+var myModal = new bootstrap.Modal(document.getElementById('reveiwDetail'), {});
+var exampleModal = document.querySelector("#reveiwDetail");
+var exampleModalBody = exampleModal.querySelector(".modal-body");
+var reviewNo;
+
+exampleModal.addEventListener('show.bs.modal', function (event) {
+  console.log("show.bs.modal")
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
+  xhr.send();
+  exampleModalBody.innerHTML = xhr.responseText;
+});
+
+exampleModal.addEventListener('shown.bs.modal', function (event) {
+  console.log("shown.bs.modal")
+});
+
+exampleModal.addEventListener('hidden.bs.modal', function (event) {
+  console.log("hidden.bs.modal")
+});
+
+for (var e of cards) {
+  console.log(e.getAttribute("data-no"))
+  e.onclick = function(e) {
+    console.log("클릭")
+    console.log(this.getAttribute("data-no"));
+    reviewNo=this.getAttribute("data-no");
+    myModal.show();
+  };
+}
+document.addEventListener('load', function (event) {
+	console.log("${param.reviewNo}" != "");
+  if ("${param.reviewNo}" != "") {
+	  console.log("실행!")
+	  reviewNo = "${param.reviewNo}";
+	  myModal.show();
+  }
+});
 
 </script>
   </body>

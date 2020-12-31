@@ -1,14 +1,13 @@
 @charset "UTF-8";
 
  #cardDetail {
-  background-color: #101010;
+  background-color: #141517;
   box-sizing: border-box;
   border: 1px solid #6b6b6b;
   color: white;
   width: 750px;
-  height: 750px;
+  height: 793px;
   padding: 0px;
-  margin: 50px;
  }
  
  #cardDetail #cardPart {
@@ -16,8 +15,8 @@
    box-sizing: border-box;
    width: 748px;
    margin: 0px;
-   height: 440px;
-   border-bottom: 1px solid #6b6b6b;
+   height: 450px;
+   border-bottom: 1px solid #141517;
  }
  
  #cardPart .cardHeader {
@@ -26,17 +25,18 @@
   width: 748px;
   height: 40px;
   margin: 0px;
-  padding: 11px 15px;
+  padding: 12px 15px 11px 15px;
 }
 
 #cardPart .cardHeader .movie {
 	width: 718px;
 	margin: 0px;
 	text-align: center;
+	font-size: 14px;
 }
 
-#cardPart .cardHeader img.more {
-  width: 23px;
+#cardPart .cardHeader img.cardHeader_more {
+  width: 20px;
   left: 5px;
   padding: 10px;
   position: absolute;
@@ -46,8 +46,8 @@
 
 #cardPart .stillcut {
   position: relative;
-  border-top: 1px solid #6b6b6b;
-  border-bottom: 1px solid #6b6b6b;
+  border-top: 1px solid #141517;
+  border-bottom: 1px solid #141517;
   margin: 0px;
   height: 350px;
   width: 748px;
@@ -75,28 +75,35 @@
 #cardPart .stillcut .tags {
   position: absolute;
   bottom: 10px;
-  left: 10px;
+  left: 19px;
   background-color: rgba( 0, 0, 0, 0.5 );
   padding: 4px;
+}
+#cardPart .tag{
+  font-weight : normal;
+  font-size : 15px;
 }
 
 
 #cardPart img.profile {
   float: left;
-  width: 35px;
+  width: 30px;
+  margin-left: 9px;
 }
 
 #cardPart .cardFooter {
   box-sizing: border-box;
-  width: 698px;
-  height: 40px;
-  margin: 0px;
-  padding: 5px 15px;
+  xwidth: 698px;
+ height: 58px;
+    padding: 11px 15px;
 }
 
  #cardPart .cardFooter .nickname {
-  float: left;
-  margin: 11px;
+      float: left;
+    margin: 5px;
+    margin-left: 14px;
+    font-size: 16px;
+    margin-top: 7.5px;
 }
 
 #cardPart .cardFooter .follow {
@@ -108,7 +115,8 @@
 
 #cardPart .cardFooter .rdt {
   float: left;
-  margin: 12px;
+  margin-top: 6px;
+    margin-left: 7px;
   font-size: 80%;
   font-weight: normal;
   position: relative;
@@ -118,13 +126,17 @@
 
 #cardPart .cardFooter .like {
   float: right;
-  position: relative;
-  left: -20px;
-  top:8px;
+  xposition: relative;
+  xleft: -20px;
+  xtop:8px;
+  margin-top:3px;
 }
 
 #cardPart .cardFooter .like img {
-  width: 30px;
+	
+     height: 22px;
+    margin-left: 12px;
+    margin-top: 3px;
 }
 
 #cardPart .cardFooter .like .pop {
@@ -141,4 +153,94 @@
   border: none;
   display: none;
 }
- 
+
+
+
+/* 댓글 부분 */
+.commentsBody {
+	 box-sizing: content-box;
+  width: 748px;
+  height: 310px;
+  padding: 10px;
+  overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+      background: black;
+      padding: 0px;
+}
+
+.commentsBody::-webkit-scrollbar {
+  display: none;
+}
+
+.commentsBody .profile{
+  width: 30px;
+}
+
+.commentsFooter form{
+  width: 731px;
+}
+
+.commentRow_1, .commentRow_2 {
+	height: 60px;
+    padding: 1px 60px;
+    margin-top: 15px
+}
+
+.commentRow_2 {
+	margin-left: 35px;
+}
+
+.commentRow_1 form, .commentRow_2 form {
+	display: inline;
+}
+
+.commentRow_profileImage {
+	float: left;
+	margin-right : 13px;
+}
+
+.commentRow_body {
+	float: left;
+    padding-bottom: 0px;
+}
+
+.commentRow_nickName {
+	display: inline-block;
+    font-weight: bold;
+    margin-top: 3px;
+    margin-right: 6px;
+}
+
+.commentRow_content {
+	    display: inline-block;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.commentRow_more {
+	margin-top : 9px;
+	width : 14px;
+	float : right;
+}
+.commentRow_like {
+	margin-right : 12px;
+	width : 14px;
+	float : right;
+	margin-top : 7px;
+}
+
+
+.commentRow_bottom {
+	font-size: 13px;
+	color: gray;
+	margin-top: 9px;
+}
+
+.commentRow_bottom button {
+	height : 27px;
+	font-size: 10px;
+	margin-left: 3px;
+}
+

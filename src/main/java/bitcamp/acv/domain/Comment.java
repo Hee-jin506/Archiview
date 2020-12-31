@@ -1,6 +1,7 @@
 package bitcamp.acv.domain;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Comment {
 
@@ -10,7 +11,7 @@ public class Comment {
   private int level; // 댓글 단계
   private int memberNo; // 댓글단 회원
   private String content; // 내용
-  private Date registeredDate; // 등록일
+  private Timestamp registeredDate; // 등록일
   private int status; // 상태
   private Date modifiedDate; // 수정일
   private int groupNo; // 그룹 번호
@@ -18,6 +19,7 @@ public class Comment {
   private String nickName;
   private Review review;
   private Member member;
+  private String rdtFromNow;
 
   public int getNo() {
     return no;
@@ -54,12 +56,6 @@ public class Comment {
   }
   public void setContent(String content) {
     this.content = content;
-  }
-  public Date getRegisteredDate() {
-    return registeredDate;
-  }
-  public void setRegisteredDate(Date registeredDate) {
-    this.registeredDate = registeredDate;
   }
   public int getStatus() {
     return status;
@@ -102,6 +98,18 @@ public class Comment {
   }
   public void setGroupNo(int groupNo) {
     this.groupNo = groupNo;
+  }
+  public Timestamp getRegisteredDate() {
+    return registeredDate;
+  }
+  public void setRegisteredDate(Timestamp registeredDate) {
+    this.registeredDate = registeredDate;
+  }
+  public String getRdtFromNow() {
+    return rdtFromNow;
+  }
+  public void setRdtFromNow(String rdtFromNow) {
+    this.rdtFromNow = rdtFromNow;
   }
 
 

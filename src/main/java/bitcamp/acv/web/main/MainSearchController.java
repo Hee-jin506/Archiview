@@ -13,6 +13,7 @@ import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
 import bitcamp.acv.domain.Review;
+import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
@@ -61,6 +62,13 @@ public class MainSearchController {
         List<Movie> movies = movieService.listByKeywordTitle(keyword);
         List<Member> members = memberService.listByKeywordNickName(keyword);
 
+        for (Movie movie : movies) {
+          List<String> mg = movie.getGenres();
+
+          System.out.printf("사이즈 : %s\n", mg.size());
+          System.out.printf("제목 : %s\n", movie.getTitle());
+          System.out.printf("주소 : %s\n", movie.getGenres().toString());
+        }
         mv.addObject("movies", movies);
         mv.addObject("members", members);
 
@@ -69,6 +77,9 @@ public class MainSearchController {
 
         List<Review> reviews = reviewService.listByKeywordTagTitle(keyword);
         mv.addObject("reviews", reviews);
+
+        Tag tag = tagService.get(keyword);
+        mv.addObject("tag", tag);
 
       }
     }

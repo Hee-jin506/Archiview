@@ -64,9 +64,9 @@
 			<%
 			  }
 			%>
-			<div class='reviewText' data-no='<%=review.getNo() %>'>
-				<p data-no='<%=review.getNo() %>'><%=review.getText()%>
-				</p>
+			<div class='reviewText_box'>
+					<span class='reviewText'><%=review.getText()%>
+					</span>
 			</div>
 
 			<div class='tags'>
@@ -117,14 +117,7 @@
 	<%
 	}%>
 	
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-      <div class="modal-body">
-        <!-- 모달 화면 -->
-      </div>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-  </div>
-</div>
+
 
 	<script>
       "use strict" 
@@ -179,36 +172,6 @@ for (var element of el) {
 });
 }
 
-var cards = document.querySelectorAll(".stillcut");
-var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
-var exampleModal = document.querySelector("#exampleModal");
-var exampleModalBody = exampleModal.querySelector(".modal-body");
-var reviewNo;
-
-exampleModal.addEventListener('show.bs.modal', function (event) {
-  console.log("show.bs.modal")
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
-  xhr.send();
-  exampleModalBody.innerHTML = xhr.responseText;
-});
-
-exampleModal.addEventListener('shown.bs.modal', function (event) {
-  console.log("shown.bs.modal")
-});
-
-exampleModal.addEventListener('hidden.bs.modal', function (event) {
-  console.log("hidden.bs.modal")
-});
-
-for (var e of cards) {
-  e.onclick = function(e) {
-	  console.log("클릭")
-    console.log(this.getAttribute("data-no"));
-	  reviewNo=this.getAttribute("data-no");
-    myModal.show();
-  };
-}
 
 </script>
 </div>
