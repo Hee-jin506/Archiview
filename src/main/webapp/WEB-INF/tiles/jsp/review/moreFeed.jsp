@@ -47,12 +47,12 @@
 			</button>
 				<div class="dropdown-content1" data-no='<%=review.getNo()%>'>
 				<c:if test='<%=review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
-				  <a href="#">수정</a>
+				  <a herf="#">수정</a>
 				  <hr style="margin: 0px;">
-				  <a href="<%=getServletContext().getContextPath()%>/app/review/delete?no=<%=review.getNo()%>" style="color: #f21b9c">삭제</a>
+				  <a herf="#">삭제</a>
 				</c:if>
 				<c:if test='<%=!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
-				  <a class=profile_icon href="<%=getServletContext().getContextPath()%>/app/ajax/report/form?reportedNo=<%=review.getNo()%>">신고</a>
+				  <a herf="#">신고</a>
 				</c:if>
 				</div>
 			</div>
@@ -64,9 +64,9 @@
 			<%
 			  }
 			%>
-			<div class='reviewText_box'>
-					<span class='reviewText'><%=review.getText()%>
-					</span>
+			<div class='reviewText'>
+				<p><%=review.getText()%>
+				</p>
 			</div>
 
 			<div class='tags'>
@@ -175,38 +175,4 @@ for (var element of el) {
 });
 }
 </script>
-
-<script>
-var el = document.querySelectorAll(".report-form");
-var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
-var exampleModal = document.querySelector("#exampleModal");
-var exampleModalBody = exampleModal.querySelector(".modal-body");
-var memberNo;
-
-exampleModal.addEventListener('show.bs.modal', function (event) {
-  console.log("show.bs.modal")
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "../ajax/report/form?reportedNo=" + memberNo, false);
-  xhr.send();
-  exampleModalBody.innerHTML = xhr.responseText;
-});
-
-exampleModal.addEventListener('shown.bs.modal', function (event) {
-  console.log("shown.bs.modal")
-});
-
-exampleModal.addEventListener('hidden.bs.modal', function (event) {
-  console.log("hidden.bs.modal 종료")
-});  
-
-for (var e of el) {
-  e.onclick = function(e) {
-    e.preventDefault();
-    memberNo = e.target.getAttribute("data-no");
-    console.log("click");
-    myModal.show();
-  };
-}
-</script>
-
 </div>

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
@@ -13,7 +14,7 @@
         </div>
         
      <div id="profile_icon_report">
-        <a class="report-form" href='<%=getServletContext().getContextPath()%>ajax/report/form?reportedNo=${member.no}'> 
+        <a class="report-form" href='<%=getServletContext().getContextPath()%>/ajax/report/form?reportedNo=${member.no}'> 
         <img class=profile_icon_report  src="<%=getServletContext().getContextPath()%>/profile_resource/report.png" height=20px class="center" data-no='${member.no}'></a>
     </div>
     
@@ -84,23 +85,17 @@ var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
 var exampleModal = document.querySelector("#exampleModal");
 var exampleModalBody = exampleModal.querySelector(".modal-body");
 var memberNo;
-
 exampleModal.addEventListener('show.bs.modal', function (event) {
   console.log("show.bs.modal")
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "../ajax/report/form?reportedNo=" + memberNo, false);
-  xhr.send();
-  exampleModalBody.innerHTML = xhr.responseText;
+  $(".modal-body").load("../ajax/report/form?reportedNo=" + memberNo);
+  
 });
-
 exampleModal.addEventListener('shown.bs.modal', function (event) {
   console.log("shown.bs.modal")
 });
-
 exampleModal.addEventListener('hidden.bs.modal', function (event) {
   console.log("hidden.bs.modal 종료")
 });  
-
 for (var e of el) {
   e.onclick = function(e) {
     e.preventDefault();
@@ -110,4 +105,3 @@ for (var e of el) {
   };
 }
 </script>
-

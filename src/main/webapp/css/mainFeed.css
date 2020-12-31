@@ -1,22 +1,11 @@
 @charset "UTF-8";
 
 #cards {
-	xposition: absolute;
-	xleft: 230px;
-	xtop: 70px;
 	box-sizing: content-box;
 	width: 700px;
-	height: 700px;
 	padding: 0px;
-	overflow: hidden;
-	overflow-y: scroll;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
 }
 
-#cards::-webkit-scrollbar {
-	display: none;
-}
 
 .card {
 	position: relative; 
@@ -54,6 +43,10 @@
 	margin: 10px;
 	position: relative;
 	top: -2px;
+}
+
+.card cardHeader .dropdown1 {
+	float: right;
 }
 
 .card .stillcut {

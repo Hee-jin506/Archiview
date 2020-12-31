@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
+import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
+import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
@@ -26,7 +29,7 @@ public class MainSearchController {
   @Autowired MemberService memberService;
   @Autowired MovieService movieService;
   @Autowired TagService tagService;
-
+  @Autowired FollowService followService;
 
   @GetMapping("search")
   public ModelAndView search(
@@ -59,13 +62,23 @@ public class MainSearchController {
         List<Movie> movies = movieService.listByKeywordTitle(keyword);
         List<Member> members = memberService.listByKeywordNickName(keyword);
 
+        for (Movie movie : movies) {
+          List<String> mg = movie.getGenres();
+
+          System.out.printf("사이즈 : %s\n", mg.size());
+          System.out.printf("제목 : %s\n", movie.getTitle());
+          System.out.printf("주소 : %s\n", movie.getGenres().toString());
+        }
         mv.addObject("movies", movies);
         mv.addObject("members", members);
 
-      } else {
+        List<Follow> follows = followService.list2(loginUser.getNo());
+        mv.addObject("follows", follows);
 
-        List<Tag> tags = tagService.listByKeywordTitle(keyword.substring(1));
+        List<Review> reviews = reviewService.listByKeywordTagTitle(keyword);
+        mv.addObject("reviews", reviews);
 
+        List<Tag> tags = tagService.listByKeywordTitle(keyword);
         mv.addObject("tags", tags);
 
       }
