@@ -69,7 +69,7 @@ body.onscroll = function(e) {
         count++;
         console.log("스크롤 끝 감지") 
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "../../app/ajax/review/moreFeed?pageNo=" + count, false);
+        xhr.open("GET", "/Archiview/app/ajax/review/moreFeed?pageNo=" + count, false);
         xhr.send();
         var originContent = body.innerHTML;
         body.innerHTML = originContent + xhr.responseText;
