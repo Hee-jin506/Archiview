@@ -22,16 +22,12 @@
             <option value='6'>도배</option>
           </select>
         </div><br>
-
-        <div id="report-button">
-          <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+        
           <button type="submit" id="next" class="btn btn-secondary btn-sm">신고</button>
-        </div>
-      </form>
+        </form>
 
       <script type="text/javascript">
         $("#report-form").submit(function (e) {
-          alert("버튼1을 누르셨습니다.");
-          console.log('test');
+        	 alert('신고처리되었습니다.');
         });
       </script>
