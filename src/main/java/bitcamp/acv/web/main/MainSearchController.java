@@ -13,6 +13,7 @@ import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Member;
 import bitcamp.acv.domain.Movie;
 import bitcamp.acv.domain.Review;
+import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
@@ -76,6 +77,9 @@ public class MainSearchController {
 
         List<Review> reviews = reviewService.listByKeywordTagTitle(keyword);
         mv.addObject("reviews", reviews);
+
+        Tag tag = tagService.get(keyword);
+        mv.addObject("tag", tag);
 
       }
     }

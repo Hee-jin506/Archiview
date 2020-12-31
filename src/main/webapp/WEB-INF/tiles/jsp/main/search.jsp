@@ -55,7 +55,6 @@
    float: left;
    margin-left: 5px;
    margin-top: 20px;
-   margin-bottom: 20px;
    }
    
    #movie-title {
@@ -184,6 +183,7 @@ List<Movie> movies = (List<Movie>) request.getAttribute("movies");
 List<Member> members = (List<Member>) request.getAttribute("members");
 List<Review> reviews = (List<Review>) request.getAttribute("reviews");
 List<Follow> follows = (List<Follow>) request.getAttribute("follows");
+List<Tag> tags = (List<Tag>) request.getAttribute("tag");
 %>
 
 
@@ -239,8 +239,8 @@ if (reviews.size() == 0) {
     <div id  = "movie-text">출연</div>
     <div id = "movie-actors"><%=movie.getActors()%></div>
     <div id = "movie-synop"><%=movie.getSynopsis()%></div>
-    <div id = "movie-link">더보기</div>
   </div>
+    <div id = "movie-link">더보기</div>
 
   <%
   }
@@ -346,20 +346,14 @@ if (reviews.size() == 0) {
   </div>
   <%
   } 
-}else {
-  System.out.println("왜안돼");
-  for (Review review : reviews) {
-    %>
-    태그검색
-    <td><%=review.getMovieTitle()%></div>
-    <%
-    List<Tag> tags = review.getTags();
+} else {
+
     for (Tag tag : tags) {
       %>
       태그검색
-      <td><%=review.getTags()%></div>
+      <td><%=tag.getTitle()%></div>
       <%
-    }
+    
   }
 }
 %>
