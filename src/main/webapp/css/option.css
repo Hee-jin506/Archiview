@@ -9,6 +9,13 @@ left: 50%;
 margin-top: 100px; margin-left: -300px;
 }
 
+#email {
+	position: absolute;
+	font-size: 20px;
+	margin-top: 20px;
+	top: 10px;
+}
+
 .menus {
 display: inline-block;
 float: left;

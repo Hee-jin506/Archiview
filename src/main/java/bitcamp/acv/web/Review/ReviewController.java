@@ -60,4 +60,13 @@ public class ReviewController {
     model.addAttribute("review", reviewService.get(reviewNo, loginUser.getNo()));
     model.addAttribute("view", commentService.getByReviewNo(reviewNo));
   }
+
+  @RequestMapping("delete")
+  public String inactive(int no) throws Exception {
+    if (reviewService.delete(no) == 0) {
+      throw new Exception("해당 리뷰가 없습니다.");
+    } else {
+      return "redirect:../main";
+    }
+  }
 }
