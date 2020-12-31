@@ -69,7 +69,7 @@
       </div>
     </div>
     
- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div id="report-close">
@@ -87,19 +87,20 @@
     
 <script>
 var el = document.querySelectorAll(".report-form");
-var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
-var exampleModal = document.querySelector("#exampleModal");
-var exampleModalBody = exampleModal.querySelector(".modal-body");
+var myModal = new bootstrap.Modal(document.getElementById('reportModal'), {});
+var reportModal = document.querySelector("#reportModal");
+var exampleModalBody = reportModal.querySelector("#reportModal .modal-body");
 var memberNo;
-exampleModal.addEventListener('show.bs.modal', function (event) {
+
+reportModal.addEventListener('show.bs.modal', function (event) {
   console.log("show.bs.modal")
-  $(".modal-body").load("../ajax/report/form?reportedNo=" + memberNo);
+  $("#reportModal .modal-body").load("../ajax/report/form?reportedNo=" + memberNo);
   
 });
-exampleModal.addEventListener('shown.bs.modal', function (event) {
+reportModal.addEventListener('shown.bs.modal', function (event) {
   console.log("shown.bs.modal")
 });
-exampleModal.addEventListener('hidden.bs.modal', function (event) {
+reportModal.addEventListener('hidden.bs.modal', function (event) {
   console.log("hidden.bs.modal 종료")
 });  
 for (var e of el) {
