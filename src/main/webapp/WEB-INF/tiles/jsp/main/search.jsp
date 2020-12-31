@@ -55,7 +55,6 @@
    float: left;
    margin-left: 5px;
    margin-top: 20px;
-   margin-bottom: 20px;
    }
    
    #movie-title {
@@ -145,6 +144,14 @@
    
    #intro {
    padding-left: 70px;
+   padding-top: 10px;
+   font-size: small;
+   color: #626473;
+   }
+
+   #follow-button {
+   padding-left: 500px;
+   margin-top: -40px;
    }
    
    #member hr {
@@ -184,6 +191,7 @@ List<Movie> movies = (List<Movie>) request.getAttribute("movies");
 List<Member> members = (List<Member>) request.getAttribute("members");
 List<Review> reviews = (List<Review>) request.getAttribute("reviews");
 List<Follow> follows = (List<Follow>) request.getAttribute("follows");
+List<Tag> tags = (List<Tag>) request.getAttribute("tags");
 %>
 
 
@@ -208,6 +216,27 @@ if (reviews.size() == 0) {
           <div id="nickName"><%=member.getNickName()%></div>
           <div id="intro"><%=member.getIntro()%></div>
         </div>
+        <%
+        if (member.getNo() != loginUser.getNo()) {
+          for (Follow follow : follows) {
+            if (follow.getFollowedType() == 1 && follow.getFollowingMember().getNo() == loginUser.getNo()) {
+          %>
+          <div>
+            <div id = "follow-button"><button type="submit" formaction='../follow/deleteUser?followedNo=<%=member.getNo()%>' class="btn btn-twitter">팔로우</button> </div>
+          </div>
+          <%
+            } else if (follow.getFollowedType() == 1 && follow.getFollowingMember().getNo() != loginUser.getNo()) {
+              %>
+              <div>
+                <div id = "follow-button"><button type="submit" formaction='../follow/addUser?followedNo=<%=member.getNo()%>' class="btn btn-archiview">팔로우</button> </div>
+              </div>
+              <%
+            }
+          }
+        } else {
+
+        }
+        %>
         <br>
       <%
       }
@@ -233,14 +262,14 @@ if (reviews.size() == 0) {
     <div id = "movie-title"><%=movie.getTitle()%></div>
     <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
     <div id  = "movie-text">상영 시간</div>
-    <div id = "movie-runtime"><%=movie.getRuntime()%></div>
+    <div id = "movie-runtime"><%=movie.getRuntime()%> 분</div>
     <div id  = "movie-text">감독</div>
     <div id = "movie-directors"><%=movie.getDirectors()%></div>
     <div id  = "movie-text">출연</div>
     <div id = "movie-actors"><%=movie.getActors()%></div>
     <div id = "movie-synop"><%=movie.getSynopsis()%></div>
-    <div id = "movie-link">더보기</div>
   </div>
+    <div id = "movie-link">더보기</div>
 
   <%
   }
@@ -312,7 +341,7 @@ if (reviews.size() == 0) {
       <div id = "movie-title"><%=movie.getTitle()%></div>
       <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
       <div id  = "movie-text">상영 시간</div>
-      <div id = "movie-runtime"><%=movie.getRuntime()%></div>
+      <div id = "movie-runtime"><%=movie.getRuntime()%> 분</div>
       <div id  = "movie-text">감독</div>
       <div id = "movie-directors"><%=movie.getDirectors()%></div>
       <div id  = "movie-text">출연</div>
@@ -346,20 +375,13 @@ if (reviews.size() == 0) {
   </div>
   <%
   } 
-}else {
-  System.out.println("왜안돼");
-  for (Review review : reviews) {
-    %>
-    태그검색
-    <td><%=review.getMovieTitle()%></div>
-    <%
-    List<Tag> tags = review.getTags();
+} else {
+
     for (Tag tag : tags) {
       %>
       태그검색
-      <td><%=review.getTags()%></div>
+      <td><%=tag.getTitle()%></div>
       <%
-    }
   }
 }
 %>
