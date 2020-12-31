@@ -87,10 +87,8 @@ var exampleModalBody = exampleModal.querySelector(".modal-body");
 var memberNo;
 exampleModal.addEventListener('show.bs.modal', function (event) {
   console.log("show.bs.modal")
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "../ajax/report/form?reportedNo=" + memberNo, false);
-  xhr.send();
-  exampleModalBody.innerHTML = xhr.responseText;
+  $(".modal-body").load("../ajax/report/form?reportedNo=" + memberNo);
+  
 });
 exampleModal.addEventListener('shown.bs.modal', function (event) {
   console.log("shown.bs.modal")
