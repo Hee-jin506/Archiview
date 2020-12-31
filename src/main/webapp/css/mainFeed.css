@@ -160,7 +160,7 @@
 	display: none;
 	position: absolute;
 	margin-top: 40px;
-	margin-left: 300px;
+	xmargin-left: 300px;
 	background-color: #141517;
 	border: 1px solid #6b6b6b;
 	border-radius: 5px;

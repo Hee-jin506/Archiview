@@ -239,6 +239,7 @@
 }
 
 .commentRow_bottom button {
+	padding: 2px;
 	height : 27px;
 	font-size: 10px;
 	margin-left: 3px;
