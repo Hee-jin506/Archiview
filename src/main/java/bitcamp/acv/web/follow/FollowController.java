@@ -39,7 +39,7 @@ public class FollowController {
   public String addUser(Model model,
       HttpSession session,
       Follow follow,
-      int followedNo,
+      /* int followedNo, */
       HttpServletRequest request,
       @RequestParam(defaultValue="1") int followedType) throws Exception {
 
@@ -52,7 +52,7 @@ public class FollowController {
 
     follow.setFollowingMember(loginUser);
     follow.setFollowedType(followedType);
-    follow.setFollowedNo(followedNo);
+    /* follow.setFollowedNo(followedNo); */
     followService.addUser(follow);
     String referer = request.getHeader("REFERER");
 
