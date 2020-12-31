@@ -83,11 +83,11 @@ color: #F21BC9;
       <input type='hidden' name='loginNo' value='1'>
       <div class="col-sm-10">
       <label for="name" style="color: white;">이름</label>
-      <input type="text" class="form-control input-lg" name="name" autofocus required style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
+      <input type="text" autocomplete="off" class="form-control input-lg" name="name" autofocus required style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
       </div>
       <div class="col-sm-10">
       <label for="email" style="color: white;">이메일</label>
-      <input type="email" class="form-control input-lg" name="email" autofocus required style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
+      <input type="email" autocomplete="off" class="form-control input-lg" name="email" autofocus required style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
       </div>
       <div class="col-sm-10">
       <label for="password" style="color: white;">비밀번호</label>
@@ -95,7 +95,7 @@ color: #F21BC9;
       </div>
       <div class="col-sm-10">
       <label for="nickName" style="color: white;">닉네임</label>
-      <input type="text" class="form-control input-lg" name="nickName" autofocus required style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
+      <input type="text" autocomplete="off" class="form-control input-lg" name="nickName" autofocus required style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
       </div>
       <div class="col-sm-9" style="margin-top: 20px;">
     <button id='next'>다음</button>

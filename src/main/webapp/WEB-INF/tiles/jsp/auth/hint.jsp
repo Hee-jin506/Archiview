@@ -67,7 +67,7 @@ color: white;
   <div class="form-group">
     <div class="row">
       <div class="col-xs-10">
-        <input type="text" class="form-control" placeholder="답을 입력하세요" name='hint' style="border:1px solid #6B6B6B; color: white; background-color: #000000; margin: 5px 0px 0px 40px;">
+        <input type="text" autocomplete="off" class="form-control" placeholder="답을 입력하세요" name='hint' style="border:1px solid #6B6B6B; color: white; background-color: #000000; margin: 5px 0px 0px 40px;">
       </div>
     </div>
   </div>
