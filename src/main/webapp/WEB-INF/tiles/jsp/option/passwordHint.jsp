@@ -69,7 +69,7 @@
       <div class="mb-3">
         <label for="hintAnswer" class="form-label"  style="margin: 20px; font-size: small;">답</label>
         <div class="col-sm-10">
-          <input type='text' class="form-control" name='hintAnswer' value='${member.questionsAnswer}'>
+          <input type='text' autocomplete="off" class="form-control" name='hintAnswer' value='${member.questionsAnswer}'>
         </div>
       </div>
       <button id='next'>변경</button>

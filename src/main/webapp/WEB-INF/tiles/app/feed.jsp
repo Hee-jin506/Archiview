@@ -41,6 +41,7 @@
 			  }
 			}
 			%>
+			<div class=moreIconBox>
 			<div class="dropdown1">
 			<button class='more' data-no='<%=review.getNo()%>'>
 				<img src='<%=getServletContext().getContextPath()%>/main_resource/more.png' >
@@ -56,11 +57,12 @@
 				</c:if>
 				</div>
 			</div>
+			</div>
 		</div>
 		
-		<div class='stillcut'>
+		<div class='stillcut' data-no='<%=review.getNo() %>'>
 			<%if (review.getStcUrl() != null) {%>
-			<img src=<%=review.getStcUrl()%>>
+			<img src=<%=review.getStcUrl()%> data-no='<%=review.getNo() %>'>
 			<%
 			  }
 			%>
@@ -116,6 +118,7 @@
 	</div>
 	<%
 	}%>
+
 	<div></div>
 	
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -133,59 +136,9 @@
 	    </div>
 	  </div>
 	</div>
+
 	<script>
       "use strict" 
-
-      var el = document.querySelectorAll("#notLiking a img")
-      
-      for (var e of el) {
-        e.addEventListener("mouseover", function(e) {
-              console.log(this);
-              // 이벤트가 발생한 객체의 속성 값 알아내기
-              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
-            });
-      }
-      
-      for (var e of el) {
-        e.addEventListener("mouseout", function(e) {
-                console.log(this);
-                // 이벤트가 발생한 객체의 속성 값 알아내기
-                this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");  // undefined
-              });
-        }
-      
-      var el = document.querySelectorAll(".card .cardHeader img.more")
-      
-      for (var e of el) {
-        e.addEventListener("click", function(e) {
-              console.log(this);
-              // 이벤트가 발생한 객체의 속성 값 알아내기
-              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
-            });
-      }
-      </script>
-<script>
-var el = document.querySelectorAll('.more');
-var menuContents = document.querySelectorAll('.dropdown-content1');
-
-for (var element of el) {
-	element.addEventListener("click", function(e) {
-        	var no = this.getAttribute("data-no");
-        for (var menu of menuContents) {
-        	console.log(menu.getAttribute("data-no"));
-            if (menu.getAttribute("data-no") == no) {
-        	console.log(menu.getAttribute("data-no"), this.getAttribute("data-no")); 
-            	   if(menu.style.display===""){
-            		   menu.style.display="block";
-            		   } else {
-            			   menu.style.display="";
-            		   }
-              
-            }
-          }
-
-});
-}
 
 var el = document.querySelectorAll(".report-form");
 var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
@@ -217,6 +170,56 @@ for (var e of el) {
     myModal.show();
   };
 }
+      var el = document.querySelectorAll("#notLiking a img")
+      
+      for (var e of el) {
+        e.addEventListener("mouseover", function(e) {
+              console.log(this);
+              // 이벤트가 발생한 객체의 속성 값 알아내기
+              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
+            });
+      }
+      
+      for (var e of el) {
+        e.addEventListener("mouseout", function(e) {
+                console.log(this);
+                // 이벤트가 발생한 객체의 속성 값 알아내기
+                this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");  // undefined
+              });
+        }
+      
+      var el = document.querySelectorAll(".card .cardHeader img.more")
+      
+      for (var e of el) {
+        e.addEventListener("click", function(e) {
+              console.log(this);
+              // 이벤트가 발생한 객체의 속성 값 알아내기
+              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
+            });
+      }
+      
+var el = document.querySelectorAll('.more');
+var menuContents = document.querySelectorAll('.dropdown-content1');
+
+for (var element of el) {
+	element.addEventListener("click", function(e) {
+        	var no = this.getAttribute("data-no");
+        for (var menu of menuContents) {
+        	console.log(menu.getAttribute("data-no"));
+            if (menu.getAttribute("data-no") == no) {
+        	console.log(menu.getAttribute("data-no"), this.getAttribute("data-no")); 
+            	   if(menu.style.display===""){
+            		   menu.style.display="block";
+            		   } else {
+            			   menu.style.display="";
+            		   }
+              
+            }
+          }
+
+});
+}
+
 </script>
 
 </div>

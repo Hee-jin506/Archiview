@@ -70,7 +70,7 @@ public class MemberController {
       mv.setViewName("member/withdrawForm");
     } else {
       memberService.delete(m.getNo());
-      mv.setViewName("redirect:/auth/login");
+      mv.setViewName("redirect:/app/auth/login");
     }
     return mv;
   }

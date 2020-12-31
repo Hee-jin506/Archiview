@@ -58,13 +58,13 @@
 			</div>
 		</div>
 		
-		<div class='stillcut'>
+		<div class='stillcut' data-no='<%=review.getNo() %>'>
 			<%if (review.getStcUrl() != null) {%>
-			<img src=<%=review.getStcUrl()%>>
+			<img src=<%=review.getStcUrl()%> data-no='<%=review.getNo() %>'>
 			<%
 			  }
 			%>
-			<div class='reviewText'>
+			<div class='reviewText' data-no='<%=review.getNo() %>'>
 				<p><%=review.getText()%>
 				</p>
 			</div>
@@ -118,10 +118,6 @@
 	}%>
 	
 	<script>
-	</script>
-	
-	<div></div>
-	<script>
       "use strict" 
 
       var el = document.querySelectorAll("#notLiking a img")
@@ -151,8 +147,7 @@
               this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
             });
       }
-      </script>
-<script>
+      
 var el = document.querySelectorAll('.more');
 var menuContents = document.querySelectorAll('.dropdown-content1');
 
@@ -174,5 +169,6 @@ for (var element of el) {
 
 });
 }
+
 </script>
 </div>

@@ -43,13 +43,13 @@
       <div class="form-group">
         <label for="inputNik" class="col-sm-3 control-label"  style="margin: 20px; font-size: small;">닉네임</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="inputNik" name='nickName' value='${member.nickName}' style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
+          <input type="text" autocomplete="off" class="form-control" id="inputNik" name='nickName' value='${member.nickName}' style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
         </div>
       </div> 
       <div class="form-group">
         <label for="inputIntro" class="col-sm-3 control-label"  style="margin: 20px; font-size: small;">소개</label>
         <div class="col-sm-8">
-          <textarea class='form-control' id='inputIntro' name='intro' rows='4' style="border:1px solid #6B6B6B; resize: none; background-color: #000000; color: white;">${member.intro}</textarea>
+          <textarea autocomplete="off" class='form-control' id='inputIntro' name='intro' rows='4' style="border:1px solid #6B6B6B; resize: none; background-color: #000000; color: white;">${member.intro}</textarea>
         </div> 
       </div> 
       <button id='next'>변경</button>

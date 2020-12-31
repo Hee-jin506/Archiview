@@ -55,7 +55,7 @@ color: #F21BC9;
     <label for="exampleInputEmail1" style="color: white; margin-left: 40px; font-weight: lighter;">비밀번호를 찾고자 하는 계정을 입력해주세요.</label>
     <div class="row">
       <div class="col-xs-10">
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요" name='email' style="border:1px solid #6B6B6B; color: white; background-color: #000000; margin: 5px 0px 0px 40px;" >
+        <input type="email" autocomplete="off" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요" name='email' style="border:1px solid #6B6B6B; color: white; background-color: #000000; margin: 5px 0px 0px 40px;" >
       </div>
     </div>    
   </div>
