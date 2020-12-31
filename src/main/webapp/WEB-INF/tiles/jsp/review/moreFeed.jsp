@@ -24,17 +24,17 @@
 			  if (!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())) {
 			%>
 			<%
-			  if (review.getIsFollowing() != 0) {
+			  if (review.getIsFollowing() == 0) {
 			%>
 			<div class='follow'>
 				<form>
-					<button class="btn btn-twitter">팔로우</button>
+					<button type="submit" formaction='../follow/addUser?followedNo<%review.getWriterNo();%>' class="btn btn-archiview">팔로우</button>
 				</form>
 			</div>
 			<%} else {%>
 			<div class='follow'>
 				<form>
-					<button class="btn btn-archiview">팔로우</button>
+					<button type="submit" formaction='../follow/deleteUser?followedNo=<%review.getWriterNo();%>' class="btn btn-twitter">팔로우</button>
 				</form>
 			</div>
 			<%
