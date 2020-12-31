@@ -29,3 +29,14 @@ div#title-text {
     font-size: x-large;
 }
 
+#reveiwDetail .modal-content {
+	background-color: rgba( 0, 0, 0, 0);
+	padding: 0px;
+}
+
+#reveiwDetail .modal-body {
+  margin: 0px;
+}
+
+
+

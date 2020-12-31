@@ -1,13 +1,13 @@
 @charset "UTF-8";
+
  #cardDetail {
   background-color: #141517;
   box-sizing: border-box;
-  border: 1px solid #141517;
+  border: 1px solid #6b6b6b;
   color: white;
   width: 750px;
   height: 793px;
   padding: 0px;
-  margin: 50px;
  }
  
  #cardDetail #cardPart {
@@ -167,6 +167,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
       background: black;
+      padding: 0px;
 }
 
 .commentsBody::-webkit-scrollbar {

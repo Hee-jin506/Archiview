@@ -127,7 +127,7 @@
       l.lno,
       lk_length
     from 
-      (select * from acv_rv order by rdt desc limit #{row}, 5)rv
+      (select * from acv_rv where stat=1 order by rdt desc limit #{row}, 5)rv
       left outer join acv_stc s on rv.stcno=s.stcno
       inner join acv_mbr m on rv.mno=m.mno
       left outer join acv_mov mv on s.mvno=mv.mvno
@@ -165,7 +165,7 @@
       lk_length,
       l.lno
     from 
-      (select * from acv_rv order by rdt desc limit #{row}, 5)rv
+      (select * from acv_rv where stat=1 order by rdt desc limit #{row}, 5)rv
       left outer join acv_stc s on rv.stcno=s.stcno
       inner join acv_mbr m on rv.mno=m.mno
       left outer join acv_mov mv on s.mvno=mv.mvno

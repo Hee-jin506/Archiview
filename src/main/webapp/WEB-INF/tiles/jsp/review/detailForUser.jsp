@@ -212,7 +212,7 @@ System.out.println(review.getText());%>
 
 
 		<div class='commentsFooter'>
-			<form action="../../comment/add" method="post" class="register">
+			<form action="/Archiview/app/comment/add" method="post" class="register">
 				<input type='hidden' name='reviewNo' value='<%=request.getParameter("reviewNo")%>'>
 				<input type='hidden' name='level' value='1'>
 				<input class="form-control form-control-sm" type="text" placeholder="댓글 달기" name='content'>
@@ -237,7 +237,6 @@ System.out.println(review.getText());%>
 	      document.querySelector(".register input[name='content']").setAttribute("value", "@" + comment.writer +" ");
 	      console.log(register.innerHTML)
 	    };
-	  }
-	
+	  }	
 	</script>
 </div>
