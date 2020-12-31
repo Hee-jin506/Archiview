@@ -41,6 +41,7 @@
 			  }
 			}
 			%>
+			<div class=moreIconBox>
 			<div class="dropdown1">
 			<button class='more' data-no='<%=review.getNo()%>'>
 				<img src='<%=getServletContext().getContextPath()%>/main_resource/more.png' >
@@ -55,6 +56,7 @@
 				  <a class=profile_icon href="<%=getServletContext().getContextPath()%>/app/ajax/report/form?reportedNo=<%=review.getNo()%>">신고</a>
 				</c:if>
 				</div>
+			</div>
 			</div>
 		</div>
 		

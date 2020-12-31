@@ -3,10 +3,11 @@
  #sidebar {
    float:right;
    box-sizing: content-box;
+   margin-top:10px;
  }
 
  .sidebar {
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
   background-color: #141517;
   box-sizing: border-box;
@@ -25,8 +26,84 @@
    
  }
  
+ .sidebar .title {
+   font-size: 16px;
+   color: white;
+   font-weight: bold;
+   margin-bottom: 5px;
+ }
+ 
  .sidebar .explanation {
    font-size: 14px;
    color: #626473;
    font-weight: normal;
+ }
+ 
+ .sidebar-title {
+ margin-left:5px;
+ margin-top: 5px;
+ margin-bottom:5px;
+ font-weight:bold;
+ }
+ 
+ .sidebar-member {
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #141517;
+  box-sizing: border-box;
+  color: white;
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+
+ }
+ 
+ .sidebar-member hr {
+   border:0;
+   height: 1px;
+   background-color: #626473;
+   
+ }
+ 
+ .sidebar-member .title {
+   font-size: 16px;
+   color: white;
+   font-weight: bold;
+   margin-bottom: 5px;
+ }
+ 
+ .sidebar-member .explanation {
+   font-size: 14px;
+   color: #626473;
+   font-weight: normal;
+ }
+ 
+ .sidebar-member .sidebar-title {
+ margin-left:5px;
+ margin-top: 5px;
+ margin-bottom:5px;
+ font-weight:bold;
+ }
+ .sidebar-movie-tag-row {
+ margin-top: 15px;
+ }
+ 
+ .sidebar-member-row {
+  margin-top:14px;
+ }
+ 
+ .sidebar-member-row-image {
+  float :left;
+  margin-right:10px;
+ }
+ 
+ .sidebar-member-row-image-text .nickname {
+  font-size :16px;
+  font-weight : bold;
+  margin-bottom:10px;
+ }
+ .sidebar-member-row-image-text .explanation {
+  margin-top:10px;
+  margin-left:44px;
  }

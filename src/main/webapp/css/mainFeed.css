@@ -137,10 +137,14 @@
 	display: inline-block;
 }
 
+.moreIconBox {
+	float: right;
+}
+
 .more {
   position: relative;
   cursor: pointer;
-  margin-left: 300px;
+  xmargin-left: 300px;
   margin-top: 14px;
   float: right;
   border: none;
