@@ -145,41 +145,54 @@
   </select>
   
   <select id="findForFollowingFeed" resultMap="ReviewMap" parameterType="map">
-    select 
+        select 
+      a.rvno,
+      a.mno,
+      a.txt,
+      a.txt_x,
+      a.txt_y,
+      a.tfno,
+      a.txt_size,
+      a.rdt,
+      a.stat,      
+      a.stc_url,
+      a.photo,
+      a.nick,
+      a.title mvTitle,
+      t.title,
+      t.stat,
+      a.fno,
+      lk_length,
+      l.lno
+    from 
+      (select
       rv.rvno,
-      rv.mno,
+      rv.mno, 
       rv.txt,
       rv.txt_x,
       rv.txt_y,
       rv.tfno,
       rv.txt_size,
       rv.rdt,
-      rv.stat,      
+      rv.stat,
       s.stc_url,
       m.photo,
       m.nick,
-      mv.title mvTitle,
-      t.title,
-      t.stat,
-      f.fno,
-      lk_length,
-      l.lno
-    from 
-      (select * from acv_rv where stat=1 order by rdt desc limit #{row}, 5)rv
+      mv.title,
+      f.fno
+       from acv_rv rv
+       inner join (select fno, target from acv_flw where flwing_mbr=#{userNo} and fano=1)f on f.target=rv.mno
       left outer join acv_stc s on rv.stcno=s.stcno
       inner join acv_mbr m on rv.mno=m.mno
-      left outer join acv_mov mv on s.mvno=mv.mvno
-      left outer join acv_tag_post tp on tp.rvno=rv.rvno
+      left outer join acv_mov mv on s.mvno=mv.mvno where rv.stat=1 order by rv.rdt desc limit #{row}, 5) a
+      left outer join acv_tag_post tp on tp.rvno=a.rvno
       left outer join acv_tag t on tp.tno=t.tno
-      inner join 
-        (select fno, target from acv_flw where flwing_mbr=#{userNo} and fano=1)f
-      on f.target=rv.mno
       left outer join 
-        (select lno, target from acv_like where mno=#{userNo} and lano=1)l
-      on l.target=rv.rvno
+        (select lno, target from acv_like where #{userNo} and lano=1)l
+      on l.target=a.rvno
       left outer join
         (select target, lano, count(*) lk_length from acv_like where lano=1 group by lano, target)lk
-      on lk.target=rv.rvno
+      on lk.target=a.rvno
  </select>
  
  <select id="findReviewDetail" resultMap="ReviewMap" parameterType="map">
@@ -327,5 +340,8 @@
     values(#{stillCut}, #{writerNo}, #{text}, #{textX}, #{textY}, #{textFont}, #{textSize})
   </insert>
 </mapper>
+
+
+
 
 

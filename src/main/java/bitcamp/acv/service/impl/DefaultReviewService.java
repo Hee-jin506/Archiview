@@ -164,7 +164,10 @@ public class DefaultReviewService implements ReviewService {
     map.put("userNo", userNo);
     map.put("row", (pageNo - 1) * 5);
     List<Review> list = reviewDao.findForFollowingFeed(map);
+    System.out.println(list.size());
+
     for (Review review : list) {
+      System.out.println(review.getText());
 
       Calendar cal = new GregorianCalendar(Locale.KOREA);
       long now = cal.getTimeInMillis();
