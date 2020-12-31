@@ -18,20 +18,24 @@
         <img class=profile_icon_report  src="<%=getServletContext().getContextPath()%>/profile_resource/report.png" height=20px class="center" data-no='${member.no}'></a>
     </div>
     
-        <form method="post">
           <c:choose>
            <c:when test="${member.no==sessionScope.loginUser.no}">
            </c:when>
            <c:when test="${following==true}">
-             <button type="submit" formaction='../follow/deleteUser?followedNo=${member.no}' class="btn btn-twitter">팔로우
-             </button>
+             <form action='../follow/deleteUser'>
+		          <input type='hidden' name='followedNo' value='${member.no}'>
+		          <button class="btn btn-twitter">팔로우</button>
+            </form>
            </c:when>
            <c:when test="${following==false}">
-             <button type="submit" formaction='../follow/addUser?followedNo=${member.no}' class="btn btn-archiview">팔로우
-             </button>
+           
+           <form action='../follow/addUser'>
+	          <input type='hidden' name='followedNo' value='${member.no}'>
+	          <button class="btn btn-archiview">팔로우</button>
+         </form>
+           
            </c:when>
           </c:choose>
-        </form>    
     </div>
     
     <div id="profile_icon">
