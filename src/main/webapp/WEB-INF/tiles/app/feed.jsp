@@ -64,9 +64,9 @@
 			<%
 			  }
 			%>
-			<div class='reviewText'>
-				<p><%=review.getText()%>
-				</p>
+			<div class='reviewText_box'>
+					<span class='reviewText'><%=review.getText()%>
+					</span>
 			</div>
 
 			<div class='tags'>
