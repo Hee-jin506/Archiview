@@ -73,7 +73,10 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div id="report-close">
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"
+        style="position: absolute;
+         top: 20px;
+         right: 30px;"></button>
       <div class="modal-body">
         <!-- 모달 화면 -->
         </div>

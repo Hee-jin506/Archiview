@@ -2,7 +2,7 @@
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-      <form id='report-form' action='../report/reportUser' method='post'>
+      <form id='report-form' action='../report/reportUser' method='post' style="text-align: center;">
         <input type="hidden" id="reportTarget" name='reportedNo' value="${report.reportedNo}"><br>
 
         <div class="col-sm-20">
@@ -23,7 +23,9 @@
           </select>
         </div><br>
         
-          <button type="submit" id="next" class="btn btn-secondary btn-sm">신고</button>
+          <button type="submit" id="next" class="btn btn-secondary btn-sm" style="
+          margin-top: 15px;
+          display: inline-block;">신고</button>
         </form>
 
       <script type="text/javascript">
