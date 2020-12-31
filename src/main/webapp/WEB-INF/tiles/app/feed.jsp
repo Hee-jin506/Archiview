@@ -52,7 +52,7 @@
 				  <a href="<%=getServletContext().getContextPath()%>/app/review/delete?no=<%=review.getNo()%>" style="color: #f21b9c">삭제</a>
 				</c:if>
 				<c:if test='<%=!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
-				  <a class=profile_icon href="<%=getServletContext().getContextPath()%>/app/ajax/report/form?reportedNo=<%=review.getNo()%>">신고</a>
+				  <a class="report-form" href="<%=getServletContext().getContextPath()%>/ajax/report/form?reportedNo=<%=review.getNo()%>" data-no='<%=review.getNo()%>'>신고</a>
 				</c:if>
 				</div>
 			</div>
@@ -116,11 +116,23 @@
 	</div>
 	<%
 	}%>
-	
-	<script>
-	</script>
-	
 	<div></div>
+	
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div id="report-close">
+	        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"
+	        style="position: absolute;
+	         top: 20px;
+	         right: 30px;"></button>
+	      <div class="modal-body">
+	        <!-- 모달 화면 -->
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	<script>
       "use strict" 
 
@@ -174,19 +186,17 @@ for (var element of el) {
 
 });
 }
-</script>
 
-<script>
 var el = document.querySelectorAll(".report-form");
 var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
 var exampleModal = document.querySelector("#exampleModal");
 var exampleModalBody = exampleModal.querySelector(".modal-body");
-var memberNo;
+var reviewNo;
 
 exampleModal.addEventListener('show.bs.modal', function (event) {
   console.log("show.bs.modal")
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "../ajax/report/form?reportedNo=" + memberNo, false);
+  xhr.open("GET", "../ajax/report/form?reportedNo=" + reviewNo, false);
   xhr.send();
   exampleModalBody.innerHTML = xhr.responseText;
 });
@@ -202,7 +212,7 @@ exampleModal.addEventListener('hidden.bs.modal', function (event) {
 for (var e of el) {
   e.onclick = function(e) {
     e.preventDefault();
-    memberNo = e.target.getAttribute("data-no");
+    reviewNo = e.target.getAttribute("data-no");
     console.log("click");
     myModal.show();
   };

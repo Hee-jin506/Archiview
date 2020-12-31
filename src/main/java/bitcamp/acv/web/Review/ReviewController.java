@@ -1,13 +1,9 @@
 package bitcamp.acv.web.Review;
 
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Comment;
 import bitcamp.acv.domain.Member;
-import bitcamp.acv.domain.NewsFeed;
 import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.CommentService;
+import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
 import bitcamp.acv.service.MovieService;
 import bitcamp.acv.service.ReviewService;
@@ -36,6 +32,7 @@ public class ReviewController {
   @Autowired TagService tagService;
   @Autowired ServletContext servletContext;
   @Autowired CommentService commentService;
+  @Autowired FollowService followService;
 
 
   @RequestMapping("bestReviewSearch")
@@ -68,7 +65,7 @@ public class ReviewController {
     Member loginUser = (Member) session.getAttribute("loginUser");
     model.addAttribute("review", reviewService.get(reviewNo, loginUser.getNo()));
     List<Comment> comments = commentService.getByReviewNo(reviewNo);
-    
+
     for (Comment comment : comments) {
 
       Calendar cal = new GregorianCalendar(Locale.KOREA);
@@ -90,12 +87,11 @@ public class ReviewController {
         comment.setRdtFromNow(Calendar.YEAR - comment.getRegisteredDate().getYear() + "년 전");
       }
     }
-    
+
     for (Comment comment : comments) {
       System.out.println(comment.getRdtFromNow());
     }
     model.addAttribute("view", comments);
-
   }
 
   @RequestMapping("delete")
