@@ -69,7 +69,7 @@
       </div>
     </div>
     
- <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id ="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div id="report-close">
@@ -94,7 +94,7 @@ var memberNo;
 
 reportModal.addEventListener('show.bs.modal', function (event) {
   console.log("show.bs.modal")
-  $("#reportModal .modal-body").load("../ajax/report/form?reportedNo=" + memberNo);
+  $(".modal-body").load("../ajax/report/form?reportedNo=" + memberNo);
   
 });
 reportModal.addEventListener('shown.bs.modal', function (event) {
