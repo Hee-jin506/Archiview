@@ -78,8 +78,8 @@ public class MainSearchController {
         List<Review> reviews = reviewService.listByKeywordTagTitle(keyword);
         mv.addObject("reviews", reviews);
 
-        Tag tag = tagService.get(keyword);
-        mv.addObject("tag", tag);
+        List<Tag> tags = tagService.listByKeywordTitle(keyword);
+        mv.addObject("tags", tags);
 
       }
     }
