@@ -11,7 +11,7 @@
 }
 
 #menubar #inner {
-	width: 960px;
+	width: 920px;
 	margin: 0 auto;
 }
 
@@ -96,6 +96,7 @@ box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 255, 255, 0.
 	xtop: 15px;
 	margin-left: 12px;
 	margin-top: 12px;
+	margin-right: 3px;
 	float: right;
 }
 

@@ -23,9 +23,14 @@
   <style>
   
   #container {
-      width:960px;
+      width:920px;
       margin:0 auto;
       margin-top: 75px;
+    }
+    
+    #profile_contents {
+    margin-top: 10px;
+    
     }
 
 #body {
@@ -33,7 +38,7 @@
   xleft: 230px;
   xtop: 70px;
   box-sizing: content-box;
-  width: 700px;
+  xwidth: 700px;
   height: 700px;
   padding: 0px;
   overflow: hidden;
