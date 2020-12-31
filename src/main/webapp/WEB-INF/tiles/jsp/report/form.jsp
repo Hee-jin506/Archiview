@@ -31,7 +31,6 @@
 
       <script type="text/javascript">
         $("#report-form").submit(function (e) {
-          alert("버튼1을 누르셨습니다.");
-          console.log('test');
+        	 alert('신고처리되었습니다.');
         });
       </script>
