@@ -72,8 +72,11 @@
  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+      <div id="report-close">
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
       <div class="modal-body">
         <!-- 모달 화면 -->
+        </div>
       </div>
     </div>
   </div>
