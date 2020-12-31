@@ -40,16 +40,32 @@
         }
       }
       %>
+    <div class="dropdown1">
+      <button class='more' data-no='<%=review.getNo()%>'>
+        <img src='<%=getServletContext().getContextPath()%>/main_resource/more.png' >
+      </button>
+        <div class="dropdown-content1" data-no='<%=review.getNo()%>'>
+        <c:if test='<%=review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
+          <a href="#">수정</a>
+          <hr style="margin: 0px;">
+          <a href="<%=getServletContext().getContextPath()%>/app/review/delete?no=<%=review.getNo()%>" style="color: #f21b9c">삭제</a>
+        </c:if>
+        <c:if test='<%=!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
+          <a class=profile_icon href="<%=getServletContext().getContextPath()%>/app/ajax/report/form?reportedNo=<%=review.getNo()%>">신고</a>
+        </c:if>
+        </div>
+      </div>
     </div>
+    
     <div class='stillcut'>
       <%if (review.getStcUrl() != null) {%>
       <img src=<%=review.getStcUrl()%>>
       <%
         }
       %>
-      <div class='reviewText'>
-        <p><%=review.getText()%>
-        </p>
+      <div class='reviewText_box'>
+          <span class='reviewText'><%=review.getText()%>
+          </span>
       </div>
 
       <div class='tags'>
@@ -72,7 +88,7 @@
       <%
         if (review.getIsLiking() != 0) {
       %>
-      <div class='like'>
+      <div class='like' id='liking'>
         <a
           href='<%=getServletContext().getContextPath()%>/app/like/dislikeReview?likedNo=<%=review.getNo()%>'>
           <img
@@ -82,7 +98,7 @@
       </div>
       <%} else {
       %>
-      <div class='like'>
+      <div class='like' id='notLiking'>
         <a
           href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
           <img
@@ -90,10 +106,25 @@
           alt='좋아요'>
         </a> <span class='pop'><%=review.getLiking()%>개</span>
       </div>
-      <script>
-      "use strict"
+      <%
+      }%>
+    </div>
+  <div class='reviewDetail'>
+  <button></button>
+  </div>
+  </div>
+  <%
+  }%>
+  
+  <script>
+  </script>
+  
+  <div></div>
+      
+  <script>
+      "use strict" 
 
-      var el = document.querySelectorAll(".like a img")
+      var el = document.querySelectorAll("#notLiking a img")
       
       for (var e of el) {
         e.addEventListener("mouseover", function(e) {
@@ -110,14 +141,72 @@
                 this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");  // undefined
               });
         }
+      
+      var el = document.querySelectorAll(".card .cardHeader img.more")
+      
+      for (var e of el) {
+        e.addEventListener("click", function(e) {
+              console.log(this);
+              // 이벤트가 발생한 객체의 속성 값 알아내기
+              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
+            });
+      }
       </script>
-      <%
-      }%>
-    </div>
-  <div class='reviewDetail'>
-  <button></button>
-  </div>
-  </div>
-  <%
-  }%>
+<script>
+var el = document.querySelectorAll('.more');
+var menuContents = document.querySelectorAll('.dropdown-content1');
+
+for (var element of el) {
+  element.addEventListener("click", function(e) {
+          var no = this.getAttribute("data-no");
+        for (var menu of menuContents) {
+          console.log(menu.getAttribute("data-no"));
+            if (menu.getAttribute("data-no") == no) {
+          console.log(menu.getAttribute("data-no"), this.getAttribute("data-no")); 
+                 if(menu.style.display===""){
+                   menu.style.display="block";
+                   } else {
+                     menu.style.display="";
+                   }
+              
+            }
+          }
+
+});
+}
+</script>
+
+<script>
+var el = document.querySelectorAll(".report-form");
+var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+var exampleModal = document.querySelector("#exampleModal");
+var exampleModalBody = exampleModal.querySelector(".modal-body");
+var memberNo;
+
+exampleModal.addEventListener('show.bs.modal', function (event) {
+  console.log("show.bs.modal")
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../ajax/report/form?reportedNo=" + memberNo, false);
+  xhr.send();
+  exampleModalBody.innerHTML = xhr.responseText;
+});
+
+exampleModal.addEventListener('shown.bs.modal', function (event) {
+  console.log("shown.bs.modal")
+});
+
+exampleModal.addEventListener('hidden.bs.modal', function (event) {
+  console.log("hidden.bs.modal 종료")
+});  
+
+for (var e of el) {
+  e.onclick = function(e) {
+    e.preventDefault();
+    memberNo = e.target.getAttribute("data-no");
+    console.log("click");
+    myModal.show();
+  };
+}
+</script>
+
 </div>

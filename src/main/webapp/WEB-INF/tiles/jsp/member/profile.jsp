@@ -14,7 +14,7 @@
         </div>
         
      <div id="profile_icon_report">
-        <a class="report-form" href='<%=getServletContext().getContextPath()%>ajax/report/form?reportedNo=${member.no}'> 
+        <a class="report-form" href='<%=getServletContext().getContextPath()%>/ajax/report/form?reportedNo=${member.no}'> 
         <img class=profile_icon_report  src="<%=getServletContext().getContextPath()%>/profile_resource/report.png" height=20px class="center" data-no='${member.no}'></a>
     </div>
     
@@ -72,8 +72,14 @@
  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+      <div id="report-close">
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"
+        style="position: absolute;
+         top: 20px;
+         right: 30px;"></button>
       <div class="modal-body">
         <!-- 모달 화면 -->
+        </div>
       </div>
     </div>
   </div>
@@ -87,10 +93,8 @@ var exampleModalBody = exampleModal.querySelector(".modal-body");
 var memberNo;
 exampleModal.addEventListener('show.bs.modal', function (event) {
   console.log("show.bs.modal")
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "../ajax/report/form?reportedNo=" + memberNo, false);
-  xhr.send();
-  exampleModalBody.innerHTML = xhr.responseText;
+  $(".modal-body").load("../ajax/report/form?reportedNo=" + memberNo);
+  
 });
 exampleModal.addEventListener('shown.bs.modal', function (event) {
   console.log("shown.bs.modal")

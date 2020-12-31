@@ -90,7 +90,7 @@ color: #F21BC9;
 	     </div>
         <div class="col-sm-10">
 	     <label for="questionsAnswer" style="color: white;">정답</label>
-      <input type="text" class="form-control input-lg" name="questionsAnswer" placeholder="정답" autofocus required style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
+      <input type="text" autocomplete="off" class="form-control input-lg" name="questionsAnswer" placeholder="정답" autofocus required style="border:1px solid #6B6B6B; background-color: #000000; color: white;">
     </div>
     <div class="col-sm-9" style="margin-top: 20px;">
     <button id='next'>다음</button>

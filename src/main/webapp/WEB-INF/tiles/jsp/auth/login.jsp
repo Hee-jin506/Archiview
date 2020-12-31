@@ -81,7 +81,7 @@ height: 50px;
       <div class="mb-2 row">
         <label for="email" class="col-sm-2 col-form-label">이메일 </label>
         <div class="col-sm-7">
-          <input type="email" class="form-control form-control-sm" name="email" value=<%=request.getAttribute("email")%> autofocus required>
+          <input type="email" autocomplete="off" class="form-control form-control-sm" name="email" value=<%=request.getAttribute("email")%> autofocus required>
         </div>
       </div>
       <div class="mb-2 row">

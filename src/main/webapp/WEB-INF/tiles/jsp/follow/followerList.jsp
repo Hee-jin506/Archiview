@@ -17,7 +17,7 @@
         <img class=profile_icon_report  src="<%=getServletContext().getContextPath()%>/profile_resource/report.png" height=20px class="center" data-no='${member.no}'></a>
       </div>
         
-        <form method="get">
+        <form method="post">
           <c:choose>
            <c:when test="${member.no==sessionScope.loginUser.no}">
            </c:when>

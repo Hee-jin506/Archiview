@@ -574,6 +574,14 @@ values(9, 4, '와 재밌다', 506, 350, 8, 11);
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
 values(10, 7, '또 보고싶다', 506, 350, 8, 11);
 
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(1, 8, '테스트11', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(2, 8, '테스트12', 506, 350, 8, 11);
+
+insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
+values(3, 8, '테스트13', 506, 350, 8, 11);
 
 /* 좋아요 이력 샘플 */
 insert into acv_like(lno, mno, lano, target) values(1, 2, 1, 1);

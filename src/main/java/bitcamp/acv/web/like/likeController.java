@@ -1,5 +1,6 @@
 package bitcamp.acv.web.like;
 
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,47 +27,67 @@ public class likeController {
   // 리뷰 좋아요
   @GetMapping("likeReview")
   public String likeReview(Like like,
-      @ModelAttribute("loginUser") Member loginUser
+      @ModelAttribute("loginUser") Member loginUser,
+      HttpServletRequest request
       ) throws Exception {
     like.setLikingMember(loginUser);
     like.setLikedNo(like.getLikedNo());
 
+    String referer = request.getHeader("REFERER");
+
+    String[] r = referer.split("app");
+
     likeService.addReview(like);
-    return "redirect:../main";
+    return "redirect:.." + r[1];
   }
 
   @GetMapping("dislikeReview")
   public String dislikeReview(Like like,
-      @ModelAttribute("loginUser") Member loginUser
+      @ModelAttribute("loginUser") Member loginUser,
+      HttpServletRequest request
       ) throws Exception {
     like.setLikingMember(loginUser);
     like.setLikedNo(like.getLikedNo());
 
+    String referer = request.getHeader("REFERER");
+    String[] r = referer.split("app");
+
     likeService.deleteReview(like);
-    return "redirect:../main";
+    return "redirect:.." + r[1];
   }
 
   // 코멘트 좋아요
 
   @GetMapping("likeComment")
   public String addComment(Like like,
-      @ModelAttribute("loginUser") Member loginUser
+      @ModelAttribute("loginUser") Member loginUser,
+      HttpServletRequest request
       ) throws Exception {
     like.setLikingMember(loginUser);
     like.setLikedNo(like.getLikedNo());
 
+    String referer = request.getHeader("REFERER");
+
+    String[] r = referer.split("app");
+
     likeService.addComment(like);
-    return "redirect:../main";
+    return "redirect:.." + r[1];
   }
 
   @GetMapping("dislikeComment")
   public String deleteComment(Like like,
-      @ModelAttribute("loginUser") Member loginUser) throws Exception {
+      @ModelAttribute("loginUser") Member loginUser,
+      HttpServletRequest request
+      ) throws Exception {
     like.setLikingMember(loginUser);
     like.setLikedNo(like.getLikedNo());
 
+    String referer = request.getHeader("REFERER");
+
+    String[] r = referer.split("app");
+
     likeService.deleteComment(like);
-    return "redirect:../main";
+    return "redirect:.." + r[1];
   }
 
 }

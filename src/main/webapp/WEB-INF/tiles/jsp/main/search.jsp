@@ -144,6 +144,14 @@
    
    #intro {
    padding-left: 70px;
+   padding-top: 10px;
+   font-size: small;
+   color: #626473;
+   }
+
+   #follow-button {
+   padding-left: 500px;
+   margin-top: -40px;
    }
    
    #member hr {
@@ -183,7 +191,7 @@ List<Movie> movies = (List<Movie>) request.getAttribute("movies");
 List<Member> members = (List<Member>) request.getAttribute("members");
 List<Review> reviews = (List<Review>) request.getAttribute("reviews");
 List<Follow> follows = (List<Follow>) request.getAttribute("follows");
-List<Tag> tags = (List<Tag>) request.getAttribute("tag");
+List<Tag> tags = (List<Tag>) request.getAttribute("tags");
 %>
 
 
@@ -208,6 +216,27 @@ if (reviews.size() == 0) {
           <div id="nickName"><%=member.getNickName()%></div>
           <div id="intro"><%=member.getIntro()%></div>
         </div>
+        <%
+        if (member.getNo() != loginUser.getNo()) {
+          for (Follow follow : follows) {
+            if (follow.getFollowedType() == 1 && follow.getFollowingMember().getNo() == loginUser.getNo()) {
+          %>
+          <div>
+            <div id = "follow-button"><button type="submit" formaction='../follow/deleteUser?followedNo=<%=member.getNo()%>' class="btn btn-twitter">팔로우</button> </div>
+          </div>
+          <%
+            } else if (follow.getFollowedType() == 1 && follow.getFollowingMember().getNo() != loginUser.getNo()) {
+              %>
+              <div>
+                <div id = "follow-button"><button type="submit" formaction='../follow/addUser?followedNo=<%=member.getNo()%>' class="btn btn-archiview">팔로우</button> </div>
+              </div>
+              <%
+            }
+          }
+        } else {
+
+        }
+        %>
         <br>
       <%
       }
@@ -227,13 +256,18 @@ if (reviews.size() == 0) {
   <% 
     if (movie.getPosters().size() != 0) {
       %>
-    <div id = "movie=poster"><img src=<%=movie.getPosters().get(0).toString()%>></div>
-    <%}
+    <div id = "movie-poster"><img src=<%=movie.getPosters().get(0).toString()%>></div>
+    <%
+    } else {
+      %>
+    <div id = "movie-poster"><img src="<%=getServletContext().getContextPath()%>/upload/movie_image.jpg"></div>
+    <%
+    }
     %>
     <div id = "movie-title"><%=movie.getTitle()%></div>
     <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
     <div id  = "movie-text">상영 시간</div>
-    <div id = "movie-runtime"><%=movie.getRuntime()%></div>
+    <div id = "movie-runtime"><%=movie.getRuntime()%> 분</div>
     <div id  = "movie-text">감독</div>
     <div id = "movie-directors"><%=movie.getDirectors()%></div>
     <div id  = "movie-text">출연</div>
@@ -264,13 +298,33 @@ if (reviews.size() == 0) {
       </a>
       <div id="nickName"><%=member.getNickName()%></div>
       <div id="intro"><%=member.getIntro()%></div>
-
     </div>
-    <br>
-  <%
-  }
-  %>
-</div>
+    <%
+        if (member.getNo() != loginUser.getNo()) {
+          for (Follow follow : follows) {
+            if (follow.getFollowedType() == 1 && follow.getFollowingMember().getNo() == loginUser.getNo()) {
+          %>
+          <div>
+            <div id = "follow-button"><button type="submit" formaction='../follow/deleteUser?followedNo=<%=member.getNo()%>' class="btn btn-twitter">팔로우</button> </div>
+          </div>
+          <%
+            } else if (follow.getFollowedType() == 1 && follow.getFollowingMember().getNo() != loginUser.getNo()) {
+              %>
+              <div>
+                <div id = "follow-button"><button type="submit" formaction='../follow/addUser?followedNo=<%=member.getNo()%>' class="btn btn-archiview">팔로우</button> </div>
+              </div>
+              <%
+            }
+          }
+        } else {
+
+        }
+        %>
+        <br>
+      <%
+      }
+      %>
+    </div>
   
   
 <div id = "movie-contents">
@@ -303,16 +357,21 @@ if (reviews.size() == 0) {
     %>
     <br>
     <div id = "movie-list">
-    <% 
-      if (movie.getPosters().size() != 0) {
-        %>
-      <div id = "movie=poster"><img src=<%=movie.getPosters().get(0).toString()%>></div>
-      <%}
+   <% 
+    if (movie.getPosters().size() != 0) {
       %>
+    <div id = "movie-poster"><img src=<%=movie.getPosters().get(0).toString()%>></div>
+    <%
+    } else {
+      %>
+    <div id = "movie-poster"><img src="<%=getServletContext().getContextPath()%>/upload/movie_image.jpg"></div>
+    <%
+    }
+    %>
       <div id = "movie-title"><%=movie.getTitle()%></div>
       <div id = "movie-etitle"><%=movie.getEnglishTitle()%></div>
       <div id  = "movie-text">상영 시간</div>
-      <div id = "movie-runtime"><%=movie.getRuntime()%></div>
+      <div id = "movie-runtime"><%=movie.getRuntime()%> 분</div>
       <div id  = "movie-text">감독</div>
       <div id = "movie-directors"><%=movie.getDirectors()%></div>
       <div id  = "movie-text">출연</div>
@@ -351,9 +410,8 @@ if (reviews.size() == 0) {
     for (Tag tag : tags) {
       %>
       태그검색
-      <td><%=tag.getTitle()%></div>
+      <td><%=tag.getTitle()%></td>
       <%
-    
   }
 }
 %>

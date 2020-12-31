@@ -97,4 +97,13 @@ public class ReviewController {
     model.addAttribute("view", comments);
 
   }
+
+  @RequestMapping("delete")
+  public String inactive(int no) throws Exception {
+    if (reviewService.delete(no) == 0) {
+      throw new Exception("해당 리뷰가 없습니다.");
+    } else {
+      return "redirect:../main";
+    }
+  }
 }

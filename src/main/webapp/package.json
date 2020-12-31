@@ -15,8 +15,8 @@
     "jquery-ui-dist": "^1.12.1",
     "sweetalert2": "^10.12.5"
   },
-  "description": "",
   "devDependencies": {
     "node-sass": "^5.0.0"
-  }
+  },
+  "description": ""
 }

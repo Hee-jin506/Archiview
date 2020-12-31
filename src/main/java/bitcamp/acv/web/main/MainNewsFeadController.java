@@ -108,7 +108,7 @@ public class MainNewsFeadController {
         }
       }
     } else {
-      mv.setViewName("redirect:../../app/main");
+      mv.setViewName("redirect:../../app/main/followingFeed");
     }
 
 
