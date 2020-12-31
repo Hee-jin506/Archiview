@@ -131,7 +131,6 @@
   </div>
 </div>
   
-  
   <script>
       "use strict" 
       var el = document.querySelectorAll("#notLiking a img")
