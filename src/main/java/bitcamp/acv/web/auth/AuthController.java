@@ -103,7 +103,8 @@ public class AuthController {
   public ModelAndView emailCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String email) throws Exception {
     ModelAndView mv = new ModelAndView();
     if (memberService.get(email) == null) {
-      throw new Exception("<p>가입된 이메일이 아닙니다.</p>");
+      mv.addObject("msg", "가입된 이메일이 아닙니다.");
+      mv.addObject("url", "emailcheck.jsp");
     } else {
       Member searchUser = memberService.get(email);
       session.setAttribute("searchUser", searchUser);
