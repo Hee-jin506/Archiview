@@ -152,14 +152,14 @@
   </select>
   
   <!-- 내가 팔로우하는 리스트 -->
- <select id="findAll2" resultMap="FollowMap" parameterType="int">
+ <select id="findMyFollowingList" resultMap="FollowMap" parameterType="int">
   <include refid="sql2"/>
     where
       mb.mno=#{mno}
   </select>
    
   <!-- 나를 팔로우하는 리스트 --> 
-  <select id="findAll3" resultMap="FollowMap2" parameterType="int">
+  <select id="findMyFollowerList" resultMap="FollowMap2" parameterType="int">
   select
     f.fno,
     mb.mno,

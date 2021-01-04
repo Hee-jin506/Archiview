@@ -39,7 +39,7 @@ public class FollowController {
   public String addUser(Model model,
       HttpSession session,
       Follow follow,
-      /* int followedNo, */
+      int followedNo,
       HttpServletRequest request,
       @RequestParam(defaultValue="1") int followedType) throws Exception {
 
@@ -52,7 +52,7 @@ public class FollowController {
 
     follow.setFollowingMember(loginUser);
     follow.setFollowedType(followedType);
-    /* follow.setFollowedNo(followedNo); */
+    follow.setFollowedNo(followedNo);
     followService.addUser(follow);
     String referer = request.getHeader("REFERER");
 
@@ -87,11 +87,6 @@ public class FollowController {
       HttpServletRequest request,
       @RequestParam(defaultValue="2") int followedType) throws Exception {
 
-    // 사이드바
-    model.addAttribute("topMembers", memberService.listByPop3());
-    model.addAttribute("topMovies", movieService.listByPop3());
-    model.addAttribute("topTags", tagService.listByPop3());
-
     Member loginUser = (Member) session.getAttribute("loginUser");
 
     follow.setFollowingMember(loginUser);
@@ -106,11 +101,30 @@ public class FollowController {
 
     return "redirect:.." + r[1];
   }
+  
+  // 태그 언팔
+  @RequestMapping("deleteTag")
+  public String deleteTag(Follow follow,
+      HttpSession session,
+      HttpServletRequest request,
+      Model model) throws Exception {
 
+    Member loginUser = (Member) session.getAttribute("loginUser");
+
+    follow.setFollowingMember(loginUser);
+    followService.deleteTag(follow);
+    String referer = request.getHeader("REFERER");
+
+    String[] r = referer.split("app");
+
+    return "redirect:../main";
+  }
+
+  
+  
   // 특정멤버의 팔로잉 리스트
   @GetMapping("followingList")
-  public void followingList(HttpSession session, int no,
-      Model model) throws Exception {
+  public void followingList(HttpSession session, int no, Model model) throws Exception {
     // 탑바
     Member loginUser = (Member) session.getAttribute("loginUser");
     model.addAttribute("loginUser", loginUser);
@@ -124,43 +138,52 @@ public class FollowController {
     Member member = memberService.get(no);
     model.addAttribute("member", member);
 
-    // 바디(내가 팔로우한 리스트)
-    List<Follow> followList = followService.list2(no);
+    // 특정 멤버가 팔로우한 리스트
+    List<Follow> followings = followService.listMyFollowingList(no);
+    // 로그인유저의 팔로잉 리스트
+    List<Follow> followingsOfLoginUser = followService.listMyFollowingList(loginUser.getNo());
+    List<Integer> followingMembersOfLoginUserNoList = new ArrayList<>();
+    List<Integer> followingTagsOfLoginUserNoList = new ArrayList<>();
+    
     List<Member> targetMemberlist = new ArrayList<>();
     List<Tag> targetTaglist = new ArrayList<>();
 
-
-    for (Follow follow : followList) {
+    for (Follow f : followingsOfLoginUser) {
+      if (f.getFollowedType() == 1) {
+        followingMembersOfLoginUserNoList.add(f.getTargetMember().getNo());
+      } else {
+        followingTagsOfLoginUserNoList.add(f.getTargetTag().getNo());
+      }
+    }
+    
+    for (Follow follow : followings) {
       if(follow.getFollowedType() == 1) {
+        if(followingMembersOfLoginUserNoList.contains(follow.getTargetMember().getNo())) {
+          // true면 버튼 색깔 회색
+          follow.getTargetMember().setFollowingState(true);
+        }
         targetMemberlist.add(follow.getTargetMember());
       } else {
+        if(followingTagsOfLoginUserNoList.contains(follow.getTargetTag().getNo())) {
+          // true면 버튼 색깔 회색
+          follow.getTargetTag().setFollowingState(true);
+        }
         targetTaglist.add(follow.getTargetTag());
       }
     }
+    
 
     model.addAttribute("targetMemberlist", targetMemberlist);
     model.addAttribute("targetTaglist", tagService.getThumbnailStillCut(targetTaglist));
 
-    // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
-    List<Follow> followings = followService.list2(loginUser.getNo());
-    List<Integer> followingNoList = new ArrayList<>();
-    for (Follow f : followings) {
-      if (f.getFollowedType() == 1) {
-        followingNoList.add(f.getTargetMember().getNo());
-      }
-    }
-    boolean following = false;
-    if (followingNoList.contains(member.getNo())) {
-      following = true;
-    }
-    model.addAttribute("following", following);
+    model.addAttribute("isFollowedByLoginUser", isFollowedByLoginUser(loginUser.getNo(), no));
   }
+  
+  
 
   // 특정멤버의 팔로워 리스트
   @GetMapping("followerList")
-  public void followerList(HttpSession session,
-      int no,
-      Model model) throws Exception {
+  public void followerList(HttpSession session, int no, Model model) throws Exception {
 
     // 탑바
     Member loginUser = (Member) session.getAttribute("loginUser");
@@ -171,49 +194,40 @@ public class FollowController {
     model.addAttribute("topMovies", movieService.listByPop3());
     model.addAttribute("topTags", tagService.listByPop3());
 
-    // 바디(프로필)
+    
+    
     Member member = memberService.get(no);
     model.addAttribute("member", member);
+    
+    // 특정멤버의 팔로워리스트
+    List<Follow> followers = followService.listMyFollowerList(no);
+    // 로그인유저의 팔로잉리스트
+    List<Follow> followingsOfLoginUser = followService.listMyFollowingList(loginUser.getNo());
+    List<Integer> followingsOfLoginUserNoList = new ArrayList<>();
 
-    // 나를 팔로워하는 리스트
-    List<Follow> followList = followService.list3(no);
     List<Member> targetMemberlist = new ArrayList<>();
-
-    // 나를 팔로잉하는지 여부 검사 : 팔로우버튼 색깔 바꾸기위해
-    List<Follow> followings = followService.list2(no);
-    List<Integer> followingNoList = new ArrayList<>();
-    for (Follow f : followings) {
+    
+    for (Follow f : followingsOfLoginUser) {
       if (f.getFollowedType() == 1) {
-        followingNoList.add(f.getTargetMember().getNo());
+        followingsOfLoginUserNoList.add(f.getTargetMember().getNo());
       }
     }
 
-    for (Follow follow : followList) {
-      // followedType : 1 = 멤버, 2 = 태그
+    for (Follow follow : followers) {
       if(follow.getFollowedType() == 1) {
-        if(followingNoList.contains(follow.getTargetMember().getNo())) {
+        if(followingsOfLoginUserNoList.contains(follow.getTargetMember().getNo())) {
           // true면 버튼 색깔 회색
           follow.getTargetMember().setFollowingState(true);
         }
         targetMemberlist.add(follow.getTargetMember());
       }
     }
+    
     model.addAttribute("targetMemberlist", targetMemberlist);
-
-    // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
-    List<Follow> followings2 = followService.list2(loginUser.getNo());
-    List<Integer> followingNoList2 = new ArrayList<>();
-    for (Follow f : followings2) {
-      if (f.getFollowedType() == 1) {
-        followingNoList2.add(f.getTargetMember().getNo());
-      }
-    }
-    boolean following = false;
-    if (followingNoList2.contains(member.getNo())) {
-      following = true;
-    }
-    model.addAttribute("following", following);
+    
+    model.addAttribute("isFollowedByLoginUser", isFollowedByLoginUser(loginUser.getNo(), no));
   }
+
 
   // 리스트
   @GetMapping("list")
@@ -261,4 +275,21 @@ public class FollowController {
       return mv;
     }
   }
+  
+  
+  // loginUser가 멤버를 팔로우하면 true, 아니면 false(팔로우 버튼 색 결정하려고)
+  private boolean isFollowedByLoginUser(int loginUserNo, int memberNo) throws Exception {
+    List<Follow> followings = followService.listMyFollowingList(loginUserNo);
+    List<Integer> followingNoList = new ArrayList<>();
+    for (Follow f : followings) {
+      if (f.getFollowedType() == 1) {
+        followingNoList.add(f.getTargetMember().getNo());
+      }
+    }
+    if (followingNoList.contains(memberNo)) {
+      return true;
+    }
+    return false;
+  }
+  
 }

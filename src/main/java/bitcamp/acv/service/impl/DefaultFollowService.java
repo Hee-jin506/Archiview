@@ -40,6 +40,11 @@ public class DefaultFollowService implements FollowService {
   public int addTag(Follow follow) throws Exception {
       return followDao.insertTag(follow);
   }
+  
+  @Override
+  public int deleteTag(Follow follow) throws Exception {
+    return followDao.deleteTag(follow);
+  }
 
   @Override
   public List<Follow> list() throws Exception {
@@ -72,14 +77,14 @@ public class DefaultFollowService implements FollowService {
   }
 
   @Override
-  public List<Follow> list2(int no) throws Exception {
+  public List<Follow> listMyFollowingList(int no) throws Exception {
 
-    return followDao.findAll2(no);
+    return followDao.findMyFollowingList(no);
   }
 
   @Override
-  public List<Follow> list3(int no) throws Exception {
-    return followDao.findAll3(no);
+  public List<Follow> listMyFollowerList(int no) throws Exception {
+    return followDao.findMyFollowerList(no);
   }
 
   @Override

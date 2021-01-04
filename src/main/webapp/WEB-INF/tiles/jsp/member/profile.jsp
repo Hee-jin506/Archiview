@@ -21,13 +21,13 @@
           <c:choose>
            <c:when test="${member.no==sessionScope.loginUser.no}">
            </c:when>
-           <c:when test="${following==true}">
+           <c:when test="${isFollowedByLoginUser==true}">
              <form action='../follow/deleteUser'>
 		          <input type='hidden' name='followedNo' value='${member.no}'>
 		          <button class="btn btn-twitter">팔로우</button>
             </form>
            </c:when>
-           <c:when test="${following==false}">
+           <c:when test="${isFollowedByLoginUser==false}">
            
            <form action='../follow/addUser'>
 	          <input type='hidden' name='followedNo' value='${member.no}'>

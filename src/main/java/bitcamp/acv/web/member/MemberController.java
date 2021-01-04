@@ -107,19 +107,7 @@ public class MemberController {
     Member member = memberService.get(no);
     model.addAttribute("member", member);
 
-    // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
-    List<Follow> followings = followService.list2(loginUser.getNo());
-    List<Integer> followingNoList = new ArrayList<>();
-    for (Follow f : followings) {
-      if (f.getFollowedType() == 1) {
-        followingNoList.add(f.getTargetMember().getNo());
-      }
-    }
-    boolean following = false;
-    if (followingNoList.contains(member.getNo())) {
-      following = true;
-    }
-    model.addAttribute("following", following);
+    model.addAttribute("isFollowedByLoginUser", isFollowedByLoginUser(loginUser.getNo(), no));
   }
 
   // 프로필 화면(프로필 + 본인이 저장한! 리뷰들이 나옴)
@@ -140,7 +128,7 @@ public class MemberController {
     model.addAttribute("member", member);
 
     // 팔로잉 여부 검사 : 팔로우버튼 색깔바꿈
-    List<Follow> followings = followService.list2(loginUser.getNo());
+    List<Follow> followings = followService.listMyFollowingList(loginUser.getNo());
     List<Integer> followingNoList = new ArrayList<>();
     for (Follow f : followings) {
       if (f.getFollowedType() == 1) {
@@ -166,7 +154,6 @@ public class MemberController {
 
   @RequestMapping("list")
   public void list(Model model, String keyword) throws Exception {
-    System.out.println("memberList 실행!");
     List<Member> list = memberService.list(keyword);
     List<Follow> follows = followService.list();
 
@@ -220,7 +207,6 @@ public class MemberController {
 
   @RequestMapping("search")
   public ModelAndView search(String keyword) throws Exception {
-    System.out.println("memberController 키워드: " + keyword);
     List<Member> memberList = memberService.listByKeywordNickName(keyword);
     ModelAndView mv = new ModelAndView();
     mv.addObject("memberList", memberList);
@@ -232,5 +218,19 @@ public class MemberController {
   public String update(Member member) throws Exception {
     memberService.update(member);
     return "redirect:list";
+  }
+  
+  private boolean isFollowedByLoginUser(int loginUserNo, int memberNo) throws Exception {
+    List<Follow> followings = followService.listMyFollowingList(loginUserNo);
+    List<Integer> followingNoList = new ArrayList<>();
+    for (Follow f : followings) {
+      if (f.getFollowedType() == 1) {
+        followingNoList.add(f.getTargetMember().getNo());
+      }
+    }
+    if (followingNoList.contains(memberNo)) {
+      return true;
+    }
+    return false;
   }
 }

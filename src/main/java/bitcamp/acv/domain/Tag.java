@@ -18,6 +18,10 @@ public class Tag {
   private List<Integer> reviews; // 태그가 달린 리뷰 번호 목록
   private List<Integer> followers; // 태그를 팔로우하는 멤버 번호 목록
   private String ThumbnailStillCutUrl; // 태그의 대표 스틸컷 url
+  
+  // 로그인유저가 팔로우하고있는지 여부(팔로우 버튼 색깔 바꿀려고)
+  private boolean followingState = false;
+  
   public int getNo() {
     return no;
   }
@@ -73,5 +77,11 @@ public class Tag {
   }
   public void setThumbnailstillCut(String thumbnailStillCutUrl) {
     ThumbnailStillCutUrl = thumbnailStillCutUrl;
+  }
+  public boolean isFollowingState() {
+    return followingState;
+  }
+  public void setFollowingState(boolean followingState) {
+    this.followingState = followingState;
   }
 }

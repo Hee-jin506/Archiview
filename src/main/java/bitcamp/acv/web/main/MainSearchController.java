@@ -72,7 +72,7 @@ public class MainSearchController {
         mv.addObject("movies", movies);
         mv.addObject("members", members);
 
-        List<Follow> follows = followService.list2(loginUser.getNo());
+        List<Follow> follows = followService.listMyFollowingList(loginUser.getNo());
         mv.addObject("follows", follows);
 
         List<Review> reviews = reviewService.listByKeywordTagTitle(keyword);

@@ -20,11 +20,11 @@
           <c:choose>
            <c:when test="${member.no==sessionScope.loginUser.no}">
            </c:when>
-           <c:when test="${following==true}">
+           <c:when test="${isFollowedByLoginUser==true}">
              <button type="submit" formaction="../follow/deleteUser?followedNo=${member.no}" class="btn btn-twitter">팔로우
              </button>
            </c:when>
-           <c:when test="${following==false}">
+           <c:when test="${isFollowedByLoginUser==false}">
              <button type="submit" formaction="../follow/addUser?followedNo=${member.no}" class="btn btn-archiview">팔로우
              </button>
            </c:when>
@@ -78,10 +78,20 @@
               </div>
             </div>
             
-            <form method="get">
-                 <button type="submit" formaction="../follow/deleteUser?followedNo=${m.no}" class="btn btn-twitter">팔로우
-                 </button>
-            </form>
+            <c:choose>
+               <c:when test="${t.followingState==true}">
+                 <form action="../follow/deleteTag">
+                   <input type='hidden' name='followedNo' value='${t.no}'>
+                   <button class="btn btn-twitter">팔로우</button>
+                 </form>
+               </c:when>
+               <c:when test="${t.followingState==false}">
+                 <form action="../follow/addTag">
+                   <input type='hidden' name='followedNo' value='${t.no}'>
+                   <button class="btn btn-archiview">팔로우</button>
+                 </form>
+               </c:when>
+              </c:choose>
             
           </div>
        </c:forEach>
@@ -103,10 +113,22 @@
               </div>
             </div>
             
-            <form method="get">
-                 <button type="submit" formaction="../follow/deleteUser?followedNo=${m.no}" class="btn btn-twitter">팔로우
-                 </button>
-            </form>
+              <c:choose>
+               <c:when test="${m.no==sessionScope.loginUser.no}">
+               </c:when>
+               <c:when test="${m.followingState==true}">
+                 <form action="../follow/deleteUser">
+                   <input type='hidden' name='followedNo' value='${m.no}'>
+                   <button class="btn btn-twitter">팔로우</button>
+                 </form>
+               </c:when>
+               <c:when test="${m.followingState==false}">
+                 <form action="../follow/addUser">
+                   <input type='hidden' name='followedNo' value='${m.no}'>
+                   <button class="btn btn-archiview">팔로우</button>
+                 </form>
+               </c:when>
+              </c:choose>
             
           </div>
        </c:forEach>

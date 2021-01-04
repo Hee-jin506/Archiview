@@ -21,11 +21,11 @@
           <c:choose>
            <c:when test="${member.no==sessionScope.loginUser.no}">
            </c:when>
-           <c:when test="${following==true}">
+           <c:when test="${isFollowedByLoginUser==true}">
              <button type="submit" formaction="../follow/deleteUser?followedNo=${member.no}" class="btn btn-twitter">팔로우
              </button>
            </c:when>
-           <c:when test="${following==false}">
+           <c:when test="${isFollowedByLoginUser==false}">
              <button type="submit" formaction="../follow/addUser?followedNo=${member.no}" class="btn btn-archiview">팔로우
              </button>
            </c:when>
@@ -73,20 +73,22 @@
 	            </div>
             </div>
             
-			      <form method="get">
 		          <c:choose>
 		           <c:when test="${m.no==sessionScope.loginUser.no}">
 		           </c:when>
 		           <c:when test="${m.followingState==true}">
-		             <button type="submit" formaction="../follow/deleteUser?followedNo=${m.no}" class="btn btn-twitter">팔로우
-		             </button>
+						     <form action="../follow/deleteUser">
+						         <input type='hidden' name='followedNo' value='${m.no}'>
+					           <button class="btn btn-twitter">팔로우</button>
+					       </form>
 		           </c:when>
 		           <c:when test="${m.followingState==false}">
-		             <button type="submit" formaction="../follow/addUser?followedNo=${m.no}" class="btn btn-archiview">팔로우
-		             </button>
+		             <form action="../follow/addUser">
+		               <input type='hidden' name='followedNo' value='${m.no}'>
+			             <button class="btn btn-archiview">팔로우</button>
+		             </form>
 		           </c:when>
 		          </c:choose>
-		        </form>
 		        
           </div>
        </c:forEach>
