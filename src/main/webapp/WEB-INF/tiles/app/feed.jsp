@@ -63,6 +63,11 @@
       <%if (review.getStcUrl() != null) {%>
       <img src=<%=review.getStcUrl()%> data-no='<%=review.getNo() %>'>
       <%
+        } else {
+          %>
+          <div class='no-stillcut'>
+          </div>
+          <%
         }
       %>
       <div class='reviewText_box'>
@@ -130,7 +135,6 @@
         </div>
   </div>
 </div>
-  
   
   <script>
       "use strict" 

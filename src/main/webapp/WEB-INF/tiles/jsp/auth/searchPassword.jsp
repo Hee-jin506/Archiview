@@ -50,7 +50,7 @@ color: #F21BC9;
 <body style="background-color: #000000">
 <div id='box'>
 <h3 style="color: white; margin: 40px;">비밀번호 찾기</h3>
-<form action="../auth/emailCheck" method="post">
+<form action="../auth/emailCheck" method="post" name="checkForm">
   <div class="form-group">
     <label for="exampleInputEmail1" style="color: white; margin-left: 40px; font-weight: lighter;">비밀번호를 찾고자 하는 계정을 입력해주세요.</label>
     <div class="row">
@@ -63,4 +63,5 @@ color: #F21BC9;
 </form>
 </div>
 </body>
+
 </html>

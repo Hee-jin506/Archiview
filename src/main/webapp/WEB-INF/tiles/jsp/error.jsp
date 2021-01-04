@@ -17,8 +17,10 @@ Exception e = (Exception) request.getAttribute("exception");
 
 <h3>상세 오류 내용</h3>
 <% 
+
 StringWriter errOut = new StringWriter();
 e.printStackTrace(new PrintWriter(errOut));
+
 %>
 
 <pre><%=errOut.toString()%></pre>
