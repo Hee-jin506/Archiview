@@ -64,8 +64,13 @@
 			<%if (review.getStcUrl() != null) {%>
 			<img src=<%=review.getStcUrl()%> data-no='<%=review.getNo() %>'>
 			<%
-			  }
-			%>
+	        } else {
+	          %>
+	          <div class='no-stillcut'>
+	          </div>
+	          <%
+	        }
+	      %>
 			<div class='reviewText' data-no='<%=review.getNo() %>'>
 				<p><%=review.getText()%>
 				</p>

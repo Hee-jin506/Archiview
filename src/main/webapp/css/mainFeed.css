@@ -57,7 +57,7 @@
 	height: 350px;
 	width: 650px;
 	overflow: hidden;
-	background-color: #000;
+	background-color:#141517;
 }
 
 .card .stillcut img {
@@ -65,6 +65,14 @@
 	display: block; 
 	margin: 0px 
 	auto;
+}
+
+.card .stillcut div.no-stillcut {
+	width: 650px;
+	height: 350px;
+	margin: 0px
+	auto;
+	background-color: #000;
 }
 
 .card .stillcut .reviewText {
