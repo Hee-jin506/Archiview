@@ -526,62 +526,62 @@ values(12, 'https://movie-phinf.pstatic.net/20150203_32/142295436722802MHL_JPEG/
 
 /* 리뷰 샘플*/
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(1, 1, '전 노무현 대통령을 다시 보게 된 영화', 506, 350, 1, 11);
+values(1, 1, '전 노무현 대통령을 다시 보게 된 영화', 50, 50, 1, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(10, 1, '돈 아깝다', 506, 350, 8, 11);
+values(10, 1, '돈 아깝다', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(1, 1, '테스트1', 506, 350, 8, 11);
+values(1, 1, '테스트1', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(2, 1, '테스트2', 506, 350, 8, 11);
+values(2, 1, '테스트2', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(3, 1, '테스트3', 506, 350, 8, 11);
+values(3, 1, '테스트3', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(4, 1, '테스트4', 506, 350, 8, 11);
+values(4, 1, '테스트4', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(5, 1, '테스트5', 506, 350, 8, 11);
+values(5, 1, '테스트5', 50, 50, 8, 11);
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(6, 1, '테스트6', 506, 350, 8, 11);
+values(6, 1, '테스트6', 50, 50, 8, 11);
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
 values(7, 1, '테스트7', 506, 350, 8, 11);
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(8, 1, '테스트8', 506, 350, 8, 11);
+values(8, 1, '테스트8', 50, 50, 8, 11);
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(9, 1, '테스트9', 506, 350, 8, 11);
+values(9, 1, '테스트9', 50, 50, 8, 11);
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(10, 1, '테스트10', 506, 350, 8, 11);
+values(10, 1, '테스트10', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(2, 7, '변호사의 현실을 알게된 값진 영화', 506, 350, 5, 11);
+values(2, 7, '변호사의 현실을 알게된 값진 영화', 50, 50, 5, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(3, 8, '눈물 없이 볼 수 없는 영화', 506, 350, 8, 11);
+values(3, 8, '눈물 없이 볼 수 없는 영화', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(5, 7, '무슨 영화임?', 506, 350, 8, 11);
+values(5, 7, '무슨 영화임?', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(5, 2, '재미없어', 506, 350, 8, 11);
+values(5, 2, '재미없어', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
 values(9, 4, '와 재밌다', 506, 350, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(10, 7, '또 보고싶다', 506, 350, 8, 11);
+values(10, 7, '또 보고싶다', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(1, 8, '테스트11', 506, 350, 8, 11);
+values(1, 8, '테스트11', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(2, 8, '테스트12', 506, 350, 8, 11);
+values(2, 8, '테스트12', 50, 50, 8, 11);
 
 insert into acv_rv(stcno, mno, txt, txt_x, txt_y, tfno, txt_size)
-values(3, 8, '테스트13', 506, 350, 8, 11);
+values(3, 8, '테스트13', 50, 50, 8, 11);
 
 /* 좋아요 이력 샘플 */
 insert into acv_like(lno, mno, lano, target) values(1, 2, 1, 1);

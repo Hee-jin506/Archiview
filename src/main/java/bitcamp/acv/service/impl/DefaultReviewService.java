@@ -38,14 +38,16 @@ public class DefaultReviewService implements ReviewService {
 
       int count = reviewDao.insert(review);
       System.out.println(review.getNo());
-      for (Tag tag : review.getTags()) {
-        System.out.println(tag.getTitle());
-        tagDao.insert(tag);
-        if (tag.getNo() == 0) {
-          tag.setNo(tagDao.findByTitle(tag.getTitle()).getNo());
+      if (review.getTags().size() != 0) {
+        for (Tag tag : review.getTags()) {
+          System.out.println(tag.getTitle());
+          tagDao.insert(tag);
+          if (tag.getNo() == 0) {
+            tag.setNo(tagDao.findByTitle(tag.getTitle()).getNo());
+          }
         }
+        tagDao.insertByReview(review);
       }
-      tagDao.insertByReview(review);
       return count;
 
     } catch (Exception e) {

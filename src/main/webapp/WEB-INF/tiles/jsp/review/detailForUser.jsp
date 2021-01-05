@@ -22,7 +22,7 @@ System.out.println(review.getText());%>
       <%
         }
       %>
-      <div class='reviewText'>
+      <div class='reviewText' style='top:<%=review.getTextY() %>%; left:<%=review.getTextX() %>%;'>
         <p><%=review.getText()%>
         </p>
       </div>

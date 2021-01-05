@@ -115,6 +115,7 @@
 				<%
     }
 	   %>
+
 				<div id='text'></div>
 
 			</div>
@@ -145,8 +146,8 @@
 				<input type='hidden' name='stc'
 					value='<%=request.getParameter("stc")%>'>
 					 <input type="hidden" name="fontSize" value='11'> 
-					<input type='hidden' name='x' value='332'> 
-					<input type='hidden'name='y' value='221'>
+					<input type='hidden' name='x' value='50'> 
+					<input type='hidden'name='y' value='50'>
 					<input type='hidden'name='size' value='13'>
 				<div id="hiddenSpace"></div>
 				<button class="btn btn-primary btn-sm btn-dark">리뷰 등록</button>
@@ -158,6 +159,7 @@
 "use strict"
 
 // 태그 객체를 만들지 않고 텍스트를 사용하여 자식 태그를 추가할 수 있다.
+
 
 
 var textInput = document.querySelector("#editCardFormTextArea .form-control");
@@ -198,8 +200,13 @@ textInput.addEventListener("input", function(e) {
        console.log("closeDragElement 실행");
        document.onmouseup = null;
        document.onmousemove = null;
-       textX.setAttribute("value", elmnt.offsetTop - pos2);
-       textY.setAttribute("value", elmnt.offsetLeft - pos1);
+       var preview = document.querySelector('#editCardFormStillcut img'); 
+       preview.style.display = "block";
+       console.log(preview);
+       var imgWidth = preview.clientWidth;
+       var imgHeight = preview.clientHeight;
+       textY.setAttribute("value", Math.round((elmnt.offsetTop - pos2) / imgHeight * 100));
+       textX.setAttribute("value", Math.round((elmnt.offsetLeft - pos1) / imgWidth * 100));
        
        console.log(textX);
        console.log(textY);

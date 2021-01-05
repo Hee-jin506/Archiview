@@ -71,7 +71,7 @@
         }
       %>
       <div class='reviewText_box'>
-          <span class='reviewText'><%=review.getText()%>
+          <span class='reviewText' style='top:<%=review.getTextY() %>%; left:<%=review.getTextX() %>%;'><%=review.getText()%>
           </span>
       </div>
 
@@ -123,108 +123,6 @@
   <%
   }%>
 
-  <div></div>
-  
-  <div class="modal fade" id="reveiwDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-   <div class="modal-content">
-      <div class="modal-body">
-        <!-- 모달 화면 -->
-      </div>
-        <img src='<%=getServletContext().getContextPath()%>/main_resource/x.png' data-bs-dismiss="modal">
-        </div>
-  </div>
 </div>
   
-  <script>
-      "use strict" 
-      var el = document.querySelectorAll("#notLiking a img")
-      
-      for (var e of el) {
-        e.addEventListener("mouseover", function(e) {
-              console.log(this);
-              // 이벤트가 발생한 객체의 속성 값 알아내기
-              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
-            });
-      }
-      
-      for (var e of el) {
-        e.addEventListener("mouseout", function(e) {
-                console.log(this);
-                // 이벤트가 발생한 객체의 속성 값 알아내기
-                this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");  // undefined
-              });
-        }
-      
-      var el = document.querySelectorAll(".card .cardHeader img.more")
-      
-      for (var e of el) {
-        e.addEventListener("click", function(e) {
-              console.log(this);
-              // 이벤트가 발생한 객체의 속성 값 알아내기
-              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
-            });
-      }
-      
-var el = document.querySelectorAll('.more');
-var menuContents = document.querySelectorAll('.dropdown-content1');
-
-for (var element of el) {
-  element.addEventListener("click", function(e) {
-          var no = this.getAttribute("data-no");
-        for (var menu of menuContents) {
-          console.log(menu.getAttribute("data-no"));
-            if (menu.getAttribute("data-no") == no) {
-          console.log(menu.getAttribute("data-no"), this.getAttribute("data-no")); 
-                 if(menu.style.display===""){
-                   menu.style.display="block";
-                   } else {
-                     menu.style.display="";
-                   }
-              
-            }
-          }
-});
-}
-
-var cards = document.querySelectorAll(".stillcut");
-var myModal = new bootstrap.Modal(document.getElementById('reveiwDetail'), {});
-var exampleModal = document.querySelector("#reveiwDetail");
-var exampleModalBody = exampleModal.querySelector(".modal-body");
-var reviewNo;
-
-exampleModal.addEventListener('show.bs.modal', function (event) {
-  console.log("show.bs.modal")
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
-  xhr.send();
-  exampleModalBody.innerHTML = xhr.responseText;
-});
-
-exampleModal.addEventListener('shown.bs.modal', function (event) {
-  console.log("shown.bs.modal")
-});
-
-exampleModal.addEventListener('hidden.bs.modal', function (event) {
-  console.log("hidden.bs.modal")
-});
-
-for (var e of cards) {
-  console.log(e.getAttribute("data-no"))
-  e.onclick = function(e) {
-    console.log("클릭")
-    console.log(this.getAttribute("data-no"));
-    reviewNo=this.getAttribute("data-no");
-    myModal.show();
-  };
-}
-document.addEventListener('load', function (event) {
-  console.log("${param.reviewNo}" != "");
-  if ("${param.reviewNo}" != "") {
-    console.log("실행!")
-    reviewNo = "${param.reviewNo}";
-    myModal.show();
-  }
-});
-</script>
 </div>
