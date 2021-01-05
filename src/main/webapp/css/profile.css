@@ -85,6 +85,14 @@ a { text-decoration: none; }
  padding-top : 8px;
  }
  #profile_icon .profile_icon_number {
+ font-size :15px;
+ font-weight : normal;
+ display : block;
+ padding-top : 5px;
+ padding-right : 2px;
+ text-align: center;
+ }
+ #profile_icon .profile_icon_number {
  display: block;
  }
  

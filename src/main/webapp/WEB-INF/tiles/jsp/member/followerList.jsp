@@ -38,19 +38,22 @@
       <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=${member.no}"> 
         <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/review-border.png" height=30px class="center" alt="리뷰">
           <span class="profile_icon_text">리뷰</span>
-          <%-- <span class="profile-icon-number"><span></span><c:out value="${member.numOfReviews}" ></c:out></span></span> --%>
+          <span class="profile_icon_number"><c:out value="${member.numOfReviews}" ></c:out></span>
       </a>
-      <a href="<%=getServletContext().getContextPath()%>/app/follow/followerList?no=${member.no}"> 
+      <a href="<%=getServletContext().getContextPath()%>/app/member/followerList?no=${member.no}"> 
         <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" height=30px class="center" alt="팔로워">
           <span class="profile_icon_text">팔로워</span> 
+          <span class="profile_icon_number"><c:out value="${followerListSize}" ></c:out></span>
       </a>
-      <a href="<%=getServletContext().getContextPath()%>/app/follow/followingList?no=${member.no}"> 
+      <a href="<%=getServletContext().getContextPath()%>/app/member/followingList?no=${member.no}"> 
         <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
           <span class="profile_icon_text">팔로잉</span> 
+          <span class="profile_icon_number"><c:out value="${followingListSize}" ></c:out></span>
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/member/savedReviews?no=${member.no}"> 
         <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/saved-border.png" height=30px class="center" alt="저장">
           <span class="profile_icon_text">저장</span> 
+          <span class="profile_icon_number"><c:out value="${member.numOfSaved}" ></c:out></span>
       </a>
     </div>
        
