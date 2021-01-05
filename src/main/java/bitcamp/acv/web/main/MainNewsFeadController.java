@@ -64,7 +64,7 @@ public class MainNewsFeadController {
 
 
     List<Like> newsFeedLikeList = likeService.list2(loginUser.getNo());
-    List<Follow> newsFeedFollowList = followService.list3(loginUser.getNo());
+    List<Follow> newsFeedFollowList = followService.listMyFollowerList(loginUser.getNo());
     List<NewsFeed> newsFeedList = new ArrayList<>();
 
 

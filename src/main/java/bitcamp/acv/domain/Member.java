@@ -44,7 +44,7 @@ public class Member {
   
   private boolean followed;
   
-  // 팔로잉 여부 검사(팔로우 버튼 색깔 바꿀려고)
+  // 로그인유저가 팔로우하고있는지 여부(팔로우 버튼 색깔 바꿀려고)
   private boolean followingState = false;
 
   public int getNo() {
