@@ -96,7 +96,7 @@
 "use strict" 
 var count = 1;
 var body = document.querySelector("#body");
-var likeButtons = document.querySelectorAll("#notLiking a img");
+var likeButtons = document.querySelectorAll(".like img");
 var moreButtons = document.querySelectorAll('.more');
 var menuContents = document.querySelectorAll('.dropdown-content1');
 var cards = document.querySelectorAll(".stillcut");
@@ -115,10 +115,10 @@ body.onscroll = function(e) {
         var originContent = body.innerHTML;
         body.innerHTML = originContent + xhr.responseText;
         var cards = document.querySelectorAll(".stillcut");
-        var likeButtons = document.querySelectorAll("#notLiking a img");
+        var likeButtons = document.querySelectorAll(".like img");
         var moreButtons = document.querySelectorAll(".more");
-        for (var card of cards) {
-        	  card.onclick = function(card) {
+        for (var e of cards) {
+        	  e.onclick = function(e) {
         		  console.log("click");
         	    reviewNo=this.getAttribute("data-no");
         	    ReviewDetailModal.show();
@@ -126,16 +126,44 @@ body.onscroll = function(e) {
         	}
         for (var e of likeButtons) {
         	  e.addEventListener("mouseover", function(e) {
-        	        console.log(this);
-        	        // 이벤트가 발생한 객체의 속성 값 알아내기
-        	        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
+        	        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png"); 
         	      });
-        	}
-        for (var e of likeButtons) {
-        	  e.addEventListener("mouseover", function(e) {
-        	        console.log(this);
-        	        // 이벤트가 발생한 객체의 속성 값 알아내기
-        	        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
+        	  e.addEventListener("mouseout", function(e) {
+        		  if (this.getAttribute("like") == "notLiking") {
+                    this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");
+        		  } else {
+        			  console.log("변하면 안돼!")
+        			  this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png")
+        		  }
+          });
+        	    e.addEventListener("click", function(e) {
+        	          if (this.getAttribute("like") == "liking") {
+        	            this.setAttribute("like", "notLiking");
+        	            var pops = document.querySelectorAll(".pop");
+        	            for (var pop of pops) {
+        	              if (pop.getAttribute("data-no") == this.getAttribute("data-no")) {
+        	            	  console.log(pop.innerText.split("개")[0]); 
+        	                pop.innerText = String(parseInt(pop.innerText.split("개")[0]) - 1) + "개"
+        	              }
+        	            }
+        	            var xhr = new XMLHttpRequest();
+        	            var no = this.getAttribute("data-no");
+        	            xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/like/dislikeReview?likedNo=" + no, false);
+        	            xhr.send();
+        	          } else {
+        	            this.setAttribute("like", "liking");
+        	            var pops = document.querySelectorAll(".pop");
+        	            for (var pop of pops) {
+        	              if (pop.getAttribute("data-no") == this.getAttribute("data-no")) {
+        	            	  console.log(pop.innerText.split("개")[0]); 
+        	                pop.innerText = String(parseInt(pop.innerText.split("개")[0]) + 1) + "개"
+        	              }
+        	            }
+        	            var xhr = new XMLHttpRequest();
+        	            var no = this.getAttribute("data-no");
+        	            xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=" + no, false);
+        	            xhr.send();
+        	          }
         	      });
         	}
         for (var element of moreButtons) {
@@ -160,27 +188,51 @@ body.onscroll = function(e) {
 
 
 for (var e of likeButtons) {
-  e.addEventListener("mouseover", function(e) {
-        console.log(this);
-        // 이벤트가 발생한 객체의 속성 값 알아내기
-        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
-      });
-}
-
-for (var e of likeButtons) {
 	  e.addEventListener("mouseover", function(e) {
-	        console.log(this);
-	        // 이벤트가 발생한 객체의 속성 값 알아내기
 	        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
 	      });
-	}
+      e.addEventListener("mouseout", function(e) {
+          if (this.getAttribute("like") == "notLiking") {
+                this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");
+          } else {
+            this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");
+          }
+      });
+    e.addEventListener("click", function(e) {
+          if (this.getAttribute("like") == "liking") {
+            this.setAttribute("like", "notLiking");
+            var pops = document.querySelectorAll(".pop");
+            for (var pop of pops) {
+            	if (pop.getAttribute("data-no") == this.getAttribute("data-no")) {
+            		console.log(pop.innerText.split("개")[0]); 
+            		pop.innerText = String(parseInt(pop.innerText.split("개")[0]) - 1) + "개"
+            	}
+            }
+            var xhr = new XMLHttpRequest();
+            var no = this.getAttribute("data-no");
+            xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/like/dislikeReview?likedNo=" + no, false);
+            xhr.send();
+          } else {
+            this.setAttribute("like", "liking");
+            var pops = document.querySelectorAll(".pop");
+            for (var pop of pops) {
+              if (pop.getAttribute("data-no") == this.getAttribute("data-no")) {
+            	  console.log(pop.innerText.split("개")[0]); 
+                pop.innerText = String(parseInt(pop.innerText.split("개")[0]) + 1) + "개"
+              }
+            }
+            var xhr = new XMLHttpRequest();
+            var no = this.getAttribute("data-no");
+            xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=" + no, false);
+            xhr.send();
+          }
+      });
+      }
 for (var element of moreButtons) {
 element.addEventListener("click", function(e) {
     var no = this.getAttribute("data-no");
   for (var menu of menuContents) {
-    console.log(menu.getAttribute("data-no"));
       if (menu.getAttribute("data-no") == no) {
-    console.log(menu.getAttribute("data-no"), this.getAttribute("data-no")); 
            if(menu.style.display===""){
              menu.style.display="block";
              } else {

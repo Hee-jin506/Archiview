@@ -93,29 +93,12 @@
 		<div class='cardFooter'>
 			<a class='movie'><%=review.getMovieTitle()%></a>
 			<p class='rdt'><%=(review.getRdtFromNow())%></p>
-			<%
-        if (review.getIsLiking() != 0) {
-      %>
-			<div class='like' id='liking'>
-				<a
-					href='<%=getServletContext().getContextPath()%>/app/like/dislikeReview?likedNo=<%=review.getNo()%>'>
-					<img
-					src='<%=getServletContext().getContextPath()%>/main_resource/like2.png'
-					alt='좋아요'>
-				</a> <span class='pop'><%=review.getLiking()%>개</span>
-			</div>
-			<%} else {
-		  %>
-		  <div class='like' id='notLiking'>
-		    <a
-		      href='<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=<%=review.getNo()%>'>
-		      <img
-		      src='<%=getServletContext().getContextPath()%>/main_resource/like.png'
-		      alt='좋아요'>
-		    </a> <span class='pop'><%=review.getLiking()%>개</span>
-		  </div>
-		  <%
-		  }%>
+      <div class='like'>
+          <img
+          src='<%=getServletContext().getContextPath()%>/main_resource/<%=review.getIsLiking() != 0 ? "like2.png" : "like.png"%>'
+          alt='좋아요'  data-no='<%=review.getNo()%>' like='<%=review.getIsLiking() != 0 ? "liking" : "notLiking" %>'>
+         <span class='pop' data-no='<%=review.getNo()%>'><%=review.getLiking()%>개</span>
+      </div>
 		</div>
 	<div class='reviewDetail'>
 	<button></button>
