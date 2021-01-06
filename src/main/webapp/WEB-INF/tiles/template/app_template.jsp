@@ -117,6 +117,7 @@ body.onscroll = function(e) {
         var cards = document.querySelectorAll(".stillcut");
         var likeButtons = document.querySelectorAll(".like img");
         var moreButtons = document.querySelectorAll(".more");
+        var menuContents = document.querySelectorAll('.dropdown-content1');
         for (var e of cards) {
         	  e.onclick = function(e) {
         		  console.log("click");
@@ -169,8 +170,8 @@ body.onscroll = function(e) {
         for (var element of moreButtons) {
         	element.addEventListener("click", function(e) {
         	    var no = this.getAttribute("data-no");
+        	    console.log(no);
         	  for (var menu of menuContents) {
-        	    console.log(menu.getAttribute("data-no"));
         	      if (menu.getAttribute("data-no") == no) {
         	    console.log(menu.getAttribute("data-no"), this.getAttribute("data-no")); 
         	           if(menu.style.display===""){

@@ -43,22 +43,24 @@
 			  }
 			}
 			%>
-			<div class="dropdown1">
-			<button class='more' data-no='<%=review.getNo()%>'>
-				<img src='<%=getServletContext().getContextPath()%>/main_resource/more.png' >
-			</button>
-				<div class="dropdown-content1" data-no='<%=review.getNo()%>'>
-				<c:if test='<%=review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
-				  <a herf="#">수정</a>
-				  <hr style="margin: 0px;">
-				  <a herf="#">삭제</a>
-				</c:if>
-				<c:if test='<%=!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
-				  <a herf="#">신고</a>
-				</c:if>
-				</div>
-			</div>
-		</div>
+      <div class=moreIconBox>
+      <div class="dropdown1">
+      <button class='more' data-no='<%=review.getNo()%>'>
+        <img src='<%=getServletContext().getContextPath()%>/main_resource/more.png' >
+      </button>
+        <div class="dropdown-content1" data-no='<%=review.getNo()%>'>
+        <c:if test='<%=review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
+          <a href="#">수정</a>
+          <hr style="margin: 0px;">
+          <a href="<%=getServletContext().getContextPath()%>/app/review/delete?no=<%=review.getNo()%>" style="color: #f21b9c">삭제</a>
+        </c:if>
+        <c:if test='<%=!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
+          <a herf="#">신고</a>
+        </c:if>
+        </div>
+      </div>
+      </div>
+    </div>
 		
 		<div class='stillcut' data-no='<%=review.getNo() %>'>
 			<%if (review.getStcUrl() != null) {%>

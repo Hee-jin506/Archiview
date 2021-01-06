@@ -54,6 +54,9 @@
           <hr style="margin: 0px;">
           <a href="<%=getServletContext().getContextPath()%>/app/review/delete?no=<%=review.getNo()%>" style="color: #f21b9c">삭제</a>
         </c:if>
+        <c:if test='<%=!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())%>'>
+          <a herf="#">신고</a>
+        </c:if>
         </div>
       </div>
       </div>
@@ -108,4 +111,3 @@
 
 </div>
   
-</div>
