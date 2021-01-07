@@ -105,40 +105,6 @@ public class MemberController {
     model.addAttribute("list", list);
   }
 
-  @RequestMapping("multipleDelete")
-  public String multipleDelete(String[] members, HttpServletResponse response)
-      throws Exception {
-    int count = 0;
-    if (members != null) {
-      for (String memberNo : members) {
-        count += memberService.inactive(Integer.parseInt(memberNo));
-      }
-    }
-
-    if (count == 0) {
-      throw new Exception("<p>해당 회원이 존재하지 않습니다.</p>\n");
-    } else {
-      return "redirect:list";
-    }
-  }
-
-  @RequestMapping("multipleActive")
-  protected String multipleActive(String[] members, HttpServletResponse response)
-      throws Exception {
-    int count = 0;
-    if (members != null) {
-      for (String memberNo : members) {
-        count += memberService.active(Integer.parseInt(memberNo));
-      }
-    }
-
-    if (count == 0) {
-      throw new Exception("해당 번호의 회원이 없습니다.");
-    } else {
-      return "redirect:list";
-    }
-  }
-
   @RequestMapping("search")
   public ModelAndView search(String keyword) throws Exception {
     List<Member> memberList = memberService.listByKeywordNickName(keyword);

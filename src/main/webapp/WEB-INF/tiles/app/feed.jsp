@@ -97,8 +97,10 @@
       <p class='rdt'><%=(review.getRdtFromNow())%></p>
       <div class='like'>
           <img
-          src='<%=getServletContext().getContextPath()%>/main_resource/<%=review.getIsLiking() != 0 ? "like2.png" : "like.png"%>'
-          alt='좋아요'  data-no='<%=review.getNo()%>' like='<%=review.getIsLiking() != 0 ? "liking" : "notLiking" %>'>
+	          src='<%=getServletContext().getContextPath()%>/main_resource/<%=review.getIsLiking() != 0 ? "like2.png" : "like.png"%>'
+	          alt='좋아요'  
+	          data-no='<%=review.getNo()%>' 
+	          like='<%=review.getIsLiking() != 0 ? "liking" : "notLiking" %>'>
          <span class='pop' data-no='<%=review.getNo()%>'><%=review.getLiking()%>개</span>
       </div>
     </div>

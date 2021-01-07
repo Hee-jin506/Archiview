@@ -22,13 +22,7 @@ public class Review {
   private List<Tag> tags;
   private String movieTitle;
   private String rdtFromNow;
-
-  public String getRdtFromNow() {
-    return rdtFromNow;
-  }
-  public void setRdtFromNow(String rdtFromNow) {
-    this.rdtFromNow = rdtFromNow;
-  }
+  
   private int writerNo;
   private String writerPhoto;
   private String writerNick;
@@ -36,6 +30,14 @@ public class Review {
   private int isFollowing;
   private int liking;
   private int isLiking;
+
+  public String getRdtFromNow() {
+    return rdtFromNow;
+  }
+  public void setRdtFromNow(String rdtFromNow) {
+    this.rdtFromNow = rdtFromNow;
+  }
+
 
   public List<Tag> getTags() {
     return tags;

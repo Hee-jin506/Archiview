@@ -17,20 +17,24 @@
         <img class=profile_icon_report  src="<%=getServletContext().getContextPath()%>/profile_resource/report.png" height=20px class="center" data-no='${member.no}'></a>
       </div>
         
-        <form method="post">
-          <c:choose>
-           <c:when test="${member.no==sessionScope.loginUser.no}">
-           </c:when>
-           <c:when test="${isFollowedByLoginUser==true}">
-             <button type="submit" formaction="../follow/deleteUser?followedNo=${member.no}" class="btn btn-twitter">팔로우
+         <div class="follow">
+         <c:choose>
+         
+          <c:when test="${member.no==sessionScope.loginUser.no}">
+          </c:when>
+          
+          <c:when test="${member.no!=sessionScope.loginUser.no}">
+             <button 
+               class='${isFollowedByLoginUser==true ? "btn btn-twitter" : "btn btn-archiview"}'
+               data-no='${member.no}'
+               targe-type='member'
+               follow='${isFollowedByLoginUser==true ? "following" : "notFollowing"}'>
+               팔로우
              </button>
-           </c:when>
-           <c:when test="${isFollowedByLoginUser==false}">
-             <button type="submit" formaction="../follow/addUser?followedNo=${member.no}" class="btn btn-archiview">팔로우
-             </button>
-           </c:when>
-          </c:choose>
-        </form>
+          </c:when>
+          
+         </c:choose>
+       </div>
 
     </div>
     
@@ -43,7 +47,7 @@
       <a href="<%=getServletContext().getContextPath()%>/app/member/followerList?no=${member.no}"> 
         <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/follower.png" height=30px class="center" alt="팔로워">
           <span class="profile_icon_text">팔로워</span> 
-          <span class="profile_icon_number"><c:out value="${followerListSize}" ></c:out></span>
+          <span class="profile_icon_number followerListSize">${followerListSize}</span>
       </a>
       <a href="<%=getServletContext().getContextPath()%>/app/member/followingList?no=${member.no}"> 
         <img class=profile_icon  src="<%=getServletContext().getContextPath()%>/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
@@ -76,22 +80,24 @@
 	            </div>
             </div>
             
-		          <c:choose>
-		           <c:when test="${m.no==sessionScope.loginUser.no}">
-		           </c:when>
-		           <c:when test="${m.followingState==true}">
-						     <form action="../follow/deleteUser">
-						         <input type='hidden' name='followedNo' value='${m.no}'>
-					           <button class="btn btn-twitter">팔로우</button>
-					       </form>
-		           </c:when>
-		           <c:when test="${m.followingState==false}">
-		             <form action="../follow/addUser">
-		               <input type='hidden' name='followedNo' value='${m.no}'>
-			             <button class="btn btn-archiview">팔로우</button>
-		             </form>
-		           </c:when>
-		          </c:choose>
+		          <div class="follow">
+               <c:choose>
+               
+                <c:when test="${m.no==sessionScope.loginUser.no}">
+                </c:when>
+                
+                <c:when test="${m.no!=sessionScope.loginUser.no}">
+                   <button 
+                     class='${m.followingState==true ? "btn btn-twitter" : "btn btn-archiview"}'
+                     data-no='${m.no}'
+                     targe-type='member'
+                     follow='${m.followingState==true ? "following" : "notFollowing"}'>
+                     팔로우
+                   </button>
+                </c:when>
+                
+               </c:choose>
+             </div>
 		        
           </div>
        </c:forEach>

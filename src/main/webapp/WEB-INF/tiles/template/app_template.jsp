@@ -96,6 +96,7 @@
 "use strict" 
 var count = 1;
 var body = document.querySelector("#body");
+var followButtons = document.querySelectorAll(".follow button");
 var likeButtons = document.querySelectorAll(".like img");
 var moreButtons = document.querySelectorAll('.more');
 var menuContents = document.querySelectorAll('.dropdown-content1');
@@ -167,6 +168,36 @@ body.onscroll = function(e) {
         	          }
         	      });
         	}
+        
+        for (var e of followButtons) {
+            e.addEventListener("click", function(e) {
+                  if (this.getAttribute("follow") == "following") {
+                    this.setAttribute("follow", "notFollowing");
+                    this.setAttribute("class", "btn btn-archiview");
+                    
+                    var xhr = new XMLHttpRequest();
+                    var no = this.getAttribute("data-no");
+                    
+                    var url = this.getAttribute("target-type")=="member" ? 
+                        "<%=getServletContext().getContextPath()%>/app/follow/deleteUser?followedNo=" + no :
+                        "<%=getServletContext().getContextPath()%>/app/follow/deleteTag?followedNo=" + no;
+                    xhr.open("GET", url, false);
+                    xhr.send();
+                  } else {
+                    this.setAttribute("follow", "following");
+                    this.setAttribute("class", "btn btn-twitter");
+                    
+                    var xhr = new XMLHttpRequest();
+                    var no = this.getAttribute("data-no");
+                    
+                    var url = this.getAttribute("target-type")=="member" ? 
+                        "<%=getServletContext().getContextPath()%>/app/follow/addUser?followedNo=" + no :
+                        "<%=getServletContext().getContextPath()%>/app/follow/addTag?followedNo=" + no;
+                    xhr.open("GET", url, false);
+                    xhr.send();
+                  }
+              });
+        }
         for (var element of moreButtons) {
         	element.addEventListener("click", function(e) {
         	    var no = this.getAttribute("data-no");
@@ -187,8 +218,8 @@ body.onscroll = function(e) {
     }
 }; 
 
-
 for (var e of likeButtons) {
+	
 	  e.addEventListener("mouseover", function(e) {
 	        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
 	      });
@@ -229,6 +260,37 @@ for (var e of likeButtons) {
           }
       });
       }
+
+for (var e of followButtons) {
+    e.addEventListener("click", function(e) {
+          if (this.getAttribute("follow") == "following") {
+            this.setAttribute("follow", "notFollowing");
+            this.setAttribute("class", "btn btn-archiview");
+            
+            var xhr = new XMLHttpRequest();
+            var no = this.getAttribute("data-no");
+            
+            var url = this.getAttribute("target-type")=="member" ? 
+            		"<%=getServletContext().getContextPath()%>/app/follow/deleteUser?followedNo=" + no :
+            		"<%=getServletContext().getContextPath()%>/app/follow/deleteTag?followedNo=" + no;
+            xhr.open("GET", url, false);
+            xhr.send();
+          } else {
+            this.setAttribute("follow", "following");
+            this.setAttribute("class", "btn btn-twitter");
+            
+            var xhr = new XMLHttpRequest();
+            var no = this.getAttribute("data-no");
+            
+            var url = this.getAttribute("target-type")=="member" ? 
+            		"<%=getServletContext().getContextPath()%>/app/follow/addUser?followedNo=" + no :
+            		"<%=getServletContext().getContextPath()%>/app/follow/addTag?followedNo=" + no;
+            xhr.open("GET", url, false);
+            xhr.send();
+          }
+      });
+}
+
 for (var element of moreButtons) {
 element.addEventListener("click", function(e) {
     var no = this.getAttribute("data-no");
