@@ -26,7 +26,7 @@
              <button 
                class='${isFollowedByLoginUser==true ? "btn btn-twitter" : "btn btn-archiview"}'
                data-no='${member.no}'
-               targe-type='member'
+               target-type='member'
                follow='${isFollowedByLoginUser==true ? "following" : "notFollowing"}'>
                팔로우
              </button>

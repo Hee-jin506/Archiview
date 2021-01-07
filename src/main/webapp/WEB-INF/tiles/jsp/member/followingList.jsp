@@ -125,7 +125,7 @@
                    <button 
                      class='${m.followingState==true ? "btn btn-twitter" : "btn btn-archiview"}'
                      data-no='${m.no}'
-                     targe-type='member'
+                     target-type='member'
                      follow='${m.followingState==true ? "following" : "notFollowing"}'>
                      팔로우
                    </button>

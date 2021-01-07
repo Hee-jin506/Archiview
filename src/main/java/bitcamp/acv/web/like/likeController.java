@@ -65,12 +65,12 @@ public class likeController {
       ) throws Exception {
     like.setLikingMember(loginUser);
     like.setLikedNo(like.getLikedNo());
+    likeService.addComment(like);
 
     String referer = request.getHeader("REFERER");
 
     String[] r = referer.split("app");
 
-    likeService.addComment(like);
     return "redirect:.." + r[1];
   }
 
@@ -81,12 +81,12 @@ public class likeController {
       ) throws Exception {
     like.setLikingMember(loginUser);
     like.setLikedNo(like.getLikedNo());
+    likeService.deleteComment(like);
 
     String referer = request.getHeader("REFERER");
 
     String[] r = referer.split("app");
 
-    likeService.deleteComment(like);
     return "redirect:.." + r[1];
   }
 

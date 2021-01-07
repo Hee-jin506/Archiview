@@ -20,29 +20,28 @@
       </a> <a class='nickname'
         href='<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=review.getWriterNo()%>'>
         <%=review.getWriterNick()%></a>
-      <%
-        if (!review.getWriterNick().equals(((Member) (request.getAttribute("loginUser"))).getNickName())) {
-      %>
-      <%
-        if (review.getIsFollowing() != 0) {
-      %>
-      <div class='follow'>
-        <form action='<%=getServletContext().getContextPath()%>/app/follow/deleteUser'>
-        <input type='hidden' name='followedNo' value=<%=review.getWriterNo() %>>
-          <button class="btn btn-twitter">팔로우</button>
-        </form>
-      </div>
-      <%} else {%>
-      <div class='follow'>
-        <form action='<%=getServletContext().getContextPath()%>/app/follow/addUser'>
-        <input type='hidden' name='followedNo' value=<%=review.getWriterNo() %>>
-          <button class="btn btn-archiview">팔로우</button>
-        </form>
-      </div>
-      <%
-        }
-      }
-      %>
+      
+      <div class="follow">
+         <c:choose>
+         
+          <c:when test="${review.writerNick==loginUser.nickName}">
+          </c:when>
+          
+          <c:when test="${review.writerNick!=loginUser.nickName}">
+             <button 
+               class='${review.isFollowing != 0 ? "btn btn-twitter" : "btn btn-archiview"}'
+               data-no='${review.writerNo}'
+               target-type='member'
+               follow='${review.isFollowing != 0  ? "following" : "notFollowing"}'>
+               팔로우
+             </button>
+          </c:when>
+          
+         </c:choose>
+       </div>
+      
+      
+      
       <div class=moreIconBox>
       <div class="dropdown1">
       <button class='more' data-no='<%=review.getNo()%>'>
