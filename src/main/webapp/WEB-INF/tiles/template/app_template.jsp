@@ -79,7 +79,7 @@
 		<tiles:insertAttribute name="footer" />
 
 	</div>
-
+	
 	<div class="modal fade" id="reveiwDetail" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -92,11 +92,14 @@
 					data-bs-dismiss="modal">
 			</div>
 		</div>
+	</div>
 		<script>
 "use strict" 
 var count = 1;
 var body = document.querySelector("#body");
 var followButtons = document.querySelectorAll(".follow button");
+var modalUnfollowButtons = document.querySelectorAll(".unfollow");
+
 var likeButtons = document.querySelectorAll(".like img");
 var moreButtons = document.querySelectorAll('.more');
 var menuContents = document.querySelectorAll('.dropdown-content1');
@@ -129,7 +132,7 @@ body.onscroll = function(e) {
         for (var e of likeButtons) {
         	  e.addEventListener("mouseover", function(e) {
         	        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png"); 
-        	      });
+        	  });
         	  e.addEventListener("mouseout", function(e) {
         		  if (this.getAttribute("like") == "notLiking") {
                     this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");
@@ -137,7 +140,7 @@ body.onscroll = function(e) {
         			  console.log("변하면 안돼!")
         			  this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png")
         		  }
-          });
+        	  });
         	    e.addEventListener("click", function(e) {
         	          if (this.getAttribute("like") == "liking") {
         	            this.setAttribute("like", "notLiking");
@@ -176,9 +179,9 @@ body.onscroll = function(e) {
                     this.setAttribute("class", "btn btn-archiview");
                     
                     var xhr = new XMLHttpRequest();
-                    var no = this.getAttribute("data-no");
+                    var no = this.getAttribute("target-no");
                     
-                    var url = this.getAttribute("target-type")=="member" ? 
+                    var url = this.getAttribute("target-type")=="Member" ? 
                         "<%=getServletContext().getContextPath()%>/app/follow/deleteUser?followedNo=" + no :
                         "<%=getServletContext().getContextPath()%>/app/follow/deleteTag?followedNo=" + no;
                     xhr.open("GET", url, false);
@@ -187,10 +190,11 @@ body.onscroll = function(e) {
                     this.setAttribute("follow", "following");
                     this.setAttribute("class", "btn btn-twitter");
                     
-                    var xhr = new XMLHttpRequest();
-                    var no = this.getAttribute("data-no");
                     
-                    var url = this.getAttribute("target-type")=="member" ? 
+                    var xhr = new XMLHttpRequest();
+                    var no = this.getAttribute("target-no");
+                    
+                    var url = this.getAttribute("target-type")=="Member" ? 
                         "<%=getServletContext().getContextPath()%>/app/follow/addUser?followedNo=" + no :
                         "<%=getServletContext().getContextPath()%>/app/follow/addTag?followedNo=" + no;
                     xhr.open("GET", url, false);
@@ -262,33 +266,68 @@ for (var e of likeButtons) {
       }
 
 for (var e of followButtons) {
+	
+		e.addEventListener("mouseover", function(e) {
+			if (this.getAttribute("follow") == "following") {
+            this.setAttribute("data-bs-toggle", "modal");
+            this.setAttribute("data-bs-target", "#unfollowModal"
+                    +this.getAttribute("target-type")
+                    +this.getAttribute("target-no"));
+			}
+	  });
+	  e.addEventListener("mouseout", function(e) {
+          this.setAttribute("data-bs-toggle", " ");
+          this.setAttribute("data-bs-target", " ");
+	  });
+	
+	
     e.addEventListener("click", function(e) {
-          if (this.getAttribute("follow") == "following") {
-            this.setAttribute("follow", "notFollowing");
-            this.setAttribute("class", "btn btn-archiview");
-            
-            var xhr = new XMLHttpRequest();
-            var no = this.getAttribute("data-no");
-            
-            var url = this.getAttribute("target-type")=="member" ? 
-            		"<%=getServletContext().getContextPath()%>/app/follow/deleteUser?followedNo=" + no :
-            		"<%=getServletContext().getContextPath()%>/app/follow/deleteTag?followedNo=" + no;
-            xhr.open("GET", url, false);
-            xhr.send();
-          } else {
+         if (this.getAttribute("follow") == "notFollowing") {
+        	  
             this.setAttribute("follow", "following");
             this.setAttribute("class", "btn btn-twitter");
+            this.setAttribute("data-bs-toggle", "modal");
+            this.setAttribute("data-bs-target", "#unfollowModal"
+            		+this.getAttribute("target-type")
+            		+this.getAttribute("target-no"));
+
             
             var xhr = new XMLHttpRequest();
-            var no = this.getAttribute("data-no");
+            var no = this.getAttribute("target-no");
             
-            var url = this.getAttribute("target-type")=="member" ? 
+            var url = this.getAttribute("target-type")=="Member" ? 
             		"<%=getServletContext().getContextPath()%>/app/follow/addUser?followedNo=" + no :
             		"<%=getServletContext().getContextPath()%>/app/follow/addTag?followedNo=" + no;
             xhr.open("GET", url, false);
             xhr.send();
           }
       });
+}
+
+for (var e of modalUnfollowButtons) {
+	e.addEventListener("click", function(e) {
+		for (var f of followButtons) {
+		       console.log(f.getAttribute("target-no"));
+		        console.log(f.getAttribute("target-type"));
+			if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
+					 this.getAttribute("target-type") == f.getAttribute("target-type")) {
+				console.log(this.getAttribute("target-no"));
+				console.log(this.getAttribute("target-type"));
+				console.log(f.getAttribute("target-no"));
+				console.log(f.getAttribute("target-type"));
+			    f.setAttribute("follow", "notFollowing");
+			    f.setAttribute("class", "btn btn-archiview");
+			  
+			      var xhr = new XMLHttpRequest();
+			      var no = this.getAttribute("target-no");
+			      var url = this.getAttribute("target-type")=="Member" ? 
+			          "<%=getServletContext().getContextPath()%>/app/follow/deleteUser?followedNo=" + no :
+			          "<%=getServletContext().getContextPath()%>/app/follow/deleteTag?followedNo=" + no;
+			      xhr.open("GET", url, false);
+			      xhr.send();
+			}
+		}
+	});
 }
 
 for (var element of moreButtons) {
@@ -309,36 +348,37 @@ element.addEventListener("click", function(e) {
 
 
 reviewDetail.addEventListener('show.bs.modal', function (event) {
-console.log("show.bs.modal")
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
-xhr.send();
-detailBody.innerHTML = xhr.responseText;
+	console.log("show.bs.modal")
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
+	xhr.send();
+	detailBody.innerHTML = xhr.responseText;
 });
 
 reviewDetail.addEventListener('shown.bs.modal', function (event) {
-console.log("shown.bs.modal")
+	  console.log("shown.bs.modal")
 });
 
 reviewDetail.addEventListener('hidden.bs.modal', function (event) {
-console.log("hidden.bs.modal")
+	  console.log("hidden.bs.modal")
 });
 
 for (var e of cards) {
-e.onclick = function(e) {
-console.log("클릭")
-console.log(this.getAttribute("data-no"));
-reviewNo=this.getAttribute("data-no");
-ReviewDetailModal.show();
-};
+	e.onclick = function(e) {
+		console.log("클릭")
+		console.log(this.getAttribute("data-no"));
+		reviewNo=this.getAttribute("data-no");
+		ReviewDetailModal.show();
+	};
 }
+	
 document.addEventListener('load', function (event) {
-console.log("${param.reviewNo}" != "");
-if ("${param.reviewNo}" != "") {
-console.log("실행!")
-reviewNo = "${param.reviewNo}";
-ReviewDetailModal.show();
-}
+		console.log("${param.reviewNo}" != "");
+		if ("${param.reviewNo}" != "") {
+		console.log("실행!")
+		reviewNo = "${param.reviewNo}";
+		ReviewDetailModal.show();
+	}
 });
 
 </script>

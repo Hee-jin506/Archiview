@@ -26,11 +26,34 @@
           <c:when test="${member.no!=sessionScope.loginUser.no}">
              <button 
                class='${isFollowedByLoginUser==true ? "btn btn-twitter" : "btn btn-archiview"}'
-               data-no='${member.no}'
-               targe-type='member'
+               target-no='${member.no}'
+               target-type='${member.getClass().simpleName}'
                follow='${isFollowedByLoginUser==true ? "following" : "notFollowing"}'>
                팔로우
              </button>
+             
+             <div class="modal fade" id = "unfollowModal${member.getClass().simpleName}${member.no}" tabindex="-1" 
+                   aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">팔로우 취소</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ${member.nickName}님의 팔로우를 취소하시겠어요?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아뇨</button>
+                <button type="button" 
+                class="btn btn-primary unfollow" 
+                data-bs-dismiss="modal" 
+                target-no='${member.no}'
+                target-type='${member.getClass().simpleName}'>네</button>
+              </div>
+            </div>
+          </div>
+        </div>
           </c:when>
           
          </c:choose>
@@ -89,8 +112,8 @@
                 <c:when test="${m.no!=sessionScope.loginUser.no}">
                    <button 
                      class='${m.followingState==true ? "btn btn-twitter" : "btn btn-archiview"}'
-                     data-no='${m.no}'
-                     target-type='member'
+                     target-no='${m.no}'
+                     target-type='${m.getClass().simpleName}'
                      follow='${m.followingState==true ? "following" : "notFollowing"}'>
                      팔로우
                    </button>
@@ -98,6 +121,29 @@
                 
                </c:choose>
              </div>
+             
+             <div class="modal fade" id = "unfollowModal${m.getClass().simpleName}${m.no}"  tabindex="-1" 
+                   aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">팔로우 취소</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ${m.nickName}님의 팔로우를 취소하시겠어요?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아뇨</button>
+                <button type="button" 
+                class="btn btn-primary unfollow" 
+                data-bs-dismiss="modal" 
+                target-no='${m.no}'
+                target-type='${m.getClass().simpleName}'}>네</button>
+              </div>
+            </div>
+          </div>
+        </div>
 		        
           </div>
        </c:forEach>

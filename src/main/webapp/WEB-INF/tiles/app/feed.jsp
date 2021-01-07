@@ -24,10 +24,10 @@
       <div class="follow">
          <c:choose>
          
-          <c:when test="${review.writerNick==loginUser.nickName}">
+          <c:when test="${review.writerNick==sessionScope.loginUser.nickName}">
           </c:when>
           
-          <c:when test="${review.writerNick!=loginUser.nickName}">
+          <c:when test="${review.writerNick!=sessionScope.loginUser.nickName}">
              <button 
                class='${review.isFollowing != 0 ? "btn btn-twitter" : "btn btn-archiview"}'
                data-no='${review.writerNo}'
