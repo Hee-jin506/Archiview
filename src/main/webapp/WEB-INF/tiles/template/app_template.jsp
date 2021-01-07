@@ -117,8 +117,10 @@ body.onscroll = function(e) {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "/Archiview/app/ajax/review/moreFeed?pageNo=" + count, false);
         xhr.send();
+        
         var originContent = body.innerHTML;
         body.innerHTML = originContent + xhr.responseText;
+        
         var cards = document.querySelectorAll(".stillcut");
         var likeButtons = document.querySelectorAll(".like img");
         var moreButtons = document.querySelectorAll(".more");
@@ -135,6 +137,7 @@ body.onscroll = function(e) {
         	    ReviewDetailModal.show();
         	  };
         }
+        
         for (var e of likeButtons) {
         	  e.addEventListener("mouseover", function(e) {
         	        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png"); 
