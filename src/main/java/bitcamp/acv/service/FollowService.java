@@ -15,7 +15,6 @@ public interface FollowService {
   // 팔로우 전체
   List<Follow> list() throws Exception;
 
-  // 특정 멤버의 팔로우 리스트
   List<Follow> listMyFollowingList(int no) throws Exception;
   List<Follow> listMyFollowerList(int no) throws Exception;
   List<Follow> getFollowingFeed(int no) throws Exception;

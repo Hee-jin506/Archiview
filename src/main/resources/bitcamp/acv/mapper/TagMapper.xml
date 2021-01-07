@@ -52,7 +52,7 @@
   <!-- 태그가 달린 게시물들 중 stat=1인 애들중에서 rvno가 최소값인 애의 스틸컷을 가져옴
   max, min함수는 조회하는 과정에서 상당히 부하를 일으킨다고하여 안씀 
   대신 row_number()을 씀 -->
-  <select id="findByNotNullThumbnailStillCut" resultMap="TagMap">
+  <select id="findForThumbnailStillCut" resultMap="TagMap">
   select * 
     from (
       select 

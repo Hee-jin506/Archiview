@@ -16,7 +16,6 @@ public interface TagDao {
   int insertByReview(Review review) throws Exception;
   Tag findByTitle(String title) throws Exception;
 
-  // parameterType="hashmap" 괜찬은가
   List<Tag> findByKeyword(HashMap<String, Object> keyMap) throws Exception;
 
   List<Tag> findByDetailKeyword(Map<String, Object> keywords) throws Exception;
@@ -24,5 +23,5 @@ public interface TagDao {
   List<Tag> findByPop() throws Exception;
   List<Tag> findByKeywordTitle(String keyword) throws Exception;
   
-  List<Tag> findByNotNullThumbnailStillCut() throws Exception;
+  List<Tag> findForThumbnailStillCut() throws Exception;
 }

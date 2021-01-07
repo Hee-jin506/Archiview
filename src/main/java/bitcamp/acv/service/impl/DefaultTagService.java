@@ -188,7 +188,7 @@ public class DefaultTagService implements TagService {
     for(Tag t : tags) {
       tagsNo.add(t.getNo());
     }
-    List<Tag> NotNullThumbnailTags = tagDao.findByNotNullThumbnailStillCut();
+    List<Tag> NotNullThumbnailTags = tagDao.findForThumbnailStillCut();
     List<Integer> NotNullThumbnailTagsNo = new ArrayList<>();
     for(Tag t : NotNullThumbnailTags) {
       NotNullThumbnailTagsNo.add(t.getNo());
