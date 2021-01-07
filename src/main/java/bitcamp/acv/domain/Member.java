@@ -38,9 +38,9 @@ public class Member {
   private int likers;
 
   private List<Review> reviews; // 본인의 게시물들
-  private int numOfReviews; // 본인의 게시물들 숫자
+  private int numOfReviews; // 본인의 게시물들 개수
   private List<Review> saved; // 저장한 게시물들
-  private int numOfSaved; // 저장한 게시물들 숫자
+  private int numOfSaved; // 저장한 게시물들 개수
   
   private boolean followed;
   

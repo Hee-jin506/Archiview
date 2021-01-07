@@ -82,6 +82,7 @@
       mb.stat_mdt,
       rv.rvno,
       rv.txt,
+      rv.rdt,
       stc.stc_url,
       sv.mno sv_mno,
       sv.rvno sv_rvno,
@@ -129,6 +130,7 @@
   <include refid="sql1" />
   where
   mb.mno = #{no}
+  order by rv.rdt desc
  </select>
 
  <select id="findByEmailPassword" parameterType="map"
