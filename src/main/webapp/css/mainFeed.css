@@ -26,8 +26,9 @@
 }
 
 .card img.profile {
-	float: left;
-	width: 50px;
+	margin-top: 10px;
+    float: left;
+    width: 35px;
 }
 
  .card .cardHeader .nickname {

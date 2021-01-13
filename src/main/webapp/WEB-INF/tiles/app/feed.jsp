@@ -82,8 +82,9 @@
 	        </div>
 	      </c:if>
 	      <div class='reviewText_box'>
-	          <span class='reviewText' style='top:${r.textY}%; left:${r.textX}%;'>${r.text}
-	          </span>
+	          <div class='reviewText' style='top:${r.textY}%; left:${r.textX}%;'>
+	           <p>${r.text}</p>
+	          </div>
 	      </div>
 	      <div class='tags'>
 		      <c:forEach items="${r.tags}" var="t">
