@@ -91,13 +91,13 @@ box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 255, 255, 0.
 }
 
 #menubar #profile {
-	xposition: absolute;
-	xleft: 1350px;
-	xtop: 15px;
-	margin-left: 12px;
-	margin-top: 12px;
-	margin-right: 3px;
-	float: right;
+    margin-left: 12px;
+    margin-top: 7px;
+    margin-right: 2px;
+    float: right;
+    padding: 3px 3px 2px 3px;
+    xborder: 1px solid white;
+    border-radius: 100%;
 }
 
 #menubar #icon {
@@ -105,7 +105,8 @@ box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 255, 255, 0.
 	xleft: 1000px;
 	xtop: 20px;
 	margin-top: 17px;
-	float: right;
+float: left;
+    margin-left: 116px;
 }
 
 #menubar #logo img {
@@ -131,11 +132,23 @@ box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 255, 255, 0.
 .btn-icon {
 	float: left;
 	margin-right: 10px;
-	margin-top: -3px;
+	margin-top: -1px;
 	width: 20px;
 }
 
-.dropdown {
+.dropdown-item {
+	width: 162px;
+	margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+
+
+
+
+
+/* .dropdown {
 	position: relative;
 	display: inline-block;
 }
@@ -179,11 +192,7 @@ box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 255, 255, 0.
 	margin: 20px 0px 0px 10px;
 	color: white;
 	text-decoration: none;
-}
-
-hr {
-	border: 1px solid #6B6B6B;
-}
+} */
 
 .ui-autocomplete { 
 overflow-y: scroll; 

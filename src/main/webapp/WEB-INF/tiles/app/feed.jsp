@@ -60,14 +60,14 @@
 			        <img src='<%=getServletContext().getContextPath()%>/main_resource/more.png' >
 			      </button>
 		        <div class="dropdown-content1" data-no='${r.no}'>
-		        <c:if test='${r.writerNick==loginUser.nickName}'>
-		          <a href="#">수정</a>
-		          <hr style="margin: 0px;">
-		          <a href="<%=getServletContext().getContextPath()%>/app/review/delete?no=${r.no}" style="color: #f21b9c">삭제</a>
-		        </c:if>
-		        <c:if test='${r.writerNick!=loginUser.nickName}'>
-		          <a herf="#">신고</a>
-		        </c:if>
+			        <c:if test='${r.writerNick==loginUser.nickName}'>
+			          <a href="#">수정</a>
+			          <hr style="margin: 0px;">
+			          <a href="<%=getServletContext().getContextPath()%>/app/review/delete?no=${r.no}" style="color: #f21b9c">삭제</a>
+			        </c:if>
+			        <c:if test='${r.writerNick!=loginUser.nickName}'>
+			          <a herf="#">신고</a>
+			        </c:if>
 		        </div>
 		      </div>
 	      </div>

@@ -59,7 +59,6 @@ public class MainController {
     if (keyword != null) {
       // 키워드 맨 앞글자가 '#'이 아니면 topBarNonTagSearch.jsp를 include
       if(keyword.toCharArray()[0] != '#') {
-        System.out.println(keyword);
         List<Member> memberList = memberService.listByKeywordNickName(keyword);
         List<Movie> movieList = movieService.listByKeywordTitle(keyword);
         mv.addObject("movieList", movieList);

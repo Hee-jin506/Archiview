@@ -31,6 +31,7 @@ $(document).ready(function() {
  });
 });
 </script>
+
  
   <div id='menubar'>
 	  <div id='inner'>
@@ -49,32 +50,62 @@ $(document).ready(function() {
 	      </form>
 	    </div>
 	    <% Member member = (Member) session.getAttribute("loginUser"); %>
-	    <div id='profile'>
-	    <div class='dropdown'>
-	       <button class='dropbtn'>
-	      <img class='profile' src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' alt='프로필'>
-	      </button>
-	       <div class='dropdown-content'>
-	           <a href="<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=member.getNo()%>"><img class='btn-icon' src='<%=getServletContext().getContextPath()+"/option_resource/profile.png"%>' alt='프로필'>프로필</a>
-		         <a href="<%=getServletContext().getContextPath()%>/app/option/profile"><img class='btn-icon' src='<%=getServletContext().getContextPath()+"/option_resource/option.png"%>' alt='설정'>설정</a>
-		         <c:if test='<%=member.getAuthority() == 0%>'>
-		         <a href="<%=getServletContext().getContextPath()%>/admin/"><img class='btn-icon' src='<%=getServletContext().getContextPath()+"/option_resource/Shape.png"%>' alt='관리자 페이지'>관리자 페이지</a>
-		         </c:if>
-	           <hr>
-	           <a href="<%=getServletContext().getContextPath()%>/app/auth/logout" style="margin-bottom: 15px;">로그아웃</a>
-	       </div>
-	    </div>
+	    <div id='profile' >
+		    <div class="dropdown" id="myDropdown">
+		    
+	        <img class='profile dropdown-toggle' src='<%=getServletContext().getContextPath()+"/upload/" + member.getPhoto() + "_35x35.jpg"%>' href="#" role="button"  data-bs-toggle="dropdown" aria-expanded="false">
+	        
+				  <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="dropdownMenuLink">
+				    <li>
+				      <a class="dropdown-item" 
+				      href="<%=getServletContext().getContextPath()%>/app/member/profile?no=<%=member.getNo()%>"">
+				       <img class='btn-icon' src='<%=getServletContext().getContextPath()+"/option_resource/profile.png"%>' alt='프로필'>프로필
+				      </a>
+				    </li>
+				    <li>
+				      <a class="dropdown-item" href="<%=getServletContext().getContextPath()%>/app/option/profile">
+				      <img class='btn-icon' src='<%=getServletContext().getContextPath()+"/option_resource/option.png"%>' alt='설정'>설정
+				      </a>
+				    </li>
+				    <li>
+				      <hr class="dropdown-divider">
+				    </li>
+				    <li>
+				      <a class="dropdown-item" href="<%=getServletContext().getContextPath()%>/app/auth/logout">로그아웃
+				      </a>
+				    </li>
+				    
+				  </ul>
+       </div> 
 	    </div> 
+	    
+	    
 
-	    <div id='icon'>
-	      <a href='<%=getServletContext().getContextPath()%>'>
-	      <img src='<%=getServletContext().getContextPath()%>/main_resource/home-outline.png' width="20" alt='메인화면'></a> <a
-	        href='<%=getServletContext().getContextPath()%>/app/write/movieSearch'>
-	        <img src='<%=getServletContext().getContextPath()%>/main_resource/plus-outline.png' width="20"  alt='글쓰기'></a> <a
-	        href='<%=getServletContext().getContextPath()%>/app/main/followingFeed'>
-	        <img src='<%=getServletContext().getContextPath()%>/main_resource/heart-outline.png' width="20"  alt='팔로우한 회원의 피드'></a> <a
-	        href='<%=getServletContext().getContextPath()%>/app/main/newsfeed'>
-	        <img src='<%=getServletContext().getContextPath()%>/main_resource/bell-outline.png' width="20"  alt='알람'></a>
+		    <div id='icon'>
+		      <a href='<%=getServletContext().getContextPath()%>'>
+		      <img src='<%=getServletContext().getContextPath()%>/main_resource/home-outline.png' width="20" alt='메인화면'></a> <a
+		        href='<%=getServletContext().getContextPath()%>/app/write/movieSearch'>
+		        <img src='<%=getServletContext().getContextPath()%>/main_resource/plus-outline.png' width="20"  alt='글쓰기'></a> <a
+		        href='<%=getServletContext().getContextPath()%>/app/main/followingFeed'>
+		        <img src='<%=getServletContext().getContextPath()%>/main_resource/heart-outline.png' width="20"  alt='팔로우한 회원의 피드'></a> <a
+		        href='<%=getServletContext().getContextPath()%>/app/main/newsfeed'>
+		        <img src='<%=getServletContext().getContextPath()%>/main_resource/bell-outline.png' width="20"  alt='알람'></a>
+		    </div>
+		    
 	    </div>
-	    </div>
-   </div> 
+   </div>
+   
+   
+   
+ <script>
+  var myDropdown = document.getElementById('myDropdown')
+  var profile = document.getElementById('profile')
+	myDropdown.addEventListener('show.bs.dropdown', function () {
+	  console.log("show");
+	  profile.setAttribute("style", "border: 1px solid white; margin-top: 6px; margin-right: 1px;");
+	})
+	myDropdown.addEventListener('hide.bs.dropdown', function () {
+	  console.log("hide");
+	  profile.setAttribute("style", "");
+	})
+</script>
