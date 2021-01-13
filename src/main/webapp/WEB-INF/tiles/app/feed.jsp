@@ -11,7 +11,7 @@
 	        src='<%=getServletContext().getContextPath()%>/upload/${r.writerPhoto}_35x35.jpg'>
 	      </a> 
 	      <a class='nickname'
-	        href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${r.writerPhoto}'>
+	        href='<%=getServletContext().getContextPath()%>/app/member/profile?no=${r.writerNo}'>
 	        ${r.writerNick}
 	      </a>
 	      

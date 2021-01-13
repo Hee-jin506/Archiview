@@ -159,6 +159,7 @@
   </select>
    
   <!-- 나를 팔로우하는 리스트 --> 
+  <!-- 여기서 target은 팔로워이다, 위랑 반대임 -->
   <select id="findMyFollowerList" resultMap="FollowMap2" parameterType="int">
   select
     f.fno,
@@ -176,7 +177,7 @@
       left outer join acv_flw f on mb.mno=f.target
       left outer join acv_mbr mb2 on f.flwing_mbr=mb2.mno
     where
-     mb.mno=#{mno}
+     mb.mno=#{mno} and f.fano=1
     </select>
   
  <!-- 팔로우 타겟 상세 -->

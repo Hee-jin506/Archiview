@@ -218,6 +218,8 @@ public class MemberController {
           .get("targetMemberList"));
   }
   
+  
+  
   // 한 멤버가 loginUser에게 팔로우 당하고있는지 검사
   private boolean isFollowedByLoginUser(int loginUserNo, int memberNo) throws Exception {
     List<Follow> followings = followService.listMyFollowingList(loginUserNo);
@@ -235,7 +237,7 @@ public class MemberController {
   
   // 여러 멤버나 태그가 loginUser에게 팔로우 당하고있는지 검사
   private Map<String,List<?>> isFollowedByLoginUser(
-      List<Follow> followingOrfollowerList,
+      List<Follow> list,
       List<Follow> followingsOfLoginUser) {
     
     List<Integer> followingMembersOfLoginUserNoList = new ArrayList<>();
@@ -251,9 +253,8 @@ public class MemberController {
         followingTagsOfLoginUserNoList.add(f.getTargetTag().getNo());
       }
     }
-
     
-    for (Follow follow : followingOrfollowerList) {
+    for (Follow follow : list) {
       if(follow.getFollowedType() == 1) {
         if(followingMembersOfLoginUserNoList.contains(follow.getTargetMember().getNo())) {
           // true면 버튼 색깔 회색
@@ -261,7 +262,7 @@ public class MemberController {
         }
         targetMemberlist.add(follow.getTargetMember());
       } else {
-        if(followingTagsOfLoginUserNoList.contains(follow.getTargetTag().getNo())) {
+        if(follow.getTargetTag() != null && followingTagsOfLoginUserNoList.contains(follow.getTargetTag().getNo())) {
           // true면 버튼 색깔 회색
           follow.getTargetTag().setFollowingState(true);
         }
