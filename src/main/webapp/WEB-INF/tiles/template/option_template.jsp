@@ -9,9 +9,11 @@
   <meta charset="UTF-8">
   <title>아카이뷰</title>
   <link rel="stylesheet" href="${appRoot}/css/reset.css">
-  <link rel="stylesheet" href="${appRoot}/css/header.css">
   <link rel="stylesheet" href="${appRoot}/css/sidebar.css">
   <link rel="stylesheet" href="${appRoot}/css/footer.css">
+    <link rel="stylesheet"
+    href="${appRoot}/css/bootstrap/dist/css/custom.css">
+  <link rel="stylesheet" href="${appRoot}/css/header.css">
   <link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/formcustom.css">
   <link rel="stylesheet" href="${appRoot}/css/main.css">
   <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
@@ -33,5 +35,8 @@
 <tiles:insertAttribute name="body"/>
 <tiles:insertAttribute name="footer"/>
 </div>
+
+  <script
+    src="${appRoot}/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>
