@@ -47,6 +47,32 @@
     <script>
        $("select").imagepicker()
     </script>
+    <script>
+      
+      var checkedPng = document.createElement("img");
+      checkedPng.setAttribute("src","${appRoot}/checked.png");
+      checkedPng.setAttribute("style","width:56px; height:40px; position:absolute; top:50px; right:82px; z-index:51;opacity: 100;");
+      
+      var selected = document.querySelector(".selected");
+      selected.appendChild(checkedPng);
+      
+      var thumbnails = document.querySelectorAll(".thumbnail");
+      var lis = document.querySelectorAll("li");
+      
+      for (var li of lis) {
+    	    li.setAttribute("style","position:relative;");
+    	}
+      for (var e of thumbnails) {
+    	    e.addEventListener("click", function(e) {
+    	         if (this.getAttribute("class") == "thumbnail selected") {
+    	        	  this.appendChild(checkedPng);
+    	              } else {
+    	            	  this.removeChild(checkedPng);
+    	              }
+    	       
+    	      });
+    	}
+    </script>
 <script>
 function goBack() {
   window.history.back();
