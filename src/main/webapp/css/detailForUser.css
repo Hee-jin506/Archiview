@@ -8,6 +8,8 @@
   width: 750px;
   height: 793px;
   padding: 0px;
+  position: absolute;
+    left: -130px;
  }
  
  #cardDetail #cardPart {
