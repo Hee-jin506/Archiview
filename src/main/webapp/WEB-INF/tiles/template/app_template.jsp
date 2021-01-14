@@ -115,6 +115,7 @@
 	    </div>
 	  </div>
 	</div>
+	
 <script>
 "use strict" 
 var count = 1;
@@ -422,7 +423,6 @@ reviewDetail.addEventListener('show.bs.modal', function (event) {
 	xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
 	xhr.send();
 	detailBody.innerHTML = xhr.responseText;
-	}); 
 });
 
 reviewDetail.addEventListener('shown.bs.modal', function (event) {
