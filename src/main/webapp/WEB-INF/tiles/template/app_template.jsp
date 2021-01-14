@@ -360,16 +360,28 @@ for (var e of followButtons) {
             this.setAttribute("data-bs-target", "#unfollowModal"
             		+this.getAttribute("target-type")
             		+this.getAttribute("target-no"));
-
             
-            var xhr = new XMLHttpRequest();
-            var no = this.getAttribute("target-no");
+            $.ajax({
             
-            var url = this.getAttribute("target-type")=="Member" ? 
-            		"<%=getServletContext().getContextPath()%>/app/follow/addUser?followedNo=" + no :
-            		"<%=getServletContext().getContextPath()%>/app/follow/addTag?followedNo=" + no;
-            xhr.open("GET", url, false);
-            xhr.send();
+            	  url: this.getAttribute("target-type")=="Member" ? 
+                          "<%=getServletContext().getContextPath()%>/app/follow/addUser" :
+                              "<%=getServletContext().getContextPath()%>/app/follow/addTag",
+            	  type: 'get',
+            	  data: {
+            		  followedNo: this.getAttribute("target-no")
+            	  }
+            	  ,
+            	  dataType: 'html',
+            	  done: function(response) {
+            	    // 성공 시 동작
+            	  },
+            	  fail: function(error) {
+            	    // 실패 시 동작
+            	  },
+            	  always: function(response) {
+            	    // 성공하든 실패하든 항상 할 동작
+            	  }
+            	});
           }
       });
 }
@@ -388,13 +400,28 @@ for (var e of modalUnfollowButtons) {
 			    f.setAttribute("follow", "notFollowing");
 			    f.setAttribute("class", "btn btn-archiview");
 			  
-			      var xhr = new XMLHttpRequest();
-			      var no = this.getAttribute("target-no");
-			      var url = this.getAttribute("target-type")=="Member" ? 
-			          "<%=getServletContext().getContextPath()%>/app/follow/deleteUser?followedNo=" + no :
-			          "<%=getServletContext().getContextPath()%>/app/follow/deleteTag?followedNo=" + no;
-			      xhr.open("GET", url, false);
-			      xhr.send();
+			    $.ajax({
+		            
+	                url: this.getAttribute("target-type")=="Member" ? 
+	                          "<%=getServletContext().getContextPath()%>/app/follow/deleteUser" :
+	                              "<%=getServletContext().getContextPath()%>/app/follow/deleteTag",
+	                type: 'get',
+	                data: {
+	                  followedNo: this.getAttribute("target-no")
+	                }
+	                ,
+	                dataType: 'html',
+	                done: function(response) {
+	                  // 성공 시 동작
+	                },
+	                fail: function(error) {
+	                  // 실패 시 동작
+	                },
+	                always: function(response) {
+	                  // 성공하든 실패하든 항상 할 동작
+	                }
+	              });
+			    
 			}
 		}
 	});
