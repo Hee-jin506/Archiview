@@ -108,7 +108,6 @@ MariaDB [studydb]> select * from acv_lk_able;
     order by ldt desc;
   </select>
 
-<!-- 좋아요 -->
   <insert id="insertReview" parameterType="like">
     insert into acv_like(mno, lano, target) 
       values(#{likingMember.no}, 1, #{likedNo})
@@ -130,28 +129,6 @@ MariaDB [studydb]> select * from acv_lk_able;
      acv_like
     where mno=#{likingMember.no} and lano=2 and target=#{likedNo}
   </delete>
-  
-  
-  <!--  
-  
-  <update id="deleteComment" parameterType="int">
-   delete from acv_cmt
-    where mno=#{likingMember.no} and lano=2 and target=#{likedNo}
-  </update>
-
-   <update id="active" parameterType="int">
-    update acv_like set
-     stat = 1
-    where mno=#{likingMember.no} and target=#{likedNo}
-  </update>
-
-  <update id="inactive" parameterType="int">
-  update acv_like set
-    stat = 2
-  where mno=#{likingMember.no} and target=#{likedNo}
-  </update>
-  -->
-
   
 </mapper>
 

@@ -30,14 +30,12 @@ public class likeController {
       @ModelAttribute("loginUser") Member loginUser,
       HttpServletRequest request
       ) throws Exception {
+    
     like.setLikingMember(loginUser);
-    like.setLikedNo(like.getLikedNo());
+    likeService.addReview(like);
 
     String referer = request.getHeader("REFERER");
-
     String[] r = referer.split("app");
-
-    likeService.addReview(like);
     return "redirect:.." + r[1];
   }
 
@@ -46,13 +44,12 @@ public class likeController {
       @ModelAttribute("loginUser") Member loginUser,
       HttpServletRequest request
       ) throws Exception {
+    
     like.setLikingMember(loginUser);
-    like.setLikedNo(like.getLikedNo());
+    likeService.deleteReview(like);
 
     String referer = request.getHeader("REFERER");
     String[] r = referer.split("app");
-
-    likeService.deleteReview(like);
     return "redirect:.." + r[1];
   }
 
@@ -63,14 +60,12 @@ public class likeController {
       @ModelAttribute("loginUser") Member loginUser,
       HttpServletRequest request
       ) throws Exception {
+    
     like.setLikingMember(loginUser);
-    like.setLikedNo(like.getLikedNo());
     likeService.addComment(like);
 
     String referer = request.getHeader("REFERER");
-
     String[] r = referer.split("app");
-
     return "redirect:.." + r[1];
   }
 
@@ -79,14 +74,12 @@ public class likeController {
       @ModelAttribute("loginUser") Member loginUser,
       HttpServletRequest request
       ) throws Exception {
+    
     like.setLikingMember(loginUser);
-    like.setLikedNo(like.getLikedNo());
     likeService.deleteComment(like);
 
     String referer = request.getHeader("REFERER");
-
     String[] r = referer.split("app");
-
     return "redirect:.." + r[1];
   }
 

@@ -84,8 +84,8 @@
 
 	</div>
 	
-	<div class="modal fade" id="reveiwDetail" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="reveiwDetail" tabindex="-1" 
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body">
@@ -99,22 +99,23 @@
 	</div>
 	
 	    
-<div class="modal fade" id ="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div id="report-close">
-        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"
-        style="position: absolute;
-         top: 20px;
-         right: 30px;"></button>
-      <div class="modal-body">
-        <!-- 모달 화면 -->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-		<script>
+	<div class="modal fade" id ="reportModal" tabindex="-1" 
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div id="report-close">
+	        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"
+	        style="position: absolute;
+	         top: 20px;
+	         right: 30px;"></button>
+	      <div class="modal-body">
+	        <!-- 모달 화면 -->
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<script>
 "use strict" 
 var count = 1;
 var body = document.querySelector("#body");
@@ -123,8 +124,11 @@ var followButtons = document.querySelectorAll(".follow button");
 var modalUnfollowButtons = document.querySelectorAll(".unfollow");
 
 var likeButtons = document.querySelectorAll(".like img");
+
 var moreButtons = document.querySelectorAll('.more');
+
 var menuContents = document.querySelectorAll('.dropdown-content1');
+
 var cards = document.querySelectorAll(".stillcut");
 var ReviewDetailModal = new bootstrap.Modal(document.getElementById('reveiwDetail'), {});
 var reviewDetail = document.querySelector("#reveiwDetail");
@@ -328,7 +332,7 @@ for (var e of likeButtons) {
             xhr.send();
           }
       });
-      }
+}
 
 for (var e of followButtons) {
 	
@@ -418,6 +422,7 @@ reviewDetail.addEventListener('show.bs.modal', function (event) {
 	xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
 	xhr.send();
 	detailBody.innerHTML = xhr.responseText;
+	}); 
 });
 
 reviewDetail.addEventListener('shown.bs.modal', function (event) {
@@ -478,6 +483,7 @@ for (var e of el) {
   };
 }
 </script>
+
 
 </body>
 </html>

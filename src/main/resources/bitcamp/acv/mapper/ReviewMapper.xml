@@ -26,6 +26,7 @@
     <result column="nick"       property="writerNick"/>
     <result column="fno"        property="isFollowing"/>
     <result column="lno"        property="isLiking"/>
+    <result column="sno"        property="isSaving"/>
     <result column="lk_length"  property="liking"/>
     
     <collection property="tags" ofType="tag">
@@ -205,7 +206,7 @@
       rv.tfno,
       rv.txt_size,
       rv.rdt,
-      rv.stat,      
+      rv.stat,
       s.stc_url,
       m.photo,
       m.nick,
@@ -213,7 +214,8 @@
       t.title,
       t.stat,
       f.fno,
-      lk_length
+      lk_length,
+      s.sno
     from 
       acv_rv rv
       left outer join acv_stc s on rv.stcno=s.stcno
@@ -227,6 +229,10 @@
       left outer join
         (select target, lano, count(*) lk_length from acv_like where lano=1 group by lano, target)lk
       on lk.target=rv.rvno
+      left outer join 
+        (select sno, rvno from acv_save where mno=#{userNo})s 
+      on s.rvno=rv.rvno
+        
     where rv.rvno=#{reviewNo}
  </select>
   

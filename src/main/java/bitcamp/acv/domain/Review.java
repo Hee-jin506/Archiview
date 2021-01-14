@@ -30,6 +30,7 @@ public class Review {
   private int isFollowing;
   private int liking;
   private int isLiking;
+  private int isSaving; // 로그인유저가 저장했는지 여부(0이면 저장안한거임)
 
   public String getRdtFromNow() {
     return rdtFromNow;
@@ -159,5 +160,11 @@ public class Review {
   }
   public void setIsLiking(int isLiking) {
     this.isLiking = isLiking;
+  }
+  public int getIsSaving() {
+    return isSaving;
+  }
+  public void setIsSaving(int isSaving) {
+    this.isSaving = isSaving;
   }
 }
