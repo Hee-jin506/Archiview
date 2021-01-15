@@ -91,18 +91,17 @@
     </div>
     
      <div id = "profile_bottom">
-       <c:forEach items="${member.reviews}" var="rv"> 
-       <input type='hidden' name='no' value='${rv.text}'>
-         <c:choose>
-           <c:when test="${empty rv.stcUrl}">
-             <img class='profile_bottom_review' src="${appRoot}/main_resource/null.png">
-           </c:when>
-           <c:otherwise>
-            <img class='profile_bottom_review' src='${rv.stcUrl}'>
-           </c:otherwise>
-         </c:choose>
-       </c:forEach>
-     </div>
+        <c:forEach items="${member.reviews}" var="rv"> 
+            <c:choose>
+              <c:when test="${empty rv.stcUrl}">
+                <img class='profile_bottom_review stillcut' data-no='${rv.no}' src="${appRoot}/main_resource/null.png">
+              </c:when>
+              <c:otherwise>
+               <img class='profile_bottom_review stillcut' data-no='${rv.no}'  src='${rv.stcUrl}'><br>
+              </c:otherwise>
+            </c:choose>
+        </c:forEach>
+      </div>
   </div>
 
 

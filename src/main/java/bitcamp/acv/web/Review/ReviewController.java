@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Comment;
@@ -36,13 +37,8 @@ public class ReviewController {
 
 
   @RequestMapping("bestReviewSearch")
-  public ModelAndView detail(String keyword) throws Exception {
-    List<Review> reviewList = reviewService.listByKeywordTagTitle(keyword);
-
-    ModelAndView mv = new ModelAndView();
-    mv.addObject("reviewList", reviewList);
-    mv.setViewName("review/bestReviewSearch");
-    return mv;
+  public void detail(String keyword, Model model) throws Exception {
+    model.addAttribute("reviewList", reviewService.listByKeywordTagTitle(keyword));
   }
 
   @GetMapping("followingFeed")
@@ -61,9 +57,13 @@ public class ReviewController {
   }
 
   @GetMapping("detailForUser")
-  public void detailForUser(int reviewNo, HttpSession session, Model model) throws Exception {
-    Member loginUser = (Member) session.getAttribute("loginUser");
+  public void detailForUser(
+      int reviewNo, 
+      @ModelAttribute("loginUser") Member loginUser, 
+      Model model) throws Exception {
+    
     model.addAttribute("review", reviewService.get(reviewNo, loginUser.getNo()));
+    
     List<Comment> comments = commentService.getByReviewNo(reviewNo);
 
     for (Comment comment : comments) {

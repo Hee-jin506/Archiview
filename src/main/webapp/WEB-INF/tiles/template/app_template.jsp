@@ -39,13 +39,7 @@
 		}
 		
 		#body {
-		
-		
-			xposition: absolute;
-			xleft: 230px;
-			xtop: 70px;
 			box-sizing: content-box;
-			xwidth: 700px;
 			height: 700px;
 			padding: 0px;
 			overflow: hidden;
@@ -122,7 +116,6 @@ var count = 1;
 var body = document.querySelector("#body");
 
 var currentPath = window.location.pathname;
-
 var ajaxUrlForInfiniteScroll;
 
 if (currentPath.includes("followingFeed")) {
@@ -181,7 +174,6 @@ body.onscroll = function(e) {
         	       var followButtons = document.querySelectorAll(".follow button");
         	       var modalUnfollowButtons = document.querySelectorAll(".unfollow");
         	       var saveButtons = document.querySelectorAll(".save img");
-        	         
         	       
         	       
         	         for (var e of saveButtons) {
@@ -323,7 +315,6 @@ body.onscroll = function(e) {
         	                           always: function(response) {
         	                           }
         	                         });
-        	                   
         	               }
         	             }
         	           });
@@ -627,21 +618,6 @@ element.addEventListener("click", function(e) {
 });
 }
 
-
-reviewDetail.addEventListener('show.bs.modal', function (event) {
-	console.log("show.bs.modal")
-	
-	
-});
-
-reviewDetail.addEventListener('shown.bs.modal', function (event) {
-	  console.log("shown.bs.modal")
-});
-
-reviewDetail.addEventListener('hidden.bs.modal', function (event) {
-	  console.log("hidden.bs.modal")
-});
-
 for (var e of cards) {
 	e.onclick = function(e) {
 		console.log("클릭")
@@ -662,11 +638,9 @@ for (var e of cards) {
 		     for (var e of saveButtons) {
 		       
 		        e.addEventListener("mouseover", function(e) {
-		          console.log("hahaha");
 		              this.setAttribute("src", "${appRoot}/main_resource/saved.png");
 		            });
 		          e.addEventListener("mouseout", function(e) {
-		          console.log("hahaha");
 		              if (this.getAttribute("save") == "notSaving") {
 		                    this.setAttribute("src", "${appRoot}/main_resource/saved-outline.png");
 		              } else {
@@ -825,20 +799,6 @@ var myModal = new bootstrap.Modal(document.getElementById('reportModal'), {});
 var reportModal = document.querySelector("#reportModal");
 var exampleModalBody = reportModal.querySelector("#reportModal .modal-body");
 var memberNo;
-
-reportModal.addEventListener('show.bs.modal', function (event) {
-  console.log("show.bs.modal")
-  $("#reportModal .modal-body").load("../ajax/report/form?reportedNo=" + memberNo);
-  
-});
-
-reportModal.addEventListener('shown.bs.modal', function (event) {
-  console.log("shown.bs.modal")
-});
-
-reportModal.addEventListener('hidden.bs.modal', function (event) {
-  console.log("hidden.bs.modal 종료")
-});  
 
 for (var e of el) {
   e.onclick = function(e) {

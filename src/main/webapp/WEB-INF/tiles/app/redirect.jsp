@@ -7,7 +7,7 @@
 <script type="text/javascript">
 var message = '${msg}';
 var returnUrl = '${url}';
-alert(mag);
+alert(message);
 document.location.href = returnUrl;
 </script>
 

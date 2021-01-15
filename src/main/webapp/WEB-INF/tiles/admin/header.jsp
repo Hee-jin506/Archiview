@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="appRoot" value="${pageContext.servletContext.contextPath}" />	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,12 +35,12 @@
 <body>
 	<div id='menubar'>
 		
-		<a href='<%=getServletContext().getContextPath()%>/admin/main'>[메인]</a>
-    <a href='<%=getServletContext().getContextPath()%>/admin/review/list'>[게시물 관리]</a>
-    <a href='<%=getServletContext().getContextPath()%>/admin/tag/list'>[태그 관리]</a> 
-    <a href='<%=getServletContext().getContextPath()%>/admin/member/list'>[회원 관리]</a>
-    <a href='<%=getServletContext().getContextPath()%>/admin/movie/list'>[영화 관리]</a>
-    <a href='<%=getServletContext().getContextPath()%>/admin/report/list'>[신고 관리]</a>
+		<a href='${appRoot}/admin/main'>[메인]</a>
+    <a href='${appRoot}/admin/review/list'>[게시물 관리]</a>
+    <a href='${appRoot}/admin/tag/list'>[태그 관리]</a> 
+    <a href='${appRoot}/admin/member/list'>[회원 관리]</a>
+    <a href='${appRoot}/admin/movie/list'>[영화 관리]</a>
+    <a href='${appRoot}/admin/report/list'>[신고 관리]</a>
 	</div>
 </body>
 </html>
