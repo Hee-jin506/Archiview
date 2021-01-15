@@ -188,3 +188,35 @@
 
 .dropdown-content1 a:hover {background-color: #ddd}
 
+.modal-content {
+  border-radius: 10px;
+  background-color: #141517;
+  box-sizing: border-box;
+  width: 500px;
+  margin-top: 10px;
+  padding: 50px;
+  margin : 0 auto;
+ }
+ 
+  .follow .modal-body {
+    margin: 20px 50px 15px 50px;
+ }
+  .follow .modal-body-text {
+  text-align : center;
+ }
+  .follow .modal-body-image {
+    height : 105px;
+    width : 100px;
+    margin : 0 auto;
+ }
+  .follow .modal-body img{
+  width : 75px;
+ }
+ 
+  .follow .modal-content .btn {
+ margin-top : 14px;
+ margin-right : 10px;
+ float : right;
+ 
+ }
+

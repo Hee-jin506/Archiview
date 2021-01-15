@@ -147,6 +147,7 @@ body.onscroll = function(e) {
         var originContent = body.innerHTML;
         body.innerHTML = originContent + xhr.responseText;
         
+        
         var cards = document.querySelectorAll(".stillcut");
         var likeButtons = document.querySelectorAll(".like img");
         var moreButtons = document.querySelectorAll(".more");
@@ -232,44 +233,65 @@ body.onscroll = function(e) {
                     this.setAttribute("data-bs-target", "#unfollowModal"
                         +this.getAttribute("target-type")
                         +this.getAttribute("target-no"));
-
                     
-                    var xhr = new XMLHttpRequest();
-                    var no = this.getAttribute("target-no");
+                    $.ajax({
                     
-                    var url = this.getAttribute("target-type")=="Member" ? 
-                        "<%=getServletContext().getContextPath()%>/app/follow/addUser?followedNo=" + no :
-                        "<%=getServletContext().getContextPath()%>/app/follow/addTag?followedNo=" + no;
-                    xhr.open("GET", url, false);
-                    xhr.send();
+                        url: this.getAttribute("target-type")=="Member" ? 
+                                  "<%=getServletContext().getContextPath()%>/app/follow/addUser" :
+                                      "<%=getServletContext().getContextPath()%>/app/follow/addTag",
+                        type: 'get',
+                        data: {
+                          followedNo: this.getAttribute("target-no")
+                        }
+                        ,
+                        dataType: 'html',
+                        done: function(response) {
+                        },
+                        fail: function(error) {
+                        },
+                        always: function(response) {
+                        }
+                      });
                   }
               });
         }
-        
+
         for (var e of modalUnfollowButtons) {
-        	  e.addEventListener("click", function(e) {
-        	    for (var f of followButtons) {
-        	           console.log(f.getAttribute("target-no"));
-        	            console.log(f.getAttribute("target-type"));
-        	      if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
-        	           this.getAttribute("target-type") == f.getAttribute("target-type")) {
-        	        console.log(this.getAttribute("target-no"));
-        	        console.log(this.getAttribute("target-type"));
-        	        console.log(f.getAttribute("target-no"));
-        	        console.log(f.getAttribute("target-type"));
-        	          f.setAttribute("follow", "notFollowing");
-        	          f.setAttribute("class", "btn btn-archiview");
-        	        
-        	            var xhr = new XMLHttpRequest();
-        	            var no = this.getAttribute("target-no");
-        	            var url = this.getAttribute("target-type")=="Member" ? 
-        	                "<%=getServletContext().getContextPath()%>/app/follow/deleteUser?followedNo=" + no :
-        	                "<%=getServletContext().getContextPath()%>/app/follow/deleteTag?followedNo=" + no;
-        	            xhr.open("GET", url, false);
-        	            xhr.send();
-        	      }
-        	    }
-        	  });
+          e.addEventListener("click", function(e) {
+            for (var f of followButtons) {
+                   console.log(f.getAttribute("target-no"));
+                    console.log(f.getAttribute("target-type"));
+              if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
+                   this.getAttribute("target-type") == f.getAttribute("target-type")) {
+                console.log(this.getAttribute("target-no"));
+                console.log(this.getAttribute("target-type"));
+                console.log(f.getAttribute("target-no"));
+                console.log(f.getAttribute("target-type"));
+                  f.setAttribute("follow", "notFollowing");
+                  f.setAttribute("class", "btn btn-archiview");
+                
+                  $.ajax({
+                        
+                          url: this.getAttribute("target-type")=="Member" ? 
+                                    "<%=getServletContext().getContextPath()%>/app/follow/deleteUser" :
+                                        "<%=getServletContext().getContextPath()%>/app/follow/deleteTag",
+                          type: 'get',
+                          data: {
+                            followedNo: this.getAttribute("target-no")
+                          }
+                          ,
+                          dataType: 'html',
+                          done: function(response) {
+                          },
+                          fail: function(error) {
+                          },
+                          always: function(response) {
+                          }
+                        });
+                  
+              }
+            }
+          });
         }
         
         for (var element of moreButtons) {
@@ -373,13 +395,10 @@ for (var e of followButtons) {
             	  ,
             	  dataType: 'html',
             	  done: function(response) {
-            	    // 성공 시 동작
             	  },
             	  fail: function(error) {
-            	    // 실패 시 동작
             	  },
             	  always: function(response) {
-            	    // 성공하든 실패하든 항상 할 동작
             	  }
             	});
           }
@@ -412,13 +431,10 @@ for (var e of modalUnfollowButtons) {
 	                ,
 	                dataType: 'html',
 	                done: function(response) {
-	                  // 성공 시 동작
 	                },
 	                fail: function(error) {
-	                  // 실패 시 동작
 	                },
 	                always: function(response) {
-	                  // 성공하든 실패하든 항상 할 동작
 	                }
 	              });
 			    
