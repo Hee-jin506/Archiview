@@ -39,6 +39,8 @@
 		}
 		
 		#body {
+		
+		
 			xposition: absolute;
 			xleft: 230px;
 			xtop: 70px;
@@ -120,12 +122,13 @@ var count = 1;
 var body = document.querySelector("#body");
 
 var currentPath = window.location.pathname;
-var test;
-console.log(currentPath);
+
+var ajaxUrlForInfiniteScroll;
+
 if (currentPath.includes("followingFeed")) {
-	test = "moreFollowingFeed";
+	ajaxUrlForInfiniteScroll = "/Archiview/app/ajax/review/moreFollowingFeed";
 } else {
-	test = "moreFeed";
+	ajaxUrlForInfiniteScroll = "/Archiview/app/ajax/review/moreFeed";
 };
 
 var followButtons = document.querySelectorAll(".follow button");
@@ -147,7 +150,7 @@ body.onscroll = function(e) {
         count++;
         console.log("스크롤 끝 감지") 
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/Archiview/app/ajax/review/"+test+"?pageNo=" + count, false);
+        xhr.open("GET", ajaxUrlForInfiniteScroll+"?pageNo=" + count, false);
         xhr.send();
         
         var originContent = body.innerHTML;
@@ -179,14 +182,14 @@ body.onscroll = function(e) {
         	       var modalUnfollowButtons = document.querySelectorAll(".unfollow");
         	       var saveButtons = document.querySelectorAll(".save img");
         	         
+        	       
+        	       
         	         for (var e of saveButtons) {
         	           
         	            e.addEventListener("mouseover", function(e) {
-        	              console.log("hahaha");
         	                  this.setAttribute("src", "${appRoot}/main_resource/saved.png");
         	                });
         	              e.addEventListener("mouseout", function(e) {
-        	              console.log("hahaha");
         	                  if (this.getAttribute("save") == "notSaving") {
         	                        this.setAttribute("src", "${appRoot}/main_resource/saved-outline.png");
         	                  } else {
@@ -194,19 +197,46 @@ body.onscroll = function(e) {
         	                  }
         	              });
         	            e.addEventListener("click", function(e) {
-        	              console.log("hahaha");
+        	            	  
+        	            	
         	                  if (this.getAttribute("save") == "saving") {
         	                    this.setAttribute("save", "notSaving");
-        	                    var xhr = new XMLHttpRequest();
-        	                    var no = this.getAttribute("data-no");
-        	                    xhr.open("GET", "${appRoot}/app/save/delete?savedNo=" + no, false);
-        	                    xhr.send();
+        	                    $.ajax({
+                                    
+                                    url:  
+                                              "${appRoot}/app/save/delete",
+                                    type: 'get',
+                                    data: {
+                                      savedNo: this.getAttribute("data-no")
+                                    }
+                                    ,
+                                    dataType: 'html',
+                                    done: function(response) {
+                                    },
+                                    fail: function(error) {
+                                    },
+                                    always: function(response) {
+                                    }
+                                  });
         	                  } else {
         	                    this.setAttribute("save", "saving");
-        	                    var xhr = new XMLHttpRequest();
-        	                    var no = this.getAttribute("data-no");
-        	                    xhr.open("GET", "${appRoot}/app/save/add?savedNo=" + no, false);
-        	                    xhr.send();
+        	                    $.ajax({
+                                    
+                                    url:  
+                                              "${appRoot}/app/save/add",
+                                    type: 'get',
+                                    data: {
+                                      savedNo: this.getAttribute("data-no")
+                                    }
+                                    ,
+                                    dataType: 'html',
+                                    done: function(response) {
+                                    },
+                                    fail: function(error) {
+                                    },
+                                    always: function(response) {
+                                    }
+                                  });
         	                  }
         	              });
         	        }
@@ -217,7 +247,7 @@ body.onscroll = function(e) {
         	                if (this.getAttribute("follow") == "following") {
         	                      this.setAttribute("data-bs-toggle", "modal");
         	                      this.setAttribute("data-bs-target", "#unfollowModal"
-        	                          +"d"
+        	                          +"ForReviewDetail"
         	                              +this.getAttribute("target-type")
         	                              +this.getAttribute("target-no"));
         	                }
@@ -236,7 +266,7 @@ body.onscroll = function(e) {
         	                      this.setAttribute("data-bs-toggle", "modal");
         	                      this.setAttribute("data-bs-target", "#unfollowModal"
         	                          +this.getAttribute("target-type")
-        	                          +"d"
+        	                          +"ForReviewDetail"
         	                          +this.getAttribute("target-no"));
         	                      
         	                      $.ajax({
@@ -644,20 +674,45 @@ for (var e of cards) {
 		              }
 		          });
 		        e.addEventListener("click", function(e) {
-		          console.log("hahaha");
-		              if (this.getAttribute("save") == "saving") {
-		                this.setAttribute("save", "notSaving");
-		                var xhr = new XMLHttpRequest();
-		                var no = this.getAttribute("data-no");
-		                xhr.open("GET", "${appRoot}/app/save/delete?savedNo=" + no, false);
-		                xhr.send();
-		              } else {
-		                this.setAttribute("save", "saving");
-		                var xhr = new XMLHttpRequest();
-		                var no = this.getAttribute("data-no");
-		                xhr.open("GET", "${appRoot}/app/save/add?savedNo=" + no, false);
-		                xhr.send();
-		              }
+		        	 if (this.getAttribute("save") == "saving") {
+                         this.setAttribute("save", "notSaving");
+                         $.ajax({
+                               
+                               url:  
+                                         "${appRoot}/app/save/delete",
+                               type: 'get',
+                               data: {
+                                 savedNo: this.getAttribute("data-no")
+                               }
+                               ,
+                               dataType: 'html',
+                               done: function(response) {
+                               },
+                               fail: function(error) {
+                               },
+                               always: function(response) {
+                               }
+                             });
+                       } else {
+                         this.setAttribute("save", "saving");
+                         $.ajax({
+                               
+                               url:  
+                                         "${appRoot}/app/save/add",
+                               type: 'get',
+                               data: {
+                                 savedNo: this.getAttribute("data-no")
+                               }
+                               ,
+                               dataType: 'html',
+                               done: function(response) {
+                               },
+                               fail: function(error) {
+                               },
+                               always: function(response) {
+                               }
+                             });
+                       }
 		          });
 		    }
 		     
@@ -667,7 +722,7 @@ for (var e of cards) {
 		            if (this.getAttribute("follow") == "following") {
 		                  this.setAttribute("data-bs-toggle", "modal");
 		                  this.setAttribute("data-bs-target", "#unfollowModal"
-		                      +"d"
+		                      +"ForReviewDetail"
 		                          +this.getAttribute("target-type")
 		                          +this.getAttribute("target-no"));
 		            }
@@ -686,7 +741,7 @@ for (var e of cards) {
 		                  this.setAttribute("data-bs-toggle", "modal");
 		                  this.setAttribute("data-bs-target", "#unfollowModal"
 		                      +this.getAttribute("target-type")
-		                      +"d"
+		                      +"ForReviewDetail"
 		                      +this.getAttribute("target-no"));
 		                  
 		                  $.ajax({

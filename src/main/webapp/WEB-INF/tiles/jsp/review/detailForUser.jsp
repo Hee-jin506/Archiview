@@ -66,7 +66,7 @@
           </c:when>
          </c:choose>
          
-         <div class="modal fade" id="unfollowModaldMember${review.writerNo}" tabindex="-1" 
+         <div class="modal fade" id="unfollowModalForReviewDetailMember${review.writerNo}" tabindex="-1" 
                       aria-hidden="true" >
             <div class="modal-dialog">
               <div class="modal-content" style=
