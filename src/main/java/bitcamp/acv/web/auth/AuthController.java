@@ -117,8 +117,6 @@ public class AuthController {
   public ModelAndView hintCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, String hint) throws Exception {
     ModelAndView mv = new ModelAndView();
     Member member = (Member) session.getAttribute("searchUser");
-    System.out.println(member.getQuestionsAnswer());
-    System.out.println(hint);
     if (!member.getQuestionsAnswer().equals(hint)) {
       throw new Exception("<p>답변이 옳지 않습니다.</p>");
     } else {

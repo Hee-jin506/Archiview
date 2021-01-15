@@ -152,9 +152,7 @@ public class OptionController {
 
     Member member = (Member) session.getAttribute("loginUser");
     int qno = Integer.parseInt(request.getParameter("hint"));
-    System.out.println("qno"+qno);
     String answer = request.getParameter("hintAnswer");
-    System.out.println("qa"+answer);
 
     if (answer.equals("")) {
       throw new Exception("답을 입력하지 않았습니다.");

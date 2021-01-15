@@ -149,8 +149,6 @@ public class FollowController {
 
     // targer .jsp 불러오기.
     Object target = followService.getTarget(follow);
-    System.out.println(target instanceof Member);
-    System.out.println(target instanceof Tag);
 
     if (follow == null) {
       throw new Exception("해당 회원이 없습니다!");

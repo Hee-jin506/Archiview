@@ -88,9 +88,6 @@ public class ReviewController {
       }
     }
 
-    for (Comment comment : comments) {
-      System.out.println(comment.getRdtFromNow());
-    }
     model.addAttribute("view", comments);
   }
 

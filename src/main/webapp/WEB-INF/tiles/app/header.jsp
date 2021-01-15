@@ -53,12 +53,12 @@
 
 		    <div id='icon'>
 		      <a href='${appRoot}'>
-		      <img src='${appRoot}/main_resource/home-outline.png' width="20" alt='메인화면'></a> <a
-		        href='${appRoot}/app/write/movieSearch'>
-		        <img src='${appRoot}/main_resource/plus-outline.png' width="20"  alt='글쓰기'></a> <a
-		        href='${appRoot}/app/main/followingFeed'>
-		        <img src='${appRoot}/main_resource/heart-outline.png' width="20"  alt='팔로우한 회원의 피드'></a> <a
-		        href='${appRoot}/app/main/newsfeed'>
+		        <img src='${appRoot}/main_resource/home-outline.png' width="20" alt='메인화면'></a>
+		      <a href='${appRoot}/app/write/movieSearch'>
+		        <img src='${appRoot}/main_resource/plus-outline.png' width="20"  alt='글쓰기'></a> 
+		      <a href='${appRoot}/app/main/followingFeed'>
+		        <img src='${appRoot}/main_resource/heart-outline.png' width="20"  alt='팔로우한 회원의 피드'></a> 
+		      <a href='${appRoot}/app/main/newsfeed'>
 		        <img src='${appRoot}/main_resource/bell-outline.png' width="20"  alt='알람'></a>
 		    </div>
 		    
