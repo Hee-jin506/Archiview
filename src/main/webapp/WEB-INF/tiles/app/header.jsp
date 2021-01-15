@@ -21,7 +21,7 @@
 	      </form>
 	    </div>
 	    <div id='profile' >
-		    <div class="dropdown" id="myDropdown">
+		    <div class="dropdown" id="headerProfileImageDropdown">
 		    
 	        <img class='profile dropdown-toggle' src='${appRoot}/upload/${loginUser.photo}_35x35.jpg' href="#" role="button"  data-bs-toggle="dropdown" aria-expanded="false">
 	        
@@ -82,15 +82,37 @@
    
    
  <script>
-  var myDropdown = document.getElementById('myDropdown')
+  var headerProfileImageDropdown = document.getElementById('headerProfileImageDropdown')
   var profile = document.getElementById('profile')
-	myDropdown.addEventListener('show.bs.dropdown', function () {
-	  console.log("show");
+	headerProfileImageDropdown.addEventListener('show.bs.dropdown', function () {
 	  profile.setAttribute("style", "border: 2px solid white; margin-top: 5px; margin-right : 0px; cursor:pointer;");
 	})
-	myDropdown.addEventListener('hide.bs.dropdown', function () {
-	  console.log("hide");
-	  profile.setAttribute("style", "");
+		var dropdownItems = document.querySelectorAll(".dropdown-item");
+  
+  for(var d of dropdownItems) {
+	  d.onclick = function(d) {
+		  console.log("clivk");
+			  profile.setAttribute("style", "border: 2px solid white; margin-top: 5px; margin-right : 0px; cursor:pointer;");
+	  }
+  }
+  $('.dropdown-menu').click(function(e) {
+      e.stopPropagation();
+});  
+	headerProfileImageDropdown.addEventListener('hidden.bs.dropdown', function () {
+	  
+		
+	  var currentPath = window.location.pathname;
+	  
+	  if (currentPath.includes("profile") || 
+			    currentPath.includes("followerList") ||
+			    currentPath.includes("followingList") ||
+			    currentPath.includes("savedReviews")
+			    ) {
+			  profile.setAttribute("style", "border: 2px solid white; margin-top: 5px; margin-right : 0px; cursor:pointer;");
+			} else {
+				profile.setAttribute("style", "");
+			}
+	  
 	})
 </script>
 
