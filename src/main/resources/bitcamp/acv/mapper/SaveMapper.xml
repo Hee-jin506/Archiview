@@ -6,7 +6,7 @@
 <mapper namespace="bitcamp.acv.dao.SaveDao">
   <resultMap type="save" id="SaveMap">
     <id column="sno"           property="no"/>
-    <result column="rvno"    property="reviewNo"/>
+    <result column="rvno"    property="savedNo"/>
     <result column="mno"    property="memberNo"/>
     <result column="sdt"    property="savedDate"/>
   </resultMap>

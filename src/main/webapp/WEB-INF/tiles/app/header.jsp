@@ -33,6 +33,20 @@
 				      </a>
 				    </li>
 				    <li>
+				      <a class="dropdown-item" 
+				      href='${appRoot}/app/member/savedReviews?no=${loginUser.no}'>
+				       <img class='btn-icon' src='${appRoot}/option_resource/save.png' 
+				       style='    
+				              height: 16.02px;
+									    margin-left: px;
+									    width: 14.15px;
+									    margin-left: 1.5px;
+									    margin-top: 0.5px;
+									   '
+							 alt='저장됨'>저장됨
+				      </a>
+				    </li>
+				    <li>
 				      <a class="dropdown-item" href="${appRoot}/app/option/profile">
 				      <img class='btn-icon' src='${appRoot}/option_resource/option.png' alt='설정'>설정
 				      </a>

@@ -92,7 +92,7 @@
 					<!-- 모달 화면 -->
 				</div>
 				<img
-					src='<%=getServletContext().getContextPath()%>/main_resource/x.png'
+					src='${appRoot}/main_resource/x.png'
 					data-bs-dismiss="modal">
 			</div>
 		</div>
@@ -167,14 +167,14 @@ body.onscroll = function(e) {
         
         for (var e of likeButtons) {
         	  e.addEventListener("mouseover", function(e) {
-        	        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png"); 
+        	        this.setAttribute("src", "${appRoot}/main_resource/like2.png"); 
         	  });
         	  e.addEventListener("mouseout", function(e) {
         		  if (this.getAttribute("like") == "notLiking") {
-                    this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");
+                    this.setAttribute("src", "${appRoot}/main_resource/like.png");
         		  } else {
         			  console.log("변하면 안돼!")
-        			  this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png")
+        			  this.setAttribute("src", "${appRoot}/main_resource/like2.png")
         		  }
         	  });
         	    e.addEventListener("click", function(e) {
@@ -189,7 +189,7 @@ body.onscroll = function(e) {
         	            }
         	            var xhr = new XMLHttpRequest();
         	            var no = this.getAttribute("data-no");
-        	            xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/like/dislikeReview?likedNo=" + no, false);
+        	            xhr.open("GET", "${appRoot}/app/like/dislikeReview?likedNo=" + no, false);
         	            xhr.send();
         	          } else {
         	            this.setAttribute("like", "liking");
@@ -202,7 +202,7 @@ body.onscroll = function(e) {
         	            }
         	            var xhr = new XMLHttpRequest();
         	            var no = this.getAttribute("data-no");
-        	            xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=" + no, false);
+        	            xhr.open("GET", "${appRoot}/app/like/likeReview?likedNo=" + no, false);
         	            xhr.send();
         	          }
         	      });
@@ -237,8 +237,8 @@ body.onscroll = function(e) {
                     $.ajax({
                     
                         url: this.getAttribute("target-type")=="Member" ? 
-                                  "<%=getServletContext().getContextPath()%>/app/follow/addUser" :
-                                      "<%=getServletContext().getContextPath()%>/app/follow/addTag",
+                                  "${appRoot}/app/follow/addUser" :
+                                      "${appRoot}/app/follow/addTag",
                         type: 'get',
                         data: {
                           followedNo: this.getAttribute("target-no")
@@ -273,8 +273,8 @@ body.onscroll = function(e) {
                   $.ajax({
                         
                           url: this.getAttribute("target-type")=="Member" ? 
-                                    "<%=getServletContext().getContextPath()%>/app/follow/deleteUser" :
-                                        "<%=getServletContext().getContextPath()%>/app/follow/deleteTag",
+                                    "${appRoot}/app/follow/deleteUser" :
+                                        "${appRoot}/app/follow/deleteTag",
                           type: 'get',
                           data: {
                             followedNo: this.getAttribute("target-no")
@@ -317,13 +317,13 @@ body.onscroll = function(e) {
 for (var e of likeButtons) {
 	
 	  e.addEventListener("mouseover", function(e) {
-	        this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");  // undefined
+	        this.setAttribute("src", "${appRoot}/main_resource/like2.png");  // undefined
 	      });
       e.addEventListener("mouseout", function(e) {
           if (this.getAttribute("like") == "notLiking") {
-                this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like.png");
+                this.setAttribute("src", "${appRoot}/main_resource/like.png");
           } else {
-            this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/like2.png");
+            this.setAttribute("src", "${appRoot}/main_resource/like2.png");
           }
       });
     e.addEventListener("click", function(e) {
@@ -338,7 +338,7 @@ for (var e of likeButtons) {
             }
             var xhr = new XMLHttpRequest();
             var no = this.getAttribute("data-no");
-            xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/like/dislikeReview?likedNo=" + no, false);
+            xhr.open("GET", "${appRoot}/app/like/dislikeReview?likedNo=" + no, false);
             xhr.send();
           } else {
             this.setAttribute("like", "liking");
@@ -351,7 +351,7 @@ for (var e of likeButtons) {
             }
             var xhr = new XMLHttpRequest();
             var no = this.getAttribute("data-no");
-            xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/like/likeReview?likedNo=" + no, false);
+            xhr.open("GET", "${appRoot}/app/like/likeReview?likedNo=" + no, false);
             xhr.send();
           }
       });
@@ -386,8 +386,8 @@ for (var e of followButtons) {
             $.ajax({
             
             	  url: this.getAttribute("target-type")=="Member" ? 
-                          "<%=getServletContext().getContextPath()%>/app/follow/addUser" :
-                              "<%=getServletContext().getContextPath()%>/app/follow/addTag",
+                          "${appRoot}/app/follow/addUser" :
+                              "${appRoot}/app/follow/addTag",
             	  type: 'get',
             	  data: {
             		  followedNo: this.getAttribute("target-no")
@@ -422,8 +422,8 @@ for (var e of modalUnfollowButtons) {
 			    $.ajax({
 		            
 	                url: this.getAttribute("target-type")=="Member" ? 
-	                          "<%=getServletContext().getContextPath()%>/app/follow/deleteUser" :
-	                              "<%=getServletContext().getContextPath()%>/app/follow/deleteTag",
+	                          "${appRoot}/app/follow/deleteUser" :
+	                              "${appRoot}/app/follow/deleteTag",
 	                type: 'get',
 	                data: {
 	                  followedNo: this.getAttribute("target-no")
@@ -466,6 +466,59 @@ reviewDetail.addEventListener('show.bs.modal', function (event) {
 	xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
 	xhr.send();
 	detailBody.innerHTML = xhr.responseText;
+	
+	 var saveButtons = document.querySelectorAll(".save img");
+     
+     for (var e of saveButtons) {
+       
+        e.addEventListener("mouseover", function(e) {
+          console.log("hahaha");
+              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/saved.png");
+            });
+          e.addEventListener("mouseout", function(e) {
+          console.log("hahaha");
+              if (this.getAttribute("save") == "notSaving") {
+                    this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/saved-outline.png");
+              } else {
+                this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/saved.png");
+              }
+          });
+        e.addEventListener("click", function(e) {
+          console.log("hahaha");
+              if (this.getAttribute("save") == "saving") {
+                this.setAttribute("save", "notSaving");
+                var xhr = new XMLHttpRequest();
+                var no = this.getAttribute("data-no");
+                xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/save/delete?savedNo=" + no, false);
+                xhr.send();
+              } else {
+                this.setAttribute("save", "saving");
+                var xhr = new XMLHttpRequest();
+                var no = this.getAttribute("data-no");
+                xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/save/add?savedNo=" + no, false);
+                xhr.send();
+              }
+          });
+    }
+    
+  var level2btn = document.querySelectorAll(".level-2");
+  var register = document.querySelector(".register");
+  var targetNo, groupNo, level;
+  
+  for (var e of level2btn) {
+    e.onclick = function(e) {
+        dataNo = e.target.getAttribute("data-no");
+        var comment = comments[dataNo];
+        var originContent = register.innerHTML;
+        register.innerHTML = originContent + 
+           "<input type='hidden' name='targetNo' value='"+ comment.targetNo +"'>";
+        document.querySelector(".register input[name='level']").setAttribute("value", 2);
+        document.querySelector(".register input[name='reviewNo']").setAttribute("value", ${param.reviewNo});
+        document.querySelector(".register input[name='content']").setAttribute("value", "@" + comment.writer +" ");
+        console.log(register.innerHTML)
+      };
+    } 
+    
 });
 
 reviewDetail.addEventListener('shown.bs.modal', function (event) {
@@ -525,6 +578,9 @@ for (var e of el) {
     myModal.show();
   };
 }
+</script>
+
+<script>
 
 /* 헤더 아이콘 색 채우기 */
 var currentPath = window.location.pathname;

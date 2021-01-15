@@ -130,11 +130,10 @@ float: left;
 }
 
 .btn-icon {
-	float: left;
-	margin-right: 10px;
-	    margin-top: -1.3px;
+    float: left;
+    margin-right: 10px;
     margin-bottom: 9px;
-	width: 20px;
+    width: 16px;
 }
 
 .dropdown-item {
