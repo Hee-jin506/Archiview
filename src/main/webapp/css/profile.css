@@ -103,6 +103,7 @@ a { text-decoration: none; }
  
  img.profile {
   border-radius: 100px;
+  cursor: pointer;
  }
  
  #profile_icon_report {
