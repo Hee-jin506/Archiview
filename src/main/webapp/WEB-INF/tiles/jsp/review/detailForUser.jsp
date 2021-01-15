@@ -50,6 +50,49 @@
         href='${appRoot}/app/member/profile?no=${loginUser.no}'>
         ${review.writerNick}
       </a>
+      
+      <div class="follow">
+         <c:choose>
+          <c:when test="${review.writerNick==sessionScope.loginUser.nickName}">
+          </c:when>
+          <c:when test="${review.writerNick!=sessionScope.loginUser.nickName}">
+             <button 
+               class='${review.isFollowing != 0 ? "btn btn-twitter" : "btn btn-archiview"}'
+               target-no='${review.writerNo}'
+               target-type='Member'
+               follow='${review.isFollowing != 0  ? "following" : "notFollowing"}'>
+               팔로우
+             </button>
+          </c:when>
+         </c:choose>
+         
+         <div class="modal fade" id="unfollowModaldMember${review.writerNo}" tabindex="-1" 
+                      aria-hidden="true" >
+            <div class="modal-dialog">
+              <div class="modal-content" style=
+	              "background-color: #141517;
+		             padding: 50px;">
+                <div class="modal-body">
+                  <div class = "modal-body-image">
+                   <img class="profile" src='${appRoot}/upload/${review.writerPhoto}_150x150.jpg'
+                   style="width: 75px;">
+                  </div>
+                  <div class="modal-body-text">
+                   ${review.writerNick}님의 팔로우를 취소하시겠어요?</div>
+                </div>
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아뇨</button>
+                  <button type="button" 
+                  class="btn btn-primary unfollow" 
+                  data-bs-dismiss="modal" 
+                  target-no='${review.writerNo}'
+                  target-type='Member'>네</button>
+              </div>
+            </div>
+          </div>
+       </div>
+      
+      
+      <%-- 
       <c:if test="${review.writerNick != loginUser.nickName}">
 	      <c:choose>
 	        <c:when test="${review.isFollowing != 0}">
@@ -67,7 +110,7 @@
 			      </div>
 	        </c:when>
 	      </c:choose>
-      </c:if>
+      </c:if> --%>
 
       <p class='rdt'>${review.rdtFromNow}</p>
       <c:if test="${review.isLiking != 0 }">
@@ -93,15 +136,6 @@
 	        src='${appRoot}/main_resource/like.png'
 	        alt='좋아요'>
 	        
-	        <%-- <div class='like'>
-            <img
-              src='<%=getServletContext().getContextPath()%>/main_resource/${r.isLiking != 0? "like2.png" : "like.png"}'
-              alt='좋아요'
-              data-no='${r.no}' 
-              like='${r.isLiking != 0? "liking" : "notLiking"}'>
-           <span class='pop' data-no='${r.no}'>${r.liking}개</span>
-        </div> --%>
-	      
 	        <span class = 'save'>
 	          <img
 	          src='${appRoot}/main_resource/${review.isSaving != 0? "saved.png" : "saved-outline.png"}'
@@ -121,21 +155,9 @@
 
 	<div class='comments'>
 		<div class='commentsBody'>
-				<%
-				List<Comment> comments = (List<Comment>) request.getAttribute("view");
-				for (Comment comment : comments) {
-				  System.out.print("댓글" + comment.getContent());
-				  System.out.println("  => 댓글 상태" + comment.getStatus());
-				}
-				HttpSession s = request.getSession();
-				Member loginUser = (Member) s.getAttribute("loginUser");
-				%>
+		
+				<c:set var="count" value="0"/>
 				
-				<%
-				
-				System.out.println(comments.size());
-				int count = 0;
-				%>
 				<script>
 				var comments = new Array();
 				var count= 0;
@@ -165,16 +187,19 @@
 									        <input type='hidden' name='targetNo' value='${c.no}'>
 									        <input type='hidden' name='groupNo' value='${c.groupNo}'>
 									        <input type='hidden' name='level' value='${c.level}'>
-									        <button class='level-2 btn btn-outline-secondary' data-no='<%=count%>' type="button" >답글 달기</button>
-									        <%count++; %>
-									
+									        <button class='level-2 btn btn-outline-secondary' data-no='${count}' type="button" >답글 달기</button>
+									        
+									        <c:set var="count" value="${count+1}"/>
+									        
 									        <script>
 									        comments[count] = {
 									        		targetNo: ${c.no},
 									        		writer: "${c.member.nickName}"
 									        };
+									        
 									        count++;
 									        </script>
+									        
 									        <c:if test="${c.member.no==sessionScope.loginUser.no}">
 											      <form action="../../comment/delete" method="post">
 											        <input type='hidden' name='no' value='${c.no}'>
@@ -220,4 +245,24 @@
   
   
 </div>
+
+<script>
+var level2btn = document.querySelectorAll(".level-2");
+  var register = document.querySelector(".register");
+  var targetNo, groupNo, level;
+  
+  for (var e of level2btn) {
+    e.onclick = function(e) {
+        var dataNo = e.target.getAttribute("data-no");
+        var comment = comments[dataNo];
+        var originContent = register.innerHTML;
+        register.innerHTML = originContent + 
+           "<input type='hidden' name='targetNo' value='"+ comment.targetNo +"'>";
+        document.querySelector(".register input[name='level']").setAttribute("value", 2);
+        document.querySelector(".register input[name='reviewNo']").setAttribute("value", ${param.reviewNo});
+        document.querySelector(".register input[name='content']").setAttribute("value", "@" + comment.writer +" ");
+        console.log(register.innerHTML)
+      };
+    }
+  </script>
 

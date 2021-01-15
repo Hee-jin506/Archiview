@@ -126,7 +126,7 @@
                   <div class="modal-content">
                     <div class="modal-body">
                       <div class = "modal-body-image">
-                       <img class="profile" src='../../upload/${t.thumbnailstillCutUrl}_150x150.jpg'>
+                       <img class="profile" src='${t.thumbnailstillCutUrl}'>
                       </div>
                       <div class="modal-body-text">
                        #${t.title}의 팔로우를 취소하시겠어요?</div>

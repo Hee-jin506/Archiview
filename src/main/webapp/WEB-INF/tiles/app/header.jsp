@@ -41,7 +41,7 @@
 									    margin-left: px;
 									    width: 14.15px;
 									    margin-left: 1.5px;
-									    margin-top: 0.5px;
+									    margin-top: 0px;
 									   '
 							 alt='저장됨'>저장됨
 				      </a>

@@ -64,11 +64,9 @@
 		}
 	</style>
 	
-	<script
-		src="${appRoot}/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+	<script	src="${appRoot}/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 	<script src="${appRoot}/node_modules/jquery/dist/jquery.js"></script>
-	<script src="${appRoot}/node_modules/jquery-ui-dist/jquery-ui.js"
-		type="text/javascript"></script>
+	<script src="${appRoot}/node_modules/jquery-ui-dist/jquery-ui.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -125,7 +123,6 @@ var followButtons = document.querySelectorAll(".follow button");
 var modalUnfollowButtons = document.querySelectorAll(".unfollow");
 
 var likeButtons = document.querySelectorAll(".like img");
-
 var moreButtons = document.querySelectorAll('.more');
 
 var menuContents = document.querySelectorAll('.dropdown-content1');
@@ -147,7 +144,6 @@ body.onscroll = function(e) {
         var originContent = body.innerHTML;
         body.innerHTML = originContent + xhr.responseText;
         
-        
         var cards = document.querySelectorAll(".stillcut");
         var likeButtons = document.querySelectorAll(".like img");
         var moreButtons = document.querySelectorAll(".more");
@@ -159,11 +155,144 @@ body.onscroll = function(e) {
         
         for (var e of cards) {
         	  e.onclick = function(e) {
-        		  console.log("click");
+        	    console.log("클릭")
+        	    console.log(this.getAttribute("data-no"));
         	    reviewNo=this.getAttribute("data-no");
         	    ReviewDetailModal.show();
+        	    
+        	    var xhr = new XMLHttpRequest();
+        	      
+        	      xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
+        	      xhr.send();
+        	      detailBody.innerHTML = xhr.responseText;
+        	      
+        	       var followButtons = document.querySelectorAll(".follow button");
+        	       var modalUnfollowButtons = document.querySelectorAll(".unfollow");
+        	       var saveButtons = document.querySelectorAll(".save img");
+        	         
+        	         for (var e of saveButtons) {
+        	           
+        	            e.addEventListener("mouseover", function(e) {
+        	              console.log("hahaha");
+        	                  this.setAttribute("src", "${appRoot}/main_resource/saved.png");
+        	                });
+        	              e.addEventListener("mouseout", function(e) {
+        	              console.log("hahaha");
+        	                  if (this.getAttribute("save") == "notSaving") {
+        	                        this.setAttribute("src", "${appRoot}/main_resource/saved-outline.png");
+        	                  } else {
+        	                    this.setAttribute("src", "${appRoot}/main_resource/saved.png");
+        	                  }
+        	              });
+        	            e.addEventListener("click", function(e) {
+        	              console.log("hahaha");
+        	                  if (this.getAttribute("save") == "saving") {
+        	                    this.setAttribute("save", "notSaving");
+        	                    var xhr = new XMLHttpRequest();
+        	                    var no = this.getAttribute("data-no");
+        	                    xhr.open("GET", "${appRoot}/app/save/delete?savedNo=" + no, false);
+        	                    xhr.send();
+        	                  } else {
+        	                    this.setAttribute("save", "saving");
+        	                    var xhr = new XMLHttpRequest();
+        	                    var no = this.getAttribute("data-no");
+        	                    xhr.open("GET", "${appRoot}/app/save/add?savedNo=" + no, false);
+        	                    xhr.send();
+        	                  }
+        	              });
+        	        }
+        	         
+        	         for (var e of followButtons) {
+        	            
+        	              e.addEventListener("mouseover", function(e) {
+        	                if (this.getAttribute("follow") == "following") {
+        	                      this.setAttribute("data-bs-toggle", "modal");
+        	                      this.setAttribute("data-bs-target", "#unfollowModal"
+        	                          +"d"
+        	                              +this.getAttribute("target-type")
+        	                              +this.getAttribute("target-no"));
+        	                }
+        	              });
+        	              e.addEventListener("mouseout", function(e) {
+        	                    this.setAttribute("data-bs-toggle", " ");
+        	                    this.setAttribute("data-bs-target", " ");
+        	              });
+        	            
+        	            
+        	              e.addEventListener("click", function(e) {
+        	                   if (this.getAttribute("follow") == "notFollowing") {
+        	                      
+        	                      this.setAttribute("follow", "following");
+        	                      this.setAttribute("class", "btn btn-twitter");
+        	                      this.setAttribute("data-bs-toggle", "modal");
+        	                      this.setAttribute("data-bs-target", "#unfollowModal"
+        	                          +this.getAttribute("target-type")
+        	                          +"d"
+        	                          +this.getAttribute("target-no"));
+        	                      
+        	                      $.ajax({
+        	                      
+        	                          url: this.getAttribute("target-type")=="Member" ? 
+        	                                    "${appRoot}/app/follow/addUser" :
+        	                                        "${appRoot}/app/follow/addTag",
+        	                          type: 'get',
+        	                          data: {
+        	                            followedNo: this.getAttribute("target-no")
+        	                          }
+        	                          ,
+        	                          dataType: 'html',
+        	                          done: function(response) {
+        	                          },
+        	                          fail: function(error) {
+        	                          },
+        	                          always: function(response) {
+        	                          }
+        	                        });
+        	                    }
+        	                });
+        	          }
+
+        	         for (var e of modalUnfollowButtons) {
+        	           e.addEventListener("click", function(e) {
+        	             for (var f of followButtons) {
+        	                    console.log(f.getAttribute("target-no"));
+        	                     console.log(f.getAttribute("target-type"));
+        	               if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
+        	                    this.getAttribute("target-type") == f.getAttribute("target-type")) {
+        	                 console.log(this.getAttribute("target-no"));
+        	                 console.log(this.getAttribute("target-type"));
+        	                 console.log(f.getAttribute("target-no"));
+        	                 console.log(f.getAttribute("target-type"));
+        	                   f.setAttribute("follow", "notFollowing");
+        	                   f.setAttribute("class", "btn btn-archiview");
+        	                 
+        	                   $.ajax({
+        	                         
+        	                           url: this.getAttribute("target-type")=="Member" ? 
+        	                                     "${appRoot}/app/follow/deleteUser" :
+        	                                         "${appRoot}/app/follow/deleteTag",
+        	                           type: 'get',
+        	                           data: {
+        	                             followedNo: this.getAttribute("target-no")
+        	                           }
+        	                           ,
+        	                           dataType: 'html',
+        	                           done: function(response) {
+        	                           },
+        	                           fail: function(error) {
+        	                           },
+        	                           always: function(response) {
+        	                           }
+        	                         });
+        	                   
+        	               }
+        	             }
+        	           });
+        	         }
+        	    
+        	    
         	  };
-        }
+        	}
         
         for (var e of likeButtons) {
         	  e.addEventListener("mouseover", function(e) {
@@ -462,63 +591,8 @@ element.addEventListener("click", function(e) {
 
 reviewDetail.addEventListener('show.bs.modal', function (event) {
 	console.log("show.bs.modal")
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
-	xhr.send();
-	detailBody.innerHTML = xhr.responseText;
 	
-	 var saveButtons = document.querySelectorAll(".save img");
-     
-     for (var e of saveButtons) {
-       
-        e.addEventListener("mouseover", function(e) {
-          console.log("hahaha");
-              this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/saved.png");
-            });
-          e.addEventListener("mouseout", function(e) {
-          console.log("hahaha");
-              if (this.getAttribute("save") == "notSaving") {
-                    this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/saved-outline.png");
-              } else {
-                this.setAttribute("src", "<%=getServletContext().getContextPath()%>/main_resource/saved.png");
-              }
-          });
-        e.addEventListener("click", function(e) {
-          console.log("hahaha");
-              if (this.getAttribute("save") == "saving") {
-                this.setAttribute("save", "notSaving");
-                var xhr = new XMLHttpRequest();
-                var no = this.getAttribute("data-no");
-                xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/save/delete?savedNo=" + no, false);
-                xhr.send();
-              } else {
-                this.setAttribute("save", "saving");
-                var xhr = new XMLHttpRequest();
-                var no = this.getAttribute("data-no");
-                xhr.open("GET", "<%=getServletContext().getContextPath()%>/app/save/add?savedNo=" + no, false);
-                xhr.send();
-              }
-          });
-    }
-    
-  var level2btn = document.querySelectorAll(".level-2");
-  var register = document.querySelector(".register");
-  var targetNo, groupNo, level;
-  
-  for (var e of level2btn) {
-    e.onclick = function(e) {
-        dataNo = e.target.getAttribute("data-no");
-        var comment = comments[dataNo];
-        var originContent = register.innerHTML;
-        register.innerHTML = originContent + 
-           "<input type='hidden' name='targetNo' value='"+ comment.targetNo +"'>";
-        document.querySelector(".register input[name='level']").setAttribute("value", 2);
-        document.querySelector(".register input[name='reviewNo']").setAttribute("value", ${param.reviewNo});
-        document.querySelector(".register input[name='content']").setAttribute("value", "@" + comment.writer +" ");
-        console.log(register.innerHTML)
-      };
-    } 
-    
+	
 });
 
 reviewDetail.addEventListener('shown.bs.modal', function (event) {
@@ -535,17 +609,149 @@ for (var e of cards) {
 		console.log(this.getAttribute("data-no"));
 		reviewNo=this.getAttribute("data-no");
 		ReviewDetailModal.show();
+		
+		var xhr = new XMLHttpRequest();
+		  
+		  xhr.open("GET", "/Archiview/app/ajax/review/detailForUser?reviewNo=" + reviewNo, false);
+		  xhr.send();
+		  detailBody.innerHTML = xhr.responseText;
+		  
+		   var followButtons = document.querySelectorAll(".follow button");
+		   var modalUnfollowButtons = document.querySelectorAll(".unfollow");
+		   var saveButtons = document.querySelectorAll(".save img");
+		     
+		     for (var e of saveButtons) {
+		       
+		        e.addEventListener("mouseover", function(e) {
+		          console.log("hahaha");
+		              this.setAttribute("src", "${appRoot}/main_resource/saved.png");
+		            });
+		          e.addEventListener("mouseout", function(e) {
+		          console.log("hahaha");
+		              if (this.getAttribute("save") == "notSaving") {
+		                    this.setAttribute("src", "${appRoot}/main_resource/saved-outline.png");
+		              } else {
+		                this.setAttribute("src", "${appRoot}/main_resource/saved.png");
+		              }
+		          });
+		        e.addEventListener("click", function(e) {
+		          console.log("hahaha");
+		              if (this.getAttribute("save") == "saving") {
+		                this.setAttribute("save", "notSaving");
+		                var xhr = new XMLHttpRequest();
+		                var no = this.getAttribute("data-no");
+		                xhr.open("GET", "${appRoot}/app/save/delete?savedNo=" + no, false);
+		                xhr.send();
+		              } else {
+		                this.setAttribute("save", "saving");
+		                var xhr = new XMLHttpRequest();
+		                var no = this.getAttribute("data-no");
+		                xhr.open("GET", "${appRoot}/app/save/add?savedNo=" + no, false);
+		                xhr.send();
+		              }
+		          });
+		    }
+		     
+		     for (var e of followButtons) {
+		        
+		          e.addEventListener("mouseover", function(e) {
+		            if (this.getAttribute("follow") == "following") {
+		                  this.setAttribute("data-bs-toggle", "modal");
+		                  this.setAttribute("data-bs-target", "#unfollowModal"
+		                      +"d"
+		                          +this.getAttribute("target-type")
+		                          +this.getAttribute("target-no"));
+		            }
+		          });
+		          e.addEventListener("mouseout", function(e) {
+		                this.setAttribute("data-bs-toggle", " ");
+		                this.setAttribute("data-bs-target", " ");
+		          });
+		        
+		        
+		          e.addEventListener("click", function(e) {
+		               if (this.getAttribute("follow") == "notFollowing") {
+		                  
+		                  this.setAttribute("follow", "following");
+		                  this.setAttribute("class", "btn btn-twitter");
+		                  this.setAttribute("data-bs-toggle", "modal");
+		                  this.setAttribute("data-bs-target", "#unfollowModal"
+		                      +this.getAttribute("target-type")
+		                      +"d"
+		                      +this.getAttribute("target-no"));
+		                  
+		                  $.ajax({
+		                  
+		                      url: this.getAttribute("target-type")=="Member" ? 
+		                                "${appRoot}/app/follow/addUser" :
+		                                    "${appRoot}/app/follow/addTag",
+		                      type: 'get',
+		                      data: {
+		                        followedNo: this.getAttribute("target-no")
+		                      }
+		                      ,
+		                      dataType: 'html',
+		                      done: function(response) {
+		                      },
+		                      fail: function(error) {
+		                      },
+		                      always: function(response) {
+		                      }
+		                    });
+		                }
+		            });
+		      }
+
+		     for (var e of modalUnfollowButtons) {
+		       e.addEventListener("click", function(e) {
+		         for (var f of followButtons) {
+		                console.log(f.getAttribute("target-no"));
+		                 console.log(f.getAttribute("target-type"));
+		           if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
+		                this.getAttribute("target-type") == f.getAttribute("target-type")) {
+		             console.log(this.getAttribute("target-no"));
+		             console.log(this.getAttribute("target-type"));
+		             console.log(f.getAttribute("target-no"));
+		             console.log(f.getAttribute("target-type"));
+		               f.setAttribute("follow", "notFollowing");
+		               f.setAttribute("class", "btn btn-archiview");
+		             
+		               $.ajax({
+		                     
+		                       url: this.getAttribute("target-type")=="Member" ? 
+		                                 "${appRoot}/app/follow/deleteUser" :
+		                                     "${appRoot}/app/follow/deleteTag",
+		                       type: 'get',
+		                       data: {
+		                         followedNo: this.getAttribute("target-no")
+		                       }
+		                       ,
+		                       dataType: 'html',
+		                       done: function(response) {
+		                       },
+		                       fail: function(error) {
+		                       },
+		                       always: function(response) {
+		                       }
+		                     });
+		               
+		           }
+		         }
+		       });
+		     }
+		
+		
 	};
 }
 	
-document.addEventListener('load', function (event) {
+/* document.addEventListener('load', function (event) {
 		console.log("${param.reviewNo}" != "");
 		if ("${param.reviewNo}" != "") {
 		console.log("실행!")
 		reviewNo = "${param.reviewNo}";
 		ReviewDetailModal.show();
 	}
-});
+}); */
 
 </script>
 
