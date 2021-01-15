@@ -67,4 +67,11 @@ public class ReviewController {
     model.addAttribute("loginUser", loginUser);
     model.addAttribute("list", reviewService.getMainFeed(loginUser.getNo(), pageNo));
   }
+  
+  @RequestMapping("moreFollowingFeed")
+  public void moreFollowingFeed(int pageNo, HttpSession session, Model model) throws Exception {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    model.addAttribute("loginUser", loginUser);
+    model.addAttribute("list", reviewService.getFollowingFeed(loginUser.getNo(), pageNo));
+  }
 }

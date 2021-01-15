@@ -119,6 +119,15 @@
 var count = 1;
 var body = document.querySelector("#body");
 
+var currentPath = window.location.pathname;
+var test;
+console.log(currentPath);
+if (currentPath.includes("followingFeed")) {
+	test = "moreFollowingFeed";
+} else {
+	test = "moreFeed";
+};
+
 var followButtons = document.querySelectorAll(".follow button");
 var modalUnfollowButtons = document.querySelectorAll(".unfollow");
 
@@ -138,7 +147,7 @@ body.onscroll = function(e) {
         count++;
         console.log("스크롤 끝 감지") 
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/Archiview/app/ajax/review/moreFeed?pageNo=" + count, false);
+        xhr.open("GET", "/Archiview/app/ajax/review/"+test+"?pageNo=" + count, false);
         xhr.send();
         
         var originContent = body.innerHTML;
@@ -820,8 +829,6 @@ if (currentPath.includes("profile") ||
 	homeIcon.setAttribute("src", "${appRoot}/main_resource/home.png");
 	homeIcon.setAttribute("style", "height:20px;");
 }
-
-console.log(currentPath);
 
 </script>
 

@@ -95,9 +95,11 @@
 			  profile.setAttribute("style", "border: 2px solid white; margin-top: 5px; margin-right : 0px; cursor:pointer;");
 	  }
   }
-  $('.dropdown-menu').click(function(e) {
-      e.stopPropagation();
-});  
+  
+	  $('.dropdown-menu').click(function(e) {
+	      e.stopPropagation();
+	});  
+  
 	headerProfileImageDropdown.addEventListener('hidden.bs.dropdown', function () {
 	  
 		
