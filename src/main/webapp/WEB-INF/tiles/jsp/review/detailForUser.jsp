@@ -90,27 +90,6 @@
             </div>
           </div>
        </div>
-      
-      
-      <%-- 
-      <c:if test="${review.writerNick != loginUser.nickName}">
-	      <c:choose>
-	        <c:when test="${review.isFollowing != 0}">
-	          <div class='follow'>
-			        <form>
-			          <button class="btn btn-twitter">팔로우</button>
-			        </form>
-			      </div>
-	        </c:when>
-	        <c:when test="${review.isFollowing == 0}">
-	          <div class='follow'>
-			        <form>
-			          <button class="btn btn-archiview">팔로우</button>
-			        </form>
-			      </div>
-	        </c:when>
-	      </c:choose>
-      </c:if> --%>
 
       <p class='rdt'>${review.rdtFromNow}</p>
       <c:if test="${review.isLiking != 0 }">

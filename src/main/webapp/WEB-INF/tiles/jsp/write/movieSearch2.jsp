@@ -95,6 +95,14 @@
             </form>
           </div>
         </div>
+              '${param.keyword}'
+            <%
+            String keyword = request.getParameter("keyword");
+    System.out.println(keyword);
+    %>
+        <c:if test="${param.keyword == null}">
+        ㅋㅋㅋㅋㅋㅋㅋ
+        </c:if>
         <c:if test="${param.keyword != null}">
           <div id='movieSearchResult'>
             <span id='movieSearchResult_keyword'>
@@ -104,14 +112,14 @@
               검색 결과
             </span>
             <div id='movieSearchResultPosters'>
+            <c:if test="${mv==null}">
+              <span id='null'>검색결과가 없습니다!</span>
+            </c:if>
             <c:forEach var="mv" items="${movies}">
               <a href='chooseStc?movieNo=${mv.no}'>
                <img src='${mv.posters[0]}' alt='${mv.title}'>
               </a>
             </c:forEach>
-            <c:if test="${mv==null}">
-              <span id='null'>검색결과가 없습니다!</span>
-            </c:if>
            </div>
          </div>
       </c:if>
