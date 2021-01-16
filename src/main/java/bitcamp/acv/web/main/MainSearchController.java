@@ -62,10 +62,6 @@ public class MainSearchController {
         List<Movie> movies = movieService.listByKeywordTitle(keyword);
         List<Member> members = memberService.listByKeywordNickName(keyword);
 
-        for (Movie movie : movies) {
-          List<String> mg = movie.getGenres();
-
-        }
         mv.addObject("movies", movies);
         mv.addObject("members", members);
 
