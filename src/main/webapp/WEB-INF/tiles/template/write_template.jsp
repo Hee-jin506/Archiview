@@ -9,15 +9,19 @@
   <meta charset="UTF-8">
   <title>아카이뷰</title>
 
-
+  <link href="${appRoot}/node_modules/jquery-ui-dist/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+  <link href="${appRoot}/node_modules/jquery-ui-dist/jquery-ui.theme.min.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${appRoot}/css/custom-image-picker.css">
-	
-	<link rel="stylesheet" href="${appRoot}/css/footer.css">
-	<link rel="stylesheet"
-		href="${appRoot}/css/bootstrap/dist/css/custom.css">
-	<link rel="stylesheet" href="${appRoot}/css/header.css">
-	<link rel="stylesheet" href="${appRoot}/css/main.css">
-	<link rel="stylesheet" href="${appRoot}/css/newsfeed.css">
+	<link rel="stylesheet"href="${appRoot}/css/bootstrap/dist/css/custom.css">
+  <link rel="stylesheet" href="${appRoot}/css/reset.css">
+  <link rel="stylesheet" href="${appRoot}/css/sidebar.css">
+  <link rel="stylesheet" href="${appRoot}/css/footer.css">
+  <link rel="stylesheet" href="${appRoot}/css/header.css">
+  <link rel="stylesheet" href="${appRoot}/css/main.css">
+  <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
+  <link rel="stylesheet" href="${appRoot}/css/newsfeed.css">
+  <link rel="stylesheet" href="${appRoot}/css/profile.css">
+  <link rel="stylesheet" href="${appRoot}/css/detailForUser.css">
 <style>
 #container {
 	width: 960px;

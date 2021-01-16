@@ -827,7 +827,7 @@ if (currentPath.includes("profile") ||
 		currentPath.includes("followingList") ||
 		currentPath.includes("savedReviews")
 		) {
-	profile.setAttribute("style", "border: 2px solid white; margin-top: 5px; margin-right : 0px; cursor:pointer;");
+	profile.setAttribute("style", "border: 2px solid white; margin-top: 9px; margin-right : 0px; cursor:pointer;");
 } else if (currentPath.includes("write")) {
 	plusIcon.setAttribute("src", "${appRoot}/main_resource/plus.png");
 } else if (currentPath.includes("followingFeed")) {

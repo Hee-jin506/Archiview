@@ -5,7 +5,7 @@
     width: 920px;
     height: 30px;">
   <p id='teamName' style="margin-top:5px">팀 아카이뷰</p>
-  <p id='members' style="margin-top:3px">
+  <p id='members' style="margin-top:1.5px">
   <a href="https://github.com/Gunmok-Lee">
     <span data-toggle="tooltip" data-placement=top title="https://github.com/Gunmok-Lee" 
     style=
@@ -54,7 +54,9 @@
     margin-left: 35px;"
   >깃허브</p>
   <a href="https://github.com/Hee-jin506/Archiview">
-		    <img src='/Archiview/main_resource/github.png' style='margin-left: 5px; width: 25px;' data-toggle="tooltip" data-placement=top title="https://github.com/Hee-jin506/Archiview">
+		    <img src='/Archiview/main_resource/github.png' 
+		    style='margin-left: 5px; width: 25px; margin-top: 1px;' 
+		    data-toggle="tooltip" data-placement=top title="https://github.com/Hee-jin506/Archiview">
   </a>
   </div>
 

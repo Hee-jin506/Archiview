@@ -12,16 +12,14 @@
 	      </a>
 	    </div>
 	    <div id='search'>
- <%
-  String keyword = request.getParameter("keyword");
-  %>
 	      <form action='${appRoot}/app/main/search'>
-	         <input type='text' id='search-data' name='keyword' placeholder='검색' value='<%=keyword != null ? keyword : ""%>'>
+	         <input type='text' id='search-data' name='keyword' placeholder='검색' value='${param.keyword != null ? param.keyword : ""}'>
 	        <button id='search-btn'><img src='${appRoot}/main_resource/search-outline.png' width="12"></button>
 	      </form>
 	    </div>
-	    <div id='profile' >
-		    <div class="dropdown" id="headerProfileImageDropdown">
+	    <div id='profile'>
+		    <div class="dropdown" id="headerProfileImageDropdown" style="    height: 30px;
+    width: 30px;">
 		    
 	        <img class='profile dropdown-toggle' src='${appRoot}/upload/${loginUser.photo}_35x35.jpg' href="#" role="button"  data-bs-toggle="dropdown" aria-expanded="false">
 	        
@@ -85,14 +83,13 @@
   var headerProfileImageDropdown = document.getElementById('headerProfileImageDropdown')
   var profile = document.getElementById('profile')
 	headerProfileImageDropdown.addEventListener('show.bs.dropdown', function () {
-	  profile.setAttribute("style", "border: 2px solid white; margin-top: 5px; margin-right : 0px; cursor:pointer;");
+	  profile.setAttribute("style", "border: 2px solid white; margin-top: 9px; margin-right : 0px; cursor:pointer;");
 	})
 		var dropdownItems = document.querySelectorAll(".dropdown-item");
   
   for(var d of dropdownItems) {
 	  d.onclick = function(d) {
-		  console.log("clivk");
-			  profile.setAttribute("style", "border: 2px solid white; margin-top: 5px; margin-right : 0px; cursor:pointer;");
+			  profile.setAttribute("style", "border: 2px solid white; margin-top: 9px; margin-right : 0px; cursor:pointer;");
 	  }
   }
   
@@ -110,7 +107,7 @@
 			    currentPath.includes("followingList") ||
 			    currentPath.includes("savedReviews")
 			    ) {
-			  profile.setAttribute("style", "border: 2px solid white; margin-top: 5px; margin-right : 0px; cursor:pointer;");
+			  profile.setAttribute("style", "border: 2px solid white; margin-top: 9px; margin-right : 0px; cursor:pointer;");
 			} else {
 				profile.setAttribute("style", "");
 			}

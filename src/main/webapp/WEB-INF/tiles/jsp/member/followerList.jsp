@@ -6,7 +6,7 @@
   <div id="profile_contents">
     <div id="profile_top">
       <input type='hidden' name='no' value='${member.no}'>
-      <img class="profile" src='../../upload/${member.photo}_150x150.jpg'>
+      <img class="profile150px" src='../../upload/${member.photo}_150x150.jpg'>
         <div id="profile_top_text">
            <div id="profile_top_text_nickName">${member.nickName}</div>
            <div id="profile_top_text_email">${member.email}</div>

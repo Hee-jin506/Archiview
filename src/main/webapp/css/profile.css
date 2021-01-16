@@ -104,6 +104,14 @@ a { text-decoration: none; }
  img.profile {
   border-radius: 100px;
   cursor: pointer;
+  width:30px;
+  height:30px;
+ }
+ img.profile150px {
+  cursor: pointer;
+  border-radius: 100px;
+width: 150px; 
+height:150px;
  }
  
  #profile_icon_report {
