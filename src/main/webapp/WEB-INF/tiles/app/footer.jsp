@@ -45,7 +45,7 @@
     font-weight: normal;
     font-size: 16px;
     ">정지은</span>
-  </a> | </p>
+  </a></p>
   <img style="    float: right;" src='/Archiview/main_resource/footer-logo.png' >
   </div>
   <div style=" margin-top: 4px;
