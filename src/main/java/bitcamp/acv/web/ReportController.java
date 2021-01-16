@@ -1,4 +1,4 @@
-package bitcamp.acv.web.report;
+package bitcamp.acv.web;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;

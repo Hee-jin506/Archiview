@@ -1,4 +1,4 @@
-package bitcamp.acv.web.comment;
+package bitcamp.acv.web;
 
 import java.util.List;
 import javax.servlet.ServletContext;

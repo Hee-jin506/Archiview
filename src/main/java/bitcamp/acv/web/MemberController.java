@@ -1,4 +1,4 @@
-package bitcamp.acv.web.member;
+package bitcamp.acv.web;
 
 import java.util.ArrayList;
 import java.util.HashMap;

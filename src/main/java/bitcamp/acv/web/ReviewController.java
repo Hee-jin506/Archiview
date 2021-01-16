@@ -1,4 +1,4 @@
-package bitcamp.acv.web.Review;
+package bitcamp.acv.web;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

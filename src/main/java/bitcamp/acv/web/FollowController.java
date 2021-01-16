@@ -1,4 +1,4 @@
-package bitcamp.acv.web.follow;
+package bitcamp.acv.web;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

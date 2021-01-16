@@ -1,4 +1,4 @@
-package bitcamp.acv.web.like;
+package bitcamp.acv.web;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;

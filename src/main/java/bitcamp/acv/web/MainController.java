@@ -1,4 +1,4 @@
-package bitcamp.acv.web.main;
+package bitcamp.acv.web;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;

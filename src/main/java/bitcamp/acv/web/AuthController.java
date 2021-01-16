@@ -1,5 +1,5 @@
 
-package bitcamp.acv.web.auth;
+package bitcamp.acv.web;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
