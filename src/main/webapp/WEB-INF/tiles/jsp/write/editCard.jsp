@@ -1,5 +1,3 @@
-<%@page import="bitcamp.acv.domain.Font"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -106,45 +104,34 @@
 	<div id='writeReview'>
 		<div id='editCardFormContainer'>
 			<h1>자기만의 감성으로 카드를 꾸며주세요!</h1>
-			<%
-    if (!request.getParameter("stc").equals("default")) {
-    %>
-			<div id='editCardFormStillcut'>
-				<img src='<%=request.getParameter("stc")%>'
-					alt='<%= request.getParameter("stc")%>'>
-				<%
-    }
-	   %>
-
-				<div id='text'></div>
-
+			 <div id='editCardFormStillcut'>
+				<c:if test="${param.stc != 'default'}">
+					<img src='${param.stc}' alt='${param.stc}'>
+				</c:if>
+	        
+				<div id='text'>
+				</div>
 			</div>
 			<form action='add' method='post'>
 				<select name='font'>
-
-					<%
-          List<Font> fonts = (List<Font>) request.getAttribute("fonts");
-        for (Font font : fonts) {
-        %>
-					<option value='<%=font.getNo()%>'><%=font.getName()%></option>
-					<%
-}
-%>
+          <c:forEach var="f" items="${fonts}">
+            <option value='${f.no}'>
+              ${f.name}
+            </option>
+          </c:forEach>
 				</select>
 				<div id="editCardFormTextArea">
 					<div class="mb-3">
 						<textarea class="form-control" id="exampleFormControlTextarea1"
 							rows="3" name='text' placeholder=""></textarea>
 					</div>
-
 					<div id="editCardFormTextArea_tag">
 						<input class="form-control form-control-sm" type="text" name='tag'
 							placeholder="#">
 					</div>
 				</div>
 				<input type='hidden' name='movieNo' value='${sessionScope.movieNo}'>
-				<input type='hidden' name='stc'
-					value='<%=request.getParameter("stc")%>'>
+				<input type='hidden' name='stc'	value='${param.stc}'>
 					 <input type="hidden" name="fontSize" value='11'> 
 					<input type='hidden' name='x' value='50'> 
 					<input type='hidden'name='y' value='50'>
@@ -155,12 +142,11 @@
 			<button class="btn btn-primary btn-sm btn-dark" onclick="goBack()">뒤로</button>
 		</div>
 	</div>
+	
 	<script>
 "use strict"
 
 // 태그 객체를 만들지 않고 텍스트를 사용하여 자식 태그를 추가할 수 있다.
-
-
 
 var textInput = document.querySelector("#editCardFormTextArea .form-control");
 var text = document.querySelector("#editCardFormStillcut #text")
@@ -212,6 +198,6 @@ textInput.addEventListener("input", function(e) {
        console.log(textY);
        } 
      
-     </script>
+ </script>
 </body>
 </html>

@@ -7,37 +7,15 @@
       
   <body>
   
-<div class="dropdown" id="myDropdown">
-  <img src="Archiview_logo.png" class="dropdown-toggle" href="#" role="button"  data-bs-toggle="dropdown" aria-expanded="false">
-
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div>
-
-<div class="dropdown">
-  <img src="Archiview_logo.png" id="dLabel" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
-  </ul>
-</div>
-  
+    <button style='margin-left:50px; margin-top:50px;' type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+    Tooltip on top
+  </button>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   <script>
-  var myDropdown = document.getElementById('myDropdown')
-myDropdown.addEventListener('show.bs.dropdown', function () {
-  console.log("show");
-})
-myDropdown.addEventListener('hide.bs.dropdown', function () {
-  console.log("hide");
-})
-</script>
+  $(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
+  </script>
   </body>
 </html>

@@ -70,7 +70,7 @@ height: 50px;
 
 <body style='background-color: black'>
 <div class='box'>
-    <img id='logo' src="<%=getServletContext().getContextPath()%>/Archiview_logo.png" alt="로고">
+    <img id='logo' src="${appRoot}/Archiview_logo.png" alt="로고">
   <div id='intro'>
     당신의 감성을 담은<br>
     영화 후기를 만들어 보세요.
@@ -98,6 +98,7 @@ height: 50px;
           </div>
         </div>
       </div>
+      
       <%
       if (((Boolean) request.getAttribute("wrongInput")) == true) {
       %>
@@ -114,11 +115,11 @@ height: 50px;
   </div>
   
   <div id='search'>
-    <a href="<%=getServletContext().getContextPath()%>/app/auth/searchPassword" style="color: white;">비밀번호를 잊으셨나요?</a>
+    <a href="${appRoot}/app/auth/searchPassword" style="color: white;">비밀번호를 잊으셨나요?</a>
   </div>
   
   <div id='add'>
-    계정이 없으신가요? <a href="<%=getServletContext().getContextPath()%>/app/auth/add" style="color: white;">지금 가입하세요.</a>
+    계정이 없으신가요? <a href="${appRoot}/app/auth/add" style="color: white;">지금 가입하세요.</a>
   </div>
 </div>
 </body>
