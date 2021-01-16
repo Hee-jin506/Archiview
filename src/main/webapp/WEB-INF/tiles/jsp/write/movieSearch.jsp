@@ -63,6 +63,7 @@
     }
     #movieSearchResultPosters #null{
     color: #B9B9BA;
+    margin-left: 10px;
     }
     #movieSearchResultPosters {
     xmargin: 0 auto;
@@ -103,15 +104,18 @@
             <span id='movieSearchResult_affix'>
               검색 결과
             </span>
+            
             <div id='movieSearchResultPosters'>
+            <c:if test="${movies =='[]'}">
+              <span id='null'>검색결과가 없습니다!</span>
+            </c:if>
+            
             <c:forEach var="mv" items="${movies}">
               <a href='chooseStc?movieNo=${mv.no}'>
                <img src='${mv.posters[0]}' alt='${mv.title}'>
               </a>
             </c:forEach>
-            <c:if test="${mv==null}">
-              <span id='null'>검색결과가 없습니다!</span>
-            </c:if>
+            
            </div>
          </div>
       </c:if>
