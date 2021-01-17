@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="${appRoot}/css/main.css">
   <link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
   <link rel="stylesheet" href="${appRoot}/css/option.css">
+  <link rel="stylesheet" href="${appRoot}/css/profile.css">
   <style>
   
     #container {
@@ -44,6 +45,42 @@
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
+</script>
+
+<script>
+/* 헤더 아이콘 색 채우기 */
+var profile = document.getElementById('profile');
+var homeIcon = document.querySelector("#icon a:nth-child(1) img");
+var plusIcon = document.querySelector("#icon a:nth-child(2) img");
+var heartIcon = document.querySelector("#icon a:nth-child(3) img");
+var bellIcon = document.querySelector("#icon a:nth-child(4) img");
+
+var currentPath = window.location.pathname;
+
+plusIcon.onclick = function(plusIcon) {
+    console.log("아니 클릭햇다고");
+  };
+
+
+if (currentPath.includes("profile") || 
+    currentPath.includes("followerList") ||
+    currentPath.includes("followingList") ||
+    currentPath.includes("savedReviews")
+    ) {
+  profile.setAttribute("style", "border: 2px solid white; margin-top: 9px; margin-right : 0px; cursor:pointer;");
+} else if (currentPath.includes("write")) {
+  plusIcon.setAttribute("src", "${appRoot}/main_resource/plus.png");
+} else if (currentPath.includes("followingFeed")) {
+  heartIcon.setAttribute("src", "${appRoot}/main_resource/like2.png");
+  heartIcon.setAttribute("style", "height:20px;");
+} else if (currentPath.includes("newsfeed")) {
+  bellIcon.setAttribute("src", "${appRoot}/main_resource/bell.png");
+  bellIcon.setAttribute("style", "height:21.25px;");
+} else {
+  homeIcon.setAttribute("src", "${appRoot}/main_resource/home.png");
+  homeIcon.setAttribute("style", "height:20px;");
+}
+
 </script>
 </body>
 

@@ -48,7 +48,7 @@
 					    <div class="modal-content">
 					      <div class="modal-body">
 						      <div class = "modal-body-image">
-						       <img class="profile" src='../../upload/${member.photo}_150x150.jpg'>
+						       <img class="profile" style = "height: 75px; cursor: auto;" src='../../upload/${member.photo}_150x150.jpg'>
 						      </div>
 					        <div class="modal-body-text">
 					         ${member.nickName}님의 팔로우를 취소하시겠어요?</div>
@@ -58,7 +58,7 @@
                   class="btn btn-primary unfollow" 
                   data-bs-dismiss="modal" 
                   target-no='${member.no}'
-                  target-type='${member.getClass().simpleName}'}>네</button>
+                  target-type='${member.getClass().simpleName}'>네</button>
 					    </div>
 					  </div>
 					</div>

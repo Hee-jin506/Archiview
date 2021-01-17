@@ -51,6 +51,7 @@ a { text-decoration: none; }
  font-weight : bold;
  }
  #profile_top_text_email {
+ color: #626473;
  margin-bottom : 30px;
  font-size : 18px;
  }
@@ -187,6 +188,7 @@ height:150px;
  }
   .follow .modal-body img{
   width : 75px;
+  height : 75px;
  }
  
   .follow .modal-content .btn {

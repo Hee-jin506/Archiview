@@ -644,13 +644,19 @@ for (var e of cards) {
 </script>
 
 <script>
-/* 신고 모달 */
+/* 신고 모달, ajax */
 "use strict"
 var el = document.querySelectorAll(".report-form");
 var myModal = new bootstrap.Modal(document.getElementById('reportModal'), {});
 var reportModal = document.querySelector("#reportModal");
 var exampleModalBody = reportModal.querySelector("#reportModal .modal-body");
 var memberNo;
+
+reportModal.addEventListener('show.bs.modal', function (event) {
+	  console.log("show.bs.modal")
+	  $(".modal-body").load("../ajax/report/form?reportedNo=" + memberNo);
+	  
+	});
 
 for (var e of el) {
   e.onclick = function(e) {
@@ -660,6 +666,7 @@ for (var e of el) {
     myModal.show();
   };
 }
+
 </script>
 
 
@@ -844,7 +851,7 @@ plusIcon.onclick = function(plusIcon) {
   };
 
 
-if (currentPath.includes("profile") || 
+if (currentPath.includes("member/profile") || 
 		currentPath.includes("followerList") ||
 		currentPath.includes("followingList") ||
 		currentPath.includes("savedReviews")
