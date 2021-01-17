@@ -1,21 +1,18 @@
 package bitcamp.acv.web;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import bitcamp.acv.domain.Follow;
 import bitcamp.acv.domain.Member;
+import bitcamp.acv.domain.Review;
 import bitcamp.acv.domain.Tag;
 import bitcamp.acv.service.FollowService;
 import bitcamp.acv.service.MemberService;
@@ -136,6 +133,13 @@ public class MemberController {
   
      // 바디
      model.addAttribute("member", memberService.get(no));
+     for (Review r : memberService.get(no).getReviews()) {
+       for(Tag t : r.getTags()) {
+         System.out.println(t.getNo());
+         System.out.println(t.getTitle());
+       }
+       
+     }
      model.addAttribute("followerListSize",followService.listMyFollowerList(no).size());
      model.addAttribute("followingListSize",followService.listMyFollowingList(no).size());
      model.addAttribute("isFollowedByLoginUser", isFollowedByLoginUser(loginUser.getNo(), no));

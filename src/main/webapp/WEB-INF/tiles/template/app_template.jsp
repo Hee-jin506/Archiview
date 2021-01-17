@@ -36,7 +36,7 @@
 		
 		#body {
 			box-sizing: content-box;
-			height: 700px;
+			height: 740px;
 			padding: 0px;
 			overflow: hidden;
 			overflow-y: scroll;
@@ -122,15 +122,29 @@ if (currentPath.includes("followingFeed")) {
 };
 
 body.onscroll = function(e) {
-    if(body.scrollTop >= 1850) {
+    if(body.scrollTop >= 1810) {
         count++;
-        console.log("스크롤 끝 감지") 
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", ajaxUrlForInfiniteScroll+"?pageNo=" + count, false);
-        xhr.send();
+        console.log("스크롤 끝 감지")
         
-        var originContent = body.innerHTML;
-        body.innerHTML = originContent + xhr.responseText;
+        $.ajax({
+          url: ajaxUrlForInfiniteScroll,
+          type: 'get',
+          
+          data: {
+        	  pageNo: count
+          }
+          ,
+          dataType: 'html',
+          success: function(data) {
+        	  var originContent = body.innerHTML;
+            body.innerHTML = originContent + data;
+          },
+          fail: function(error) {
+        	  alert("에러가 발생하였습니다.")
+          },
+          always: function(response) {
+          }
+        });
         
         var cards = document.querySelectorAll(".stillcut");
         var likeButtons = document.querySelectorAll(".like img");
@@ -185,7 +199,7 @@ body.onscroll = function(e) {
                                     }
                                     ,
                                     dataType: 'html',
-                                    done: function(response) {
+                                    success: function(response) {
                                     },
                                     fail: function(error) {
                                     },
@@ -204,7 +218,7 @@ body.onscroll = function(e) {
                                     }
                                     ,
                                     dataType: 'html',
-                                    done: function(response) {
+                                    success: function(response) {
                                     },
                                     fail: function(error) {
                                     },
@@ -254,7 +268,7 @@ body.onscroll = function(e) {
         	                          }
         	                          ,
         	                          dataType: 'html',
-        	                          done: function(response) {
+        	                          success: function(response) {
         	                          },
         	                          fail: function(error) {
         	                          },
@@ -290,7 +304,7 @@ body.onscroll = function(e) {
         	                           }
         	                           ,
         	                           dataType: 'html',
-        	                           done: function(response) {
+        	                           success: function(response) {
         	                           },
         	                           fail: function(error) {
         	                           },
@@ -386,7 +400,7 @@ body.onscroll = function(e) {
                         }
                         ,
                         dataType: 'html',
-                        done: function(response) {
+                        success: function(response) {
                         },
                         fail: function(error) {
                         },
@@ -422,7 +436,7 @@ body.onscroll = function(e) {
                           }
                           ,
                           dataType: 'html',
-                          done: function(response) {
+                          success: function(response) {
                           },
                           fail: function(error) {
                           },
@@ -510,7 +524,7 @@ for (var e of cards) {
                                }
                                ,
                                dataType: 'html',
-                               done: function(response) {
+                               success: function(response) {
                                },
                                fail: function(error) {
                                },
@@ -529,7 +543,7 @@ for (var e of cards) {
                                }
                                ,
                                dataType: 'html',
-                               done: function(response) {
+                               success: function(response) {
                                },
                                fail: function(error) {
                                },
@@ -579,7 +593,7 @@ for (var e of cards) {
 		                      }
 		                      ,
 		                      dataType: 'html',
-		                      done: function(response) {
+		                      success: function(response) {
 		                      },
 		                      fail: function(error) {
 		                      },
@@ -615,7 +629,7 @@ for (var e of cards) {
 		                       }
 		                       ,
 		                       dataType: 'html',
-		                       done: function(response) {
+		                       success: function(response) {
 		                       },
 		                       fail: function(error) {
 		                       },
@@ -786,7 +800,7 @@ for (var e of followButtons) {
                  }
                  ,
                  dataType: 'html',
-                 done: function(response) {
+                 success: function(response) {
                  },
                  fail: function(error) {
                  },
@@ -822,7 +836,7 @@ for (var e of followButtons) {
                    }
                    ,
                    dataType: 'html',
-                   done: function(response) {
+                   success: function(response) {
                    },
                    fail: function(error) {
                    },
@@ -962,7 +976,7 @@ reviewIcon.onclick = function(e) {
                                         }
                                         ,
                                         dataType: 'html',
-                                        done: function(response) {
+                                        success: function(response) {
                                         },
                                         fail: function(error) {
                                         },
@@ -981,7 +995,7 @@ reviewIcon.onclick = function(e) {
                                         }
                                         ,
                                         dataType: 'html',
-                                        done: function(response) {
+                                        success: function(response) {
                                         },
                                         fail: function(error) {
                                         },
@@ -1031,7 +1045,7 @@ reviewIcon.onclick = function(e) {
                                    }
                                    ,
                                    dataType: 'html',
-                                   done: function(response) {
+                                   success: function(response) {
                                    },
                                    fail: function(error) {
                                    },
@@ -1067,7 +1081,7 @@ reviewIcon.onclick = function(e) {
                                     }
                                     ,
                                     dataType: 'html',
-                                    done: function(response) {
+                                    success: function(response) {
                                     },
                                     fail: function(error) {
                                     },
@@ -1166,7 +1180,7 @@ savedIcon.onclick = function(e) {
                                         }
                                         ,
                                         dataType: 'html',
-                                        done: function(response) {
+                                        success: function(response) {
                                         },
                                         fail: function(error) {
                                         },
@@ -1185,7 +1199,7 @@ savedIcon.onclick = function(e) {
                                         }
                                         ,
                                         dataType: 'html',
-                                        done: function(response) {
+                                        success: function(response) {
                                         },
                                         fail: function(error) {
                                         },
@@ -1235,7 +1249,7 @@ savedIcon.onclick = function(e) {
                                    }
                                    ,
                                    dataType: 'html',
-                                   done: function(response) {
+                                   success: function(response) {
                                    },
                                    fail: function(error) {
                                    },
@@ -1271,7 +1285,7 @@ savedIcon.onclick = function(e) {
                                     }
                                     ,
                                     dataType: 'html',
-                                    done: function(response) {
+                                    success: function(response) {
                                     },
                                     fail: function(error) {
                                     },
@@ -1362,7 +1376,7 @@ followerIcon.onclick = function(e) {
         	                }
         	                ,
         	                dataType: 'html',
-        	                done: function(response) {
+        	                success: function(response) {
         	                },
         	                fail: function(error) {
         	                },
@@ -1398,7 +1412,7 @@ followerIcon.onclick = function(e) {
         	                  }
         	                  ,
         	                  dataType: 'html',
-        	                  done: function(response) {
+        	                  success: function(response) {
         	                  },
         	                  fail: function(error) {
         	                  },
@@ -1486,7 +1500,7 @@ followingIcon.onclick = function(e) {
                           }
                           ,
                           dataType: 'html',
-                          done: function(response) {
+                          success: function(response) {
                           },
                           fail: function(error) {
                           },
@@ -1522,7 +1536,7 @@ followingIcon.onclick = function(e) {
                             }
                             ,
                             dataType: 'html',
-                            done: function(response) {
+                            success: function(response) {
                             },
                             fail: function(error) {
                             },

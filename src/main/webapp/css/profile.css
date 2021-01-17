@@ -19,7 +19,7 @@ a { text-decoration: none; }
    width: 650px;  
    padding: 40px; 
    
-   height: 700px;
+   height: 740px;
    overflow: hidden;
    overflow-y: scroll;
    -ms-overflow-style: none;
@@ -157,10 +157,10 @@ height:150px;
  }
  
  #profile_bottom .profile_bottom_review{
- float:left;
- margin-bottom : 18px;
- margin-right : 10px;
- margin-left : 10px;
+ xfloat:left;
+ xmargin-bottom : 18px;
+ xmargin-right : 10px;
+ xmargin-left : 10px;
  width : 265px;
  height : 160px;
  }
@@ -203,5 +203,33 @@ height:150px;
     width: 450px;
     padding: 0.375rem 0.75rem;
     line-height: 1.5;
+ }
+ 
+ .profile_stillcut {
+    float : left;
+    width: 265px;
+    height: 160px;
+    position: relative;
+    margin-bottom: 18px;
+    margin-right: 10px;
+    margin-left: 10px;
+ }
+ 
+ .profile_stillcut_reviewText {
+ 
+ position:absolute;     
+ text-align: center;
+    transform: translate( -50%, -50% );
+     background-color: rgba( 0, 0, 0, 0.5 ); 
+     padding: 4px; 
+ }
+ 
+ .profile_stillcut_tags {
+ 
+ position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background-color: rgba( 0, 0, 0, 0.5 );
+    padding: 4px;
  }
  

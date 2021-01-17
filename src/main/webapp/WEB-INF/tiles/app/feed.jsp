@@ -74,7 +74,7 @@
 	      </div>
 	    </div>
 	    
-	    <div class='stillcut' data-no='${r.no}'>
+	    <div class='stillcut' data-no='${r.no}' >
 		    <c:if test="${r.stcUrl != null}">
 		      <img src='${r.stcUrl}' data-no='${r.no}'>
 		    </c:if>

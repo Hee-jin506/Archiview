@@ -232,7 +232,6 @@ public class DefaultReviewService implements ReviewService {
       Calendar cal = new GregorianCalendar(Locale.KOREA);
       long now = cal.getTimeInMillis();
       long diff = now - review.getRegisteredDate().getTime();
-      System.out.println(review.getRegisteredDate());
       if (diff / 1000 / 60 < 1) {
         review.setRdtFromNow("방금 전");
       } else if (diff / 1000 / 60 / 60 < 1) {
