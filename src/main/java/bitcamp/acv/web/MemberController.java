@@ -141,6 +141,26 @@ public class MemberController {
      model.addAttribute("isFollowedByLoginUser", isFollowedByLoginUser(loginUser.getNo(), no));
    }
   
+   // 프로필 화면(프로필 + 본인이 저장한! 리뷰들이 나옴)
+   @RequestMapping("savedReviews")
+   public void savedReviews(Model model, HttpSession session, int no) throws Exception {
+     // 탑바
+     Member loginUser = (Member) session.getAttribute("loginUser");
+     model.addAttribute("loginUser", loginUser);
+  
+     // 사이드바
+     model.addAttribute("topMembers", memberService.listByPop3());
+     model.addAttribute("topMovies", movieService.listByPop3());
+     model.addAttribute("topTags", tagService.listByPop3());
+  
+     // 바디
+     model.addAttribute("member", memberService.get(no));
+     model.addAttribute("followerListSize",followService.listMyFollowerList(no).size());
+     model.addAttribute("followingListSize",followService.listMyFollowingList(no).size());
+     model.addAttribute("isFollowedByLoginUser", isFollowedByLoginUser(loginUser.getNo(), no));
+   }
+   
+   
   // 멤버가 loginUser에게 팔로우 당하고있는지 검사
   private boolean isFollowedByLoginUser(int loginUserNo, int memberNo) throws Exception {
     List<Follow> followings = followService.listMyFollowingList(loginUserNo);

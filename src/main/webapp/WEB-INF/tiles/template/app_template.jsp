@@ -63,7 +63,7 @@
 </head>
 <body>
 
-	<!-- <div id="headerLine"></div> -->
+	<!-- <div id="headerLine"></div > -->
 	<div id="container">
 		<tiles:insertAttribute name="header" />
 		<tiles:insertAttribute name="sidebar" />
@@ -878,12 +878,6 @@ var followingIcon = document.querySelector(".followingIcon");
 var followerIcon = document.querySelector(".followerIcon");
 
 var profileBottom = document.querySelector("#profile_bottom");
-
-for (var e of profileIcons) {
-  e.onclick = function(e) {
-      console.log("클릭");
-  }
-}
 
 reviewIcon.onclick = function(e) {
     console.log("클릭");
