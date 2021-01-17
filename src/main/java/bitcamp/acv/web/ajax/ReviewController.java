@@ -53,10 +53,6 @@ public class ReviewController {
         comment.setRdtFromNow(Calendar.YEAR - comment.getRegisteredDate().getYear() + "년 전");
       }
     }
-    
-    for (Comment comment : comments) {
-      System.out.println(comment.getRdtFromNow());
-    }
     model.addAttribute("view", comments);
   }
 

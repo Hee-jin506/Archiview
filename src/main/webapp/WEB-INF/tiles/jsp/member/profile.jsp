@@ -68,23 +68,23 @@
     </div>
     
     <div id="profile_icon">
-      <a href="${appRoot}/app/member/profile?no=${member.no}"> 
-        <img class=profile_icon  src="${appRoot}/profile_resource/review.png" height=30px class="center" alt="리뷰">
+      <a> 
+        <img class="profile_icon reviewIcon" data-no = "${member.no}" src="${appRoot}/profile_resource/review.png" height=30px class="center" alt="리뷰">
           <span class="profile_icon_text">리뷰</span>
           <span class="profile_icon_number"><c:out value="${member.numOfReviews}" ></c:out></span>
       </a>
-      <a href="${appRoot}/app/member/followerList?no=${member.no}"> 
-        <img class=profile_icon  src="${appRoot}/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
+      <a> 
+        <img class="profile_icon followerIcon" data-no = "${member.no}" src="${appRoot}/profile_resource/follower-border.png" height=30px class="center" alt="팔로워">
           <span class="profile_icon_text">팔로워</span> 
           <span class="profile_icon_number followerListSize">${followerListSize}</span>
       </a>
-      <a href="${appRoot}/app/member/followingList?no=${member.no}"> 
-        <img class=profile_icon  src="${appRoot}/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
+      <a> 
+        <img class="profile_icon followingIcon" data-no = "${member.no}" src="${appRoot}/profile_resource/following-border.png" height=30px class="center" alt="팔로잉">
           <span class="profile_icon_text">팔로잉</span> 
-          <span class="profile_icon_number"><c:out value="${followingListSize}" ></c:out></span>
+           <span class="profile_icon_number"><c:out value="${followingListSize}" ></c:out></span>
       </a>
-      <a href="${appRoot}/app/member/savedReviews?no=${member.no}"> 
-        <img class=profile_icon  src="${appRoot}/profile_resource/saved-border.png" height=30px class="center" alt="저장">
+      <a> 
+        <img class="profile_icon savedIcon" data-no = "${member.no}" src="${appRoot}/profile_resource/saved-border.png" height=30px class="center" alt="저장">
           <span class="profile_icon_text">저장</span> 
           <span class="profile_icon_number"><c:out value="${member.numOfSaved}" ></c:out></span>
       </a>
@@ -97,7 +97,7 @@
                 <img class='profile_bottom_review stillcut' data-no='${rv.no}' src="${appRoot}/main_resource/null.png">
               </c:when>
               <c:otherwise>
-               <img class='profile_bottom_review stillcut' data-no='${rv.no}'  src='${rv.stcUrl}'><br>
+               <img class='profile_bottom_review stillcut' data-no='${rv.no}'  src='${rv.stcUrl}'>
               </c:otherwise>
             </c:choose>
         </c:forEach>

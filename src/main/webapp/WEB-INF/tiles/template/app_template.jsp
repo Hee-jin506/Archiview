@@ -128,11 +128,14 @@ var moreButtons = document.querySelectorAll('.more');
 
 var menuContents = document.querySelectorAll('.dropdown-content1');
 
+
+
 var cards = document.querySelectorAll(".stillcut");
 var ReviewDetailModal = new bootstrap.Modal(document.getElementById('reveiwDetail'), {});
 var reviewDetail = document.querySelector("#reveiwDetail");
 var detailBody = reviewDetail.querySelector(".modal-body");
 var reviewNo;
+
 
 body.onscroll = function(e) {
     if(body.scrollTop >= 1850) {
@@ -152,7 +155,6 @@ body.onscroll = function(e) {
         
         var followButtons = document.querySelectorAll(".follow button");
         var modalUnfollowButtons = document.querySelectorAll(".unfollow");
-        
         
         for (var e of cards) {
         	  e.onclick = function(e) {
@@ -840,6 +842,166 @@ if (currentPath.includes("profile") ||
 	homeIcon.setAttribute("src", "${appRoot}/main_resource/home.png");
 	homeIcon.setAttribute("style", "height:20px;");
 }
+
+</script>
+
+
+<script type="text/javascript">
+/* 프로필화면 ajax */
+"use strict"
+
+var profileIcons = document.querySelectorAll('.profile_icon');
+
+var reviewIcon = document.querySelector(".reviewIcon");
+var savedIcon = document.querySelector(".savedIcon");
+var followingIcon = document.querySelector(".followingIcon");
+var followerIcon = document.querySelector(".followerIcon");
+
+var profileBottom = document.querySelector("#profile_bottom");
+
+for (var e of profileIcons) {
+  e.onclick = function(e) {
+      console.log("클릭");
+  }
+}
+
+reviewIcon.onclick = function(e) {
+    console.log("클릭");
+    
+    $.ajax({
+       
+       url : "/Archiview/app/ajax/member/ajaxMyReviews",
+       type : "get",
+       dataType : "html",
+       data: {
+         no : this.getAttribute("data-no")
+       },
+       
+       success : function(data) {
+         
+         profileBottom.innerHTML = data;
+         
+         for (var e of profileIcons) {
+           if(e.getAttribute("class").includes("savedIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/saved-border.png");
+           } else if(e.getAttribute("class").includes("reviewIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/review.png");
+           } else if(e.getAttribute("class").includes("followingIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/following-border.png");
+           } else {
+              e.setAttribute("src", "${appRoot}/profile_resource/follower-border.png");
+           }
+         }
+       },
+       
+       error : function(data) {
+       alert("에러가 발생하였습니다.")
+       }
+       });
+  }
+savedIcon.onclick = function(e) {
+    console.log("클릭");
+    
+    $.ajax({
+       
+       url : "/Archiview/app/ajax/member/ajaxSavedReviews",
+       type : "get",
+       dataType : "html",
+       data: {
+         no : this.getAttribute("data-no")
+       },
+       
+       success : function(data) {
+         
+         profileBottom.innerHTML = data;
+         
+         for (var e of profileIcons) {
+           if(e.getAttribute("class").includes("savedIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/saved.png");
+           } else if(e.getAttribute("class").includes("reviewIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/review-border.png");
+           } else if(e.getAttribute("class").includes("followingIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/following-border.png");
+           } else {
+              e.setAttribute("src", "${appRoot}/profile_resource/follower-border.png");
+           }
+         }
+       },
+       
+       error : function(data) {
+       alert("에러가 발생하였습니다.")
+       }
+       });
+  }
+followerIcon.onclick = function(e) {
+    console.log("클릭");
+    
+    $.ajax({
+       
+       url : "/Archiview/app/ajax/member/ajaxFollowerList",
+       type : "get",
+       dataType : "html",
+       data: {
+         no : this.getAttribute("data-no")
+       },
+       
+       success : function(data) {
+         
+         profileBottom.innerHTML = data;
+         
+         for (var e of profileIcons) {
+           if(e.getAttribute("class").includes("savedIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/saved-border.png");
+           } else if(e.getAttribute("class").includes("reviewIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/review-border.png");
+           } else if(e.getAttribute("class").includes("followingIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/following-border.png");
+           } else {
+              e.setAttribute("src", "${appRoot}/profile_resource/follower.png");
+           }
+         }
+       },
+       
+       error : function(data) {
+       alert("에러가 발생하였습니다.")
+       }
+       });
+  }
+followingIcon.onclick = function(e) {
+    console.log("클릭");
+    
+    $.ajax({
+       
+       url : "/Archiview/app/ajax/member/ajaxFollowingList",
+       type : "get",
+       dataType : "html",
+       data: {
+         no : this.getAttribute("data-no")
+       },
+       
+       success : function(data) {
+         
+         profileBottom.innerHTML = data;
+         
+         for (var e of profileIcons) {
+           if(e.getAttribute("class").includes("savedIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/saved-border.png");
+           } else if(e.getAttribute("class").includes("reviewIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/review-border.png");
+           } else if(e.getAttribute("class").includes("followingIcon")) {
+              e.setAttribute("src", "${appRoot}/profile_resource/following.png");
+           } else {
+              e.setAttribute("src", "${appRoot}/profile_resource/follower-border.png");
+           }
+         }
+       },
+       
+       error : function(data) {
+       alert("에러가 발생하였습니다.")
+       }
+       });
+  }
+
 
 </script>
 
