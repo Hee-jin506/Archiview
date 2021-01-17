@@ -126,5 +126,10 @@ if (currentPath.includes("profile") ||
 
 console.log(currentPath);
 </script>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 </body>
 </html>

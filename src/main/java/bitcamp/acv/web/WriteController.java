@@ -24,12 +24,12 @@ public class WriteController {
   @Autowired ReviewService reviewService;
 
   @RequestMapping("movieSearch")
-  public void movieSearch(HttpSession session, String keyword, Model model) throws Exception {
+  public void movieSearch(HttpSession session, String movieKeyword, Model model) throws Exception {
     // 탑바
     Member loginUser = (Member) session.getAttribute("loginUser");
     model.addAttribute("loginUser", loginUser);
 
-    List<Movie> movies = movieService.list(keyword);
+    List<Movie> movies = movieService.list(movieKeyword);
     model.addAttribute("movies", movies);
   }
 

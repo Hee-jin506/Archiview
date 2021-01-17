@@ -8,6 +8,8 @@
 <head>
   <meta charset="UTF-8">
   <title>아카이뷰</title>
+    <link href="${appRoot}/node_modules/jquery-ui-dist/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+  <link href="${appRoot}/node_modules/jquery-ui-dist/jquery-ui.theme.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="${appRoot}/css/reset.css">
   <link rel="stylesheet" href="${appRoot}/css/sidebar.css">
   <link rel="stylesheet" href="${appRoot}/css/footer.css">
@@ -35,8 +37,14 @@
 <tiles:insertAttribute name="body"/>
 <tiles:insertAttribute name="footer"/>
 </div>
-
+<script src="${appRoot}/node_modules/jquery/dist/jquery.min.js"></script>
   <script
     src="${appRoot}/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 </body>
+
 </html>

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<c:set var="appRoot" value="${pageContext.servletContext.contextPath}" />
 <!DOCTYPE html>
 <html>
   <head><title>영화 검색</title>
@@ -12,7 +14,6 @@
       margin: 0 auto;
       margin-top: 75px;
       background: #1B1B1B;
-      xpadding:70px;
       overflow: hidden;
       overflow-y: scroll;
       padding-bottom: 70px;
@@ -50,11 +51,10 @@
     margin-top: 50px;
     margin-left: 60px;
     margin-right: 60px;
-    xmargin-bottom: 60px;
     font-size : 21px;
     font-weight:bold;
     }
-    #movieSearchResult #movieSearchResult_keyword{
+    #movieSearchResult #movieSearchResult_movieKeyword{
     margin-left:12px;
     color:white;
     }
@@ -66,16 +66,15 @@
     margin-left: 10px;
     }
     #movieSearchResultPosters {
-    xmargin: 0 auto;
     margin-top: 34px;
     }
     #movieSearchResultPosters img{
         float: left;
         width: 176px;
         height: 251px;
-        xmargin-left: 20px;
         margin-right: 12px;
         margin-left: 12px;
+        margin-bottom: 24px;
     }
     
     </style>
@@ -86,8 +85,8 @@
         <div id='movieSearchForm'>
           <h1>리뷰를 작성할 영화를 찾아볼까요?</h1>
           <form>
-            <input class="archiview-movieSearch-form-control" type="text" name='keyword' 
-            placeholder="${param.keyword == null ? '제목, 감독, 배우로 검색' : param.keyword}">
+            <input class="archiview-movieSearch-form-control" type="text" name='movieKeyword' 
+            placeholder="${param.movieKeyword == null ? '제목, 감독, 배우로 검색' : param.movieKeyword}">
           </form>
           
           <div id='notNow'>
@@ -96,10 +95,10 @@
             </form>
           </div>
         </div>
-        <c:if test="${param.keyword != null}">
+        <c:if test="${param.movieKeyword != null}">
           <div id='movieSearchResult'>
-            <span id='movieSearchResult_keyword'>
-              '${param.keyword}'
+            <span id='movieSearchResult_movieKeyword'>
+              '${param.movieKeyword}'
             </span>
             <span id='movieSearchResult_affix'>
               검색 결과
@@ -112,7 +111,12 @@
             
             <c:forEach var="mv" items="${movies}">
               <a href='chooseStc?movieNo=${mv.no}'>
-               <img src='${mv.posters[0]}' alt='${mv.title}'>
+	              <c:if test="${fn:length(mv.posters) != 0}">
+	                <img src='${mv.posters[0]}' data-toggle="tooltip" data-placement=top title="${mv.title}">
+	              </c:if>
+	              <c:if test="${fn:length(mv.posters) == 0}">
+	                <img src="${appRoot}/upload/movie_image.jpg" data-toggle="tooltip" data-placement=top title="${mv.title}">
+	              </c:if>
               </a>
             </c:forEach>
             
