@@ -133,13 +133,6 @@ public class MemberController {
   
      // 바디
      model.addAttribute("member", memberService.get(no));
-     for (Review r : memberService.get(no).getReviews()) {
-       for(Tag t : r.getTags()) {
-         System.out.println(t.getNo());
-         System.out.println(t.getTitle());
-       }
-       
-     }
      model.addAttribute("followerListSize",followService.listMyFollowerList(no).size());
      model.addAttribute("followingListSize",followService.listMyFollowingList(no).size());
      model.addAttribute("isFollowedByLoginUser", isFollowedByLoginUser(loginUser.getNo(), no));

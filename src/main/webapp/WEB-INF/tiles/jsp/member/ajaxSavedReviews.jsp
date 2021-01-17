@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <c:set var="appRoot" value="${pageContext.servletContext.contextPath}" />
    
-<c:forEach items="${member.reviews}" var="rv"> 
+<c:forEach items="${member.saved}" var="rv"> 
             <c:choose>
               <c:when test="${empty rv.stcUrl}">
                 <div class='profile_stillcut'>
