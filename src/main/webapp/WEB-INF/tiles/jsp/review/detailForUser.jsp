@@ -64,9 +64,9 @@
          <div class="modal fade" id="unfollowModalForReviewDetailMember${review.writerNo}" 
          tabindex="-1" aria-hidden="true" >
             <div class="modal-dialog">
-              <div class="modal-content" style=
-	              "background-color: #141517;
-		             padding: 50px;">
+              <div class="modal-content" 
+                 style="background-color: #141517;
+		                    padding: 50px;">
                 <div class="modal-body">
                   <div class = "modal-body-image">
                    <img class="profile" src='${appRoot}/upload/${review.writerPhoto}_150x150.jpg'

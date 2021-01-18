@@ -110,6 +110,7 @@ menu1.onclick = function(e) {
         dataType: 'html',
         success: function(response) {
         	contents.innerHTML = response;
+        	history.pushState({"html":''}, '', 'profile');
         },
         fail: function(error) {
         	alert("에러가 발생하였습니다.")
@@ -131,6 +132,7 @@ menu2.onclick = function(e) {
         dataType: 'html',
         success: function(response) {
         	contents.innerHTML = response;
+        	history.pushState({"html":''}, '', 'passwordUpdate');
         },
         fail: function(error) {
         	alert("에러가 발생하였습니다.")
@@ -152,6 +154,7 @@ menu3.onclick = function(e) {
         dataType: 'html',
         success: function(response) {
         	contents.innerHTML = response;
+        	history.pushState({"html":''}, '', 'passwordHint');
         },
         fail: function(error) {
         	alert("에러가 발생하였습니다.")
@@ -173,6 +176,7 @@ menu4.onclick = function(e) {
         dataType: 'html',
         success: function(response) {
         	contents.innerHTML = response;
+        	history.pushState({"html":''}, '', 'withdraw');
         },
         fail: function(error) {
         	alert("에러가 발생하였습니다.")
