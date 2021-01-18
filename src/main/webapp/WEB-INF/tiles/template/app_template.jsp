@@ -698,14 +698,14 @@ for (var e of cards) {
 	};
 }
 	
-/* document.addEventListener('load', function (event) {
+document.addEventListener('load', function (event) {
 		console.log("${param.reviewNo}" != "");
 		if ("${param.reviewNo}" != "") {
 		console.log("실행!")
 		reviewNo = "${param.reviewNo}";
 		ReviewDetailModal.show();
 	}
-}); */
+});
 
 </script>
 

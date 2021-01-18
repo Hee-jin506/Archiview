@@ -114,17 +114,13 @@
       acv_mbr mb
       inner join acv_mbr_stat mbs on mb.stno = mbs.stno
       left outer join acv_rv rv on mb.mno = rv.mno
-      
       left outer join acv_tag_post tp on tp.rvno=rv.rvno
       left outer join acv_tag t on tp.tno=t.tno
       left outer join acv_stc stc on rv.stcno = stc.stcno
-      
       left outer join acv_save sv on mb.mno = sv.mno
       left outer join acv_rv rv2 on sv.rvno = rv2.rvno
-      
       left outer join acv_tag_post tp2 on tp2.rvno=rv2.rvno
       left outer join acv_tag t2 on tp2.tno=t2.tno
-      
       left outer join acv_stc stc2 on rv2.stcno = stc2.stcno
   </sql>
 
@@ -158,8 +154,8 @@
  <select id="findByNo" parameterType="int" resultMap="MemberMap">
   <include refid="sql1" />
   where
-  mb.mno = #{no}
-  order by rv.rdt desc
+  mb.mno = #{no} and rv.stat = 1 and rv2.stat = 1
+  order by rv.rdt desc, sv.sdt desc
  </select>
 
  <select id="findByEmailPassword" parameterType="map"
