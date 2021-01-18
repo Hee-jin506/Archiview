@@ -2,34 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="appRoot" value="${pageContext.servletContext.contextPath}"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>프로필편집</title>
-<style>
-</style>
-</head>
-
-<body style="background-color: #000000">
-
-<div id='box'>
-  <div class='menus'>
-    <div id='menu1'>
-      <a>프로필 변경</a>
-    </div>
-    <div id='menu2'>
-      <a>비밀번호 변경</a>
-    </div>
-    <div id='menu3'>
-      <a >비밀번호 힌트 변경</a>
-    </div>
-    <div id='menu4'>
-      <a >회원탈퇴</a>
-    </div>
-  </div>
-  
-  <div class='contents'>
     <form action='profileUpdate' method='post' enctype='multipart/form-data'>
         <input type='hidden' name='no' value='${member.no}'>
         <img id='profile-photo' src='${appRoot}/upload/${member.photo}_150x150.jpg' style="border-radius: 50px" width="60">
@@ -55,7 +27,3 @@
       </div> 
       <button id='next'>변경</button>
     </form>
-  </div>
-</div>
-</body>
-</html>

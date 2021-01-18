@@ -7,7 +7,7 @@
 <head><title>게시물 상세 조회</title></head>
 <body>
 <br>
-<a href='../report/add?no=<%=request.getParameter("no")%>'>신고</a>
+<a href='../report/add?no=${param.no}'>신고</a>
 <jsp:include page="../../admin/header.jsp"/>
 <h3>[게시물 상세 조회]</h3>
 게시물 번호: ${review.no}<br>

@@ -38,6 +38,9 @@
 <tiles:insertAttribute name="body"/>
 <tiles:insertAttribute name="footer"/>
 </div>
+
+<script src="${appRoot}/node_modules/jquery/dist/jquery.js"></script>
+  <script src="${appRoot}/node_modules/jquery-ui-dist/jquery-ui.js" type="text/javascript"></script>
 <script src="${appRoot}/node_modules/jquery/dist/jquery.min.js"></script>
   <script
     src="${appRoot}/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
@@ -82,6 +85,102 @@ if (currentPath.includes("profile") ||
 }
 
 </script>
-</body>
 
+<script>
+/* 설정화면 사이드메뉴 ajax */
+"use strict"
+
+
+var menu1 = document.querySelector("#menu1");
+var menu2 = document.querySelector("#menu2");
+var menu3 = document.querySelector("#menu3");
+var menu4 = document.querySelector("#menu4");
+
+var contents = document.querySelector('.contents');
+menu1.onclick = function(e) {
+    console.log("클릭");
+    
+    $.ajax({
+        
+        url: "/Archiview/app/ajax/option/ajaxProfile",
+        type: 'get',
+        data: {
+        }
+        ,
+        dataType: 'html',
+        success: function(response) {
+        	contents.innerHTML = response;
+        },
+        fail: function(error) {
+        	alert("에러가 발생하였습니다.")
+        },
+        always: function(response) {
+        }
+      });
+}
+menu2.onclick = function(e) {
+    console.log("클릭");
+    
+    $.ajax({
+        
+        url: "/Archiview/app/ajax/option/ajaxPasswordUpdate",
+        type: 'get',
+        data: {
+        }
+        ,
+        dataType: 'html',
+        success: function(response) {
+        	contents.innerHTML = response;
+        },
+        fail: function(error) {
+        	alert("에러가 발생하였습니다.")
+        },
+        always: function(response) {
+        }
+      });
+}
+menu3.onclick = function(e) {
+    console.log("클릭");
+    
+    $.ajax({
+        
+        url: "/Archiview/app/ajax/option/ajaxPasswordHint",
+        type: 'get',
+        data: {
+        }
+        ,
+        dataType: 'html',
+        success: function(response) {
+        	contents.innerHTML = response;
+        },
+        fail: function(error) {
+        	alert("에러가 발생하였습니다.")
+        },
+        always: function(response) {
+        }
+      });
+}
+menu4.onclick = function(e) {
+    console.log("클릭");
+    
+    $.ajax({
+        
+        url: "/Archiview/app/ajax/option/ajaxWithdraw",
+        type: 'get',
+        data: {
+        }
+        ,
+        dataType: 'html',
+        success: function(response) {
+        	contents.innerHTML = response;
+        },
+        fail: function(error) {
+        	alert("에러가 발생하였습니다.")
+        },
+        always: function(response) {
+        }
+      });
+}
+</script>
+</body>
 </html>
