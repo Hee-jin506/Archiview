@@ -1044,6 +1044,95 @@ for(var e of profileIcons) {
 		         var reviewDetail = document.querySelector("#reveiwDetail");
 		         var detailBody = reviewDetail.querySelector(".modal-body");
 		         var reviewNo;
+		         
+		         var followButtons = document.querySelectorAll(".follow button");
+		         var modalUnfollowButtons = document.querySelectorAll(".unfollow");
+
+		         for (var e of followButtons) {
+		            
+		              e.addEventListener("mouseover", function(e) {
+		                if (this.getAttribute("follow") == "following") {
+		                      this.setAttribute("data-bs-toggle", "modal");
+		                      this.setAttribute("data-bs-target", "#unfollowModal"
+		                              +this.getAttribute("target-type")
+		                              +this.getAttribute("target-no"));
+		                }
+		              });
+		              e.addEventListener("mouseout", function(e) {
+		                    this.setAttribute("data-bs-toggle", " ");
+		                    this.setAttribute("data-bs-target", " ");
+		              });
+		            
+		            
+		              e.addEventListener("click", function(e) {
+		                   if (this.getAttribute("follow") == "notFollowing") {
+		                      
+		                      this.setAttribute("follow", "following");
+		                      this.setAttribute("class", "btn btn-twitter");
+		                      this.setAttribute("data-bs-toggle", "modal");
+		                      this.setAttribute("data-bs-target", "#unfollowModal"
+		                          +this.getAttribute("target-type")
+		                          +this.getAttribute("target-no"));
+		                      
+		                      $.ajax({
+		                      
+		                          url: this.getAttribute("target-type")=="Member" ? 
+		                                    "${appRoot}/app/follow/addUser" :
+		                                        "${appRoot}/app/follow/addTag",
+		                          type: 'get',
+		                          data: {
+		                            followedNo: this.getAttribute("target-no")
+		                          }
+		                          ,
+		                          dataType: 'html',
+		                          success: function(response) {
+		                          },
+		                          fail: function(error) {
+		                          },
+		                          always: function(response) {
+		                          }
+		                        });
+		                    }
+		                });
+		          }
+
+		          for (var e of modalUnfollowButtons) {
+		            e.addEventListener("click", function(e) {
+		              for (var f of followButtons) {
+		                     console.log(f.getAttribute("target-no"));
+		                      console.log(f.getAttribute("target-type"));
+		                if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
+		                     this.getAttribute("target-type") == f.getAttribute("target-type")) {
+		                  console.log(this.getAttribute("target-no"));
+		                  console.log(this.getAttribute("target-type"));
+		                  console.log(f.getAttribute("target-no"));
+		                  console.log(f.getAttribute("target-type"));
+		                    f.setAttribute("follow", "notFollowing");
+		                    f.setAttribute("class", "btn btn-archiview");
+		                  
+		                    $.ajax({
+		                          
+		                            url: this.getAttribute("target-type")=="Member" ? 
+		                                      "${appRoot}/app/follow/deleteUser" :
+		                                          "${appRoot}/app/follow/deleteTag",
+		                            type: 'get',
+		                            data: {
+		                              followedNo: this.getAttribute("target-no")
+		                            }
+		                            ,
+		                            dataType: 'html',
+		                            success: function(response) {
+		                            },
+		                            fail: function(error) {
+		                            },
+		                            always: function(response) {
+		                            }
+		                          });
+		                    
+		                }
+		              }
+		            });
+		          }
 
 		         for (var e of cards) {
 		            e.onclick = function(e) {
@@ -1064,8 +1153,7 @@ for(var e of profileIcons) {
 		                success: function(data) {
 		                  detailBody.innerHTML = data;
 		                  
-		                  var followButtons = document.querySelectorAll(".follow button");
-		                    var modalUnfollowButtons = document.querySelectorAll(".unfollow");
+
 		                    var saveButtons = document.querySelectorAll(".save img");
 		                      
 		                      for (var e of saveButtons) {
@@ -1122,14 +1210,15 @@ for(var e of profileIcons) {
 		                                    }
 		                           });
 		                     }
-		                      
+		                      var followButtons = document.querySelectorAll(".follow button");
+		                      var modalUnfollowButtons = document.querySelectorAll(".unfollow");
+
 		                      for (var e of followButtons) {
 		                         
 		                           e.addEventListener("mouseover", function(e) {
 		                             if (this.getAttribute("follow") == "following") {
 		                                   this.setAttribute("data-bs-toggle", "modal");
 		                                   this.setAttribute("data-bs-target", "#unfollowModal"
-		                                       +"ForReviewDetail"
 		                                           +this.getAttribute("target-type")
 		                                           +this.getAttribute("target-no"));
 		                             }
@@ -1148,7 +1237,6 @@ for(var e of profileIcons) {
 		                                   this.setAttribute("data-bs-toggle", "modal");
 		                                   this.setAttribute("data-bs-target", "#unfollowModal"
 		                                       +this.getAttribute("target-type")
-		                                       +"ForReviewDetail"
 		                                       +this.getAttribute("target-no"));
 		                                   
 		                                   $.ajax({
@@ -1173,43 +1261,43 @@ for(var e of profileIcons) {
 		                             });
 		                       }
 
-		                      for (var e of modalUnfollowButtons) {
-		                        e.addEventListener("click", function(e) {
-		                          for (var f of followButtons) {
-		                                 console.log(f.getAttribute("target-no"));
-		                                  console.log(f.getAttribute("target-type"));
-		                            if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
-		                                 this.getAttribute("target-type") == f.getAttribute("target-type")) {
-		                              console.log(this.getAttribute("target-no"));
-		                              console.log(this.getAttribute("target-type"));
-		                              console.log(f.getAttribute("target-no"));
-		                              console.log(f.getAttribute("target-type"));
-		                                f.setAttribute("follow", "notFollowing");
-		                                f.setAttribute("class", "btn btn-archiview");
-		                              
-		                                $.ajax({
-		                                      
-		                                        url: this.getAttribute("target-type")=="Member" ? 
-		                                                  "${appRoot}/app/follow/deleteUser" :
-		                                                      "${appRoot}/app/follow/deleteTag",
-		                                        type: 'get',
-		                                        data: {
-		                                          followedNo: this.getAttribute("target-no")
-		                                        }
-		                                        ,
-		                                        dataType: 'html',
-		                                        success: function(response) {
-		                                        },
-		                                        fail: function(error) {
-		                                        },
-		                                        always: function(response) {
-		                                        }
-		                                      });
-		                                
-		                            }
-		                          }
-		                        });
-		                      }
+		                       for (var e of modalUnfollowButtons) {
+		                         e.addEventListener("click", function(e) {
+		                           for (var f of followButtons) {
+		                                  console.log(f.getAttribute("target-no"));
+		                                   console.log(f.getAttribute("target-type"));
+		                             if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
+		                                  this.getAttribute("target-type") == f.getAttribute("target-type")) {
+		                               console.log(this.getAttribute("target-no"));
+		                               console.log(this.getAttribute("target-type"));
+		                               console.log(f.getAttribute("target-no"));
+		                               console.log(f.getAttribute("target-type"));
+		                                 f.setAttribute("follow", "notFollowing");
+		                                 f.setAttribute("class", "btn btn-archiview");
+		                               
+		                                 $.ajax({
+		                                       
+		                                         url: this.getAttribute("target-type")=="Member" ? 
+		                                                   "${appRoot}/app/follow/deleteUser" :
+		                                                       "${appRoot}/app/follow/deleteTag",
+		                                         type: 'get',
+		                                         data: {
+		                                           followedNo: this.getAttribute("target-no")
+		                                         }
+		                                         ,
+		                                         dataType: 'html',
+		                                         success: function(response) {
+		                                         },
+		                                         fail: function(error) {
+		                                         },
+		                                         always: function(response) {
+		                                         }
+		                                       });
+		                                 
+		                             }
+		                           }
+		                         });
+		                       }
 		                },
 		                fail: function(error) {
 		                  alert("에러가 발생하였습니다.")
