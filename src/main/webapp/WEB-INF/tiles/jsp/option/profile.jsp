@@ -14,17 +14,17 @@
 <body style="background-color: #000000">
 
 <div id='box'>
-  <div class='menus'>
-    <div id='menu1'>
+  <div class='sideMenu'>
+    <div id='menu1' class='sideMenu_row'>
       <a>프로필 변경</a>
     </div>
-    <div id='menu2'>
+    <div id='menu2' class='sideMenu_row'>
       <a>비밀번호 변경</a>
     </div>
-    <div id='menu3'>
+    <div id='menu3' class='sideMenu_row'>
       <a >비밀번호 힌트 변경</a>
     </div>
-    <div id='menu4'>
+    <div id='menu4' class='sideMenu_row'>
       <a >회원탈퇴</a>
     </div>
   </div>

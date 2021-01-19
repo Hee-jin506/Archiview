@@ -91,99 +91,56 @@ if (currentPath.includes("profile") ||
 "use strict"
 
 
+var sideMenuRows = document.querySelectorAll(".sideMenu_row");
 var menu1 = document.querySelector("#menu1");
 var menu2 = document.querySelector("#menu2");
 var menu3 = document.querySelector("#menu3");
 var menu4 = document.querySelector("#menu4");
-
 var contents = document.querySelector('.contents');
-menu1.onclick = function(e) {
-    console.log("클릭");
-    
-    $.ajax({
-        
-        url: "/Archiview/app/ajax/option/ajaxProfile",
-        type: 'get',
-        data: {
-        }
-        ,
-        dataType: 'html',
-        success: function(response) {
-        	contents.innerHTML = response;
-        	history.pushState({"html":''}, '', 'profile');
-        },
-        fail: function(error) {
-        	alert("에러가 발생하였습니다.")
-        },
-        always: function(response) {
-        }
-      });
-}
-menu2.onclick = function(e) {
-    console.log("클릭");
-    
-    $.ajax({
-        
-        url: "/Archiview/app/ajax/option/ajaxPasswordUpdate",
-        type: 'get',
-        data: {
-        }
-        ,
-        dataType: 'html',
-        success: function(response) {
-        	contents.innerHTML = response;
-        	history.pushState({"html":''}, '', 'passwordUpdate');
-        },
-        fail: function(error) {
-        	alert("에러가 발생하였습니다.")
-        },
-        always: function(response) {
-        }
-      });
-}
-menu3.onclick = function(e) {
-    console.log("클릭");
-    
-    $.ajax({
-        
-        url: "/Archiview/app/ajax/option/ajaxPasswordHint",
-        type: 'get',
-        data: {
-        }
-        ,
-        dataType: 'html',
-        success: function(response) {
-        	contents.innerHTML = response;
-        	history.pushState({"html":''}, '', 'passwordHint');
-        },
-        fail: function(error) {
-        	alert("에러가 발생하였습니다.")
-        },
-        always: function(response) {
-        }
-      });
-}
-menu4.onclick = function(e) {
-    console.log("클릭");
-    
-    $.ajax({
-        
-        url: "/Archiview/app/ajax/option/ajaxWithdraw",
-        type: 'get',
-        data: {
-        }
-        ,
-        dataType: 'html',
-        success: function(response) {
-        	contents.innerHTML = response;
-        	history.pushState({"html":''}, '', 'withdraw');
-        },
-        fail: function(error) {
-        	alert("에러가 발생하였습니다.")
-        },
-        always: function(response) {
-        }
-      });
+
+for (var e of sideMenuRows) {
+	e.onclick =function(e) {
+	    var ajaxUrl;
+	    var pushStateUrl;
+	    
+	    switch (this.getAttribute('id')) {
+	      case 'menu1':
+	    	  ajaxUrl = "/Archiview/app/ajax/option/ajaxProfile";
+	    	  pushStateUrl = 'profile';
+	        break;
+	      case 'menu2':
+	    	  ajaxUrl = "/Archiview/app/ajax/option/ajaxPasswordUpdate";
+	    	  pushStateUrl = 'passwordUpdate';
+	        break;
+	      case 'menu3':
+	    	  ajaxUrl = "/Archiview/app/ajax/option/ajaxPasswordHint";
+	    	  pushStateUrl = 'passwordHint';
+	        break;
+	      case 'menu4':
+	    	  ajaxUrl = "/Archiview/app/ajax/option/ajaxWithdraw";
+	    	  pushStateUrl = 'withdraw';
+	        break;
+	    }
+	    
+	    $.ajax({
+	        
+	        url: ajaxUrl,
+	        type: 'get',
+	        data: {
+	        }
+	        ,
+	        dataType: 'html',
+	        success: function(response) {
+	            contents.innerHTML = response;
+	            history.pushState({"html":''}, '', pushStateUrl);
+	          },
+	          fail: function(error) {
+	            alert("에러가 발생하였습니다.")
+	          },
+	          always: function(response) {
+	          }
+	        });
+	}
 }
 </script>
 </body>
