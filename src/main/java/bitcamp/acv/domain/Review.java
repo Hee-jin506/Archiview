@@ -18,7 +18,6 @@ public class Review {
   private Timestamp registeredDate;
   private Date modifiedDate;
   private boolean status;
-  private int statuss;
   private String statusName;
   private List<Tag> tags;
   private String movieTitle;
@@ -167,11 +166,5 @@ public class Review {
   }
   public void setIsSaving(int isSaving) {
     this.isSaving = isSaving;
-  }
-  public int getStatuss() {
-    return statuss;
-  }
-  public void setStatuss(int statuss) {
-    this.statuss = statuss;
   }
 }
