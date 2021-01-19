@@ -1214,52 +1214,52 @@ for(var e of profileIcons) {
 		                      var modalUnfollowButtons = document.querySelectorAll(".unfollow");
 
 		                      for (var e of followButtons) {
-		                         
-		                           e.addEventListener("mouseover", function(e) {
-		                             if (this.getAttribute("follow") == "following") {
-		                                   this.setAttribute("data-bs-toggle", "modal");
-		                                   this.setAttribute("data-bs-target", "#unfollowModal"
-		                                           +this.getAttribute("target-type")
-		                                           +this.getAttribute("target-no"));
-		                             }
-		                           });
-		                           e.addEventListener("mouseout", function(e) {
-		                                 this.setAttribute("data-bs-toggle", " ");
-		                                 this.setAttribute("data-bs-target", " ");
-		                           });
-		                         
-		                         
-		                           e.addEventListener("click", function(e) {
-		                                if (this.getAttribute("follow") == "notFollowing") {
-		                                   
-		                                   this.setAttribute("follow", "following");
-		                                   this.setAttribute("class", "btn btn-twitter");
-		                                   this.setAttribute("data-bs-toggle", "modal");
-		                                   this.setAttribute("data-bs-target", "#unfollowModal"
-		                                       +this.getAttribute("target-type")
-		                                       +this.getAttribute("target-no"));
-		                                   
-		                                   $.ajax({
-		                                   
-		                                       url: this.getAttribute("target-type")=="Member" ? 
-		                                                 "${appRoot}/app/follow/addUser" :
-		                                                     "${appRoot}/app/follow/addTag",
-		                                       type: 'get',
-		                                       data: {
-		                                         followedNo: this.getAttribute("target-no")
-		                                       }
-		                                       ,
-		                                       dataType: 'html',
-		                                       success: function(response) {
-		                                       },
-		                                       fail: function(error) {
-		                                       },
-		                                       always: function(response) {
-		                                       }
-		                                     });
-		                                 }
-		                             });
-		                       }
+		                          
+		                          e.addEventListener("mouseover", function(e) {
+		                            if (this.getAttribute("follow") == "following") {
+		                                  this.setAttribute("data-bs-toggle", "modal");
+		                                  this.setAttribute("data-bs-target", "#unfollowModal"
+		                                          +this.getAttribute("target-type")
+		                                          +this.getAttribute("target-no"));
+		                            }
+		                          });
+		                          e.addEventListener("mouseout", function(e) {
+		                                this.setAttribute("data-bs-toggle", " ");
+		                                this.setAttribute("data-bs-target", " ");
+		                          });
+		                        
+		                        
+		                          e.addEventListener("click", function(e) {
+		                               if (this.getAttribute("follow") == "notFollowing") {
+		                                  
+		                                  this.setAttribute("follow", "following");
+		                                  this.setAttribute("class", "btn btn-twitter");
+		                                  this.setAttribute("data-bs-toggle", "modal");
+		                                  this.setAttribute("data-bs-target", "#unfollowModal"
+		                                      +this.getAttribute("target-type")
+		                                      +this.getAttribute("target-no"));
+		                                  
+		                                  $.ajax({
+		                                  
+		                                      url: this.getAttribute("target-type")=="Member" ? 
+		                                                "${appRoot}/app/follow/addUser" :
+		                                                    "${appRoot}/app/follow/addTag",
+		                                      type: 'get',
+		                                      data: {
+		                                        followedNo: this.getAttribute("target-no")
+		                                      }
+		                                      ,
+		                                      dataType: 'html',
+		                                      success: function(response) {
+		                                      },
+		                                      fail: function(error) {
+		                                      },
+		                                      always: function(response) {
+		                                      }
+		                                    });
+		                                }
+		                            });
+		                      }
 
 		                       for (var e of modalUnfollowButtons) {
 		                         e.addEventListener("click", function(e) {

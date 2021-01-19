@@ -1,10 +1,13 @@
-package bitcamp.acv.service.impl;
+  package bitcamp.acv.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import bitcamp.acv.dao.MemberDao;
 import bitcamp.acv.domain.Member;
+import bitcamp.acv.domain.Review;
 import bitcamp.acv.service.MemberService;
 
 @Service
@@ -24,7 +27,17 @@ public class DefaultMemberService implements MemberService {
 
   @Override
   public Member get(int no) throws Exception {
-    return memberDao.findByNo(no);
+    Member member = memberDao.findByNo(no);
+     
+    Iterator<Review> iter = member.getSaved().iterator();
+    while (iter.hasNext()) {
+       if(!iter.next().isStatus()) {
+         iter.remove(); 
+         }
+    }
+    
+
+    return member;
   }
 
   @Override

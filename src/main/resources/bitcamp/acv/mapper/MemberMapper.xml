@@ -25,10 +25,8 @@
     <collection property="reviews"    ofType="review">
          <result column="rvno"        property="no"/>
          <result column="txt"        property="text"/>
-         
          <result column="txt_x"      property="textX"/>
          <result column="txt_y"      property="textY"/>
-         
          <result column="stc_url"        property="stcUrl"/>
          
 	    <collection property="tags" ofType="tag">
@@ -40,12 +38,11 @@
     
     <collection property="saved"    ofType="review">
          <result column="sv_rvno"        property="no"/>
-         
          <result column="sv_txt"        property="text"/>
          <result column="sv_txt_x"      property="textX"/>
          <result column="sv_txt_y"      property="textY"/>
-         
          <result column="stc2_stcUrl"        property="stcUrl"/>
+         <result column="stat"        property="status"/>
          
       <collection property="tags" ofType="tag">
             <id column="sv_tno"          property="no"/>
@@ -152,9 +149,60 @@
  </insert>
 
  <select id="findByNo" parameterType="int" resultMap="MemberMap">
-  <include refid="sql1" />
+  select 
+      mb.mno,
+      mb.auth,
+      mb.name,
+      mb.ltno,
+      mb.email,
+      mb.pw,
+      mb.nick,
+      mb.photo,
+      mb.intro,
+      mb.qno,
+      mb.pw_hint_a,               
+      mb.rdt,
+      mb.stno,
+      mb.stat_mdt,
+      mbs.title stat_title,
+      mb.stat_mdt,
+      rv.rvno,
+      rv.txt,
+      rv.txt_x,
+      rv.txt_y,
+      rv.rdt,
+      t.tno,
+      t.title t_title,
+      stc.stc_url,
+      sv.mno sv_mno,
+      sv.rvno sv_rvno,
+      rv2.rvno rv2_rvno,
+      rv2.txt sv_txt,
+      rv2.txt_x sv_txt_x,
+      rv2.txt_y sv_txt_y,
+      rv2.stat,
+      t2.tno sv_tno,
+      t2.title sv_t_title,
+      stc2.stcno stc2_stcno,
+      stc2.stc_url stc2_stcUrl
+    from 
+      acv_mbr mb
+      inner join acv_mbr_stat mbs on mb.stno = mbs.stno
+      left outer join 
+        (select rvno, mno, txt, txt_x, txt_y, rdt, stcno from acv_rv where stat=1) rv
+        on mb.mno = rv.mno
+      left outer join acv_tag_post tp on tp.rvno=rv.rvno
+      left outer join acv_tag t on tp.tno=t.tno
+      left outer join acv_stc stc on rv.stcno = stc.stcno
+      left outer join acv_save sv on mb.mno = sv.mno
+      left outer join 
+        (select rvno, mno, txt, txt_x, txt_y, rdt, stcno, stat from acv_rv) rv2
+        on sv.rvno = rv2.rvno
+      left outer join acv_tag_post tp2 on tp2.rvno=rv2.rvno
+      left outer join acv_tag t2 on tp2.tno=t2.tno
+      left outer join acv_stc stc2 on rv2.stcno = stc2.stcno
   where
-  mb.mno = #{no} and rv.stat = 1 and rv2.stat = 1
+  mb.mno = #{no}
   order by rv.rdt desc, sv.sdt desc
  </select>
 
@@ -257,3 +305,8 @@
     on lk.mno=mb.mno; 
  </select>
 </mapper>
+
+
+
+
+  

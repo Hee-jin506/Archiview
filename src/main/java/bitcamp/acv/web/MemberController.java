@@ -121,7 +121,6 @@ public class MemberController {
   //프로필 화면(프로필 + 본인이 작성한 리뷰들이 나옴)
    @RequestMapping("profile")
    public void profile(int no, HttpSession session, Model model) throws Exception {
-  
      // 탑바
      Member loginUser = (Member) session.getAttribute("loginUser");
      model.addAttribute("loginUser", loginUser);
@@ -133,6 +132,7 @@ public class MemberController {
   
      // 바디
      model.addAttribute("member", memberService.get(no));
+     System.out.println(memberService.get(no));
      model.addAttribute("followerListSize",followService.listMyFollowerList(no).size());
      model.addAttribute("followingListSize",followService.listMyFollowingList(no).size());
      model.addAttribute("isFollowedByLoginUser", isFollowedByLoginUser(loginUser.getNo(), no));
