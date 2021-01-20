@@ -33,7 +33,7 @@
 	        
 	        <c:when test="${member.no!=sessionScope.loginUser.no}">
 		         <button 
-			         class='${isFollowedByLoginUser==true ? "btn btn-twitter" : "btn btn-archiview"}'
+			         class='firstButton ${isFollowedByLoginUser==true ? "btn btn-twitter" : "btn btn-archiview"}'
 
 			         target-no='${member.no}'
 			         target-type='${member.getClass().simpleName}'
@@ -55,7 +55,7 @@
 					      </div>
 					       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아뇨</button>
                   <button type="button" 
-                  class="btn btn-primary unfollow" 
+                  class="btn btn-archiview unfollow" 
                   data-bs-dismiss="modal" 
                   target-no='${member.no}'
                   target-type='${member.getClass().simpleName}'>네</button>

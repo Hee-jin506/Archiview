@@ -5,8 +5,8 @@
 
 <c:if test="${empty member.reviews}">
          <div id = "profile_bottom_null">
-         <a href='${appRoot}/app/write/movieSearch'>
-              <img alt="add-one" src="${appRoot}/profile_resource/add-one.png"
+         <a  href='${appRoot}/app/write/movieSearch'>
+              <img alt="add-one" class='add-one' src="${appRoot}/profile_resource/add-one.png"
               data-toggle="tooltip" data-placement=top title="${member.nickName}님, 첫 리뷰를 작성해 볼까요?" >
          </a>
          </div>

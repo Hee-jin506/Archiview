@@ -22,7 +22,7 @@
 	        </c:when>
 	        <c:when test="${r.writerNick!=sessionScope.loginUser.nickName}">
 	           <button 
-	             class='${r.isFollowing != 0 ? "btn btn-twitter" : "btn btn-archiview"}'
+	             class='firstButton ${r.isFollowing != 0 ? "btn btn-twitter" : "btn btn-archiview"}'
 	             target-no='${r.writerNo}'
 	             target-type='Member'
 	             follow='${r.isFollowing != 0  ? "following" : "notFollowing"}'>
@@ -44,7 +44,7 @@
                 </div>
                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아뇨</button>
                   <button type="button" 
-                  class="btn btn-primary unfollow" 
+                  class="btn btn-archiview unfollow" 
                   data-bs-dismiss="modal" 
                   target-no='${r.writerNo}'
                   target-type='Member'>네</button>

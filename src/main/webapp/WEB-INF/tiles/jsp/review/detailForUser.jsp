@@ -52,7 +52,7 @@
           </c:when>
           <c:when test="${review.writerNick!=sessionScope.loginUser.nickName}">
              <button 
-               class='${review.isFollowing != 0 ? "btn btn-twitter" : "btn btn-archiview"}'
+               class='firstButton ${review.isFollowing != 0 ? "btn btn-twitter" : "btn btn-archiview"}'
                target-no='${review.writerNo}'
                target-type='Member'
                follow='${review.isFollowing != 0  ? "following" : "notFollowing"}'>
@@ -79,7 +79,7 @@
                     data-bs-dismiss="modal">아뇨
                  </button>
                   <button type="button" 
-                  class="btn btn-primary unfollow" 
+                  class="btn btn-archiview unfollow" 
                   data-bs-dismiss="modal" 
                   target-no='${review.writerNo}'
                   target-type='Member'>네

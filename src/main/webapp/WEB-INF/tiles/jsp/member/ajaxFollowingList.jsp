@@ -39,7 +39,7 @@
             
             <div class="follow">
                    <button 
-                     class='${t.followingState==true ? "btn btn-twitter" : "btn btn-archiview"}'
+                     class='firstButton ${t.followingState==true ? "btn btn-twitter" : "btn btn-archiview"}'
                      target-no='${t.no}'
                      target-type='${t.getClass().simpleName}'
                      follow='${t.followingState==true ? "following" : "notFollowing"}'>
@@ -58,7 +58,7 @@
                     </div>
                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아뇨</button>
                       <button type="button" 
-                      class="btn btn-primary unfollow" 
+                      class="btn btn-archiview unfollow" 
                       data-bs-dismiss="modal" 
                       target-no='${t.no}'
                       target-type='${t.getClass().simpleName}'}>네</button>
@@ -97,7 +97,7 @@
                 
                 <c:when test="${m.no!=sessionScope.loginUser.no}">
                    <button 
-                     class='${m.followingState==true ? "btn btn-twitter" : "btn btn-archiview"}'
+                     class='firstButton ${m.followingState==true ? "btn btn-twitter" : "btn btn-archiview"}'
                      target-no='${m.no}'
                      target-type='${m.getClass().simpleName}'
                      follow='${m.followingState==true ? "following" : "notFollowing"}'>
@@ -120,7 +120,7 @@
                     </div>
                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아뇨</button>
                       <button type="button" 
-                      class="btn btn-primary unfollow" 
+                      class="btn btn-archiview unfollow" 
                       data-bs-dismiss="modal" 
                       target-no='${m.no}'
                       target-type='${m.getClass().simpleName}'}>네</button>
