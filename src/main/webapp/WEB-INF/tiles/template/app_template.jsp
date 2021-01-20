@@ -176,63 +176,46 @@ body.onscroll = function(e) {
                     success: function(data) {
                       detailBody.innerHTML = data;
                       
-                        var saveButtons = document.querySelectorAll(".save img");
-                          
+                      var saveButtons = document.querySelectorAll(".save img");
+                      for (var e of saveButtons) {
+                         e.addEventListener("click", function(e) {
+                           
+                           var ajaxUrl;
+                           var imgSrc;
+                           
+                           switch (this.getAttribute('save')) {
+                             case 'saving':
+                               this.setAttribute("save", "notSaving");
+                               ajaxUrl = "${appRoot}/app/save/delete";
+                               imgSrc = "${appRoot}/main_resource/saved-outline.png";
+                               break;
+                             default :
+                               this.setAttribute("save", "saving");
+                               ajaxUrl = "${appRoot}/app/save/add";
+                               imgSrc = "${appRoot}/main_resource/saved.png";
+                           }
+                           
+                           $.ajax({
+                                 
+                                 url:  ajaxUrl,
+                                 type: 'get',
+                                 context: this,
+                                 data: {
+                                   savedNo: this.getAttribute("data-no")
+                                 }
+                                 ,
+                                 dataType: 'html',
+                                 success: function(response) {
+                                   this.setAttribute("src", imgSrc);
+                                 },
+                                 fail: function(error) {
+                                 },
+                                 always: function(response) {
+                                 }
+                               });
+                           });
+                     }                          
                        
-                          for (var e of saveButtons) {
-                            
-                             e.addEventListener("mouseover", function(e) {
-                                   this.setAttribute("src", "${appRoot}/main_resource/saved.png");
-                                 });
-                               e.addEventListener("mouseout", function(e) {
-                                   if (this.getAttribute("save") == "notSaving") {
-                                         this.setAttribute("src", "${appRoot}/main_resource/saved-outline.png");
-                                   } else {
-                                     this.setAttribute("src", "${appRoot}/main_resource/saved.png");
-                                   }
-                               });
-                             e.addEventListener("click", function(e) {
-                                if (this.getAttribute("save") == "saving") {
-                                          this.setAttribute("save", "notSaving");
-                                          $.ajax({
-                                                
-                                                url:  
-                                                          "${appRoot}/app/save/delete",
-                                                type: 'get',
-                                                data: {
-                                                  savedNo: this.getAttribute("data-no")
-                                                }
-                                                ,
-                                                dataType: 'html',
-                                                success: function(response) {
-                                                },
-                                                fail: function(error) {
-                                                },
-                                                always: function(response) {
-                                                }
-                                              });
-                                        } else {
-                                          this.setAttribute("save", "saving");
-                                          $.ajax({
-                                                
-                                                url:  
-                                                          "${appRoot}/app/save/add",
-                                                type: 'get',
-                                                data: {
-                                                  savedNo: this.getAttribute("data-no")
-                                                }
-                                                ,
-                                                dataType: 'html',
-                                                success: function(response) {
-                                                },
-                                                fail: function(error) {
-                                                },
-                                                always: function(response) {
-                                                }
-                                              });
-                                        }
-                               });
-                         }
                           var followButtons = document.querySelectorAll(".follow .firstButton");
                           var modalUnfollowButtons = document.querySelectorAll(".unfollow");
 
@@ -563,59 +546,42 @@ for (var e of cards) {
     	  detailBody.innerHTML = data;
     	  
           var saveButtons = document.querySelectorAll(".save img");
-          
             for (var e of saveButtons) {
-              
-               e.addEventListener("mouseover", function(e) {
-                     this.setAttribute("src", "${appRoot}/main_resource/saved.png");
-                   });
-                 e.addEventListener("mouseout", function(e) {
-                     if (this.getAttribute("save") == "notSaving") {
-                           this.setAttribute("src", "${appRoot}/main_resource/saved-outline.png");
-                     } else {
-                       this.setAttribute("src", "${appRoot}/main_resource/saved.png");
-                     }
-                 });
                e.addEventListener("click", function(e) {
-                  if (this.getAttribute("save") == "saving") {
-                            this.setAttribute("save", "notSaving");
-                            $.ajax({
-                                  
-                                  url:  
-                                            "${appRoot}/app/save/delete",
-                                  type: 'get',
-                                  data: {
-                                    savedNo: this.getAttribute("data-no")
-                                  }
-                                  ,
-                                  dataType: 'html',
-                                  success: function(response) {
-                                  },
-                                  fail: function(error) {
-                                  },
-                                  always: function(response) {
-                                  }
-                                });
-                          } else {
-                            this.setAttribute("save", "saving");
-                            $.ajax({
-                                  
-                                  url:  
-                                            "${appRoot}/app/save/add",
-                                  type: 'get',
-                                  data: {
-                                    savedNo: this.getAttribute("data-no")
-                                  }
-                                  ,
-                                  dataType: 'html',
-                                  success: function(response) {
-                                  },
-                                  fail: function(error) {
-                                  },
-                                  always: function(response) {
-                                  }
-                                });
-                          }
+            	   
+            	   var ajaxUrl;
+            	   var imgSrc;
+            	   
+            	   switch (this.getAttribute('save')) {
+                   case 'saving':
+                	   this.setAttribute("save", "notSaving");
+                     ajaxUrl = "${appRoot}/app/save/delete";
+                     imgSrc = "${appRoot}/main_resource/saved-outline.png";
+                     break;
+                   default :
+                	   this.setAttribute("save", "saving");
+                     ajaxUrl = "${appRoot}/app/save/add";
+                     imgSrc = "${appRoot}/main_resource/saved.png";
+                 }
+            	   
+            	   $.ajax({
+                       
+                       url:  ajaxUrl,
+                       type: 'get',
+                       context: this,
+                       data: {
+                         savedNo: this.getAttribute("data-no")
+                       }
+                       ,
+                       dataType: 'html',
+                       success: function(response) {
+                         this.setAttribute("src", imgSrc);
+                       },
+                       fail: function(error) {
+                       },
+                       always: function(response) {
+                       }
+                     });
                  });
            }
             
@@ -1046,7 +1012,7 @@ for(var e of profileIcons) {
 		       },
 		       
 		       success : function(data) {
-/* 		    	   $(document).on('show.bs.modal', '.modal', function () {
+  	   /* $(document).on('show.bs.modal', '.modal', function () {
 		    		   console.log('asdfad');
 		    		    var zIndex = 1040 + (10 * $('.modal:visible').length);
 		    		    $(this).css('z-index', zIndex);
@@ -1095,98 +1061,98 @@ for(var e of profileIcons) {
 	           
 		         
 		         var followButtons = document.querySelectorAll(".follow .firstButton");
-var modalUnfollowButtons = document.querySelectorAll(".unfollow");
+						var modalUnfollowButtons = document.querySelectorAll(".unfollow");
+						
+						for (var e of followButtons) {
+						   
+						     e.addEventListener("mouseover", function(e) {
+						       if (this.getAttribute("follow") == "following") {
+						             this.setAttribute("data-bs-toggle", "modal");
+						             this.setAttribute("data-bs-target", "#unfollowModal"
+						                     +this.getAttribute("target-type")
+						                     +this.getAttribute("target-no"));
+						       }
+						     });
+						     e.addEventListener("mouseout", function(e) {
+						           this.setAttribute("data-bs-toggle", " ");
+						           this.setAttribute("data-bs-target", " ");
+						     });
+						   
+						   
+						     e.addEventListener("click", function(e) {
+						          if (this.getAttribute("follow") == "notFollowing") {
+						             
+						             this.setAttribute("follow", "following");
+						             this.setAttribute("class", "btn btn-twitter");
+						             this.setAttribute("data-bs-toggle", "modal");
+						             this.setAttribute("data-bs-target", "#unfollowModal"
+						                 +this.getAttribute("target-type")
+						                 +this.getAttribute("target-no"));
+						             
+						             $.ajax({
+						             
+						                 url: this.getAttribute("target-type")=="Member" ? 
+						                           "${appRoot}/app/follow/addUser" :
+						                               "${appRoot}/app/follow/addTag",
+						                 type: 'get',
+						                 data: {
+						                   followedNo: this.getAttribute("target-no")
+						                 }
+						                 ,
+						                 
+						                 dataType: 'html',
+						                 context: this,
+						                 success: function(response) {
+						                   for (var f of followButtons) {
+						                     
+						                     if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
+						                                 this.getAttribute("target-type") == f.getAttribute("target-type")) {
+						                             f.setAttribute("notFollowing", "following");
+						                             f.setAttribute("class", "btn btn-twitter");
+						                     }
+						                     
+						                    }
+						                 },
+						                 fail: function(error) {
+						                 },
+						                 always: function(response) {
+						                 }
+						               });
+						           }
+						       });
+						 }
 
-for (var e of followButtons) {
-   
-     e.addEventListener("mouseover", function(e) {
-       if (this.getAttribute("follow") == "following") {
-             this.setAttribute("data-bs-toggle", "modal");
-             this.setAttribute("data-bs-target", "#unfollowModal"
-                     +this.getAttribute("target-type")
-                     +this.getAttribute("target-no"));
-       }
-     });
-     e.addEventListener("mouseout", function(e) {
-           this.setAttribute("data-bs-toggle", " ");
-           this.setAttribute("data-bs-target", " ");
-     });
-   
-   
-     e.addEventListener("click", function(e) {
-          if (this.getAttribute("follow") == "notFollowing") {
-             
-             this.setAttribute("follow", "following");
-             this.setAttribute("class", "btn btn-twitter");
-             this.setAttribute("data-bs-toggle", "modal");
-             this.setAttribute("data-bs-target", "#unfollowModal"
-                 +this.getAttribute("target-type")
-                 +this.getAttribute("target-no"));
-             
-             $.ajax({
-             
-                 url: this.getAttribute("target-type")=="Member" ? 
-                           "${appRoot}/app/follow/addUser" :
-                               "${appRoot}/app/follow/addTag",
-                 type: 'get',
-                 data: {
-                   followedNo: this.getAttribute("target-no")
-                 }
-                 ,
-                 
-                 dataType: 'html',
-                 context: this,
-                 success: function(response) {
-                   for (var f of followButtons) {
-                     
-                     if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
-                                 this.getAttribute("target-type") == f.getAttribute("target-type")) {
-                             f.setAttribute("notFollowing", "following");
-                             f.setAttribute("class", "btn btn-twitter");
-                     }
-                     
-                    }
-                 },
-                 fail: function(error) {
-                 },
-                 always: function(response) {
-                 }
-               });
-           }
-       });
- }
-
- for (var e of modalUnfollowButtons) {
-   e.addEventListener("click", function(e) {
-     
-     $.ajax({
-           
-           url: this.getAttribute("target-type")=="Member" ? 
-                     "${appRoot}/app/follow/deleteUser" :
-                         "${appRoot}/app/follow/deleteTag",
-           type: 'get',
-           data: {
-             followedNo: this.getAttribute("target-no")
-           }
-           ,
-           dataType: 'html',
-           context: this,
-           success: function(response) {
-             for (var f of followButtons) {
-              if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
-                   this.getAttribute("target-type") == f.getAttribute("target-type")) {
-                  f.setAttribute("follow", "notFollowing");
-                  f.setAttribute("class", "btn btn-archiview");
-              }
-            }
-           },
-           fail: function(error) {
-           },
-           always: function(response) {
-           }
-         });
-   });
- }
+						 for (var e of modalUnfollowButtons) {
+						   e.addEventListener("click", function(e) {
+						     
+						     $.ajax({
+						           
+						           url: this.getAttribute("target-type")=="Member" ? 
+						                     "${appRoot}/app/follow/deleteUser" :
+						                         "${appRoot}/app/follow/deleteTag",
+						           type: 'get',
+						           data: {
+						             followedNo: this.getAttribute("target-no")
+						           }
+						           ,
+						           dataType: 'html',
+						           context: this,
+						           success: function(response) {
+						             for (var f of followButtons) {
+						              if (this.getAttribute("target-no") == f.getAttribute("target-no") && 
+						                   this.getAttribute("target-type") == f.getAttribute("target-type")) {
+						                  f.setAttribute("follow", "notFollowing");
+						                  f.setAttribute("class", "btn btn-archiview");
+						              }
+						            }
+						           },
+						           fail: function(error) {
+						           },
+						           always: function(response) {
+						           }
+						         });
+						   });
+						 }
 
 		         var cards = document.querySelectorAll(".stillcut");
 		         var ReviewDetailModal = new bootstrap.Modal(document.getElementById('reveiwDetail'), {});
@@ -1213,62 +1179,45 @@ for (var e of followButtons) {
 		               success: function(data) {
 		                 detailBody.innerHTML = data;
 		                 
-		                   var saveButtons = document.querySelectorAll(".save img");
-		                     
-		                     for (var e of saveButtons) {
-		                       
-		                        e.addEventListener("mouseover", function(e) {
-		                              this.setAttribute("src", "${appRoot}/main_resource/saved.png");
-		                            });
-		                          e.addEventListener("mouseout", function(e) {
-		                              if (this.getAttribute("save") == "notSaving") {
-		                                    this.setAttribute("src", "${appRoot}/main_resource/saved-outline.png");
-		                              } else {
-		                                this.setAttribute("src", "${appRoot}/main_resource/saved.png");
-		                              }
+		                 var saveButtons = document.querySelectorAll(".save img");
+		                 for (var e of saveButtons) {
+		                    e.addEventListener("click", function(e) {
+		                      
+		                      var ajaxUrl;
+		                      var imgSrc;
+		                      
+		                      switch (this.getAttribute('save')) {
+		                        case 'saving':
+		                          this.setAttribute("save", "notSaving");
+		                          ajaxUrl = "${appRoot}/app/save/delete";
+		                          imgSrc = "${appRoot}/main_resource/saved-outline.png";
+		                          break;
+		                        default :
+		                          this.setAttribute("save", "saving");
+		                          ajaxUrl = "${appRoot}/app/save/add";
+		                          imgSrc = "${appRoot}/main_resource/saved.png";
+		                      }
+		                      
+		                      $.ajax({
+		                            
+		                            url:  ajaxUrl,
+		                            type: 'get',
+		                            context: this,
+		                            data: {
+		                              savedNo: this.getAttribute("data-no")
+		                            }
+		                            ,
+		                            dataType: 'html',
+		                            success: function(response) {
+		                              this.setAttribute("src", imgSrc);
+		                            },
+		                            fail: function(error) {
+		                            },
+		                            always: function(response) {
+		                            }
 		                          });
-		                        e.addEventListener("click", function(e) {
-		                           if (this.getAttribute("save") == "saving") {
-		                                     this.setAttribute("save", "notSaving");
-		                                     $.ajax({
-		                                           
-		                                           url:  
-		                                                     "${appRoot}/app/save/delete",
-		                                           type: 'get',
-		                                           data: {
-		                                             savedNo: this.getAttribute("data-no")
-		                                           }
-		                                           ,
-		                                           dataType: 'html',
-		                                           success: function(response) {
-		                                           },
-		                                           fail: function(error) {
-		                                           },
-		                                           always: function(response) {
-		                                           }
-		                                         });
-		                                   } else {
-		                                     this.setAttribute("save", "saving");
-		                                     $.ajax({
-		                                           
-		                                           url:  
-		                                                     "${appRoot}/app/save/add",
-		                                           type: 'get',
-		                                           data: {
-		                                             savedNo: this.getAttribute("data-no")
-		                                           }
-		                                           ,
-		                                           dataType: 'html',
-		                                           success: function(response) {
-		                                           },
-		                                           fail: function(error) {
-		                                           },
-		                                           always: function(response) {
-		                                           }
-		                                         });
-		                                   }
-		                          });
-		                    }
+		                      });
+		                }		                     
 		                     
 		                     var followButtons = document.querySelectorAll(".follow .firstButton");
 		                     var modalUnfollowButtons = document.querySelectorAll(".unfollow");

@@ -34,6 +34,9 @@
 	margin-top: 30px;
 }
 </style>
+  <script src="${appRoot}/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+ <script src="${appRoot}/node_modules/jquery/dist/jquery.js"></script>
+  <script src="${appRoot}/node_modules/jquery-ui-dist/jquery-ui.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -43,13 +46,13 @@
 		<tiles:insertAttribute name="body" />
 
 		<tiles:insertAttribute name="footer" />
-
+<span class='selected' style='display: none;'></span>
 	</div>
 	
-	<script
-    src="${appRoot}/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <script src="${appRoot}/node_modules/jquery/dist/jquery.min.js"></script>
+
     <script src="${appRoot}/js/image-picker.min.js"></script>
+    
+ 
     
     <script>
     /* 스틸컷 고를때 이미지 검은색으로 만듬 */
@@ -59,7 +62,7 @@
     <script>
       /* 스틸컷 고를때 체크표시 띄우기 */
       var checkedPng = document.createElement("img");
-      checkedPng.setAttribute("src","${appRoot}/checked.png");
+      checkedPng.setAttribute("src","${appRoot}/movie_resource/checked.png");
       checkedPng.setAttribute("style","width:56px; height:40px; position:absolute; top:50px; right:82px; z-index:51;opacity: 100;");
       
       var selected = document.querySelector(".selected");

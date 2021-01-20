@@ -115,9 +115,10 @@
 	        
 	        <span class = 'save'>
 	          <img
-	          src='${appRoot}/main_resource/${review.isSaving != 0? "saved.png" : "saved-outline.png"}'
+	          src='${appRoot}/profile_resource/${review.isSaving != 0? "saved.png" : "saved-border.png"}'
 	          alt='저장'
             data-no='${review.no}' 
+            style='cursor:pointer;'
             save='${review.isSaving != 0? "saving" : "notSaving"}'>
 	        </span>
 	        

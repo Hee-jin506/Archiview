@@ -78,7 +78,6 @@
     }
     
     </style>
-    <link rel="stylesheet" type="text/css" href="../../../../css/image-picker.css"/>
   </head>
   <body>
     <div id='writeReview'>
