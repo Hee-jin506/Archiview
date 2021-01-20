@@ -12,10 +12,10 @@
 	
 	<link href="${appRoot}/node_modules/jquery-ui-dist/jquery-ui.min.css"	rel="stylesheet" type="text/css" />
 	<link	href="${appRoot}/node_modules/jquery-ui-dist/jquery-ui.theme.min.css"	rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/custom.css">
 	<link rel="stylesheet" href="${appRoot}/css/reset.css">
 	<link rel="stylesheet" href="${appRoot}/css/sidebar.css">
 	<link rel="stylesheet" href="${appRoot}/css/footer.css">
-	<link rel="stylesheet" href="${appRoot}/css/bootstrap/dist/css/custom.css">
 	<link rel="stylesheet" href="${appRoot}/css/header.css">
 	<link rel="stylesheet" href="${appRoot}/css/main.css">
 	<link rel="stylesheet" href="${appRoot}/css/mainFeed.css">
@@ -106,6 +106,17 @@
 	  </div>
 	</div>
 	
+	
+<script>
+	$(document).on('show.bs.modal', '.modal', function () {
+    var zIndex = 1040 + (10 * $('.modal:visible').length);
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+});
+</script>
+	
 <script>
 /* 이것이 무한스크롤 */
 "use strict" 
@@ -149,6 +160,8 @@ body.onscroll = function(e) {
             var followButtons = document.querySelectorAll(".follow button");
             var modalUnfollowButtons = document.querySelectorAll(".unfollow");
             
+            
+            
             for (var e of cards) {
                 e.onclick = function(e) {
                   console.log("클릭")
@@ -166,12 +179,20 @@ body.onscroll = function(e) {
                     ,
                     dataType: 'html',
                     success: function(data) {
+                    	 $(document).on('show.bs.modal', '.modal', function () {
+                    		    var zIndex = 1040 + (10 * $('.modal:visible').length);
+                    		    $(this).css('z-index', zIndex);
+                    		    setTimeout(function() {
+                    		        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+                    		    }, 0);
+                    		});
                       detailBody.innerHTML = data;
                       
                       var followButtons = document.querySelectorAll(".follow button");
                         var modalUnfollowButtons = document.querySelectorAll(".unfollow");
                         var saveButtons = document.querySelectorAll(".save img");
                           
+                       
                           for (var e of saveButtons) {
                             
                              e.addEventListener("mouseover", function(e) {
@@ -397,6 +418,8 @@ body.onscroll = function(e) {
                   });
             }
             
+            
+            
             for (var e of followButtons) {
                 
                 e.addEventListener("mouseover", function(e) {
@@ -540,11 +563,17 @@ for (var e of cards) {
       ,
       dataType: 'html',
       success: function(data) {
+    	  
+    	  
     	  detailBody.innerHTML = data;
     	  
     	  var followButtons = document.querySelectorAll(".follow button");
           var modalUnfollowButtons = document.querySelectorAll(".unfollow");
           var saveButtons = document.querySelectorAll(".save img");
+          
+          $(modalUnfollowButtons).on('hide.bs.modal', function (e) {
+        	  e.stopPropagation();
+            })
             
             for (var e of saveButtons) {
               
@@ -1017,8 +1046,16 @@ for(var e of profileIcons) {
 		       },
 		       
 		       success : function(data) {
-		         
+/* 		    	   $(document).on('show.bs.modal', '.modal', function () {
+		    		   console.log('asdfad');
+		    		    var zIndex = 1040 + (10 * $('.modal:visible').length);
+		    		    $(this).css('z-index', zIndex);
+		    		    setTimeout(function() {
+		    		        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+		    		    }, 0);
+		    		}); */
 		         profileBottom.innerHTML = data;
+		         
 		         
 		         for (var e of profileIcons) {
 		        	 switch (e.getAttribute('class')) {
@@ -1036,8 +1073,23 @@ for(var e of profileIcons) {
 		        	      break;
 		        	  }
 		         }
-		         
 		         this.setAttribute("src", imgSrc);
+		         
+		         $(function () {
+		        	  $('[data-toggle="tooltip"]').tooltip()
+		        	})
+		         
+		         var test = document.querySelector(".add-one");
+	             test.onclick = function(e) {
+	                 console.log("클릭")
+	             }
+	             test.addEventListener("mouseover", function(e) {
+	               this.setAttribute("src","${appRoot}/profile_resource/add-one-mouseover.png")
+	               });
+	             test.addEventListener("mouseout", function(e) {
+	               this.setAttribute("src","${appRoot}/profile_resource/add-one.png")
+	               });
+	           
 		         
 		         var followButtons = document.querySelectorAll(".follow button");
 		         var modalUnfollowButtons = document.querySelectorAll(".unfollow");
@@ -1323,6 +1375,21 @@ for(var e of profileIcons) {
 
 
 </script>
+
+<script>
+  "use strict"
+  var test = document.querySelector(".add-one");
+  test.onclick = function(e) {
+      console.log("클릭")
+  }
+  test.addEventListener("mouseover", function(e) {
+    this.setAttribute("src","${appRoot}/profile_resource/add-one-mouseover.png")
+    });
+  test.addEventListener("mouseout", function(e) {
+    this.setAttribute("src","${appRoot}/profile_resource/add-one.png")
+    });
+  
+  </script>
 
 
 </body>

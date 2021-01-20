@@ -233,3 +233,11 @@ height:150px;
     padding: 4px;
  }
  
+ #profile_bottom_null{
+    text-align:center;
+    padding-top: 80px;
+    color: #B9B9BA;
+} 
+ #profile_bottom_null img{
+ width : 50px;
+} 

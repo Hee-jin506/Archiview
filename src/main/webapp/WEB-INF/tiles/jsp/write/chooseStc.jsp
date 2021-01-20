@@ -11,7 +11,7 @@
 	<style>
 		#writeReview {
 		  width : 900px;
-		  min-height: 700px;
+		  xmin-height: 700px;
 		  margin: 0 auto;
 		  margin-top: 75px;
 		  background: #1B1B1B;

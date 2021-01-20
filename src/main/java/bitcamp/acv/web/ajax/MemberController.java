@@ -76,29 +76,29 @@ public class MemberController {
       List<Follow> list,
       List<Follow> followingsOfLoginUser) {
     
-    List<Integer> followingMembersOfLoginUserNoList = new ArrayList<>();
-    List<Integer> followingTagsOfLoginUserNoList = new ArrayList<>();
+    List<Integer> noListOfFollowingMembersOfLoginUser = new ArrayList<>();
+    List<Integer> noListOfFollowingTagsOfLoginUser = new ArrayList<>();
     
     List<Member> targetMemberlist = new ArrayList<>();
     List<Tag> targetTaglist = new ArrayList<>();
  
     for (Follow f : followingsOfLoginUser) {
       if (f.getFollowedType() == 1) {
-        followingMembersOfLoginUserNoList.add(f.getTargetMember().getNo());
+        noListOfFollowingMembersOfLoginUser.add(f.getTargetMember().getNo());
       } else {
-        followingTagsOfLoginUserNoList.add(f.getTargetTag().getNo());
+        noListOfFollowingTagsOfLoginUser.add(f.getTargetTag().getNo());
       }
     }
     
     for (Follow follow : list) {
       if(follow.getFollowedType() == 1) {
-        if(followingMembersOfLoginUserNoList.contains(follow.getTargetMember().getNo())) {
+        if(noListOfFollowingMembersOfLoginUser.contains(follow.getTargetMember().getNo())) {
           // true면 버튼 색깔 회색
           follow.getTargetMember().setFollowingState(true);
         }
         targetMemberlist.add(follow.getTargetMember());
       } else {
-        if(follow.getTargetTag() != null && followingTagsOfLoginUserNoList.contains(follow.getTargetTag().getNo())) {
+        if(follow.getTargetTag() != null && noListOfFollowingTagsOfLoginUser.contains(follow.getTargetTag().getNo())) {
           // true면 버튼 색깔 회색
           follow.getTargetTag().setFollowingState(true);
         }

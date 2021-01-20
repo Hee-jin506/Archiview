@@ -2,8 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <c:set var="appRoot" value="${pageContext.servletContext.contextPath}" />
-   
-<c:forEach items="${targetTaglist}" var="t"> 
+
+<c:if test="${targetTaglist == '[]' && targetMemberlist == '[]'}">
+  <div id = "profile_bottom_null">
+       <img alt="saved-null" src="${appRoot}/profile_resource/following-null.png">
+       <div style="margin-top:15px">
+       회원님이 팔로잉하는 모든 사람이 <br>
+       여기에 표시됩니다. <br>
+       </div>
+  </div>
+</c:if>
+
+<c:if test="${targetTaglist != '[]' || targetMemberlist != '[]'}">
+  <c:forEach items="${targetTaglist}" var="t"> 
           <div class="profile_bottom_row">
             <div class="profile_bottom_object_image">
               <a href="">
@@ -59,8 +70,8 @@
              
             
           </div>
-       </c:forEach>
-       <c:forEach items="${targetMemberlist}" var="m"> 
+  </c:forEach>
+  <c:forEach items="${targetMemberlist}" var="m"> 
           <div class="profile_bottom_row">
             <div class="profile_bottom_object_image">
               <a href="${appRoot}/app/member/profile?no=${m.no}">
@@ -119,8 +130,9 @@
              </div>
             
           </div>
-       </c:forEach>
-    </div>
+  </c:forEach>
+</c:if>
 
+<span class='add-one'></span>
 
 

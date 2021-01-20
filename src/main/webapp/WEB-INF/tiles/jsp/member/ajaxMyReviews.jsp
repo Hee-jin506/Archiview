@@ -2,7 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <c:set var="appRoot" value="${pageContext.servletContext.contextPath}" />
-   
+
+<c:if test="${empty member.reviews}">
+         <div id = "profile_bottom_null">
+         <a href='${appRoot}/app/write/movieSearch'>
+              <img alt="add-one" src="${appRoot}/profile_resource/add-one.png"
+              data-toggle="tooltip" data-placement=top title="${member.nickName}님, 첫 리뷰를 작성해 볼까요?" >
+         </a>
+         </div>
+</c:if>
+<c:if test="${!empty member.reviews}">
 <c:forEach items="${member.reviews}" var="rv"> 
             <c:choose>
               <c:when test="${empty rv.stcUrl}">
@@ -47,3 +56,6 @@
               </c:otherwise>
             </c:choose>
         </c:forEach>
+</c:if>
+
+<span class='add-one'></span>

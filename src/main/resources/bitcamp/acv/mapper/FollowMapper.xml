@@ -153,7 +153,27 @@
   
   <!-- 내가 팔로우하는 리스트 -->
  <select id="findMyFollowingList" resultMap="FollowMap" parameterType="int">
-  <include refid="sql2"/>
+  select
+    mb.mno,
+    mb.nick,
+    f.fno,
+    f.fano,
+    f.target,
+    f.fdt,
+    mb2.mno targetMember_no,
+    mb2.nick targetMember_nick,
+    mb2.photo targetMember_photo,
+    mb2.intro targetMember_intro,
+    t.tno targetTag_no,
+    t.title targetTag_title,
+    tp.tpno,
+    tp.rvno
+  from
+    acv_mbr mb
+      inner join acv_flw f on mb.mno=f.flwing_mbr
+      left outer join acv_mbr mb2 on f.target=mb2.mno
+      left outer join acv_tag t on f.target=t.tno
+      left outer join acv_tag_post tp on t.tno=tp.tno
     where
       mb.mno=#{mno}
   </select>
@@ -174,7 +194,7 @@
     f.fdt
   from
     acv_mbr mb
-      left outer join acv_flw f on mb.mno=f.target
+      inner join acv_flw f on mb.mno=f.target
       left outer join acv_mbr mb2 on f.flwing_mbr=mb2.mno
     where
      mb.mno=#{mno} and f.fano=1

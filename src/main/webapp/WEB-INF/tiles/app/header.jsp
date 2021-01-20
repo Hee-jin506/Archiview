@@ -23,7 +23,9 @@
 		    
 	        <img class='profile dropdown-toggle' src='${appRoot}/upload/${loginUser.photo}_35x35.jpg' href="#" role="button"  data-bs-toggle="dropdown" aria-expanded="false">
 	        
-				  <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="dropdownMenuLink">
+				  <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" 
+				  aria-labelledby="dropdownMenuLink" 
+				  style="background-color: #141517; border-color: #626473; margin-top: 4px;">
 				    <li>
 				      <a class="dropdown-item" 
 				      href='${appRoot}/app/member/profile?no=${loginUser.no}'>
@@ -50,7 +52,12 @@
 				      </a>
 				    </li>
 				    <li>
-				      <hr class="dropdown-divider">
+				      <hr class="dropdown-divider" 
+				      style="border-right: 1px;
+									    border-bottom: 1px;
+									    border-left: 1px;
+									    border-color: #626473;
+    background-color: #626473;">
 				    </li>
 				    <li>
 				      <a class="dropdown-item" href="${appRoot}/app/auth/logout">로그아웃

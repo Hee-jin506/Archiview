@@ -106,13 +106,16 @@
             
             <div id='movieSearchResultPosters'>
             <c:if test="${movies =='[]'}">
-              <span id='null'>검색결과가 없습니다!</span>
+              <span id='null' 
+              style= 'margin-left: 198.41px;
+                       margin-top: 100px;
+                        display: block;'>검색결과가 없습니다!</span>
             </c:if>
             
             <c:forEach var="mv" items="${movies}">
               <a href='chooseStc?movieNo=${mv.no}'>
 	              <c:if test="${fn:length(mv.posters) != 0}">
-	                <img src='${mv.posters[0]}' data-toggle="tooltip" data-placement=top title="${mv.title}">
+	                <img src='${mv.posters[0]}' data-toggle="tooltip" data-placement=top title="${mv.title}, ${fn:substring(mv.openDate,0,4) }">
 	              </c:if>
 	              <c:if test="${fn:length(mv.posters) == 0}">
 	                <img src="${appRoot}/upload/movie_image.jpg" data-toggle="tooltip" data-placement=top title="${mv.title}">

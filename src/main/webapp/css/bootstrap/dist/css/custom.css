@@ -5132,7 +5132,7 @@ textarea.form-control-lg {
   height: 0;
   margin: 0.5rem 0;
   overflow: hidden;
-  border-top: 1px solid rgba(0, 0, 0, 0.15); }
+  xborder-top: 1px solid rgba(0, 0, 0, 0.15); }
 
 .dropdown-item {
   display: block;
