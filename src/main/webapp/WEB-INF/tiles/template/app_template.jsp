@@ -108,6 +108,7 @@
 	<span class='add-one'></span>
 	
 <script>
+"use strict"
 	$(document).on('show.bs.modal', '.modal', function () {
     var zIndex = 1040 + (10 * $('.modal:visible').length);
     $(this).css('z-index', zIndex);
@@ -147,6 +148,7 @@ body.onscroll = function(e) {
           ,
           dataType: 'html',
           success: function(data) {
+        	  
         	  var originContent = body.innerHTML;
             body.innerHTML = originContent + data;
             
@@ -936,11 +938,6 @@ var heartIcon = document.querySelector("#icon a:nth-child(3) img");
 var bellIcon = document.querySelector("#icon a:nth-child(4) img");
 
 var currentPath = window.location.pathname;
-
-plusIcon.onclick = function(plusIcon) {
-    console.log("아니 클릭햇다고");
-  };
-
 
 if (currentPath.includes("member/profile") || 
 		currentPath.includes("followerList") ||
